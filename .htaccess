@@ -1,0 +1,14 @@
+<Files "config.php">
+Order Allow,Deny
+Deny from All
+</Files>
+
+<Files "global.php">
+Order Allow,Deny
+Deny from All
+</Files>
+
+<Files "*.xml">
+Order Allow,Deny
+Deny from All
+</Files>

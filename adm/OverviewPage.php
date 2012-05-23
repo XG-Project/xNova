@@ -20,17 +20,8 @@ function check_updates()
 	if ( function_exists ( 'file_get_contents' ) )
 	{
 		$current_v 	= @file_get_contents ( 'http://xgproyect.xgproyect.net/current.php' );
-		$current_v	= str_replace ( '.' , '' , $current );
-		$system_v	= str_replace ( '.' , '' , read_config ( 'version' ) );		
-				
-		if ( $current_v > $system_v )
-		{
-			return TRUE;
-		}
-		else
-		{
-			return FALSE;
-		}
+
+		return (strnatcmp($current_v, read_config('version')) > 0);
 	}
 }
 

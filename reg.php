@@ -21,7 +21,7 @@ $parse = $lang;
 
 function sendpassemail ( $emailaddress , $password )
 {
-	global $lang;
+	global $lang, $parse;
 
 	$email 				= parsetemplate ( $lang['reg_mail_text_part1'] . $password . $lang['reg_mail_text_part2'] . GAMEURL , $parse );
 	$status 			= mymail ( $emailaddress , $lang['register_at'] . read_config ( 'game_name' ) , $email );

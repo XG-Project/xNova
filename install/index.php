@@ -7,14 +7,15 @@
  */
 
 define('INSIDE'  		,   	 TRUE);
+define('INSTALL'  		,   	 TRUE);
 define('XGP_ROOT'		, 	  './../');
 
 include_once(XGP_ROOT . 'global.php');
 include_once('databaseinfos.php');
 include_once('migration.php');
 
-$Mode     = $_GET['mode'];
-$Page     = $_GET['page'];
+$Mode     = isset($_GET['mode']) ? $_GET['mode'] : '';
+$Page     = isset($_GET['page']) ? $_GET['page'] : '';
 $phpself  = $_SERVER['PHP_SELF'];
 $nextpage = $Page + 1;
 
@@ -34,13 +35,16 @@ switch ($Mode)
 	break;
 	case 'ins':
 		if ($Page == 1) {
-			if ($_GET['error'] == 1)
+			if(isset($_GET['error']))
 			{
-				message ("La conexi&oacute;n a la base de datos a fallado","?mode=ins&page=1", 3, FALSE, FALSE);
-			}
-			elseif ($_GET['error'] == 2)
-			{
-				message ("El fichero config.php no puede ser sustituido, no tenia acceso chmod 777","?mode=ins&page=1", 3, FALSE, FALSE);
+				if ($_GET['error'] == 1)
+				{
+					message ("La conexi&oacute;n a la base de datos a fallado","?mode=ins&page=1", 3, FALSE, FALSE);
+				}
+				elseif ($_GET['error'] == 2)
+				{
+					message ("El fichero config.php no puede ser sustituido, no tenia acceso chmod 777","?mode=ins&page=1", 3, FALSE, FALSE);
+				}
 			}
 
 			$frame  = parsetemplate ( gettemplate ('install/ins_form'), FALSE);
@@ -75,7 +79,7 @@ switch ($Mode)
 				exit();
 			}
 
-			$parse[first]	= "Conexi&oacute;n establecida con éxito...";
+			$parse['first']	= "Conexi&oacute;n establecida con &eacute;xito...";
 
 			fwrite($dz, "<?php\n");
 			fwrite($dz, "if(!defined(\"INSIDE\")){ header(\"location:".XGP_ROOT."\"); }\n");
@@ -89,7 +93,7 @@ switch ($Mode)
 			fwrite($dz, "?>");
 			fclose($dz);
 
-			$parse[second]	= "Archivo config.php creado con éxito...";
+			$parse['second']	= "Archivo config.php creado con &eacute;xito...";
 
 			doquery ($QryTableAks        , 'aks'    	);
 			doquery ($QryTableAlliance   , 'alliance'   );
@@ -106,13 +110,13 @@ switch ($Mode)
 			doquery ($QryTableStatPoints , 'statpoints'	);
 			doquery ($QryTableUsers      , 'users'  	);
 
-			$parse[third]	= "Tablas creadas con &eaute;xito...";
+			$parse['third']	= "Tablas creadas con &eacute;xito...";
 
 			$frame  = parsetemplate(gettemplate('install/ins_form_done'), $parse);
 		}
 		elseif ($Page == 3)
 		{
-			if ($_GET['error'] == 3)
+			if (isset($_GET['error']) && $_GET['error'] == 3)
 				message ("&iexcl;Debes completar todos los campos!","?mode=ins&page=3", 2, FALSE, FALSE);
 
 			$frame  = parsetemplate(gettemplate('install/ins_acc'), FALSE);
@@ -216,7 +220,7 @@ switch ($Mode)
 				include("../config.php");
 
 				$system_version	=	str_replace ( 'v' , '' , VERSION );
-								
+
 				// ALL QUERYS NEEDED
 				$Qry1 = "DELETE FROM `$dbsettings[prefix]config` WHERE `config_name` = 'VERSION'";
 				$Qry2 = "INSERT INTO `$dbsettings[prefix]config` (`config_name`, `config_value`) VALUES ('VERSION', '".SYSTEM_VERSION."');";
@@ -234,9 +238,9 @@ switch ($Mode)
 				$Qry9 = "ALTER TABLE $dbsettings[prefix]galaxy ADD `invisible_start_time` int(11) NOT NULL default '0'; ";
 				$Qry10 = "ALTER TABLE `$dbsettings[prefix]users` DROP `rpg_espion`,DROP `rpg_constructeur`,DROP `rpg_scientifique`,DROP `rpg_commandant`,DROP `rpg_stockeur`,DROP `rpg_defenseur`,DROP `rpg_destructeur`,DROP `rpg_general`,DROP `rpg_empereur`;";
 				$Qry11 = "DROP TABLE `$dbsettings[prefix]config`";
-				
+
 				$QrysArray	= NULL;
-				
+
 				switch($system_version)
 				{
 					case '2.9.0':
@@ -273,7 +277,7 @@ switch ($Mode)
 						message("&iexcl;La versi&oacute;n de tu proyecto no es compatible con XG Proyect, o estas intentando actualizar desde una versi&oacute;n m&aacute;s nueva!", "", "", FALSE, FALSE);
 					break;
 				}
-				
+
 				if ( $QrysArray != NULL )
 				{
 					foreach ( $QrysArray as $DoQuery )

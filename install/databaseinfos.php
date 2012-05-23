@@ -224,7 +224,7 @@ $QryTablePlanets    .= "`last_jump_time` int(11) NOT NULL default '0', ";
 $QryTablePlanets    .= "PRIMARY KEY  (`id`) ";
 $QryTablePlanets    .= ") ENGINE=MyISAM;";
 
-$QryTablePlugins	.= "CREATE TABLE `{{table}}` (";
+$QryTablePlugins	 = "CREATE TABLE `{{table}}` (";
 $QryTablePlugins	.= "`status` tinyint(11) NOT NULL DEFAULT '0',";
 $QryTablePlugins	.= "`plugin` varchar(32) NOT NULL";
 $QryTablePlugins	.= ") ENGINE=MyISAM;";

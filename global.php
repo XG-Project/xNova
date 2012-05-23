@@ -6,8 +6,8 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-// SETEADO PARA EVITAR ERRORRES EN VERSION DE PHP MAYORES A 5.3.0
-error_reporting ( E_ALL & ~E_NOTICE );
+// En desarrollo: E_ALL | E_STRICT, en producción: 0
+error_reporting (E_ALL | E_STRICT);
 
 $user          	= array();
 $lang          	= array();
@@ -26,7 +26,7 @@ include_once ( XGP_ROOT . 'includes/classes/class.Fleets.php' );
 
 $debug 		= new debug();
 
-if ( filesize ( XGP_ROOT . 'config.php' ) == 0 && INSTALL != TRUE )
+if ( filesize ( XGP_ROOT . 'config.php' ) == 0 && ( ! defined('INSTALL')))
 {
 	exit ( header ( 'location:' . XGP_ROOT .  'install/' ) );
 }
@@ -38,7 +38,7 @@ if ( filesize ( XGP_ROOT . 'config.php' ) != 0 )
 	define ( 'VERSION' , ( $game_version == '' ) ? "		  " : "v" . $game_version );
 }
 
-if ( INSTALL != TRUE )
+if (! defined('INSTALL'))
 {
 	include ( XGP_ROOT . 'includes/vars.php' );
 	include ( XGP_ROOT . 'includes/functions/CreateOneMoonRecord.php' );

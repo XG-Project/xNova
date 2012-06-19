@@ -22,7 +22,7 @@ class XN_Session extends CI_Session {
 	 */
 	function _get_time()
 	{
-		$timezone = config_item('timezone');
+		$timezone = config_item('time_reference');
 
 		if ($timezone === 'local' OR $timezone === date_default_timezone_get())
 		{

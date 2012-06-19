@@ -35,7 +35,7 @@ if (defined('ENVIRONMENT'))
 		case 'development':
 			error_reporting(E_ALL);
 		break;
-	
+
 		case 'testing':
 		case 'production':
 			error_reporting(0);
@@ -56,7 +56,7 @@ if (defined('ENVIRONMENT'))
  * as this file.
  *
  */
-	$system_path = 'system';
+	$system_path = 'engine';
 
 /*
  *---------------------------------------------------------------
@@ -72,7 +72,7 @@ if (defined('ENVIRONMENT'))
  * NO TRAILING SLASH!
  *
  */
-	$application_folder = 'application';
+	$application_folder = 'xnova';
 
 /*
  * --------------------------------------------------------------------

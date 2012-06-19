@@ -11,6 +11,11 @@
 |
 */
 
+/* Remove GET section
+ *
+ * Since we do not have GET array, we don't need it any more.
+ */
+$config['get']	= FALSE;
 
 
 /* End of file profiler.php */

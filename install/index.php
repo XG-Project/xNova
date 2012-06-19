@@ -34,7 +34,8 @@ switch ($Mode)
 		$frame  = parsetemplate(gettemplate('install/ins_intro'), FALSE);
 	break;
 	case 'ins':
-		if ($Page == 1) {
+		if ($Page == 1)
+		{
 			if(isset($_GET['error']))
 			{
 				if ($_GET['error'] == 1)
@@ -58,14 +59,14 @@ switch ($Mode)
 			$db     = $_POST['db'];
 
 			$connection = @mysql_connect($host, $user, $pass);
-			if (!$connection)
+			if ( ! $connection)
 			{
 				header ( 'location:?mode=ins&page=1&error=1' );
 				exit();
 			}
 
 			$dbselect = @mysql_select_db($db);
-			if (!$dbselect)
+			if ( ! $dbselect)
 			{
 				header ( 'location:?mode=ins&page=1&error=1' );
 				exit();

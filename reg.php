@@ -57,7 +57,7 @@ function mymail ( $to , $title , $body , $from = '' )
 	return mail ( $to , $title , $body , $head );
 }
 
-if ($_POST)
+if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
 	$errors = 0;
 	$errorlist = "";

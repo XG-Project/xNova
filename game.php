@@ -19,7 +19,9 @@ include(XGP_ROOT . 'includes/functions/SetNextQueueElementOnTop.php');
 include(XGP_ROOT . 'includes/functions/SortUserPlanets.php');
 include(XGP_ROOT . 'includes/functions/UpdatePlanetBatimentQueueList.php');
 
-switch($_GET[page])
+$page	= isset($_GET['page']) ? $_GET['page'] : NULL;
+
+switch($page)
 {
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'changelog':

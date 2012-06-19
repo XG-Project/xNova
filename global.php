@@ -38,7 +38,7 @@ if ( filesize ( XGP_ROOT . 'config.php' ) != 0 )
 	define ( 'VERSION' , ( $game_version == '' ) ? "		  " : "v" . $game_version );
 }
 
-if (! defined('INSTALL'))
+if ( ! defined('INSTALL') OR ( ! INSTALL))
 {
 	include ( XGP_ROOT . 'includes/vars.php' );
 	include ( XGP_ROOT . 'includes/functions/CreateOneMoonRecord.php' );

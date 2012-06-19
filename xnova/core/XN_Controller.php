@@ -8,7 +8,30 @@ class XN_Controller extends CI_Controller {
 
 		if ( ! $this->input->is_cli_request())
 		{
+			if ((strtolower($this->uri->segment(1)) === 'admin') && ( ! $this->user->is_admin()))
+			{
+				log_message('error', 'User with IP '.$this->input->ip_address().' has tried to enter the admin section.');
+				redirect('/');
+			}
+
 			$this->output->enable_profiler($this->config->item('debug'));
+
+			if ($this->user->is_logged_in())
+			{
+				if ( ! $this->user->load())
+				{
+					//Error, el usuario no existe, ha sido eliminado
+				}
+				elseif ($this->user->is_banned())
+				{
+					//Error, el usuario está baneado!!!
+				}
+				elseif ($this->user->is_hibernating())
+				{
+					$this->user->finish_hibernation();
+					//Puede haber problemas para comprobar otros usuarios en el panel de administración.
+				}
+			}
 
 			//Loading config from database:
 			$query = $this->db->get('config');

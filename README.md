@@ -1,11 +1,23 @@
-Razican-s-xNova
+New xNova
 ===============
 
-Mi pequeño aporte al mundo de xNova, me basaré en XG Proyect 2.10.x
+Una reprogramación de XG Proyect, con la que espero poder mejorar este proyecto. Estas serán
+sus características:
 
+* CodeIgniter 2.1.1, aunque se irá actualizando a las últimas versiones estables que vayan saliendo.
+* CSS 3
+* HTML 5
+
+En cuanto a la jugabilidad:
+
+* Nuevo estilo
+* Nuevo y mejorado panel de administración
+* Sistema de referidos activable y desactivable
+
+Y mucho más que se irá definiendo en el futuro.
 
 Objetivos:
 ==========
 
-El principal objetivo será el solucionar todos los posibles errores de XG Proyect, no obstante, se pretende
-crear un juego renovado no solo gráficamente sino también en cuanto a su código.
+Portar XG Proyect a CodeIgniter, mejorando su estructura y código. Se pretende que sea la nueva
+base para futuros proyectos.

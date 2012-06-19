@@ -1,0 +1,70 @@
+<Files "DefensesLog.php">
+Order Allow,Deny
+Deny from All
+</Files>
+
+<Files "BuildingsLog.php">
+Order Allow,Deny
+Deny from All
+</Files>
+
+<Files "ShipsLog.php">
+Order Allow,Deny
+Deny from All
+</Files>
+
+<Files "OfficierLog.php">
+Order Allow,Deny
+Deny from All
+</Files>
+
+<Files "PersonalLog.php">
+Order Allow,Deny
+Deny from All
+</Files>
+
+<Files "ResearchLog.php">
+Order Allow,Deny
+Deny from All
+</Files>
+
+<Files "ResourcesLog.php">
+Order Allow,Deny
+Deny from All
+</Files>
+
+<Files "ResetLog.php">
+Order Allow,Deny
+Deny from All
+</Files>
+
+<Files "PlanetsAndMoonsLog.php">
+Order Allow,Deny
+Deny from All
+</Files>
+
+<Files "ModerationLog.php">
+Order Allow,Deny
+Deny from All
+</Files>
+
+<Files "GeneralLog.php">
+Order Allow,Deny
+Deny from All
+</Files>
+
+<Files "ConfigLog.php">
+Order Allow,Deny
+Deny from All
+</Files>
+
+<Files "DataSearchLog.php">
+Order Allow,Deny
+Deny from All
+</Files>
+
+<Files "AllianceLog.php">
+Order Allow,Deny
+Deny from All
+</Files>
+

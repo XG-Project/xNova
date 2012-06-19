@@ -7,13 +7,13 @@
  */
 
 /**
- * @autor jstar, 
+ * @autor jstar,
  * @version v2
- * @copyright gnu v3 
+ * @copyright gnu v3
  */
 
 if (!defined('INSIDE')){die(header("location:../../"));}
-    
+
 class ShowPhalanxPage
 {
     public function __construct($CurrentUser, $CurrentPlanet)
@@ -110,8 +110,8 @@ class ShowPhalanxPage
 
 
                 /* 1)the arrive to target fleet table event
-                * you can see start-fleet event only if this is a planet(or destroyed moon) 
-                * and if the fleet mission started from this planet is different from hold 
+                * you can see start-fleet event only if this is a planet(or destroyed moon)
+                * and if the fleet mission started from this planet is different from hold
                 * or if it's a enemy mission.
                 */
                 if ($ArrivetoTargetTime > time())
@@ -122,7 +122,7 @@ class ShowPhalanxPage
                         if ($Mission != 4)
                         {
                             $Label = "fs";
-                            $fpage[$ArrivetoTargetTime] = .= "\n". $FlyingFleetsTable->BuildFleetEventTable($FleetRow, 0, $myFleet, $Label, $Record);
+                            $fpage[$ArrivetoTargetTime] .= "\n". $FlyingFleetsTable->BuildFleetEventTable($FleetRow, 0, $myFleet, $Label, $Record);
                         }
                     }
                     //scanning of destination fleet planet
@@ -142,7 +142,7 @@ class ShowPhalanxPage
                 }
                 /* 3)the return fleet table event
                 * you can see the return fleet if this is the started planet(or destroyed moon)
-                * but no if it is a hold mission or mip         
+                * but no if it is a hold mission or mip
                 */
                 if ($ReturnTime > time() && $Mission != 4 && $Mission != 10 && $isStartedfromThis && ($FleetRow['fleet_start_type'] == 1 || ($FleetRow['fleet_start_type'] == 3 && $TargetMoonIsDestroyed)))
                 {

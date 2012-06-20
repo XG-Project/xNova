@@ -28,6 +28,7 @@ class Main extends XN_Controller {
 			}
 			else
 			{
+				$this->lang->load('login');
 				$this->load->view('login');
 			}
 		}

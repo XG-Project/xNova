@@ -359,4 +359,4 @@ $config['proxy_ips'] = '';
 
 
 /* End of file config.php */
-/* Location: ./application/config/config.php */
+/* Location: ./application/config/development/config.php */

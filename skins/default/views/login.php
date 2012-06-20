@@ -18,3 +18,6 @@
 	</form>
 	<span class="forgot_password"><?php echo anchor('reset_password', lang('login.lost_password')); ?></span>
 </section>
+<section class="copyright">
+	<?php echo config_item('copyright'); ?>
+</section>

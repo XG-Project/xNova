@@ -80,7 +80,7 @@ $autoload['helper'] = array('url', 'html', 'form', 'language', 'overal');
 |
 */
 
-$autoload['config'] = array('enviroment');
+$autoload['config'] = array('enviroment', 'new_xnova');
 
 
 /*

@@ -12,7 +12,14 @@ class XN_Loader extends CI_Loader {
 
 	function view_path($path)
 	{
-		$this->_ci_view_paths[$path] = TRUE;
+		if (file_exists($path))
+		{
+			$this->_ci_view_paths[$path] = TRUE;
+		}
+		else
+		{
+			$this->_ci_view_paths[FCPATH.'skins/default/views/'] = TRUE;
+		}
 	}
 
 	function view($view, $vars = array(), $return = FALSE)

@@ -56,7 +56,7 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 
 	includeLang ( 'INGAME' );
 
-	if ( $InLogin != TRUE )
+	if ( ! isset($InLogin) OR $InLogin != TRUE )
 	{
 		include ( XGP_ROOT . 'includes/classes/class.CheckSession.php' );
 
@@ -121,14 +121,16 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 		}
 		else
 		{
-			define('DPATH' , ( ( !$user["dpath"] ) ? DEFAULT_SKINPATH : SKIN_PATH . $user["dpath"] . '/' ) );
+			define('DPATH' , ( ( ! isset($user["dpath"]) OR ($user["dpath"] == '')) ? DEFAULT_SKINPATH : SKIN_PATH . $user["dpath"] . '/' ) );
 		}
 
-		include ( XGP_ROOT . 'includes/functions/SetSelectedPlanet.php' );
-		SetSelectedPlanet ( $user );
+		if (isset($user['current_planet']))
+		{
+			include ( XGP_ROOT . 'includes/functions/SetSelectedPlanet.php' );
+			SetSelectedPlanet ( $user );
 
-		$planetrow = doquery ( "SELECT * FROM `{{table}}` WHERE `id` = '" . $user['current_planet'] . "';" , "planets" , TRUE );
-
+			$planetrow = doquery ( "SELECT * FROM `{{table}}` WHERE `id` = '" . $user['current_planet'] . "';" , "planets" , TRUE );
+		}
 		// Include the plugin system 0.3
 		include ( XGP_ROOT . 'includes/plugins.php' );
 	}

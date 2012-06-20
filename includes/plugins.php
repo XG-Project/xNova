@@ -138,9 +138,9 @@ closedir($dir);
 if ( defined('IN_ADMIN') )
 {
 	$lang['mu_settings'] 	.= '</a></th></tr><tr><th ".$onMouseOverIE." class="ForIE"><a href="SettingsPage.php?modo=plugins" target="Hauptframe">Config. plugins';
-	define('DPATH' , "../". DEFAULT_SKINPATH );
+	if( ! defined('DPATH')) define('DPATH' , "../". DEFAULT_SKINPATH );
 	//DPATH     				= "../". DEFAULT_SKINPATH  ;
-	$page   				=   $_GET['modo'];
+	$page   				=   isset($_GET['modo']) ? $_GET['modo'] : NULL;
 
 	if(is_phpself('adm/SettingsPage') && $page=='plugins')
 	{

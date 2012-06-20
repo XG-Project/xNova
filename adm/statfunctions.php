@@ -56,7 +56,7 @@ function GetDefensePoints ( $CurrentPlanet ) {
 	$DefenseCounts = 0;
 	$DefensePoints = 0;
 	foreach($reslist['defense'] as $n => $Defense) {
-		if ($CurrentPlanet[ $resource[ $Defense ] ] > 0) {
+		if (isset($CurrentPlanet[ $resource[ $Defense ] ]) && $CurrentPlanet[ $resource[ $Defense ] ] > 0) {
 			$Units          = $pricelist[ $Defense ]['metal'] + $pricelist[ $Defense ]['crystal'] + $pricelist[ $Defense ]['deuterium'];
 			$DefensePoints += ($Units * $CurrentPlanet[ $resource[ $Defense ] ]);
 			$DefenseCounts += $CurrentPlanet[ $resource[ $Defense ] ];
@@ -234,6 +234,7 @@ function MakeStats()
 		unset($CurStats, $old_stats);
 		//We take the data of flying fleets if stat_flying is =1 in game config
 		//If you have trouble with the RAM and CPU usage, please set stat_flying = 0 and a low value of stat_amount (25, 15...)
+		$flying_fleets_array	= array();
 		if($game_stat_flying == 1)
 		{
 			$sql_flying_fleets	=	'SELECT fleet_array, fleet_owner, fleet_id FROM {{table}} WHERE fleet_owner <= '. $minmax['max'].' AND fleet_owner >= '. $minmax['min'].';';
@@ -287,7 +288,7 @@ function MakeStats()
 			//This is used if($game_stat_flying == 1)
 			if($game_stat_flying == 1)
 			{
-				if($flying_fleets_array[$CurUser['id']])
+				if(isset($flying_fleets_array[$CurUser['id']]) && $flying_fleets_array[$CurUser['id']])
 				{
 					foreach($flying_fleets_array[$CurUser['id']] as $fleet_id => $fleet_array)
 					{
@@ -334,7 +335,7 @@ function MakeStats()
 			}
 			$u_GCount			= $u_TDefsCount  + $u_TTechCount  + $u_TFleetCount  + $u_TBuildCount;
 			$u_GPoints		= $u_TTechPoints + $u_TDefsPoints + $u_TFleetPoints + $u_TBuildPoints;
-			if (($CurUser['authlevel'] >= $game_stat_level&& $game_stat==1 ) || $CurUser['bana']==1)
+			if (($CurUser['authlevel'] >= $game_stat_level && $game_stat==1 ) || (isset($CurUser['bana']) && $CurUser['bana']==1))
 			{
 				$insert_user_query  .= '('.$CurUser['id'].','.$CurUser['ally_id'].',1,1,'.$u_OldTechRank.',
 										0,0,'.$u_OldBuildRank.',0,0,'.$u_OldDefsRank.',0,0,'.$u_OldFleetRank.',

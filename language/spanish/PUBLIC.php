@@ -32,7 +32,7 @@ $lang['remember_pass']				= 'Recordar Contrase&ntilde;a';
 $lang['lostpassword']				= '&iquest;Olvidaste tu Contrase&ntilde;a?';
 $lang['welcome_to']					= 'Bienvenido a';
 $lang['server_description']			= '</strong> es un <strong>juego de simulacion estrat&eacute;gica espacial</strong> con <strong>miles de jugadores</strong> a lo largo del mundo compitiendo por ser el mejor <strong>simult&aacute;neamente</strong>. Todo lo que necesitas para jugar, es un navegador web est&aacute;ndar.';
-$lang['server_register']			= '&iexcl;Registrate!';
+$lang['server_register']			= '&iexcl;Reg&iacute;strate!';
 $lang['server_message']				= '&iexcl;&uacute;nete ya y forma parte del fant&aacute;stico mundo de';
 $lang['login']						= 'Ingresar';
 

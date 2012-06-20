@@ -87,7 +87,7 @@ function message ( $mes , $dest = "" , $time = "3" , $topnav = FALSE , $menu = T
 {
 	$parse['mes']   = $mes;
 
-	$page .= parsetemplate ( gettemplate ( 'general/message_body' ) , $parse );
+	$page = parsetemplate ( gettemplate ( 'general/message_body' ) , $parse );
 
 	if ( !defined ( 'IN_ADMIN' ) )
 	{

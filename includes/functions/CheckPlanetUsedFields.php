@@ -17,7 +17,6 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 		$cfc += $planet[$resource[15]] + $planet[$resource[21]] + $planet[$resource[22]];
 		$cfc += $planet[$resource[23]] + $planet[$resource[24]] + $planet[$resource[31]];
 		$cfc += $planet[$resource[33]] + $planet[$resource[34]] + $planet[$resource[44]];
-		$cfc += $planet[$resource[45]];
 
 		if ($planet['planet_type'] == '3')
 		{

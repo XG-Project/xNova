@@ -36,11 +36,14 @@ class ShowOverviewPage
 		$parse['galaxy_system'] 	= $CurrentPlanet['system'];
 		$parse['galaxy_planet'] 	= $CurrentPlanet['planet'];
 
-		switch($_GET['mode'])
+		$mode	= isset($_GET['mode']) ? $_GET['mode'] : NULL;
+		$Have_new_message	= '';
+
+		switch($mode)
 		{
 			case 'renameplanet':
 
-				if($_POST['action'] == $lang['ov_planet_rename_action'])
+				if(isset($_POST['action']) && $_POST['action'] == $lang['ov_planet_rename_action'])
 				{
 					$newname = mysql_escape_string(strip_tags(trim($_POST['newname'])));
 
@@ -53,11 +56,11 @@ class ShowOverviewPage
 						doquery("UPDATE {{table}} SET `name` = '" . $newname . "' WHERE `id` = '" . intval($CurrentUser['current_planet']) . "' LIMIT 1;","planets");
 					}
 				}
-				elseif($_POST['action'] == $lang['ov_abandon_planet'])
+				elseif(isset($_POST['action']) && $_POST['action'] == $lang['ov_abandon_planet'])
 				{
 					return display(parsetemplate(gettemplate('overview/overview_deleteplanet'),$parse));
 				}
-				elseif(intval($_POST['kolonieloeschen']) == 1 && intval($_POST['deleteid']) == $CurrentUser['current_planet'])
+				elseif(isset($_POST['kolonieloeschen']) && isset($_POST['deleteid']) && intval($_POST['kolonieloeschen']) == 1 && intval($_POST['deleteid']) == $CurrentUser['current_planet'])
 				{
 					$filokontrol = doquery("SELECT * FROM {{table}} WHERE fleet_owner = '" . intval($CurrentUser['id']) . "' AND fleet_start_galaxy='" . intval($CurrentPlanet['galaxy']) . "' AND fleet_start_system='" . intval($CurrentPlanet['system']) . "' AND fleet_start_planet='" . intval($CurrentPlanet['planet']) . "'",'fleets');
 
@@ -133,6 +136,7 @@ class ShowOverviewPage
 
 				$Record = 0;
 
+				$fpage	= array();
 				while($FleetRow = mysql_fetch_array($OwnFleets))
 				{
 					$Record++;
@@ -148,7 +152,7 @@ class ShowOverviewPage
 					$filogrubu = $FleetRow['fleet_group'];
 					$id = $FleetRow['fleet_id'];
 					//////
-					$Label = "fs";
+					$Label	= "fs";
 					if($StartTime > time())
 					{
 						$fpage[$StartTime . $id] = $FlyingFleetsTable->BuildFleetEventTable($FleetRow,0,TRUE,$Label,$Record);
@@ -278,7 +282,7 @@ class ShowOverviewPage
 				{
 					if($CurrentUserPlanet["id"] != $CurrentUser["current_planet"] && $CurrentUserPlanet['planet_type'] != 3)
 					{
-						$Coloneshow++;
+						$Colone++;
 						$AllPlanets .= "<th>" . $CurrentUserPlanet['name'] . "<br>";
 						$AllPlanets .= "<a href=\"game.php?page=overview&cp=" . $CurrentUserPlanet['id'] . "&re=0\" title=\"" . $CurrentUserPlanet['name'] . "\"><img src=\"" . DPATH . "planeten/small/s_" . $CurrentUserPlanet['image'] . ".jpg\" height=\"50\" width=\"50\"></a><br>";
 						$AllPlanets .= "<center>";
@@ -353,6 +357,7 @@ class ShowOverviewPage
 
 				$parse['user_username'] = $CurrentUser['username'];
 
+				$flotten	= '';
 				if(count($fpage) > 0)
 				{
 					ksort($fpage);

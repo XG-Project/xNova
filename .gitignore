@@ -6,10 +6,10 @@
 *error_log*
 .DS_Store
 
-application/cache/*
-!application/cache/index.html
-!application/cache/.htaccess
+xnova/cache/*
+!xnova/cache/index.html
+!xnova/cache/.htaccess
 
-application/logs/*
-!application/logs/index.html
-!application/logs/.htaccess
+xnova/logs/*
+!xnova/logs/index.html
+!xnova/logs/.htaccess

@@ -15,11 +15,20 @@ class Main extends XN_Controller {
 		{
 			if ($this->input->server('REQUEST_METHOD  ') === 'POST')
 			{
-				echo 'Logging in';
+				if ($this->user->login($this->input->post('username'),
+					$this->input->post('password'),
+					(bool) $this->input->post('rememberme')))
+				{
+					redirect('/');
+				}
+				else
+				{
+					message(lang('login.error'));
+				}
 			}
 			else
 			{
-				echo 'Login form';
+				$this->load->view('login');
 			}
 		}
 	}

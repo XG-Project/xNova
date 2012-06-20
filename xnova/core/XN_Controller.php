@@ -15,6 +15,7 @@ class XN_Controller extends CI_Controller {
 			}
 
 			$this->output->enable_profiler($this->config->item('debug'));
+			$this->load->view_path(FCPATH.'skins/'.skin().'/views/');
 
 			if ($this->user->is_logged_in())
 			{

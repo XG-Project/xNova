@@ -1,8 +1,8 @@
 
-<font color=lime>||| BASE DE DATOS |||</font>
-El usuario lucky utilizo la base de datos la cual hizo la siguiente operaci&oacute;n :
-REPARAR
-Operaci&oacute;n realizada el: 26-04-2012 22:52:00
+<font color=lime>||| INFORMACION DETALLADA |||</font>
+El usuario Razican busco informaci&oacute;n del usuario Razican
+Operaci&oacute;n realizada el: 21-06-2012 14:31:41
+l: 26-04-2012 22:52:00
 8
  el: 04-10-2011 21:15:04
 ¿En modo vacaciones? 

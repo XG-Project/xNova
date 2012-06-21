@@ -6,8 +6,9 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-// En desarrollo: E_ALL | E_STRICT, en producción: 0
-error_reporting (E_ALL | E_STRICT);
+// -1 permitirá guardar todos los errores
+error_reporting(-1);
+
 
 $user          	= array();
 $lang          	= array();
@@ -115,7 +116,7 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 		if ( defined ( 'IN_ADMIN' ) )
 		{
 			includeLang ( 'ADMIN' );
-			include ( '../adm/AdminFunctions/Autorization.php' );
+			include ( XGP_ROOT.'adm/AdminFunctions/Autorization.php' );
 
 			define('DPATH' , "../". DEFAULT_SKINPATH );
 		}

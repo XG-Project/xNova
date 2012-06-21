@@ -6,6 +6,8 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
+set_error_handler('catch_error');
+
 function unset_vars ( $prefix )
 {
 	$vars = array_keys ( $GLOBALS );
@@ -297,6 +299,32 @@ function doquery ( $query , $table , $fetch = FALSE )
 		return $sqlquery;
 	}
 
+}
+
+function catch_error($errno , $errstr, $errfile, $errline)
+{
+	global $user;
+
+	if ($errno === 2047 OR $errno === 6143 OR $errno === 30719) $errno = 32767;
+
+	if (read_config('errors_'.$errno))
+	{
+		$errfile = str_replace(realpath(XGP_ROOT), 'XGP_ROOT', $errfile);
+
+		$query = "INSERT IGNORE INTO {{table}} SET
+		`error_hash` = '".md5($errno.$errstr.$errfile.$errline)."' ,
+		`error_sender` = '".intval($user['id'])."' ,
+		`error_time` = '".time()."' ,
+		`error_type` = 'PHP' ,
+		`error_level` = '".$errno."' ,
+		`error_line` = '".addslashes($errline)."' ,
+		`error_file` = '".addslashes($errfile)."' ,
+		`error_text` = '".addslashes(str_replace('[<a href=\'function.', '[<a href=\'http://php.net/manual/%lang%/function.', $errstr))."';";
+
+		doquery($query, 'errors');
+	}
+
+	return TRUE;
 }
 
 ?>

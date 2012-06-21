@@ -5,6 +5,7 @@ $lang['adm_cp_title']		= 'Panel de control de administraci&oacute;n';
 $lang['adm_cp_index']		= 'Inicio';
 $lang['mu_moderation_page']	= 'Permisos';
 $lang['adm_cp_logout']		= 'Salir';
+$lang['lang_key']			= 'es';
 
 //	MISCELANEO - MISCELLANEOUS
 $lang['ad_number']			= 'N&ordm;';
@@ -25,7 +26,7 @@ $lang['time_seconds']	= 'Segundos';
 //###########################################################//
 
 
-//---------------	¿SI O NO? - YES OR NO?	------------------------//
+//---------------	ï¿½SI O NO? - YES OR NO?	------------------------//
 $lang['one_is_yes'][1]	= 'Si';
 $lang['one_is_yes'][0]	= 'No';
 
@@ -337,11 +338,22 @@ $lang['cs_timeact_1']					= 'La &uacute;ltima actualizaci&oacute;n se efectu&oac
 
 
 //---------------	LISTA DE ERRORES - ERROR LIST	------------------------//
-$lang['er_errors']		= ' error/es';
-$lang['er_error_list']	= 'Lista de errores';
-$lang['er_dlte_all']	= 'Eliminar todos';
-$lang['er_type']		= 'Tipo';
-$lang['er_data']		= 'Fecha';
+$lang['er_menu']			= 'Errores';
+$lang['er_php']				= 'Errores PHP';
+$lang['er_sql']				= 'Errores SQL';
+$lang['er_errors']			= ' error/es';
+$lang['er_sql_error_list']	= 'Lista de errores SQL';
+$lang['er_php_error_list']	= 'Lista de errores PHP';
+$lang['er_dlte_all']		= 'Eliminar todos';
+$lang['er_type']			= 'Tipo';
+$lang['er_level']			= 'Nivel';
+$lang['er_file']			= 'Archivo';
+$lang['er_line']			= 'L&iacute;nea';
+$lang['er_date']			= 'Fecha';
+$lang['er_data']			= 'Error';
+$lang['er_user']			= 'Usuario';
+$lang['er_php_show']		= 'Errores a mostrar';
+$lang['er_filter']			= 'Filtrar';
 //###########################################################//
 
 
@@ -444,6 +456,7 @@ $lang['se_noob_protect2']					= 'Protecci&oacute;n N. puntos';
 $lang['se_noob_protect3']					= 'Protecci&oacute;n N. puntos limite';
 $lang['se_noob_protect_e2']					= 'L&iacute;mite de puntos en el que dejas de ser novato';
 $lang['se_noob_protect_e3']					= 'Click para m&aacute;s informaci&oacute;n';
+$lang['se_log_php_errors']					= 'Errores que deseas recordar';
 //###########################################################//
 
 
@@ -527,7 +540,7 @@ $lang['mu_user_list']				= 'Lista de jugadores';
 $lang['mu_moon_list']				= 'Lista de lunas';
 $lang['mu_mess_list']				= 'Lista de mensajes';
 $lang['mu_planet_list']				= 'Lista de planetas';
-$lang['mu_error_list']				= 'Errores BD';
+$lang['mu_error_list']				= 'Errores';
 $lang['mu_active_planets']			= 'Planetas activos';
 $lang['mu_tools']					= 'Herramientas';
 $lang['mu_md5_encripter']			= 'Encriptador MD5';
@@ -944,7 +957,8 @@ $lang['log_config']					= '&iquest;Configurar opciones de juego?';
 $lang['log_system_mod_title']		= '<font color=lime>||| SISTEMA DE MODERACI&oacute;N |||</font>';
 $lang['log_system_auth_title']		= '<font color=lime>||| CAMBIO DE RANGO |||</font>';
 $lang['log_errores_title']			= '<font color=lime>||| LISTA DE ERRORES |||</font>';
-$lang['log_delete_all_errors']		= 'ha borrado todos los mensajes de error';
+$lang['log_delete_all_sql_errors']	= 'ha borrado todos los mensajes de error SQL';
+$lang['log_delete_all_php_errors']	= 'ha borrado todos los mensajes de error PHP';
 $lang['log_delete_errors']			= 'ha borrado un error';
 $lang['log_queries_title']			= '<font color=lime>||| CONSULTA SQL |||</font>';
 $lang['log_queries_succes']			= 'ha ejecutado la siguiente sentencia SQL:';
@@ -1003,6 +1017,7 @@ $lang['log_sett_act_noobs']			= '&iquest;Protecci&oacute;n contra novatos activa
 $lang['log_sett_noob_time']			= 'Tiempo de protecci&oacute;n contra novato ';
 $lang['log_sett_noob_multi']		= 'Limite de puntos para la protecci&oacute;n de novato ';
 $lang['log_sett_name_cookie']		= 'Nombre de la cookie ';
+$lang['log_sett_errors']			= 'Guardar errores de tipo';
 $lang['log_searchindb_del1']		= 'El jugador con la ID ';
 $lang['log_searchindb_del3']		= 'El planeta con la ID ';
 $lang['log_searchindb_del2']		= ' ha sido eliminado del juego por ';

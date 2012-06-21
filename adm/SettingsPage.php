@@ -150,11 +150,59 @@ function DisplayGameSettingsPage ( $CurrentUser )
 			$Log	.=	$lang['log_sett_noob_multi'].": ".$_POST['noobprotectionmulti']."\n";
 		}
 
+		if (isset($_POST['errors_2']) && $_POST['errors_2'] == 'on') {
+			$game_config['errors_2'] = 1;
+			$Log	.=	$lang['log_sett_errors']." E_WARNING: ".$lang['log_viewmod'][1]."\n";
+		} else {
+			$game_config['errors_2'] = 0;
+			$Log	.=	$lang['log_sett_errors']." E_WARNING: ".$lang['log_viewmod'][0]."\n";
+		}
+
+		if (isset($_POST['errors_8']) && $_POST['errors_8'] == 'on') {
+			$game_config['errors_8'] = 1;
+			$Log	.=	$lang['log_sett_errors']." E_NOTICE: ".$lang['log_viewmod'][1]."\n";
+		} else {
+			$game_config['errors_8'] = 0;
+			$Log	.=	$lang['log_sett_errors']." E_NOTICE: ".$lang['log_viewmod'][0]."\n";
+		}
+
+		if (isset($_POST['errors_2048']) && $_POST['errors_2048'] == 'on') {
+			$game_config['errors_2048'] = 1;
+			$Log	.=	$lang['log_sett_errors']." E_STRICT: ".$lang['log_viewmod'][1]."\n";
+		} else {
+			$game_config['errors_2048'] = 0;
+			$Log	.=	$lang['log_sett_errors']." E_STRICT: ".$lang['log_viewmod'][0]."\n";
+		}
+
+		if (isset($_POST['errors_4096']) && $_POST['errors_4096'] == 'on') {
+			$game_config['errors_4096'] = 1;
+			$Log	.=	$lang['log_sett_errors']." E_RECOVERABLE_ERROR: ".$lang['log_viewmod'][1]."\n";
+		} else {
+			$game_config['errors_4096'] = 0;
+			$Log	.=	$lang['log_sett_errors']." E_RECOVERABLE_ERROR: ".$lang['log_viewmod'][0]."\n";
+		}
+
+		if (isset($_POST['errors_8192']) && $_POST['errors_8192'] == 'on') {
+			$game_config['errors_8192'] = 1;
+			$Log	.=	$lang['log_sett_errors']." E_DEPRECATED: ".$lang['log_viewmod'][1]."\n";
+		} else {
+			$game_config['errors_8192'] = 0;
+			$Log	.=	$lang['log_sett_errors']." E_DEPRECATED: ".$lang['log_viewmod'][0]."\n";
+		}
+
+		if (isset($_POST['errors_32767']) && $_POST['errors_32767'] == 'on') {
+			$game_config['errors_32767'] = 1;
+			$Log	.=	$lang['log_sett_errors']." E_ALL: ".$lang['log_viewmod'][1]."\n";
+		} else {
+			$game_config['errors_32767'] = 0;
+			$Log	.=	$lang['log_sett_errors']." E_ALL: ".$lang['log_viewmod'][0]."\n";
+		}
+
 
 		LogFunction($Log, "ConfigLog", $AreLog);
 
-		update_config ( 'game_disable'				, $game_config['game_disable'] 			);
-		update_config ( 'close_reason' 				, $game_config['close_reason'] 			);
+		update_config ( 'game_disable'				, $game_config['game_disable'] 				);
+		update_config ( 'close_reason' 				, $game_config['close_reason'] 				);
 		update_config ( 'game_name' 				, $game_config['game_name'] 				);
 		update_config ( 'forum_url' 				, $game_config['forum_url'] 				);
 		update_config ( 'game_speed' 				, $game_config['game_speed'] 				);
@@ -166,13 +214,19 @@ function DisplayGameSettingsPage ( $CurrentUser )
 		update_config ( 'deuterium_basic_income'	, $game_config['deuterium_basic_income']	);
 		update_config ( 'debug' 					, $game_config['debug'] 					);
 		update_config ( 'adm_attack' 				, $game_config['adm_attack'] 				);
-		update_config ( 'lang' 						, $game_config['lang'] 					);
-		update_config ( 'cookie_name' 				, $game_config['cookie_name'] 			);
+		update_config ( 'lang' 						, $game_config['lang'] 						);
+		update_config ( 'cookie_name' 				, $game_config['cookie_name'] 				);
 		update_config ( 'noobprotection' 			, $game_config['noobprotection'] 			);
-		update_config ( 'defs_cdr' 					, $game_config['defs_cdr'] 				);
+		update_config ( 'defs_cdr' 					, $game_config['defs_cdr'] 					);
 		update_config ( 'fleet_cdr' 				, $game_config['fleet_cdr'] 				);
 		update_config ( 'noobprotectiontime' 		, $game_config['noobprotectiontime'] 		);
-		update_config ( 'noobprotectionmulti' 		, $game_config['noobprotectionmulti'] 	);
+		update_config ( 'noobprotectionmulti' 		, $game_config['noobprotectionmulti'] 		);
+		update_config ( 'errors_2' 					, $game_config['errors_2']				 	);
+		update_config ( 'errors_8' 					, $game_config['errors_8']				 	);
+		update_config ( 'errors_2048' 				, $game_config['errors_2048'] 				);
+		update_config ( 'errors_4096' 				, $game_config['errors_4096'] 				);
+		update_config ( 'errors_8192' 				, $game_config['errors_8192'] 				);
+		update_config ( 'errors_32767' 				, $game_config['errors_32767'] 				);
 
 		header ( 'location:SettingsPage.php' );
 	}
@@ -198,6 +252,12 @@ function DisplayGameSettingsPage ( $CurrentUser )
 		$parse['noobprot']            	 	= ($game_config['noobprotection'] == 1)   ? " checked = 'checked' ":"";
 		$parse['noobprot2'] 				= $game_config['noobprotectiontime'];
 		$parse['noobprot3'] 				= $game_config['noobprotectionmulti'];
+		$parse['errors_2'] 					= $game_config['errors_2'] ? 'checked' : '';
+		$parse['errors_8'] 					= $game_config['errors_8'] ? 'checked' : '';
+		$parse['errors_2048'] 				= $game_config['errors_2048'] ? 'checked' : '';
+		$parse['errors_4096'] 				= $game_config['errors_4096'] ? 'checked' : '';
+		$parse['errors_8192'] 				= $game_config['errors_8192'] ? 'checked' : '';
+		$parse['errors_32767'] 				= $game_config['errors_32767'] ? 'checked' : '';
 
 		$LangFolder = opendir("./../" . 'language');
 

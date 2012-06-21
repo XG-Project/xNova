@@ -81,6 +81,17 @@
 	<th>{se_noob_protect3}</th>
 	<th><input name="noobprotectionmulti" value="{noobprot3}" type="text"></th>
 	<th><a href="http://xgproyect.net/threads/506" target="_blank"><img src="../styles/images/Adm/i.gif" onMouseOver='return overlib("{se_noob_protect_e3}", CENTER, OFFSETX, -150, OFFSETY, -20, WIDTH, 250);' onMouseOut='return nd();'></a></th>
+</tr>
+<tr>
+	<th>{se_log_php_errors}</th>
+	<th>
+		E_WARNING <input name="errors_2" type="checkbox" {errors_2}><br />
+		E_NOTICE <input name="errors_8" type="checkbox" {errors_8}><br />
+		E_STRICT <input name="errors_2048" type="checkbox" {errors_2048}><br />
+		E_RECOVERABLE_ERROR <input name="errors_4096" type="checkbox" {errors_4096}><br />
+		E_DEPRECATED <input name="errors_8192" type="checkbox" {errors_8192}><br />
+		E_ALL <input name="errors_32767" type="checkbox" {errors_32767}><br />
+	</th>
 </tr></tr>
 	<th colspan="3"><input value="{se_save_parameters}" type="submit"></th>
 </tr>

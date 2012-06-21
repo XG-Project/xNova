@@ -1,3 +1,9 @@
+Aviso a los que vengan de XG Proyect
+====================================
+
+En principio, esta versión es una versión con algunos fallos corregidos de la últia estable de XG Proyect,
+pero no está lo suficientemente testeada como para considerarse estable.
+
 Razican's xNova
 ===============
 

@@ -8,7 +8,12 @@
 
 function migrate_to_xml ()
 {
-	$query = doquery("SELECT * FROM {{table}}",'config');
+	$xml			= file_get_contents(XGP_ROOT.'install/xml_template.xml');
+	$config_file	= fopen(XGP_ROOT.'includes/xml/config.xml', "wb");
+	fwrite($config_file, $xml);
+	fclose($config_file);
+
+	$query		= doquery("SELECT * FROM {{table}}",'config');
 
 	$search		=	array	(
 								'�',
@@ -50,6 +55,17 @@ function migrate_to_xml ()
 			update_config ( strtolower ( $row['config_name'] ) , str_replace ( $search , $replace , $row['config_value'] )  );
 		}
 	}
+}
+
+function upgrade_xml()
+{
+	$xml			= file_get_contents(XGP_ROOT.'install/xml_upgrade.xml');
+	$config			= file_get_contents(XGP_ROOT.'includes/xml/config.xml');
+	$xml			= str_replace('</configurations>', $xml, $config);
+
+	$config_file	= fopen(XGP_ROOT.'install/xml_template.xml', "wb");
+	fwrite($config_file, $xml);
+	fclose($config_file);
 }
 
 ?>

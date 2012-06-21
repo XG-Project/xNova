@@ -35,7 +35,7 @@ if(file_exists(XGP_ROOT . 'install/') && defined('IN_ADMIN'))
 
 if ($user['authlevel'] >= 3)
 {
-	if(@fopen("./../config.php", "a"))
+	if(is_writable(XGP_ROOT.'config.php'))
 	{
 		$Message	.= "<font color=\"red\">".$lang['ow_config_file_writable']."</font><br/><br/>";
 		$error++;

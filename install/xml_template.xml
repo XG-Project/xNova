@@ -14,15 +14,15 @@
 	</config>
 	<config>
 		<name>game_speed</name>
-		<value>25000</value>
+		<value>2500</value>
 	</config>
 	<config>
 		<name>fleet_speed</name>
-		<value>25000</value>
+		<value>2500</value>
 	</config>
 	<config>
 		<name>resource_multiplier</name>
-		<value>10</value>
+		<value>1</value>
 	</config>
 	<config>
 		<name>fleet_cdr</name>
@@ -102,7 +102,7 @@
 	</config>
 	<config>
 		<name>debug</name>
-		<value>0</value>
+		<value>1</value>
 	</config>
 	<config>
 		<name>lang</name>
@@ -118,7 +118,7 @@
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1340281859</value>
+		<value>1340230437</value>
 	</config>
 	<config>
 		<name>stat_settings</name>
@@ -138,26 +138,26 @@
 	</config>
 	<config>
 		<name>errors_2</name>
-		<value>1</value>
+		<value>0</value>
 	</config>
 	<config>
 		<name>errors_8</name>
-		<value>1</value>
+		<value>0</value>
 	</config>
 	<config>
 		<name>errors_2048</name>
-		<value>1</value>
+		<value>0</value>
 	</config>
 	<config>
 		<name>errors_4096</name>
-		<value>1</value>
+		<value>0</value>
 	</config>
 	<config>
 		<name>errors_8192</name>
-		<value>1</value>
+		<value>0</value>
 	</config>
 	<config>
 		<name>errors_32767</name>
-		<value>1</value>
+		<value>0</value>
 	</config>
 </configurations>

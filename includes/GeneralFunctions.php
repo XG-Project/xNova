@@ -128,11 +128,6 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 	if(!defined('LOGIN') && isset($_GET['page']) && $_GET['page'] != 'galaxy')
 		$DisplayPage .= parsetemplate ( gettemplate ( 'general/footer' ) , array());
 
-	if ( $link )
-	{
-		mysql_close ( $link );
-	}
-
 	if ( isset($user['authlevel']) && $user['authlevel'] == 3 && read_config ( 'debug' ) == 1 && !$AdminPage )
 	{
 		// Convertir a objeto dom
@@ -153,6 +148,11 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 		echo "<center>";
 		echo $debug->echo_log();
 		echo "</center>";
+	}
+
+	if ( $link )
+	{
+		mysql_close ( $link );
 	}
 
 	die();

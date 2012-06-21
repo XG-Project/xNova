@@ -66,7 +66,7 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 			display(parsetemplate(gettemplate('adm/SQLErrorMessagesBody'), $parse), FALSE, '', TRUE, FALSE);
 		break;
 		case 'php':
-			$error_level	= array('2', '8', '2048', '4096', '8192', '32767');
+			$error_level	= array('32767', '8192', '4096', '2048', '8', '2');
 			$show			= array();
 			foreach ($error_level as $error)
 			{
@@ -104,7 +104,7 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 
 			$i = 0;
 
-			$error_text		= array('E_WARNING', 'E_NOTICE', 'E_STRICT', 'E_RECOVERABLE_ERROR', 'E_DEPRECATED', 'E_ALL');
+			$error_text		= array('E_ALL', 'E_DEPRECATED', 'E_RECOVERABLE_ERROR', 'E_STRICT', 'E_NOTICE', 'E_WARNING');
 
 			while ($u = mysql_fetch_array($query))
 			{

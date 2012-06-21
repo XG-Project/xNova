@@ -10,7 +10,7 @@
 	</config>
 	<config>
 		<name>moderation</name>
-		<value>1,0,0,1,1;1,1,0,1,1;1;</value>
+		<value>1,0,0,1,0;1,1,0,1,0;0;</value>
 	</config>
 	<config>
 		<name>game_speed</name>
@@ -118,7 +118,7 @@
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1340319845</value>
+		<value>1340320817</value>
 	</config>
 	<config>
 		<name>stat_settings</name>

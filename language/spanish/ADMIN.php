@@ -460,6 +460,7 @@ $lang['se_noob_protect3']					= 'Protecci&oacute;n N. puntos limite';
 $lang['se_noob_protect_e2']					= 'L&iacute;mite de puntos en el que dejas de ser novato';
 $lang['se_noob_protect_e3']					= 'Click para m&aacute;s informaci&oacute;n';
 $lang['se_log_php_errors']					= 'Errores que deseas recordar';
+$lang['log_viewmod']						= array('Desactivado', 'Activado');
 //###########################################################//
 
 

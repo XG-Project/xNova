@@ -133,7 +133,6 @@ $lang['researchs_title']		= 'Research';
 $lang['researchs_count']		= 'Research Count';
 $lang['spy_tech']				= 'Spionage Technology';
 $lang['computer_tech']			= 'Computer Technology';
-
 $lang['military_tech']			= 'Weapons Technology';
 $lang['defence_tech']			= 'Shielding Technology';
 $lang['shield_tech']			= 'Armour Technology';
@@ -461,6 +460,7 @@ $lang['se_noob_protect3']					= 'Protection N. limit points';
 $lang['se_noob_protect_e2']					= 'L�mit point where you stop being rookie';
 $lang['se_noob_protect_e3']					= 'Click here to see more info';
 $lang['se_log_php_errors']					= 'Errors you want to log';
+$lang['log_viewmod']						= array('Deactivated', 'Activated');
 //###########################################################//
 
 

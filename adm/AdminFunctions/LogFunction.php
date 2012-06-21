@@ -21,7 +21,7 @@ function LogFunction ( $Text , $Estado , $LogCanWork )
 
 	$Archive	=	"../adm/Log/" . $Estado . ".php";
 
-	if ( $LogCanWork == 1 )
+	if ( $LogCanWork == 1 && is_writable($Archive) )
 	{
 		if ( !file_exists ( $Archive ) )
 		{
@@ -30,7 +30,7 @@ function LogFunction ( $Text , $Estado , $LogCanWork )
 		}
 
 		$FP		 =	fopen ( $Archive , "r+" );
-		$Date	.=	$Text;
+		$Date	 =	$Text;
 		$Date	.=	$lang['log_operation_succes'];
 		$Date	.=	date ( "d-m-Y H:i:s" , time() ) . "\n";
 

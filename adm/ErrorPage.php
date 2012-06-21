@@ -20,6 +20,8 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 	extract($_GET);
 
 	$page	= isset($page) ? $page : NULL;
+	$parse['errors_list'] = '';
+
 	switch ($page)
 	{
 		case 'sql':
@@ -37,7 +39,7 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 				<td width=\"70\">". $u['error_sender'] ."</td>
 				<td width=\"100\">". $u['error_type'] ."</td>
 				<td width=\"230\">". date('d/m/Y h:i:s', $u['error_time']) ."</td>
-				<td width=\"95\"><a href=\"?delete=". $u['error_id'] ."\" border=\"0\"><img src=\"../styles/images/r1.png\" border=\"0\"></a></td></tr>
+				<td width=\"95\"><a href=\"?page=sql&delete=". $u['error_id'] ."\" border=\"0\"><img src=\"../styles/images/r1.png\" border=\"0\"></a></td></tr>
 				<tr><th colspan=\"5\" class=b>".  nl2br($u['error_text'])."</td></tr>";
 			}
 
@@ -47,15 +49,15 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 			if (isset($delete))
 			{
 				doquery("DELETE FROM {{table}} WHERE `error_id`=$delete", 'errors');
-				$Log	.=	"\n".$lang['log_errores_title']."\n";
+				$Log	=	"\n".$lang['log_errores_title']."\n";
 				$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_errors']."\n";
 				LogFunction($Log, "GeneralLog", $LogCanWork);
 				header ( 'location:ErrorPage.php?page=sql' );
 			}
-			elseif ($deleteall == 'yes')
+			elseif (isset($deleteall) && $deleteall == 'yes')
 			{
 				doquery("DELETE FROM {{table}} WHERE `error_type` != 'PHP'", 'errors');
-				$Log	.=	"\n".$lang['log_errores_title']."\n";
+				$Log	=	"\n".$lang['log_errores_title']."\n";
 				$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_all_sql_errors']."\n";
 				LogFunction($Log, "GeneralLog", $LogCanWork);
 				header ( 'location:ErrorPage.php?page=sql' );
@@ -126,15 +128,15 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 			if (isset($delete))
 			{
 				doquery("DELETE FROM {{table}} WHERE `error_id`=$delete", 'errors');
-				$Log	.=	"\n".$lang['log_errores_title']."\n";
+				$Log	=	"\n".$lang['log_errores_title']."\n";
 				$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_errors']."\n";
 				LogFunction($Log, "GeneralLog", $LogCanWork);
 				header ( 'location:ErrorPage.php?page=php' );
 			}
-			elseif ($deleteall === 'yes')
+			elseif (isset($deleteall) && $deleteall === 'yes')
 			{
 				doquery("DELETE FROM {{table}} WHERE `error_type` = 'PHP'", 'errors');
-				$Log	.=	"\n".$lang['log_errores_title']."\n";
+				$Log	=	"\n".$lang['log_errores_title']."\n";
 				$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_all_php_errors']."\n";
 				LogFunction($Log, "GeneralLog", $LogCanWork);
 				header ( 'location:ErrorPage.php?page=php' );

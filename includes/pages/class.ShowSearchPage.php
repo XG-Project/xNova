@@ -36,12 +36,12 @@ class ShowSearchPage
 				case "allytag":
 					$table 	= gettemplate('search/search_ally_table');
 					$row 	= gettemplate('search/search_ally_row');
-					$search	= doquery("SELECT a.* ,s.total_points as points FROM {{table}}alliance as a , {{table}}statpoints as s  WHERE a.id = s.id_owner AND a.ally_tag LIKE '%".$searchtext."%' LIMIT 25 ; ","");
+					$search	= doquery("SELECT a.* ,s.total_points as points FROM {{table}}alliance as a , {{table}}statpoints as s  WHERE a.id = s.id_owner AND s.stat_type=2 AND a.ally_tag LIKE '%".$searchtext."%' LIMIT 25 ; ","");
 				break;
 				case "allyname":
 					$table 	= gettemplate('search/search_ally_table');
 					$row 	= gettemplate('search/search_ally_row');
-					$search = doquery("SELECT a.* ,s.total_points as points FROM {{table}}alliance as a , {{table}}statpoints as s  WHERE a.id = s.id_owner AND a.ally_name LIKE '%".$searchtext."%' LIMIT 25 ; ","");
+					$search = doquery("SELECT a.* ,s.total_points as points FROM {{table}}alliance as a , {{table}}statpoints as s  WHERE a.id = s.id_owner AND s.stat_type=2 AND a.ally_name LIKE '%".$searchtext."%' LIMIT 25 ; ","");
 				break;
 				default:
 					$table 	= gettemplate('search/search_user_table');

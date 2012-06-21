@@ -505,6 +505,8 @@ $lang['ff_arrival_hour']		= 'Arribal time';
 $lang['ff_go_back_now']			= 'Back';
 $lang['ff_delete_succes']		= 'Flight deleted successfully';
 $lang['ff_goback_succes']		= "The flight is now returning to it's original planet";
+$lang['ff_confirm_dele_fleet']	= 'Are you sure you want to delete the selected flight?';
+$lang['ff_confirm_back_fleet']	= 'Are you sure you want to send the selected flight back to its origin?';
 //###########################################################//
 
 
@@ -553,6 +555,7 @@ $lang['mu_search_page']				= 'Advanced Search';
 $lang['mu_info_account_page']		= 'Account Information';
 $lang['mu_planets_options']			= 'Options Planets';
 $lang['mu_user_logs']				= 'Log';
+$lang['mu_user_faq']				= 'F.A.Q.';
 //###########################################################//
 
 

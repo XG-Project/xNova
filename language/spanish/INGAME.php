@@ -18,7 +18,7 @@ $lang['type_mission'][6]  					= 'Espiar';
 $lang['type_mission'][7]  					= 'Colonizar';
 $lang['type_mission'][8]  					= 'Reciclar';
 $lang['type_mission'][9]  					= 'Destruir';
-$lang['type_mission'][15] 					= 'Expedición';
+$lang['type_mission'][15] 					= 'Expedici&oacute;n';
 
 $lang['user_level'] = array (
 	'0' => 'Jugador',
@@ -1126,7 +1126,7 @@ $lang['css_account_banned_expire']			= 'Expiraci&oacute;n:';
 //----------------------------------------------------------------------------//
 //class.debug.php
 $lang['cdg_mysql_not_available']			= 'mySQL no esta disponible por el momento, sentimos el inconveniente...';
-$lang['cdg_error_message']					= 'Error, por favor contacte al administrador. Error n°:';
+$lang['cdg_error_message']					= 'Error, por favor contacte al administrador. Error nï¿½:';
 $lang['cdg_fatal_error']					= 'ERROR FATAL';
 
 //----------------------------------------------------------------------------//

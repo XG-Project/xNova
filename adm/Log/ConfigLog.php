@@ -25,4 +25,4 @@ Guardar errores de tipo E_STRICT:
 Guardar errores de tipo E_RECOVERABLE_ERROR: 
 Guardar errores de tipo E_DEPRECATED: 
 Guardar errores de tipo E_ALL: 
-Operaci&oacute;n realizada el: 21-06-2012 14:36:10
+Operaci&oacute;n realizada el: 21-06-2012 16:15:49

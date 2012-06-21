@@ -111,8 +111,8 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 				$parse['errors_list'] .= "
 
 				<tr><td width=\"25\">". $u['error_id'] ."</td>
-				<td width=\"50\">". date('d/m/Y h:i:s', $u['error_time']) ."</td>
-				<td width=\"70\">". $u['error_sender'] ."</td>
+				<td width=\"50\">". date('d/m/Y H:i:s', $u['error_time']) ."</td>
+				<td width=\"70\">". (( !$u['error_sender']) ? $lang['er_public'] : $u['error_sender']) ."</td>
 				<td width=\"50\">". str_replace($error_level, $error_text, $u['error_level']) ."</td>
 				<td width=\"100\">". $u['error_file'] ."</td>
 				<td width=\"100\">". $u['error_line'] ."</td>

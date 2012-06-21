@@ -266,6 +266,7 @@ function doquery ( $query , $table , $fetch = FALSE )
 	global $link, $debug;
 
 	require ( XGP_ROOT . 'config.php' );
+	if ( ! isset($dbsettings)) die ();
 
 	if ( !$link )
 	{
@@ -310,10 +311,11 @@ function catch_error($errno , $errstr, $errfile, $errline)
 	if (read_config('errors_'.$errno))
 	{
 		$errfile = str_replace(realpath(XGP_ROOT), 'XGP_ROOT', $errfile);
+		$sender	= isset($user['id']) ? intval($user['id']) : 0;
 
 		$query = "INSERT IGNORE INTO {{table}} SET
 		`error_hash` = '".md5($errno.$errstr.$errfile.$errline)."' ,
-		`error_sender` = '".intval($user['id'])."' ,
+		`error_sender` = '".$sender."' ,
 		`error_time` = '".time()."' ,
 		`error_type` = 'PHP' ,
 		`error_level` = '".$errno."' ,

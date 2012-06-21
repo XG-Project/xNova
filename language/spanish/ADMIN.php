@@ -354,6 +354,7 @@ $lang['er_data']			= 'Error';
 $lang['er_user']			= 'Usuario';
 $lang['er_php_show']		= 'Errores a mostrar';
 $lang['er_filter']			= 'Filtrar';
+$lang['er_public']			= 'N/A';
 //###########################################################//
 
 

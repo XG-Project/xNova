@@ -356,6 +356,7 @@ $lang['er_data']			= 'Error';
 $lang['er_user']			= 'User';
 $lang['er_php_show']		= 'Errors to show';
 $lang['er_filter']			= 'Filter';
+$lang['er_public']			= 'N/A';
 //###########################################################//
 
 

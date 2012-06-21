@@ -102,7 +102,7 @@
 	</config>
 	<config>
 		<name>debug</name>
-		<value>0</value>
+		<value>1</value>
 	</config>
 	<config>
 		<name>lang</name>
@@ -118,7 +118,7 @@
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1340281859</value>
+		<value>1340291698</value>
 	</config>
 	<config>
 		<name>stat_settings</name>

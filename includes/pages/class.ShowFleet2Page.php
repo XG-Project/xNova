@@ -182,7 +182,7 @@ class ShowFleet2Page
 			$input_parse['consumption']	=	Fleets::ship_consumption ( $Ship , $CurrentUser );
 			$input_parse['speed']		=	Fleets::fleet_max_speed ( "" , $Ship , $CurrentUser );
 
-			$input_extra .= parsetemplate ( $input_template , $input_parse );
+			$input_extra .= parsetemplate ( $input_template , array_merge($input_parse, $lang) );
 		}
 
 		#####################################################################################################
@@ -211,7 +211,7 @@ class ShowFleet2Page
 				$parse_mission['id']					= ' ';
 				$parse_mission['checked']				= ' checked="checked"';
 
-				$MissionSelector	.=	parsetemplate ( $mission_row_template , $parse_mission );
+				$MissionSelector	.=	parsetemplate ( $mission_row_template , array_merge($parse_mission, $lang) );
 			}
 			else
 			{
@@ -227,7 +227,7 @@ class ShowFleet2Page
 
 					$i++;
 
-					$MissionSelector	.=	parsetemplate ( $mission_row_template , $parse_mission );
+					$MissionSelector	.=	parsetemplate ( $mission_row_template , array_merge($parse_mission, $lang) );
 				}
 			}
 		}
@@ -249,10 +249,10 @@ class ShowFleet2Page
 				$stay['selected']		= '';
 				$stay['title']			= $value;
 
-				$stay_row['options']  .= parsetemplate ( $options_template , $stay );
+				$stay_row['options']  .= parsetemplate ( $options_template , array_merge($stay, $lang) );
 			}
 
-			$StayBlock = parsetemplate ( $stay_template , $stay_row );
+			$StayBlock = parsetemplate ( $stay_template , array_merge($stay_row, $lang) );
 		}
 		elseif ( $missiontype[5] != '' )
 		{
@@ -265,10 +265,10 @@ class ShowFleet2Page
 				$stay['selected']		= ( ( $value == 1 ) ? ' selected' : '' );
 				$stay['title']			= $value;
 
-				$stay_row['options']  .= parsetemplate ( $options_template , $stay );
+				$stay_row['options']  .= parsetemplate ( $options_template , array_merge($stay, $lang) );
 			}
 
-			$StayBlock = parsetemplate ( $stay_template , $stay_row );
+			$StayBlock = parsetemplate ( $stay_template , array_merge($stay_row, $lang) );
 		}
 
 		$parse['input_extra'] 			= $input_extra;

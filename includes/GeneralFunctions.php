@@ -321,7 +321,7 @@ function catch_error($errno , $errstr, $errfile, $errline)
 		`error_level` = '".$errno."' ,
 		`error_line` = '".addslashes($errline)."' ,
 		`error_file` = '".addslashes($errfile)."' ,
-		`error_text` = '".addslashes(str_replace('[<a href=\'function.', '[<a href=\'http://php.net/manual/%lang%/function.', $errstr))."';";
+		`error_text` = '".addslashes(str_replace('[<a href=\'', '[<a href=\'http://php.net/manual/%lang%/', $errstr))."';";
 
 		doquery($query, 'errors');
 	}

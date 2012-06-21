@@ -414,6 +414,8 @@ $lang['ow_config_file_writable']	= 'El archivo config.php puede ser escrito, es 
 $lang['ow_database_errors']			= 'Hay errores en tu base de datos. Puedes verlos haciendo <a href="ErrorPage.php">click aqu&iacute;</a>';
 $lang['ow_old_version']				= 'Hay una nueva versi&oacute;n disponible. Haz click <a href="http://www.xgproyect.net/downloads.php" target="_blank">aqu&iacute;</a> para descargarla';
 $lang['ow_none']					= 'No hay actualizaciones ni advertencias';
+$lang['ow_log_file_no_writable']	= 'Al menos uno de los archivos de logs en /adm/Log/ no puede ser escrito, por favor, dales permisos CHMOD 0777';
+$lang['ow_config_file_no_writable']	= 'El archivo de configuración /includes/xml/config.xml no es escribible, por favor, dale los permisos CHMOD 0777';
 //###########################################################//
 
 

@@ -100,7 +100,7 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 				$filter .= ')';
 			}
 
-			$query = doquery("SELECT * FROM {{table}} WHERE `error_type` = 'PHP'".$filter." ORDER BY `error_time`", 'errors');
+			$query = doquery("SELECT * FROM {{table}} WHERE `error_type` = 'PHP'".$filter." ORDER BY `error_file` ASC, `error_line` ASC", 'errors');
 
 			$i = 0;
 

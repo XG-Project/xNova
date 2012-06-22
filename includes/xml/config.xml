@@ -118,7 +118,7 @@
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1340362730</value>
+		<value>1340366285</value>
 	</config>
 	<config>
 		<name>stat_settings</name>
@@ -130,7 +130,7 @@
 	</config>
 	<config>
 		<name>stat_update_time</name>
-		<value>15</value>
+		<value>60</value>
 	</config>
 	<config>
 		<name>stat_flying</name>

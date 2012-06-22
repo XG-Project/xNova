@@ -57,19 +57,25 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 
 	includeLang ( 'INGAME' );
 
-	if ( ! isset($InLogin) OR $InLogin != TRUE )
+	include ( XGP_ROOT . 'includes/classes/class.CheckSession.php' );
+
+	$Result        	= new CheckSession();
+	$Result			= $Result->CheckUser ( $IsUserChecked );
+	$IsUserChecked 	= $Result['state'];
+
+	if (isset($InLogin) && $InLogin && $IsUserChecked)
 	{
-		include ( XGP_ROOT . 'includes/classes/class.CheckSession.php' );
+		header('Location: game.php?page=overview');
+	}
+	elseif (( ! isset($InLogin) OR ! $InLogin) && ! $IsUserChecked)
+	{
+		header('Location: '. XGP_ROOT);
+	}
+	$user          	= $Result['record'];
 
-		$Result        	= new CheckSession();
-		$Result			= $Result->CheckUser ( $IsUserChecked );
-		$IsUserChecked 	= $Result['state'];
-		$user          	= $Result['record'];
-
-		if ( read_config ( 'game_disable' ) == 0 && $user['authlevel'] == 0 )
-		{
-			message ( stripslashes ( read_config ( 'close_reason' ) ) , '' , '' , FALSE , FALSE );
-		}
+	if ( read_config ( 'game_disable' ) == 0 && $user['authlevel'] == 0 )
+	{
+		message ( stripslashes ( read_config ( 'close_reason' ) ) , '' , '' , FALSE , FALSE );
 	}
 
 	if ( ( time() >= ( read_config ( 'stat_last_update' ) + ( 60 * read_config ( 'stat_update_time' ) ) ) ) )

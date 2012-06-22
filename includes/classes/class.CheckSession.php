@@ -121,7 +121,6 @@ class CheckSession
         {
             $RetValue['record'] = array();
             $RetValue['state']  = FALSE;
-        	header ( 'location:' . XGP_ROOT );
         }
 
         return $RetValue;

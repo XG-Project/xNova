@@ -1,12 +1,12 @@
 <tr>
 	<th colspan="2" align="left"><div id="main" align="left">
-      <h1>Introducci髇</h1>
-	  <p>ienvenido a XG Proyect!<br />
+      <h1>Introducci贸n</h1>
+	  <p>隆Bienvenido a xNova!<br />
 	      <br />
-	    XG Proyect es uno de los mejores clones de OGame existentes hasta el momento. XG Proyect 2 es el &uacute;ltimo y m&aacute;s estable paquete nunca antes desarrollado. Tal cual como las otras versiones, XG Proyect recibe soporte del equipo antes conocido como Xtreme-gameZ, asegur&aacute;ndonos siempre de lograr la mejor calidad en atenci&oacute;n y la estabilidad de la versi&oacute;n. XG Proyect 2 d&iacute;a a d&iacute;a busca; crecimiento, estabilidad, flexibilidad, dinamismo, calidad y la confianza del usuario en que es su mejor opci&oacute;n y elecci&oacute;n. Siempre esperamos que XG Proyect sea mejor que sus expectativas.<br />
+	    xNova es uno de los mejores clones de OGame existentes hasta el momento. xNova {version} es el 煤ltimo y m谩s estable paquete nunca antes desarrollado. xNova recibe soporte de Razican, asegur谩ndo siempre de lograr la mejor calidad en atenci贸n y la estabilidad de la versi贸n. xNova d铆a a d铆a busca crecimiento, estabilidad, flexibilidad, dinamismo, calidad y la confianza del usuario en que es su mejor opci贸n y elecci贸n. Siempre esperamos que xNova sea mejor que sus expectativas.<br />
 	    <br />
-	    El sistema de instalaci&oacute;n te guiar&aacute; a trav&eacute;s de la instalaci&oacute;n del mismo, o la actualizaci&oacute;n de una versi&oacute;n anterior a la m&aacute;s reciente. Cualquier duda, problema o consulta no dudes en consulta nuestra <a href="http://www.xgproyect.net/"><em>comunidad de desarrollo y soporte</em></a>. <br />
+	    El sistema de instalaci贸n te guiar谩 a trav茅s de la instalaci贸n del mismo, o la actualizaci贸n de una versi贸n anterior a la m谩s reciente. Cualquier duda, problema o consulta no dudes en consultar a <a href="#" onClick="window.open('http://www.google.com/recaptcha/mailhide/d?k=01yibSoKLFMScdNhKBzw554A==&c=_4E2-Kwq6vPTgZgBPtmdvReVKsitSgCSycSXKV8m2cY=','Contactar con Razican','width=475,height=375,resizable=no,toolbar=no,scrollbars=no,location=no,status=no,menubar=no')">Razican</a>. <br />
 	    <br />
-	    XG Proyect es un proyecto OpenSource (c骴igo abierto), para ver las especificaciones de la licencia haz click en licencia en la barra superior. Para comenzar la instalaci髇 haz click en el bot髇 instalar o para actualizar a la versi髇 m醩 nueva haz click en el bot髇 actualizar.</p>
+	    xNova es un proyecto OpenSource (c贸digo abierto), para ver las especificaciones de la licencia haz click en licencia en la barra superior. Para comenzar la instalaci贸n haz click en el bot贸n instalar o para actualizar a la versi贸n m谩s nueva haz clic en el bot贸n actualizar.</p>
     </div></th>
 </tr>

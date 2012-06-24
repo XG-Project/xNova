@@ -23,15 +23,30 @@ th.lic{border:0px;}</style>
     <tr>
         <th>
         	<br />
-            <a href="http://xgproyect.net/2-10-x-bug-report/" target="_blank">Reporte de bugs (Bug Report)</a>
+            <a href="https://github.com/Razican/xNova/issues" target="_blank">Reporte de bugs (Bug Report)</a>
         	<br />
-        	<a href="http://www.xgproyect.net/" target="_blank">XG Proyect {ow_forum}</a>
+        	<a href="http://www.razican.com/" target="_blank">El Blog de Razican</a>
         	<br />
             <br />
         </th>
     </tr>
     <tr>
     	<td class="c">{ow_credits}</td>
+    </tr>
+    <tr>
+    	<th align="center">
+            <table width="100%">
+                <tr>
+                  <th class="lic"><h3>{ow_proyect_leader}</h3></th>
+                </tr>
+                <tr>
+                  <th class="lic"><h3><font color="red">Razican</font></h3></th>
+                </tr>
+            </table>
+        </th>
+    </tr>
+    <tr>
+    	<td class="c">XG Proyect</td>
     </tr>
     <tr>
     	<th align="center">
@@ -50,10 +65,10 @@ th.lic{border:0px;}</style>
                   	<table width="100%" border="0">
                       <tr>
                         <td>
-                        	angelus_ira (Estad&iacute;sticas - optimizaci&oacute;n general)<br />
+                        	angelus_ira (Estadísticas - optimización general)<br />
                         	Calzon (Fixs varios)<br />
                         	cyberrichy (SAC's)<br />
-                        	jstar (Fixs varios - optimizaci&oacute;n general)<br />
+                        	jstar (Fixs varios - optimización general)<br />
                         	Neko (Panel administrativo - Fixs varios)<br />
                         	PowerMaster (Fixs varios)<br />
                         	Think (Fixs varios)<br />
@@ -64,7 +79,7 @@ th.lic{border:0px;}</style>
                   </th>
                 </tr>
                 <tr>
-                	<th class="lic"><h3>Other contributors</h3></th>
+                	<th class="lic"><h3>{ow_other_contributors}</h3></th>
                 </tr>
                 <tr>
                   <th class="lic" align="center">

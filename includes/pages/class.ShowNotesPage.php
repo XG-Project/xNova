@@ -22,7 +22,7 @@ class ShowNotesPage
 		{
 			$time 		= time();
 			$priority 	= intval($_POST["u"]);
-			$title 		= ($_POST["title"]) ? mysql_escape_string(strip_tags($_POST["title"])) : "Sin t&iacute;tulo";
+			$title 		= ($_POST["title"]) ? mysql_escape_string(strip_tags($_POST["title"])) : "Sin título";
 			$text 		= ($_POST["text"]) ? mysql_escape_string(strip_tags($_POST["text"])) : "Sin texto";
 
 			if($_POST["s"] ==1)

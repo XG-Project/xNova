@@ -2,7 +2,7 @@
 <configurations>
 	<config>
 		<name>version</name>
-		<value>2.10.2</value>
+		<value>1.0.0-dev</value>
 	</config>
 	<config>
 		<name>users_amount</name>
@@ -38,11 +38,11 @@
 	</config>
 	<config>
 		<name>cookie_name</name>
-		<value>XGProyect</value>
+		<value>xNova</value>
 	</config>
 	<config>
 		<name>game_name</name>
-		<value>XG Proyect</value>
+		<value>xNova</value>
 	</config>
 	<config>
 		<name>game_disable</name>
@@ -94,7 +94,7 @@
 	</config>
 	<config>
 		<name>forum_url</name>
-		<value>http://www.xgproyect.net/</value>
+		<value>http://www.razican.com/</value>
 	</config>
 	<config>
 		<name>adm_attack</name>
@@ -118,7 +118,7 @@
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1340366285</value>
+		<value>1340548689</value>
 	</config>
 	<config>
 		<name>stat_settings</name>

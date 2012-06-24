@@ -72,7 +72,7 @@ class ShowInfosPage
                         {
                             $ShipLabel = "c". $Ship;
                             $gemi_kontrol    =    $_POST[ $ShipLabel ];
-                            
+
                             if (is_numeric($gemi_kontrol))
                             {
                                 if ( $gemi_kontrol > $CurrentPlanet[ $resource[ $Ship ] ])
@@ -83,8 +83,8 @@ class ShowInfosPage
                                 {
                                     $ShipArray[ $Ship ] = $gemi_kontrol;
                                 }
-                            
-                                
+
+
                                 if ($ShipArray[ $Ship ] > 0)
                                 {
                                     $SubQueryOri .= "`". $resource[ $Ship ] ."` = `". $resource[ $Ship ] ."` - '". $ShipArray[ $Ship ] ."', ";
@@ -144,7 +144,7 @@ class ShowInfosPage
         }
 
         return $RetMessage;
-    }  
+    }
 
     private function BuildFleetListRows ($CurrentPlanet)
     {
@@ -193,33 +193,33 @@ class ShowInfosPage
     private function ShowProductionTable ($CurrentUser, $CurrentPlanet, $BuildID, $Template)
     {
         global $ProdGrid, $resource;
-        
+
         $BuildLevelFactor 	= $CurrentPlanet[ $resource[$BuildID]."_porcent" ];
         $BuildTemp        	= $CurrentPlanet[ 'temp_max' ];
         $CurrentBuildtLvl 	= $CurrentPlanet[ $resource[$BuildID] ];
         $BuildLevel       	= ($CurrentBuildtLvl > 0) ? $CurrentBuildtLvl : 1;
-        
+
 		// BOOST
 		$geologe_boost		= 1 + ( $CurrentUser['rpg_geologue']  * GEOLOGUE );
 		$engineer_boost		= 1 + ( $CurrentUser['rpg_ingenieur'] * ENGINEER_ENERGY );
-		
+
 		// PRODUCTION FORMULAS
 		$metal_prod			= eval ( $ProdGrid[$BuildID]['formule']['metal'] );
 		$crystal_prod		= eval ( $ProdGrid[$BuildID]['formule']['crystal'] );
 		$deuterium_prod		= eval ( $ProdGrid[$BuildID]['formule']['deuterium'] );
 		$energy_prod		= eval ( $ProdGrid[$BuildID]['formule']['energy'] );
-		
+
 		// PRODUCTION
 		$Prod[1]			= Production::production_amount ( $metal_prod , $geologe_boost );
 		$Prod[2]			= Production::production_amount ( $crystal_prod , $geologe_boost );
 		$Prod[3]			= Production::production_amount ( $deuterium_prod , $geologe_boost );
 
 		if( $BuildID >= 4 )
-		{							
+		{
 			$Prod[4]		= Production::production_amount ( $energy_prod , $engineer_boost );
 			$ActualProd    	= floor ( $Prod[4] );
 		}
-		else 
+		else
 		{
 			$energy			= Production::production_amount ( $energy_prod , 1 );
 			$ActualProd    	= floor ( $Prod[$BuildID] );
@@ -228,7 +228,7 @@ class ShowInfosPage
         if ( $BuildID != 12 )
         {
         	$ActualNeed     = floor ( $Prod[4] );
-        }    
+        }
         else
         {
         	$ActualNeed		= floor ( $Prod[3] );
@@ -250,17 +250,17 @@ class ShowInfosPage
 				$crystal_prod		= eval ( $ProdGrid[$BuildID]['formule']['crystal'] );
 				$deuterium_prod		= eval ( $ProdGrid[$BuildID]['formule']['deuterium'] );
 				$energy_prod		= eval ( $ProdGrid[$BuildID]['formule']['energy'] );
-				
+
 				// PRODUCTION
 				$Prod[1]			= Production::production_amount ( $metal_prod , $geologe_boost );
 				$Prod[2]			= Production::production_amount ( $crystal_prod , $geologe_boost );
 				$Prod[3]			= Production::production_amount ( $deuterium_prod , $geologe_boost );
-		
+
 				if( $BuildID >= 4 )
-				{							
+				{
 					$Prod[4]		= Production::production_amount ( $energy_prod , $engineer_boost );
 				}
-				else 
+				else
 				{
 					$energy			= Production::production_amount ( $energy_prod , 1 );
 				}
@@ -358,7 +358,7 @@ class ShowInfosPage
         else
             $PageTPL = gettemplate('infos/info_officiers_general');
 
-        //Sólo hay destroy en <200
+        //Solo hay destroy en <200
         if($BuildID < 200 AND $BuildID != 33 AND $BuildID != 41)
             $DestroyTPL           = gettemplate('infos/info_buildings_destroy');
 

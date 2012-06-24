@@ -1,12 +1,12 @@
 <tr>
-	<th colspan="3"><font color="red">Antes de instalar cambie los permisos del archivo config.php a "CHMOD 777"</font></th>
+	<th colspan="3"><font color="red">Antes de instalar cambie los permisos del archivo config.php y includes/xml/config.xml a "CHMOD 777"</font></th>
 </tr>
 <tr>
 	<th>Servidor SQL: <br /> Ej: localhost</th>
 	<th><input type="text" name="host" value="" size="30" /></th>
 </tr>
 <tr>
-	<th>Base de datos: <br /> Ej: ogame</th>
+	<th>Base de datos: <br /> Ej: xnova</th>
 	<th><input type="text" name="db" value="" size="30" /></th>
 </tr>
 <tr>
@@ -14,11 +14,11 @@
 	<th><input type="text" name="user" value="" size="30" /></th>
 </tr>
 <tr>
-	<th>Contraseña: <br /> Ej: 12345 </th>
+	<th>ContraseÃ±a: <br /> Ej: 12345 </th>
 	<th><input type="password" name="passwort" value="" size="30" /></th>
 </tr>
 <tr>
-	<th>Prefix de las tablas: <br /> Ej: xgp_ </th>
+	<th>Prefijo de las tablas: <br /> Ej: xn_ </th>
 	<th><input type="text" name="prefix" value="xgp_" size="30" /></th>
 </tr>
 <tr>

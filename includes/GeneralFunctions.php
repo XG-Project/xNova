@@ -162,8 +162,8 @@ function StdUserHeader ($metatags = '')
 {
 	$parse['-title-'] 	 = read_config ( 'game_name' );
 	$parse['-favi-']	 = "<link rel=\"shortcut icon\" href=\"./favicon.ico\">\n";
-	$parse['-meta-']	 = "<meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\">\n";
-	$parse['-meta-']	.= "<meta name=\"generator\" content=\"XG Proyect " . VERSION . "\" />\n";
+	$parse['-meta-']	 = "<meta charset=\"UTF-8\">\n";
+	$parse['-meta-']	.= "<meta name=\"generator\" content=\"xNova " . VERSION . "\" />\n";
 
 	if(!defined('LOGIN'))
 	{
@@ -188,7 +188,7 @@ function AdminUserHeader ($metatags = '')
 
 	if (!defined('IN_ADMIN'))
 	{
-		$parse['-title-'] 	= 	"XG Proyect - Install";
+		$parse['-title-'] 	= 	"xNova - Instalación";
 		$parse['overflow']	=	"auto";
 	}
 	else
@@ -200,7 +200,8 @@ function AdminUserHeader ($metatags = '')
 
 	$parse['-favi-']	 = 	"<link rel=\"shortcut icon\" href=\"./../favicon.ico\">\n";
 	$parse['-style-']	 =	"<link rel=\"stylesheet\" type=\"text/css\" href=\"./../styles/css/admin.css\">\n";
-	$parse['-meta-']	 = 	"<script type=\"text/javascript\" src=\"./../js/overlib-min.js\"></script>\n";
+	$parse['-meta-']	 = "<meta charset=\"UTF-8\">\n";
+	$parse['-meta-']	.= 	"<script type=\"text/javascript\" src=\"./../js/overlib-min.js\"></script>\n";
 	$parse['-meta-'] 	.= ($metatags) ? $metatags : "";
 
 	return parsetemplate ( gettemplate ( 'adm/simple_header' ) , $parse );
@@ -321,7 +322,7 @@ function catch_error($errno , $errstr, $errfile, $errline)
 		`error_level` = '".$errno."' ,
 		`error_line` = '".addslashes($errline)."' ,
 		`error_file` = '".addslashes($errfile)."' ,
-		`error_text` = '".addslashes(str_replace('[<a href=\'', '[<a href=\'http://php.net/manual/%lang%/', $errstr))."';";
+		`error_text` = '".addslashes(str_replace('[<a href=\'', '[<a target="blank" href=\'http://php.net/manual/%lang%/', $errstr))."';";
 
 		doquery($query, 'errors');
 	}

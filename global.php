@@ -6,6 +6,9 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
+if(version_compare(PHP_VERSION, "5.2.0", "<"))
+	die('<!DOCTYPE html><html><head><title>¡Error!</title><meta charset="UTF-8"></head><body>¡Error! Tu servidor debe tener al menos php 5.2.0</body></html>');
+
 // -1 permitirá guardar todos los errores
 error_reporting(-1);
 

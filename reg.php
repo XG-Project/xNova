@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$errors++;
 	}
 
-	if ($_POST['rgt'] != 'on')
+	if ( ! isset($_POST['rgt']) OR $_POST['rgt'] != 'on')
 	{
 		$errorlist .= $lang['terms_and_conditions'];
 		$errors++;

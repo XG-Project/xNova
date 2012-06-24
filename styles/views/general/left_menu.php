@@ -220,7 +220,7 @@ function f(target_url,win_name) {
  <tr>
   <td>
    <div align="center"><font color="#FFFFFF">
-     <a href="#" title="Powered by XG Proyect {version} &copy; 2008 - 2012 GNU General Public License">&copy; 2008 - 2012</a>
+     <a href="https://github.com/Razican/xNova" title="Powered by xNova {version} © 2012 Creative Commons BY-SA based on XG Proyect">© 2012</a>
     </font></div>
   </td>
  </tr>

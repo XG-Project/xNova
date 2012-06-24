@@ -7,8 +7,8 @@ $lang['mu_moderation_page']	= 'Permissions';
 $lang['adm_cp_logout']		= 'Quit';
 $lang['lang_key']			= 'en';
 
-//	MISCEL�NEO - MISCELLANEOUS
-$lang['ad_number']			= 'N�';
+//	MISCELÁNEO - MISCELLANEOUS
+$lang['ad_number']			= 'No';
 $lang['only_numbers']		= 'You can only enter numbers!';
 $lang['select_option']		= 'Select...';
 
@@ -26,7 +26,7 @@ $lang['time_seconds']	= 'Seconds';
 //###########################################################//
 
 
-//---------------	�SI O NO? - YES OR NO?	------------------------//
+//---------------	¿SI O NO? - YES OR NO?	------------------------//
 $lang['one_is_yes'][1]	= 'Yes';
 $lang['one_is_yes'][0]	= 'No';
 
@@ -235,7 +235,7 @@ $lang['ad_personal_email']		= 'E-mail';
 $lang['ad_personal_email2']		= 'E-mail permanent';
 $lang['ad_personal_pass']		= 'Password';
 $lang['ad_personal_succes']		= 'Settings changed  successfully';
-$lang['ad_personal_vacat']		= '�Vacations?';
+$lang['ad_personal_vacat']		= 'Vacations?';
 
 //	ALIANZA - ALLIANCES
 $lang['ad_ally_title']		= 'Edit Alliances';
@@ -280,13 +280,13 @@ $lang['ad_pla_delete_planet_s']	= 'Planet deleted successfully';
 //###########################################################//
 
 
-//---------------	PANEL DE SUSPENSI�N - BAN PANEL	------------------------//
+//---------------	PANEL DE SUSPENSIÓN - BAN PANEL	------------------------//
 $lang['bo_the_player']			= 'Player ';
 $lang['bo_the_player2']			= 'The player ';
 $lang['bo_banned']				= ' Was stopped successfully.';
 $lang['bo_unbanned']			= ' He has lifted the suspension correctly.';
 $lang['bo_username']			= 'User name';
-$lang['bo_vacaations']			= '�Vacations?';
+$lang['bo_vacaations']			= 'Vacations?';
 $lang['bo_reason']				= 'Reason for Suspension';
 $lang['bo_time']				= 'Suspension time';
 
@@ -323,7 +323,7 @@ $lang['et_encript']			= 'Encrypt';
 //###########################################################//
 
 
-//---------------	CONFIGURACI�N DE ESTAD�STICAS - STATS CONFIG	------------------------//
+//---------------	CONFIGURACIÓN DE ESTAÍSTICAS - STATS CONFIG	------------------------//
 $lang['cs_title']						= 'Setting the parameters of the statistics';
 $lang['cs_point_per_resources_used']	= 'Worth of 1 point statical';
 $lang['cs_resources']					= 'resources';
@@ -331,7 +331,7 @@ $lang['cs_users_per_block']				= 'Users per block (min. 10)';
 $lang['cs_fleets_on_block']				= 'Update fleets in block?';
 $lang['cs_time_between_updates']		= 'Time between updates of statistics';
 $lang['cs_minutes']						= 'minutes';
-$lang['cs_points_to_zero']				= '�The administration can appear at the ranking?';
+$lang['cs_points_to_zero']				= 'Can the administration appear at the ranking?';
 $lang['cs_access_lvl']					= 'Until what rank can appear at the ranking?';
 $lang['cs_save_changes']				= 'Save the changes';
 $lang['cs_timeact_1']					= 'The last update was on: ';
@@ -386,7 +386,7 @@ $lang['ma_none']				= 'Global message';
 
 
 //---------------	BASE DE DATOS - DATA BASES	------------------------//
-$lang['od_not_opt']			= '�Error!';
+$lang['od_not_opt']			= 'Error!';
 $lang['od_not_check']		= 'Errors!';
 $lang['od_opt']				= 'Optimized!';
 $lang['od_rep']				= 'Fix!';
@@ -399,27 +399,27 @@ $lang['od_select_action']	= 'Select';
 //###########################################################//
 
 
-//---------------	P�GINA DE INICIO - OVERVIEW	------------------------//
-$lang['ow_title']				= 'Welcome to XG Proyect';
-$lang['ow_welcome_text']		= 'Thank you for choosing XG Proyect. Day by day we work to be the OpenSource OGame N�1 on the web. Here is a "look" of the overall game. You can make all the changes you want browsing the menu on the left.';
+//---------------	PÁGINA DE INICIO - OVERVIEW	------------------------//
+$lang['ow_title']				= 'Welcome to xNova';
+$lang['ow_welcome_text']		= 'Thank you for choosing xNova. Day by day we work to be the No1 OpenSource OGame on the web. Here is a "look" of the overall game. You can make all the changes you want browsing the menu on the left.';
 $lang['ow_overview']			= 'Control panel';
 $lang['ow_support']				= 'Support';
 $lang['ow_credits']				= 'Credits';
-$lang['ow_forum']				= 'Forum';
 $lang['ow_proyect_leader']		= 'Proyect Leader';
 $lang['ow_principal_contributors']	= 'Principal contributors';
+$lang['ow_other_contributors']		= 'Other Contributors';
 $lang['ow_special_thanks']			= 'Special Thanks';
 $lang['ow_install_file_detected']	= 'install/ directory was found. For security reasons, we recommend remove or rename it.';
 $lang['ow_config_file_writable']	= 'The config.php file could be written, it is advisable to be placed in chmod 440 (read only).';
 $lang['ow_database_errors']			= 'There are errors in your database. You can see them <a href="errors.php">clicking here</a>';
-$lang['ow_old_version']				= 'There is a new version available. Click <a href="http://www.xgproyect.net/downloads.php" target="_blanck">here</a> to download it.';
+$lang['ow_old_version']				= 'There is a new version available. Click <a href="http://www.razican.com/" target="_blanck">here</a> to download it.';
 $lang['ow_none']					= 'No warnings';
 $lang['ow_log_file_no_writable']	= 'At least one of the log files in /adm/Log/ can\'t be written. Please, change their permissions to CHMOD 0777';
 $lang['ow_config_file_no_writable']	= 'Configuration file at /includes/xml/config.xml can\'t be written, please, give it CHMOD 0777 permission';
 //###########################################################//
 
 
-//---------------	CONFIGURACI�N DEL JUEGO - GAME CONFIG	------------------------//
+//---------------	CONFIGURACIÓN DEL JUEGO - GAME CONFIG	------------------------//
 $lang['se_server_parameters']				= 'Server setting';
 $lang['se_name']							= 'Name';
 $lang['se_lang']							= 'Language';
@@ -457,14 +457,14 @@ $lang['se_ships_cdr_message']				= 'Sets the percentage of debris generated ship
 $lang['se_noob_protect']					= 'Protection from novices';
 $lang['se_noob_protect2']					= 'Protection N. points';
 $lang['se_noob_protect3']					= 'Protection N. limit points';
-$lang['se_noob_protect_e2']					= 'L�mit point where you stop being rookie';
+$lang['se_noob_protect_e2']					= 'Limit point where you stop being rookie';
 $lang['se_noob_protect_e3']					= 'Click here to see more info';
 $lang['se_log_php_errors']					= 'Errors you want to log';
 $lang['log_viewmod']						= array('Deactivated', 'Activated');
 //###########################################################//
 
 
-//---------------	MODERACI�N - MODERATION	------------------------//
+//---------------	MODERACIÓN - MODERATION	------------------------//
 //	PERMISOS - PERMISSIONS
 $lang['mod_title']				= 'Admin powers';
 $lang['mod_range']				= 'Rank';
@@ -510,10 +510,10 @@ $lang['ff_confirm_back_fleet']	= 'Are you sure you want to send the selected fli
 //###########################################################//
 
 
-//---------------	ACTUALIZACI�N DE ESTADISTICAS - UPDATE STATS	------------------------//
-$lang['sb_top_memory']			= 'Peak memory: %p KB / m�x. %m KB <br>';
-$lang['sb_final_memory']		= 'Memory consumed at the end: %e KB / m�x. %m KB<br>';
-$lang['sb_start_memory']		= 'Memory consumed at the beginning: %i KB / m�x. %m KB<br>';
+//---------------	ACTUALIZACIÓN DE ESTADISTICAS - UPDATE STATS	------------------------//
+$lang['sb_top_memory']			= 'Peak memory: %p KB / max. %m KB <br>';
+$lang['sb_final_memory']		= 'Memory consumed at the end: %e KB / max. %m KB<br>';
+$lang['sb_start_memory']		= 'Memory consumed at the beginning: %i KB / max. %m KB<br>';
 $lang['sb_stats_update']		= 'Stats updated in: %t seconds<br>';
 $lang['sb_users_per_block']		= 'Number of users per block: %n<br>';
 $lang['sb_using_fleet_array']	= 'Using array of fleets in flight<br>';
@@ -594,7 +594,7 @@ $lang['re_reset_excess']					= 'Options restarted successfully';
 //###########################################################//
 
 
-//---------------	INFORMACI�N DE CUENTAS - DATA ACCOUNTS	------------------------//
+//---------------	INFORMACIÓN DE CUENTAS - DATA ACCOUNTS	------------------------//
 $lang['ac_user_id_required']				= 'You must select any user!';
 $lang['ac_select_one_id']					= 'Please choose only one user!';
 $lang['ac_no_character']					= 'We do not accept letters, only numbers!';
@@ -775,7 +775,7 @@ $lang['se_confirm_planet']	=	'The planet selected will be erased completely, eit
 $SE_ID		=	"ID";
 $SE_NAME	=	"Name";
 
-// B�SQUEDA EN TABLA DE USUARIOS
+// BÚSQUEDA EN TABLA DE USUARIOS
 $lang['se_search_users'][0]	=	$SE_ID;
 $lang['se_search_users'][1]	=	$SE_NAME;
 $lang['se_search_users'][2]	=	'E-mail';
@@ -786,7 +786,7 @@ $lang['se_search_users'][6]	=	'Authority';
 $lang['se_search_users'][7]	=	'Suspended?';
 $lang['se_search_users'][8]	=	'Vacations?';
 
-// B�SQUEDA EN TABLA DE PLANETAS
+// BÚSQUEDA EN TABLA DE PLANETAS
 $lang['se_search_planets'][0]	=	$SE_ID;
 $lang['se_search_planets'][1]	=	$SE_NAME;
 $lang['se_search_planets'][2]	=	"Owner";
@@ -795,7 +795,7 @@ $lang['se_search_planets'][4]	=	"Galaxy";
 $lang['se_search_planets'][5]	=	"System";
 $lang['se_search_planets'][6]	=	"Planet";
 
-// B�SQUEDA EN TABLA DE SUSPENDIDOS
+// BÚSQUEDA EN TABLA DE SUSPENDIDOS
 $lang['se_search_banned'][0]	=	$SE_ID;
 $lang['se_search_banned'][1]	=	$SE_NAME;
 $lang['se_search_banned'][2]	=	"Date of suspended";
@@ -803,7 +803,7 @@ $lang['se_search_banned'][3]	=	"Date of reactivation";
 $lang['se_search_banned'][4]	=	"Reason";
 $lang['se_search_banned'][5]	=	"Author";
 
-// B�SQUEDA EN TABLA DE LA ALIANZA
+// BÚSQUEDA EN TABLA DE LA ALIANZA
 $lang['se_search_alliance'][0]	=	$SE_ID;
 $lang['se_search_alliance'][1]	=	$SE_NAME;
 $lang['se_search_alliance'][2]	=	"TAG";

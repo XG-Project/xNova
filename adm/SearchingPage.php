@@ -238,7 +238,7 @@ $OrderBY		=	$_GET['key_acc'];
 ((!$_GET['Limit']) ? $Limit	=	'25' : $Limit	=	$_GET['Limit']);
 
 
-// TABLA DE BÚSQUEDA
+// TABLA DE BÃšSQUEDA
 $parse['OPT_LIST']	 =	'<option value="users"'.(($SearchFile == "users") ? " selected": "").'>'.$lang['se_users'].'</option>';
 $parse['OPT_LIST']	.=	'<option value="planet"'.(($SearchFile == "planet") ? " selected": "").'>'.$lang['se_planets'].'</option>';
 $parse['OPT_LIST']	.=	'<option value="moon"'.(($SearchFile == "moon") ? " selected": "").'>'.$lang['se_moons'].'</option>';
@@ -250,11 +250,11 @@ $parse['OPT_LIST']	.=	'<option value="inactives"'.(($SearchFile == "inactives") 
 $parse['OPT_LIST']	.=	'<option value="online"'.(($SearchFile == "online") ? " selected": "").'>'.$lang['online_users'].'</option>';
 $parse['OPT_LIST']	.=	'<option value="p_connect"'.(($SearchFile == "p_connect") ? " selected": "").'>'.$lang['se_planets_act'].'</option>';
 
-// BÚSQUEDA POR ID O NOMBRE
+// BÃšSQUEDA POR ID O NOMBRE
 $parse['OPT_SEARCH']	 =	'<option value="name"'.(($SearchFor == "name") ? " selected": "").((!$SearchFor) ? " selected": "").'>'.$lang['se_input_name'].'</option>';
 $parse['OPT_SEARCH']	.=	'<option value="id"'.(($SearchFor == "id") ? " selected": "").'>'.$lang['input_id'].'</option>';
 
-// TIPO DE FILTRO: BÚSQUEDA EXACTA, NORMAL, ETC
+// TIPO DE FILTRO: BÃšSQUEDA EXACTA, NORMAL, ETC
 $parse['EXT_LIST']	 =	'<option value="normal"'.(($SearchMethod == "normal") ? " selected": "").'>'.$lang['se_type_all'].'</option>';
 $parse['EXT_LIST']	.=	'<option value="exacto"'.(($SearchMethod == "exacto") ? " selected": "").'>'.$lang['se_type_exact'].'</option>';
 $parse['EXT_LIST']	.=	'<option value="last"'.(($SearchMethod == "last") ? " selected": "").'>'.$lang['se_type_last'].'</option>';

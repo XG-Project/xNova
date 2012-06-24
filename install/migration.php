@@ -16,18 +16,18 @@ function migrate_to_xml ()
 	$query		= doquery("SELECT * FROM {{table}}",'config');
 
 	$search		=	array	(
-								'�',
-								'�',
-								'�',
-								'�',
+								'¡',
+								'¿',
+								'º',
+								'ª',
 								'"',
 								'#',
 								'$',
 								'%',
 								'(',
 								')',
-								'�',
-								'�',
+								'¬',
+								'€',
 								'|',
 								'~'
 							);

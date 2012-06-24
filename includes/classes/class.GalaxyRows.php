@@ -234,7 +234,7 @@ class GalaxyRows
 			$MissionType6Link = "";
 
 		if ($GalaxyInfo['id'] != $user['id'])
-			$MissionType1Link = "<a href=game.php?page=fleet&galaxy=".$Galaxy."&amp;system=".$System."&amp;planet=".$Planet."&amp;planettype=".$PlanetType."&amp;target_mission=1>".$lang['type_mission'][1]."</a><br />";
+			$MissionType1Link = "<a href=game.php?page=fleet&galaxy=".$Galaxy."&system=".$System."&amp;planet=".$Planet."&amp;planettype=".$PlanetType."&amp;target_mission=1>".$lang['type_mission'][1]."</a><br />";
 		elseif ($GalaxyInfo['id'] == $user['id'])
 			$MissionType1Link = "";
 

@@ -1,10 +1,10 @@
 /* Simple AJAX Code-Kit (SACK) */
-/* ©2005 Gregory Wild-Smith */
+/* Â©2005 Gregory Wild-Smith */
 /* www.twilightuniverse.com */
 /* Software licenced under a modified X11 licence, see documentation or authors website for more details */
 
 function sack(file){
-	this.AjaxFailedAlert ="Su navegador no soporta la funcionalidad mejorada de este sitio web, y por lo tanto, usted tendrá una experiencia que difiere de la una.\n";
+	this.AjaxFailedAlert ="Su navegador no soporta la funcionalidad mejorada de este sitio web, y por lo tanto, usted tendrÃ¡ una experiencia que difiere de la una.\n";
 	this.requestFile = file;
 	this.method = "POST";
 	this.URLString = "";

@@ -9,22 +9,22 @@
 class ShowOptionsPage
 {
 	private function CheckIfIsBuilding($CurrentUser)
-	{	
+	{
 		$activity	= doquery ( "SELECT (
 											(
-												SELECT COUNT( fleet_id ) AS quantity 
-													FROM {{table}}fleets 
+												SELECT COUNT( fleet_id ) AS quantity
+													FROM {{table}}fleets
 														WHERE fleet_owner = '" . intval ( $CurrentUser['id'] ) . "'
 											)
 										+
 											(
-												SELECT COUNT(id) AS quantity 
-													FROM {{table}}planets 
-														WHERE id_owner = '" . intval ( $CurrentUser['id'] ) . "' AND 
+												SELECT COUNT(id) AS quantity
+													FROM {{table}}planets
+														WHERE id_owner = '" . intval ( $CurrentUser['id'] ) . "' AND
 														(b_building <> 0 OR b_tech <> 0 OR b_hangar <> 0)
 											)
 										) as total" , '' , TRUE );
-	
+
 		if ( $activity['total'] > 0 )
 		{
 			return TRUE;
@@ -39,7 +39,7 @@ class ShowOptionsPage
 	{
 		global $lang;
 
-		$mode = $_GET['mode'];
+		$mode = isset($_GET['mode']) ? $_GET['mode'] : NULL;
 
 		if ($_POST && $mode == "exit")
 		{
@@ -65,7 +65,7 @@ class ShowOptionsPage
 		{
 			if ($CurrentUser['authlevel'] > 0)
 			{
-				if ($_POST['adm_pl_prot'] == 'on')
+				if (isset($_POST['adm_pl_prot']) && $_POST['adm_pl_prot'] == 'on')
 					doquery ("UPDATE {{table}} SET `id_level` = '".intval($CurrentUser['authlevel'])."' WHERE `id_owner` = '".intval($CurrentUser['id'])."';", 'planets');
 				else
 					doquery ("UPDATE {{table}} SET `id_level` = '0' WHERE `id_owner` = '".intval($CurrentUser['id'])."';", 'planets');
@@ -134,6 +134,15 @@ class ShowOptionsPage
 			{
 				$settings_fleetactions = "1";
 			}
+			// < -------------------------------------------------LOGO DE ALIANZAS ----------------------------------------------------- >
+			if (isset($_POST["settings_allylogo"]) && $_POST["settings_allylogo"] == 'on')
+			{
+				$settings_allylogo = "1";
+			}
+			else
+			{
+				$settings_allylogo = "0";
+			}
 			// < ------------------------------------------------- SONDAS DE ESPIONAJE ------------------------------------------------- >
 			if (isset($_POST["settings_esp"]) && $_POST["settings_esp"] == 'on')
 			{
@@ -152,7 +161,7 @@ class ShowOptionsPage
 			{
 				$settings_wri = "0";
 			}
-			// < --------------------------------------------- AÑADIR A LISTA DE AMIGOS ------------------------------------------------ >
+			// < --------------------------------------------- ANADIR A LISTA DE AMIGOS ------------------------------------------------ >
 			if (isset($_POST["settings_bud"]) && $_POST["settings_bud"] == 'on')
 			{
 				$settings_bud = "1";
@@ -300,6 +309,7 @@ class ShowOptionsPage
 
 				$SkinsFolder = opendir(XGP_ROOT . 'styles/skins');
 
+				$parse['opt_skin_data']	= '';
 				while (($SkinsSubFolder = readdir($SkinsFolder)) !== FALSE)
 				{
 					if($SkinsSubFolder != '.' && $SkinsSubFolder != '..' && $SkinsSubFolder != '.htaccess' && $SkinsSubFolder != '.svn' && $SkinsSubFolder != 'index.html')
@@ -316,7 +326,7 @@ class ShowOptionsPage
 				if ($CurrentUser['authlevel'] > 0)
 				{
 					$IsProtOn 					= doquery ("SELECT `id_level` FROM {{table}} WHERE `id_owner` = '".intval($CurrentUser['id'])."' LIMIT 1;", 'planets', TRUE);
-					$parse['adm_pl_prot_data']	= ($IsProtOn['id_level'] > 0) ? " checked='checked'/":'';
+					$parse['adm_pl_prot_data']	= ($IsProtOn['id_level'] > 0) ? " checked='checked'":'';
 					$parse['opt_adm_frame']  	= parsetemplate(gettemplate('options/options_admadd'), $parse);
 				}
 				$parse['opt_usern_data'] 	= $CurrentUser['username'];
@@ -328,14 +338,14 @@ class ShowOptionsPage
 				$parse['opt_fleet_data'] 	= $CurrentUser['settings_fleetactions'];
 				$parse['opt_sskin_data'] 	= ($CurrentUser['design'] == 1) ? " checked='checked'":'';
 				$parse['opt_noipc_data'] 	= ($CurrentUser['noipcheck'] == 1) ? " checked='checked'":'';
-				$parse['opt_allyl_data'] 	= ($CurrentUser['settings_allylogo'] == 1) ? " checked='checked'/":'';
-				$parse['opt_delac_data'] 	= ($CurrentUser['db_deaktjava'] == 1) ? " checked='checked'/":'';
-				$parse['user_settings_rep'] = ($CurrentUser['settings_rep'] == 1) ? " checked='checked'/":'';
-				$parse['user_settings_esp'] = ($CurrentUser['settings_esp'] == 1) ? " checked='checked'/":'';
-				$parse['user_settings_wri'] = ($CurrentUser['settings_wri'] == 1) ? " checked='checked'/":'';
-				$parse['user_settings_mis'] = ($CurrentUser['settings_mis'] == 1) ? " checked='checked'/":'';
-				$parse['user_settings_bud'] = ($CurrentUser['settings_bud'] == 1) ? " checked='checked'/":'';
-				$parse['db_deaktjava']		= ($CurrentUser['db_deaktjava']  > 0) ? " checked='checked'/":'';
+				$parse['opt_allyl_data'] 	= ($CurrentUser['settings_allylogo'] == 1) ? " checked='checked'":'';
+				$parse['opt_delac_data'] 	= ($CurrentUser['db_deaktjava'] == 1) ? " checked='checked'":'';
+				$parse['user_settings_rep'] = ($CurrentUser['settings_rep'] == 1) ? " checked='checked'":'';
+				$parse['user_settings_esp'] = ($CurrentUser['settings_esp'] == 1) ? " checked='checked'":'';
+				$parse['user_settings_wri'] = ($CurrentUser['settings_wri'] == 1) ? " checked='checked'":'';
+				$parse['user_settings_mis'] = ($CurrentUser['settings_mis'] == 1) ? " checked='checked'":'';
+				$parse['user_settings_bud'] = ($CurrentUser['settings_bud'] == 1) ? " checked='checked'":'';
+				$parse['db_deaktjava']		= ($CurrentUser['db_deaktjava']  > 0) ? " checked='checked'":'';
 
 				display(parsetemplate(gettemplate('options/options_body'), $parse));
 			}

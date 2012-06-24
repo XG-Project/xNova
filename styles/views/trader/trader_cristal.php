@@ -10,10 +10,10 @@ function calcul() {
 	document.getElementById("cristal").innerHTML=Cristal;
 
 	if (isNaN(document.forms['trader'].elements['metal'].value)) {
-		document.getElementById("cristal").innerHTML="Sólo números";
+		document.getElementById("cristal").innerHTML="Solo nÃºmeros";
 	}
 	if (isNaN(document.forms['trader'].elements['deut'].value)) {
-		document.getElementById("cristal").innerHTML="Sólo números";
+		document.getElementById("cristal").innerHTML="Solo nÃºmeros";
 	}
 }
 </script>

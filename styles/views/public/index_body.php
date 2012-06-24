@@ -1,4 +1,3 @@
-<!-- Main div starts here | XG Proyect - www.xgproyect.net -->
 <div id="main">
     <div id="login">
         <div id="login_input">
@@ -42,7 +41,7 @@
                     </div>
                     <!-- PLEASE DO NOT REMOVE THE COPYRGHT LINE // POR FAVOR NO BORRES LA LINEA DE COPYRIGHTS -->
                     <div id="copyright">
-                    	Powered by <a href="http://www.xgproyect.net/" target="_blanck" title="XG Proyect {version}">XG Proyect</a> &#169; 2008 - {year}.
+                    	Powered by <a href="http://www.razican.com/" target="_blank" title="xNova {version}, basado en XG Proyect">xNova</a> © {year}.
                     </div>
                     <!-- PLEASE DO NOT REMOVE THE COPYRGHT LINE // POR FAVOR NO BORRES LA LINEA DE COPYRIGHTS -->
                 </div>
@@ -50,4 +49,3 @@
 		</div>
 	</div>
 </div>
-<!-- Main div ends here | XG Proyect - www.xgproyect.net -->

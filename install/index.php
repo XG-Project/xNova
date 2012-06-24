@@ -19,19 +19,14 @@ $Page     = isset($_GET['page']) ? $_GET['page'] : '';
 $phpself  = $_SERVER['PHP_SELF'];
 $nextpage = $Page + 1;
 
-if(version_compare(PHP_VERSION, "5.2.0", "<"))
-	die("&iexcl;Error! Tu servidor debe tener al menos php 5.2.0");
-
 if (empty($Mode)) { $Mode = 'intro'; }
 if (empty($Page)) { $Page = 1;       }
 
 switch ($Mode)
 {
-	case'license':
-		$frame  = parsetemplate(gettemplate('install/ins_license'), FALSE);
-	break;
 	case 'intro':
-		$frame  = parsetemplate(gettemplate('install/ins_intro'), FALSE);
+		$parse['version']	=	SYSTEM_VERSION;
+		$frame  = parsetemplate(gettemplate('install/ins_intro'), $parse);
 	break;
 	case 'ins':
 		if ($Page == 1)
@@ -40,7 +35,7 @@ switch ($Mode)
 			{
 				if ($_GET['error'] == 1)
 				{
-					message ("La conexi&oacute;n a la base de datos a fallado","?mode=ins&page=1", 3, FALSE, FALSE);
+					message ("La conexión a la base de datos a fallado","?mode=ins&page=1", 3, FALSE, FALSE);
 				}
 				elseif ($_GET['error'] == 2)
 				{
@@ -80,7 +75,7 @@ switch ($Mode)
 				exit();
 			}
 
-			$parse['first']	= "Conexi&oacute;n establecida con &eacute;xito...";
+			$parse['first']	= "Conexión establecida con éxito...";
 
 			fwrite($dz, "<?php\n");
 			fwrite($dz, "if(!defined(\"INSIDE\")){ header(\"location:".XGP_ROOT."\"); }\n");
@@ -94,7 +89,7 @@ switch ($Mode)
 			fwrite($dz, "?>");
 			fclose($dz);
 
-			$parse['second']	= "Archivo config.php creado con &eacute;xito...";
+			$parse['second']	= "Archivo config.php creado conéxito...";
 
 			doquery ($QryTableAks        , 'aks'    	);
 			doquery ($QryTableAlliance   , 'alliance'   );
@@ -111,14 +106,14 @@ switch ($Mode)
 			doquery ($QryTableStatPoints , 'statpoints'	);
 			doquery ($QryTableUsers      , 'users'  	);
 
-			$parse['third']	= "Tablas creadas con &eacute;xito...";
+			$parse['third']	= "Tablas creadas con éxito...";
 
 			$frame  = parsetemplate(gettemplate('install/ins_form_done'), $parse);
 		}
 		elseif ($Page == 3)
 		{
 			if (isset($_GET['error']) && $_GET['error'] == 3)
-				message ("&iexcl;Debes completar todos los campos!","?mode=ins&page=3", 2, FALSE, FALSE);
+				message ("¡Debes completar todos los campos!","?mode=ins&page=3", 2, FALSE, FALSE);
 
 			$frame  = parsetemplate(gettemplate('install/ins_acc'), FALSE);
 		}
@@ -209,12 +204,12 @@ switch ($Mode)
 
 			if ( !$administrator )
 			{
-				die(message("&iexcl;Error! - &iexcl;El administrador ingresado no existe o el usuario no tiene permisos administrativos!","index.php?mode=upgrade", "3", FALSE, FALSE));
+				die(message("¡Error! - ¡El administrador ingresado no existe o el usuario no tiene permisos administrativos!","index.php?mode=upgrade", "3", FALSE, FALSE));
 			}
 
 			if(filesize('../config.php') == 0)
 			{
-				die(message("&iexcl;Error! - Tu archivo config.php se encuentra vaci&oacute; o no configurado. En caso de no ser as&iacute; verifica que su chmod sea de 777","", "", FALSE, FALSE));
+				die(message("¡Error! - Tu archivo config.php se encuentra vacío o no configurado. En caso de no ser así verifica que su chmod sea de 777","", "", FALSE, FALSE));
 			}
 			else
 			{
@@ -247,43 +242,46 @@ switch ($Mode)
 
 				$QrysArray	= NULL;
 
-				switch($system_version)
+				if ( ! defined('SCRIPT') OR SCRIPT !== 'xNova')
 				{
-					case '2.9.0':
-					case '2.9.1':
-					case '2.9.2':
-						$QrysArray	= array($Qry1, $Qry2, $Qry3, $Qry4, $Qry5, $Qry6, $Qry7, $Qry8, $Qry9, $Qry10, $Qry11, $Qry12);
-						migrate_to_xml();
-					break;
-					case '2.9.3':
-						$QrysArray	= array($Qry1, $Qry2, $Qry6, $Qry7, $Qry8, $Qry9, $Qry10, $Qry11, $Qry12);
-						migrate_to_xml();
-					break;
-					case '2.9.4':
-					case '2.9.5':
-					case '2.9.6':
-					case '2.9.7':
-					case '2.9.8':
-						$QrysArray	= array($Qry1, $Qry2, $Qry7, $Qry8, $Qry9, $Qry10, $Qry11, $Qry12);
-						migrate_to_xml();
-					break;
-					case '2.9.9':
-						$QrysArray	= array($Qry1, $Qry2, $Qry9, $Qry10, $Qry11, $Qry12);
-						migrate_to_xml();
-					break;
-					case '2.9.10':
-						$QrysArray	= array($Qry1, $Qry2 , $Qry10, $Qry11, $Qry12);
-						migrate_to_xml();
-					break;
-					case '2.10.0':
-					case '2.10.1':
-						$QrysArray	= array($Qry12);
-						update_config ( 'version' , SYSTEM_VERSION );
-						upgrade_xml();
-					break;
-					default:
-						message("&iexcl;La versi&oacute;n de tu proyecto no es compatible con XG Proyect, o estas intentando actualizar desde una versi&oacute;n m&aacute;s nueva!", "", "", FALSE, FALSE);
-					break;
+					switch($system_version)
+					{
+						case '2.9.0':
+						case '2.9.1':
+						case '2.9.2':
+							$QrysArray	= array($Qry1, $Qry2, $Qry3, $Qry4, $Qry5, $Qry6, $Qry7, $Qry8, $Qry9, $Qry10, $Qry11, $Qry12);
+							migrate_to_xml();
+						break;
+						case '2.9.3':
+							$QrysArray	= array($Qry1, $Qry2, $Qry6, $Qry7, $Qry8, $Qry9, $Qry10, $Qry11, $Qry12);
+							migrate_to_xml();
+						break;
+						case '2.9.4':
+						case '2.9.5':
+						case '2.9.6':
+						case '2.9.7':
+						case '2.9.8':
+							$QrysArray	= array($Qry1, $Qry2, $Qry7, $Qry8, $Qry9, $Qry10, $Qry11, $Qry12);
+							migrate_to_xml();
+						break;
+						case '2.9.9':
+							$QrysArray	= array($Qry1, $Qry2, $Qry9, $Qry10, $Qry11, $Qry12);
+							migrate_to_xml();
+						break;
+						case '2.9.10':
+							$QrysArray	= array($Qry1, $Qry2 , $Qry10, $Qry11, $Qry12);
+							migrate_to_xml();
+						break;
+						case '2.10.0':
+						case '2.10.1':
+							$QrysArray	= array($Qry12);
+							update_config ( 'version' , SYSTEM_VERSION );
+							upgrade_xml();
+						break;
+						default:
+							message("¡La versión de tu proyecto no es compatible con xNova, o estas intentando actualizar desde una versión más nueva!", "", "", FALSE, FALSE);
+						break;
+					}
 				}
 
 				if ( $QrysArray != NULL )
@@ -294,7 +292,7 @@ switch ($Mode)
 					}
 				}
 
-				message("XG Proyect finaliz&oacute; la actualizaci&oacute;n de la version " . $system_version . " a la versi&oacute;n " . SYSTEM_VERSION . " con &eacute;xito, para finalizar borra el directorio install y luego haz <a href=\"./../\">click aqui</a>", "", "", FALSE, FALSE);
+				message("xNova finalizó; la actualización de la versión " . $system_version . " a la versión " . SYSTEM_VERSION . " con éxito, para finalizar borra el directorio install y luego haz <a href=\"./../\">click aquí</a>", "", "", FALSE, FALSE);
 			}
 		}
 		else

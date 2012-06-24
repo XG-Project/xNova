@@ -281,7 +281,7 @@ $lang['fl_expedition_tech_required']		= 'Expedition tech required!';
 $lang['fl_expedition_fleets_limit']			= 'Expedition flying fleets limite reached!';
 $lang['fl_week_player']						= 'The player is very weak!';
 $lang['fl_strong_player']					= 'The player is very strong!';
-$lang['fl_in_vacation_player']				= '¡El jugador esta en modo vacaciones!';
+$lang['fl_in_vacation_player']				= 'The player is in vacations mode!';
 $lang['fl_no_slots']						= 'No more slots available';
 $lang['fl_empty_transport']					= 'You can not transport 0 resources';
 $lang['fl_planet_populed']					= 'This planet is occupied!';
@@ -1130,7 +1130,7 @@ $lang['css_account_banned_expire']			= 'Expiration:';
 //----------------------------------------------------------------------------//
 //class.debug.php
 $lang['cdg_mysql_not_available']			= 'mySQL is not available at the moment...';
-$lang['cdg_error_message']					= 'Error, please contact the administrator. Error n°:';
+$lang['cdg_error_message']					= 'Error, please contact the administrator. Error No:';
 $lang['cdg_fatal_error']					= 'FATAL ERROR';
 
 //----------------------------------------------------------------------------//

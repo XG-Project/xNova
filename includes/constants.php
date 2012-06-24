@@ -9,15 +9,16 @@
 if ( !defined('INSIDE') ) die(header("location:../"));
 
 	// VERSION
-	define('SYSTEM_VERSION' 			, '2.10.2');
+	define('SYSTEM_VERSION' 			, '1.0.0-dev');
+	define('SCRIPT' 					, 'xNova');
 
 	// TEMPLATES DEFAULT SETTINGS
 	define('SKIN_PATH'					, 'styles/skins/');
 	define('TEMPLATE_DIR'     		 	, 'styles/views/');
-	define('DEFAULT_SKINPATH' 		 	, 'styles/skins/xgproyect/');
+	define('DEFAULT_SKINPATH' 		 	, 'styles/skins/xnova/');
 
 	// ADMINISTRATOR EMAIL AND GAME URL - THIS DATA IS REQUESTED BY REG.PHP
-	define('ADMINEMAIL'               	, "info@xgproyect.com");
+	define('ADMINEMAIL'               	, "admin@razican.com");
 	define('GAMEURL'                  	, "http://".$_SERVER['HTTP_HOST']."/");
 
 	// UNIVERSE DATA, GALAXY, SYSTEMS AND PLANETS || DEFAULT 9-499-15 RESPECTIVELY
@@ -64,7 +65,7 @@ if ( !defined('INSIDE') ) die(header("location:../"));
 	define('TR_DARK_MATTER'			  	,    3500);
 
 	// INVISIBLES DEBRIS
-	define('DEBRIS_LIFE_TIME'      		,  604800);
+	define('DEBRIS_LIFE_TIME'      		,  604800); //7*24*60*60
 	define('DEBRIS_MIN_VISIBLE_SIZE'	, 	  300);
 
 ?>

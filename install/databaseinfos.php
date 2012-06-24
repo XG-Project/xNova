@@ -280,7 +280,7 @@ $QryTableStatPoints .= ") ENGINE=MyISAM;";
 $QryTableUsers       = "CREATE TABLE `{{table}}` ( ";
 $QryTableUsers      .= "`id` bigint(11) unsigned NOT NULL auto_increment PRIMARY KEY, ";
 $QryTableUsers      .= "`username` varchar(64) character set latin1 NOT NULL default '', ";
-$QryTableUsers      .= "`password` varchar(64) character set latin1 NOT NULL default '', ";
+$QryTableUsers      .= "`password` char(40) CHARACTER SET utf8 NOT NULL, ";
 $QryTableUsers      .= "`email` varchar(64) character set latin1 NOT NULL default '', ";
 $QryTableUsers      .= "`email_2` varchar(64) character set latin1 NOT NULL default '', ";
 $QryTableUsers      .= "`authlevel` tinyint(4) NOT NULL default '0', ";

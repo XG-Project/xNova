@@ -122,7 +122,7 @@ switch ($Mode)
 			$adm_user   = $_POST['adm_user'];
 			$adm_pass   = $_POST['adm_pass'];
 			$adm_email  = $_POST['adm_email'];
-			$md5pass    = md5($adm_pass);
+			$sha1pass    = sha1($adm_pass);
 
 			if (!$_POST['adm_user'])
 			{
@@ -154,7 +154,7 @@ switch ($Mode)
 			$QryInsertAdm .= "`planet`            = '1', ";
 			$QryInsertAdm .= "`current_planet`    = '1', ";
 			$QryInsertAdm .= "`register_time`     = '". time() ."', ";
-			$QryInsertAdm .= "`password`          = '". $md5pass ."';";
+			$QryInsertAdm .= "`password`          = '". $sha1pass ."';";
 			doquery($QryInsertAdm, 'users');
 
 			$QryAddAdmPlt  = "INSERT INTO {{table}} SET ";
@@ -198,7 +198,7 @@ switch ($Mode)
 		{
 			$administrator	=	doquery("SELECT id
 											FROM {{table}}
-											WHERE password = '" . md5 ( $_POST['adm_pass'] ) . "' AND
+											WHERE password = '" . sha1( $_POST['adm_pass'] ) . "' AND
 													email = '" . mysql_real_escape_string ( $_POST['adm_email'] ) . "' AND
 													authlevel = 3" , 'users' , TRUE );
 
@@ -218,32 +218,60 @@ switch ($Mode)
 				$system_version	=	str_replace ( 'v' , '' , VERSION );
 
 				// ALL QUERYS NEEDED
-				$Qry1 = "DELETE FROM `$dbsettings[prefix]config` WHERE `config_name` = 'VERSION'";
-				$Qry2 = "INSERT INTO `$dbsettings[prefix]config` (`config_name`, `config_value`) VALUES ('VERSION', '".SYSTEM_VERSION."');";
-				$Qry3 = "INSERT INTO `$dbsettings[prefix]config` (`config_name`, `config_value`) VALUES ('moderation', '1,0,0,1;1,1,0,1;');";
-				$Qry4 = " ALTER TABLE `$dbsettings[prefix]banned` CHANGE `who` `who` VARCHAR( 64 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
+				$Qry1 = "DELETE FROM `".$dbsettings['prefix']."config` WHERE `config_name` = 'VERSION'";
+				$Qry2 = "INSERT INTO `".$dbsettings['prefix']."config` (`config_name`, `config_value`) VALUES ('VERSION', '".SYSTEM_VERSION."');";
+				$Qry3 = "INSERT INTO `".$dbsettings['prefix']."config` (`config_name`, `config_value`) VALUES ('moderation', '1,0,0,1;1,1,0,1;');";
+				$Qry4 = " ALTER TABLE `".$dbsettings['prefix']."banned` CHANGE `who` `who` VARCHAR( 64 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
 							CHANGE `who2` `who2` VARCHAR( 64 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
 							CHANGE `author` `author` VARCHAR( 64 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
 							CHANGE `email` `email` VARCHAR( 64 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ";
-				$Qry5 = "UPDATE `$dbsettings[prefix]config` SET `config_value` = '1,0,0,1,1;1,1,0,1,1;1;' WHERE `$dbsettings[prefix]config`.`config_name` = 'moderation';";
-				$Qry6 = "ALTER TABLE `$dbsettings[prefix]planets` CHANGE `small_protection_shield` `small_protection_shield` TINYINT( 1 ) NOT NULL DEFAULT '0', CHANGE `big_protection_shield` `big_protection_shield` TINYINT( 1 ) NOT NULL DEFAULT '0'";
-				$Qry7 = "UPDATE `$dbsettings[prefix]rw` SET `$dbsettings[prefix]rw`.`owners` = CONCAT(id_owner1,\",\",id_owner2)";
-				$Qry8 = "ALTER TABLE `$dbsettings[prefix]rw`
+				$Qry5 = "UPDATE `".$dbsettings['prefix']."config` SET `config_value` = '1,0,0,1,1;1,1,0,1,1;1;' WHERE `".$dbsettings['prefix']."config`.`config_name` = 'moderation';";
+				$Qry6 = "ALTER TABLE `".$dbsettings['prefix']."planets` CHANGE `small_protection_shield` `small_protection_shield` TINYINT( 1 ) NOT NULL DEFAULT '0', CHANGE `big_protection_shield` `big_protection_shield` TINYINT( 1 ) NOT NULL DEFAULT '0'";
+				$Qry7 = "UPDATE `".$dbsettings['prefix']."rw` SET `".$dbsettings['prefix']."rw`.`owners` = CONCAT(id_owner1,\",\",id_owner2)";
+				$Qry8 = "ALTER TABLE `".$dbsettings['prefix']."rw`
   							DROP `id_owner1`,
   							DROP `id_owner2`;";
-				$Qry9 = "ALTER TABLE $dbsettings[prefix]galaxy ADD `invisible_start_time` int(11) NOT NULL default '0'; ";
-				$Qry10 = "ALTER TABLE `$dbsettings[prefix]users` DROP `rpg_espion`,DROP `rpg_constructeur`,DROP `rpg_scientifique`,DROP `rpg_commandant`,DROP `rpg_stockeur`,DROP `rpg_defenseur`,DROP `rpg_destructeur`,DROP `rpg_general`,DROP `rpg_empereur`;";
-				$Qry11 = "DROP TABLE `$dbsettings[prefix]config`";
-				$Qry12 = "ALTER TABLE  `$dbsettings[prefix]errors` ADD `error_level` SMALLINT( 5 ) UNSIGNED NULL DEFAULT NULL AFTER `error_type`,
+				$Qry9 = "ALTER TABLE `".$dbsettings['prefix']."galaxy` ADD `invisible_start_time` int(11) NOT NULL default '0'; ";
+				$Qry10 = "ALTER TABLE `".$dbsettings['prefix']."users` DROP `rpg_espion`,DROP `rpg_constructeur`,DROP `rpg_scientifique`,DROP `rpg_commandant`,DROP `rpg_stockeur`,DROP `rpg_defenseur`,DROP `rpg_destructeur`,DROP `rpg_general`,DROP `rpg_empereur`;";
+				$Qry11 = "DROP TABLE `".$dbsettings['prefix']."config`";
+				$Qry12 = "ALTER TABLE  `".$dbsettings['prefix']."errors` ADD `error_level` SMALLINT( 5 ) UNSIGNED NULL DEFAULT NULL AFTER `error_type`,
 							ADD  `error_line` SMALLINT( 5 ) UNSIGNED NULL DEFAULT NULL AFTER  `error_level` ,
 							ADD  `error_file` VARCHAR( 20 ) NULL DEFAULT NULL AFTER  `error_line`
 							ADD  `error_hash` CHAR( 32 ) NULL DEFAULT NULL AFTER  `error_id` ,
 							ADD UNIQUE ( `error_hash`)";
+				$Qry13 = "ALTER TABLE  `".$dbsettings['prefix']."users` CHANGE  `password`  `password` CHAR( 40 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL";
 
 				$QrysArray	= NULL;
 
 				if ( ! defined('SCRIPT') OR SCRIPT !== 'xNova')
 				{
+					function migrate_to_sha1($mail)
+					{
+						global $lang;
+
+						$emails	= doquery('SELECT `email` FROM {{table}}', 'users');
+
+						while ($u = mysql_fetch_array($emails))
+						{
+							$Caracters='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+							$pass = '';
+							for ($i=0; $i < 8; $i++)
+							{
+								$pass .= substr($pool, mt_rand(0, 61), 1);
+							}
+
+							$Title 	= $lang['mail_title'];
+							$Body 	= $lang['mail_text'];
+							$Body  .= $pass;
+							mail($u['email'],$Title,$Body);
+							$NewPassSql = sha1($pass);
+							$QryPassChange = "UPDATE {{table}} SET ";
+							$QryPassChange .= "`password` ='". $NewPassSql ."' ";
+							$QryPassChange .= "WHERE `email`='". $mail ."' LIMIT 1;";
+							doquery( $QryPassChange, 'users');
+						}
+					}
+
 					switch($system_version)
 					{
 						case '2.9.0':
@@ -251,32 +279,38 @@ switch ($Mode)
 						case '2.9.2':
 							$QrysArray	= array($Qry1, $Qry2, $Qry3, $Qry4, $Qry5, $Qry6, $Qry7, $Qry8, $Qry9, $Qry10, $Qry11, $Qry12);
 							migrate_to_xml();
+							migrate_to_sha1();
 						break;
 						case '2.9.3':
-							$QrysArray	= array($Qry1, $Qry2, $Qry6, $Qry7, $Qry8, $Qry9, $Qry10, $Qry11, $Qry12);
+							$QrysArray	= array($Qry1, $Qry2, $Qry6, $Qry7, $Qry8, $Qry9, $Qry10, $Qry11, $Qry12, $Qry13);
 							migrate_to_xml();
+							migrate_to_sha1();
 						break;
 						case '2.9.4':
 						case '2.9.5':
 						case '2.9.6':
 						case '2.9.7':
 						case '2.9.8':
-							$QrysArray	= array($Qry1, $Qry2, $Qry7, $Qry8, $Qry9, $Qry10, $Qry11, $Qry12);
+							$QrysArray	= array($Qry1, $Qry2, $Qry7, $Qry8, $Qry9, $Qry10, $Qry11, $Qry12, $Qry13);
 							migrate_to_xml();
+							migrate_to_sha1();
 						break;
 						case '2.9.9':
-							$QrysArray	= array($Qry1, $Qry2, $Qry9, $Qry10, $Qry11, $Qry12);
+							$QrysArray	= array($Qry1, $Qry2, $Qry9, $Qry10, $Qry11, $Qry12, $Qry13);
 							migrate_to_xml();
+							migrate_to_sha1();
 						break;
 						case '2.9.10':
-							$QrysArray	= array($Qry1, $Qry2 , $Qry10, $Qry11, $Qry12);
+							$QrysArray	= array($Qry1, $Qry2 , $Qry10, $Qry11, $Qry12, $Qry13);
 							migrate_to_xml();
+							migrate_to_sha1();
 						break;
 						case '2.10.0':
 						case '2.10.1':
-							$QrysArray	= array($Qry12);
+							$QrysArray	= array($Qry12, $Qry13);
 							update_config ( 'version' , SYSTEM_VERSION );
 							upgrade_xml();
+							migrate_to_sha1();
 						break;
 						default:
 							message("¡La versión de tu proyecto no es compatible con xNova, o estas intentando actualizar desde una versión más nueva!", "", "", FALSE, FALSE);
@@ -292,7 +326,7 @@ switch ($Mode)
 					}
 				}
 
-				message("xNova finalizó; la actualización de la versión " . $system_version . " a la versión " . SYSTEM_VERSION . " con éxito, para finalizar borra el directorio install y luego haz <a href=\"./../\">click aquí</a>", "", "", FALSE, FALSE);
+				message("xNova finalizó la actualización de la versión " . $system_version . " a la versión " . SYSTEM_VERSION . " con éxito, para finalizar borra el directorio install y luego haz <a href=\"./../\">click aquí</a>", "", "", FALSE, FALSE);
 			}
 		}
 		else

@@ -617,7 +617,7 @@ switch($_GET[page])
 					$Log    .=    $lang['ad_personal_email2'].": ".$_POST['email_2']."\n";}
 
 				if($_POST['password'] != NULL)
-					$PersonalQuery    .=    "`password` = '".md5($_POST['password'])."', ";
+					$PersonalQuery    .=    "`password` = '".sha1($_POST['password'])."', ";
 
 				if($_POST['vacation'] != '')
 				{

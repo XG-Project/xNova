@@ -17,15 +17,17 @@ include('AdminFunctions/Autorization.php');
 if ($ToolsCanUse != 1) die(message ($lang['404_page']));
 
 	$parse = $lang;
-	if ($_POST['md5q'] != "")
+	if (isset($_POST['pass']) && $_POST['pass'] != "")
 	{
-		$parse['md5_md5'] = $_POST['md5q'];
-		$parse['md5_enc'] = md5 ($_POST['md5q']);
+		$parse['sent_pass']	= $_POST['pass'];
+		$parse['md5_res']	= md5($_POST['pass']);
+		$parse['sha1_res']	= sha1($_POST['pass']);
 	}
 	else
 	{
-		$parse['md5_md5'] = "";
-		$parse['md5_enc'] = md5 ("");
+		$parse['sent_pass']	= '';
+		$parse['md5_res']	= md5('');
+		$parse['sha1_res']	= sha1('');
 	}
 	display(parsetemplate(gettemplate('adm/PassEncripterBody'), $parse), FALSE, '', TRUE, FALSE);
 

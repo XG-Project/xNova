@@ -318,7 +318,8 @@ $lang['bo_total_banneds']		= 'Suspended users: ';
 //---------------	ENCRIPTADOR MD5 - ENCRIPTER MD5	------------------------//
 $lang['et_md5_encripter']	= 'Encriptador key (MD5)';
 $lang['et_pass']			= 'Password';
-$lang['et_result']			= 'Result';
+$lang['et_md5']				= 'Md5 result';
+$lang['et_sha1']			= 'Sha1 result';
 $lang['et_encript']			= 'Encrypt';
 //###########################################################//
 

@@ -34,21 +34,18 @@ switch ($page)
 			}
 			else
 			{
-				$Caracters="aazertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN1234567890";
-				$Count=strlen($Caracters);
-				$NewPass="";
-				$Taille=6;
-				srand((double)microtime()*1000000);
-				for($i=0;$i<$Taille;$i++)
+				$Caracters='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+				$NewPass = '';
+				for ($i=0; $i < 8; $i++)
 				{
-					$CaracterBoucle=rand(0,$Count-1);
-					$NewPass=$NewPass.substr($Caracters,$CaracterBoucle,1);
+					$NewPass .= substr($pool, mt_rand(0, 61), 1);
 				}
+
 				$Title 	= $lang['mail_title'];
 				$Body 	= $lang['mail_text'];
 				$Body  .= $NewPass;
 				mail($mail,$Title,$Body);
-				$NewPassSql = md5($NewPass);
+				$NewPassSql = sha1($NewPass);
 				$QryPassChange = "UPDATE {{table}} SET ";
 				$QryPassChange .= "`password` ='". $NewPassSql ."' ";
 				$QryPassChange .= "WHERE `email`='". $mail ."' LIMIT 1;";
@@ -72,7 +69,7 @@ switch ($page)
 	default:
 		if ($_POST)
 		{
-			$login = doquery("SELECT `id`,`username`,`password`,`banaday` FROM {{table}} WHERE `username` = '" . mysql_escape_string($_POST['username']) . "' AND `password` = '" . md5($_POST['password']) . "' LIMIT 1", "users", TRUE);
+			$login = doquery("SELECT `id`,`username`,`password`,`banaday` FROM {{table}} WHERE `username` = '" . mysql_escape_string($_POST['username']) . "' AND `password` = '" . sha1($_POST['password']) . "' LIMIT 1", "users", TRUE);
 
 			if($login['banaday'] <= time() && $login['banaday'] != '0')
 			{

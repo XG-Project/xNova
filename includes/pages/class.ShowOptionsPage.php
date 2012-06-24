@@ -259,13 +259,13 @@ class ShowOptionsPage
 			`db_deaktjava` = '$db_deaktjava'
 			WHERE `id` = '".$CurrentUser["id"]."' LIMIT 1", "users");
 			// < ------------------------------------------------- CAMBIO DE CLAVE ----------------------------------------------------- >
-			if (isset($_POST["db_password"]) && md5($_POST["db_password"]) == $CurrentUser["password"])
+			if (isset($_POST["db_password"]) && sha1($_POST["db_password"]) == $CurrentUser["password"])
 			{
 				if ($_POST["newpass1"] == $_POST["newpass2"])
 				{
 					if ($_POST["newpass1"] != "")
 					{
-						$newpass = md5($_POST["newpass1"]);
+						$newpass = sha1($_POST["newpass1"]);
 						doquery("UPDATE {{table}} SET `password` = '{$newpass}' WHERE `id` = '".intval($CurrentUser['id'])."' LIMIT 1", "users");
 						setcookie(COOKIE_NAME, "", time()-100000, "/", "", 0);
 						message($lang['op_password_changed'],"index.php",1);

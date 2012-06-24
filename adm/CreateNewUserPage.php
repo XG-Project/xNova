@@ -19,7 +19,7 @@ if ($EditUsers != 1) die();
 $parse	=	$lang;
 
 $name		=	$_POST['name'];
-$pass 		= 	md5($_POST['password']);
+$pass 		= 	sha1($_POST['password']);
 $email 		= 	$_POST['email'];
 $galaxy		=	$_POST['galaxy'];
 $system		=	$_POST['system'];

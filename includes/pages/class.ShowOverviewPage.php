@@ -92,7 +92,7 @@ class ShowOverviewPage
 					}
 					else
 					{
-						if(md5($_POST['pw']) == $CurrentUser["password"] && $CurrentUser['id_planet'] != $CurrentUser['current_planet'])
+						if(sha1($_POST['pw']) == $CurrentUser["password"] && $CurrentUser['id_planet'] != $CurrentUser['current_planet'])
 						{
 
 							doquery("UPDATE {{table}} SET `destruyed` = '" . (time() + 86400) . "' WHERE `id` = '" . intval($CurrentUser['current_planet']) . "' LIMIT 1;",'planets');

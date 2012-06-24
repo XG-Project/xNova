@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$newpass	= $_POST['passwrd'];
 		$UserName 	= $_POST['character'];
 		$UserEmail 	= $_POST['email'];
-		$md5newpass = md5($newpass);
+		$sha1newpass = sha1($newpass);
 
 		$QryInsertUser = "INSERT INTO {{table}} SET ";
 		$QryInsertUser .= "`username` = '" . mysql_escape_string(strip_tags($UserName)) . "', ";
@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$QryInsertUser .= "`id_planet` = '0', ";
 		$QryInsertUser .= "`register_time` = '" . time() . "', ";
 
-		$QryInsertUser .= "`password`='" . $md5newpass . "';";
+		$QryInsertUser .= "`password`='" . $sha1newpass . "';";
 		doquery($QryInsertUser, 'users');
 
 		$NewUser = doquery("SELECT `id` FROM {{table}} WHERE `username` = '" . mysql_escape_string($_POST['character']) . "' LIMIT 1;", 'users', TRUE);
@@ -224,7 +224,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		update_config ( 'users_amount' , read_config ( 'users_amount' ) + 1 );
 
 		@include('config.php');
-		$cookie = $NewUser['id'] . "/%/" . $UserName . "/%/" . md5($md5newpass . "--" . $dbsettings["secretword"]) . "/%/" . 0;
+		$cookie = $NewUser['id'] . "/%/" . $UserName . "/%/" . md5($sha1newpass . "--" . $dbsettings["secretword"]) . "/%/" . 0;
 		setcookie(read_config ( 'cookie_name' ), $cookie, 0, "/", "", 0);
 
 		unset($dbsettings);

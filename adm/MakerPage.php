@@ -91,7 +91,7 @@ switch ($_GET[page])
 			$Query1 .= "`register_time` = '" .$time. "', ";
 			$Query1 .= "`onlinetime` = '" .$time. "', ";
 			$Query1 .= "`authlevel` = '" .$auth. "', ";
-			$Query1 .= "`password`='" . md5($pass) . "';";
+			$Query1 .= "`password`='" . sha1($pass) . "';";
 			doquery($Query1, "users");
 
 			update_config ( 'users_amount' , read_config ( 'users_amount' ) + 1 );

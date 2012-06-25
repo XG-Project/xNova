@@ -7,6 +7,8 @@ class Main extends XN_Controller {
 		if ($this->uri->segment(1))
 			redirect('/', 'location', 301);
 
+		$this->lang->load('login');
+
 		if ($this->user->is_logged_in())
 		{
 			echo 'Overview';
@@ -28,7 +30,6 @@ class Main extends XN_Controller {
 			}
 			else
 			{
-				$this->lang->load('login');
 				$this->load->view('login');
 			}
 		}

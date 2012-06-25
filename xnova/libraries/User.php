@@ -164,6 +164,45 @@ class User {
 			return FALSE;
 		}
 	}
+
+	/**
+	 * Logs in a user
+	 *
+	 * @access	public
+	 * @param	string	Username
+	 * @param	string	Password
+	 * @param	boolean	Remember the user
+	 * @return	boolean
+	 */
+	public function login($username, $password, $remember)
+	{
+		$CI			=& get_instance();
+		$username	= strtolower($username);
+
+		$CI->db->where('username', $username);
+		$CI->db->where('password', sha1($password));
+		$CI->db->limit(1);
+		$query		= $CI->db->get('users');
+
+		if($query->num_rows() === 1)
+		{
+			foreach($query->result() as $user);
+
+			if($remember)
+				$CI->session->set_expiration(config_item('sess_expiration'));
+
+			$userdata	= array(
+				'id'			=> $user->id,
+				'logged_in'		=> TRUE
+				);
+
+			$CI->session->set_userdata($userdata);
+
+			return TRUE;
+		}
+
+		return FALSE;
+	}
 }
 
 

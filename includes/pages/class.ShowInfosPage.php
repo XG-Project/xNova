@@ -337,6 +337,9 @@ class ShowInfosPage
     {
         global $lang, $resource, $pricelist, $CombatCaps;
 
+		if ( ! array_key_exists($BuildID, $resource))
+			die(header('Location: game.php?page=techtree'));
+
         $GateTPL              = '';
         $DestroyTPL           = '';
         $TableHeadTPL         = '';

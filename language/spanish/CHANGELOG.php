@@ -20,6 +20,7 @@ Errores Corregidos:
 - [#13] Error en Notas en modo debug
 - Contaba más usuarios registrados de los que había
 - Error en la búsqueda
+- Solucionado un error en las flotas (Gracias a Think)
 '
 );
 ?>

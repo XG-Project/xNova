@@ -20,6 +20,7 @@ Fixed errors:
 - [#13] Error in Notes page in debug mode
 - It would count more registered users than the ones there were
 - Issue in search page
+- Fixed a bug in the fleet page (Thanks to Think)
 '
 );
 ?>

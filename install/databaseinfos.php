@@ -70,7 +70,7 @@ $QryTableErrors		.= "`error_level` smallint(5) unsigned DEFAULT NULL,";
 $QryTableErrors		.= "`error_line` smallint(5) unsigned DEFAULT NULL,";
 $QryTableErrors		.= "`error_file` varchar(20) DEFAULT NULL,";
 $QryTableErrors     .= "`error_text` text character set latin1, ";
-$QryTableErrors     .= "PRIMARY KEY  (`error_id`) ";
+$QryTableErrors     .= "PRIMARY KEY (`error_id`), ";
 $QryTableErrors     .= "UNIQUE KEY `error_hash` (`error_hash`) ";
 $QryTableErrors     .= ") ENGINE=MyISAM;";
 

@@ -51,11 +51,11 @@ class debug
 		`error_type` = '".mysql_escape_string($title)."' ,
 		`error_text` = '".mysql_escape_string($message)."';";
 
-		$sqlquery = mysql_query(str_replace("{{table}}", $dbsettings["prefix"].'errors',$query)) or die($lang['cdg_fatal_error']);
+		$sqlquery = mysql_query(str_replace("{{table}}", $dbsettings["prefix"].'errors',$query)) or die(isset($lang['cdg_fatal_error']) ? $lang['cdg_fatal_error'] : 'FATAL ERROR');
 
 		$query = "explain select * from {{table}}";
 
-		$q = mysql_fetch_array(mysql_query(str_replace("{{table}}", $dbsettings["prefix"].'errors', $query))) or die($lang['cdg_fatal_error'].': ');
+		$q = mysql_fetch_array(mysql_query(str_replace("{{table}}", $dbsettings["prefix"].'errors', $query))) or die(isset($lang['cdg_fatal_error']) ? $lang['cdg_fatal_error'] : 'FATAL ERROR');
 
 		if (!function_exists('message'))
 			echo $lang['cdg_error_message']." <b>".$q['rows']."</b>";

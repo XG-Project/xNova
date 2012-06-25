@@ -307,6 +307,8 @@ function catch_error($errno , $errstr, $errfile, $errline)
 {
 	global $user;
 
+	if(defined('INSTALL') && INSTALL) return FALSE;
+
 	if ($errno === 2047 OR $errno === 6143 OR $errno === 30719) $errno = 32767;
 
 	if (read_config('errors_'.$errno))

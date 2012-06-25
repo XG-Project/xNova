@@ -30,7 +30,7 @@ include_once ( XGP_ROOT . 'includes/classes/class.Fleets.php' );
 
 $debug 		= new debug();
 
-if ( filesize ( XGP_ROOT . 'config.php' ) == 0 && ( ! defined('INSTALL')))
+if ( filesize ( XGP_ROOT . 'config.php' ) == 0 && (( ! defined('INSTALL')) OR ( ! INSTALL)))
 {
 	exit ( header ( 'location:' . XGP_ROOT .  'install/' ) );
 }

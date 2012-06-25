@@ -19,7 +19,7 @@ function check_updates()
 {
 	if ( function_exists ( 'file_get_contents' ) )
 	{
-		$current_v 	= @file_get_contents ( 'http://xgproyect.xgproyect.net/current.php' );
+		$current_v 	= @file_get_contents ( 'http://xnova.razican.com/current.php' );
 
 		return (strnatcmp($current_v, read_config('version')) > 0);
 	}

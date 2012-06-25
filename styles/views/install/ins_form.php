@@ -19,7 +19,7 @@
 </tr>
 <tr>
 	<th>Prefijo de las tablas: <br /> Ej: xn_ </th>
-	<th><input type="text" name="prefix" value="xgp_" size="30" /></th>
+	<th><input type="text" name="prefix" value="xn_" size="30" /></th>
 </tr>
 <tr>
 	<th colspan="3"><input type="button" name="next" onclick="submit();" value="Instalar" ></th>

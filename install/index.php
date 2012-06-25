@@ -14,10 +14,11 @@ include_once(XGP_ROOT . 'global.php');
 include_once('databaseinfos.php');
 include_once('migration.php');
 
-$Mode     = isset($_GET['mode']) ? $_GET['mode'] : '';
-$Page     = isset($_GET['page']) ? $_GET['page'] : '';
-$phpself  = $_SERVER['PHP_SELF'];
-$nextpage = $Page + 1;
+$Mode		= isset($_GET['mode']) ? $_GET['mode'] : '';
+$Page		= isset($_GET['page']) ? $_GET['page'] : '';
+$phpself	= $_SERVER['PHP_SELF'];
+$nextpage	= $Page + 1;
+$parse		= array();
 
 if (empty($Mode)) { $Mode = 'intro'; }
 if (empty($Page)) { $Page = 1;       }
@@ -85,7 +86,7 @@ switch ($Mode)
 			fwrite($dz, "\"pass\"       => \"".$pass."\", // MySQL password.\n");
 			fwrite($dz, "\"name\"       => \"".$db."\", // MySQL database name.\n");
 			fwrite($dz, "\"prefix\"     => \"".$prefix."\", // Tables prefix.\n");
-			fwrite($dz, "\"secretword\" => \"XGProyect".$numcookie."\"); // Cookies.\n");
+			fwrite($dz, "\"secretword\" => \"XNova".$numcookie."\"); // Cookies.\n");
 			fwrite($dz, "?>");
 			fclose($dz);
 

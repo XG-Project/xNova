@@ -21,6 +21,7 @@ Errores Corregidos:
 - Contaba más usuarios registrados de los que había
 - Error en la búsqueda
 - Solucionado un error en las flotas (Gracias a Think)
+- Solucionado un error en la página de información de edificios (Gracias a Think)
 '
 );
 ?>

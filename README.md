@@ -22,5 +22,5 @@ crear un juego renovado no solo gráficamente sino también en cuanto a su códi
 Errores:
 ========
 
-Hasta el momento se han encontrado más de 2.200 errores distintos que todavía no se han solucionado.
-En su mayoría son E_NOTICE, aunque hay uno que es E_STRICT y otro que es E_WARNING. Se irán solucionando y encontrando nuevos.
+Hasta el momento se han encontrado más de 2.700 errores distintos que todavía no se han solucionado.
+En su mayoría son E_NOTICE, aunque hay uno que es E_STRICT y otros dos que son E_WARNING. Se irán solucionando y encontrando nuevos.

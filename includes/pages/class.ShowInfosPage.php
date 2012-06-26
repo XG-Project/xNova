@@ -350,12 +350,8 @@ class ShowInfosPage
         $parse['image']       = $BuildID;
         $parse['description'] = $lang['info'][$BuildID]['description'];
 
-        if ($BuildID < 13)
+        if ($BuildID < 13 OR ($BuildID == 43 && $CurrentPlanet[$resource[43]] > 0))
             $PageTPL = gettemplate('infos/info_buildings_table');
-        elseif ($BuildID == 43 && $CurrentPlanet[$resource[43]] == 0)
-        	$PageTPL = gettemplate('infos/info_buildings_general');
-        elseif ($BuildID == 43)
-    	    $PageTPL = gettemplate('infos/info_buildings_table');
         elseif ($BuildID < 200)
             $PageTPL = gettemplate('infos/info_buildings_general');
         elseif ($BuildID < 400)

@@ -21,6 +21,7 @@ if ( $Observation != 1 )
 $parse	= $lang;
 
 
+$NOSUPERMI = '';
 if ( $user['authlevel']	!= 3 )
 {
 	$NOSUPERMI	= "WHERE `authlevel` < '" . $user['authlevel'] . "'";
@@ -28,37 +29,40 @@ if ( $user['authlevel']	!= 3 )
 
 $UserWhileLogin		= doquery ( "SELECT `id`, `username`, `authlevel` FROM {{table}} " . $NOSUPERMI . " ORDER BY `username` ASC" , "users" );
 
+$parse['lista']	= '';
 while ( $UserList 	= mysql_fetch_array ( $UserWhileLogin ) )
 {
 	$parse['lista']	.=	"<option value=\"".$UserList['id']."\">" . $UserList['username'] . "&nbsp;&nbsp; (" . $lang['rank'][$UserList['authlevel']] . ")</option>";
 }
 
-if ( $_GET['id_u'] != NULL )
+if (isset($_GET['id_u']) && $_GET['id_u'] != NULL)
 {
 	$id_u	= $_GET['id_u'];
 }
-else
+elseif (isset($_GET['id_u']))
 {
 	$id_u	= $_GET['id_u2'];
 }
+$OnlyQueryLogin;
 
-$OnlyQueryLogin 	= doquery ( "SELECT `id`, `authlevel` FROM {{table}} WHERE `id` = '" . $id_u . "'" , "users" , TRUE );
+if (isset($id_u))
+	$OnlyQueryLogin 	= doquery ( "SELECT `id`, `authlevel` FROM {{table}} WHERE `id` = '" . $id_u . "'" , "users" , TRUE );
 
 if ($_GET)
 {
-	if ( $id_u == NULL )
+	if ( ! isset($id_u))
 	{
 		$parse['error']	=	"<tr><th height=25 style=\"border: 2px red solid;\"><font color=red>" . $lang['ac_user_id_required'] . "</font></th></tr>";
 	}
-	elseif ( $_GET['id_u'] != NULL && $_GET['id_u2'] != NULL )
+	elseif (isset($_GET['id_u']) && isset($_GET['id_u2']) && $_GET['id_u'] != NULL && $_GET['id_u2'] != NULL)
 	{
 		$parse['error']	=	"<tr><th height=25 style=\"border: 2px red solid;\"><font color=red>" . $lang['ac_select_one_id'] . "</font></th></tr>";
 	}
-	elseif ( !is_numeric ( $id_u ) )
+	elseif (isset($id_u) && ! is_numeric($id_u))
 	{
 		$parse['error']	=	"<tr><th height=25 style=\"border: 2px red solid;\"><font color=red>" . $lang['ac_no_character'] . "</font></th></tr>";
 	}
-	elseif ( $OnlyQueryLogin == NULL or $OnlyQueryLogin == 0 )
+	elseif ( $OnlyQueryLogin == NULL OR $OnlyQueryLogin == 0 )
 	{
 		$parse['error']	=	"<tr><th height=25 style=\"border: 2px red solid;\"><font color=red>" . $lang['ac_username_doesnt'] . "</font></th></tr>";
 	}
@@ -115,7 +119,7 @@ if ($_GET)
 
 		$parse['mo'] = "<a title=\"" . Format::pretty_number ( $UserQuery['darkmatter'] ) . "\">" . Format::shortly_number ( $UserQuery['darkmatter'] ) . "</a>";
 
-		$Log	.=	"\n" . $lang['log_info_detail_title'] . "\n";
+		$Log	 =	"\n" . $lang['log_info_detail_title'] . "\n";
 		$Log	.=	$lang['log_the_user'] . $user['username'] . $lang['log_searchto_1'] . $UserQuery['username'] . "\n";
 
 		LogFunction ( $Log , "GeneralLog" , $LogCanWork );
@@ -311,7 +315,7 @@ if ($_GET)
 
 			if ($PlanetsWhile["destruyed"] == 0)
 			{
-				$parse['planets_moons']	.=	"
+				$parse['planets_moons']	=	"
 				<tr>
 				<th>" .$Planettt . "</th>
 				<th>" . $PlanetsWhile['id'] . "</th>
@@ -337,7 +341,7 @@ if ($_GET)
 					$Color	=	Format::shortly_number ( $SumOfEnergy );
 				}
 
-				$parse['resources']	.=	"
+				$parse['resources']	=	"
 				<tr>
 				<th>".$Planettt."</th>
 				<th><a title=\"".Format::pretty_number($PlanetsWhile['metal'])."\">".Format::shortly_number($PlanetsWhile['metal'])."</a></th>
@@ -347,7 +351,7 @@ if ($_GET)
 				<th><a title=\"".Format::pretty_number($SumOfEnergy)."\">".$Color."</a>/<a title=\"".Format::pretty_number($PlanetsWhile['energy_max'])."\">".Format::shortly_number($PlanetsWhile['energy_max'])."</a></th>
 				</tr>";
 
-				$parse['ships']	.=	"
+				$parse['ships']	=	"
 				<tr>
 				<th width=\"10%\">".$Planettt."</th>
 				<th width=\"10%\"><a title=\"".Format::pretty_number($PlanetsWhile['small_ship_cargo'])."\">".Format::shortly_number($PlanetsWhile['small_ship_cargo'])."</a></th>
@@ -366,7 +370,7 @@ if ($_GET)
 				<th width=\"10%\"><a title=\"".Format::pretty_number($PlanetsWhile['battleship'])."\">".Format::shortly_number($PlanetsWhile['battleship'])."</a></th>
 				</tr>";
 
-				$parse['defenses']	.=	"
+				$parse['defenses']	=	"
 				<tr>
 				<th width=\"10%\">".$Planettt."</th>
 				<th width=\"10%\"><a title=\"".Format::pretty_number($PlanetsWhile['misil_launcher'])."\">".Format::shortly_number($PlanetsWhile['misil_launcher'])."</a></th>
@@ -381,7 +385,7 @@ if ($_GET)
 				<th width=\"10%\"><a title=\"".Format::pretty_number($PlanetsWhile['interplanetary_misil'])."\">".Format::shortly_number($PlanetsWhile['interplanetary_misil'])."</a></th>
 				</tr>";
 
-				$parse['buildings']	.=	"
+				$parse['buildings']	=	"
 				<tr>
 				<th width=\"10%\">".$Planettt."</th>
 				<th width=\"10%\"><a title=\"".Format::pretty_number($PlanetsWhile['metal_mine'])."\">".Format::shortly_number($PlanetsWhile['metal_mine'])."</a></th>
@@ -403,7 +407,7 @@ if ($_GET)
 
 				if ( $PlanetsWhile['planet_type'] == 3 )
 				{
-					$parse['moon_buildings'] .=	"
+					$parse['moon_buildings'] =	"
 					<tr>
 					<th width=\"10%\">".$Moons."</th>
 					<th width=\"10%\"><a title=\"".Format::pretty_number($PlanetsWhile['mondbasis'])."\">".Format::shortly_number($PlanetsWhile['mondbasis'])."</a></th>
@@ -412,10 +416,7 @@ if ($_GET)
 					</tr>";
 				}
 
-
-
-
-				if ( $MoonZ != 0 )
+				if (isset($MoonZ) && $MoonZ != 0 )
 				{
 					$parse['MoonHave']	=	"<a href=\"javascript:animatedcollapse.toggle('especiales')\" class=\"link\">
 					<img src=\"../styles/images/Adm/arrowright.png\" width=\"16\" height=\"10\"/> ".$lang['moon_build']."</a>";

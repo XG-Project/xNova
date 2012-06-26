@@ -24,7 +24,7 @@ function DisplayGameSettingsPage ( $CurrentUser )
 
 	if ( $_POST['opt_save'] == "1" )
 	{
-		$Log	.=	"\n".$lang['log_the_user'].$CurrentUser['username'].$lang['log_sett_no1'].":\n";
+		$Log	=	"\n".$lang['log_the_user'].$CurrentUser['username'].$lang['log_sett_no1'].":\n";
 
 		if (isset($_POST['closed']) && $_POST['closed'] == 'on') {
 		$game_config['game_disable']         = 1;
@@ -198,6 +198,11 @@ function DisplayGameSettingsPage ( $CurrentUser )
 			$Log	.=	$lang['log_sett_errors']." E_ALL: ".$lang['log_viewmod'][0]."\n";
 		}
 
+		if (isset($_POST['max_users']) && is_numeric($_POST['max_users'])) {
+			$game_config['max_users'] = $_POST['max_users'];
+			$Log	.=	$lang['log_sett_max_users']." ".$_POST['max_users']."\n";
+		}
+
 
 		LogFunction($Log, "ConfigLog", $AreLog);
 
@@ -227,6 +232,7 @@ function DisplayGameSettingsPage ( $CurrentUser )
 		update_config ( 'errors_4096' 				, $game_config['errors_4096'] 				);
 		update_config ( 'errors_8192' 				, $game_config['errors_8192'] 				);
 		update_config ( 'errors_32767' 				, $game_config['errors_32767'] 				);
+		update_config ( 'max_users' 				, $game_config['max_users'] 				);
 
 		header ( 'location:SettingsPage.php' );
 	}
@@ -242,6 +248,7 @@ function DisplayGameSettingsPage ( $CurrentUser )
 		$parse['metal_basic_income']     	= $game_config['metal_basic_income'];
 		$parse['crystal_basic_income']   	= $game_config['crystal_basic_income'];
 		$parse['deuterium_basic_income'] 	= $game_config['deuterium_basic_income'];
+		$parse['max_users_sett'] 			= $game_config['max_users'];
 		$parse['closed']                 	= ($game_config['game_disable'] == 1) ? " checked = 'checked' ":"";
 		$parse['close_reason']           	= stripslashes($game_config['close_reason']);
 		$parse['debug']                  	= ($game_config['debug'] == 1)        ? " checked = 'checked' ":"";

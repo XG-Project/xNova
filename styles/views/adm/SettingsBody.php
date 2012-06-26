@@ -33,6 +33,9 @@
 	<th>{se_forum_link}</th>
 	<th><input name="forum_url" size="60" maxlength="254" value="{forum_url}" type="text"></th>
 </tr><tr>
+	<th>{se_max_users}<br /></th>
+	<th><input name="max_users" value="{max_users_sett}" type="text" /></th>
+</tr><tr>
 	<th>{se_server_op_close}<br /></th>
 	<th><input name="closed"{closed} type="checkbox" /></th>
 </tr><tr>

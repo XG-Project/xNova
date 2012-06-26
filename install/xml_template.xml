@@ -137,6 +137,10 @@
 		<value>1</value>
 	</config>
 	<config>
+		<name>max_users</name>
+		<value>1000</value>
+	</config>
+	<config>
 		<name>errors_2</name>
 		<value>0</value>
 	</config>

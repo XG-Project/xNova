@@ -118,7 +118,7 @@
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1340709601</value>
+		<value>1340719147</value>
 	</config>
 	<config>
 		<name>stat_settings</name>
@@ -135,6 +135,10 @@
 	<config>
 		<name>stat_flying</name>
 		<value>1</value>
+	</config>
+	<config>
+		<name>max_users</name>
+		<value>500</value>
 	</config>
 	<config>
 		<name>errors_2</name>

@@ -305,9 +305,9 @@ function doquery ( $query , $table , $fetch = FALSE )
 
 function catch_error($errno , $errstr, $errfile, $errline)
 {
-	global $user;
+	global $user, $link;
 
-	if(defined('INSTALL') && INSTALL) return FALSE;
+	if( ! isset($link) OR ! $link) return FALSE;
 
 	if ($errno === 2047 OR $errno === 6143 OR $errno === 30719) $errno = 32767;
 

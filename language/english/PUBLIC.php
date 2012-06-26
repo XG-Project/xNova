@@ -56,6 +56,7 @@ $lang['welcome_message_subject']	= 'Welcome';
 $lang['welcome_message_content']	= 'Welcome to XG project!<p>At the beginning, build a metal mine.<br />To do this, click on the link "buildings" on the left, and click on "build " to the right of mine metal.<br />Now you have some time to learn more about the game.<p>Can find help:<br />In our <a href=\"http://www.xtreme-gamez.com.ar/foros\" target=\"_blank\">Forums</a><br />Now your mine should be finished.<br />As produce nothing without energy, you should build a solar power plant, re-building, and chose to build solar power plants.<p>To see all the ships, defense structures, buildings and research that can investigate, you can have a look at tree tech "Technology" in the left menu.<p>You can now begin the conquest of the universe ... Good luck!';
 $lang['newpass_smtp_email_error']	= '<br><br>An error occurred in sending the e-mail. Your password is: ';
 $lang['reg_completed']			= 'Register complete!';
+$lang['max_users']					= 'The user limit for this universe has been reached';
 
 //registry_form.tpl
 $lang['server_message_reg']		= 'Join now and be part of the incredible world of';

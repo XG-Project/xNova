@@ -237,7 +237,7 @@ switch ($Mode)
 				$Qry11 = "DROP TABLE `".$dbsettings['prefix']."config`";
 				$Qry12 = "ALTER TABLE  `".$dbsettings['prefix']."errors` ADD `error_level` SMALLINT( 5 ) UNSIGNED NULL DEFAULT NULL AFTER `error_type`,
 							ADD  `error_line` SMALLINT( 5 ) UNSIGNED NULL DEFAULT NULL AFTER  `error_level` ,
-							ADD  `error_file` VARCHAR( 20 ) NULL DEFAULT NULL AFTER  `error_line`
+							ADD  `error_file` VARCHAR( 255 ) NULL DEFAULT NULL AFTER  `error_line`
 							ADD  `error_hash` CHAR( 32 ) NULL DEFAULT NULL AFTER  `error_id` ,
 							ADD UNIQUE ( `error_hash`)";
 				$Qry13 = "ALTER TABLE  `".$dbsettings['prefix']."users` CHANGE  `password`  `password` CHAR( 40 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL";

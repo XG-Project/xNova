@@ -114,11 +114,11 @@
 	</config>
 	<config>
 		<name>stat_level</name>
-		<value>4</value>
+		<value>1</value>
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1340735744</value>
+		<value>1340980438</value>
 	</config>
 	<config>
 		<name>stat_settings</name>

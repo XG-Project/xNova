@@ -72,20 +72,21 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 	}
 	else
 	{
+		$parse						=	$lang;
 		$selected					=	"selected=\"selected\"";
 		$stat						=	(($game_stat == 1)? 'sel_sta0':'sel_sta1');
-		$lang[$stat]				=	$selected;
+		$parse[$stat]				=	$selected;
 		$stat_fly					=	(($game_stat_flying == 1)? 'sel_sf1':'sel_sf0');
-		$lang[$stat_fly]			=	$selected;
-		$lang['stat_level']			=	$game_stat_level;
-		$lang['stat_settings']		=	$game_stat_settings;
-		$lang['stat_amount']		=	$game_stat_amount;
-		$lang['stat_update_time']	=	$game_stat_update_time;
-		$lang['timeact']			=	gmdate("d/M/y H:i:s", $game_stat_last_update);
-
-		$lang['yes']	=	$lang['one_is_yes'][1];
-		$lang['no']		=	$lang['one_is_yes'][0];
-		$admin_settings = parsetemplate(gettemplate('adm/ConfigStatsBody'), $lang);
+		$parse[$stat_fly]			=	$selected;
+		$parse['stat_settings']		=	$game_stat_settings;
+		$parse['stat_amount']		=	$game_stat_amount;
+		$parse['stat_update_time']	=	$game_stat_update_time;
+		$parse['timeact']			=	gmdate("d/M/y H:i:s", $game_stat_last_update);
+		$parse['selected_'.$game_stat_level]	= 'selected';
+		foreach ($lang['rank'] as $key => $rank) $parse['rank_'.$key] = $rank;
+		$parse['yes']				=	$lang['one_is_yes'][1];
+		$parse['no']				=	$lang['one_is_yes'][0];
+		$admin_settings = parsetemplate(gettemplate('adm/ConfigStatsBody'), $parse);
 		display($admin_settings, FALSE, '', TRUE, FALSE);
 	}
 ?>

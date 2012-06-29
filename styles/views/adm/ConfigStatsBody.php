@@ -1,4 +1,4 @@
-<script>document.body.style.overflow = "auto";</script> 
+<script>document.body.style.overflow = "auto";</script>
 <body>
 <form method="post" action="">
 	<br />
@@ -34,12 +34,17 @@
     </tr>
     <tr>
       <th>{cs_access_lvl}</th>
-      <th><input type="text" name="stat_level" id="stat_level" value="{stat_level}" /></th>
+      <th><select name="stat_level" id="stat_level">
+      		<option value="1" {selected_1}>{rank_0}</option>
+      		<option value="2" {selected_2}>{rank_1}</option>
+      		<option value="3" {selected_3}>{rank_2}</option>
+      		<option value="4" {selected_4}>{rank_3}</option>
+		</select></th>
     </tr>
 	<tr>
       <th colspan="2">{cs_timeact_1} {timeact}</th>
     </tr>
-	
+
     <tr>
       <th colspan="2"><input type="submit" name="save" value="{cs_save_changes}" /></th>
     </tr>

@@ -277,7 +277,7 @@ function DisplayGameSettingsPage ( $CurrentUser )
 				if($game_config['lang'] == $LangSubFolder)
 					$parse['language_settings'] .= "selected = selected";
 
-				$parse['language_settings'] .= " value=\"".$LangSubFolder."\">".$LangSubFolder."</option>";
+				$parse['language_settings'] .= " value=\"".$LangSubFolder."\">".ucfirst($LangSubFolder)."</option>";
 			}
 		}
 

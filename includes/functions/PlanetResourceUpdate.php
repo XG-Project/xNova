@@ -17,9 +17,13 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 		$game_crystal_basic_income		=	read_config ( 'crystal_basic_income' );
 		$game_deuterium_basic_income	=	read_config ( 'deuterium_basic_income' );
 
-		$MaxMetalStorage				=	Production::max_storable ( $CurrentPlanet[ $resource[22] ]);
-		$MaxCristalStorage				=	Production::max_storable ( $CurrentPlanet[ $resource[23] ]);
-		$MaxDeuteriumStorage			=	Production::max_storable ( $CurrentPlanet[ $resource[24] ]);
+		$CurrentPlanet['metal_max']		=	Production::max_storable ( $CurrentPlanet[ $resource[22] ]);
+		$CurrentPlanet['crystal_max']	=	Production::max_storable ( $CurrentPlanet[ $resource[23] ]);
+		$CurrentPlanet['deuterium_max']	=	Production::max_storable ( $CurrentPlanet[ $resource[24] ]);
+
+		$MaxMetalStorage                = $CurrentPlanet['metal_max'];
+		$MaxCristalStorage              = $CurrentPlanet['crystal_max'];
+		$MaxDeuteriumStorage            = $CurrentPlanet['deuterium_max'];
 
 		$Caps             = array();
 		$BuildTemp        = $CurrentPlanet[ 'temp_max' ];

@@ -78,7 +78,7 @@ if ( INSTALL != TRUE )
 		update_config ( 'stat_last_update' , $result['stats_time'] );
 	}
 
-	if ( isset ( $user ) )
+	if ( !empty ( $user ) )
 	{
 		include ( XGP_ROOT . 'includes/classes/class.FlyingFleetHandler.php' );
 		$_fleets = doquery ( "SELECT fleet_start_galaxy,fleet_start_system,fleet_start_planet,fleet_start_type FROM {{table}} WHERE `fleet_start_time` <= '" . time() . "' and `fleet_mess` ='0' order by fleet_id asc;" , 'fleets' ); // OR fleet_end_time <= ".time()

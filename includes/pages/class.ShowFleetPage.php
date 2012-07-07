@@ -14,19 +14,35 @@ class ShowFleetPage
 	{
 		global $lang, $reslist, $resource;
 
-		$parse				= $lang;
+		#####################################################################################################
+		// SOME DEFAULT VALUES
+		#####################################################################################################
+		// QUERYS
+		$count				= doquery ( "SELECT
+											(SELECT COUNT(fleet_owner) AS `actcnt` 
+												FROM {{table}}fleets 
+												WHERE `fleet_owner` = '" . intval ( $CurrentUser['id'] ) . "') AS max_fleet,
+											(SELECT COUNT(fleet_owner) AS `expedi` 
+												FROM {{table}}fleets 
+													WHERE `fleet_owner` = '" . intval ( $CurrentUser['id'] ) . "' 
+														AND `fleet_mission` = '15') AS max_expeditions" , '' , TRUE);
 
-		$count				= doquery("SELECT
-										(SELECT COUNT(fleet_owner) AS `actcnt` FROM {{table}}fleets WHERE `fleet_owner` = '".intval($CurrentUser['id'])."') AS max_fleet,
-										(SELECT COUNT(fleet_owner) AS `expedi` FROM {{table}}fleets WHERE `fleet_owner` = '".intval($CurrentUser['id'])."' AND `fleet_mission` = '15') AS max_expeditions" , '' , TRUE);
 
-		$MaxFlyingFleets    = $count['max_fleet'];
-		$MaxExpedition      = $CurrentUser[$resource[124]];
+
+		// LOAD TEMPLATES REQUIRED
+		$inputs_template			= gettemplate ( 'fleet/fleet_inputs' );
+		$ships_row_template			= gettemplate ( 'fleet/fleet_row_ships' );
+
+		// LANGUAGE
+		$parse 						= $lang;
+
+		$MaxFlyingFleets    	= $count['max_fleet'];
+		$MaxExpedition      	= $CurrentUser[$resource[124]];
 
 		if ($MaxExpedition >= 1)
 		{
 			$ExpeditionEnCours  = $count['max_expeditions'];
-			$EnvoiMaxExpedition = 1 + floor( $MaxExpedition / 3 );
+			$EnvoiMaxExpedition = Fleets::get_max_expeditions ( $MaxExpedition );
 		}
 		else
 		{
@@ -34,21 +50,8 @@ class ShowFleetPage
 			$EnvoiMaxExpedition = 0;
 		}
 
-		$MaxFlottes         = Fleets::get_max_fleets ( $CurrentUser[$resource[108]] , $CurrentUser['rpg_amiral'] );
-
-		$missiontype = array	(
-									1 => $lang['type_mission'][1],
-									2 => $lang['type_mission'][2],
-									3 => $lang['type_mission'][3],
-									4 => $lang['type_mission'][4],
-									5 => $lang['type_mission'][5],
-									6 => $lang['type_mission'][6],
-									7 => $lang['type_mission'][7],
-									8 => $lang['type_mission'][8],
-									9 => $lang['type_mission'][9],
-									15 => $lang['type_mission'][15]
-								);
-
+		$MaxFlottes		= Fleets::get_max_fleets ( $CurrentUser[$resource[108]] , $CurrentUser['rpg_amiral'] );
+		$missiontype	= Fleets::get_missions();
 		$galaxy         = intval($_GET['galaxy']);
 		$system         = intval($_GET['system']);
 		$planet         = intval($_GET['planet']);
@@ -206,8 +209,8 @@ class ShowFleetPage
 					$ships['set_ships'] 		= "<input name=\"ship". $i ."\" size=\"10\" value=\"0\" onfocus=\"javascript:if(this.value == '0') this.value='';\" onblur=\"javascript:if(this.value == '') this.value='0';\" alt=\"". $lang['tech'][$i] . $CurrentPlanet[$resource[$i]] ."\" onChange=\"shortInfo()\" onKeyUp=\"shortInfo()\" />";
 				}
 
-				$ship_inputs	.=	parsetemplate ( gettemplate ( 'fleet/fleet_inputs' ) , $inputs );
-				$ships_row		.= 	parsetemplate ( gettemplate ( 'fleet/fleet_row_ships' ) , $ships );
+				$ship_inputs	.=	parsetemplate ( $inputs_template , $inputs );
+				$ships_row		.= 	parsetemplate ( $ships_row_template , $ships );
 			}
 			$have_ships = TRUE;
 		}

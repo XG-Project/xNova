@@ -192,6 +192,48 @@ class Fleets
 	{
 		return ( 1 + $computer_tech + ( $amiral_level * AMIRAL ) );
 	}
+	
+	/**
+	 * method get_max_expeditions
+	 * param $expedition_tech
+	 * return the max quantity of expeditions that an user can send
+	 */
+	public static function get_max_expeditions ( $expedition_tech )
+	{
+		return ( 1 + floor ( sqrt ( $expedition_tech ) ) );
+	}
+	
+	/**
+	 * method get_missions
+	 * param $mission_number
+	 * return all the missions or one specific mission
+	 */
+	public static function get_missions ( $mission_number = 0 )
+	{
+		global $lang;
+		
+		$mission_type	=	array	(
+										1 => $lang['type_mission'][1],
+										2 => $lang['type_mission'][2],
+										3 => $lang['type_mission'][3],
+										4 => $lang['type_mission'][4],
+										5 => $lang['type_mission'][5],
+										6 => $lang['type_mission'][6],
+										7 => $lang['type_mission'][7],
+										8 => $lang['type_mission'][8],
+										9 => $lang['type_mission'][9],
+										15 => $lang['type_mission'][15]
+									);
+		if ( $mission_number === 0 )
+		{
+			return $mission_type;
+		}
+		else
+		{
+			return $mission_type[$mission_number];
+		}	
+	}
+	
 }
 
 ?>

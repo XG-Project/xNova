@@ -374,6 +374,8 @@ $lang['tr_amount']							= 'Cantidad';
 $lang['tr_quota_exchange']					= 'Cuota de intercambio';
 $lang['tr_exchange']						= 'Intercambiar';
 $lang['tr_darkmatter_needed']				= 'Necesitas <font color="#FF8900">%s de materia oscura</font> para visitar al Mercader.';
+$lang['tr_full_storage']					= 'El %s esta lleno';
+
 
 //----------------------------------------------------------------------------//
 //TECHTREE

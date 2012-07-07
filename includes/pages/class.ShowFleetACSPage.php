@@ -18,20 +18,7 @@ class ShowFleetACSPage
 		// SOME DEFAULT VALUES
 		#####################################################################################################
 		// ARRAYS
-		$missiontype		=	array	(
-											1 => $lang['type_mission'][1],
-											2 => $lang['type_mission'][2],
-											3 => $lang['type_mission'][3],
-											4 => $lang['type_mission'][4],
-											5 => $lang['type_mission'][5],
-											6 => $lang['type_mission'][6],
-											7 => $lang['type_mission'][7],
-											8 => $lang['type_mission'][8],
-											9 => $lang['type_mission'][9],
-											15 => $lang['type_mission'][15],
-											16 => $lang['type_mission'][16],
-											17 => $lang['type_mission'][17],
-										);
+		$missiontype		= Fleets::get_missions();
 
 		$speed				= array (10 => 100,9 => 90,8 => 80,7 => 70,6 => 60,5 => 50,4 => 40,3 => 30,2 => 20,1 => 10 );
 

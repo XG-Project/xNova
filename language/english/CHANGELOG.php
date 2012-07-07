@@ -4,6 +4,25 @@ $lang['Version']     = 'Versi&oacute;n';
 $lang['Description'] = 'Descripci&oacute;n';
 $lang['changelog']   = array(
 
+'2.10.3' => ' 06/07/2012
+-[Mejoras]
+- Mejorado el paquete de idioma en ingl&eacute;s, se tradujeron varios textos faltantes (By cyberghoser1).-
+- Varias mejoras internas de c&oacute;digo.-
+
+-[Bugs]
+#10056: Corregido un bug que mostraba la producci&oacute;n en rojo a pesar de tener capacidad para producir.-
+#10050: Corregido un bug que permit&iacute;a utilizar el mercader incluso cuando los almacenes estaban llenos (By zebulonbof).-
+#10046: Corregido un bug que no permit&iacute;a enviar expediciones.-
+#10039: Corregido un bug que provocaba sobre carga (By jstar).-
+#10035: Corregido un bug que permit&iacute;a actualizar el juego bajo cualquier circunstancia (By Razican).-
+#10034: Corregido un bug en el que no se pod&iacute;a leer la licencia (By Razican).-
+#10033: Corregido un bug que no guardaba el id del usuario al registrar un cambio en la p&aacute;gina de configuraciones (By Razican).-
+#10032: Corregido un bug que no informaba cuando hab&iacute;a una nueva versi&oacute;n disponible (By Razican).-
+#10031: Corregido un bug en la importaci&oacute;n (By Razican).-
+#10025: Corregido un bug que mostraba mal los caracteres en la cola de flota y defensas (By jtsamper) .-
+#10004: Corregida la formula del calculo de las expediciones (By jstar).-
+',
+
 '2.10.2' => ' 06/05/2012
 -[Mejoras]
 - Mejorado el paquete de idioma en ingl&eacute;s, se tradujeron varios textos faltantes (By cyberghoser1).-

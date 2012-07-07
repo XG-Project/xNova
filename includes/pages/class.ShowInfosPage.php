@@ -221,7 +221,7 @@ class ShowInfosPage
 		}
 		else 
 		{
-			$energy			= Production::production_amount ( $energy_prod , 1 );
+			$Prod[4]		= Production::production_amount ( $energy_prod , 1 );
 			$ActualProd    	= floor ( $Prod[$BuildID] );
 		}
 
@@ -262,7 +262,7 @@ class ShowInfosPage
 				}
 				else 
 				{
-					$energy			= Production::production_amount ( $energy_prod , 1 );
+					$Prod[4]		= Production::production_amount ( $energy_prod , 1 );
 				}
 
                 $bloc['build_lvl']       = ($CurrentBuildtLvl == $BuildLevel) ? "<font color=\"#ff0000\">".$BuildLevel."</font>" : $BuildLevel;

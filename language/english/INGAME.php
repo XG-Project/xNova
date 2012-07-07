@@ -213,7 +213,7 @@ $lang['iv_defenses']						= 'Defenses';
 //----------------------------------------------------------------------------//
 //FLEET - FLEET1 - FLEET2 - FLEET3 - FLEETACS - FLEETSHORTCUTS
 $lang['fl_returning']						= 'Returning';
-$lang['fl_onway']							= 'En camino';
+$lang['fl_onway']							= 'On the road';
 $lang['fl_r']								= '(R)';
 $lang['fl_a']								= '(A)';
 $lang['fl_send_back']						= 'Back';
@@ -281,7 +281,7 @@ $lang['fl_expedition_tech_required']		= 'Expedition tech required!';
 $lang['fl_expedition_fleets_limit']			= 'Expedition flying fleets limite reached!';
 $lang['fl_week_player']						= 'The player is very weak!';
 $lang['fl_strong_player']					= 'The player is very strong!';
-$lang['fl_in_vacation_player']				= '¡El jugador esta en modo vacaciones!';
+$lang['fl_in_vacation_player']				= 'The player is in vacation mode!';
 $lang['fl_no_slots']						= 'No more slots available';
 $lang['fl_empty_transport']					= 'You can not transport 0 resources';
 $lang['fl_planet_populed']					= 'This planet is occupied!';
@@ -309,8 +309,8 @@ $lang['fl_hours']							= 'hour(s)';
 
 //----------------------------------------------------------------------------//
 //BUILDINGS - RESEARCH - SHIPYARD - DEFENSES
-$lang['bd_dismantle']						= 'Deconstruct';
-$lang['bd_interrupt']						= 'Interrumpir';
+$lang['bd_dismantle']						= 'Dismantle';
+$lang['bd_interrupt']						= 'Interrupt';
 $lang['bd_cancel']							= 'cancel';
 $lang['bd_working']							= 'Working';
 $lang['bd_build']							= 'build';
@@ -352,7 +352,7 @@ $lang['rs_weekly']							= 'Res per week:';
 //----------------------------------------------------------------------------//
 //OFFICIERS
 $lang['of_title']							= 'Officers';
-$lang['of_recruit']							= 'Recrute';
+$lang['of_recruit']							= 'Recruit';
 $lang['of_active']							= '<strong><font color="lime">Active</font></strong>';
 $lang['of_inactive']						= '<strong><font color="red">Inactive</font></strong>';
 
@@ -375,6 +375,7 @@ $lang['tr_amount']							= 'Quantity';
 $lang['tr_quota_exchange']					= 'Exchange rate';
 $lang['tr_exchange']						= 'Swap';
 $lang['tr_darkmatter_needed']				= 'You need at least <font color="#FF8900">%s of dark matter</font> too visit the dealer.';
+$lang['tr_full_storage']					= 'The %s is full';
 
 //----------------------------------------------------------------------------//
 //TECHTREE

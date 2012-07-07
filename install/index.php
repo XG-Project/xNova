@@ -193,7 +193,19 @@ switch ($Mode)
 		}
 		break;
 	case'upgrade':
-
+		
+		$system_version	=	str_replace ( 'v' , '' , VERSION );
+		
+		if ( filesize ( '../config.php' ) == 0 )
+		{
+			die(message("&iexcl;Error! - Tu juego no est&aacute; instalado","", "", FALSE, FALSE));
+		}
+		
+		if ( SYSTEM_VERSION == $system_version )
+		{
+			die(message("&iexcl;Error! - No hay actualizaciones disponibles","", "", FALSE, FALSE));	
+		}
+		
 		if ($_POST)
 		{
 			$administrator	=	doquery("SELECT id
@@ -214,8 +226,6 @@ switch ($Mode)
 			else
 			{
 				include("../config.php");
-
-				$system_version	=	str_replace ( 'v' , '' , VERSION );
 								
 				// ALL QUERYS NEEDED
 				$Qry1 = "DELETE FROM `$dbsettings[prefix]config` WHERE `config_name` = 'VERSION'";
@@ -267,6 +277,7 @@ switch ($Mode)
 					break;
 					case '2.10.0':
 					case '2.10.1':
+					case '2.10.2':
 						update_config ( 'version' , SYSTEM_VERSION );
 					break;
 					default:

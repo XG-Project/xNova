@@ -59,7 +59,7 @@ class ShowShipyardPage
 				$ElementTime  	= GetBuildingTime( $CurrentUser, $CurrentPlanet, $Element[0] );
 				$QueueTime   	+= $ElementTime * $Element[1];
 				$TimePerType 	.= "".$ElementTime.",";
-				$NamePerType 	.= "'". html_entity_decode($lang['tech'][$Element[0]]) ."',";
+				$NamePerType 	.= "'". html_entity_decode ( $lang['tech'][$Element[0]], ENT_COMPAT , "utf-8" ) ."',";
 				$NbrePerType 	.= "".$Element[1].",";
 			}
 		}

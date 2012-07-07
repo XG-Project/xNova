@@ -24,7 +24,7 @@ function DisplayGameSettingsPage ( $CurrentUser )
 
 	if ( $_POST['opt_save'] == "1" )
 	{
-		$Log	.=	"\n".$lang['log_the_user'].$user['username'].$lang['log_sett_no1'].":\n";
+		$Log    .= "\n".$lang['log_the_user'].$CurrentUser['username'].$lang['log_sett_no1'].":\n";
 
 		if (isset($_POST['closed']) && $_POST['closed'] == 'on') {
 		$game_config['game_disable']         = 1;

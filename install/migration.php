@@ -47,7 +47,7 @@ function migrate_to_xml ()
 	{
 		if ( $row['config_name'] != 'BuildLabWhileRun' )
 		{
-			update_config ( strtolower ( $row['config_name'] ) , str_replace ( $search , $replacement , $row['config_value'] )  );
+			update_config ( strtolower ( $row['config_name'] ) , str_replace ( $search , $replace , $row['config_value'] )  );
 		}
 	}
 }

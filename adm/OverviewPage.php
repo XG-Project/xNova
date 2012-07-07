@@ -19,11 +19,10 @@ function check_updates()
 {
 	if ( function_exists ( 'file_get_contents' ) )
 	{
-		$current_v 	= @file_get_contents ( 'http://xgproyect.xgproyect.net/current.php' );
-		$current_v	= str_replace ( '.' , '' , $current );
-		$system_v	= str_replace ( '.' , '' , read_config ( 'version' ) );		
+		$last_v 	= @file_get_contents ( 'http://xgproyect.xgproyect.net/current.php' );
+		$system_v	= read_config ( 'version' );		
 				
-		if ( $current_v > $system_v )
+		if ( version_compare ( $system_v , $last_v , '<' ) )
 		{
 			return TRUE;
 		}
@@ -44,7 +43,7 @@ if(file_exists(XGP_ROOT . 'install/') && defined('IN_ADMIN'))
 
 if ($user['authlevel'] >= 3)
 {
-	if(@fopen("./../config.php", "a"))
+	if ( is_writable ( XGP_ROOT . 'config.php' ) )
 	{
 		$Message	.= "<font color=\"red\">".$lang['ow_config_file_writable']."</font><br/><br/>";
 		$error++;

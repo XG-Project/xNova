@@ -241,7 +241,7 @@ class ShowFleet2Page
 		#####################################################################################################
 		if ( $planet == 16 )
 		{
-			$stay['stay_type']			= 'expeditiontime';
+			$stay_row['stay_type']			= 'expeditiontime';
 
 			foreach ( $exp_values as $value )
 			{
@@ -256,7 +256,7 @@ class ShowFleet2Page
 		}
 		elseif ( $missiontype[5] != '' )
 		{
-			$stay['stay_type']				= 'holdingtime';
+			$stay_row['stay_type']				= 'holdingtime';
 
 			foreach ( $hold_values as $value )
 			{

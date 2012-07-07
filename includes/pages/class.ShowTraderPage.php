@@ -34,8 +34,19 @@ class ShowTraderPage
 					}
 					else
 					{
-						$necessaire   = (($_POST['cristal'] * 2) + ($_POST['deut'] * 4));
-
+						$necessaire	= (($_POST['cristal'] * 2) + ($_POST['deut'] * 4));
+						$amout 		= array ( 'metal' => 0,
+												'crystal' => $_POST['cristal'],
+												'deuterium' => $_POST['deut']
+											);
+											
+						$storage	= $this->check_storage ( $CurrentPlanet , $amout );					
+						
+						if ( is_string ( $storage ) )
+						{
+							die ( message ( $storage , 'game.php?page=trader' , '2' ) );
+						}
+												
 						if ($CurrentPlanet['metal'] > $necessaire)
 						{
 							$QryUpdatePlanet  = "UPDATE {{table}} SET ";
@@ -68,7 +79,18 @@ class ShowTraderPage
 					else
 					{
 						$necessaire   = ((abs($_POST['metal']) * 0.5) + (abs($_POST['deut']) * 2));
-
+						$amout 		= array ( 'metal' => $_POST['metal'],
+												'crystal' => 0,
+												'deuterium' => $_POST['deut']
+											);
+											
+						$storage	= $this->check_storage ( $CurrentPlanet , $amout );					
+						
+						if ( is_string ( $storage ) )
+						{
+							die ( message ( $storage , 'game.php?page=trader' , '2' ) );
+						}
+						
 						if ($CurrentPlanet['crystal'] > $necessaire)
 						{
 							$QryUpdatePlanet  = "UPDATE {{table}} SET ";
@@ -101,7 +123,18 @@ class ShowTraderPage
 					else
 					{
 						$necessaire   = ((abs($_POST['metal']) * 0.25) + (abs($_POST['cristal']) * 0.5));
-
+						$amout 		= array ( 'metal' => $_POST['metal'],
+												'crystal' => $_POST['cristal'],
+												'deuterium' => 0
+											);
+											
+						$storage	= $this->check_storage ( $CurrentPlanet , $amout );					
+						
+						if ( is_string ( $storage ) )
+						{
+							die ( message ( $storage , 'game.php?page=trader' , '2' ) );
+						}
+						
 						if ($CurrentPlanet['deuterium'] > $necessaire)
 						{
 							$QryUpdatePlanet  = "UPDATE {{table}} SET ";
@@ -145,21 +178,95 @@ class ShowTraderPage
 						$template = gettemplate('trader/trader_metal');
 						$parse['mod_ma_res_a'] = '2';
 						$parse['mod_ma_res_b'] = '4';
-						break;
+					break;
 					case 'cristal':
 						$template = gettemplate('trader/trader_cristal');
 						$parse['mod_ma_res_a'] = '0.5';
 						$parse['mod_ma_res_b'] = '2';
-						break;
+					break;
 					case 'deut':
 						$template = gettemplate('trader/trader_deuterium');
 						$parse['mod_ma_res_a'] = '0.25';
 						$parse['mod_ma_res_b'] = '0.5';
-						break;
+					break;
 				}
 			}
 		}
 		display(parsetemplate($template,$parse));
 	}
+	
+	/**
+	 * method check_storage
+	 * param $current_planet
+	 * param $amount
+	 * param $force
+	 * return amount of resource production
+	 */
+	public static function check_storage ( $current_planet , $amount , $force = NULL )
+	{
+		global $resource, $lang;
+		
+		
+		if ( !is_array ( $amount ) )
+		{
+			throw new Exception ( "Must be array" , 1 );
+		}
+		
+		
+		$hangar	= array ( 'metal' => 22 , 'crystal' => 23 , 'deuterium' => 24 );
+		$check 	= array();
+		
+		
+		foreach ( $hangar as $k => $v )
+		{
+			if ( $amount[$k] == 0 )
+			{
+				unset ( $amount[$k] );
+			}
+			
+			if ( array_key_exists ( $k , $amount ) )
+			{
+				if ( $current_planet[$k] + $amount[$k] >= Production::max_storable ( $current_planet[$resource[$v]] ) )
+				{
+					$check[$k] = FALSE;
+				}
+				else
+				{
+					$check[$k] = TRUE;
+				}
+			}
+			else
+			{
+				$check[$k] = TRUE;
+			}
+		}
+		
+		
+		if ( $check['metal'] === true && $check['crystal'] === true && $check['deuterium'] === true )
+		{
+			return FALSE;
+		}
+		else
+		{
+			if ( is_null ( $force ) )
+			{
+				foreach ( $hangar as $k => $v )
+				{
+					if ( $check[$k] === false )
+					{
+						return sprintf ( $lang['tr_full_storage'] , strtolower ( $lang['info'][$v]['name'] ) );
+					}
+					else
+					{
+						continue;	
+					}	
+				}
+			}
+			else
+			{
+				return $check;
+			}
+		}
+	}  
 }
 ?>

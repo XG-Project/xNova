@@ -5,7 +5,7 @@ $lang['Description'] = 'Descripción';
 $lang['changelog']   = array(
 
 '1.0.0-dev' => ' Sin fecha
-Basado en XG Proyect 2.10.2
+Basado en XG Proyect 2.10.3
 
 Mejoras:
 - Sistema de logging de errores PHP

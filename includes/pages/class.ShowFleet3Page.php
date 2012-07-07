@@ -144,7 +144,7 @@ class ShowFleet3Page
 			{
 				$maxexpde  			= doquery("SELECT COUNT(fleet_owner) AS `expedi` FROM {{table}} WHERE `fleet_owner` = '".intval($CurrentUser['id'])."' AND `fleet_mission` = '15';", 'fleets', TRUE);
 				$ExpeditionEnCours  = $maxexpde['expedi'];
-				$EnvoiMaxExpedition = 1 + floor( $MaxExpedition / 3 );
+				$EnvoiMaxExpedition = Fleets::get_max_expeditions ( $MaxExpedition );
 			}
 			else
 			{
@@ -322,19 +322,7 @@ class ShowFleet3Page
 			}
 		}
 
-		$missiontype	=	array	(
-										1 => $lang['type_mission'][1],
-										2 => $lang['type_mission'][2],
-										3 => $lang['type_mission'][3],
-										4 => $lang['type_mission'][4],
-										5 => $lang['type_mission'][5],
-										6 => $lang['type_mission'][6],
-										7 => $lang['type_mission'][7],
-										8 => $lang['type_mission'][8],
-										9 => $lang['type_mission'][9],
-										15 => $lang['type_mission'][15],
-									);
-
+		$missiontype	= Fleets::get_missions();
 		$speed_possible	= array(10, 9, 8, 7, 6, 5, 4, 3, 2, 1);
 		$AllFleetSpeed	= Fleets::fleet_max_speed ($fleetarray, 0, $CurrentUser);
 		$GenFleetSpeed  = $_POST['speed'];

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 $lang['Version']     = 'Version';
@@ -5,7 +6,7 @@ $lang['Description'] = 'Description';
 $lang['changelog']   = array(
 
 '1.0.0-dev' => ' No date
-Based on XG Proyect 2.10.2
+Based on XG Proyect 2.10.3
 
 Improvements:
 - Logging system for PHP errors

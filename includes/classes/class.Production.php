@@ -15,10 +15,11 @@ class Production
 	 * param $storage_level
 	 * return max storage capacity
 	 */
-	public static function max_storable ( $storage_level )
-	{
+	public static function max_storable ( $storage_level )    
+	{                    
 		return ( BASE_STORAGE_SIZE + 50000 * ( Format::round_up ( pow ( 1.6 , $storage_level ) ) -1 ) );
-	}
+	} 
+	
 	
 	/**
 	 * method max_production
@@ -68,7 +69,7 @@ class Production
 	 public static function current_production ( $resource , $max_production )
 	 {
 	 	return ( $resource * 0.01 * $max_production );
-	 }  
+	 } 
 }
 
 ?>

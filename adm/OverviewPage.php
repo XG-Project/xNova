@@ -17,11 +17,12 @@ if ($user['authlevel'] < 1) die(message ($lang['404_page']));
 
 function check_updates()
 {
-	if ( function_exists ( 'file_get_contents' ) )
+	if (function_exists('file_get_contents'))
 	{
-		$current_v 	= @file_get_contents ( 'http://xnova.razican.com/current.php' );
+		$last_v 	= @file_get_contents('http://xnova.razican.com/current.php');
+		$system_v	= read_config('version');
 
-		return (strnatcmp($current_v, read_config('version')) > 0);
+		return version_compare($system_v, $last_v, '<');
 	}
 }
 

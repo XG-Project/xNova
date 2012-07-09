@@ -572,11 +572,7 @@ $lang['info'][4]['description']   			= "Para proporcionar la energía necesaria 
 $lang['info'][12]['name']         			= "Planta de Fusion";
 $lang['info'][12]['description']  			= "En una planta de energía de fusión, los núcleos de hidrógeno son fusionados en núcleos de helio bajo una enorme temperatura y presión, despidiendo tremendas cantidades de energía. Por cada gramo de Deuterio consumido se pueden producir hasta 41,32*10^-13 Julios de energía; con 1 gramo eres capaz de producir 172MWh de energía.
 <br><br>
-Mayores complejos de reactores usan más deuterio y pueden producir más energía por hora. El efecto de energía puede ser aumentado investigando la tecnología de energía.
-<br><br>
-
-La producción de energía de las plantas de fusión se calcula de la siguiente forma:<br><br>
-30 * [Nivel de la Planta de Fusión] * (1,05 + [Nivel de la Tecnología de Energía] * 0,01) ^ [Nivel de la Planta de Fusión]";
+Mayores complejos de reactores usan más deuterio y pueden producir más energía por hora. El efecto de energía puede ser aumentado investigando la tecnología de energía.";
 
 // -------------------------- BUILDINGS ----------------------------------------------------------------------------------------------------//
 $lang['info'][14]['name']         			= "Fábrica de Robots";

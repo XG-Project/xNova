@@ -26,7 +26,7 @@ class debug
 
 	function echo_log()
 	{
-		return  "<br><table><tr><td class=k colspan=4><a href=".XGP_ROOT."adm/settings.php>Debug Log</a>:</td></tr>".$this->log."</table>";
+		return  "<br><table><tr><td class=k colspan=4><a href=".XGP_ROOT."adm/SettingsPage.php>Debug Log</a>:</td></tr>".$this->log."</table>";
 		die();
 	}
 

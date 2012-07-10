@@ -290,7 +290,7 @@ function doquery ( $query , $table , $fetch = FALSE )
 	global $numqueries,$debug;
 	$numqueries++;
 
-	$debug->add ( "<tr><th>Query $numqueries: </th><th>$query</th><th>$table</th><th>$fetch</th></tr>");
+	$debug->add ( "<tr><th>Query $numqueries: </th><th>".htmlentities($query, ENT_COMPAT, 'UTF-8')."</th><th>$table</th><th>$fetch</th></tr>");
 
 	if ( $fetch )
 	{

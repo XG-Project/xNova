@@ -22,6 +22,6 @@ pretende crear un juego renovado no solo gráficamente sino también en cuanto a
 Errores:
 ========
 
-Hasta el momento se han encontrado más de 2.900 errores distintos que todavía no se han solucionado.
-En su mayoría son E_NOTICE, aunque hay uno que es E_STRICT y otros 5 que son E_WARNING. Se irán
-solucionando y encontrando nuevos.
+Hasta el momento se han encontrado más de 3.000 errores distintos que todavía no se han solucionado.
+En su mayoría son E_NOTICE, aunque hay uno que es E_STRICT, otro E_DEPRECATED y otros 5 que son
+E_WARNING. Se irán solucionando y encontrando nuevos.

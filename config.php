@@ -7,4 +7,7 @@ $dbsettings = Array(
 "name"       => "xnova", // MySQL database name.
 "prefix"     => "xgp_", // Tables prefix.
 "secretword" => "xNova8273729"); // Cookies.
-?>
+
+
+/* End of file config.php */
+/* Location: ./config.php */

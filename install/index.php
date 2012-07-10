@@ -86,8 +86,8 @@ switch ($Mode)
 			fwrite($dz, "\"pass\"       => \"".$pass."\", // MySQL password.\n");
 			fwrite($dz, "\"name\"       => \"".$db."\", // MySQL database name.\n");
 			fwrite($dz, "\"prefix\"     => \"".$prefix."\", // Tables prefix.\n");
-			fwrite($dz, "\"secretword\" => \"XNova".$numcookie."\"); // Cookies.\n");
-			fwrite($dz, "?>");
+			fwrite($dz, "\"secretword\" => \"XNova".$numcookie."\"); // Cookies.\n\n\n");
+			fwrite($dz, "/* End of file config.php */\n/* Location: ./config.php */");
 			fclose($dz);
 
 			$parse['second']	= "Archivo config.php creado conéxito...";

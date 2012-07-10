@@ -12,7 +12,7 @@
  * @copyright gnu v3
  */
 
-if (!defined('INSIDE')){die(header("location:../../"));}
+if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class ShowPhalanxPage
 {

@@ -12,11 +12,11 @@ define('XGP_ROOT',	'./');
 
 include(XGP_ROOT . 'global.php');
 
-$g     = intval($_GET['galaxy']);
-$s     = intval($_GET['system']);
-$i     = intval($_GET['planet']);
-$anz     = intval($_POST['SendMI']);
-$pziel     = $_POST['Target'];
+$g		= intval($_GET['galaxy']);
+$s		= intval($_GET['system']);
+$i		= intval($_GET['planet']);
+$anz	= intval($_POST['SendMI']);
+$pziel	= $_POST['Target'];
 
 if ($anz < 0)
 {

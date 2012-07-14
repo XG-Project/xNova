@@ -278,8 +278,6 @@ function doquery ( $query , $table , $fetch = FALSE )
 								) or $debug->error ( mysql_error() . "<br />$query" , "SQL Error" );
 
 		mysql_select_db ( $dbsettings["name"] ) or $debug->error ( mysql_error() . "<br />$query" , "SQL Error" );
-
-		echo mysql_error();
 	}
 
 	$sql 		= str_replace ( "{{table}}" , $dbsettings["prefix"] . $table , $query );
@@ -307,7 +305,25 @@ function catch_error($errno , $errstr, $errfile, $errline)
 {
 	global $user, $link;
 
-	if( ! isset($link) OR ! $link) return FALSE;
+	if( ! isset($link) OR ! $link)
+	{
+		include(XGP_ROOT.'config.php');
+		
+		if (isset($dbsettings))
+		{
+			$link = mysql_connect(
+								$dbsettings["server"],
+								$dbsettings["user"],
+								$dbsettings["pass"]
+							) or $debug->error ( mysql_error() . "<br />$query" , "SQL Error" );
+
+			mysql_select_db ( $dbsettings["name"] ) or $debug->error ( mysql_error() . "<br />$query" , "SQL Error" );
+		}
+		else
+		{
+			return FALSE;
+		}
+	}
 
 	if ($errno === 2047 OR $errno === 6143 OR $errno === 30719) $errno = 32767;
 

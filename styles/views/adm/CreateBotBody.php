@@ -14,7 +14,7 @@
   <th>Tiempo de Actualización </th><th><input type="text" name="every_time"></th></tr>
 <tr><th colspan="2"><input type="submit" value="Crear Bot"></th></tr>
 <tr>
-   <th colspan="2" style="text-align:left;"><a href="BotListPage.php">Volver a la Lista de Bots</a>&nbsp;<a href="BotListPage.php?page=new_bot">{new_creator_refresh}</a></th>
+   <th colspan="2" style="text-align:left;"><a href="BotSettingsPage.php">Volver a la Lista de Bots</a>&nbsp;<a href="BotSettingsPage.php?page=new_bot">{new_creator_refresh}</a></th>
 </tr>
 </table>
 </form>

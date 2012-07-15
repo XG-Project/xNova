@@ -5,3 +5,6 @@
 *error_log*
 .DS_Store
 *.sublime-*
+
+includes/bots/*
+!includes/bots/.htaccess

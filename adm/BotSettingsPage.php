@@ -31,7 +31,7 @@ switch ($_GET[page])
 	$i		=	1;
 	if ($_POST)
 	{
-		$CheckPlayer = doquery("SELECT `player` FROM {{table}} WHERE `player` = '" . mysql_escape_string($_POST['player']) . "' ", "bots", true);
+		$CheckPlayer = doquery("SELECT `player` FROM {{table}} WHERE `player` = '" . mysql_real_escape_string($_POST['player']) . "' ", "bots", true);
 
 		if (!$player || !$every_time){
 			$parse['display']	.=	'<tr><th colspan="2" class="red">'.$msj['new_complete_all'].'</tr></th>';
@@ -55,6 +55,7 @@ switch ($_GET[page])
 			$Query1 .= "`every_time` = '" . $every_time . "'; ";
 
 			doquery($Query1, "bots");
+			update_config('bots', read_config('bots') + 1);
 
 			$parse['display']	=	'<tr><th colspan="2"><font color=lime>Nuevo Bot creado.</font></tr></th>';
 		}
@@ -65,7 +66,7 @@ switch ($_GET[page])
 
 		case 'deletenew_bot':
 
-	    $do = unlink("../includes/newbot.html");
+	    $do = unlink(XGP_ROOT."adm/Log/BotLog.php");
 	    if($do=="1")
 
 	display(parsetemplate(gettemplate('adm/DeleteBotBody'), $parse), false, '', true, false);
@@ -102,10 +103,10 @@ switch ($_GET[page])
 
 		if (isset($delete)){
 			doquery("DELETE FROM {{table}} WHERE `id`=$delete", 'bots');
-			header ("Location: BotListPage.php");}
+			header ("Location: BotSettingsPage.php");}
 		elseif ($deleteall == 'yes'){
 			doquery("TRUNCATE TABLE {{table}}", 'bots');
-			header ("Location: BotListPage.php");}
+			header ("Location: BotSettingsPage.php");}
 	}
 
 		display(parsetemplate(gettemplate('adm/BotSettingsBody'), $parse), false, '', true, false);

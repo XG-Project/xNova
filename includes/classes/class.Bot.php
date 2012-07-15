@@ -32,12 +32,14 @@ Este archivo controla los bots. Amplia edificios, almacenes, investigaciones, cr
 0.3 - Coloniza, mueve flota, hace fleetsaving, formulas de control
 0.4 - Fixes varios y logs en archivo
 0.5 - Base de datos
+1.0.0 - Adaptado a xNova, comienza el desarrollo por Razican
 
 */
 
 include_once(XGP_ROOT.'includes/functions/IsTechnologieAccessible.php');
 include_once(XGP_ROOT.'includes/functions/GetElementPrice.php');
 include_once(XGP_ROOT.'includes/functions/HandleTechnologieBuild.php');
+include_once(XGP_ROOT.'includes/functions/CheckPlanetUsedFields.php');
 
 function scmp( $a, $b ) {
 	 mt_srand((double)microtime()*1000000);
@@ -57,7 +59,7 @@ function UpdateBots(){
 				unset($thebot);
 			}
 		}
-		$st = fopen($xgp_root.'includes/newbot.html', "a+");
+		$st = fopen(XGP_ROOT."adm/Log/BotLog.php", "a+");
 		fwrite($st, $BotString);
 		fclose($st);
 		unset($bot);
@@ -73,7 +75,7 @@ class Bot {
 	var $Database;
 
 	function __construct($player, $bot){
-		$this->VERSION = '0.5';
+		$this->VERSION = '1.0.0-dev';
 		$this->player = $player;
 		$this->Bot = $bot;
 		$this->Database = new BotDatabase(md5($player['id']));
@@ -93,7 +95,7 @@ class Bot {
 			if($planetselected == true and $this->CurrentPlanet['id_owner'] == $this->player['id']){
 				CheckPlanetUsedFields ( $this->CurrentPlanet );
 				if($BotString){
-					$BotString .= "\r\n".'<tr><td colspan="2" class="c">'.$this->player['username'].'</td></tr><tr><th>Hora</th><th>'. date(DATE_RFC822) .'</th></tr><tr><th>Planeta actual</th><th>'.$this->CurrentPlanet['name'].' ['.$this->CurrentPlanet['id'].']</th></tr></tr>';
+					$BotString .= "\n".'<tr><td colspan="2" class="c">'.$this->player['username'].'</td></tr><tr><th>Hora</th><th>'. date(DATE_RFC822) .'</th></tr><tr><th>Planeta actual</th><th>'.$this->CurrentPlanet['name'].' ['.$this->CurrentPlanet['id'].']</th></tr></tr>';
 				}
 				$this->BuildStores();
 				$Rand = mt_rand(0, 1);
@@ -136,7 +138,7 @@ class Bot {
 		}
 		if($planetwork == false){
 				$this->CurrentPlanet = doquery("SELECT * FROM {{table}} WHERE `id` = '".$this->player['id_planet']."';",'planets', true);
-				CheckPlanetUsedFields ( $this->CurrentPlanet );
+				CheckPlanetUsedFields( $this->CurrentPlanet );
 				if($BotString){
 					$BotString .= '<tr><td colspan="2" class="c">'.$this->player['username'].'</td><tr><th>Planeta actual</th><th>'.$this->CurrentPlanet['name'].' ['.$this->CurrentPlanet['id'].']</th></tr></tr>';
 				}
@@ -925,8 +927,9 @@ class BotDatabase{
 
 	function __construct($Database){
 		global $xgp_root;
-		if(!file_exists($xgp_root.'includes/'.$Database.'.botdb')){
-			$this->SQLite = new SQLiteDatabase($xgp_root.'includes/'.$Database.'.botdb');
+		if( ! file_exists(XGP_ROOT.'includes/bots/'.$Database.'.botdb'))
+		{
+			$this->SQLite = new SQLite3(XGP_ROOT.'includes/bots/'.$Database.'.botdb');
 			$this->SQLite->query("CREATE TABLE [actions] (
 				[id] INTEGER  NOT NULL PRIMARY KEY,
 				[function] TEXT  NOT NULL,
@@ -950,8 +953,10 @@ class BotDatabase{
 				[planet_type] INTEGER DEFAULT '1' NOT NULL,
 				[priority] FLOAT DEFAULT '1' NOT NULL
 				);");
-		}else{
-			$this->SQLite = new SQLiteDatabase($xgp_root.'includes/'.$Database.'.botdb');
+		}
+		else
+		{
+			$this->SQLite = new SQLite3(XGP_ROOT.'includes/bots/'.$Database.'.botdb');
 		}
 	}
 

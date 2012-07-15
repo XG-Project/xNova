@@ -558,6 +558,7 @@ $lang['mu_info_account_page']		= 'Información de cuentas';
 $lang['mu_planets_options']			= 'Opciones de planetas';
 $lang['mu_user_logs']				= 'Historial';
 $lang['mu_user_faq']				= 'F.A.Q.';
+$lang['mu_bots_sett']				= 'Configurar bots';
 //###########################################################//
 
 

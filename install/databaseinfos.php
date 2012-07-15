@@ -346,4 +346,17 @@ $QryTableUsers      .= "`darkmatter` int(11) NOT NULL default '0', ";
 $QryTableUsers      .= "`bana` int(11) default NULL , ";
 $QryTableUsers      .= "`banaday` int(11) NOT NULL default '0' ";
 $QryTableUsers      .= ") ENGINE=MyISAM;";
-?>
+
+$QryTableBots		= "CREATE TABLE IF NOT EXISTS `{{table}}` (";
+$QryTableBots		= "`id` bigint(11) NOT NULL AUTO_INCREMENT,";
+$QryTableBots		= "`player` bigint(11) NOT NULL,";
+$QryTableBots		= "`last_time` int(11) NOT NULL,";
+$QryTableBots		= "`every_time` int(11) NOT NULL,";
+$QryTableBots		= "`last_planet` bigint(11) NOT NULL,";
+$QryTableBots		= "`type` int(11) NOT NULL,";
+$QryTableBots		= "PRIMARY KEY (`id`)";
+$QryTableBots		= ") ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=0;";
+
+
+/* End of file databaseinfos.php */
+/* Location: ./install/databaseinfos.php */

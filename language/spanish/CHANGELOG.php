@@ -13,6 +13,7 @@ Mejoras:
 - Borrados archivos innecesarios
 - Login automático
 - Comienza la migración a UTF-8
+- Nuevo sistema de bots (Gracias a shoghicp)
 
 Errores Corregidos:
 - Muchos errores menores

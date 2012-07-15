@@ -26,4 +26,8 @@
 		<name>errors_32767</name>
 		<value>0</value>
 	</config>
+	<config>
+		<name>bots</name>
+		<value>0</value>
+	</config>
 </configurations>

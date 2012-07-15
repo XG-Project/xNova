@@ -92,20 +92,21 @@ switch ($Mode)
 
 			$parse['second']	= "Archivo config.php creado conéxito...";
 
-			doquery ($QryTableAks        , 'aks'    	);
-			doquery ($QryTableAlliance   , 'alliance'   );
-			doquery ($QryTableBanned     , 'banned'     );
-			doquery ($QryTableBuddy      , 'buddy'      );
-			doquery ($QryTableErrors     , 'errors'     );
-			doquery ($QryTableFleets     , 'fleets'     );
-			doquery ($QryTableGalaxy     , 'galaxy'     );
-			doquery ($QryTableMessages   , 'messages'   );
-			doquery ($QryTableNotes      , 'notes'      );
-			doquery ($QryTablePlanets    , 'planets'    );
-			doquery ($QryTablePlugins    , 'plugins'    );
-			doquery ($QryTableRw         , 'rw'         );
-			doquery ($QryTableStatPoints , 'statpoints'	);
-			doquery ($QryTableUsers      , 'users'  	);
+			doquery ($QryTableAks			, 'aks'    	);
+			doquery ($QryTableAlliance		, 'alliance'   );
+			doquery ($QryTableBanned		, 'banned'     );
+			doquery ($QryTableBuddy			, 'buddy'      );
+			doquery ($QryTableErrors		, 'errors'     );
+			doquery ($QryTableFleets		, 'fleets'     );
+			doquery ($QryTableGalaxy		, 'galaxy'     );
+			doquery ($QryTableMessages		, 'messages'   );
+			doquery ($QryTableNotes			, 'notes'      );
+			doquery ($QryTablePlanets		, 'planets'    );
+			doquery ($QryTablePlugins		, 'plugins'    );
+			doquery ($QryTableRw			, 'rw'         );
+			doquery ($QryTableStatPoints	, 'statpoints'	);
+			doquery ($QryTableUsers			, 'users'  	);
+			doquery ($QryTableBots			, 'bots'  	);
 
 			$parse['third']	= "Tablas creadas con éxito...";
 
@@ -231,28 +232,37 @@ switch ($Mode)
 				$system_version	=	str_replace ( 'v' , '' , VERSION );
 
 				// ALL QUERYS NEEDED
-				$Qry1 = "DELETE FROM `".$dbsettings['prefix']."config` WHERE `config_name` = 'VERSION'";
-				$Qry2 = "INSERT INTO `".$dbsettings['prefix']."config` (`config_name`, `config_value`) VALUES ('VERSION', '".SYSTEM_VERSION."');";
-				$Qry3 = "INSERT INTO `".$dbsettings['prefix']."config` (`config_name`, `config_value`) VALUES ('moderation', '1,0,0,1;1,1,0,1;');";
-				$Qry4 = " ALTER TABLE `".$dbsettings['prefix']."banned` CHANGE `who` `who` VARCHAR( 64 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
+				$Qry1	= "DELETE FROM `".$dbsettings['prefix']."config` WHERE `config_name` = 'VERSION'";
+				$Qry2	= "INSERT INTO `".$dbsettings['prefix']."config` (`config_name`, `config_value`) VALUES ('VERSION', '".SYSTEM_VERSION."');";
+				$Qry3	= "INSERT INTO `".$dbsettings['prefix']."config` (`config_name`, `config_value`) VALUES ('moderation', '1,0,0,1;1,1,0,1;');";
+				$Qry4	= " ALTER TABLE `".$dbsettings['prefix']."banned` CHANGE `who` `who` VARCHAR( 64 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
 							CHANGE `who2` `who2` VARCHAR( 64 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
 							CHANGE `author` `author` VARCHAR( 64 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
 							CHANGE `email` `email` VARCHAR( 64 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ";
-				$Qry5 = "UPDATE `".$dbsettings['prefix']."config` SET `config_value` = '1,0,0,1,1;1,1,0,1,1;1;' WHERE `".$dbsettings['prefix']."config`.`config_name` = 'moderation';";
-				$Qry6 = "ALTER TABLE `".$dbsettings['prefix']."planets` CHANGE `small_protection_shield` `small_protection_shield` TINYINT( 1 ) NOT NULL DEFAULT '0', CHANGE `big_protection_shield` `big_protection_shield` TINYINT( 1 ) NOT NULL DEFAULT '0'";
-				$Qry7 = "UPDATE `".$dbsettings['prefix']."rw` SET `".$dbsettings['prefix']."rw`.`owners` = CONCAT(id_owner1,\",\",id_owner2)";
-				$Qry8 = "ALTER TABLE `".$dbsettings['prefix']."rw`
+				$Qry5	= "UPDATE `".$dbsettings['prefix']."config` SET `config_value` = '1,0,0,1,1;1,1,0,1,1;1;' WHERE `".$dbsettings['prefix']."config`.`config_name` = 'moderation';";
+				$Qry6	= "ALTER TABLE `".$dbsettings['prefix']."planets` CHANGE `small_protection_shield` `small_protection_shield` TINYINT( 1 ) NOT NULL DEFAULT '0', CHANGE `big_protection_shield` `big_protection_shield` TINYINT( 1 ) NOT NULL DEFAULT '0'";
+				$Qry7	= "UPDATE `".$dbsettings['prefix']."rw` SET `".$dbsettings['prefix']."rw`.`owners` = CONCAT(id_owner1,\",\",id_owner2)";
+				$Qry8	= "ALTER TABLE `".$dbsettings['prefix']."rw`
   							DROP `id_owner1`,
   							DROP `id_owner2`;";
-				$Qry9 = "ALTER TABLE `".$dbsettings['prefix']."galaxy` ADD `invisible_start_time` int(11) NOT NULL default '0'; ";
-				$Qry10 = "ALTER TABLE `".$dbsettings['prefix']."users` DROP `rpg_espion`,DROP `rpg_constructeur`,DROP `rpg_scientifique`,DROP `rpg_commandant`,DROP `rpg_stockeur`,DROP `rpg_defenseur`,DROP `rpg_destructeur`,DROP `rpg_general`,DROP `rpg_empereur`;";
-				$Qry11 = "DROP TABLE `".$dbsettings['prefix']."config`";
-				$Qry12 = "ALTER TABLE  `".$dbsettings['prefix']."errors` ADD `error_level` SMALLINT( 5 ) UNSIGNED NULL DEFAULT NULL AFTER `error_type`,
+				$Qry9	= "ALTER TABLE `".$dbsettings['prefix']."galaxy` ADD `invisible_start_time` int(11) NOT NULL default '0'; ";
+				$Qry10	= "ALTER TABLE `".$dbsettings['prefix']."users` DROP `rpg_espion`,DROP `rpg_constructeur`,DROP `rpg_scientifique`,DROP `rpg_commandant`,DROP `rpg_stockeur`,DROP `rpg_defenseur`,DROP `rpg_destructeur`,DROP `rpg_general`,DROP `rpg_empereur`;";
+				$Qry11	= "DROP TABLE `".$dbsettings['prefix']."config`";
+				$Qry12	= "ALTER TABLE  `".$dbsettings['prefix']."errors` ADD `error_level` SMALLINT( 5 ) UNSIGNED NULL DEFAULT NULL AFTER `error_type`,
 							ADD  `error_line` SMALLINT( 5 ) UNSIGNED NULL DEFAULT NULL AFTER  `error_level` ,
 							ADD  `error_file` VARCHAR( 255 ) NULL DEFAULT NULL AFTER  `error_line`
 							ADD  `error_hash` CHAR( 32 ) NULL DEFAULT NULL AFTER  `error_id` ,
 							ADD UNIQUE ( `error_hash`)";
-				$Qry13 = "ALTER TABLE  `".$dbsettings['prefix']."users` CHANGE  `password`  `password` CHAR( 40 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL";
+				$Qry13	= "ALTER TABLE  `".$dbsettings['prefix']."users` CHANGE  `password`  `password` CHAR( 40 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL";
+				$Qry14	= "CREATE TABLE IF NOT EXISTS `{{table}}` (
+							`id` bigint(11) NOT NULL AUTO_INCREMENT,
+							`player` bigint(11) NOT NULL,
+							`last_time` int(11) NOT NULL,
+							`every_time` int(11) NOT NULL,
+							`last_planet` bigint(11) NOT NULL,
+							`type` int(11) NOT NULL,
+							PRIMARY KEY (`id`)
+							) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=0;";
 
 				$QrysArray	= NULL;
 
@@ -290,12 +300,12 @@ switch ($Mode)
 						case '2.9.0':
 						case '2.9.1':
 						case '2.9.2':
-							$QrysArray	= array($Qry1, $Qry2, $Qry3, $Qry4, $Qry5, $Qry6, $Qry7, $Qry8, $Qry9, $Qry10, $Qry11, $Qry12);
+							$QrysArray	= array($Qry1, $Qry2, $Qry3, $Qry4, $Qry5, $Qry6, $Qry7, $Qry8, $Qry9, $Qry10, $Qry11, $Qry12, $Qry13, $Qry14);
 							migrate_to_xml();
 							migrate_to_sha1();
 						break;
 						case '2.9.3':
-							$QrysArray	= array($Qry1, $Qry2, $Qry6, $Qry7, $Qry8, $Qry9, $Qry10, $Qry11, $Qry12, $Qry13);
+							$QrysArray	= array($Qry1, $Qry2, $Qry6, $Qry7, $Qry8, $Qry9, $Qry10, $Qry11, $Qry12, $Qry13, $Qry14);
 							migrate_to_xml();
 							migrate_to_sha1();
 						break;
@@ -304,17 +314,17 @@ switch ($Mode)
 						case '2.9.6':
 						case '2.9.7':
 						case '2.9.8':
-							$QrysArray	= array($Qry1, $Qry2, $Qry7, $Qry8, $Qry9, $Qry10, $Qry11, $Qry12, $Qry13);
+							$QrysArray	= array($Qry1, $Qry2, $Qry7, $Qry8, $Qry9, $Qry10, $Qry11, $Qry12, $Qry13, $Qry14);
 							migrate_to_xml();
 							migrate_to_sha1();
 						break;
 						case '2.9.9':
-							$QrysArray	= array($Qry1, $Qry2, $Qry9, $Qry10, $Qry11, $Qry12, $Qry13);
+							$QrysArray	= array($Qry1, $Qry2, $Qry9, $Qry10, $Qry11, $Qry12, $Qry13, $Qry14);
 							migrate_to_xml();
 							migrate_to_sha1();
 						break;
 						case '2.9.10':
-							$QrysArray	= array($Qry1, $Qry2 , $Qry10, $Qry11, $Qry12, $Qry13);
+							$QrysArray	= array($Qry1, $Qry2 , $Qry10, $Qry11, $Qry12, $Qry13, $Qry14);
 							migrate_to_xml();
 							migrate_to_sha1();
 						break;
@@ -322,7 +332,7 @@ switch ($Mode)
 						case '2.10.1':
 						case '2.10.2':
 						case '2.10.3':
-							$QrysArray	= array($Qry12, $Qry13);
+							$QrysArray	= array($Qry12, $Qry13, $Qry14);
 							update_config ( 'version' , SYSTEM_VERSION );
 							upgrade_xml();
 							migrate_to_sha1();

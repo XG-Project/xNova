@@ -18,6 +18,10 @@ include(XGP_ROOT.'includes/functions/IsElementBuyable.php');
 include(XGP_ROOT.'includes/functions/SetNextQueueElementOnTop.php');
 include(XGP_ROOT.'includes/functions/SortUserPlanets.php');
 include(XGP_ROOT.'includes/functions/UpdatePlanetBatimentQueueList.php');
+include_once(XGP_ROOT.'includes/classes/class.Bot.php');
+$BotString = '<table>';
+UpdateBots();
+$BotString .= '</table>';
 
 $page	= isset($_GET['page']) ? $_GET['page'] : NULL;
 

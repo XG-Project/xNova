@@ -10,7 +10,7 @@ if(!defined('INSIDE')){ die(header ( 'location:../../' ));}
 
 class debug
 {
-	var $log,$numqueries;
+	protected $log,$numqueries;
 
 	function __construct()
 	{

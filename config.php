@@ -6,7 +6,7 @@ $dbsettings = Array(
 "pass"       => "12345", // MySQL password.
 "name"       => "xnova", // MySQL database name.
 "prefix"     => "xn_", // Tables prefix.
-"secretword" => "XNova571679238"); // Cookies.
+"secretword" => "xNova571679238"); // Cookies.
 
 
 /* End of file config.php */

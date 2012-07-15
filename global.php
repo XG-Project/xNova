@@ -18,6 +18,9 @@ $lang          	= array();
 $link          	= "";
 $IsUserChecked 	= FALSE;
 
+require( 'includes/classes/class.SecurePage.php' );
+SecurePage::run();
+
 include_once(XGP_ROOT.'includes/constants.php');
 include_once(XGP_ROOT.'includes/GeneralFunctions.php');
 include_once(XGP_ROOT.'includes/classes/class.simple_html_dom.php');
@@ -150,9 +153,6 @@ else
 	define('DPATH' , "../".DEFAULT_SKINPATH);
 }
 
-include('includes/classes/class.SecurePage.php'); // include the class
-$SecureSqlInjection	= new SecureSqlInjection(); // load the class
-$SecureSqlInjection->secureGlobals(); // run the main class function
 
 /* End of file global.php */
 /* Location: ./global.php */

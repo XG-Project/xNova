@@ -1,79 +1,53 @@
 <?php
-
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
- */
+ * SecurePage by Jstar (xgproyect.net)
+ * This class implement a security controll against SQL-injection and xss
+ **/
 
- // This class is originally developed by "Bendikt Martin Myklebust" this is updated by "Rakesh Chandel".
- //To Secure Global varaible values consisting in array while posting from GET,Session, and POST.
-
-
-class SecureSqlInjection
+class SecurePage
 {
-	function specificData($val)
-	{
-		$val = htmlspecialchars(stripslashes(trim($val)));
-		$val = str_ireplace("script", "blocked", $val);
-		$val = mysql_escape_string($val);
-		return $val;
-	}
+	private static $instance = null;
 
-	function secureSuperGlobalGET(&$value, $key)
+	public function __construct()
 	{
-		if(!is_array($_GET[$key]))
+		//apply controller to all
+		$_GET = array_map(array($this,'validate'),$_GET);
+		$_POST = array_map(array($this,'validate'),$_POST);
+		$_REQUEST = array_map(array($this,'validate'),$_REQUEST);
+		$_SERVER = array_map(array($this,'validate'),$_SERVER);
+		$_COOKIE = array_map(array($this,'validate'),$_COOKIE);
+	}
+	//recursively function
+	private function validate($value)
+	{
+		if(!is_array($value))
 		{
-			$_GET[$key] = htmlspecialchars(stripslashes($_GET[$key]));
-			$_GET[$key] = str_ireplace("script", "blocked", $_GET[$key]);
-			$_GET[$key] = mysql_escape_string($_GET[$key]);
+			$value = str_ireplace("script","blocked",$value);
+			$value = (get_magic_quotes_gpc()) ? htmlentities(stripslashes($value), ENT_QUOTES, 'UTF-8',false) : htmlentities($value, ENT_QUOTES, 'UTF-8',false);
+			$value = mysql_real_escape_string($value);
 		}
 		else
 		{
-			$c=0;
-			foreach($_GET[$key] as $val)
+			$c = 0;
+			foreach($value as $val)
 			{
-				$_GET[$key][$c] = mysql_escape_string($_GET[$key][$c]);
+				$value[$c] = $this->validate($val);
 				$c++;
 			}
 		}
-
-		return $_GET[$key];
+		return $value;
 	}
-
-	function secureSuperGlobalPOST(&$value, $key)
+	//singleton pattern
+	public static function run()
 	{
-		if(!is_array($_POST[$key]))
+		if(self::$instance == null)
 		{
-			$_POST[$key] = htmlspecialchars(stripslashes($_POST[$key]));
-			$_POST[$key] = str_ireplace("script", "blocked", $_POST[$key]);
-			$_POST[$key] = mysql_escape_string($_POST[$key]);
+			$c = __CLASS__;
+			self::$instance = new $c();
 		}
-		else
-		{
-			$c=0;
-			foreach($_POST[$key] as $val)
-			{
-				if (!is_array($_POST[$key][$c]))
-				{
-					$_POST[$key][$c] = mysql_escape_string($_POST[$key][$c]);
-				}
-				else
-				{
-					$_POST[$key][$c] = array_map("mysql_escape_string",$_POST[$key][$c]);
-				}
-				$c++;
-			}
-		}
-		return $_POST[$key];
-	}
-
-	function secureGlobals()
-	{
-
-		array_walk($_GET, array($this, 'secureSuperGlobalGET'));
-		array_walk($_POST, array($this, 'secureSuperGlobalPOST'));
 	}
 }
 
- ?>
+
+/* End of file class.SecurePage.php */
+/* Location: ./includes/classes/class.SecurePage.php */

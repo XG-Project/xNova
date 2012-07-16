@@ -30,4 +30,8 @@
 		<name>bots</name>
 		<value>0</value>
 	</config>
+	<config>
+		<name>bots_last_update</name>
+		<value>0</value>
+	</config>
 </configurations>

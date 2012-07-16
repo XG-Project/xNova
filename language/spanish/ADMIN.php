@@ -836,6 +836,7 @@ $lang['new_error_email']		= '¡El correo electronico ya esta en uso!';
 $lang['new_error_email2']		= '¡El correo electrónico no es válido!';
 $lang['new_error_passw']		= '¡La contraseña debe tener al menos 4 letras o digitos!';
 $lang['new_error_galaxy']		= '¡Las coordenadas especificadas ya estan siendo utilizadas!';
+$lang['new_error_bot']			= 'Has introducido un valor no válido en para el bot';
 $lang['new_user_success']		= 'Usuario creado con éxito';
 $lang['new_add_user']			= 'Crear usuario';
 $lang['new_range']				= 'Rango';
@@ -843,6 +844,7 @@ $lang['new_coord']				= 'Coordenadas';
 $lang['new_email']				= 'Correo electrónico';
 $lang['new_pass']				= 'Contraseña';
 $lang['new_name']				= 'Nombre';
+$lang['new_bot']				= 'Si quieres crear un bot, especifica ĺa cantidad de minutos que se conectará cada día. max. 1440';
 
 //	CREADOR DE PLANETAS - PLANETS MAKER
 $lang['po_galaxy']				=	'Galaxia';
@@ -986,6 +988,7 @@ $lang['log_new_user_name']			= 'Nombre';
 $lang['log_new_user_coor']			= 'Coordenadas';
 $lang['log_new_user_auth']			= 'Rango';
 $lang['log_new_user_email']			= 'Correo electronico';
+$lang['log_new_user_bot']			= 'El usuario es un bot';
 $lang['log_circular_message']		= '<font color=lime>||| MENSAJE CIRCULAR |||</font>';
 $lang['log_message_specify']		= ' ha enviado un mensaje circular con estas especificaciones';
 $lang['log_mes_subject']			= 'Sujeto';

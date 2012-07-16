@@ -81,7 +81,9 @@ switch ($_GET[page])
 			$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_error_passw'].'</tr></th>';
 			$i++;}
 
-
+		if ( ! is_null($bot_time) && ( ! is_numeric($bot_time) OR $bot_time > 1440)){
+			$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_error_bot'].'</tr></th>';
+			$i++;}
 
 		if ($i	==	'0'){
 			$Query1  = "INSERT INTO {{table}} SET ";
@@ -117,16 +119,23 @@ switch ($_GET[page])
 			$QryUpdateUser .= "LIMIT 1;";
 			doquery($QryUpdateUser, "users");
 
-			//TODO create bot if necesary
-
-
 			$Log	.=	"\n".$lang['log_new_user_title']."\n";
 			$Log	.=	$lang['log_the_user'].$user['username'].$lang['log_new_user'].":\n";
 			$Log	.=	$lang['log_new_user_name'].": ".$name."\n";
 			$Log	.=	$lang['log_new_user_coor'].": [".$galaxy.":".$system.":".$planet."]\n";
 			$Log	.=	$lang['log_new_user_email'].": ".$email."\n";
 			$Log	.=	$lang['log_new_user_auth'].": ".$lang['new_range11'][$auth]."\n";
-			//TODO Log bot
+
+			if ( ! is_null($bot_time))
+			{
+				$QryBot		= "INSERT INTO {{table}} SET ";
+				$QryBot		.= "`player` = '".$ID_USER['id']."', ";
+				$QryBot		.= "`minutes_per_day` = '".$bot_time."'; ";
+
+				doquery($QryBot, "bots");
+				update_config('bots', read_config('bots') + 1);
+				$Log		.=	$lang['log_new_user_bot']."\n";
+			}
 
 			LogFunction($Log, "GeneralLog", $LogCanWork);
 			$parse['display']	=	'<tr><th colspan="2"><font color=lime>'.$lang['new_user_success'].'</font></tr></th>';

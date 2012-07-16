@@ -357,14 +357,6 @@ $QryTableBots		= "`last_planet` bigint(20) unsigned NOT NULL,";
 $QryTableBots		= "PRIMARY KEY (`id`)";
 $QryTableBots		= ") ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=0;";
 
-CREATE TABLE IF NOT EXISTS `xn_bots` (
-`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-`player` bigint(20) unsigned NOT NULL,
-`last_time` int(10) unsigned NOT NULL,
-`next_time` int(10) unsigned NOT NULL,
-`minutes_per_day` smallint(4) unsigned NOT NULL,
-`last_planet` bigint(20) unsigned NOT NULL,
-PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=0 ;
+
 /* End of file databaseinfos.php */
 /* Location: ./install/databaseinfos.php */

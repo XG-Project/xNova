@@ -21,14 +21,7 @@ $parse	=	$lang;
 switch ($_GET[page])
 {
 	case 'new_user':
-	$name		=	$_POST['name'];
-	$pass 		= 	$_POST['password'];
-	$email 		= 	$_POST['email'];
-	$galaxy		=	$_POST['galaxy'];
-	$system		=	$_POST['system'];
-	$planet		=	$_POST['planet'];
-	$auth		=	$_POST['authlevel'];
-	$time		=	time();
+		$time		=	time();
 	$i			=	0;
 
 
@@ -43,6 +36,15 @@ switch ($_GET[page])
 
 	if ($_POST)
 	{
+		$name		= isset($_POST['name']) ? $_POST['name'] : NULL;
+		$pass 		= isset($_POST['password']) ? $_POST['password'] : NULL;
+		$email 		= isset($_POST['email']) ? $_POST['email'] : NULL;
+		$galaxy		= isset($_POST['galaxy']) ? $_POST['galaxy'] : NULL;
+		$system		= isset($_POST['system']) ? $_POST['system'] : NULL;
+		$planet		= isset($_POST['planet']) ? $_POST['planet'] : NULL;
+		$auth		= isset($_POST['authlevel']) ? $_POST['authlevel'] : NULL;
+		$bot_time	= isset($_POST['bot_time']) ? $_POST['bot_time'] : NULL;
+
 		$CheckUser = doquery("SELECT `username` FROM {{table}} WHERE `username` = '" . mysql_escape_string($_POST['name']) . "' LIMIT 1", "users", TRUE);
 		$CheckMail = doquery("SELECT `email` FROM {{table}} WHERE `email` = '" . mysql_escape_string($_POST['email']) . "' LIMIT 1", "users", TRUE);
 		$CheckRows = doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' AND `system` = '".$system."' AND `planet` = '".$planet."' LIMIT 1", "galaxy", TRUE);
@@ -115,6 +117,8 @@ switch ($_GET[page])
 			$QryUpdateUser .= "LIMIT 1;";
 			doquery($QryUpdateUser, "users");
 
+			//TODO create bot if necesary
+
 
 			$Log	.=	"\n".$lang['log_new_user_title']."\n";
 			$Log	.=	$lang['log_the_user'].$user['username'].$lang['log_new_user'].":\n";
@@ -122,6 +126,7 @@ switch ($_GET[page])
 			$Log	.=	$lang['log_new_user_coor'].": [".$galaxy.":".$system.":".$planet."]\n";
 			$Log	.=	$lang['log_new_user_email'].": ".$email."\n";
 			$Log	.=	$lang['log_new_user_auth'].": ".$lang['new_range11'][$auth]."\n";
+			//TODO Log bot
 
 			LogFunction($Log, "GeneralLog", $LogCanWork);
 			$parse['display']	=	'<tr><th colspan="2"><font color=lime>'.$lang['new_user_success'].'</font></tr></th>';

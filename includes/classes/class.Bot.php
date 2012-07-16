@@ -48,7 +48,7 @@ function scmp( $a, $b ) {
 function UpdateBots(){
 	if (read_config('bots') > 0 && read_config('bots_last_update') < time() - 60)
 	{
-		$BotLog = '';
+		$BotLog = "\n\n------------------------------------------\n";
 		$allbots = doquery("SELECT * FROM {{table}};", 'bots');
 		while($bot = mysql_fetch_array($allbots))
 		{
@@ -70,7 +70,7 @@ function UpdateBots(){
 				if (date('H') > 8)
 				{
 					$min_probability	= round($bot['minutes_per_day']/1440*100);
-					$max_time			= 86400/$bot['minutes_per_day']/15;
+					$max_time			= 86400/$bot['minutes_per_day']/15*60;
 
 					if($max_time/60 > 15)
 					{
@@ -113,7 +113,7 @@ function UpdateBots(){
 		$current_log	= file_get_contents(XGP_ROOT."adm/Log/BotLog.php");
 		$st		= fopen(XGP_ROOT."adm/Log/BotLog.php", "a");
 		$BotLog	.= 'Bots actualizados a las '.date('H:i:s - j/n/Y')."\n";
-		$BotLog	.= "------------------------------------------\n\n";
+		$BotLog	.= "------------------------------------------";
 		fwrite($st, $BotLog);
 		fclose($st);
 		unset($bot);

@@ -15,11 +15,6 @@ include(XGP_ROOT . 'global.php');
 
 if ($ConfigGame != 1) die(message ($lang['404_page']));
 
-$msj['new_complete_all'] = '¡Complete todos los campos!';
-$msj['new_complete_player'] = '¡Introduzca el Id del Jugador!';
-$msj['new_complete_every_time'] = '¡Introzudca el tiempo de actualización del Bot!';
-$msj['new_error_player_exist'] = '¡El Id del Jugador seleccionado ya tiene un Bot asignado!';
-
 $parse = $lang;
 
 switch ($_GET[page])
@@ -31,29 +26,36 @@ switch ($_GET[page])
 		$i		=	1;
 		if ($_POST)
 		{
-			$CheckPlayer = doquery("SELECT `user` FROM {{table}} WHERE `user` = '" . mysql_real_escape_string($_POST['user']) . "' ", "bots", true);
+			$CheckBots = doquery("SELECT `user` FROM {{table}} WHERE `user` = '" . mysql_real_escape_string($_POST['user']) . "' ", "bots");
+			$CheckUser = doquery("SELECT `id` FROM {{table}} WHERE `id` = '" . mysql_real_escape_string($_POST['user']) . "' ", "users");
 
 			if ( ! $user OR ! $minutes_per_day)
 			{
-				$parse['display']	.=	'<tr><th colspan="2" class="red">'.$msj['new_complete_all'].'</tr></th>';
+				$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['bot_err_complete_all'].'</tr></th>';
 				$i++;
 			}
 
 			if ( ! $user)
 			{
-				$parse['display']	.=	'<tr><th colspan="2" class="red">'.$msj['new_complete_player'].'</tr></th>';
+				$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['bot_err_complete_user'].'</tr></th>';
 				$i++;
 			}
 
-			if ($CheckPlayer)
+			if (mysql_num_rows($CheckBots) > 0)
 			{
-				$parse['display']	.=	'<tr><th colspan="2" class="red">'.$msj['new_error_player_exist'].'</tr></th>';
+				$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['bot_err_bot_exist'].'</tr></th>';
 				$i++;
 			}
 
-			if ( ! $minutes_per_day)
+			if (mysql_num_rows($CheckUser) == 0)
 			{
-				$parse['display']	.=	'<tr><th colspan="2" class="red">'.$msj['new_complete_every_time'].'</tr></th>';
+				$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['bot_err_user_not_exist'].'</tr></th>';
+				$i++;
+			}
+
+			if ( ! $minutes_per_day OR ! is_numeric($minutes_per_day) OR $minutes_per_day > 1440)
+			{
+				$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['bot_err_minutes_per_day'].'</tr></th>';
 				$i++;}
 
 			if ($i	===	1)
@@ -95,7 +97,7 @@ switch ($_GET[page])
 		<td width="250">'. date('H:i:s - j/n/Y', $u['next_time']) .'</td>
 		<td width="100">'. $u['minutes_per_day'] .'</td>
 		<td width="230">'. $u['last_planet'] .'</td>
-		<td width="100"><a href="?delete='. $u['id'] .'" border="0"><img src="../styles/images/r1.png" border=\"0\"></a></td>
+		<td width="100"><a href="BotSettingsPage.php?delete='. $u['id'] .'" onClick="return confirm('.$lang['bot_delete_confirm'].');" border="0"><img src="../styles/images/r1.png" border=\"0\"></a></td>
 		<td width="95"><a href="AccountDataPage.php?id_u='. $u['user'] .'" border="0"><img src="../styles/images/Adm/GO.png" border="0"></a></td></tr>';
 		if (isset($u['error_text']))
 			$parse['bots_list'] .= '<tr><th colspan="8" class="b">'.nl2br($u['error_text']).'</td></tr>';

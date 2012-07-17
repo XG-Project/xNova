@@ -4,9 +4,9 @@
 <table>
 <tr>
 	<td class="c">
-		<a href="LogToolPage.php?options=delete&file={setarchive}" onClick=" return confirm('{log_alert}');">{log_delete_link}</a>&nbsp;
-		<a href="LogToolPage.php?options=edit&file={setarchive}">{log_edit_link}</a>&nbsp;
-		<a href="LogToolPage.php?options=links&file={setarchive}">{log_go_back}</a>
+		<a href="LogToolPage.php?options=delete&file={setarchive}" onClick=" return confirm('{log_alert}');">[{log_delete_link}]</a>&nbsp;
+		<a href="LogToolPage.php?options=edit&file={setarchive}">[{log_edit_link}]</a>&nbsp;
+		<a href="LogToolPage.php?options=links&file={setarchive}">[{log_go_back}]</a>
 	</td>
 </tr>
 <form action="" method="post">

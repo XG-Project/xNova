@@ -783,9 +783,9 @@ $SE_NAME	=	"Nombre";
 $lang['se_search_users'][0]	=	$SE_ID;
 $lang['se_search_users'][1]	=	$SE_NAME;
 $lang['se_search_users'][2]	=	'Correo electrónico';
-$lang['se_search_users'][3]	=	'última actividad';
+$lang['se_search_users'][3]	=	'Última actividad';
 $lang['se_search_users'][4]	=	'Fecha de registro';
-$lang['se_search_users'][5]	=	'última IP';
+$lang['se_search_users'][5]	=	'Última IP';
 $lang['se_search_users'][6]	=	'Autoridad';
 $lang['se_search_users'][7]	=	'¿Suspendido?';
 $lang['se_search_users'][8]	=	'¿Vacaciones?';
@@ -794,7 +794,7 @@ $lang['se_search_users'][8]	=	'¿Vacaciones?';
 $lang['se_search_planets'][0]	=	$SE_ID;
 $lang['se_search_planets'][1]	=	$SE_NAME;
 $lang['se_search_planets'][2]	=	"Propietario";
-$lang['se_search_planets'][3]	=	"última actividad";
+$lang['se_search_planets'][3]	=	"Última actividad";
 $lang['se_search_planets'][4]	=	"Galaxia";
 $lang['se_search_planets'][5]	=	"Sistema";
 $lang['se_search_planets'][6]	=	"Planeta";
@@ -899,11 +899,11 @@ $lang['log_log_body_config']		= 'Log de configuración';
 $lang['log_log_title_22']			= 'Historial';
 $lang['log_alert']					= 'Al presionar aceptar borraras todo el contenido del archivo de texto, ¿deseas continuar?';
 $lang['log_input_value']			= 'Editar';
-$lang['log_go_back']				= '[&nbsp; Volver &nbsp;]';
+$lang['log_go_back']				= 'Volver';
 $lang['log_edit_succes']			= 'Editado con éxito';
 $lang['log_delete_succes']			= 'El siguiente archivo ha sido vaciado con éxito:&nbsp;';
-$lang['log_edit_link']				= '[&nbsp; Editar historial &nbsp;]';
-$lang['log_delete_link']			= '[&nbsp; Vaciar historial &nbsp;]';
+$lang['log_edit_link']				= 'Editar historial';
+$lang['log_delete_link']			= 'Vaciar historial';
 $lang['log_filesize_0']				= '<font color=yellow>El historial esta vacio</font>';
 $lang['log_the_user']				= 'El usuario ';
 $lang['log_to_planet']				= 'al planeta con el ID: ';
@@ -1043,4 +1043,29 @@ $lang['log_searchindb_admin']		= 'Administradores';
 $lang['log_searchindb_inac']		= 'Inactivos';
 $lang['log_search_advert_popup']	= 'Para Activar/Desactivar el historial podes hacerlo desde la sección de Permisos. Click para ir al panel de permisos.';
 //###########################################################//
-?>
+
+
+//----------------------	BOTS	-------------------------//
+$lang['bot_list']					= 'Lista de Bots';
+$lang['bot_assign']					= 'Asignar un bot a un usuario';
+$lang['bot_user']					= 'Usuario';
+$lang['bot_create']					= 'Crear el bot';
+$lang['bot_user_id']				= 'Id del usuario';
+$lang['bot_last_activity']			= 'Última actividad';
+$lang['bot_next_activity']			= 'Próxima actividad';
+$lang['bot_minutes_per_day']		= 'Minutos diarios';
+$lang['bot_last_planet']			= 'Último Planeta';
+$lang['bot_info']					= 'Info';
+$lang['bot_log_delete_ok']			= 'El archivo de logs ha sido borrado correctamente';
+$lang['bot_delete_all_confirm']		= 'Vas a borrar todos los bots. ¿Estás seguro? Esto no borrará los usuarios a los que se le ha asignado el bot.';
+$lang['bot_delete_confirm']			= 'Vas a borrar el bot. ¿Estás seguro? Esto no borrará el usuario al que se le ha asignado el bot.';
+$lang['bot_err_complete_all']		= 'Debes completar todos los campos';
+$lang['bot_err_complete_user']		= 'Introduzca el Id del Jugador';
+$lang['bot_err_minutes_per_day']	= 'Introzudca el tiempo de actualización del Bot, el valor introducido no es correcto';
+$lang['bot_err_bot_exist']			= 'Ya existe un bot para ese usuario';
+$lang['bot_err_user_not_exist']		= 'El usuario introducido no existe';
+//###########################################################//
+
+
+/* End of file ADMIN.php */
+/* Location: ./language/spanish/ADMIN.php */

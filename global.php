@@ -154,5 +154,6 @@ include('includes/classes/class.SecurePage.php'); // include the class
 $SecureSqlInjection	= new SecureSqlInjection(); // load the class
 $SecureSqlInjection->secureGlobals(); // run the main class function
 
+
 /* End of file global.php */
 /* Location: ./global.php */

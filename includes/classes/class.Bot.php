@@ -134,13 +134,15 @@ class Bot {
 	public $VERSION;
 	public $log;
 
-	function __construct($user, $bot){
+	function __construct($user, $bot)
+	{
 		$this->VERSION = '1.0.0-dev';
 		$this->user = $user;
 		$this->Bot = $bot;
 		$this->log = read_config('log_bots') ? '' : NULL;
 		$this->Database = new BotDatabase(md5($user['id']));
 	}
+
 	function Play(){
 		global $resource;
 

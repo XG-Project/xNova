@@ -899,11 +899,11 @@ $lang['log_log_body_config']		= 'Configuration log';
 $lang['log_log_title_22']			= 'Log';
 $lang['log_alert']					= 'Clicking accept will delete the entire contents of the text file, do you wish to continue?';
 $lang['log_input_value']			= 'Edit';
-$lang['log_go_back']				= '[&nbsp; Return &nbsp;]';
+$lang['log_go_back']				= 'Return';
 $lang['log_edit_succes']			= 'Edited successfully';
 $lang['log_delete_succes']			= 'The selected File had been emptied successfully:&nbsp;';
-$lang['log_edit_link']				= '[&nbsp; Edit history &nbsp;]';
-$lang['log_delete_link']			= '[&nbsp; Empty history &nbsp;]';
+$lang['log_edit_link']				= 'Edit history';
+$lang['log_delete_link']			= 'Empty history';
 $lang['log_filesize_0']				= '<font color=yellow>History has been emptied</font>';
 $lang['log_the_user']				= 'The user ';
 $lang['log_to_planet']				= 'to the planet with the ID: ';
@@ -1043,4 +1043,29 @@ $lang['log_searchindb_admin']		= 'Administrators';
 $lang['log_searchindb_inac']		= 'Inactive';
 $lang['log_search_advert_popup']	= 'To activate / deactivate history do so from the Permissions section. Click to go to the permissions panel.';
 //###########################################################//
-?>
+
+
+//----------------------	BOTS	-------------------------//
+$lang['bot_list']					= 'Bot list';
+$lang['bot_assign']					= 'Assign a bot to a player';
+$lang['bot_user']					= 'User';
+$lang['bot_create']					= 'Create the bot';
+$lang['bot_user_id']				= 'User\'s ID';
+$lang['bot_last_activity']			= 'Last active';
+$lang['bot_next_activity']			= 'Next activity';
+$lang['bot_minutes_per_day']		= 'Daily minutes';
+$lang['bot_last_planet']			= 'Last planet';
+$lang['bot_info']					= 'Info';
+$lang['bot_log_delete_ok']			= 'The log file has been correctly deleted';
+$lang['bot_delete_all_confirm']		= 'You are going to delete all of the bots. Are you sure? This won\'t delete the users bots controll.';
+$lang['bot_delete_confirm']			= 'You are going to delete the bot. Are you sure? This won\'t delete the user the bot controlls.';
+$lang['bot_err_complete_all']		= 'You have to complete all of the fields';
+$lang['bot_err_complete_user']		= 'Please, write the user\'s ID';
+$lang['bot_err_minutes_per_day']	= 'Please, write the minutes the bot will be online each day. The value you entered is not correct';
+$lang['bot_err_bot_exist']			= 'There is already a bot for that user';
+$lang['bot_err_user_not_exist']		= 'The user you entered does not exist';
+//###########################################################//
+
+
+/* End of file ADMIN.php */
+/* Location: ./language/english/ADMIN.php */

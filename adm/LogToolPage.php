@@ -71,8 +71,8 @@ switch ($_GET['options'])
 		{
 			$Excuse_me		=
 			"<a href=\"LogToolPage.php?options=delete&file=".$_GET['file']."\" onClick=\" return confirm('".$lang['log_alert']."');\">
-			".$lang['log_delete_link']."</a>&nbsp;
-			<a href=\"LogToolPage.php?options=edit&file=".$_GET['file']."\">".$lang['log_edit_link']."</a>";
+			[".$lang['log_delete_link']."]</a>&nbsp;
+			<a href=\"LogToolPage.php?options=edit&file=".$_GET['file']."\">[".$lang['log_edit_link']."]</a>";
 		}
 		else
 		{

@@ -95,7 +95,14 @@
 		E_DEPRECATED <input name="errors_8192" type="checkbox" {errors_8192}><br />
 		E_ALL <input name="errors_32767" type="checkbox" {errors_32767}><br />
 	</th>
-</tr></tr>
+</tr>
+<tr>
+	<th>{se_log_bots}</th>
+	<th>
+		<input name="log_bots" type="checkbox" {log_bots}><br />
+	</th>
+</tr>
+<tr>
 	<th colspan="3"><input value="{se_save_parameters}" type="submit"></th>
 </tr>
 </table>

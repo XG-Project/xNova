@@ -23,5 +23,5 @@ Errores:
 ========
 
 Hasta el momento se han encontrado más de 3.000 errores distintos que todavía no se han solucionado.
-En su mayoría son E_NOTICE, aunque hay uno que es E_STRICT, otro E_DEPRECATED y otros 5 que son
-E_WARNING. Se irán solucionando y encontrando nuevos.
+En su mayoría son E_NOTICE, aunque hay varios E_DEPRECATED y al menos un E_WARNINGSe irán solucionando
+y encontrando nuevos.

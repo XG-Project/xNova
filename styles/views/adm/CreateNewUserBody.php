@@ -2,7 +2,7 @@
 <style>input{text-align:center;}.red{color:#FF3300;}</style>
 <body>
 <form action="" method="post">
-<table width="45%">
+<table width="60%">
 {display}
 <tr><td class="c" colspan="2">{new_title}</td></tr>
 <tr><th>{new_name}</th><th><input type="text" name="name"></th></tr>
@@ -16,6 +16,8 @@
 <th><select name="authlevel">
 {uplvels}
 </select></th></tr>
+<tr><th width="50%">{new_bot}</th>
+<th><input type="text" name="bot_time" maxlength="5" style="text-align: center;"></th></tr>
 <tr><th colspan="2"><input type="submit" value="{new_add_user}"></th></tr>
 <tr>
    <th colspan="2" style="text-align:left;"><a href="MakerPage.php">{new_creator_go_back}</a>&nbsp;<a href="MakerPage.php?page=new_user">{new_creator_refresh}</a></th>

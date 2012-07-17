@@ -50,7 +50,7 @@ if ($user['authlevel'] >= 3)
 
 	foreach(scandir(XGP_ROOT.'adm/Log') as $log_file)
 	{
-		if($log_file != '.htaccess' && $log_file != 'index.html' && is_file(XGP_ROOT.'adm/Log/'.$log_file) && (! is_writable(XGP_ROOT.'adm/Log/'.$log_file)))
+		if($log_file != '.htaccess' && $log_file != 'index.html' && is_file(XGP_ROOT.'adm/Log/'.$log_file) && ( ! is_writable(XGP_ROOT.'adm/Log/'.$log_file)))
 		{
 			$Message	.= "<font color=\"red\">".$lang['ow_log_file_no_writable']."</font><br/><br/>";
 			$error++;

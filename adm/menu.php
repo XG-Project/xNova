@@ -38,6 +38,9 @@ $ConfigTable	=
 		<tr>
         	<th ".$onMouseOverIE." class=\"ForIE\"><a href=\"LogToolPage.php\" target=\"Hauptframe\">".$lang['mu_user_logs']."</a></th>
     	</tr>
+        <tr>
+            <th ".$onMouseOverIE." class=\"ForIE\"><a href=\"BotSettingsPage.php\" target=\"Hauptframe\">".$lang['mu_bots_sett']."</a></th>
+        </tr>
 		<tr>
         	<th ".$onMouseOverIE." class=\"ForIE\"><a href=\"ConfigStatsPage.php\" target=\"Hauptframe\">".$lang['mu_stats_options']."</a></th>
     	</tr>

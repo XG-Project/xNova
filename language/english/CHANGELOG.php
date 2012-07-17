@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 
 $lang['Version']     = 'Version';
@@ -14,6 +13,7 @@ Improvements:
 - Deleted unnecesary files
 - Automatic login
 - Starts migration to UTF-8
+- Nuevo bots system (Thanks to shoghicp)
 
 Fixed errors:
 - Many minor issues

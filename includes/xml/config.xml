@@ -6,7 +6,7 @@
 	</config>
 	<config>
 		<name>users_amount</name>
-		<value>1</value>
+		<value>9</value>
 	</config>
 	<config>
 		<name>moderation</name>
@@ -118,7 +118,7 @@
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1342359355</value>
+		<value>1342546267</value>
 	</config>
 	<config>
 		<name>stat_settings</name>
@@ -130,7 +130,7 @@
 	</config>
 	<config>
 		<name>stat_update_time</name>
-		<value>60</value>
+		<value>5</value>
 	</config>
 	<config>
 		<name>stat_flying</name>
@@ -163,5 +163,17 @@
 	<config>
 		<name>errors_32767</name>
 		<value>1</value>
+	</config>
+	<config>
+		<name>bots</name>
+		<value>8</value>
+	</config>
+	<config>
+		<name>bots_last_update</name>
+		<value>1342546267</value>
+	</config>
+	<config>
+		<name>log_bots</name>
+		<value>0</value>
 	</config>
 </configurations>

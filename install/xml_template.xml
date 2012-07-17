@@ -164,4 +164,16 @@
 		<name>errors_32767</name>
 		<value>0</value>
 	</config>
+	<config>
+		<name>bots</name>
+		<value>0</value>
+	</config>
+	<config>
+		<name>bots_last_update</name>
+		<value>0</value>
+	</config>
+	<config>
+		<name>log_bots</name>
+		<value>1</value>
+	</config>
 </configurations>

@@ -42,6 +42,12 @@ if ($user['authlevel'] >= 3)
 		$error++;
 	}
 
+	if( ! is_writable(XGP_ROOT.'includes/bots'))
+	{
+		$Message	.= "<font color=\"red\">".$lang['ow_bot_folder_no_writable']."</font><br/><br/>";
+		$error++;
+	}
+
 	if( ! is_writable(XGP_ROOT.'includes/xml/config.xml'))
 	{
 		$Message	.= "<font color=\"red\">".$lang['ow_config_file_no_writable']."</font><br/><br/>";

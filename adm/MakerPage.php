@@ -129,7 +129,7 @@ switch ($_GET[page])
 			if ( ! is_null($bot_time))
 			{
 				$QryBot		= "INSERT INTO {{table}} SET ";
-				$QryBot		.= "`player` = '".$ID_USER['id']."', ";
+				$QryBot		.= "`user` = '".$ID_USER['id']."', ";
 				$QryBot		.= "`minutes_per_day` = '".$bot_time."'; ";
 
 				doquery($QryBot, "bots");

@@ -204,6 +204,14 @@ function DisplayGameSettingsPage ( $CurrentUser )
 			$Log	.=	$lang['log_sett_max_users']." ".$_POST['max_users']."\n";
 		}
 
+		if (isset($_POST['log_bots']) && $_POST['log_bots'] == 'on') {
+			$game_config['log_bots'] = 1;
+			$Log	.=	$lang['log_sett_bots_log'].': '.$lang['log_viewmod'][1]."\n";
+		} else {
+			$game_config['log_bots'] = 0;
+			$Log	.=	$lang['log_sett_bots_log'].': '.$lang['log_viewmod'][0]."\n";
+		}
+
 
 		LogFunction($Log, "ConfigLog", $AreLog);
 
@@ -234,6 +242,7 @@ function DisplayGameSettingsPage ( $CurrentUser )
 		update_config ( 'errors_8192' 				, $game_config['errors_8192'] 				);
 		update_config ( 'errors_32767' 				, $game_config['errors_32767'] 				);
 		update_config ( 'max_users' 				, $game_config['max_users'] 				);
+		update_config ( 'log_bots' 					, $game_config['log_bots'] 					);
 
 		header ( 'location:SettingsPage.php' );
 	}
@@ -266,6 +275,7 @@ function DisplayGameSettingsPage ( $CurrentUser )
 		$parse['errors_4096'] 				= $game_config['errors_4096'] ? 'checked' : '';
 		$parse['errors_8192'] 				= $game_config['errors_8192'] ? 'checked' : '';
 		$parse['errors_32767'] 				= $game_config['errors_32767'] ? 'checked' : '';
+		$parse['log_bots'] 					= $game_config['log_bots'] ? 'checked' : '';
 
 		$LangFolder = opendir("./../" . 'language');
 

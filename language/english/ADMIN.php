@@ -462,6 +462,7 @@ $lang['se_noob_protect3']					= 'Protection N. limit points';
 $lang['se_noob_protect_e2']					= 'Limit point where you stop being rookie';
 $lang['se_noob_protect_e3']					= 'Click here to see more info';
 $lang['se_log_php_errors']					= 'Errors you want to log';
+$lang['se_log_bots']						= 'Save logs from bots? it can reduce performance';
 $lang['log_viewmod']						= array('Deactivated', 'Activated');
 //###########################################################//
 

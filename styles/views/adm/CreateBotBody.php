@@ -5,16 +5,16 @@
 <table width="45%">
 {display}
 <tr>
-  <td class="c" colspan="2">Crear un nuevo Bot </td>
+  <td class="c" colspan="2">Asignar un bot a un usuario</td>
 </tr>
 
 <tr>
-  <th>Id del Jugador</th><th><input type="text" name="player"></th></tr>
+  <th>Id del Jugador</th><th><input type="text" name="user"></th></tr>
 <tr>
-  <th>Minutos diarios conectado</th><th><input type="text" name="every_time"></th></tr>
+  <th>Minutos diarios conectado</th><th><input type="text" name="minutes_per_day"></th></tr>
 <tr><th colspan="2"><input type="submit" value="Crear Bot"></th></tr>
 <tr>
-   <th colspan="2" style="text-align:left;"><a href="BotSettingsPage.php">Volver a la Lista de Bots</a>&nbsp;<a href="BotSettingsPage.php?page=new_bot">{new_creator_refresh}</a></th>
+   <th colspan="2" style="text-align:left;"><a href="BotSettingsPage.php">[Volver a la Lista de Bots]</a>&nbsp;<a href="BotSettingsPage.php?page=new_bot">{new_creator_refresh}</a></th>
 </tr>
 </table>
 </form>

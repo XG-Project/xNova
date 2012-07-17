@@ -349,7 +349,7 @@ $QryTableUsers      .= ") ENGINE=MyISAM;";
 
 $QryTableBots		= "CREATE TABLE `{{table}}` (";
 $QryTableBots		= "`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,";
-$QryTableBots		= "`player` bigint(20) unsigned NOT NULL,";
+$QryTableBots		= "`user` bigint(20) unsigned NOT NULL,";
 $QryTableBots		= "`last_time` int(10) unsigned NOT NULL,";
 $QryTableBots		= "`next_time` int(10) unsigned NOT NULL,";
 $QryTableBots		= "`minutes_per_day` smallint(4) unsigned NOT NULL,";

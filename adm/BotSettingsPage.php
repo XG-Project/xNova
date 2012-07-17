@@ -25,21 +25,21 @@ $parse = $lang;
 switch ($_GET[page])
 {
 	case 'new_bot':
-		$player		= 	isset($_POST['player']) ? $_POST['player'] : NULL;
-		$every_time	=	isset($_POST['every_time']) ? $_POST['every_time'] : NULL;
+		$user				= 	isset($_POST['user']) ? $_POST['user'] : NULL;
+		$minutes_per_day	=	isset($_POST['minutes_per_day']) ? $_POST['minutes_per_day'] : NULL;
 
 		$i		=	1;
 		if ($_POST)
 		{
-			$CheckPlayer = doquery("SELECT `player` FROM {{table}} WHERE `player` = '" . mysql_real_escape_string($_POST['player']) . "' ", "bots", true);
+			$CheckPlayer = doquery("SELECT `user` FROM {{table}} WHERE `user` = '" . mysql_real_escape_string($_POST['user']) . "' ", "bots", true);
 
-			if ( ! $player OR ! $every_time)
+			if ( ! $user OR ! $minutes_per_day)
 			{
 				$parse['display']	.=	'<tr><th colspan="2" class="red">'.$msj['new_complete_all'].'</tr></th>';
 				$i++;
 			}
 
-			if ( ! $player)
+			if ( ! $user)
 			{
 				$parse['display']	.=	'<tr><th colspan="2" class="red">'.$msj['new_complete_player'].'</tr></th>';
 				$i++;
@@ -51,7 +51,7 @@ switch ($_GET[page])
 				$i++;
 			}
 
-			if ( ! $every_time)
+			if ( ! $minutes_per_day)
 			{
 				$parse['display']	.=	'<tr><th colspan="2" class="red">'.$msj['new_complete_every_time'].'</tr></th>';
 				$i++;}
@@ -59,7 +59,7 @@ switch ($_GET[page])
 			if ($i	===	1)
 			{
 				$Query1  = "INSERT INTO {{table}} SET ";
-				$Query1 .= "`player` = '" . $player . "', ";
+				$Query1 .= "`user` = '" . $player . "', ";
 				$Query1 .= "`minutes_per_day` = '" . $every_time . "'; ";
 
 				doquery($Query1, "bots");
@@ -90,13 +90,13 @@ switch ($_GET[page])
 
 		$parse['bots_list'] .= '
 		<tr><td width="25">'. $u['id'] .'</td>
-		<td width="25">'. $u['player'] .'</td>
+		<td width="25">'. $u['user'] .'</td>
 		<td width="250">'. date('H:i:s - j/n/Y', $u['last_time']) .'</td>
 		<td width="250">'. date('H:i:s - j/n/Y', $u['next_time']) .'</td>
 		<td width="100">'. $u['minutes_per_day'] .'</td>
 		<td width="230">'. $u['last_planet'] .'</td>
 		<td width="100"><a href="?delete='. $u['id'] .'" border="0"><img src="../styles/images/r1.png" border=\"0\"></a></td>
-		<td width="95"><a href="AccountDataPage.php?id_u='. $u['player'] .'" border="0"><img src="../styles/images/Adm/GO.png" border="0"></a></td></tr>';
+		<td width="95"><a href="AccountDataPage.php?id_u='. $u['user'] .'" border="0"><img src="../styles/images/Adm/GO.png" border="0"></a></td></tr>';
 		if (isset($u['error_text']))
 			$parse['bots_list'] .= '<tr><th colspan="8" class="b">'.nl2br($u['error_text']).'</td></tr>';
 	}

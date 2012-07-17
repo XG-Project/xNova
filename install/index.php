@@ -256,7 +256,7 @@ switch ($Mode)
 				$Qry13	= "ALTER TABLE  `".$dbsettings['prefix']."users` CHANGE  `password`  `password` CHAR( 40 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL";
 				$Qry14	= "CREATE TABLE `{{table}}` (
 							`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-							`player` bigint(20) unsigned NOT NULL,
+							`user` bigint(20) unsigned NOT NULL,
 							`last_time` int(10) unsigned NOT NULL,
 							`next_time` int(10) unsigned NOT NULL,
 							`minutes_per_day` smallint(4) unsigned NOT NULL,

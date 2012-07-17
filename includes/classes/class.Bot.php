@@ -48,16 +48,16 @@ function scmp( $a, $b ) {
 function UpdateBots(){
 	if (read_config('bots') > 0 && read_config('bots_last_update') < time() - 60)
 	{
-		$BotLog = "\n\n------------------------------------------\n";
+		if(read_config('log_bots')) $BotLog = "\n\n------------------------------------------\n";
 		$allbots = doquery("SELECT * FROM {{table}};", 'bots');
 		while($bot = mysql_fetch_array($allbots))
 		{
 			if (time() > $bot['next_time'])
 			{
-				$player = doquery("SELECT * FROM {{table}} WHERE `id` = '".$bot['player']."';", 'users', true);
-				$thebot = new Bot($player, $bot);
+				$user = doquery("SELECT * FROM {{table}} WHERE `id` = '".$bot['user']."';", 'users', true);
+				$thebot = new Bot($user, $bot);
 				$thebot->Play();
-				$BotLog .= $thebot->log;
+				if(isset($BotLog)) $BotLog .= $thebot->log;
 				unset($thebot);
 
 				/**
@@ -110,12 +110,15 @@ function UpdateBots(){
 				doquery('UPDATE {{table}} SET `next_time` = '.$next_time.' WHERE `id` = '.$bot['id'], 'bots');
 			}
 		}
-		$current_log	= file_get_contents(XGP_ROOT."adm/Log/BotLog.php");
-		$st		= fopen(XGP_ROOT."adm/Log/BotLog.php", "a");
-		$BotLog	.= 'Bots actualizados a las '.date('H:i:s - j/n/Y')."\n";
-		$BotLog	.= "------------------------------------------";
-		fwrite($st, $BotLog);
-		fclose($st);
+
+		if(isset($BotLog))
+		{
+			$st		= fopen(XGP_ROOT."adm/Log/BotLog.php", "a");
+			$BotLog	.= 'Bots actualizados a las '.date('H:i:s - j/n/Y')."\n";
+			$BotLog	.= "------------------------------------------";
+			fwrite($st, $BotLog);
+			fclose($st);
+		}
 		unset($bot);
 		unset($allbots);
 
@@ -124,37 +127,37 @@ function UpdateBots(){
 }
 
 class Bot {
-	protected $player;
+	protected $user;
 	protected $Bot;
 	protected $CurrentPlanet;
+	protected $Database;
 	public $VERSION;
 	public $log;
-	var $Database;
 
-	function __construct($player, $bot){
+	function __construct($user, $bot){
 		$this->VERSION = '1.0.0-dev';
-		$this->player = $player;
+		$this->user = $user;
 		$this->Bot = $bot;
-		$this->log = '';
-		$this->Database = new BotDatabase(md5($player['id']));
+		$this->log = read_config('log_bots') ? '' : NULL;
+		$this->Database = new BotDatabase(md5($user['id']));
 	}
 	function Play(){
 		global $resource;
 
 		$this->HandleOwnFleets();
-		$iPlanetCount =  doquery ("SELECT count(*) AS `total` FROM {{table}} WHERE `id_owner` = '". $this->player['id'] ."' AND `planet_type` = '1'", 'planets',true);
-		$maxfleet  = doquery("SELECT COUNT(fleet_owner) AS `actcnt` FROM {{table}} WHERE `fleet_owner` = '".$this->player['id']."';", 'fleets', true);
-		$maxcolofleet  = doquery("SELECT COUNT(fleet_owner) AS `total` FROM {{table}} WHERE `fleet_owner` = '".$this->player['id']."' AND `fleet_mission` = '7';", 'fleets', true);
+		$iPlanetCount =  doquery ("SELECT count(*) AS `total` FROM {{table}} WHERE `id_owner` = '". $this->user['id'] ."' AND `planet_type` = '1'", 'planets',true);
+		$maxfleet  = doquery("SELECT COUNT(fleet_owner) AS `actcnt` FROM {{table}} WHERE `fleet_owner` = '".$this->user['id']."';", 'fleets', true);
+		$maxcolofleet  = doquery("SELECT COUNT(fleet_owner) AS `total` FROM {{table}} WHERE `fleet_owner` = '".$this->user['id']."' AND `fleet_mission` = '7';", 'fleets', true);
 		$MaxFlyingFleets     = $maxfleet['actcnt'];
-		$MaxFlottes         = $this->player[$resource[108]];
+		$MaxFlottes         = $this->user[$resource[108]];
 		$planetselected = false;
 		$planetwork = false;
-		$planetquery = doquery("SELECT * FROM {{table}} WHERE `id_owner` = '".$this->player['id']."' AND `planet_type` = '1' ORDER BY `id` ASC;",'planets', false);
+		$planetquery = doquery("SELECT * FROM {{table}} WHERE `id_owner` = '".$this->user['id']."' AND `planet_type` = '1' ORDER BY `id` ASC;",'planets', false);
 		while($this->CurrentPlanet = mysql_fetch_array($planetquery) ){
-			if($planetselected == true and $this->CurrentPlanet['id_owner'] == $this->player['id']){
+			if($planetselected == true and $this->CurrentPlanet['id_owner'] == $this->user['id']){
 				CheckPlanetUsedFields ( $this->CurrentPlanet );
 
-				$this->log .= $this->player['username'].' - Hora: '.date('H:i:s - j/n/Y').' - Planeta: '.$this->CurrentPlanet['name'].' ['.$this->CurrentPlanet['id'].']'."\n";
+				if( ! is_null($this->log)) $this->log .= $this->user['username'].' - Hora: '.date('H:i:s - j/n/Y').' - Planeta: '.$this->CurrentPlanet['name'].' ['.$this->CurrentPlanet['id'].']'."\n";
 
 				$this->BuildStores();
 				$Rand = mt_rand(0, 1);
@@ -175,10 +178,10 @@ class Bot {
 				}
 
 
-				if($iPlanetCount['total'] < MAX_PLAYER_PLANETS and $maxcolofleet['total'] < (MAX_PLAYER_PLANETS - $maxcolofleet['total']) and $MaxFlyingFleets < $MaxFlottes and $this->CurrentPlanet[$resource[208]] >= 1 ){
+				if($iPlanetCount['total'] < MAX_user_PLANETS and $maxcolofleet['total'] < (MAX_user_PLANETS - $maxcolofleet['total']) and $MaxFlyingFleets < $MaxFlottes and $this->CurrentPlanet[$resource[208]] >= 1 ){
 					$this->Colonize($iPlanetCount['total']);
 				}
-				if($this->CurrentPlanet['id'] == $this->player['id_planet']){
+				if($this->CurrentPlanet['id'] == $this->user['id_planet']){
 					if($MaxFlyingFleets < ($MaxFlottes + 1)){
 						$this->HandleOtherFleets();
 					}
@@ -196,10 +199,10 @@ class Bot {
 			}
 		}
 		if($planetwork == false){
-				$this->CurrentPlanet = doquery("SELECT * FROM {{table}} WHERE `id` = '".$this->player['id_planet']."';",'planets', true);
+				$this->CurrentPlanet = doquery("SELECT * FROM {{table}} WHERE `id` = '".$this->user['id_planet']."';",'planets', true);
 				CheckPlanetUsedFields( $this->CurrentPlanet );
 
-				$this->log .= $this->player['username'].' - Hora: '.date('H:i:s - j/n/Y').' - Planeta: '.$this->CurrentPlanet['name'].' ['.$this->CurrentPlanet['id'].']'."\n";
+				if( ! is_null($this->log)) $this->log .= $this->user['username'].' - Hora: '.date('H:i:s - j/n/Y').' - Planeta: '.$this->CurrentPlanet['name'].' ['.$this->CurrentPlanet['id'].']'."\n";
 
 				$this->BuildStores();
 				$Rand = mt_rand(0, 1);
@@ -219,10 +222,10 @@ class Bot {
 					$this->BuildDefense();
 				}
 
-				if($iPlanetCount['total'] < MAX_PLAYER_PLANETS and $maxcolofleet['total'] < (MAX_PLAYER_PLANETS - $maxcolofleet['total']) and $MaxFlyingFleets < $MaxFlottes and $this->CurrentPlanet[$resource[208]] >= 1 ){
+				if($iPlanetCount['total'] < MAX_user_PLANETS and $maxcolofleet['total'] < (MAX_user_PLANETS - $maxcolofleet['total']) and $MaxFlyingFleets < $MaxFlottes and $this->CurrentPlanet[$resource[208]] >= 1 ){
 					$this->Colonize($iPlanetCount['total']);
 				}
-				if($this->CurrentPlanet['id'] == $this->player['id_planet']){
+				if($this->CurrentPlanet['id'] == $this->user['id_planet']){
 					if($MaxFlyingFleets < ($MaxFlottes + 1)){
 						$this->HandleOtherFleets();
 					}
@@ -230,7 +233,7 @@ class Bot {
 					$this->GetFleet();
 				}
 				$this->Update();
-				$planetid = $this->player['id_planet'];
+				$planetid = $this->user['id_planet'];
 		}
 		$this->End($planetid);
 	}
@@ -262,25 +265,25 @@ class Bot {
 		$production_level = abs($production_level);
 		$MaxBuildings = array(1 => 60, 2 => 62, 3 => 65);
 		if($production_level < 100){
-			if($ActualCount <= 0 and IsElementBuyable ($this->player, $this->CurrentPlanet, 4, true, false) and $this->CurrentPlanet["field_current"] < ( CalculateMaxPlanetFields($this->CurrentPlanet) ) ){
-				$this->AddBuildingToQueue ( $this->CurrentPlanet, $this->player, 4, true);
+			if($ActualCount <= 0 and IsElementBuyable ($this->user, $this->CurrentPlanet, 4, true, false) and $this->CurrentPlanet["field_current"] < ( CalculateMaxPlanetFields($this->CurrentPlanet) ) ){
+				$this->AddBuildingToQueue ( $this->CurrentPlanet, $this->user, 4, true);
 
-				$this->log .= '	Construir: '.$lang['tech'][4].' al nivel '.($this->CurrentPlanet[$resource[4]] + 1 )."\n";
+				if( ! is_null($this->log)) $this->log .= '	Construir: '.$lang['tech'][4].' al nivel '.($this->CurrentPlanet[$resource[4]] + 1 )."\n";
 
 			}
 		}else{
 			mt_srand(time());
 			$Element = mt_rand(1, 3);
 			if($this->CurrentPlanet[$resource[$Element]] < $MaxBuildings[$Element]){
-				if($ActualCount <= 0 and IsElementBuyable ($this->player, $this->CurrentPlanet, $Element, true, false) and $this->CurrentPlanet["field_current"] < ( CalculateMaxPlanetFields($this->CurrentPlanet) ) ){
-					$this->AddBuildingToQueue ( $this->CurrentPlanet, $this->player, $Element, true);
+				if($ActualCount <= 0 and IsElementBuyable ($this->user, $this->CurrentPlanet, $Element, true, false) and $this->CurrentPlanet["field_current"] < ( CalculateMaxPlanetFields($this->CurrentPlanet) ) ){
+					$this->AddBuildingToQueue ( $this->CurrentPlanet, $this->user, $Element, true);
 
-					$this->log .= '	Construir: '.$lang['tech'][$Element].' al nivel '.($this->CurrentPlanet[$resource[$Element]] + 1 )."\n";
+					if( ! is_null($this->log)) $this->log .= '	Construir: '.$lang['tech'][$Element].' al nivel '.($this->CurrentPlanet[$resource[$Element]] + 1 )."\n";
 
 				}
 			}
 		}
-		SetNextQueueElementOnTop ( $this->CurrentPlanet, $this->player );
+		SetNextQueueElementOnTop ( $this->CurrentPlanet, $this->user );
 		$this->SavePlanetRecord();
 	}
 
@@ -298,10 +301,10 @@ class Bot {
 			uasort( $MaxBuildings, 'scmp' );
 			foreach($MaxBuildings as $Element => $Max){
 				if($this->CurrentPlanet[$resource[$Element]] < $MaxBuildings[$Element] AND $Element != 0){
-					if($ActualCount <= 0 and IsTechnologieAccessible($this->player, $this->CurrentPlanet, $Element) and IsElementBuyable ($this->player, $this->CurrentPlanet, $Element, true, false) and $this->CurrentPlanet["field_current"] < ( CalculateMaxPlanetFields($this->CurrentPlanet) ) ){
-						$this->AddBuildingToQueue ( $this->CurrentPlanet, $this->player, $Element, true);
+					if($ActualCount <= 0 and IsTechnologieAccessible($this->user, $this->CurrentPlanet, $Element) and IsElementBuyable ($this->user, $this->CurrentPlanet, $Element, true, false) and $this->CurrentPlanet["field_current"] < ( CalculateMaxPlanetFields($this->CurrentPlanet) ) ){
+						$this->AddBuildingToQueue ( $this->CurrentPlanet, $this->user, $Element, true);
 
-						$this->log .= '	Construir: '.$lang['tech'][$Element].' al nivel '.($this->CurrentPlanet[$resource[$Element]] + 1 )."\n";
+						if( ! is_null($this->log)) $this->log .= '	Construir: '.$lang['tech'][$Element].' al nivel '.($this->CurrentPlanet[$resource[$Element]] + 1 )."\n";
 
 						break;
 					}
@@ -309,7 +312,7 @@ class Bot {
 
 			}
 
-		SetNextQueueElementOnTop ( $this->CurrentPlanet, $this->player );
+		SetNextQueueElementOnTop ( $this->CurrentPlanet, $this->user );
 		$this->SavePlanetRecord();
 	}
 	protected function BuildStores(){
@@ -327,33 +330,33 @@ class Bot {
 		foreach($StoreLevel as $Element => $Max){
 
 			if($Element == 22){
-				if($ActualCount <= 0 and $this->CurrentPlanet[$resource[$Element]] < $Max and $this->CurrentPlanet['metal'] >= $this->CurrentPlanet['metal_max'] and $Queue2['lenght'] < 2 and IsElementBuyable ($this->player, $this->CurrentPlanet, $Element, true, false) and $this->CurrentPlanet["field_current"] < ( CalculateMaxPlanetFields($this->CurrentPlanet))){
-						$this->AddBuildingToQueue ( $this->CurrentPlanet, $this->player, $Element, true);
+				if($ActualCount <= 0 and $this->CurrentPlanet[$resource[$Element]] < $Max and $this->CurrentPlanet['metal'] >= $this->CurrentPlanet['metal_max'] and $Queue2['lenght'] < 2 and IsElementBuyable ($this->user, $this->CurrentPlanet, $Element, true, false) and $this->CurrentPlanet["field_current"] < ( CalculateMaxPlanetFields($this->CurrentPlanet))){
+						$this->AddBuildingToQueue ( $this->CurrentPlanet, $this->user, $Element, true);
 
-						$this->log .= '	Construir: '.$lang['tech'][$Element].' al nivel '.($this->CurrentPlanet[$resource[$Element]] + 1 )."\n";
+						if( ! is_null($this->log)) $this->log .= '	Construir: '.$lang['tech'][$Element].' al nivel '.($this->CurrentPlanet[$resource[$Element]] + 1 )."\n";
 
 						$ActualCount++;
 				}
 			}elseif($Element == 23){
-				if($ActualCount <= 0 and $this->CurrentPlanet[$resource[$Element]] < $Max and $this->CurrentPlanet['crystal'] >= $this->CurrentPlanet['crystal_max'] and $Queue2['lenght'] < 2 and IsElementBuyable ($this->player, $this->CurrentPlanet, $Element, true, false) and $this->CurrentPlanet["field_current"] < ( CalculateMaxPlanetFields($this->CurrentPlanet))){
-						$this->AddBuildingToQueue ( $this->CurrentPlanet, $this->player, $Element, true);
+				if($ActualCount <= 0 and $this->CurrentPlanet[$resource[$Element]] < $Max and $this->CurrentPlanet['crystal'] >= $this->CurrentPlanet['crystal_max'] and $Queue2['lenght'] < 2 and IsElementBuyable ($this->user, $this->CurrentPlanet, $Element, true, false) and $this->CurrentPlanet["field_current"] < ( CalculateMaxPlanetFields($this->CurrentPlanet))){
+						$this->AddBuildingToQueue ( $this->CurrentPlanet, $this->user, $Element, true);
 
-						$this->log .= '	Construir: '.$lang['tech'][$Element].' al nivel '.($this->CurrentPlanet[$resource[$Element]] + 1 )."\n";
+						if( ! is_null($this->log)) $this->log .= '	Construir: '.$lang['tech'][$Element].' al nivel '.($this->CurrentPlanet[$resource[$Element]] + 1 )."\n";
 
 						$ActualCount++;
 				}
 			}elseif($Element == 24){
-				if($ActualCount <= 0 and $this->CurrentPlanet[$resource[$Element]] < $Max and $this->CurrentPlanet['deuterium'] >= $this->CurrentPlanet['deuterium_max'] and $Queue2['lenght'] < 2 and IsElementBuyable ($this->player, $this->CurrentPlanet, $Element, true, false) and $this->CurrentPlanet["field_current"] < ( CalculateMaxPlanetFields($this->CurrentPlanet))){
-						$this->AddBuildingToQueue ( $this->CurrentPlanet, $this->player, $Element, true);
+				if($ActualCount <= 0 and $this->CurrentPlanet[$resource[$Element]] < $Max and $this->CurrentPlanet['deuterium'] >= $this->CurrentPlanet['deuterium_max'] and $Queue2['lenght'] < 2 and IsElementBuyable ($this->user, $this->CurrentPlanet, $Element, true, false) and $this->CurrentPlanet["field_current"] < ( CalculateMaxPlanetFields($this->CurrentPlanet))){
+						$this->AddBuildingToQueue ( $this->CurrentPlanet, $this->user, $Element, true);
 
-						$this->log .= '	Construir: '.$lang['tech'][$Element].' al nivel '.($this->CurrentPlanet[$resource[$Element]] + 1 )."\n";
+						if( ! is_null($this->log)) $this->log .= '	Construir: '.$lang['tech'][$Element].' al nivel '.($this->CurrentPlanet[$resource[$Element]] + 1 )."\n";
 
 						$ActualCount++;
 				}
 			}elseif($Element == 0){
 			}
 		}
-		SetNextQueueElementOnTop ( $this->CurrentPlanet, $this->player );
+		SetNextQueueElementOnTop ( $this->CurrentPlanet, $this->user );
 		$this->SavePlanetRecord();
 	}
 	protected function ResearchTechs(){
@@ -363,10 +366,10 @@ class Bot {
 			uasort( $TechLevel, 'scmp' );
 			foreach($TechLevel as $Techno => $Max){
 				if($Techno == 0){
-				}elseif($this->player["b_tech_planet"] == 0 and $this->player[$resource[$Techno]] < $Max and IsElementBuyable($this->player, $this->CurrentPlanet, $Techno) and IsTechnologieAccessible($this->player, $this->CurrentPlanet, $Techno)){
+				}elseif($this->user["b_tech_planet"] == 0 and $this->user[$resource[$Techno]] < $Max and IsElementBuyable($this->user, $this->CurrentPlanet, $Techno) and IsTechnologieAccessible($this->user, $this->CurrentPlanet, $Techno)){
 					$this->Research($Techno);
 
-					$this->log .= '	Investigar: '.$lang['tech'][$Techno].' al nivel '.($this->CurrentPlanet[$resource[$Techno]] + 1 )."\n";
+					if( ! is_null($this->log)) $this->log .= '	Investigar: '.$lang['tech'][$Techno].' al nivel '.($this->CurrentPlanet[$resource[$Techno]] + 1 )."\n";
 
 					break;
 				}
@@ -374,14 +377,14 @@ class Bot {
 		}
 	}
 	protected function Research($Techno){
-        if ( IsTechnologieAccessible($this->player, $this->CurrentPlanet, $Techno) && IsElementBuyable($this->player, $this->CurrentPlanet, $Techno) ) {
-			$costs                        = GetBuildingPrice($this->player, $this->CurrentPlanet, $Techno);
+        if ( IsTechnologieAccessible($this->user, $this->CurrentPlanet, $Techno) && IsElementBuyable($this->user, $this->CurrentPlanet, $Techno) ) {
+			$costs                        = GetBuildingPrice($this->user, $this->CurrentPlanet, $Techno);
 			$this->CurrentPlanet['metal']      -= $costs['metal'];
 			$this->CurrentPlanet['crystal']    -= $costs['crystal'];
 			$this->CurrentPlanet['deuterium']  -= $costs['deuterium'];
 			$this->CurrentPlanet["b_tech_id"]   = $Techno;
-			$this->CurrentPlanet["b_tech"]      = time() + GetBuildingTime($this->player, $this->CurrentPlanet, $Techno);
-			$this->player["b_tech_planet"] = $this->CurrentPlanet["id"];
+			$this->CurrentPlanet["b_tech"]      = time() + GetBuildingTime($this->user, $this->CurrentPlanet, $Techno);
+			$this->user["b_tech_planet"] = $this->CurrentPlanet["id"];
 
 			$QryUpdatePlanet  = "UPDATE {{table}} SET ";
 			$QryUpdatePlanet .= "`b_tech_id` = '".   $this->CurrentPlanet['b_tech_id']   ."', ";
@@ -391,9 +394,9 @@ class Bot {
 			doquery( $QryUpdatePlanet, 'planets');
 
 			$QryUpdateUser  = "UPDATE {{table}} SET ";
-			$QryUpdateUser .= "`b_tech_planet` = '". $this->player['b_tech_planet'] ."' ";
+			$QryUpdateUser .= "`b_tech_planet` = '". $this->user['b_tech_planet'] ."' ";
 			$QryUpdateUser .= "WHERE ";
-			$QryUpdateUser .= "`id` = '".            $this->player['id']            ."';";
+			$QryUpdateUser .= "`id` = '".            $this->user['id']            ."';";
 			doquery( $QryUpdateUser, 'users');
 		}
 	}
@@ -422,7 +425,7 @@ class Bot {
 				}else{
 					$Count = ceil($Count * $Value);
 				}
-				if(IsElementBuyable($this->player, $this->CurrentPlanet, $Element) and IsTechnologieAccessible($this->player, $this->CurrentPlanet, $Element)){
+				if(IsElementBuyable($this->user, $this->CurrentPlanet, $Element) and IsTechnologieAccessible($this->user, $this->CurrentPlanet, $Element)){
 					$this->HangarBuild($Element, $Count);
 				}
 			}
@@ -446,7 +449,7 @@ class Bot {
 				}else{
 					$Count = ceil($Count * $Value);
 				}
-				if( IsElementBuyable($this->player, $this->CurrentPlanet, $Element) and IsTechnologieAccessible($this->player, $this->CurrentPlanet, $Element)){
+				if( IsElementBuyable($this->user, $this->CurrentPlanet, $Element) and IsTechnologieAccessible($this->user, $this->CurrentPlanet, $Element)){
 					$this->HangarBuild($Element, $Count);
 
 				}
@@ -455,14 +458,14 @@ class Bot {
 	protected function HangarBuild($Element, $Count){
 		global $resource, $lang;
         $Ressource = $this->GetElementRessources ( $Element, $Count );
-		$BuildTime = GetBuildingTime($this->player,$this->CurrentPlanet, $Element, 1);
+		$BuildTime = GetBuildingTime($this->user,$this->CurrentPlanet, $Element, 1);
 		if (($Count >= 1 and $this->CurrentPlanet['b_hangar_id'] == "")) {
 			$this->CurrentPlanet['metal']           -= $Ressource['metal'];
 			$this->CurrentPlanet['crystal']         -= $Ressource['crystal'];
 			$this->CurrentPlanet['deuterium']       -= $Ressource['deuterium'];
 			$this->CurrentPlanet['b_hangar_id']     .= "". $Element .",". $Count .";";
 
-			$this->log .= '	Crear: '.$Count.' '.$lang['tech'][$Element]."\n";
+			if( ! is_null($this->log)) $this->log .= '	Crear: '.$Count.' '.$lang['tech'][$Element]."\n";
 
 		}
 	}
@@ -470,7 +473,7 @@ class Bot {
 		$_fleets = doquery("SELECT * FROM {{table}} WHERE (`fleet_start_time` <= '".time()."') OR (`fleet_end_time` <= '".time()."');", 'fleets'); //  OR fleet_end_time <= ".time()
 		while ($row =  mysql_fetch_array($_fleets)) {
 			//Actualizar solo flotas que afecten al jugador actual
-			if($row['fleet_owner'] == $this->player['id'] or $row['fleet_target_owner'] == $this->player['id']){
+			if($row['fleet_owner'] == $this->user['id'] or $row['fleet_target_owner'] == $this->user['id']){
 				$array                = array();
 				$array['galaxy']      = $row['fleet_start_galaxy'];
 				$array['system']      = $row['fleet_start_system'];
@@ -491,7 +494,7 @@ class Bot {
 	}
 	protected function HandleOtherFleets(){
 	global $resource, $reslist, $pricelist;
-		$_fleets = doquery("SELECT * FROM {{table}} WHERE `fleet_owner` != '".$this->player['id']."' AND `fleet_target_owner` = '".$this->player['id']."' AND `fleet_end_time` <= ".time().";", 'fleets');
+		$_fleets = doquery("SELECT * FROM {{table}} WHERE `fleet_owner` != '".$this->user['id']."' AND `fleet_target_owner` = '".$this->user['id']."' AND `fleet_end_time` <= ".time().";", 'fleets');
 		while ($row =  mysql_fetch_array($_fleets)) {
 			//Actualizar solo flotas que afecten al jugador actual
 			if(($row['fleet_mission'] == 1 or $row['fleet_mission'] == 2 or $row['fleet_mission'] == 9) and ($row['fleet_end_galaxy'] == $this->CurrentPlanet['galaxy'] and $row['fleet_end_system'] == $this->CurrentPlanet['system'] and $row['fleet_end_planet'] == $this->CurrentPlanet['planet'])){
@@ -508,9 +511,9 @@ class Bot {
 				$fleet = new FlyingFleetHandler ($array);
 				unset($fleet);
 				unset($array);
-				$planet = $this->player['planet'];
-				$system = $this->player['system'];
-				$galaxy = $this->player['galaxy'];
+				$planet = $this->user['planet'];
+				$system = $this->user['system'];
+				$galaxy = $this->user['galaxy'];
 				$fleetarray = array();
 				$totalships = 0;
 				foreach($reslist['fleet'] as $Element){
@@ -520,11 +523,11 @@ class Bot {
 					}
 				}
 				if($totalships > 0){
-				$AllFleetSpeed  = GetFleetMaxSpeed ($fleetarray, 0, $this->player);
+				$AllFleetSpeed  = GetFleetMaxSpeed ($fleetarray, 0, $this->user);
 				$MaxFleetSpeed  = min($AllFleetSpeed);
 				$distance      = GetTargetDistance ( $this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet );
 				$duration      = GetMissionDuration ( 1, $MaxFleetSpeed, $distance, GetGameSpeedFactor () );
-				$consumption   = GetFleetConsumption ( $fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->player );
+				$consumption   = GetFleetConsumption ( $fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user );
 				$StayDuration    = 0;
 				$StayTime        = 0;
 				$fleet['start_time'] = $duration + time();
@@ -562,7 +565,7 @@ class Bot {
 					$FleetStorage      = $FleetStorage - $Mining['deuterium'];
 				}
 				$QryInsertFleet  = "INSERT INTO {{table}} SET ";
-				$QryInsertFleet .= "`fleet_owner` = '". $this->player['id'] ."', ";
+				$QryInsertFleet .= "`fleet_owner` = '". $this->user['id'] ."', ";
 				$QryInsertFleet .= "`fleet_mission` = '4', ";
 				$QryInsertFleet .= "`fleet_amount` = '". $FleetShipCount ."', ";
 				$QryInsertFleet .= "`fleet_array` = '". $fleet_array2 ."', ";
@@ -615,11 +618,11 @@ class Bot {
 			$Colo = doquery("SELECT count(*) AS `total` FROM {{table}} WHERE `galaxy` = '".$galaxy."' AND `system` = '".$system."' AND `planet` = '".$planet."' AND `planet_type` = '1';", 'planets', true);
 			if($Colo['total'] == 0){
 				$fleetarray         = array(208 => 1);
-				$AllFleetSpeed  = GetFleetMaxSpeed ($fleetarray, 0, $this->player);
+				$AllFleetSpeed  = GetFleetMaxSpeed ($fleetarray, 0, $this->user);
 				$MaxFleetSpeed  = min($AllFleetSpeed);
 				$distance      = GetTargetDistance ( $this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet );
 				$duration      = GetMissionDuration ( 10, $MaxFleetSpeed, $distance, GetGameSpeedFactor () );
-				$consumption   = GetFleetConsumption ( $fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->player );
+				$consumption   = GetFleetConsumption ( $fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user );
 				$StayDuration    = 0;
 				$StayTime        = 0;
 				$fleet['start_time'] = $duration + time();
@@ -636,7 +639,7 @@ class Bot {
 				}
 
 				$QryInsertFleet  = "INSERT INTO {{table}} SET ";
-				$QryInsertFleet .= "`fleet_owner` = '". $this->player['id'] ."', ";
+				$QryInsertFleet .= "`fleet_owner` = '". $this->user['id'] ."', ";
 				$QryInsertFleet .= "`fleet_mission` = '7', ";
 				$QryInsertFleet .= "`fleet_amount` = '". $FleetShipCount ."', ";
 				$QryInsertFleet .= "`fleet_array` = '". $fleet_array2 ."', ";
@@ -673,9 +676,9 @@ class Bot {
 	}
 	protected function GetFleet(){
 		global $resource, $reslist, $pricelist;
-			$planet = $this->player['planet'];
-			$system = $this->player['system'];
-			$galaxy = $this->player['galaxy'];
+			$planet = $this->user['planet'];
+			$system = $this->user['system'];
+			$galaxy = $this->user['galaxy'];
 			$fleetarray = array();
 			$totalships = 0;
 			foreach($reslist['fleet'] as $Element){
@@ -685,11 +688,11 @@ class Bot {
 				}
 			}
 			if(($this->CurrentPlanet[$resource[21]] <= 5 and $totalships > 150) or $totalships > 5000){
-				$AllFleetSpeed  = GetFleetMaxSpeed ($fleetarray, 0, $this->player);
+				$AllFleetSpeed  = GetFleetMaxSpeed ($fleetarray, 0, $this->user);
 				$MaxFleetSpeed  = min($AllFleetSpeed);
 				$distance      = GetTargetDistance ( $this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet );
 				$duration      = GetMissionDuration ( 10, $MaxFleetSpeed, $distance, GetGameSpeedFactor () );
-				$consumption   = GetFleetConsumption ( $fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->player );
+				$consumption   = GetFleetConsumption ( $fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user );
 				$StayDuration    = 0;
 				$StayTime        = 0;
 				$fleet['start_time'] = $duration + time();
@@ -728,7 +731,7 @@ class Bot {
 					$FleetStorage      = $FleetStorage - $Mining['deuterium'];
 				}
 				$QryInsertFleet  = "INSERT INTO {{table}} SET ";
-				$QryInsertFleet .= "`fleet_owner` = '". $this->player['id'] ."', ";
+				$QryInsertFleet .= "`fleet_owner` = '". $this->user['id'] ."', ";
 				$QryInsertFleet .= "`fleet_mission` = '4', ";
 				$QryInsertFleet .= "`fleet_amount` = '". $FleetShipCount ."', ";
 				$QryInsertFleet .= "`fleet_array` = '". $fleet_array2 ."', ";
@@ -771,10 +774,10 @@ class Bot {
 		doquery( $QryUpdatePlanet, 'planets');
 	}
 	protected function Update(){
-		//UpdatePlanet($this->CurrentPlanet, $this->player, time(), true);
-       UpdatePlanetBatimentQueueList ( $this->CurrentPlanet, $this->player );
-       HandleTechnologieBuild($this->CurrentPlanet,$this->player);
-		PlanetResourceUpdate ( $this->player, $this->CurrentPlanet, time() );
+		//UpdatePlanet($this->CurrentPlanet, $this->user, time(), true);
+       UpdatePlanetBatimentQueueList ( $this->CurrentPlanet, $this->user );
+       HandleTechnologieBuild($this->CurrentPlanet,$this->user);
+		PlanetResourceUpdate ( $this->user, $this->CurrentPlanet, time() );
 	}
 	protected function End($planetid){
 		$QryUpdateUser  = "UPDATE {{table}} SET ";
@@ -782,7 +785,7 @@ class Bot {
 		$QryUpdateUser .= "`user_lastip` = 'BOT', ";
 		$QryUpdateUser .= "`user_agent` = 'Bot v". $this->VERSION ."' ";
 		$QryUpdateUser .= "WHERE ";
-		$QryUpdateUser .= "`id` = '". $this->player['id'] ."' LIMIT 1;";
+		$QryUpdateUser .= "`id` = '". $this->user['id'] ."' LIMIT 1;";
 		doquery($QryUpdateUser, 'users');
 		$QryUpdateBot  = " UPDATE {{table}} SET ";
 		$QryUpdateBot .= "`last_time` = '". time() ."', ";

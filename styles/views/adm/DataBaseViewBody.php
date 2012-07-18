@@ -1,11 +1,10 @@
-<script>document.body.style.overflow = "auto";</script> 
 <body>
 <form action="" method="post">
 <table width="50%">
 <tr>
     <td class="c" colspan="2">{od_opt_db}</td>
 </tr>
- {tabla} 
+ {tabla}
 <tr>
     <th colspan="2">
 	<input value="{od_optimize}" type="submit" name="Optimize">&nbsp

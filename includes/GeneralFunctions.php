@@ -187,16 +187,9 @@ function AdminUserHeader ($metatags = '')
 	$parse	= array();
 
 	if (!defined('IN_ADMIN'))
-	{
 		$parse['-title-'] 	= 	"xNova - Instalación";
-		$parse['overflow']	=	"auto";
-	}
 	else
-	{
 		$parse['-title-'] 	= 	read_config ( 'game_name' ) . " - Admin CP";
-		$parse['overflow']	=	"hidden";
-	}
-
 
 	$parse['-favi-']	 = 	"<link rel=\"shortcut icon\" href=\"./../favicon.ico\">\n";
 	$parse['-style-']	 =	"<link rel=\"stylesheet\" type=\"text/css\" href=\"./../styles/css/admin.css\">\n";
@@ -308,7 +301,7 @@ function catch_error($errno , $errstr, $errfile, $errline)
 	if( ! isset($link) OR ! $link)
 	{
 		include(XGP_ROOT.'config.php');
-		
+
 		if (isset($dbsettings))
 		{
 			$link = mysql_connect(

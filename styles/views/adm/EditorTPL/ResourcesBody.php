@@ -1,5 +1,4 @@
-<script>document.body.style.overflow = "auto";</script>
-<SCRIPT TYPE="text/javascript" SRC="../js/filterlist-min.js"></SCRIPT>
+<script type="text/javascript" src="../js/filterlist-min.js"></script>
 <body>
 <br />
 <form action="" method="post">

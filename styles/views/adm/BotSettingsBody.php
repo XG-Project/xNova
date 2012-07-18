@@ -1,4 +1,3 @@
-<script>document.body.style.overflow = "auto";</script>
 <body>
 <table width="700">
 	<tr>

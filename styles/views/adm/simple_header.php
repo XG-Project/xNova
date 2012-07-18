@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 <title>{-title-}</title>
@@ -5,4 +6,3 @@
 {-style-}
 {-meta-}
 </head>
-<body style="overflow: {overflow};" onLoad="onBodyLoad();" onUnload="" >

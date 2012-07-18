@@ -1,4 +1,3 @@
-<script>document.body.style.overflow = "auto";</script>
 <body>
 <form method="post" action="">
 	<br />

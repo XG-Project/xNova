@@ -1,5 +1,4 @@
-<script>document.body.style.overflow = "auto";</script>
-<SCRIPT TYPE="text/javascript" SRC="../js/filterlist.js"></SCRIPT>
+<script TYPE="text/javascript" SRC="../js/filterlist.js"></script>
 <body>
 <form action="" method="GET" name="users">
 <table border="0px" style="background:url(./../styles/images/Adm/blank.gif);" width="60%">

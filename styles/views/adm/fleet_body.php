@@ -1,4 +1,3 @@
-<script>document.body.style.overflow = "auto";</script> 
 <body>
 <h1>{ff_flying_fleets}</h1>
 <table width="90%">

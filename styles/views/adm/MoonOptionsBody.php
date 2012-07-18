@@ -1,4 +1,3 @@
-<script>document.body.style.overflow = "auto";</script> 
 <body>
 <h2>{new_creator_title_l}</h2>
 <form action="" method="post">
@@ -23,7 +22,7 @@
 <tr>
 	<th>{mo_temperature}</th>
 	<th colspan="2">
-	<input type="text" name="temp_min" size="2" maxlength="3"> / 
+	<input type="text" name="temp_min" size="2" maxlength="3"> /
 	<input type="text" name="temp_max" size="2" maxlength="3">
 	<input type="checkbox" checked="checked" name="temp_check"> (Random)</th>
 </tr>

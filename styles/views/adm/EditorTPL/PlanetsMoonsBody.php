@@ -1,4 +1,3 @@
-<script>document.body.style.overflow = "auto";</script>
 <body>
 <br />
 <form action="" method="post">
@@ -43,8 +42,8 @@
 </tr><tr>
 	<th><a href="#" onMouseOver='return overlib("{ad_pla_title_l}", CENTER, OFFSETX, 120, OFFSETY, -40, WIDTH, 250);' onMouseOut='return nd();' class="big">{ad_pla_change_p}</a></th>
 	<th><input name="change_position" type="checkbox" title="{ad_pla_change_pp}"/>
-	<input name="g" type="text" size="1" maxlength="1"/> : 
-	<input name="s" type="text" size="3" maxlength="3"/> : 
+	<input name="g" type="text" size="1" maxlength="1"/> :
+	<input name="s" type="text" size="3" maxlength="3"/> :
 	<input name="p" type="text" size="2" maxlength="2"/></th>
 </tr><tr>
 	<th colspan="3"><input type="Submit" value="{button_submit}"/>&nbsp;

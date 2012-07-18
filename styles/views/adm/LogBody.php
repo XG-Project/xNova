@@ -1,4 +1,3 @@
-<script>document.body.style.overflow = "auto";</script>
 <body>
 <h2>{setarchive} {setsize}</h2>
 <table width="50%">

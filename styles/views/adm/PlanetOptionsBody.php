@@ -1,4 +1,3 @@
-<script>document.body.style.overflow = "auto";</script> 
 <body>
 <h2>{new_creator_title_p}</h2>
 <form action="" method="post">
@@ -11,7 +10,7 @@
    <th><input name="id" type="text" size="4"/></th>
 </tr><tr>
    <th>{new_creator_coor}</th>
-   <th><input name="galaxy" type="text" size="3" maxlength="1" 
+   <th><input name="galaxy" type="text" size="3" maxlength="1"
    onMouseOver='return overlib("{po_galaxy}", CENTER, OFFSETX, 0, OFFSETY, -40);' onMouseOut='return nd();'/>&nbsp; :
    <input name="system" type="text" size="3" maxlength="3"
    onMouseOver='return overlib("{po_system}", CENTER, OFFSETX, 0, OFFSETY, -40);' onMouseOut='return nd();'//>&nbsp; :

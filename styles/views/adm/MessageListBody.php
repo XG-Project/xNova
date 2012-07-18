@@ -15,20 +15,19 @@ function checkedAll (frm1) {
           {
           checked = false
           }
-	for (var i =0; i < aa.elements.length; i++) 
+	for (var i =0; i < aa.elements.length; i++)
 	{
 	 aa.elements[i].checked = checked;
 	}
 }
 </script>
-<script>document.body.style.overflow = "auto";</script> 
 <body>
 <h1>{ml_message_list}</h1>
 <form action="" method="post" id ="select_all">
 <input type="hidden" name="curr" value="{mlst_data_page}">
 <input type="hidden" name="pmax" value="{mlst_data_pagemax}">
 <input type="hidden" name="sele" value="{mlst_data_sele}">
-   	<table width="90%" border="0" cellspacing="1" cellpadding="1">   
+   	<table width="90%" border="0" cellspacing="1" cellpadding="1">
 		<tr>
             <td class="c">{ml_page}</td>
             <td class="c">{ml_type}</td>
@@ -46,15 +45,15 @@ function checkedAll (frm1) {
             </select>
             </th>
 			<th>
-			<input type="text" name="selday" onClick="if(this.value == 'dd') this.value = '';" onBlur="if(this.value == '') this.value= 'dd';" value="dd" size="3" maxlength="2" /> 
-			<input type="text" name="selmonth" onClick="if(this.value == 'mm') this.value = '';" onBlur="if(this.value == '') this.value= 'mm';" value="mm" size="3"  maxlength="2"/> 
+			<input type="text" name="selday" onClick="if(this.value == 'dd') this.value = '';" onBlur="if(this.value == '') this.value= 'dd';" value="dd" size="3" maxlength="2" />
+			<input type="text" name="selmonth" onClick="if(this.value == 'mm') this.value = '';" onBlur="if(this.value == '') this.value= 'mm';" value="mm" size="3"  maxlength="2"/>
 			<input type="text" name="selyear" onClick="if(this.value == 'yyyy') this.value = '';" onBlur="if(this.value == '') this.value= 'yyyy';" value="yyyy" size="6"  maxlength="4"/></th>
-        </tr> 
+        </tr>
 		<tr>
             <th><input type="submit" name="prev" value="[ &lt;- ]" />&nbsp;<input type="submit" name="next" value="[ -&gt; ]" /></th>
             <th><input type="submit" name="delsel" value="{ml_dlte_selection}" /></th>
 			<th><input type="submit" name="deldat" value="{ml_dlte_since_button}" /></th>
-        </tr>   
+        </tr>
         <tr>
             <th colspan="3">
                 <table width="100%" border="0" cellspacing="1" cellpadding="1">

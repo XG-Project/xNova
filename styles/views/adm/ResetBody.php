@@ -1,8 +1,7 @@
-<script>document.body.style.overflow = "auto";</script>
 <style>
 th{text-align:left;}
 .grand{font-size:14px;}
-</style> 
+</style>
 <body>
 <form action="" method="post">
 <table width="40%">

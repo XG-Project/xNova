@@ -1,7 +1,5 @@
-<script>document.body.style.overflow = "auto";</script>
 <body>
-<!DOCTYPE HTML>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="../js/animatedcollapse-min.js"></script>
 <script type="text/javascript">
 animatedcollapse.addDiv('search', 'fade=1,height=auto')

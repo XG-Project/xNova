@@ -1,4 +1,3 @@
-<script>document.body.style.overflow = "auto";</script>
 <style>
 th{border:0px;text-align:left;height:50px;}a{font-size:13px;}a:hover{font-size:14px;}</style>
 <body>

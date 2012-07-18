@@ -1,4 +1,3 @@
-<script>document.body.style.overflow = "auto";</script>
 <style>input{text-align:center;}.red{color:#FF3300;}</style>
 <body>
 <form action="" method="post">

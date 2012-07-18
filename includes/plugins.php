@@ -17,7 +17,7 @@ function phpself()
 		$file['filename'] = substr($file['basename'], 0, strlen($file['basename']) - strlen($file['extension']) - 1);
 	}
 
-	if (basename(XGP_ROOT) != '.')
+	if (basename(XN_ROOT) != '.')
 	{
 		return basename($file['dirname']).'/'.$file['filename'];
 	}
@@ -105,7 +105,7 @@ function AdmPlugin($name, $desc)
 }
 
 $config_line  		= "";
-$plugins_path 		= XGP_ROOT . 'includes/plugins/';
+$plugins_path 		= XN_ROOT . 'includes/plugins/';
 $plugins_version 	= '0.3';
 $plugins_hooks 		= array();
 

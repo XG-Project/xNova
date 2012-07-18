@@ -9,10 +9,10 @@
 define('INSIDE'  , TRUE);
 define('INSTALL' , FALSE);
 define('IN_ADMIN', TRUE);
-define('XGP_ROOT', './../');
+define('XN_ROOT', './../');
 
-include(XGP_ROOT . 'global.php');
-include(XGP_ROOT . 'adm/statfunctions.php');
+include(XN_ROOT . 'global.php');
+include(XN_ROOT . 'adm/statfunctions.php');
 
 if ($user['authlevel'] < 2) die(message ($lang['not_enough_permissions']));
 

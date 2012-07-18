@@ -8,7 +8,7 @@
 
 if(!defined('INSIDE')){ die(header("location:../../"));}
 
-include_once(XGP_ROOT . 'includes/classes/class.GalaxyRows.php');
+include_once(XN_ROOT . 'includes/classes/class.GalaxyRows.php');
 
 class ShowGalaxyPage extends GalaxyRows
 {

@@ -9,9 +9,9 @@
 define('INSIDE'  , TRUE);
 define('INSTALL' , FALSE);
 define('IN_ADMIN', TRUE);
-define('XGP_ROOT', './../');
+define('XN_ROOT', './../');
 
-include(XGP_ROOT . 'global.php');
+include(XN_ROOT . 'global.php');
 
 if ($EditUsers != 1) die(message ($lang['404_page']));
 
@@ -45,8 +45,8 @@ switch ($_GET[page])
 		$auth		= isset($_POST['authlevel']) ? $_POST['authlevel'] : NULL;
 		$bot_time	= isset($_POST['bot_time']) ? $_POST['bot_time'] : NULL;
 
-		$CheckUser = doquery("SELECT `username` FROM {{table}} WHERE `username` = '" . mysql_escape_string($_POST['name']) . "' LIMIT 1", "users", TRUE);
-		$CheckMail = doquery("SELECT `email` FROM {{table}} WHERE `email` = '" . mysql_escape_string($_POST['email']) . "' LIMIT 1", "users", TRUE);
+		$CheckUser = doquery("SELECT `username` FROM {{table}} WHERE `username` = '" . mysql_real_escape_string($_POST['name']) . "' LIMIT 1", "users", TRUE);
+		$CheckMail = doquery("SELECT `email` FROM {{table}} WHERE `email` = '" . mysql_real_escape_string($_POST['email']) . "' LIMIT 1", "users", TRUE);
 		$CheckRows = doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' AND `system` = '".$system."' AND `planet` = '".$planet."' LIMIT 1", "galaxy", TRUE);
 
 
@@ -87,9 +87,9 @@ switch ($_GET[page])
 
 		if ($i	==	'0'){
 			$Query1  = "INSERT INTO {{table}} SET ";
-			$Query1 .= "`username` = '" . mysql_escape_string(strip_tags($name)) . "', ";
-			$Query1 .= "`email` = '" . mysql_escape_string($email) . "', ";
-			$Query1 .= "`email_2` = '" . mysql_escape_string($email) . "', ";
+			$Query1 .= "`username` = '" . mysql_real_escape_string(strip_tags($name)) . "', ";
+			$Query1 .= "`email` = '" . mysql_real_escape_string($email) . "', ";
+			$Query1 .= "`email_2` = '" . mysql_real_escape_string($email) . "', ";
 			$Query1 .= "`ip_at_reg` = '" . $_SERVER["REMOTE_ADDR"] . "', ";
 			$Query1 .= "`id_planet` = '0', ";
 			$Query1 .= "`register_time` = '" .$time. "', ";
@@ -100,7 +100,7 @@ switch ($_GET[page])
 
 			update_config ( 'users_amount' , read_config ( 'users_amount' ) + 1 );
 
-			$ID_USER 	= doquery("SELECT `id` FROM {{table}} WHERE `username` = '" . mysql_escape_string($name) . "' LIMIT 1", "users", TRUE);
+			$ID_USER 	= doquery("SELECT `id` FROM {{table}} WHERE `username` = '" . mysql_real_escape_string($name) . "' LIMIT 1", "users", TRUE);
 
 			CreateOnePlanetRecord ($galaxy, $system, $planet, $ID_USER['id'], $UserPlanet, TRUE);
 

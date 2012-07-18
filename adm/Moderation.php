@@ -10,9 +10,9 @@
 define('INSIDE'  , TRUE);
 define('INSTALL' , FALSE);
 define('IN_ADMIN', TRUE);
-define('XGP_ROOT', './../');
+define('XN_ROOT', './../');
 
-include(XGP_ROOT . 'global.php');
+include(XN_ROOT . 'global.php');
 
 if ($user['authlevel'] < 3) die(message ($lang['404_page']));
 

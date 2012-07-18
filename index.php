@@ -9,11 +9,11 @@
 define('INSIDE'  , TRUE);
 define('INSTALL' , FALSE);
 define('LOGIN'   , TRUE);
-define('XGP_ROOT',	'./');
+define('XN_ROOT',	'./');
 
 $InLogin = TRUE;
 
-include(XGP_ROOT . 'global.php');
+include(XN_ROOT . 'global.php');
 
 includeLang ( 'PUBLIC' );
 $parse = $lang;
@@ -69,7 +69,7 @@ switch ($page)
 	default:
 		if ($_POST)
 		{
-			$login = doquery("SELECT `id`,`username`,`password`,`banaday` FROM {{table}} WHERE `username` = '" . mysql_escape_string($_POST['username']) . "' AND `password` = '" . sha1($_POST['password']) . "' LIMIT 1", "users", TRUE);
+			$login = doquery("SELECT `id`,`username`,`password`,`banaday` FROM {{table}} WHERE `username` = '" . mysql_real_escape_string($_POST['username']) . "' AND `password` = '" . sha1($_POST['password']) . "' LIMIT 1", "users", TRUE);
 
 			if($login['banaday'] <= time() && $login['banaday'] != '0')
 			{

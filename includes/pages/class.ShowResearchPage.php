@@ -56,8 +56,8 @@ class ShowResearchPage
 	{
 		global $lang, $resource, $reslist, $_GET;
 
-		include_once(XGP_ROOT . 'includes/functions/IsTechnologieAccessible.php');
-		include_once(XGP_ROOT . 'includes/functions/GetElementPrice.php');
+		include_once(XN_ROOT . 'includes/functions/IsTechnologieAccessible.php');
+		include_once(XN_ROOT . 'includes/functions/GetElementPrice.php');
 
 		$PageParse			= $lang;
 		$NoResearchMessage 	= "";

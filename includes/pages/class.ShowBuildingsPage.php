@@ -343,9 +343,9 @@ class ShowBuildingsPage
 	{
 		global $ProdGrid, $lang, $resource, $reslist, $_GET;
 
-		include_once(XGP_ROOT . 'includes/functions/IsTechnologieAccessible.php');
-		include_once(XGP_ROOT . 'includes/functions/GetElementPrice.php');
-		include_once(XGP_ROOT . 'includes/functions/CheckPlanetUsedFields.php');
+		include_once(XN_ROOT . 'includes/functions/IsTechnologieAccessible.php');
+		include_once(XN_ROOT . 'includes/functions/GetElementPrice.php');
+		include_once(XN_ROOT . 'includes/functions/CheckPlanetUsedFields.php');
 
 		CheckPlanetUsedFields ( $CurrentPlanet );
 
@@ -544,7 +544,7 @@ class ShowBuildingsPage
 
 		if ($Queue['lenght'] > 0)
 		{
-			include(XGP_ROOT . 'includes/functions/InsertBuildListScript.php');
+			include(XN_ROOT . 'includes/functions/InsertBuildListScript.php');
 
 			$parse['BuildListScript']  = InsertBuildListScript ("buildings");
 			$parse['BuildList']        = $Queue['buildlist'];

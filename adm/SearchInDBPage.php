@@ -9,9 +9,9 @@
 define('INSIDE'  , TRUE);
 define('INSTALL' , FALSE);
 define('IN_ADMIN', TRUE);
-define('XGP_ROOT', './../');
+define('XN_ROOT', './../');
 
-include(XGP_ROOT . 'global.php');
+include(XN_ROOT . 'global.php');
 include('AdminFunctions/Autorization.php');
 
 if ($Observation != 1) die();

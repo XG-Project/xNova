@@ -9,9 +9,9 @@
 define('INSIDE'  , TRUE);
 define('INSTALL' , FALSE);
 define('IN_ADMIN', TRUE);
-define('XGP_ROOT', './../');
+define('XN_ROOT', './../');
 
-include(XGP_ROOT . 'global.php');
+include(XN_ROOT . 'global.php');
 
 if ($Observation != 1) die(message ($lang['404_page']));
 
@@ -213,7 +213,7 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 }
 
 // BORRADO
-include_once(XGP_ROOT . 'includes/functions/DeleteSelectedUser.php');
+include_once(XN_ROOT . 'includes/functions/DeleteSelectedUser.php');
 if ($_GET['delete'] == 'user'){
 	DeleteSelectedUser ($_GET['user']);
 	$Log	.=	"\n".$lang['log_searchindb_del1'].$_GET['user'].$lang['log_searchindb_del2'].$user['username']."\n";

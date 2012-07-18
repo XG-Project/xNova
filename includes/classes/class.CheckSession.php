@@ -16,7 +16,7 @@ class CheckSession
 
         $UserRow = array();
 
-        include(XGP_ROOT . 'config.php');
+        include(XN_ROOT . 'config.php');
 
     	$game_cookie	=	read_config ( 'cookie_name' );
 
@@ -25,7 +25,7 @@ class CheckSession
             $TheCookie	= explode("/%/", $_COOKIE[$game_cookie]);
 
             // START FIX BY JSTAR
-            $TheCookie	= array_map ( 'mysql_escape_string' , $TheCookie );
+            $TheCookie	= array_map ( 'mysql_real_escape_string' , $TheCookie );
             // END FIX BY JSTAR
 
             // BETTER QUERY BY LUCKY! REDUCE GENERAL QUERY FROM 11 TO 10.
@@ -37,19 +37,19 @@ class CheckSession
 
             if (mysql_num_rows($UserResult) != 1)
             {
-                message($lang['ccs_multiple_users'], XGP_ROOT, 5, FALSE, FALSE);
+                message($lang['ccs_multiple_users'], XN_ROOT, 5, FALSE, FALSE);
             }
 
             $UserRow    = mysql_fetch_array($UserResult);
 
             if ($UserRow["id"] != $TheCookie[0])
             {
-                message($lang['ccs_other_user'], XGP_ROOT, 5,  FALSE, FALSE);
+                message($lang['ccs_other_user'], XN_ROOT, 5,  FALSE, FALSE);
             }
 
             if (md5($UserRow["password"] . "--" . $dbsettings["secretword"]) !== $TheCookie[2])
             {
-                message($lang['css_different_password'], XGP_ROOT, 5,  FALSE, FALSE);
+                message($lang['css_different_password'], XN_ROOT, 5,  FALSE, FALSE);
             }
 
             $NextCookie = implode("/%/", $TheCookie);

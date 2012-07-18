@@ -134,7 +134,7 @@ function MakeStats()
 
 	if($ChooseToDelete)
 	{
-		include_once(XGP_ROOT . 'includes/functions/DeleteSelectedUser.php');
+		include_once(XN_ROOT . 'includes/functions/DeleteSelectedUser.php');
 
 		while($delete = mysql_fetch_array($ChooseToDelete))
 		{

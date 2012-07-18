@@ -36,10 +36,10 @@ Este archivo controla los bots. Amplia edificios, almacenes, investigaciones, cr
 
 */
 
-include_once(XGP_ROOT.'includes/functions/IsTechnologieAccessible.php');
-include_once(XGP_ROOT.'includes/functions/GetElementPrice.php');
-include_once(XGP_ROOT.'includes/functions/HandleTechnologieBuild.php');
-include_once(XGP_ROOT.'includes/functions/CheckPlanetUsedFields.php');
+include_once(XN_ROOT.'includes/functions/IsTechnologieAccessible.php');
+include_once(XN_ROOT.'includes/functions/GetElementPrice.php');
+include_once(XN_ROOT.'includes/functions/HandleTechnologieBuild.php');
+include_once(XN_ROOT.'includes/functions/CheckPlanetUsedFields.php');
 
 function scmp( $a, $b ) {
 	 mt_srand((double)microtime()*1000000);
@@ -111,7 +111,7 @@ function UpdateBots(){
 
 		if(isset($BotLog))
 		{
-			$st		= fopen(XGP_ROOT."adm/Log/BotLog.php", "a");
+			$st		= fopen(XN_ROOT."adm/Log/BotLog.php", "a");
 			$BotLog	.= 'Bots actualizados a las '.date('H:i:s - j/n/Y')."\n";
 			$BotLog	.= "------------------------------------------";
 			fwrite($st, $BotLog);
@@ -988,10 +988,10 @@ class BotDatabase{
 	private $SQLite;
 
 	function __construct($Database){
-		global $xgp_root;
-		if( ! file_exists(XGP_ROOT.'includes/bots/'.$Database.'.botdb'))
+		global $XN_ROOT;
+		if( ! file_exists(XN_ROOT.'includes/bots/'.$Database.'.botdb'))
 		{
-			$this->SQLite = new SQLite3(XGP_ROOT.'includes/bots/'.$Database.'.botdb');
+			$this->SQLite = new SQLite3(XN_ROOT.'includes/bots/'.$Database.'.botdb');
 			$this->SQLite->query("CREATE TABLE [actions] (
 				[id] INTEGER  NOT NULL PRIMARY KEY,
 				[function] TEXT  NOT NULL,
@@ -1018,7 +1018,7 @@ class BotDatabase{
 		}
 		else
 		{
-			$this->SQLite = new SQLite3(XGP_ROOT.'includes/bots/'.$Database.'.botdb');
+			$this->SQLite = new SQLite3(XN_ROOT.'includes/bots/'.$Database.'.botdb');
 		}
 	}
 

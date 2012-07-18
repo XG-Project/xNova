@@ -8,14 +8,14 @@
 
 define('INSIDE'  , TRUE);
 define('INSTALL' , FALSE);
-define('XGP_ROOT',	'./');
+define('XN_ROOT',	'./');
 
-include(XGP_ROOT . 'global.php');
+include(XN_ROOT . 'global.php');
 
 includeLang('INGAME');
 $Page .= "<div id=\"content\">";
 
-$raportrow 	= doquery("SELECT * FROM {{table}} WHERE `rid` = '".(mysql_escape_string($_GET["raport"]))."';", 'rw', TRUE);
+$raportrow 	= doquery("SELECT * FROM {{table}} WHERE `rid` = '".(mysql_real_escape_string($_GET["raport"]))."';", 'rw', TRUE);
 
 
 $owners	= explode(",", $raportrow["owners"]);

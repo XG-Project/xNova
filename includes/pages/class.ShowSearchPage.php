@@ -17,7 +17,7 @@ class ShowSearchPage
 		$parse 	= $lang;
 		$type 	= $_POST['type'];
 
-		$searchtext = mysql_escape_string($_POST["searchtext"]);
+		$searchtext = mysql_real_escape_string($_POST["searchtext"]);
 		//queries fixed by Jstar
 		if ( $_POST )
 		{

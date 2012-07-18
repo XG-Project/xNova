@@ -59,7 +59,7 @@ class FlyingFleetHandler
 
 		$AllCapacity    = array_sum($SortFleets);
 		$QryUpdateFleet    = "";
-		
+
 		if ( $AllCapacity != 0 )
 		{
 			foreach($SortFleets as $FleetID => $Capacity)
@@ -71,7 +71,7 @@ class FlyingFleetHandler
 				$QryUpdateFleet .= 'WHERE fleet_id = '.$FleetID.' ';
 				$QryUpdateFleet .= 'LIMIT 1;';
 				doquery($QryUpdateFleet, 'fleets');
-	
+
 			}
 		}
 		else
@@ -808,7 +808,7 @@ class FlyingFleetHandler
 			$QryInsertRapport .= '`owners` = "'.implode(',', $users2).'", ';
 			$QryInsertRapport .= '`rid` = "'. $rid .'", ';
 			$QryInsertRapport .= '`a_zestrzelona` = "'.$formatted_cr['destroyed'].'", ';
-			$QryInsertRapport .= '`raport` = "'. mysql_escape_string( $raport ) .'"';
+			$QryInsertRapport .= '`raport` = "'. mysql_real_escape_string( $raport ) .'"';
 			doquery($QryInsertRapport,'rw') or die("Error inserting CR to database".mysql_error()."<br /><br />Trying to execute:".mysql_query());
 
 			if($result['won'] == "a")

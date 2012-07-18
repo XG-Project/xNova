@@ -14,9 +14,9 @@ class ShowOverviewPage
 	{
 		global $planetrow, $lang;
 
-		include_once (XGP_ROOT . 'includes/functions/InsertJavaScriptChronoApplet.php');
-		include_once (XGP_ROOT . 'includes/classes/class.FlyingFleetsTable.php');
-		include_once (XGP_ROOT . 'includes/functions/CheckPlanetUsedFields.php');
+		include_once (XN_ROOT . 'includes/functions/InsertJavaScriptChronoApplet.php');
+		include_once (XN_ROOT . 'includes/classes/class.FlyingFleetsTable.php');
+		include_once (XN_ROOT . 'includes/functions/CheckPlanetUsedFields.php');
 
 		$FlyingFleetsTable = new FlyingFleetsTable();
 
@@ -45,7 +45,7 @@ class ShowOverviewPage
 
 				if(isset($_POST['action']) && $_POST['action'] == $lang['ov_planet_rename_action'])
 				{
-					$newname = mysql_escape_string(strip_tags(trim($_POST['newname'])));
+					$newname = mysql_real_escape_string(strip_tags(trim($_POST['newname'])));
 
 					if(preg_match("/[^A-z0-9_\- ]/",$newname) == 1)
 					{
@@ -369,7 +369,7 @@ class ShowOverviewPage
 
 				if($CurrentPlanet['b_building'] != 0)
 				{
-					include (XGP_ROOT . 'includes/functions/InsertBuildListScript.php');
+					include (XN_ROOT . 'includes/functions/InsertBuildListScript.php');
 
 					UpdatePlanetBatimentQueueList($planetrow,$CurrentUser);
 					if($CurrentPlanet['b_building'] != 0)

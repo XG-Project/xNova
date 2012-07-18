@@ -113,13 +113,13 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 
 	if ($topnav)
 	{
-		include_once(XGP_ROOT . 'includes/functions/ShowTopNavigationBar.php');
+		include_once(XN_ROOT . 'includes/functions/ShowTopNavigationBar.php');
 		$DisplayPage .= ShowTopNavigationBar( $user, $planetrow );
 	}
 
 	if ($menu && !$AdminPage)
 	{
-		include_once(XGP_ROOT . 'includes/functions/ShowLeftMenu.php');
+		include_once(XN_ROOT . 'includes/functions/ShowLeftMenu.php');
 		$DisplayPage .= ShowLeftMenu ($user);
 	}
 
@@ -128,7 +128,7 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 	if(!defined('LOGIN') && isset($_GET['page']) && $_GET['page'] != 'galaxy')
 		$DisplayPage .= parsetemplate ( gettemplate ( 'general/footer' ) , array());
 
-	if ( isset($user['authlevel']) && $user['authlevel'] == 3 && read_config ( 'debug' ) == 1 && !$AdminPage )
+	if ( isset($user['authlevel']) && $user['authlevel'] == 3 && read_config ( 'debug' ) == 1 && !$AdminPage)
 	{
 		// Convertir a objeto dom
 		$DisplayPage = str_get_html($DisplayPage);
@@ -137,7 +137,7 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 		$content = $DisplayPage->find("div#content", 0);
 
 		// Contenido debug
-		$content->innertext .= $debug->echo_log();
+		if ( ! empty($content)) $content->innertext .= $debug->echo_log();
 	}
 
 	echo $DisplayPage;
@@ -225,14 +225,14 @@ function parsetemplate ( $template , $array )
 
 function gettemplate ( $templatename )
 {
-	return @file_get_contents ( XGP_ROOT . TEMPLATE_DIR . '/' . $templatename . '.php' );
+	return @file_get_contents ( XN_ROOT . TEMPLATE_DIR . '/' . $templatename . '.php' );
 }
 
 function includeLang ( $filename )
 {
 	global $lang;
 
-	include ( XGP_ROOT . "language/" . DEFAULT_LANG ."/". $filename . '.php' );
+	include ( XN_ROOT . "language/" . DEFAULT_LANG ."/". $filename . '.php' );
 }
 
 function GetStartAdressLink ( $FleetRow, $FleetType )
@@ -260,7 +260,7 @@ function doquery ( $query , $table , $fetch = FALSE )
 {
 	global $link, $debug;
 
-	require ( XGP_ROOT . 'config.php' );
+	require ( XN_ROOT . 'config.php' );
 	if ( ! isset($dbsettings)) die ();
 
 	if ( !$link )
@@ -301,7 +301,7 @@ function catch_error($errno , $errstr, $errfile, $errline)
 
 	if( ! isset($link) OR ! $link)
 	{
-		include(XGP_ROOT.'config.php');
+		include(XN_ROOT.'config.php');
 
 		if (isset($dbsettings))
 		{
@@ -323,7 +323,7 @@ function catch_error($errno , $errstr, $errfile, $errline)
 
 	if (read_config('errors_'.$errno))
 	{
-		$errfile = str_replace(realpath(XGP_ROOT), 'XGP_ROOT', $errfile);
+		$errfile = str_replace(realpath(XN_ROOT), 'XN_ROOT', $errfile);
 		$sender	= isset($user['id']) ? intval($user['id']) : 0;
 
 		$query = "INSERT IGNORE INTO {{table}} SET

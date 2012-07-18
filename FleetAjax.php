@@ -8,9 +8,9 @@
 
 define('INSIDE'  ,  TRUE);
 define('INSTALL' , FALSE);
-define('XGP_ROOT',	'./');
+define('XN_ROOT',	'./');
 
-include(XGP_ROOT . 'global.php');
+include(XN_ROOT . 'global.php');
 
 $UserSpyProbes  = $planetrow['spy_sonde'];
 $UserRecycles   = $planetrow['recycler'];

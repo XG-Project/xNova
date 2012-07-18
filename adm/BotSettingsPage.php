@@ -9,9 +9,9 @@
 define('INSIDE'  , TRUE);
 define('INSTALL' , FALSE);
 define('IN_ADMIN', TRUE);
-define('XGP_ROOT', './../');
+define('XN_ROOT', './../');
 
-include(XGP_ROOT . 'global.php');
+include(XN_ROOT . 'global.php');
 
 if ($ConfigGame != 1) die(message ($lang['404_page']));
 
@@ -61,8 +61,8 @@ switch ($_GET[page])
 			if ($i	===	1)
 			{
 				$Query1  = "INSERT INTO {{table}} SET ";
-				$Query1 .= "`user` = '" . $player . "', ";
-				$Query1 .= "`minutes_per_day` = '" . $every_time . "'; ";
+				$Query1 .= "`user` = '" . $user . "', ";
+				$Query1 .= "`minutes_per_day` = '" . $minutes_per_day . "'; ";
 
 				doquery($Query1, "bots");
 				update_config('bots', read_config('bots') + 1);
@@ -75,7 +75,7 @@ switch ($_GET[page])
 	break;
 
 	case 'delete_log':
-			$file = fopen(XGP_ROOT."adm/Log/BotLog.php", "w");
+			$file = fopen(XN_ROOT."adm/Log/BotLog.php", "w");
 			fclose($file);
 			display(parsetemplate(gettemplate('adm/DeleteBotBody'), $parse), false, '', true, false);
 	break;
@@ -118,7 +118,7 @@ switch ($_GET[page])
 		update_config('bots', 0);
 		header ("Location: BotSettingsPage.php");
 	}
-	$parse['log'] = htmlentities(file_get_contents(XGP_ROOT.'adm/Log/BotLog.php'));
+	$parse['log'] = htmlentities(file_get_contents(XN_ROOT.'adm/Log/BotLog.php'));
 
 	display(parsetemplate(gettemplate('adm/BotSettingsBody'), $parse), false, '', true, false);
 }

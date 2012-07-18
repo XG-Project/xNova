@@ -81,7 +81,7 @@ class ShowBuddyPage
 						if ( !$query )
 						{
 
-							$text = mysql_escape_string ( strip_tags ( $_POST['text'] ) );
+							$text = mysql_real_escape_string ( strip_tags ( $_POST['text'] ) );
 
 							SendSimpleMessage ( intval ( $_POST['user'] ) , $CurrentUser['id'] , '' , 1 , $CurrentUser['username'] , $lang['bu_to_accept_title'] , str_replace ( '%u' , $CurrentUser['username'] , $lang['bu_to_accept_text'] ) );
 

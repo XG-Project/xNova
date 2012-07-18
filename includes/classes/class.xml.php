@@ -7,7 +7,7 @@
  */
 
 /**
- * 
+ *
  * @author Jstar
  * @version v2
  * @tutorial
@@ -16,9 +16,9 @@
  *   $c->write_config('version','blabla');
  *   echo $c->get_config('version');
  */
- 
-if(!defined('INSIDE')){ die(header("location:../../"));} 
- 
+
+if(!defined('INSIDE')){ die(header("location:../../"));}
+
 class xml
 {
     //an istance of this class: see singleton pattern
@@ -31,19 +31,19 @@ class xml
     /**
      * xml::__construct()
      * Constructor: access is private to enable class istancing only by getInstance() method, to ensure better performace
-     * 
+     *
      * @param String $sheet
      * @return null
      */
     private function __construct($sheet)
     {
-        $this->path = XGP_ROOT . 'includes' . DIRECTORY_SEPARATOR . 'xml' . DIRECTORY_SEPARATOR . $sheet;
+        $this->path = XN_ROOT . 'includes' . DIRECTORY_SEPARATOR . 'xml' . DIRECTORY_SEPARATOR . $sheet;
         $this->config = simplexml_load_file($this->path);
     }
     /**
      * xml::doXpathQuery()
      * This function execute a Xpath query
-     * 
+     *
      * @param String $query
      * @return Array
      */
@@ -53,8 +53,8 @@ class xml
     }
     /**
      * xml::get_xml_entity()
-     * Search in the xml for a entity rappresented by $config_name 
-     * 
+     * Search in the xml for a entity rappresented by $config_name
+     *
      * @param String $config_name: the key
      * @return SimpleXMLElement object
      */
@@ -73,19 +73,19 @@ class xml
     /**
      * xml::get_config()
      * This function search in loaded xml for a value according to specific configuration name passed
-     * 
+     *
      * @param String $config_name
-     * @return String: the configuration value of given key 
+     * @return String: the configuration value of given key
      */
     public function get_config($config_name)
     {
-        // (string) is a cast to String type from SimpleXMLElement object: we need this to extract value  
+        // (string) is a cast to String type from SimpleXMLElement object: we need this to extract value
         return (string) $this->get_xml_entity($config_name)->value;
     }
     /**
      * xml::get_configs()
      * This function return all configurations loaded from xml file
-     * 
+     *
      * @return Array: an associative array of key-value
      */
     public function get_configs()
@@ -101,8 +101,8 @@ class xml
     /**
      * xml::write_config()
      * This function write the xml configuration file updating one or multiple key-value at time
-     * 
-     * @param mixed $config_name : String for single update or an associative array of key=>value 
+     *
+     * @param mixed $config_name : String for single update or an associative array of key=>value
      * @param String $config_value : The value that will be setted in corrispective key $config_name
      * @return null
      */
@@ -125,8 +125,8 @@ class xml
     /**
      * xml::getInstance()
      * Static function used to istance this class: implements singleton pattern to avoid multiple xml parsing.
-     * 
-     * @param String $sheet : the complete name of xml configuration file. 
+     *
+     * @param String $sheet : the complete name of xml configuration file.
      * @return xml object
      */
     public static function getInstance($sheet)

@@ -8,9 +8,9 @@
 
 define('INSIDE'  		,   	 TRUE);
 define('INSTALL'  		,   	 TRUE);
-define('XGP_ROOT'		, 	  './../');
+define('XN_ROOT'		, 	  './../');
 
-include_once(XGP_ROOT . 'global.php');
+include_once(XN_ROOT . 'global.php');
 include_once('databaseinfos.php');
 include_once('migration.php');
 
@@ -79,7 +79,7 @@ switch ($Mode)
 			$parse['first']	= "Conexión establecida con éxito...";
 
 			fwrite($dz, "<?php\n");
-			fwrite($dz, "if(!defined(\"INSIDE\")){ header(\"location:".XGP_ROOT."\"); }\n");
+			fwrite($dz, "if(!defined(\"INSIDE\")){ header(\"location:".XN_ROOT."\"); }\n");
 			fwrite($dz, "\$dbsettings = Array(\n");
 			fwrite($dz, "\"server\"     => \"".$host."\", // MySQL server name.\n");
 			fwrite($dz, "\"user\"       => \"".$user."\", // MySQL username.\n");

@@ -91,21 +91,21 @@ class ShowOptionsPage
 			// < ------------------------------------------------- NOMBRE DE USUARIO --------------------------------------------------- >
 			if (isset($_POST["db_character"]) && $_POST["db_character"] != '')
 			{
-				$username = mysql_escape_string ( $_POST['db_character'] );
+				$username = mysql_real_escape_string ( $_POST['db_character'] );
 			}
 			else
 			{
-				$username = mysql_escape_string ( $CurrentUser['username'] );
+				$username = mysql_real_escape_string ( $CurrentUser['username'] );
 			}
 			// < ------------------------------------------------- DIRECCION DE EMAIL -------------------------------------------------- >
 
 			if (isset($_POST["db_email"]) && $_POST["db_email"] != '')
 			{
-				$db_email = mysql_escape_string ( $_POST['db_email'] );
+				$db_email = mysql_real_escape_string ( $_POST['db_email'] );
 			}
 			else
 			{
-				$db_email = mysql_escape_string ( $CurrentUser['email'] );
+				$db_email = mysql_real_escape_string ( $CurrentUser['email'] );
 			}
 			// < ------------------------------------------------- CANTIDAD DE SONDAS -------------------------------------------------- >
 			if (isset($_POST["spio_anz"]) && is_numeric($_POST["spio_anz"]))
@@ -236,8 +236,8 @@ class ShowOptionsPage
 				$db_deaktjava = "0";
 			}
 
-			$SetSort  = mysql_escape_string($_POST['settings_sort']);
-			$SetOrder = mysql_escape_string($_POST['settings_order']);
+			$SetSort  = mysql_real_escape_string($_POST['settings_sort']);
+			$SetOrder = mysql_real_escape_string($_POST['settings_order']);
 			//// < -------------------------------------- ACTUALIZAR TODO LO SETEADO ANTES --------------------------------------------- >
 			doquery("UPDATE {{table}} SET
 			`email` = '$db_email',
@@ -275,11 +275,11 @@ class ShowOptionsPage
 			// < --------------------------------------------- CAMBIO DE NOMBRE DE USUARIO --------------------------------------------- >
 			if ($CurrentUser['username'] != $_POST["db_character"])
 			{
-				$query = doquery("SELECT id FROM {{table}} WHERE username='".mysql_escape_string ($_POST["db_character"])."'", 'users', TRUE);
+				$query = doquery("SELECT id FROM {{table}} WHERE username='".mysql_real_escape_string ($_POST["db_character"])."'", 'users', TRUE);
 
 				if (!$query)
 				{
-					doquery("UPDATE {{table}} SET username='".mysql_escape_string ($username)."' WHERE id='".intval($CurrentUser['id'])."' LIMIT 1", "users");
+					doquery("UPDATE {{table}} SET username='".mysql_real_escape_string ($username)."' WHERE id='".intval($CurrentUser['id'])."' LIMIT 1", "users");
 					setcookie(COOKIE_NAME, "", time()-100000, "/", "", 0);
 					message($lang['op_username_changed'], "index.php", 1);
 				}
@@ -307,7 +307,7 @@ class ShowOptionsPage
 				$parse['opt_lst_cla_data']   = "<option value =\"0\"". (($CurrentUser['planet_sort_order'] == 0) ? " selected": "") .">" . $lang['op_sort_asc'] . "</option>";
 				$parse['opt_lst_cla_data']  .= "<option value =\"1\"". (($CurrentUser['planet_sort_order'] == 1) ? " selected": "") .">" . $lang['op_sort_desc'] . "</option>";
 
-				$SkinsFolder = opendir(XGP_ROOT . 'styles/skins');
+				$SkinsFolder = opendir(XN_ROOT . 'styles/skins');
 
 				$parse['opt_skin_data']	= '';
 				while (($SkinsSubFolder = readdir($SkinsFolder)) !== FALSE)

@@ -8,9 +8,9 @@
 
 define('INSIDE'  , TRUE);
 define('INSTALL' , FALSE);
-define('XGP_ROOT',	'./');
+define('XN_ROOT',	'./');
 
-include(XGP_ROOT . 'global.php');
+include(XN_ROOT . 'global.php');
 
 $g		= intval($_GET['galaxy']);
 $s		= intval($_GET['system']);

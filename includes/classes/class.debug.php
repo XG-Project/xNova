@@ -26,7 +26,7 @@ class debug
 
 	function echo_log()
 	{
-		return  "<br><table><tr><td class=k colspan=4><a href=".XGP_ROOT."adm/SettingsPage.php>Debug Log</a>:</td></tr>".$this->log."</table>";
+		return  "<br><table><tr><td class=k colspan=4><a href=".XN_ROOT."adm/SettingsPage.php>Debug Log</a>:</td></tr>".$this->log."</table>";
 		die();
 	}
 
@@ -40,7 +40,7 @@ class debug
 			echo  "<table>".$this->log."</table>";
 		}
 
-		include(XGP_ROOT . 'config.php');
+		include(XN_ROOT . 'config.php');
 
 		if(!$link)
 			die($lang['cdg_mysql_not_available']);
@@ -48,8 +48,8 @@ class debug
 		$query = "INSERT INTO {{table}} SET
 		`error_sender` = '".intval($user['id'])."' ,
 		`error_time` = '".time()."' ,
-		`error_type` = '".mysql_escape_string($title)."' ,
-		`error_text` = '".mysql_escape_string($message)."';";
+		`error_type` = '".mysql_real_escape_string($title)."' ,
+		`error_text` = '".mysql_real_escape_string($message)."';";
 
 		$sqlquery = mysql_query(str_replace("{{table}}", $dbsettings["prefix"].'errors',$query)) or die(isset($lang['cdg_fatal_error']) ? $lang['cdg_fatal_error'] : 'FATAL ERROR');
 

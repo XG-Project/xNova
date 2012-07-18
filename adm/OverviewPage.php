@@ -9,9 +9,9 @@
 define('INSIDE'  , TRUE);
 define('INSTALL' , FALSE);
 define('IN_ADMIN', TRUE);
-define('XGP_ROOT', './../');
+define('XN_ROOT', './../');
 
-include(XGP_ROOT . 'global.php');
+include(XN_ROOT . 'global.php');
 
 if ($user['authlevel'] < 1) die(message ($lang['404_page']));
 
@@ -28,7 +28,7 @@ function check_updates()
 
 $parse	=	$lang;
 
-if(file_exists(XGP_ROOT . 'install/') && defined('IN_ADMIN'))
+if(file_exists(XN_ROOT . 'install/') && defined('IN_ADMIN'))
 {
 	$Message	.= "<font color=\"red\">".$lang['ow_install_file_detected']."</font><br/><br/>";
 	$error++;
@@ -36,27 +36,27 @@ if(file_exists(XGP_ROOT . 'install/') && defined('IN_ADMIN'))
 
 if ($user['authlevel'] >= 3)
 {
-	if(is_writable(XGP_ROOT.'config.php'))
+	if(is_writable(XN_ROOT.'config.php'))
 	{
 		$Message	.= "<font color=\"red\">".$lang['ow_config_file_writable']."</font><br/><br/>";
 		$error++;
 	}
 
-	if( ! is_writable(XGP_ROOT.'includes/bots'))
+	if( ! is_writable(XN_ROOT.'includes/bots'))
 	{
 		$Message	.= "<font color=\"red\">".$lang['ow_bot_folder_no_writable']."</font><br/><br/>";
 		$error++;
 	}
 
-	if( ! is_writable(XGP_ROOT.'includes/xml/config.xml'))
+	if( ! is_writable(XN_ROOT.'includes/xml/config.xml'))
 	{
 		$Message	.= "<font color=\"red\">".$lang['ow_config_file_no_writable']."</font><br/><br/>";
 		$error++;
 	}
 
-	foreach(scandir(XGP_ROOT.'adm/Log') as $log_file)
+	foreach(scandir(XN_ROOT.'adm/Log') as $log_file)
 	{
-		if($log_file != '.htaccess' && $log_file != 'index.html' && is_file(XGP_ROOT.'adm/Log/'.$log_file) && ( ! is_writable(XGP_ROOT.'adm/Log/'.$log_file)))
+		if($log_file != '.htaccess' && $log_file != 'index.html' && is_file(XN_ROOT.'adm/Log/'.$log_file) && ( ! is_writable(XN_ROOT.'adm/Log/'.$log_file)))
 		{
 			$Message	.= "<font color=\"red\">".$lang['ow_log_file_no_writable']."</font><br/><br/>";
 			$error++;

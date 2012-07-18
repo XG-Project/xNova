@@ -8,8 +8,8 @@
 
 function migrate_to_xml ()
 {
-	$xml			= file_get_contents(XGP_ROOT.'install/xml_template.xml');
-	$config_file	= fopen(XGP_ROOT.'includes/xml/config.xml', "wb");
+	$xml			= file_get_contents(XN_ROOT.'install/xml_template.xml');
+	$config_file	= fopen(XN_ROOT.'includes/xml/config.xml', "wb");
 	fwrite($config_file, $xml);
 	fclose($config_file);
 
@@ -59,11 +59,11 @@ function migrate_to_xml ()
 
 function upgrade_xml()
 {
-	$xml			= file_get_contents(XGP_ROOT.'install/xml_upgrade.xml');
-	$config			= file_get_contents(XGP_ROOT.'includes/xml/config.xml');
+	$xml			= file_get_contents(XN_ROOT.'install/xml_upgrade.xml');
+	$config			= file_get_contents(XN_ROOT.'includes/xml/config.xml');
 	$xml			= str_replace('</configurations>', $xml, $config);
 
-	$config_file	= fopen(XGP_ROOT.'install/xml_template.xml', "wb");
+	$config_file	= fopen(XN_ROOT.'install/xml_template.xml', "wb");
 	fwrite($config_file, $xml);
 	fclose($config_file);
 }

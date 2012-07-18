@@ -97,7 +97,7 @@ switch ($_GET[page])
 		<td width="250">'. date('H:i:s - j/n/Y', $u['next_time']) .'</td>
 		<td width="100">'. $u['minutes_per_day'] .'</td>
 		<td width="230">'. $u['last_planet'] .'</td>
-		<td width="100"><a href="BotSettingsPage.php?delete='. $u['id'] .'" onClick="return confirm('.$lang['bot_delete_confirm'].');" border="0"><img src="../styles/images/r1.png" border=\"0\"></a></td>
+		<td width="100"><a href="BotSettingsPage.php?delete='. $u['id'] .'" onClick="return confirm(\''.$lang['bot_delete_confirm'].'\');" border="0"><img src="../styles/images/r1.png" border=\"0\"></a></td>
 		<td width="95"><a href="AccountDataPage.php?id_u='. $u['user'] .'" border="0"><img src="../styles/images/Adm/GO.png" border="0"></a></td></tr>';
 		if (isset($u['error_text']))
 			$parse['bots_list'] .= '<tr><th colspan="8" class="b">'.nl2br($u['error_text']).'</td></tr>';

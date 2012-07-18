@@ -176,4 +176,8 @@
 		<name>log_bots</name>
 		<value>1</value>
 	</config>
+	<config>
+		<name>date_format</name>
+		<value>WEEKDAY, DAY0 OF MONTHNAME OF YEAR:</value>
+	</config>
 </configurations>

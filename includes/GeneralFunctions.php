@@ -102,12 +102,12 @@ function message ( $mes , $dest = "" , $time = "3" , $topnav = FALSE , $menu = T
 
 }
 
-function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $menu = TRUE)
+function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $menu = TRUE, $onload='')
 {
 	global $link, $debug, $user, $planetrow;
 
 	if (!$AdminPage)
-		$DisplayPage  = StdUserHeader($metatags);
+		$DisplayPage  = StdUserHeader($metatags, $onload);
 	else
 		$DisplayPage  = AdminUserHeader($metatags);
 
@@ -158,7 +158,7 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 	die();
 }
 
-function StdUserHeader ($metatags = '')
+function StdUserHeader ($metatags = '', $onload = '')
 {
 	$parse['-title-'] 	 = read_config ( 'game_name' );
 	$parse['-favi-']	 = "<link rel=\"shortcut icon\" href=\"./favicon.ico\">\n";
@@ -178,6 +178,7 @@ function StdUserHeader ($metatags = '')
 	}
 
 	$parse['-meta-']	.= ($metatags) ? $metatags : "";
+	$parse['onload']	= $onload;
 
 	return parsetemplate ( gettemplate ( 'general/simple_header' ) , $parse );
 }
@@ -341,4 +342,38 @@ function catch_error($errno , $errstr, $errfile, $errline)
 	return TRUE;
 }
 
-?>
+function show_date($date = NULL)
+{
+	global $lang;
+
+	if (is_null($time)) $date = time();
+	$format = read_config('date_format');
+
+	$weekday = date("w", $date);
+	$day = date("d", $date);
+	$day_wo_zero = date("j", $date);
+	$month = date("m", $date);
+	$month_wo_zero = date("n", $date);
+	$year = date("Y", $date);
+	$shortyear = substr($year, -2);
+
+	$final_date = $format;
+
+	$final_date = str_replace("WEEKDAY", $lang['days'][$weekday], $final_date);
+	$final_date = str_replace("WEEKDSHORT", $lang['dayshort'][$weekday], $final_date);
+	$final_date = str_replace("DAY0", $day_wo_zero, $final_date);
+	$final_date = str_replace("DAY", $day, $final_date);
+	$final_date = str_replace("MONTHNAME", $lang['months'][$month_wo_zero-1], $final_date);
+	$final_date = str_replace("MONTHSHORT", $lang['monthshort'][$month_wo_zero-1], $final_date);
+	$final_date = str_replace("MONTH0", $month_wo_zero, $final_date);
+	$final_date = str_replace("MONTH", $month, $final_date);
+	$final_date = str_replace("SHORTYEAR", $shortyear, $final_date);
+	$final_date = str_replace("YEAR", $year, $final_date);
+	$final_date = str_replace("OF", $lang['of'], $final_date);
+
+	return $final_date;
+}
+
+
+/* End of file GeneralFunctions.php */
+/* Location: ./includes/GeneralFunctions.php */

@@ -118,7 +118,7 @@
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1342619507</value>
+		<value>1342631650</value>
 	</config>
 	<config>
 		<name>stat_settings</name>
@@ -170,10 +170,14 @@
 	</config>
 	<config>
 		<name>bots_last_update</name>
-		<value>1342619507</value>
+		<value>1342631650</value>
 	</config>
 	<config>
 		<name>log_bots</name>
 		<value>0</value>
+	</config>
+	<config>
+		<name>date_format</name>
+		<value>WEEKDAY, DAY0 OF MONTHNAME OF YEAR:</value>
 	</config>
 </configurations>

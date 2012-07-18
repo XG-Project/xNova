@@ -1,4 +1,25 @@
 <br />
+<script type="text/javascript">
+	<!--
+	date = new Date({micronow});
+	function time()
+	{
+		var start= (new Date()).getMilliseconds();
+		var hours=date.getHours();
+		var minutes=date.getMinutes();
+		var seconds=date.getSeconds();
+		if(hours<10){ hours='0'+hours;}
+		if(minutes<10){minutes='0'+minutes;}
+		if(seconds<10){seconds='0'+seconds;}
+		output=hours+":"+minutes+":"+seconds;
+		document.getElementById('live_time').innerHTML=output;
+		date.setSeconds(date.getSeconds()+1);
+		var end= (new Date()).getMilliseconds();
+
+		setTimeout("time()",1000-(end-start));
+	}
+	-->
+</script>
 <div id="content">
     <table width="519">
         <tr>
@@ -7,7 +28,7 @@
             {Have_new_message}
         <tr>
         	<th>{ov_server_time}</th>
-        	<th colspan="3">{date_time}</th>
+        	<th colspan="3">{date} <div style="display:inline-block;" id="live_time"></div></th>
         </tr>
         <tr>
         	<td colspan="4" class="c">{ov_events}</td>

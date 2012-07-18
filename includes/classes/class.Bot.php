@@ -103,7 +103,7 @@ function UpdateBots(){
 					$next_time		= time()+mt_rand($max_time > 60 ? $max_time-60 : 1, $max_time+60);
 				}
 
-				if (date('H', $next_time) < 8 && $bot['minutes_per_day'] < 960) $next_time = mk_time(8);
+				if (date('H', $next_time) < 8 && $bot['minutes_per_day'] < 960) $next_time = mktime(8);
 
 				doquery('UPDATE {{table}} SET `next_time` = '.$next_time.' WHERE `id` = '.$bot['id'], 'bots');
 			}

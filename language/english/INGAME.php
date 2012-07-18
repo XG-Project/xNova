@@ -1232,4 +1232,15 @@ $lang['ma_planet_without_defens']  			='Planet without dedenses';
 $lang['ma_some_destroyed']   				=' has been destroyed by interceptor missiles.';
 $lang['ma_missile_attack']					="";
 $lang['ma_missile_string']					='Missiles attack (%1%) from %2% arrive to planet %3% <br><br>';
-?>
+
+//----------------------------------------------------------------------------//
+// DATE
+$lang['days']								= array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+$lang['dayshort']							= array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
+$lang['months']								= array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+$lang['monthshort']							= array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
+$lang['of']									= 'of';
+
+
+/* End of file INGAME.php */
+/* Location: ./language/english/INGAME.php */

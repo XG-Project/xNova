@@ -412,11 +412,15 @@ class ShowOverviewPage
 				else
 					$parse['user_rank'] = "-";
 
-				$parse['date_time'] = date("D M j H:i:s",time());
+				$parse['micronow']	= round(microtime(TRUE)*1000);
+				$parse['date']		= show_date();
 
-				return display(parsetemplate(gettemplate('overview/overview_body'),$parse));
+				return display(parsetemplate(gettemplate('overview/overview_body'),$parse), TRUE, '', FALSE, TRUE, 'time(); ');
 				break;
 		}
 	}
 }
-?>
+
+
+/* End of file class.ShowOverviewPage.php */
+/* Location: ./includes/pages/class.ShowOverviewPage.php */

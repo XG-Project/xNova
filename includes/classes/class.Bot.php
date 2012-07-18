@@ -67,45 +67,43 @@ function UpdateBots(){
 				 *	de sueño y según los minutos que está conectado.
 				 **/
 
-				if (date('H') > 8)
-				{
-					$min_probability	= round($bot['minutes_per_day']/1440*100);
-					$max_time			= 86400/$bot['minutes_per_day']/15*60;
-
-					if($max_time/60 > 15)
-					{
-						$random			= mt_rand(1,100);
-
-						if ($random <= 30)
-							$next_time	= time() + mt_rand(1,120);
-						elseif ($random <= 45)
-							$next_time	= time() + mt_rand(61,180);
-						elseif ($random <= 55)
-							$next_time	= time() + mt_rand(121,240);
-						elseif ($random <= 62)
-							$next_time	= time() + mt_rand(181,300);
-						elseif ($random <= 68)
-							$next_time	= time() + mt_rand(241,360);
-						elseif ($random <= 73)
-							$next_time	= time() + mt_rand(301,420);
-						elseif ($random <= 81)
-							$next_time	= time() + mt_rand(361,540);
-						elseif ($random <= 90)
-							$next_time	= time() + mt_rand(421,660);
-						else
-							$next_time	= time() + mt_rand(541,960);
-					}
-
-					if(mt_rand(0, 1) OR $max_time/60 <= 15)
-					{
-						$next_time		= time()+mt_rand($max_time > 300 ? $max_time-300 : 1, $max_time+300);
-					}
-				}
+				if (date('H') < 8)
+					$max_time			= 28800/(($bot['minutes_per_day']-960)/15);
+				elseif ($bot['minutes_per_day'] > 960)
+					$max_time			= 60;
 				else
+					$max_time			= 57600/($bot['minutes_per_day']/15);
+
+				if($max_time/60 > 15)
 				{
-					//Si es de noche, habrá poca probabilidad de que el bot funcione
-					$next_time			= time() + mt_rand(3600, 28800);
+					$random			= mt_rand(1,100);
+
+					if ($random <= 30)
+						$next_time	= time() + mt_rand(1,120);
+					elseif ($random <= 45)
+						$next_time	= time() + mt_rand(61,180);
+					elseif ($random <= 55)
+						$next_time	= time() + mt_rand(121,240);
+					elseif ($random <= 62)
+						$next_time	= time() + mt_rand(181,300);
+					elseif ($random <= 68)
+						$next_time	= time() + mt_rand(241,360);
+					elseif ($random <= 73)
+						$next_time	= time() + mt_rand(301,420);
+					elseif ($random <= 81)
+						$next_time	= time() + mt_rand(361,540);
+					elseif ($random <= 90)
+						$next_time	= time() + mt_rand(421,660);
+					else
+						$next_time	= time() + mt_rand(541,960);
 				}
+
+				if(mt_rand(0, 1) OR $max_time/60 <= 15)
+				{
+					$next_time		= time()+mt_rand($max_time > 60 ? $max_time-60 : 1, $max_time+60);
+				}
+
+				if (date('H', $next_time) < 8 && $bot['minutes_per_day'] < 960) $next_time = mk_time(8);
 
 				doquery('UPDATE {{table}} SET `next_time` = '.$next_time.' WHERE `id` = '.$bot['id'], 'bots');
 			}

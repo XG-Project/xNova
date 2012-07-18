@@ -222,7 +222,7 @@ function DisplayGameSettingsPage ( $CurrentUser )
 
 		if (read_config('lang') != $game_config['lang'])
 		{
-			update_config ( 'lang' 						, $game_config['lang'] 						);
+			update_config ( 'lang' 					, $game_config['lang'] 						);
 			doquery('ALTER TABLE  `{{table}}` CHANGE  `name`  `name` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT  \''.$lang['homeworld'].'\'', 'planets');
 		}
 

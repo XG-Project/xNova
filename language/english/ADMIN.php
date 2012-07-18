@@ -1011,6 +1011,8 @@ $lang['log_stats_value_5']			= 'The administration may be in the ranking?';
 $lang['log_stats_value_6']			= 'Until the rank can be included in the ranking?';
 $lang['log_sett_no1']				= ' change the following configuration';
 $lang['log_sett_max_users']			= 'Maximum usrers:';
+$lang['log_sett_bots_log']			= 'Will bot actions be registered?';
+$lang['log_sett_date_format']		= 'Date format:';
 $lang['log_sett_close']				= 'Server closed? ';
 $lang['log_sett_close_rea']			= 'Reason? ';
 $lang['log_sett_debug']				= 'DEBUG mode activated? ';
@@ -1044,7 +1046,7 @@ $lang['log_searchindb_susp']		= 'Suspended';
 $lang['log_searchindb_admin']		= 'Administrators';
 $lang['log_searchindb_inac']		= 'Inactive';
 $lang['log_search_advert_popup']	= 'To activate / deactivate history do so from the Permissions section. Click to go to the permissions panel.';
-$lang['log_viewmod']						= array('Deactivated', 'Activated');
+$lang['log_viewmod']				= array('Deactivated', 'Activated');
 //###########################################################//
 
 

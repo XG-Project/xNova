@@ -9,7 +9,7 @@ $lang['lang_key']			= 'es';
 
 //	MISCELANEO - MISCELLANEOUS
 $lang['ad_number']			= 'N&ordm;';
-$lang['only_numbers']		= '¡Solo podes ingresar números!';
+$lang['only_numbers']		= '¡Solo puedes ingresar números!';
 $lang['select_option']		= 'Seleccionar...';
 
 // 	RANGO - RANK
@@ -274,7 +274,7 @@ $lang['ad_pla_error_planets']	= '¡Las lunas no pueden cambiarse de dueño!';
 $lang['ad_pla_error_user']		= '¡El usuario no existe!';
 $lang['ad_pla_error_planets2']	= '¡El planeta no existe!';
 $lang['ad_pla_error_planets3']	= '¡Las coordenadas solicitadas ya estan en uso!';
-$lang['ad_pla_error_planets4']	= '¡No podes mover la luna a un planeta que ya tiene una!';
+$lang['ad_pla_error_planets4']	= '¡No puedes mover la luna a un planeta que ya tiene una!';
 $lang['ad_pla_error_planets5']	= '¡Las coordenadas seleccionadas deben tener un planeta!';
 $lang['ad_pla_delete_planet_s']	= 'Planeta borrado con éxito';
 //###########################################################//
@@ -871,7 +871,7 @@ $lang['po_complete_succes2']	=	'¡Planeta borrado con éxito!';
 $lang['mo_moon_added']				= 'Luna agregada con éxito.';
 $lang['mo_moon_deleted']			= 'Luna eliminada con éxito.';
 $lang['mo_moon_doesnt_exist']		= '¡La luna no existe!';
-$lang['mo_moon_only']				= '¡Solo podes borrar lunas!';
+$lang['mo_moon_only']				= '¡Solo puedes borrar lunas!';
 $lang['mo_moon_unavaible']			= '¡El planeta ya tiene luna!';
 $lang['mo_planet_doesnt_exist']		= '¡El planeta no existe!';
 $lang['mo_moon_name']				= 'Nombre de la luna';
@@ -1045,8 +1045,7 @@ $lang['log_searchindb_vacat']		= 'Vacaciones';
 $lang['log_searchindb_susp']		= 'Suspendidos';
 $lang['log_searchindb_admin']		= 'Administradores';
 $lang['log_searchindb_inac']		= 'Inactivos';
-$lang['log_search_advert_popup']	= 'Para Activar/Desactivar el historial podes hacerlo desde la sección de Permisos. Click para ir al panel de permisos.';
-$lang['log_viewmod']				= array('Desactivado', 'Activado');
+$lang['log_search_advert_popup']	= 'Para Activar/Desactivar el historial puedes hacerlo desde la sección de Permisos. Click para ir al panel de permisos.';
 $lang['log_viewmod']				= array('Desactivado', 'Activado');
 //###########################################################//
 

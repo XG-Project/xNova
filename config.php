@@ -1,5 +1,5 @@
-<?php
-if(!defined("INSIDE")){ header("location:./../"); }
+<?php if(!defined("INSIDE")) header("location:./../");
+
 $dbsettings = Array(
 "server"     => "localhost", // MySQL server name.
 "user"       => "root", // MySQL username.

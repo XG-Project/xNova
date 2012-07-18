@@ -1,14 +1,24 @@
-<Files "config.php">
-Order Allow,Deny
-Deny from All
-</Files>
+Options -indexes
 
-<Files "global.php">
-Order Allow,Deny
-Deny from All
-</Files>
+<IfModule authz_core_module>
 
-<Files "*.xml">
-Order Allow,Deny
-Deny from All
-</Files>
+	<Files "config.php">
+		Require all denied
+	</Files>
+
+	<Files "global.php">
+		Require all denied
+	</Files>
+
+</IfModule>
+<IfModule !authz_core_module>
+
+	<Files "config.php">
+		Deny from All
+	</Files>
+
+	<Files "global.php">
+		Deny from All
+	</Files>
+
+</IfModule>

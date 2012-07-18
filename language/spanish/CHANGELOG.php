@@ -14,6 +14,7 @@ Mejoras:
 - Login automático
 - Comienza la migración a UTF-8
 - Nuevo sistema de bots (Gracias a shoghicp)
+- Mejora de seguridad en los htaccess
 
 Errores Corregidos:
 - Muchos errores menores

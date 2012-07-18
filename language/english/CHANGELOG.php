@@ -13,7 +13,8 @@ Improvements:
 - Deleted unnecesary files
 - Automatic login
 - Starts migration to UTF-8
-- Nuevo bots system (Thanks to shoghicp)
+- New bots system (Thanks to shoghicp)
+- Better security in htaccess
 
 Fixed errors:
 - Many minor issues

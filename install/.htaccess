@@ -1,0 +1,30 @@
+<IfModule authz_core_module>
+
+	<Files "*.xml">
+		Require all denied
+	</Files>
+
+	<Files "databaseinfos.php">
+		Require all denied
+	</Files>
+
+	<Files "migration.php">
+		Require all denied
+	</Files>
+
+</IfModule>
+<IfModule !authz_core_module>
+
+	<Files "*.xml">
+		Deny from All
+	</Files>
+
+	<Files "databaseinfos.php">
+		Deny from All
+	</Files>
+
+	<Files "migration.php">
+		Deny from All
+	</Files>
+
+</IfModule>

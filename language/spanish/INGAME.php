@@ -9,6 +9,7 @@ $lang['Energy']								= 'Energía';
 $lang['Messages']							= 'Mensajes';
 $lang['write_message']						= 'Escribir mensaje';
 $lang['done']								= 'Hecho';
+$lang['homeworld']							= 'Planeta Principal';
 
 $lang['type_mission'][1]  					= 'Atacar';
 $lang['type_mission'][2]  					= 'Ataque grupal';

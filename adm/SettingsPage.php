@@ -215,6 +215,12 @@ function DisplayGameSettingsPage ( $CurrentUser )
 
 		LogFunction($Log, "ConfigLog", $AreLog);
 
+		if (read_config('lang') != $game_config['lang'])
+		{
+			update_config ( 'lang' 						, $game_config['lang'] 						);
+			doquery('ALTER TABLE  `{{table}}` CHANGE  `name`  `name` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT  \''.$lang['homeworld'].'\'', 'planets');
+		}
+
 		update_config ( 'game_disable'				, $game_config['game_disable'] 				);
 		update_config ( 'close_reason' 				, $game_config['close_reason'] 				);
 		update_config ( 'game_name' 				, $game_config['game_name'] 				);
@@ -228,7 +234,6 @@ function DisplayGameSettingsPage ( $CurrentUser )
 		update_config ( 'deuterium_basic_income'	, $game_config['deuterium_basic_income']	);
 		update_config ( 'debug' 					, $game_config['debug'] 					);
 		update_config ( 'adm_attack' 				, $game_config['adm_attack'] 				);
-		update_config ( 'lang' 						, $game_config['lang'] 						);
 		update_config ( 'cookie_name' 				, $game_config['cookie_name'] 				);
 		update_config ( 'noobprotection' 			, $game_config['noobprotection'] 			);
 		update_config ( 'defs_cdr' 					, $game_config['defs_cdr'] 					);

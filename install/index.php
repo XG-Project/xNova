@@ -254,7 +254,7 @@ switch ($Mode)
 							ADD  `error_hash` CHAR( 32 ) NULL DEFAULT NULL AFTER  `error_id` ,
 							ADD UNIQUE ( `error_hash`)";
 				$Qry13	= "ALTER TABLE  `".$dbsettings['prefix']."users` CHANGE  `password`  `password` CHAR( 40 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL";
-				$Qry14	= "CREATE TABLE `{{table}}` (
+				$Qry14	= "CREATE TABLE `".$dbsettings['prefix']."bots` (
 							`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 							`user` bigint(20) unsigned NOT NULL,
 							`last_time` int(10) unsigned NOT NULL,

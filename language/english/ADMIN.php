@@ -464,7 +464,8 @@ $lang['se_noob_protect_e2']					= 'Limit point where you stop being rookie';
 $lang['se_noob_protect_e3']					= 'Click here to see more info';
 $lang['se_log_php_errors']					= 'Errors you want to log';
 $lang['se_log_bots']						= 'Save logs from bots? it can reduce performance';
-$lang['log_viewmod']						= array('Deactivated', 'Activated');
+$lang['se_date_format']						= 'Date format in "Overview":';
+$lang['se_date_format_message']				= '<b>WEEKDAY</b> --> Monday, Tuesday...<br><b>WEEKDSHORT</b> --> Mon, Tue...<br><b>DAY0</b> --> 1, 2... (Day of month)<br><b>DAY</b> --> 01, 02... (Day of month)<br><b>MONTHNAME</b> --> Enero, Febrero...<br><b>MONTHSHORT</b> --> Ene, Feb...<br><b>MONTH0</b> --> 1, 2... (Month)<br><b>MONTH</b> --> 01, 02... (Month)<br><b>SHORTYEAR</b> --> 12, 13... (Year)<br><b>YEAR</b> --> 2012, 2013... (Year)<br><b>OF</b> --> of (If you want to put 5 <u>of</u> March)';
 //###########################################################//
 
 
@@ -1043,6 +1044,7 @@ $lang['log_searchindb_susp']		= 'Suspended';
 $lang['log_searchindb_admin']		= 'Administrators';
 $lang['log_searchindb_inac']		= 'Inactive';
 $lang['log_search_advert_popup']	= 'To activate / deactivate history do so from the Permissions section. Click to go to the permissions panel.';
+$lang['log_viewmod']						= array('Deactivated', 'Activated');
 //###########################################################//
 
 

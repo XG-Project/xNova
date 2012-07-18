@@ -464,7 +464,8 @@ $lang['se_noob_protect_e2']					= 'Límite de puntos en el que dejas de ser nova
 $lang['se_noob_protect_e3']					= 'Click para más información';
 $lang['se_log_php_errors']					= 'Errores que deseas recordar';
 $lang['se_log_bots']						= '¿Guardar el log de los bots? puede reducir el rendimiento';
-$lang['log_viewmod']						= array('Desactivado', 'Activado');
+$lang['se_date_format']						= 'Formato de la fecha en "Visión General":';
+$lang['se_date_format_message']				= '<b>WEEKDAY</b> --> Lunes, Martes...<br><b>WEEKDSHORT</b> --> Lun, Mar...<br><b>DAY0</b> --> 1, 2... (Día del mes)<br><b>DAY</b> --> 01, 02... (Día del mes)<br><b>MONTHNAME</b> --> Enero, Febrero...<br><b>MONTHSHORT</b> --> Ene, Feb...<br><b>MONTH0</b> --> 1, 2... (Mes)<br><b>MONTH</b> --> 01, 02... (Mes)<br><b>SHORTYEAR</b> --> 12, 13... (Año)<br><b>YEAR</b> --> 2012, 2013... (Año)<br><b>OF</b> --> de (Para poner 5 <u>de</u> Marzo)';
 //###########################################################//
 
 
@@ -1010,6 +1011,8 @@ $lang['log_stats_value_5']			= '¿La administración puede figurar en el ranking
 $lang['log_stats_value_6']			= '¿Hasta que rango pueden figurar en el ranking?';
 $lang['log_sett_no1']				= ' cambio la siguiente configuración';
 $lang['log_sett_max_users']			= 'Límite de usuarios:';
+$lang['log_sett_bots_log']			= '¿Se registrarán los logs de los bots?';
+$lang['log_sett_date_format']		= 'Formato de la fecha:';
 $lang['log_sett_close']				= '¿Servidor cerrado? ';
 $lang['log_sett_close_rea']			= '¿Razón? ';
 $lang['log_sett_debug']				= '¿Modo DEBUG activado? ';
@@ -1043,6 +1046,8 @@ $lang['log_searchindb_susp']		= 'Suspendidos';
 $lang['log_searchindb_admin']		= 'Administradores';
 $lang['log_searchindb_inac']		= 'Inactivos';
 $lang['log_search_advert_popup']	= 'Para Activar/Desactivar el historial podes hacerlo desde la sección de Permisos. Click para ir al panel de permisos.';
+$lang['log_viewmod']				= array('Desactivado', 'Activado');
+$lang['log_viewmod']				= array('Desactivado', 'Activado');
 //###########################################################//
 
 

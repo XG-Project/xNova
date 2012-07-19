@@ -44,9 +44,9 @@ function ResetUniverse($CurrentUser)
 
 		$bots_query	= doquery("SELECT * FROM {{table}};", 'bots');
 		$bots		= array();
-		while ($bot = mysql_fetch_assoc($bots_query)) $bots[$bot['id']] = $bot['user'];
+		while ($bot = $bots_query->fetch_assoc()) $bots[$bot['id']] = $bot['user'];
 
-		while ($TheUser = mysql_fetch_assoc($AllUsers))
+		while ($TheUser = $AllUsers->fetch_assoc())
 		{
 			if ($TheUser['onlinetime'] > $LimitTime)
 			{

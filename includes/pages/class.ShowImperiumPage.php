@@ -32,12 +32,12 @@ class ShowImperiumPage
 		$parse 	= $lang;
 		$planet = array();
 
-		while ( $p = mysql_fetch_array ( $planetsrow ) )
+		while ($p = $planetsrow->fetch_array())
 		{
 			$planet[] = $p;
 		}
 
-		$parse['mount'] = 	count ( $planet ) + 1;
+		$parse['mount'] = 	count($planet ) + 1;
 
 		$EmpireRowTPL	=	gettemplate ( 'empire/empire_row' );
 

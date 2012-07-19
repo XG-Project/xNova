@@ -37,7 +37,7 @@ class ShowOptionsPage
 
 	public function __construct($CurrentUser)
 	{
-		global $lang;
+		global $lang, $db;
 
 		$mode = isset($_GET['mode']) ? $_GET['mode'] : NULL;
 
@@ -91,21 +91,21 @@ class ShowOptionsPage
 			// < ------------------------------------------------- NOMBRE DE USUARIO --------------------------------------------------- >
 			if (isset($_POST["db_character"]) && $_POST["db_character"] != '')
 			{
-				$username = mysql_real_escape_string ( $_POST['db_character'] );
+				$username = $db->real_escape_string ( $_POST['db_character'] );
 			}
 			else
 			{
-				$username = mysql_real_escape_string ( $CurrentUser['username'] );
+				$username = $db->real_escape_string ( $CurrentUser['username'] );
 			}
 			// < ------------------------------------------------- DIRECCION DE EMAIL -------------------------------------------------- >
 
 			if (isset($_POST["db_email"]) && $_POST["db_email"] != '')
 			{
-				$db_email = mysql_real_escape_string ( $_POST['db_email'] );
+				$db_email = $db->real_escape_string ( $_POST['db_email'] );
 			}
 			else
 			{
-				$db_email = mysql_real_escape_string ( $CurrentUser['email'] );
+				$db_email = $db->real_escape_string ( $CurrentUser['email'] );
 			}
 			// < ------------------------------------------------- CANTIDAD DE SONDAS -------------------------------------------------- >
 			if (isset($_POST["spio_anz"]) && is_numeric($_POST["spio_anz"]))
@@ -206,7 +206,7 @@ class ShowOptionsPage
 
 				$query = doquery("SELECT * FROM {{table}} WHERE id_owner = '".intval($CurrentUser['id'])."'", 'planets');
 
-				while($id = mysql_fetch_array($query))
+				while($id =$query->fetch_array())
 				{
 					doquery("UPDATE {{table}} SET
 					metal_perhour = '".read_config ( 'metal_basic_income' )."',
@@ -236,8 +236,8 @@ class ShowOptionsPage
 				$db_deaktjava = "0";
 			}
 
-			$SetSort  = mysql_real_escape_string($_POST['settings_sort']);
-			$SetOrder = mysql_real_escape_string($_POST['settings_order']);
+			$SetSort  = $db->real_escape_string($_POST['settings_sort']);
+			$SetOrder = $db->real_escape_string($_POST['settings_order']);
 			//// < -------------------------------------- ACTUALIZAR TODO LO SETEADO ANTES --------------------------------------------- >
 			doquery("UPDATE {{table}} SET
 			`email` = '$db_email',
@@ -275,11 +275,11 @@ class ShowOptionsPage
 			// < --------------------------------------------- CAMBIO DE NOMBRE DE USUARIO --------------------------------------------- >
 			if ($CurrentUser['username'] != $_POST["db_character"])
 			{
-				$query = doquery("SELECT id FROM {{table}} WHERE username='".mysql_real_escape_string ($_POST["db_character"])."'", 'users', TRUE);
+				$query = doquery("SELECT id FROM {{table}} WHERE username='".$db->real_escape_string ($_POST["db_character"])."'", 'users', TRUE);
 
 				if (!$query)
 				{
-					doquery("UPDATE {{table}} SET username='".mysql_real_escape_string ($username)."' WHERE id='".intval($CurrentUser['id'])."' LIMIT 1", "users");
+					doquery("UPDATE {{table}} SET username='".$db->real_escape_string ($username)."' WHERE id='".intval($CurrentUser['id'])."' LIMIT 1", "users");
 					setcookie(COOKIE_NAME, "", time()-100000, "/", "", 0);
 					message($lang['op_username_changed'], "index.php", 1);
 				}

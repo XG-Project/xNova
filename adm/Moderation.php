@@ -117,7 +117,7 @@ elseif ($_GET['moderation'] == '2')
 		$QueryUsers	=	doquery("SELECT `id`, `username`, `authlevel` FROM {{table}} ".$WHEREUSERS."", "users");
 
 
-		while ($List	=	mysql_fetch_array($QueryUsers))
+		while ($List = $QueryUsers->fetch_array())
 		{
 			$parse['List']	.=	"<option value=\"".$List['id']."\">".$List['username']."&nbsp;&nbsp;(".$lang['rank'][$List['authlevel']].")</option>";
 		}
@@ -129,11 +129,11 @@ elseif ($_GET['moderation'] == '2')
 			{
 				$parse['display']	=	'<tr><th colspan="3"><font color=red>'.$lang['ad_authlevel_error_2'].'</font></th></tr>';
 			}
-			elseif(!$_POST['id_1'] && !$_POST['id_2'])
+			elseif( ! $_POST['id_1'] && !$_POST['id_2'])
 			{
 				$parse['display']	=	'<tr><th colspan="3"><font color=red>'.$lang['ad_forgiven_id'].'</font></th></tr>';
 			}
-			elseif(!$_POST['id_1'] && !is_numeric($_POST['id_2']))
+			elseif( ! $_POST['id_1'] && ! is_numeric($_POST['id_2']))
 			{
 				$parse['display']	=	'<tr><th colspan="3"><font color=red>'.$lang['only_numbers'].'</font></th></tr>';
 			}

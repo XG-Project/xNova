@@ -27,13 +27,13 @@ $queryuser 	= "u.id, u.username, u.user_agent, u.current_page, u.user_lastip, u.
 $querystat 	= "s.total_points";
 $Last15Mins = doquery("SELECT ". $queryuser .", ". $querystat ." FROM  {{table}}users as u, {{table}}statpoints as s
 							WHERE u.onlinetime >= '". (time() - 15 * 60) ."' AND u.id=s.id_owner AND s.stat_type=1
-							ORDER BY `". mysql_real_escape_string($TypeSort) ."` ASC;", '');
+							ORDER BY `". $db->real_escape_string($TypeSort) ."` ASC;", '');
 
 
 $Count      = 0;
 $Color      = "lime";
 
-while ($TheUser = mysql_fetch_array($Last15Mins) )
+while ($TheUser = $Last15Mins->fetch_array())
 {
 	if ($PrevIP != "")
 		if ($PrevIP == $TheUser['user_lastip'])

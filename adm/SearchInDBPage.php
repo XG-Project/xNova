@@ -93,10 +93,10 @@ switch($_POST[search])
 		$search	=	doquery("SELECT * FROM {{table}} ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
 	}
 
-	$cnt	=	mysql_num_rows($search);
-	if ($cnt	!=	NULL)
+	$cnt	=	$search->num_rows;
+	if ($cnt != NULL)
 	{
-		while ($user	=	mysql_fetch_array($search))
+		while ($user	=	$search->fetch_array())
 		{
 			$id			=	$user['id'];
 			$name		=	$user['username'];
@@ -205,14 +205,14 @@ switch($_POST[search])
 		$search	=	doquery("SELECT * FROM {{table}} WHERE `name` LIKE '%{$key_user}%' AND `planet_type` = '1' ORDER BY `".$ORDER."` ".$ORDERBY2."", "planets");
 	}
 
-	$cnt	=	mysql_num_rows($search);
+	$cnt	=	$search->num_rows;
 	if ($cnt	==	NULL)
 	{
 		$parse['error']	=	$lang['se_no_data'];
 	}
 	else
 	{
-		while ($planet	=	mysql_fetch_array($search))
+		while ($planet	=	$search->fetch_array())
 		{
 			$id			=	$planet['id'];
 			$name		=	$planet['name'];
@@ -309,14 +309,14 @@ switch($_POST[search])
 		$search	=	doquery("SELECT * FROM {{table}} WHERE `name` LIKE '%{$key_user}%' AND `planet_type` = '3' ORDER BY `".$ORDER."` ".$ORDERBY2."", "planets");
 	}
 
-	$cnt	=	mysql_num_rows($search);
+	$cnt	=	$search->num_rows;
 	if ($cnt	==	NULL)
 	{
 		$parse['error']	=	$lang['se_no_data'];
 	}
 	else
 	{
-		while ($moon	=	mysql_fetch_array($search))
+		while ($moon	=	$search->fetch_array())
 		{
 			$id			=	$moon['id'];
 			$name		=	$moon['name'];
@@ -405,14 +405,14 @@ switch($_POST[search])
 		$search	=	doquery("SELECT * FROM {{table}} WHERE `ally_name` LIKE '%{$key_user}%' ORDER BY `".$ORDER."` ".$ORDERBY2."", "alliance");
 	}
 
-	$cnt	=	mysql_num_rows($search);
+	$cnt	=	$search->num_rows;
 	if ($cnt	==	NULL)
 	{
 		$parse['error']	=	$lang['se_no_data'];
 	}
 	else
 	{
-		while ($alliances	=	mysql_fetch_array($search))
+		while ($alliances	=	$search->fetch_array())
 		{
 			$id				=	$alliances['id'];
 			$ally_name		=	$alliances['ally_name'];
@@ -495,21 +495,21 @@ switch($_POST[search])
 		$search	=	doquery("SELECT * FROM {{table}} WHERE `username` LIKE '%{$key_user}%' AND `urlaubs_modus` = '1'  ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
 	}
 
-	$cnt	=	mysql_num_rows($search);
+	$cnt	=	$search->num_rows;
 	if ($cnt	==	NULL)
 	{
 		$parse['error']	=	$lang['se_no_data'];
 	}
 	else
 	{
-		while ($vacation	=	mysql_fetch_array($search))
+		while ($vacation	=	$search->fetch_array())
 		{
-			$id			=	$vacation['id'];
-			$name		=	$vacation['username'];
-			$email		=	$vacation['email_2'];
-			$authlevel	=	$vacation['authlevel'];
-			$suspended	=	$vacation['bana'];
-			$vacations	=	$vacation['urlaubs_modus'];
+			$id				=	$vacation['id'];
+			$name			=	$vacation['username'];
+			$email			=	$vacation['email_2'];
+			$authlevel		=	$vacation['authlevel'];
+			$suspended		=	$vacation['bana'];
+			$vacations		=	$vacation['urlaubs_modus'];
 
 			if ($suspended == '0' or $suspended == NULL){$suspended = $lang['se_no'];}else{$suspended = "<font color=lime>".$lang['se_yes']."</font>";}
 			if ($vacations == '0'){$vacations = $lang['se_no'];}else{$vacations = "<font color=aqua>".$lang['se_yes']."</font>";}
@@ -591,14 +591,14 @@ switch($_POST[search])
 		$search	=	doquery("SELECT * FROM {{table}} WHERE `who` LIKE '%{$key_user}%' ORDER BY `".$ORDER."` ".$ORDERBY2."", "banned");
 	}
 
-	$cnt	=	mysql_num_rows($search);
+	$cnt	=	$search->num_rows;
 	if ($cnt	==	NULL)
 	{
 		$parse['error']	=	$lang['se_no_data'];
 	}
 	else
 	{
-		while ($suspended	=	mysql_fetch_array($search))
+		while ($suspended	=	$search->fetch_array())
 		{
 			$id			=	$suspended['id'];
 			$name		=	$suspended['who'];
@@ -683,7 +683,7 @@ switch($_POST[search])
 		$search	=	doquery("SELECT * FROM {{table}} WHERE `username` LIKE '%{$key_user}%' AND `authlevel` > '0'  ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
 	}
 
-	$cnt	=	mysql_num_rows($search);
+	$cnt	=	$search->num_rows;
 	if ($cnt	==	NULL)
 	{
 		$parse['error']	=	$lang['se_no_data'];
@@ -691,7 +691,7 @@ switch($_POST[search])
 	else
 	{
 
-		while ($admin	=	mysql_fetch_array($search))
+		while ($admin	=	$search->fetch_array())
 		{
 			$id			=	$admin['id'];
 			$name		=	$admin['username'];
@@ -778,21 +778,21 @@ switch($_POST[search])
 		$search	=	doquery("SELECT * FROM {{table}} WHERE `username` LIKE '%{$key_user}%' AND `onlinetime` < '".$Time."' ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
 	}
 
-	$cnt	=	mysql_num_rows($search);
+	$cnt	=	$search->num_rows;
 	if ($cnt	==	NULL)
 	{
 		$parse['error']	=	$lang['se_no_data'];
 	}
 	else
 	{
-		while ($inactives	=	mysql_fetch_array($search))
+		while ($inactives	=	$search->fetch_array())
 		{
-			$id			=	$inactives['id'];
-			$name		=	$inactives['username'];
-			$authlevel	=	$inactives['authlevel'];
-			$inactive	=	$inactives['onlinetime'];
-			$vacations	=	$inactives['urlaubs_modus'];
-			$suspended	=	$inactives['bana'];
+			$id				=	$inactives['id'];
+			$name			=	$inactives['username'];
+			$authlevel		=	$inactives['authlevel'];
+			$inactive		=	$inactives['onlinetime'];
+			$vacations		=	$inactives['urlaubs_modus'];
+			$suspended		=	$inactives['bana'];
 
 			if ($suspended == '0' or $suspended == NULL){$suspended = $lang['se_no'];}else{$suspended = "<font color=lime>".$lang['se_yes']."</font>";}
 			if ($vacations == '0'){$vacations = $lang['se_no'];}else{$vacations = "<font color=aqua>".$lang['se_yes']."</font>";}

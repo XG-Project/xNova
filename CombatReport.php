@@ -15,7 +15,7 @@ include(XN_ROOT . 'global.php');
 includeLang('INGAME');
 $Page .= "<div id=\"content\">";
 
-$raportrow 	= doquery("SELECT * FROM {{table}} WHERE `rid` = '".(mysql_real_escape_string($_GET["raport"]))."';", 'rw', TRUE);
+$raportrow 	= doquery("SELECT * FROM {{table}} WHERE `rid` = '".($db->real_escape_string($_GET["raport"]))."';", 'rw', TRUE);
 
 
 $owners	= explode(",", $raportrow["owners"]);
@@ -43,4 +43,7 @@ else
 }
 
 display($Page, FALSE, '', FALSE, FALSE);
-?>
+
+
+/* End of file CombatReport.php */
+/* Location: ./CombatReport.php */

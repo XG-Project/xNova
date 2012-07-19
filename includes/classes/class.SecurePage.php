@@ -20,11 +20,12 @@ class SecurePage
 	//recursively function
 	private function validate($value)
 	{
-		if(!is_array($value))
+		global $db;
+		if( ! is_array($value))
 		{
 			$value = str_ireplace("script","blocked",$value);
 			$value = (get_magic_quotes_gpc()) ? htmlentities(stripslashes($value), ENT_QUOTES, 'UTF-8',false) : htmlentities($value, ENT_QUOTES, 'UTF-8',false);
-			$value = mysql_real_escape_string($value);
+			$value = $db->real_escape_string($value);
 		}
 		else
 		{

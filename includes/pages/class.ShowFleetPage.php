@@ -19,12 +19,12 @@ class ShowFleetPage
 		#####################################################################################################
 		// QUERYS
 		$count				= doquery ( "SELECT
-											(SELECT COUNT(fleet_owner) AS `actcnt` 
-												FROM {{table}}fleets 
+											(SELECT COUNT(fleet_owner) AS `actcnt`
+												FROM {{table}}fleets
 												WHERE `fleet_owner` = '" . intval ( $CurrentUser['id'] ) . "') AS max_fleet,
-											(SELECT COUNT(fleet_owner) AS `expedi` 
-												FROM {{table}}fleets 
-													WHERE `fleet_owner` = '" . intval ( $CurrentUser['id'] ) . "' 
+											(SELECT COUNT(fleet_owner) AS `expedi`
+												FROM {{table}}fleets
+													WHERE `fleet_owner` = '" . intval ( $CurrentUser['id'] ) . "'
 														AND `fleet_mission` = '15') AS max_expeditions" , '' , TRUE);
 
 
@@ -79,7 +79,7 @@ class ShowFleetPage
 			$fq = doquery("SELECT * FROM {{table}} WHERE fleet_owner='".intval($CurrentUser[id])."'", "fleets");
 			$i  = 0;
 
-			while ( $f = mysql_fetch_array ( $fq ) )
+			while ($f = $fq->fetch_array())
 			{
 				$i++;
 

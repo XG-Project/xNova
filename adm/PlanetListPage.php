@@ -20,7 +20,7 @@ if ($Observation != 1) die();
 	$query 	= doquery("SELECT * FROM {{table}} WHERE planet_type='1' ORDER BY `id` ASC", "planets");
 	$i 		= 0;
 
-	while ($u = mysql_fetch_array($query))
+	while ($u = $query->fetch_array())
 	{
 		$parse['lista_planetas'] .= "<tr>"
 		. "<th>" . $u[0] . "</th>"

@@ -12,11 +12,11 @@ class ShowMessagesPage
 {
 	function __construct ( $CurrentUser )
 	{
-		global $lang;
+		global $lang, $db;
 
 		$OwnerID		= intval ( $_GET['id'] );
 		$MessCategory  	= intval ( $_GET['messcat'] );
-		$MessPageMode  	= addslashes ( mysql_real_escape_string ( $_GET["mode"] ) );
+		$MessPageMode  	= addslashes ( $db->real_escape_string ( $_GET["mode"] ) );
 		$DeleteWhat    	= $_POST['deletemessages'];
 
 		if ( isset ( $DeleteWhat ) )
@@ -49,27 +49,27 @@ class ShowMessagesPage
 			}
 		}
 
-		while ( $CurMess = mysql_fetch_array ( $UsrMess ) )
+		while ($CurMess = $UsrMess->fetch_array())
 		{
 			$MessType              = $CurMess['message_type'];
 			$TotalMess[$MessType] += 1;
 			$TotalMess[100]       += 1;
 		}
 
-		switch ( $MessPageMode )
+		switch ($MessPageMode)
 		{
 			case 'write':
 
-				if ( !is_numeric ( $OwnerID ) )
+				if ( ! is_numeric($OwnerID))
 				{
-					header ( "location:game.php?page=messages" );
+					header("location:game.php?page=messages");
 				}
 				else
 				{
 					$OwnerRecord	=	doquery ( "SELECT `id_planet`,`username` FROM {{table}} WHERE `id` = '" . intval ( $OwnerID ) . "';" , 'users' , TRUE );
 					$OwnerHome		= 	doquery ( "SELECT `galaxy`,`system`,`planet` FROM {{table}} WHERE `id_planet` = '" . intval ( $OwnerRecord["id_planet"] ) . "';" , 'galaxy' , TRUE );
 
-					if ( !$OwnerRecord or !$OwnerHome )
+					if ( ! $OwnerRecord or ! $OwnerHome )
 					{
 						header ( "location:game.php?page=messages" );
 					}
@@ -202,7 +202,7 @@ class ShowMessagesPage
 				$QryUpdateUser .= "`id` = '" . intval ( $CurrentUser['id'] ) . "';";
 				doquery ( $QryUpdateUser, 'users');
 
-				while ( $CurMess = mysql_fetch_array ( $UsrMess ) )
+				while ($CurMess = $UsrMess->fetch_array())
 				{
 					$parse['message_id']		=	$CurMess['message_id'];
 					$parse['message_date']		=	date ( "m-d H:i:s" , $CurMess['message_time'] );
@@ -236,7 +236,7 @@ class ShowMessagesPage
 				$QrySelectUser .= "WHERE `authlevel` != '0' ORDER BY `username` ASC;";
 				$GameOps = doquery ($QrySelectUser, 'users');
 
-				while ( $Ops = mysql_fetch_assoc ( $GameOps ) )
+				while ($Ops = $GameOps->fetch_assoc())
 				{
 					$parse['dpath']		= DPATH;
 					$parse['username'] 	= $Ops['username'];

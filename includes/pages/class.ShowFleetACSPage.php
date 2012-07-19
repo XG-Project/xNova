@@ -12,7 +12,7 @@ class ShowFleetACSPage
 {
 	function __construct ( $CurrentUser , $CurrentPlanet )
 	{
-		global $resource, $pricelist, $reslist, $lang;
+		global $resource, $pricelist, $reslist, $lang, $db;
 
 		#####################################################################################################
 		// SOME DEFAULT VALUES
@@ -69,16 +69,16 @@ class ShowFleetACSPage
 		if ( isset ( $_POST['add_member_to_acs'] ) && !empty ( $_POST['add_member_to_acs'] ) )
 		{
 			$added_user_id 	= 0;
-			$member_qry 		= doquery("SELECT `id` FROM {{table}} WHERE `username` ='".mysql_real_escape_string($_POST['addtogroup'])."' ;",'users');
+			$member_qry 		= doquery("SELECT `id` FROM {{table}} WHERE `username` ='".$db->real_escape_string($_POST['addtogroup'])."' ;",'users');
 
-			while ( $row = mysql_fetch_array ( $member_qry ) )
+			while ($row = $member_qry->fetch_array())
 			{
 				$added_user_id .= $row['id'];
 			}
 
 			if ( $added_user_id > 0 )
 			{
-				$new_eingeladen_mr = mysql_real_escape_string($_POST['acs_invited']).','.$added_user_id;
+				$new_eingeladen_mr = $db->real_escape_string($_POST['acs_invited']).','.$added_user_id;
 				doquery("UPDATE {{table}} SET `eingeladen` = '".$new_eingeladen_mr."' ;",'aks');
 				$acs_user_message = "<font color=\"lime\">".$lang['fl_player']." ".$_POST['addtogroup']." ". $lang['fl_add_to_attack'];
 			}
@@ -93,25 +93,25 @@ class ShowFleetACSPage
 
 		$query = doquery("SELECT * FROM {{table}} WHERE fleet_id = '" . intval($fleetid) . "'", 'fleets');
 
-		if ( mysql_num_rows ( $query ) != 1 )
+		if ($query->num_rows != 1)
 		{
-			exit ( header ( "Location: game.php?page=fleet" ) );
+			exit(header("Location: game.php?page=fleet"));
 		}
 
-		$daten = mysql_fetch_array ( $query );
+		$daten = $query->fetch_array();
 
 		if ( $daten['fleet_start_time'] <= time() or
 			 $daten['fleet_end_time'] < time() or
 			 $daten['fleet_mess'] == 1 )
 		{
-			exit ( header ( "Location: game.php?page=fleet" ) );
+			exit(header("Location: game.php?page=fleet"));
 		}
 
-		if ( !isset ( $_POST['send'] ) )
+		if ( ! isset($_POST['send']))
 		{
 			$fleet 				= doquery("SELECT * FROM {{table}} WHERE fleet_id = '" . intval($fleetid) . "'", 'fleets', TRUE);
 
-			if ( empty ( $fleet['fleet_group'] ) )
+			if (empty($fleet['fleet_group']))
 			{
 				$rand 			= mt_rand ( 100000 , 999999999 );
 				$acs_code 		= "AG" . $rand;
@@ -162,7 +162,7 @@ class ShowFleetACSPage
 				if ( $_POST['txt_name_acs'] != "" )
 				{
 					doquery ( "UPDATE {{table}}
-								SET name = '" . mysql_real_escape_string($_POST['txt_name_acs']) . "'
+								SET name = '" . $db->real_escape_string($_POST['txt_name_acs']) . "'
 								WHERE teilnehmer = '" . intval($CurrentUser['id']) . "'", 'aks');
 				}
 
@@ -181,7 +181,7 @@ class ShowFleetACSPage
 				$fq = doquery("SELECT * FROM {{table}} WHERE fleet_owner='".intval($CurrentUser[id])."'", "fleets");
 				$i  = 0;
 
-				while ( $f = mysql_fetch_array ( $fq ) )
+				while ($f = $fq->fetch_array())
 				{
 					$i++;
 
@@ -266,7 +266,7 @@ class ShowFleetACSPage
 
 			$parse['fleetpagerow']	=	$flying_fleets;
 
-			while ( $row = mysql_fetch_array ( $acs_madnessred ) )
+			while ($row = $acs_madnessred->fetch_array())
 			{
 				$acs_code  			.= $row['name'];
 				$acs_invited 		.= $row['eingeladen'];
@@ -281,7 +281,7 @@ class ShowFleetACSPage
 				{
 					$member_qry 	= doquery("SELECT `username` FROM {{table}} WHERE `id` ='".intval($b)."' ;",'users');
 
-					while ( $row = mysql_fetch_array ( $member_qry ) )
+					while ($row = $member_qry->fetch_array())
 					{
 						$members_option['value']	= '';
 						$members_option['selected']	= '';

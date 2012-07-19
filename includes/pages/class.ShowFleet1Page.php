@@ -193,9 +193,9 @@ class ShowFleet1Page
 		#####################################################################################################
 		$colonies	= SortUserPlanets ( $CurrentUser );
 
-		if ( mysql_num_rows ( $colonies ) > 1 )
+		if ($colonies->num_rows > 1 )
 		{
-			while ( $row = mysql_fetch_array ( $colonies ) )
+			while ($row = $colonies->fetch_array())
 			{
 				if ( $CurrentPlanet['galaxy'] <> $row['galaxy'] or
 					 $CurrentPlanet['system'] <> $row['system'] or
@@ -225,7 +225,7 @@ class ShowFleet1Page
 		#####################################################################################################
 		// LOAD SAC SHORTCUTS
 		#####################################################################################################
-		while ( $row = mysql_fetch_array ( $getCurrentAcs ) )
+		while ( $row = $getCurrentAcs->fetch_array())
 		{
 			$members = explode ( "," , $row['eingeladen'] );
 

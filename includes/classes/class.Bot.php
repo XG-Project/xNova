@@ -24,7 +24,7 @@ function UpdateBots(){
 
 		if(read_config('log_bots')) $BotLog = "\n\n------------------------------------------\n";
 		$allbots = doquery("SELECT * FROM {{table}};", 'bots');
-		while($bot = mysql_fetch_array($allbots))
+		while($bot = $allbots->fetch_array())
 		{
 			if (time() > $bot['next_time'])
 			{
@@ -42,8 +42,8 @@ function UpdateBots(){
 				 **/
 
 				if (date('H') < 8)
-					$max_time			= 28800/(($bot['minutes_per_day']-960)/15);
-				elseif ($bot['minutes_per_day'] > 960)
+					$max_time			= 28800/(($bot['minutes_per_day']-959 < 15 ? 15 : $bot['minutes_per_day']-959)/15);
+				elseif ($bot['minutes_per_day'] >= 960)
 					$max_time			= 60;
 				else
 					$max_time			= 57600/($bot['minutes_per_day']/15);
@@ -130,7 +130,7 @@ class Bot {
 		$planetselected = false;
 		$planetwork = false;
 		$planetquery = doquery("SELECT * FROM {{table}} WHERE `id_owner` = '".$this->user['id']."' AND `planet_type` = '1' ORDER BY `id` ASC;",'planets', false);
-		while($this->CurrentPlanet = mysql_fetch_array($planetquery) ){
+		while($this->CurrentPlanet = $planetquery->fetch_array()){
 			if($planetselected == true and $this->CurrentPlanet['id_owner'] == $this->user['id']){
 				CheckPlanetUsedFields ( $this->CurrentPlanet );
 
@@ -448,7 +448,7 @@ class Bot {
 	}
 	protected function HandleOwnFleets(){
 		$_fleets = doquery("SELECT * FROM {{table}} WHERE (`fleet_start_time` <= '".time()."') OR (`fleet_end_time` <= '".time()."');", 'fleets'); //  OR fleet_end_time <= ".time()
-		while ($row =  mysql_fetch_array($_fleets)) {
+		while ($row = $_fleets->fetch_array()) {
 			//Actualizar solo flotas que afecten al jugador actual
 			if($row['fleet_owner'] == $this->user['id'] or $row['fleet_target_owner'] == $this->user['id']){
 				$array                = array();
@@ -472,7 +472,7 @@ class Bot {
 	protected function HandleOtherFleets(){
 	global $resource, $reslist, $pricelist;
 		$_fleets = doquery("SELECT * FROM {{table}} WHERE `fleet_owner` != '".$this->user['id']."' AND `fleet_target_owner` = '".$this->user['id']."' AND `fleet_end_time` <= ".time().";", 'fleets');
-		while ($row =  mysql_fetch_array($_fleets)) {
+		while ($row = $_fleets->fetch_array()) {
 			//Actualizar solo flotas que afecten al jugador actual
 			if(($row['fleet_mission'] == 1 or $row['fleet_mission'] == 2 or $row['fleet_mission'] == 9) and ($row['fleet_end_galaxy'] == $this->CurrentPlanet['galaxy'] and $row['fleet_end_system'] == $this->CurrentPlanet['system'] and $row['fleet_end_planet'] == $this->CurrentPlanet['planet'])){
 				$array                = array();

@@ -104,7 +104,7 @@ function message ( $mes , $dest = "" , $time = "3" , $topnav = FALSE , $menu = T
 
 function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $menu = TRUE, $onload='')
 {
-	global $link, $debug, $user, $planetrow;
+	global $db, $debug, $user, $planetrow;
 
 	if (!$AdminPage)
 		$DisplayPage  = StdUserHeader($metatags, $onload);
@@ -150,10 +150,7 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 		echo "</center>";
 	}
 
-	if ( $link )
-	{
-		mysql_close ( $link );
-	}
+	if ($db) $db->close();
 
 	die();
 }
@@ -256,62 +253,46 @@ function BuildPlanetAdressLink ( $CurrentPlanet )
 	return $Link;
 }
 
-function doquery ( $query , $table , $fetch = FALSE )
+function doquery($query, $table, $fetch = FALSE)
 {
-	global $link, $debug;
+	global $db, $debug, $numqueries;
 
 	require(XN_ROOT.'config.php');
 	if ( ! isset($dbsettings)) die();
 
-	if ( !$link )
+	if (is_null($db))
 	{
-		$link = mysql_connect	(
-									$dbsettings["server"],
-									$dbsettings["user"],
-									$dbsettings["pass"]
-								) or $debug->error ( mysql_error() . "<br />$query" , "SQL Error" );
-
-		mysql_select_db ( $dbsettings["name"] ) or $debug->error ( mysql_error() . "<br />$query" , "SQL Error" );
+		$db		= new mysqli($dbsettings["server"], $dbsettings["user"], $dbsettings["pass"], $dbsettings["name"]);
+		if ( ! is_null($db->connect_error)) $debug->error($db->connect_error, "SQL Error");
 	}
 
 	$sql 		= str_replace ( "{{table}}" , $dbsettings["prefix"] . $table , $query );
-	$sqlquery 	= mysql_query ( $sql ) or $debug->error ( mysql_error() . "<br />$sql<br />" , "SQL Error" );
+	$sqlquery 	= $db->query($sql);
+	if ( ! $sqlquery) $debug->error($db->error."<br />$sql<br />", "SQL Error");
 
-	unset ( $dbsettings );
-
-	global $numqueries,$debug;
+	unset($dbsettings);
 	$numqueries++;
 
-	$debug->add ( "<tr><th>Query $numqueries: </th><th>".htmlentities($query, ENT_COMPAT, 'UTF-8')."</th><th>$table</th><th>$fetch</th></tr>");
+	$debug->add("<tr><th>Query $numqueries: </th><th>".htmlentities($query, ENT_COMPAT, 'UTF-8')."</th><th>$table</th><th>$fetch</th></tr>");
 
-	if ( $fetch )
-	{
-		return mysql_fetch_array ( $sqlquery );
-	}
+	if ($fetch)
+		return $sqlquery->fetch_array();
 	else
-	{
 		return $sqlquery;
-	}
-
 }
 
 function catch_error($errno , $errstr, $errfile, $errline)
 {
-	global $user, $link;
+	global $user, $db, $debug;
 
-	if( ! isset($link) OR ! $link)
+	if( ! $db)
 	{
-		include(XN_ROOT.'config.php');
+		require(XN_ROOT.'config.php');
 
 		if (isset($dbsettings))
 		{
-			$link = mysql_connect(
-								$dbsettings["server"],
-								$dbsettings["user"],
-								$dbsettings["pass"]
-							) or $debug->error ( mysql_error() . "<br />$query" , "SQL Error" );
-
-			mysql_select_db ( $dbsettings["name"] ) or $debug->error ( mysql_error() . "<br />$query" , "SQL Error" );
+			$db		= new mysqli($dbsettings["server"], $dbsettings["user"], $dbsettings["pass"], $dbsettings["name"]);
+			if ( ! is_null($db->connect_error)) $debug->error($db->connect_error, "SQL Error");
 		}
 		else
 		{

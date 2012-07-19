@@ -20,8 +20,14 @@ $IsUserChecked	= FALSE;
 require(XN_ROOT.'config.php');
 if (isset($dbsettings))
 {
-	$link = mysql_connect($dbsettings["server"], $dbsettings["user"], $dbsettings["pass"]) OR $debug->error(mysql_error(), "SQL Error");
-	mysql_select_db($dbsettings["name"]) OR $debug->error(mysql_error(), "SQL Error");
+	$db			= new mysqli($dbsettings["server"], $dbsettings["user"], $dbsettings["pass"], $dbsettings["name"]);
+	if ( ! is_null($db->connect_error)) $debug->error($db->connect_error, "SQL Error");
+
+	unset($dbsettings);
+}
+else
+{
+	$db			= NULL;
 }
 // CONEXIÓN CON LA BASE DE DATOS \\
 
@@ -51,15 +57,15 @@ if (filesize(XN_ROOT.'config.php') != 0)
 
 if ( ! defined('INSTALL') OR ( ! INSTALL))
 {
-	include(XN_ROOT.'includes/vars.php');
-	include(XN_ROOT.'includes/functions/CreateOneMoonRecord.php');
-	include(XN_ROOT.'includes/functions/CreateOnePlanetRecord.php');
-	include(XN_ROOT.'includes/functions/SendSimpleMessage.php');
-	include(XN_ROOT.'includes/functions/calculateAttack.php');
-	include(XN_ROOT.'includes/functions/formatCR.php');
-	include(XN_ROOT.'includes/functions/GetBuildingTime.php');
-	include(XN_ROOT.'includes/functions/HandleElementBuildingQueue.php');
-	include(XN_ROOT.'includes/functions/PlanetResourceUpdate.php');
+	include_once(XN_ROOT.'includes/vars.php');
+	include_once(XN_ROOT.'includes/functions/CreateOneMoonRecord.php');
+	include_once(XN_ROOT.'includes/functions/CreateOnePlanetRecord.php');
+	include_once(XN_ROOT.'includes/functions/SendSimpleMessage.php');
+	include_once(XN_ROOT.'includes/functions/calculateAttack.php');
+	include_once(XN_ROOT.'includes/functions/formatCR.php');
+	include_once(XN_ROOT.'includes/functions/GetBuildingTime.php');
+	include_once(XN_ROOT.'includes/functions/HandleElementBuildingQueue.php');
+	include_once(XN_ROOT.'includes/functions/PlanetResourceUpdate.php');
 
 	$game_lang	=	read_config('lang');
 
@@ -70,7 +76,7 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 	include_once(XN_ROOT.'includes/classes/class.Bot.php');
 	UpdateBots();
 
-	include(XN_ROOT.'includes/classes/class.CheckSession.php');
+	include_once(XN_ROOT.'includes/classes/class.CheckSession.php');
 
 	$Result        	= new CheckSession();
 	$Result			= $Result->CheckUser($IsUserChecked);
@@ -103,7 +109,7 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 		include( XN_ROOT.'includes/classes/class.FlyingFleetHandler.php');
 		$_fleets = doquery("SELECT fleet_start_galaxy,fleet_start_system,fleet_start_planet,fleet_start_type FROM {{table}} WHERE `fleet_start_time` <= '".time()."' and `fleet_mess` ='0' order by fleet_id asc;", 'fleets'); // OR fleet_end_time <= ".time()
 
-		while ($row = mysql_fetch_array($_fleets))
+		while ($row = $_fleets->fetch_array())
 		{
 			$array 					= array();
 			$array['galaxy'] 		= $row['fleet_start_galaxy'];
@@ -114,11 +120,11 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 			$temp = new FlyingFleetHandler($array);
 		}
 
-		mysql_free_result($_fleets);
+		$_fleets->free_result();
 
 		$_fleets = doquery("SELECT fleet_end_galaxy,fleet_end_system,fleet_end_planet ,fleet_end_type FROM {{table}} WHERE `fleet_end_time` <= '" . time() . " order by fleet_id asc';", 'fleets'); // OR fleet_end_time <= ".time()
 
-		while ($row = mysql_fetch_array($_fleets))
+		while ($row = $_fleets->fetch_array())
 		{
 			$array 					= array();
 			$array['galaxy'] 		= $row['fleet_end_galaxy'];
@@ -129,7 +135,7 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 			$temp = new FlyingFleetHandler($array);
 		}
 
-		mysql_free_result($_fleets);
+		$_fleets->free_result();
 		unset($_fleets);
 
 		if (defined('IN_ADMIN'))

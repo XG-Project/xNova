@@ -6,123 +6,123 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-if(!defined('INSIDE')){ die(header ( 'location:../../' ));}
+if ( ! defined('INSIDE')) die(header ( 'location:../../' ));
 
 class CheckSession
 {
-    private function CheckCookies ($IsUserChecked)
-    {
-        global $lang;
+	private function CheckCookies ($IsUserChecked)
+	{
+		global $lang, $db;
 
-        $UserRow = array();
+		$UserRow = array();
 
-        include(XN_ROOT . 'config.php');
+		include(XN_ROOT . 'config.php');
 
-    	$game_cookie	=	read_config ( 'cookie_name' );
+		$game_cookie	=	read_config ( 'cookie_name' );
 
-        if (isset($_COOKIE[$game_cookie]))
-        {
-            $TheCookie	= explode("/%/", $_COOKIE[$game_cookie]);
+		if (isset($_COOKIE[$game_cookie]))
+		{
+			$TheCookie	= explode("/%/", $_COOKIE[$game_cookie]);
 
-            // START FIX BY JSTAR
-            $TheCookie	= array_map ( 'mysql_real_escape_string' , $TheCookie );
-            // END FIX BY JSTAR
+			// START FIX BY JSTAR
+			$TheCookie	= array_map(array($db, 'real_escape_string'), $TheCookie);
+			// END FIX BY JSTAR
 
-            // BETTER QUERY BY LUCKY! REDUCE GENERAL QUERY FROM 11 TO 10.
-            $UserResult = doquery("SELECT {{table}}users.*, {{table}}statpoints.total_rank, {{table}}statpoints.total_points, {{table}}users.id
-                                    FROM {{table}}statpoints
-                                    RIGHT JOIN {{table}}users ON {{table}}statpoints.id_owner = {{table}}users.id
-                                    WHERE ({{table}}users.username = '{$TheCookie[1]}') LIMIT 1;", '');
+			// BETTER QUERY BY LUCKY! REDUCE GENERAL QUERY FROM 11 TO 10.
+			$UserResult = doquery("SELECT {{table}}users.*, {{table}}statpoints.total_rank, {{table}}statpoints.total_points, {{table}}users.id
+									FROM {{table}}statpoints
+									RIGHT JOIN {{table}}users ON {{table}}statpoints.id_owner = {{table}}users.id
+									WHERE ({{table}}users.username = '{$TheCookie[1]}') LIMIT 1;", '');
 
 
-            if (mysql_num_rows($UserResult) != 1)
-            {
-                message($lang['ccs_multiple_users'], XN_ROOT, 5, FALSE, FALSE);
-            }
+			if ($UserResult->num_rows != 1)
+			{
+				message($lang['ccs_multiple_users'], XN_ROOT, 5, FALSE, FALSE);
+			}
 
-            $UserRow    = mysql_fetch_array($UserResult);
+			$UserRow	= $UserResult->fetch_array();
 
-            if ($UserRow["id"] != $TheCookie[0])
-            {
-                message($lang['ccs_other_user'], XN_ROOT, 5,  FALSE, FALSE);
-            }
+			if ($UserRow["id"] != $TheCookie[0])
+			{
+				message($lang['ccs_other_user'], XN_ROOT, 5,  FALSE, FALSE);
+			}
 
-            if (md5($UserRow["password"] . "--" . $dbsettings["secretword"]) !== $TheCookie[2])
-            {
-                message($lang['css_different_password'], XN_ROOT, 5,  FALSE, FALSE);
-            }
+			if (md5($UserRow["password"]."--".$dbsettings["secretword"]) !== $TheCookie[2])
+			{
+				message($lang['css_different_password'], XN_ROOT, 5,  FALSE, FALSE);
+			}
 
-            $NextCookie = implode("/%/", $TheCookie);
+			$NextCookie = implode("/%/", $TheCookie);
 
-            if ($TheCookie[3] == 1)
-            {
-                $ExpireTime = time() + 31536000;
-            }
-            else
-            {
-                $ExpireTime = 0;
-            }
+			if ($TheCookie[3] == 1)
+			{
+				$ExpireTime = time() + 31536000;
+			}
+			else
+			{
+				$ExpireTime = 0;
+			}
 
-            if ($IsUserChecked == FALSE)
-            {
-                setcookie ($game_cookie, $NextCookie, $ExpireTime, "/", "", 0);
-                $QryUpdateUser  = "UPDATE {{table}} SET ";
-                $QryUpdateUser .= "`onlinetime` = '". time() ."', ";
-                $QryUpdateUser .= "`current_page` = '". mysql_real_escape_string(htmlspecialchars($_SERVER['REQUEST_URI'])) ."', ";
-                $QryUpdateUser .= "`user_lastip` = '". mysql_real_escape_string(htmlspecialchars($_SERVER['REMOTE_ADDR'])) ."', ";
-                $QryUpdateUser .= "`user_agent` = '". mysql_real_escape_string(htmlspecialchars($_SERVER['HTTP_USER_AGENT'])) ."' ";
-                $QryUpdateUser .= "WHERE ";
-                $QryUpdateUser .= "`id` = '". intval($TheCookie[0]) ."' LIMIT 1;";
-                doquery( $QryUpdateUser, 'users');
-                $IsUserChecked = TRUE;
-            }
-            else
-            {
-                $QryUpdateUser  = "UPDATE {{table}} SET ";
-                $QryUpdateUser .= "`onlinetime` = '". time() ."', ";
-                $QryUpdateUser .= "`current_page` = '". mysql_real_escape_string(htmlspecialchars($_SERVER['REQUEST_URI'])) ."', ";
-                $QryUpdateUser .= "`user_lastip` = '". mysql_real_escape_string(htmlspecialchars($_SERVER['REMOTE_ADDR'])) ."', ";
-                $QryUpdateUser .= "`user_agent` = '". mysql_real_escape_string(htmlspecialchars($_SERVER['HTTP_USER_AGENT'])) ."' ";
-                $QryUpdateUser .= "WHERE ";
-                $QryUpdateUser .= "`id` = '". intval($TheCookie[0]) ."' LIMIT 1;";
-                doquery( $QryUpdateUser, 'users');
-                $IsUserChecked = TRUE;
-            }
-        }
+			if ($IsUserChecked == FALSE)
+			{
+				setcookie ($game_cookie, $NextCookie, $ExpireTime, "/", "", 0);
+				$QryUpdateUser  = "UPDATE {{table}} SET ";
+				$QryUpdateUser .= "`onlinetime` = '". time() ."', ";
+				$QryUpdateUser .= "`current_page` = '". $db->real_escape_string(htmlspecialchars($_SERVER['REQUEST_URI'])) ."', ";
+				$QryUpdateUser .= "`user_lastip` = '". $db->real_escape_string(htmlspecialchars($_SERVER['REMOTE_ADDR'])) ."', ";
+				$QryUpdateUser .= "`user_agent` = '". $db->real_escape_string(htmlspecialchars($_SERVER['HTTP_USER_AGENT'])) ."' ";
+				$QryUpdateUser .= "WHERE ";
+				$QryUpdateUser .= "`id` = '". intval($TheCookie[0]) ."' LIMIT 1;";
+				doquery( $QryUpdateUser, 'users');
+				$IsUserChecked = TRUE;
+			}
+			else
+			{
+				$QryUpdateUser  = "UPDATE {{table}} SET ";
+				$QryUpdateUser .= "`onlinetime` = '". time() ."', ";
+				$QryUpdateUser .= "`current_page` = '". $db->real_escape_string(htmlspecialchars($_SERVER['REQUEST_URI'])) ."', ";
+				$QryUpdateUser .= "`user_lastip` = '". $db->real_escape_string(htmlspecialchars($_SERVER['REMOTE_ADDR'])) ."', ";
+				$QryUpdateUser .= "`user_agent` = '". $db->real_escape_string(htmlspecialchars($_SERVER['HTTP_USER_AGENT'])) ."' ";
+				$QryUpdateUser .= "WHERE ";
+				$QryUpdateUser .= "`id` = '". intval($TheCookie[0]) ."' LIMIT 1;";
+				doquery( $QryUpdateUser, 'users');
+				$IsUserChecked = TRUE;
+			}
+		}
 
-        unset($dbsettings);
+		unset($dbsettings);
 
-        $Return['state']  = $IsUserChecked;
-        $Return['record'] = $UserRow;
+		$Return['state']  = $IsUserChecked;
+		$Return['record'] = $UserRow;
 
-        return $Return;
-    }
+		return $Return;
+	}
 
-    public function CheckUser($IsUserChecked)
-    {
-        global $user, $lang;
+	public function CheckUser($IsUserChecked)
+	{
+		global $user, $lang;
 
-        $Result        = $this->CheckCookies($IsUserChecked);
-        $IsUserChecked = $Result['state'];
+		$Result        = $this->CheckCookies($IsUserChecked);
+		$IsUserChecked = $Result['state'];
 
-        if ($Result['record'] != FALSE)
-        {
-            $user = $Result['record'];
+		if ($Result['record'] != FALSE)
+		{
+			$user = $Result['record'];
 
-            if ($user['bana'] == 1)
-            {
-                die("<div align=\"center\"><h1>".$lang['css_account_banned_message']."</h1><br /> <strong>".$lang['css_account_banned_expire'].date("d-m-y H:i", $user['banaday'])."</strong></div>");
-            }
+			if ($user['bana'] == 1)
+			{
+				die("<div align=\"center\"><h1>".$lang['css_account_banned_message']."</h1><br /> <strong>".$lang['css_account_banned_expire'].date("d-m-y H:i", $user['banaday'])."</strong></div>");
+			}
 
-            $RetValue['record'] = $user;
-            $RetValue['state']  = $IsUserChecked;
-        }
-        else
-        {
-            $RetValue['record'] = array();
-            $RetValue['state']  = FALSE;
-        }
+			$RetValue['record'] = $user;
+			$RetValue['state']  = $IsUserChecked;
+		}
+		else
+		{
+			$RetValue['record'] = array();
+			$RetValue['state']  = FALSE;
+		}
 
-        return $RetValue;
-    }
+		return $RetValue;
+	}
 }

@@ -590,7 +590,7 @@ class FlyingFleetHandler
 			if ($FleetRow['fleet_group'] != 0)
 			{
 				$fleets = doquery('SELECT * FROM {{table}} WHERE fleet_group='.$FleetRow['fleet_group'],'fleets');
-				while ($fleet = mysql_fetch_assoc($fleets))
+				while ($fleet = $fleets->fetch_assoc())
 				{
 					$attackFleets[$fleet['fleet_id']]['fleet'] = $fleet;
 					$attackFleets[$fleet['fleet_id']]['user'] = doquery('SELECT * FROM {{table}} WHERE id ='.intval($fleet['fleet_owner']),'users', TRUE);
@@ -631,7 +631,7 @@ class FlyingFleetHandler
 			$defense = array();
 
 			$def = doquery('SELECT * FROM {{table}} WHERE `fleet_end_galaxy` = '. intval($FleetRow['fleet_end_galaxy']) .' AND `fleet_end_system` = '. intval($FleetRow['fleet_end_system']) .' AND `fleet_end_type` = '. intval($FleetRow['fleet_end_type']) .' AND `fleet_end_planet` = '. intval($FleetRow['fleet_end_planet']) .' AND fleet_start_time<'.time().' AND fleet_end_stay>='.time(),'fleets');
-			while ($defRow = mysql_fetch_assoc($def))
+			while ($defRow = $def->fetch_assoc())
 			{
 				$defRowDef = explode(';', $defRow['fleet_array']);
 				foreach ($defRowDef as $Element)
@@ -808,8 +808,8 @@ class FlyingFleetHandler
 			$QryInsertRapport .= '`owners` = "'.implode(',', $users2).'", ';
 			$QryInsertRapport .= '`rid` = "'. $rid .'", ';
 			$QryInsertRapport .= '`a_zestrzelona` = "'.$formatted_cr['destroyed'].'", ';
-			$QryInsertRapport .= '`raport` = "'. mysql_real_escape_string( $raport ) .'"';
-			doquery($QryInsertRapport,'rw') or die("Error inserting CR to database".mysql_error()."<br /><br />Trying to execute:".mysql_query());
+			$QryInsertRapport .= '`raport` = "'. $db->real_escape_string($raport) .'"';
+			doquery($QryInsertRapport,'rw') or die("Error inserting CR to database<br /><br />Trying to execute:".$db->error);
 
 			if($result['won'] == "a")
 			{
@@ -1320,11 +1320,13 @@ class FlyingFleetHandler
 	{
 		global $lang, $resource;
 
-		$iPlanetCount = mysql_result(doquery ("SELECT count(*) FROM {{table}} WHERE `id_owner` = '". $FleetRow['fleet_owner'] ."' AND `planet_type` = '1' AND `destruyed` = '0'", 'planets'), 0);
+		$iPlanetCount = doquery("SELECT count(*) FROM {{table}} WHERE `id_owner` = '". $FleetRow['fleet_owner'] ."' AND `planet_type` = '1' AND `destruyed` = '0'", 'planets')->fetch_row();
+		$iPlanetCount = $iPlanetCount[0];
 
 		if ($FleetRow['fleet_mess'] == 0)
 		{
-			$iGalaxyPlace = mysql_result(doquery ("SELECT count(*) FROM {{table}} WHERE `galaxy` = '". $FleetRow['fleet_end_galaxy']."' AND `system` = '". $FleetRow['fleet_end_system']."' AND `planet` = '". $FleetRow['fleet_end_planet']."';", 'galaxy'), 0);
+			$iGalaxyPlace = doquery ("SELECT count(*) FROM {{table}} WHERE `galaxy` = '". $FleetRow['fleet_end_galaxy']."' AND `system` = '". $FleetRow['fleet_end_system']."' AND `planet` = '". $FleetRow['fleet_end_planet']."';", 'galaxy')->fetch_row();
+			$iGalaxyPlace = $iGalaxyPlace[0];
 			$TargetAdress = sprintf ($lang['sys_adress_planet'], $FleetRow['fleet_end_galaxy'], $FleetRow['fleet_end_system'], $FleetRow['fleet_end_planet']);
 			if ($iGalaxyPlace == 0)
 			{
@@ -2223,7 +2225,7 @@ class FlyingFleetHandler
 		$fleetquery = doquery( $QryFleet, 'fleets' );
 
 
-		while ($CurrentFleet = mysql_fetch_array($fleetquery))
+		while ($CurrentFleet = $fleetquery->fetch_array())
 		{
 			switch ($CurrentFleet["fleet_mission"])
 			{

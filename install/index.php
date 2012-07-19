@@ -54,27 +54,13 @@ switch ($Mode)
 			$prefix = $_POST['prefix'];
 			$db     = $_POST['db'];
 
-			$connection = @mysql_connect($host, $user, $pass);
-			if ( ! $connection)
-			{
-				header ( 'location:?mode=ins&page=1&error=1' );
-				exit();
-			}
-
-			$dbselect = @mysql_select_db($db);
-			if ( ! $dbselect)
-			{
-				header ( 'location:?mode=ins&page=1&error=1' );
-				exit();
-			}
+			$connection	= new mysqli($host, $user, $pass, $db);
+			if ( ! is_null($connection->connect_error)) header('location:?mode=ins&page=1&error=1');
 
 			$numcookie = mt_rand(1000, 1234567890);
-			$dz = fopen("../config.php", "w");
-			if (!$dz)
-			{
-				header ( 'location:?mode=ins&page=1&error=2' );
-				exit();
-			}
+
+			if ( ! is_writable(XN_ROOT."config.php")) header('location:?mode=ins&page=1&error=2');
+			else $dz = fopen(XN_ROOT."config.php", "w");
 
 			$parse['first']	= "Conexión establecida con éxito...";
 
@@ -213,7 +199,7 @@ switch ($Mode)
 			$administrator	=	doquery("SELECT id
 											FROM {{table}}
 											WHERE password = '" . sha1( $_POST['adm_pass'] ) . "' AND
-													email = '" . mysql_real_escape_string ( $_POST['adm_email'] ) . "' AND
+													email = '" . $db->real_escape_string ( $_POST['adm_email'] ) . "' AND
 													authlevel = 3" , 'users' , TRUE );
 
 			if ( !$administrator )
@@ -274,7 +260,7 @@ switch ($Mode)
 
 						$emails	= doquery('SELECT `email` FROM {{table}}', 'users');
 
-						while ($u = mysql_fetch_array($emails))
+						while ($u = $emails->fetch_array())
 						{
 							$Caracters='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 							$pass = '';
@@ -291,7 +277,7 @@ switch ($Mode)
 							$QryPassChange = "UPDATE {{table}} SET ";
 							$QryPassChange .= "`password` ='". $NewPassSql ."' ";
 							$QryPassChange .= "WHERE `email`='". $mail ."' LIMIT 1;";
-							doquery( $QryPassChange, 'users');
+							doquery($QryPassChange, 'users');
 						}
 					}
 
@@ -343,11 +329,11 @@ switch ($Mode)
 					}
 				}
 
-				if ( $QrysArray != NULL )
+				if ($QrysArray != NULL)
 				{
-					foreach ( $QrysArray as $DoQuery )
+					foreach ($QrysArray as $DoQuery)
 					{
-						mysql_query($DoQuery);
+						$db->query($DoQuery);
 					}
 				}
 

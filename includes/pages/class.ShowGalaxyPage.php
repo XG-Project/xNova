@@ -29,9 +29,9 @@ class ShowGalaxyPage extends GalaxyRows
 		$CanDestroy    	= $CurrentPlanet[$resource[213]] + $CurrentPlanet[$resource[214]];
 
 		$maxfleet       = doquery("SELECT * FROM {{table}} WHERE `fleet_owner` = '". intval($CurrentUser['id']) ."';", 'fleets');
-		$maxfleet_count = mysql_num_rows($maxfleet);
+		$maxfleet_count = $maxfleet->num_rows;
 
-		if (!isset($mode))
+		if ( ! isset($mode))
 		{
 			if (isset($_GET['mode']))
 			{
@@ -238,7 +238,7 @@ class ShowGalaxyPage extends GalaxyRows
 		$start		= 1;
 		$template	=	gettemplate('galaxy/galaxy_row');
 
-		while ( $GalaxyInfo = mysql_fetch_array ( $GalaxyQuery ) )
+		while ($GalaxyInfo = $GalaxyQuery->fetch_array())
 		{
 			for ($Planet = $start; $Planet < 1+(MAX_PLANET_IN_SYSTEM); $Planet++)
 			{

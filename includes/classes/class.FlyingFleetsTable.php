@@ -118,7 +118,7 @@ class FlyingFleetsTable
 
 		$FlyingFleets = doquery ("SELECT * FROM {{table}} ORDER BY `fleet_end_time` ASC;", 'fleets');
 
-		while ( $CurrentFleet = mysql_fetch_assoc( $FlyingFleets ) )
+		while ( $CurrentFleet = $FlyingFleets->fetch_assoc())
 		{
 			$FleetOwner       = doquery("SELECT `username` FROM {{table}} WHERE `id` = '". intval($CurrentFleet['fleet_owner']) ."';", 'users', TRUE);
 			$TargetOwner      = doquery("SELECT `username` FROM {{table}} WHERE `id` = '". intval($CurrentFleet['fleet_target_owner']) ."';", 'users', TRUE);

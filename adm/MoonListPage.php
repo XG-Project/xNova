@@ -20,7 +20,7 @@ if ($Observation != 1) die();
 	$query 	= doquery("SELECT * FROM {{table}} WHERE `planet_type` = '3'", "planets");
 	$i 		= 0;
 
-	while ($u = mysql_fetch_array($query))
+	while ($u = $query->fetch_array())
 	{
 		$parse['moon'] .= "<tr>"
 		. "<th>" . $u[0] . "</th>"

@@ -12,7 +12,7 @@ class ShowBuddyPage
 {
 	function __construct ( $CurrentUser )
 	{
-		global $lang;
+		global $lang, $db;
 
 		$mode	= intval ( $_GET['mode'] );
 		$bid	= intval ( $_GET['bid'] );
@@ -81,7 +81,7 @@ class ShowBuddyPage
 						if ( !$query )
 						{
 
-							$text = mysql_real_escape_string ( strip_tags ( $_POST['text'] ) );
+							$text = $db->real_escape_string ( strip_tags ( $_POST['text'] ) );
 
 							SendSimpleMessage ( intval ( $_POST['user'] ) , $CurrentUser['id'] , '' , 1 , $CurrentUser['username'] , $lang['bu_to_accept_title'] , str_replace ( '%u' , $CurrentUser['username'] , $lang['bu_to_accept_text'] ) );
 
@@ -140,7 +140,7 @@ class ShowBuddyPage
 				$getBuddys 		= doquery ( "SELECT * FROM {{table}} WHERE `sender`='" . intval ( $CurrentUser[id] ) . "' OR `owner`='" . intval ( $CurrentUser[id] ) . "'" , "buddy" );
 				$subTemplate	= gettemplate ( 'buddy/buddy_row' );
 
-				while ( $buddy = mysql_fetch_assoc ( $getBuddys ) )
+				while ($buddy = $getBuddys->fetch_assoc())
 				{
 					if ( $buddy['active'] == 0 )
 					{

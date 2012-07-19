@@ -38,7 +38,7 @@ elseif ($_GET['view'] == 'bana' && $user['authlevel'] == 3)
 $UserList		=	doquery("SELECT `username`, `id`, `bana` FROM {{table}} ".$ListWHERE." ".$WHEREBANA." ORDER BY ".$ORDER." ASC", "users");
 
 $Users	=	0;
-while ($a	=	mysql_fetch_array($UserList))
+while ($a = $UserList->fetch_array())
 {
 	if ($a['bana']	==	'1')
 		$SuspendedNow	=	$lang['bo_characters_suus'];
@@ -57,7 +57,7 @@ else
 
 $Banneds	=	0;
 $UserListBan	=	doquery("SELECT `username`, `id` FROM {{table}} WHERE `bana` = '1' ORDER BY ".$ORDER2." ASC", "users");
-while ($b	=	mysql_fetch_array($UserListBan))
+while ($b = $UserListBan->fetch_array())
 {
 	$parse['ListBan']	.=	'<option value="'.$b['username'].'">'.$b['username'].'&nbsp;&nbsp;(ID:&nbsp;'.$b['id'].')</option>';
 	$Banneds++;
@@ -67,8 +67,8 @@ $parse['userss']	=	"<font color=lime>".$Users."</font>";
 $parse['banneds']	=	"<font color=lime>".$Banneds."</font>";
 
 
-mysql_free_result($UserList);
-mysql_free_result($UserListBan);
+$UserList->free_result();
+$UserListBan->free_result();
 
 if($_GET['panel'])
 {

@@ -31,7 +31,7 @@ if ($Observation != 1) die();
 	$parse['adm_ul_table'] = "";
 	$i                     = 0;
 	$Color                 = "lime";
-	while ($u = mysql_fetch_assoc($query))
+	while ($u = $query->fetch_assoc())
 	{
 		if ($PrevIP != "")
 		{

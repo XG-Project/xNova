@@ -127,13 +127,13 @@ class ShowFleet3Page
 
 		if ($_POST['mission'] != 15)
 		{
-			if (mysql_num_rows($select) < 1 && $fleetmission != 7)
+			if ($select->num_rows < 1 && $fleetmission != 7)
 			{
-				exit ( header ( "location:game.php?page=fleet" ) );
+				exit (header("location:game.php?page=fleet"));
 			}
-			elseif ($fleetmission == 9 && mysql_num_rows($select) < 1)
+			elseif ($fleetmission == 9 && $select->num_rows < 1)
 			{
-				exit ( header ( "location:game.php?page=fleet" ) );
+				exit (header("location:game.php?page=fleet"));
 			}
 		}
 		else
@@ -163,7 +163,7 @@ class ShowFleet3Page
 			}
 		}
 
-		$select = mysql_fetch_array($select);
+		$select = $select->fetch_array();
 
 		if ($select['id_owner'] == $CurrentUser['id'])
 		{
@@ -246,7 +246,7 @@ class ShowFleet3Page
 			message("<font color=\"lime\"><b>".$lang['fl_in_vacation_player']."</b></font>", "game.php?page=fleet", 2);
 		}
 
-		$FlyingFleets = mysql_fetch_assoc(doquery("SELECT COUNT(fleet_id) as Number FROM {{table}} WHERE `fleet_owner`='".intval($CurrentUser['id'])."'", 'fleets'));
+		$FlyingFleets = doquery("SELECT COUNT(fleet_id) as Number FROM {{table}} WHERE `fleet_owner`='".intval($CurrentUser['id'])."'", 'fleets')->fetch_assoc();
 		$ActualFleets = $FlyingFleets["Number"];
 
 		if ((Fleets::get_max_fleets ( $CurrentUser[$resource[108]] , $CurrentUser['rpg_amiral'] ) ) <= $ActualFleets)

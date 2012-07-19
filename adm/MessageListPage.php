@@ -122,7 +122,7 @@ if ($Observation != 1) die(message ($lang['404_page']));
 	elseif ($Selected == 100)
 		$Messages            = doquery("SELECT * FROM {{table}} ORDER BY `message_time` DESC LIMIT ". $StartRec .",25;", 'messages');
 
-		while ($row = mysql_fetch_assoc($Messages))
+		while ($row = $Messages->fetch_assoc())
 		{
 			$OwnerData = doquery ("SELECT `username` FROM {{table}} WHERE `id` = '". $row['message_owner'] ."';", 'users',TRUE);
 			$bloc['mlst_id']      = $row['message_id'];

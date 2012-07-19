@@ -20,7 +20,7 @@ $parse = $lang;
 if (!$_POST)
 {
 	$Tablas = doquery("SHOW TABLES","todas");
-	while ($row = mysql_fetch_assoc($Tablas))
+	while ($row = $Tablas->fetch_assoc())
 	{
 		foreach ($row as $opcion => $tabla)
 		{
@@ -34,7 +34,7 @@ else
 {
 	$Tablas = doquery("SHOW TABLES",'todas');
 
-	while ($row = mysql_fetch_assoc($Tablas))
+	while ($row = $Tablas->fetch_assoc())
 	{
 		foreach ($row as $opcion => $tabla)
 		{
@@ -53,7 +53,7 @@ else
 				$Message	=	$lang['od_check_ok'];
 				$Log	=	"\n".$lang['log_database_title']."\n".$lang['log_the_user'].$user['username'].$lang['log_database_view'].":\n".$lang['log_data_check']."\n";}
 
-			if (mysql_errno())
+			if ($db->errno)
 			{
 				$parse['tabla'] .= "<tr>";
 				$parse['tabla'] .= "<th width=\"50%\">".$tabla."</th>";
@@ -74,4 +74,7 @@ else
 }
 
 display(parsetemplate(gettemplate('adm/DataBaseViewBody'), $parse), FALSE, '', TRUE, FALSE);
-?>
+
+
+/* End of file DatabaseViewPage.php */
+/* Location: ./adm/DatabaseViewPage.php */

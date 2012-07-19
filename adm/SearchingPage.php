@@ -126,7 +126,7 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 		$Search['LIST']	.=	"</tr>";
 
 
-		while ($WhileResult	=	mysql_fetch_array($FinalQuery))
+		while ($WhileResult	=	$FinalQuery->fetch_array())
 		{
 			$Search['LIST']	 .=	"<tr>";
 			if ($Table == "users"){
@@ -196,7 +196,7 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 		$Search['LIST']	.=	"</table>";
 
 
-		mysql_free_result($FinalQuery);
+		$FinalQuery->free_result();
 
 		$Result	.=	parsetemplate(gettemplate('adm/SearchInDBRow'), $Search);
 

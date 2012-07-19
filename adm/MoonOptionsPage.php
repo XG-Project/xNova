@@ -33,7 +33,7 @@ if ($_POST && $_POST['add_moon'])
 	$MoonGalaxy		= 	doquery("SELECT * FROM {{table}} WHERE `id_planet` = '".$PlanetID."'", 'galaxy', TRUE);
 
 
-if (mysql_num_rows($search) != 0)
+if ($search->num_rows != 0)
 {
 	if ($MoonGalaxy['id_luna'] == 0 && $MoonPlanet['planet_type'] == 1 && $MoonPlanet['destruyed'] == 0)
 	{
@@ -134,7 +134,7 @@ elseif($_POST && $_POST['del_moon'])
 	$MoonID	= $_POST['del_moon'];
 
 	$search	=	doquery("SELECT * FROM {{table}} WHERE `id` LIKE '%{$MoonID}%'", "planets");
-	if (mysql_num_rows($search) != 0)
+	if ($search->num_rows != 0)
 	{
 		$MoonSelected  			= doquery("SELECT * FROM {{table}} WHERE `id` = '". $MoonID ."'", 'planets', TRUE);
 
@@ -172,14 +172,14 @@ elseif($_POST && $_POST['search_moon'])
 	$UserID		=	$_POST['search_moon'];
 	$search_m	=	doquery("SELECT * FROM {{table}} WHERE `id_owner` LIKE '%{$UserID}%' AND `planet_type` = '3'", "planets");
 
-	while ($c = mysql_fetch_array($search_m))
+	while ($c = $search_m->fetch_array())
 	{
 		$parse['moonlist']	.=	"<tr><td colspan=\"2\" class=\"big\">".$c['name']." [".$c['galaxy'].":".$c['system'].":".$c['planet']."] ID: ".$c['id']."</td></tr>";
 	}
 }
 
 $search_u	=	doquery("SELECT * FROM {{table}}", "users");
-while ($b = mysql_fetch_array($search_u))
+while ($b = $search_u->fetch_array())
 {
 	$parse['list']	.=	"<option value=\"".$b['id']."\">".$b['username']."</option>";
 }

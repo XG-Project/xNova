@@ -32,7 +32,7 @@ class debug
 
 	function error($message,$title)
 	{
-		global $link, $lang, $user;
+		global $db, $lang, $user;
 
 		if ( read_config ( 'debug' ) == 1 )
 		{
@@ -40,24 +40,26 @@ class debug
 			echo  "<table>".$this->log."</table>";
 		}
 
-		include(XN_ROOT . 'config.php');
+		include(XN_ROOT.'config.php');
 
-		if(!$link)
+		if( ! $db)
 			die($lang['cdg_mysql_not_available']);
 
 		$query = "INSERT INTO {{table}} SET
 		`error_sender` = '".intval($user['id'])."' ,
 		`error_time` = '".time()."' ,
-		`error_type` = '".mysql_real_escape_string($title)."' ,
-		`error_text` = '".mysql_real_escape_string($message)."';";
+		`error_type` = '".$db->real_escape_string($title)."' ,
+		`error_text` = '".$db->real_escape_string($message)."';";
 
-		$sqlquery = mysql_query(str_replace("{{table}}", $dbsettings["prefix"].'errors',$query)) or die(isset($lang['cdg_fatal_error']) ? $lang['cdg_fatal_error'] : 'FATAL ERROR');
+		$sqlquery = $db->query(str_replace("{{table}}", $dbsettings["prefix"].'errors',$query));
+		if ( ! $sqlquery) die(isset($lang['cdg_fatal_error']) ? $lang['cdg_fatal_error'] : 'FATAL ERROR');
 
 		$query = "explain select * from {{table}}";
 
-		$q = mysql_fetch_array(mysql_query(str_replace("{{table}}", $dbsettings["prefix"].'errors', $query))) or die(isset($lang['cdg_fatal_error']) ? $lang['cdg_fatal_error'] : 'FATAL ERROR');
+		$q = $db->query(str_replace("{{table}}", $dbsettings["prefix"].'errors', $query));
+		if ( ! $q OR  ! ($q = $q->fetch_array())) die(isset($lang['cdg_fatal_error']) ? $lang['cdg_fatal_error'] : 'FATAL ERROR');
 
-		if (!function_exists('message'))
+		if ( ! function_exists('message'))
 			echo $lang['cdg_error_message']." <b>".$q['rows']."</b>";
 		else
 			message($lang['cdg_error_message']." <b>".$q['rows']."</b>", '', '', FALSE, FALSE);

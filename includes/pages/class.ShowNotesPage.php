@@ -12,7 +12,7 @@ class ShowNotesPage
 {
 	function __construct ( $CurrentUser )
 	{
-		global $lang;
+		global $lang, $db;
 
 		$parse 	= $lang;
 		$a 		= intval($_GET['a']);
@@ -22,8 +22,8 @@ class ShowNotesPage
 		{
 			$time 		= time();
 			$priority 	= intval($_POST["u"]);
-			$title 		= ($_POST["title"]) ? mysql_real_escape_string(strip_tags($_POST["title"])) : "Sin título";
-			$text 		= ($_POST["text"]) ? mysql_real_escape_string(strip_tags($_POST["text"])) : "Sin texto";
+			$title 		= ($_POST["title"]) ? $db->real_escape_string(strip_tags($_POST["title"])) : "Sin título";
+			$text 		= ($_POST["text"]) ? $db->real_escape_string(strip_tags($_POST["text"])) : "Sin texto";
 
 			if($_POST["s"] ==1)
 			{
@@ -105,13 +105,13 @@ class ShowNotesPage
 				$count = 0;
 
 				$NotesBodyEntryTPL=gettemplate('notes/notes_body_entry');
-				while($note = mysql_fetch_array($notes_query))
+				while($note = $notes_query->fetch_array())
 				{
 					$count++;
 
-					if($note["priority"] == 0){ $parse['NOTE_COLOR'] = "lime";}
-					elseif($note["priority"] == 1){ $parse['NOTE_COLOR'] = "yellow";}
-					elseif($note["priority"] == 2){ $parse['NOTE_COLOR'] = "red";}
+					if ($note["priority"] == 0) $parse['NOTE_COLOR'] = "lime";
+					elseif ($note["priority"] == 1) $parse['NOTE_COLOR'] = "yellow";
+					elseif ($note["priority"] == 2) $parse['NOTE_COLOR'] = "red";
 
 					$parse['NOTE_ID'] 		= $note['id'];
 					$parse['NOTE_TIME'] 	= date("Y-m-d h:i:s",$note["time"]);

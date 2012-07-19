@@ -29,8 +29,8 @@ $time		=	time();
 $i			=	0;
 if ($_POST)
 {
-	$CheckUser = doquery("SELECT `username` FROM {{table}} WHERE `username` = '" . mysql_real_escape_string($_POST['name']) . "' LIMIT 1", "users", TRUE);
-	$CheckMail = doquery("SELECT `email` FROM {{table}} WHERE `email` = '" . mysql_real_escape_string($_POST['email']) . "' LIMIT 1", "users", TRUE);
+	$CheckUser = doquery("SELECT `username` FROM {{table}} WHERE `username` = '".$db->real_escape_string($_POST['name'])."' LIMIT 1", "users", TRUE);
+	$CheckMail = doquery("SELECT `email` FROM {{table}} WHERE `email` = '".$db->real_escape_string($_POST['email'])."' LIMIT 1", "users", TRUE);
 	$CheckRows = doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' AND `system` = '".$system."' AND `planet` = '".$planet."' LIMIT 1", "galaxy", TRUE);
 
 
@@ -64,35 +64,35 @@ if ($_POST)
 
 	if ($i	==	'0'){
 		$Query1  = "INSERT INTO {{table}} SET ";
-		$Query1 .= "`username` = '" . mysql_real_escape_string(strip_tags($name)) . "', ";
-		$Query1 .= "`email` = '" . mysql_real_escape_string($email) . "', ";
-		$Query1 .= "`email_2` = '" . mysql_real_escape_string($email) . "', ";
-		$Query1 .= "`ip_at_reg` = '" . $_SERVER["REMOTE_ADDR"] . "', ";
+		$Query1 .= "`username` = '".$db->real_escape_string(strip_tags($name))."', ";
+		$Query1 .= "`email` = '".$db->real_escape_string($email)."', ";
+		$Query1 .= "`email_2` = '".$db->real_escape_string($email)."', ";
+		$Query1 .= "`ip_at_reg` = '".$_SERVER["REMOTE_ADDR"]."', ";
 		$Query1 .= "`id_planet` = '0', ";
-		$Query1 .= "`register_time` = '" .$time. "', ";
-		$Query1 .= "`onlinetime` = '" .$time. "', ";
-		$Query1 .= "`authlevel` = '" .$auth. "', ";
-		$Query1 .= "`password`='" . $pass . "';";
+		$Query1 .= "`register_time` = '".$time."', ";
+		$Query1 .= "`onlinetime` = '".$time."', ";
+		$Query1 .= "`authlevel` = '".$auth."', ";
+		$Query1 .= "`password`='".$pass."';";
 		doquery($Query1, "users");
 
 		update_config ( 'users_amount' , read_config ( 'users_amount' ) + 1 );
 
-		$ID_USER 	= doquery("SELECT `id` FROM {{table}} WHERE `username` = '" . mysql_real_escape_string($name) . "' LIMIT 1", "users", TRUE);
+		$ID_USER 	= doquery("SELECT `id` FROM {{table}} WHERE `username` = '".$db->real_escape_string($name)."' LIMIT 1", "users", TRUE);
 
 		CreateOnePlanetRecord ($galaxy, $system, $planet, $ID_USER['id'], $UserPlanet, TRUE);
 
-		$ID_PLANET 	= doquery("SELECT `id` FROM {{table}} WHERE `id_owner` = '". $ID_USER['id'] ."' LIMIT 1" , "planets", TRUE);
+		$ID_PLANET 	= doquery("SELECT `id` FROM {{table}} WHERE `id_owner` = '".$ID_USER['id']."' LIMIT 1" , "planets", TRUE);
 
 		doquery("UPDATE {{table}} SET `id_level` = '".$auth."' WHERE `id` = '".$ID_PLANET['id']."'", "planets");
 
 		$QryUpdateUser = "UPDATE {{table}} SET ";
-		$QryUpdateUser .= "`id_planet` = '" . $ID_PLANET['id'] . "', ";
-		$QryUpdateUser .= "`current_planet` = '" . $ID_PLANET['id'] . "', ";
-		$QryUpdateUser .= "`galaxy` = '" . $galaxy . "', ";
-		$QryUpdateUser .= "`system` = '" . $system . "', ";
-		$QryUpdateUser .= "`planet` = '" . $planet . "' ";
+		$QryUpdateUser .= "`id_planet` = '".$ID_PLANET['id']."', ";
+		$QryUpdateUser .= "`current_planet` = '".$ID_PLANET['id']."', ";
+		$QryUpdateUser .= "`galaxy` = '".$galaxy."', ";
+		$QryUpdateUser .= "`system` = '".$system."', ";
+		$QryUpdateUser .= "`planet` = '".$planet."' ";
 		$QryUpdateUser .= "WHERE ";
-		$QryUpdateUser .= "`id` = '" . $ID_USER['id'] . "' ";
+		$QryUpdateUser .= "`id` = '".$ID_USER['id']."' ";
 		$QryUpdateUser .= "LIMIT 1;";
 		doquery($QryUpdateUser, "users");
 

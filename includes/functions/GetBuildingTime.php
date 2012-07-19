@@ -43,7 +43,7 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 		//		$inves = doquery("SELECT laboratory FROM {{table}} WHERE id_owner='".intval($user['id'])."' ORDER BY laboratory DESC LIMIT ".$limite."", 'planets');
 		//		$lablevel = 0;
 
-		//		while (	$row = mysql_fetch_array ( $inves ) )
+		//		while ($row = $inves->fetch_array())
 		//		{
 		//			$lablevel += $row['laboratory'];
 		//		}

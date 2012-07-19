@@ -32,7 +32,7 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 
 		$ThePlanets = doquery ( "SELECT * FROM {{table}} WHERE `id_owner` = '" . $UserID . "';", 'planets' );
 
-		while ( $OnePlanet = mysql_fetch_assoc ( $ThePlanets ) )
+		while ( $OnePlanet = $ThePlanets->fetch_assoc())
 		{
 			if ( $OnePlanet['planet_type'] == 1 )
 				doquery ( "DELETE FROM {{table}} WHERE `galaxy` = '" . $OnePlanet['galaxy'] . "' AND `system` = '" . $OnePlanet['system'] . "' AND `planet` = '" . $OnePlanet['planet'] . "';", 'galaxy' );

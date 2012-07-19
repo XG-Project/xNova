@@ -20,7 +20,7 @@ $parse 			= $lang;
 $ActivePlanets 	= doquery("SELECT `name`,`galaxy`,`system`,`planet`,`points`,`last_update` FROM {{table}} WHERE `last_update` >= '". (time()-15 * 60) ."' ORDER BY `id` ASC", 'planets');
 $Count          = 0;
 
-while ($ActivPlanet = mysql_fetch_array($ActivePlanets))
+while ($ActivPlanet = $ActivePlanets->fetch_array())
 {
 	$parse['online_list'] .= "<tr>";
 	$parse['online_list'] .= "<th><center><b>". $ActivPlanet['name'] ."</b></center></th>";

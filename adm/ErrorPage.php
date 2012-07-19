@@ -29,7 +29,7 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 
 			$i = 0;
 
-			while ($u = mysql_fetch_array($query))
+			while ($u = $query->fetch_array())
 			{
 				$i++;
 
@@ -106,7 +106,7 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 
 			$error_text		= array('E_ALL', 'E_DEPRECATED', 'E_RECOVERABLE_ERROR', 'E_STRICT', 'E_NOTICE', 'E_WARNING');
 
-			while ($u = mysql_fetch_array($query))
+			while ($u = $query->fetch_array())
 			{
 				$i++;
 

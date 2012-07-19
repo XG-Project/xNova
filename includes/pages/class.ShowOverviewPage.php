@@ -12,7 +12,7 @@ class ShowOverviewPage
 {
 	function __construct ( $CurrentUser , $CurrentPlanet )
 	{
-		global $planetrow, $lang;
+		global $planetrow, $lang, $db;
 
 		include_once (XN_ROOT . 'includes/functions/InsertJavaScriptChronoApplet.php');
 		include_once (XN_ROOT . 'includes/classes/class.FlyingFleetsTable.php');
@@ -45,7 +45,7 @@ class ShowOverviewPage
 
 				if(isset($_POST['action']) && $_POST['action'] == $lang['ov_planet_rename_action'])
 				{
-					$newname = mysql_real_escape_string(strip_tags(trim($_POST['newname'])));
+					$newname = $db->real_escape_string(strip_tags(trim($_POST['newname'])));
 
 					if(preg_match("/[^A-z0-9_\- ]/",$newname) == 1)
 					{
@@ -64,7 +64,7 @@ class ShowOverviewPage
 				{
 					$filokontrol = doquery("SELECT * FROM {{table}} WHERE fleet_owner = '" . intval($CurrentUser['id']) . "' AND fleet_start_galaxy='" . intval($CurrentPlanet['galaxy']) . "' AND fleet_start_system='" . intval($CurrentPlanet['system']) . "' AND fleet_start_planet='" . intval($CurrentPlanet['planet']) . "'",'fleets');
 
-					while($satir = mysql_fetch_array($filokontrol))
+					while ($satir = $filokontrol->fetch_array())
 					{
 						$kendifilo = $satir['fleet_owner'];
 						$digerfilo = $satir['fleet_target_owner'];
@@ -74,7 +74,7 @@ class ShowOverviewPage
 
 					$filokontrol = doquery("SELECT * FROM {{table}} WHERE fleet_target_owner = '" . intval($CurrentUser['id']) . "' AND fleet_end_galaxy='" . intval($CurrentPlanet['galaxy']) . "' AND fleet_end_system='" . intval($CurrentPlanet['system']) . "' AND fleet_end_planet='" . intval($CurrentPlanet['planet']) . "'",'fleets');
 
-					while($satir = mysql_fetch_array($filokontrol))
+					while ($satir = $filokontrol->fetch_array())
 					{
 						$kendifilo = $satir['fleet_owner'];
 						$digerfilo = $satir['fleet_target_owner'];
@@ -137,7 +137,7 @@ class ShowOverviewPage
 				$Record = 0;
 
 				$fpage	= array();
-				while($FleetRow = mysql_fetch_array($OwnFleets))
+				while ($FleetRow = $OwnFleets->fetch_array())
 				{
 					$Record++;
 
@@ -182,7 +182,7 @@ class ShowOverviewPage
 					/**end fix**/
 
 				}
-				mysql_free_result($OwnFleets);
+				$OwnFleets->free_result();
 				//iss ye katilan filo////////////////////////////////////
 
 
@@ -191,7 +191,7 @@ class ShowOverviewPage
 				{
 					$dostfilo = doquery("SELECT * FROM {{table}} WHERE `fleet_end_galaxy` = '" . intval($hedefgalaksi) . "' AND `fleet_end_system` = '" . intval($hedefsistem) . "' AND `fleet_end_planet` = '" . intval($hedefgezegen) . "' AND `fleet_group` = '" . intval($filogrubu) . "';",'fleets');
 					$Record1 = 0;
-					while($FleetRow = mysql_fetch_array($dostfilo))
+					while ($FleetRow = $dostfilo->fetch_array())
 					{
 						$StartTime = $FleetRow['fleet_start_time'];
 						$StayTime = $FleetRow['fleet_end_stay'];
@@ -237,7 +237,7 @@ class ShowOverviewPage
 						}
 
 					}
-					mysql_free_result($dostfilo);
+					$dostfilo->free_result();
 				}
 				//
 				//////////////////////////////////////////////////
@@ -246,7 +246,7 @@ class ShowOverviewPage
 				$OtherFleets = doquery("SELECT * FROM {{table}} WHERE `fleet_target_owner` = '" . intval($CurrentUser['id']) . "';",'fleets');
 
 				$Record = 2000;
-				while($FleetRow = mysql_fetch_array($OtherFleets))
+				while ($FleetRow = $OtherFleets->fetch_array())
 				{
 					if($FleetRow['fleet_owner'] != $CurrentUser['id'])
 					{
@@ -273,12 +273,12 @@ class ShowOverviewPage
 						}
 					}
 				}
-				mysql_free_result($OtherFleets);
+				$OtherFleets->free_result();
 
 				$planets_query = doquery("SELECT * FROM `{{table}}` WHERE id_owner='" . intval($CurrentUser['id']) . "' AND `destruyed` = 0","planets");
 				$Colone = 1;
 				$AllPlanets = "<tr>";
-				while($CurrentUserPlanet = mysql_fetch_array($planets_query))
+				while ($CurrentUserPlanet = $planets_query->fetch_array())
 				{
 					if($CurrentUserPlanet["id"] != $CurrentUser["current_planet"] && $CurrentUserPlanet['planet_type'] != 3)
 					{
@@ -323,7 +323,7 @@ class ShowOverviewPage
 						}
 					}
 				}
-				mysql_free_result($planets_query);
+				$planets_query->free_result();
 
 				$AllPlanets .= "</tr>";
 

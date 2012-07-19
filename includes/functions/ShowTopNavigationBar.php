@@ -35,7 +35,7 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 		$parse['planetlist'] 			= '';
 		$ThisUsersPlanets    			= SortUserPlanets ( $CurrentUser );
 
-		while ($CurPlanet = mysql_fetch_array($ThisUsersPlanets))
+		while ($CurPlanet = $ThisUsersPlanets->fetch_array())
 		{
 			if ( ! isset($CurPlanet["destruyed"]) OR $CurPlanet["destruyed"] == 0)
 			{

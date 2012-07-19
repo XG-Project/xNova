@@ -6,7 +6,7 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-function migrate_to_xml ()
+function migrate_to_xml()
 {
 	$xml			= file_get_contents(XN_ROOT.'install/xml_template.xml');
 	$config_file	= fopen(XN_ROOT.'includes/xml/config.xml', "wb");
@@ -48,11 +48,11 @@ function migrate_to_xml ()
 								'&#126;'
 							);
 
-	while ($row = mysql_fetch_assoc($query))
+	while ($row = $query->fetch_assoc())
 	{
-		if ( $row['config_name'] != 'BuildLabWhileRun' )
+		if ($row['config_name'] != 'BuildLabWhileRun')
 		{
-			update_config ( strtolower ( $row['config_name'] ) , str_replace ( $search , $replace , $row['config_value'] )  );
+			update_config(strtolower($row['config_name']), str_replace($search, $replace, $row['config_value']));
 		}
 	}
 }

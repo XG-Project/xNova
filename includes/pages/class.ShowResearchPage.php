@@ -67,7 +67,7 @@ class ShowResearchPage
 		$inves 				= doquery("SELECT laboratory FROM {{table}} WHERE id_owner='".intval($CurrentUser['id'])."' ORDER BY laboratory DESC LIMIT ".$limite."", 'planets');
 		$lablevel 			= 0;
 
-		while (	$row = mysql_fetch_array ( $inves ) )
+		while ($row = $inves->fetch_array())
 		{
 			$lablevel 	   += $row['laboratory'];
 		}
@@ -75,7 +75,7 @@ class ShowResearchPage
 		if ($CurrentPlanet[$resource[31]] == 0)
 			message($lang['bd_lab_required'], '', '', TRUE);
 
-		if (!$this->CheckLabSettingsInQueue ($CurrentPlanet))
+		if ( ! $this->CheckLabSettingsInQueue ($CurrentPlanet))
 		{
 			$NoResearchMessage = $lang['bd_building_lab'];
 			$bContinue         = FALSE;

@@ -12,12 +12,12 @@ class ShowSearchPage
 {
 	function __construct ()
 	{
-		global $lang;
+		global $lang, $db;
 
 		$parse 	= $lang;
 		$type 	= $_POST['type'];
 
-		$searchtext = mysql_real_escape_string($_POST["searchtext"]);
+		$searchtext = $db->real_escape_string($_POST["searchtext"]);
 		//queries fixed by Jstar
 		if ( $_POST )
 		{
@@ -53,7 +53,7 @@ class ShowSearchPage
 
 		if(isset($searchtext) && isset($type))
 		{
-			while($s = mysql_fetch_array($search, MYSQL_BOTH))
+			while ($s = $search->fetch_array())
 			{
 				if($type == 'playername' or $type == 'planetname')
 				{

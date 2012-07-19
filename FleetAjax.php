@@ -289,4 +289,7 @@ $ResultMessage  = "600; ".$lang['fa_sending']." ". $FleetShipCount  ." ". $lang[
 $ResultMessage .= $CurrentFlyingFleets ." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
 
 die ($ResultMessage);
-?>
+
+
+/* End of file FleetAjax.php */
+/* Location: ./FleetAjax.php */

@@ -13,27 +13,27 @@ define('XN_ROOT',	'./');
 
 $InLogin = TRUE;
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 
 includeLang('PUBLIC');
 
 $parse = $lang;
 
-function sendpassemail ( $emailaddress , $password )
+function sendpassemail($emailaddress, $password)
 {
 	global $lang, $parse;
 
-	$email 				= parsetemplate ( $lang['reg_mail_text_part1'] . $password . $lang['reg_mail_text_part2'] . GAMEURL , $parse );
-	$status 			= mymail ( $emailaddress , $lang['register_at'] . read_config ( 'game_name' ) , $email );
+	$email 				= parsetemplate($lang['reg_mail_text_part1'].$password.$lang['reg_mail_text_part2'].GAMEURL, $parse);
+	$status 			= mymail($emailaddress, $lang['register_at'].read_config('game_name'), $email );
 
 	return $status;
 }
 
-function mymail ( $to , $title , $body , $from = '' )
+function mymail($to, $title, $body, $from = '')
 {
-	$from = trim ( $from );
+	$from = trim($from);
 
-	if ( !$from )
+	if ( ! $from)
 	{
 		$from = ADMINEMAIL;
 	}
@@ -51,10 +51,10 @@ function mymail ( $to , $title , $body , $from = '' )
 	$head .= "Organization: $org \r\n";
 	$head .= "X-Sender: $from \r\n";
 	$head .= "X-Priority: 3 \r\n";
-	$body = str_replace ( "\r\n" , "\n" , $body );
-	$body = str_replace ( "\n" , "\r\n" , $body );
+	$body = str_replace("\r\n" , "\n", $body);
+	$body = str_replace("\n" , "\r\n", $body);
 
-	return mail ( $to , $title , $body , $head );
+	return mail($to, $title, $body, $head);
 }
 
 if (read_config('max_users') <= read_config('users_amount')) die(message($lang['max_users'], '/', '3', FALSE, FALSE));
@@ -66,13 +66,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
 	$_POST['email'] = strip_tags($_POST['email']);
 
-	if (!valid_email($_POST['email']))
+	if ( ! valid_email($_POST['email']))
 	{
 		$errorlist .= $lang['invalid_mail_adress'];
 		$errors++;
 	}
 
-	if (!$_POST['character'])
+	if ( ! $_POST['character'])
 	{
 		$errorlist .= $lang['empty_user_field'];
 		$errors++;
@@ -96,14 +96,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$errors++;
 	}
 
-	$ExistUser = doquery("SELECT `username` FROM {{table}} WHERE `username` = '" . mysql_real_escape_string($_POST['character']) . "' LIMIT 1;", 'users', TRUE);
+	$ExistUser = doquery("SELECT `username` FROM {{table}} WHERE `username` = '" . $db->real_escape_string($_POST['character']) . "' LIMIT 1;", 'users', TRUE);
 	if ($ExistUser)
 	{
 		$errorlist .= $lang['user_already_exists'];
 		$errors++;
 	}
 
-	$ExistMail = doquery("SELECT `email` FROM {{table}} WHERE `email` = '" . mysql_real_escape_string($_POST['email']) . "' LIMIT 1;", 'users', TRUE);
+	$ExistMail = doquery("SELECT `email` FROM {{table}} WHERE `email` = '" . $db->real_escape_string($_POST['email']) . "' LIMIT 1;", 'users', TRUE);
 	if ($ExistMail)
 	{
 		$errorlist .= $lang['mail_already_exists'];
@@ -122,9 +122,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$sha1newpass = sha1($newpass);
 
 		$QryInsertUser = "INSERT INTO {{table}} SET ";
-		$QryInsertUser .= "`username` = '" . mysql_real_escape_string(strip_tags($UserName)) . "', ";
-		$QryInsertUser .= "`email` = '" . mysql_real_escape_string($UserEmail) . "', ";
-		$QryInsertUser .= "`email_2` = '" . mysql_real_escape_string($UserEmail) . "', ";
+		$QryInsertUser .= "`username` = '" . $db->real_escape_string(strip_tags($UserName)) . "', ";
+		$QryInsertUser .= "`email` = '" . $db->real_escape_string($UserEmail) . "', ";
+		$QryInsertUser .= "`email_2` = '" . $db->real_escape_string($UserEmail) . "', ";
 		$QryInsertUser .= "`ip_at_reg` = '" . $_SERVER["REMOTE_ADDR"] . "', ";
 		$QryInsertAdm  .= "`user_agent` = '', ";
 		$QryInsertUser .= "`id_planet` = '0', ";
@@ -133,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$QryInsertUser .= "`password`='" . $sha1newpass . "';";
 		doquery($QryInsertUser, 'users');
 
-		$NewUser = doquery("SELECT `id` FROM {{table}} WHERE `username` = '" . mysql_real_escape_string($_POST['character']) . "' LIMIT 1;", 'users', TRUE);
+		$NewUser = doquery("SELECT `id` FROM {{table}} WHERE `username` = '" . $db->real_escape_string($_POST['character']) . "' LIMIT 1;", 'users', TRUE);
 
 		$LastSettedGalaxyPos = read_config ( 'lastsettedgalaxypos' );
 		$LastSettedSystemPos = read_config ( 'lastsettedsystempos' );

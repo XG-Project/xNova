@@ -27,8 +27,8 @@ switch ($page)
 		$i		=	1;
 		if ($_POST)
 		{
-			$CheckBots = doquery("SELECT `user` FROM {{table}} WHERE `user` = '" . mysql_real_escape_string($_POST['user']) . "' ", "bots");
-			$CheckUser = doquery("SELECT `id` FROM {{table}} WHERE `id` = '" . mysql_real_escape_string($_POST['user']) . "' ", "users");
+			$CheckBots = doquery("SELECT `user` FROM {{table}} WHERE `user` = '".$db->real_escape_string($_POST['user'])."' ", "bots");
+			$CheckUser = doquery("SELECT `id` FROM {{table}} WHERE `id` = '".$db->real_escape_string($_POST['user'])."' ", "users");
 
 			if ( ! $user OR ! $minutes_per_day)
 			{
@@ -42,13 +42,13 @@ switch ($page)
 				$i++;
 			}
 
-			if (mysql_num_rows($CheckBots) > 0)
+			if ($CheckBots->num_rows > 0)
 			{
 				$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['bot_err_bot_exist'].'</tr></th>';
 				$i++;
 			}
 
-			if (mysql_num_rows($CheckUser) == 0)
+			if ($CheckUser->num_rows === 0)
 			{
 				$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['bot_err_user_not_exist'].'</tr></th>';
 				$i++;
@@ -87,7 +87,7 @@ switch ($page)
 	$query = doquery("SELECT * FROM {{table}}", 'bots');
 
 	$parse['bots_list'] = '';
-	while ($u = mysql_fetch_array($query))
+	while ($u = $query->fetch_array())
 	{
 		$parse['bots_list'] .= '
 		<tr><td width="25">'. $u['id'] .'</td>

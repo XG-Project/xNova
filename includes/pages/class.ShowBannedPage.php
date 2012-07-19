@@ -20,7 +20,7 @@ class ShowBannedPage
 		$i 				= 0;
 		$subTemplate	= gettemplate ( 'banned/banned_row' );
 
-		while ( $u = mysql_fetch_array ( $query ) )
+		while ($u = $query->fetch_array())
 		{
 			$parse['player']	= $u[1];
 			$parse['reason']	= $u[2];

@@ -30,7 +30,7 @@ if ( $user['authlevel']	!= 3 )
 $UserWhileLogin		= doquery ( "SELECT `id`, `username`, `authlevel` FROM {{table}} " . $NOSUPERMI . " ORDER BY `username` ASC" , "users" );
 
 $parse['lista']	= '';
-while ( $UserList 	= mysql_fetch_array ( $UserWhileLogin ) )
+while ($UserList 	= $UserWhileLogin->fetch_array())
 {
 	$parse['lista']	.=	"<option value=\"".$UserList['id']."\">" . $UserList['username'] . "&nbsp;&nbsp; (" . $lang['rank'][$UserList['authlevel']] . ")</option>";
 }
@@ -298,7 +298,7 @@ if ($_GET)
 
 		$PlanetsQuery = doquery ( "SELECT " . $SpecifyItemsP . " FROM {{table}} WHERE `id_owner` = '" . $id_u . "'" , "planets" );
 
-		while ( $PlanetsWhile = mysql_fetch_array ( $PlanetsQuery ) )
+		while ($PlanetsWhile = $PlanetsQuery->fetch_array())
 		{
 			if ( $PlanetsWhile['planet_type'] == 3 )
 			{

@@ -21,12 +21,10 @@ $Query	=	$_POST['querie'];
 if ($_POST)
 {
 	$FinalQuery	=	str_replace("\'", "'", str_replace('\"', '"', $Query));
-	mysql_query($FinalQuery);
 
-
-	if(mysql_error())
+	if( ! $db->query($FinalQuery))
 	{
-		$parse['display'] = "<tr><th><font color=red>".mysql_error()."</font></th></tr>";
+		$parse['display'] = "<tr><th><font color=red>".$db->error."</font></th></tr>";
 	}
 	else
 	{
@@ -39,4 +37,7 @@ if ($_POST)
 }
 
 display(parsetemplate(gettemplate('adm/QueriesBody'), $parse), FALSE, '', TRUE, FALSE);
-?>
+
+
+/* End of file QueriesPage.php */
+/* Location: ./adm/QueriesPage.php */

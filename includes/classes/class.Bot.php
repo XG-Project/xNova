@@ -1,41 +1,15 @@
 <?php
 /*
---------------------------------------------- Informacion ---------------------------------------------
-  _    _                                      _                   _
- | |  | |                                    | |                 | |
- | |  | |   __ _    __ _   _ __ ___     ___  | |   __ _   _ __   | |   __ _   _   _  ©
- | |  | |  / _` |  / _` | | '_ ` _ \   / _ \ | |  / _` | | '_ \  | |  / _` | | | | |
- | |__| | | (_| | | (_| | | | | | | | |  __/ | | | (_| | | |_) | | | | (_| | | |_| |
-  \____/   \__, |  \__,_| |_| |_| |_|  \___| |_|  \__,_| | .__/  |_|  \__,_|  \__, |
-            __/ |                                        | |                   __/ |
-           |___/                                         |_|                  |___/
-
- *
  * class.Bot.php
- *
- * @copyright 2008-2010 Ugamelaplay
- * @package Ugamelaplay
  * @author shoghicp@gmail.com
  *
- *	UGamelaPlay.net es propietario de la parte propia de este archivo. Partes de este archivo son parte de XG Proyect. Su uso esta restringido a UGaSpace y XG Proyect por el momento. Para cualquier otra plataforma, contacte con shoghicp@gmail.com
- *	UGamelaPlay.net se reserva todos los derechos sobre la parte propia de este archivo.
- *
+ **/
 
---------------------------------------------- Descripcion ------------------------------------------------------
-
-Este archivo controla los bots. Amplia edificios, almacenes, investigaciones, crea flota y defensa, envia flotas, coloniza y hace fleet-saving.
-
---------------------------------------------- Historial de cambios ---------------------------------------------
-
-0.1 - Crea y sube edificios
-0.2 - Añadidas flotas, defensas en investigaciones
-0.3 - Coloniza, mueve flota, hace fleetsaving, formulas de control
-0.4 - Fixes varios y logs en archivo
-0.5 - Base de datos
-1.0.0 - Adaptado a xNova, comienza el desarrollo por Razican
-
-*/
-
+include_once(XN_ROOT.'includes/functions/CheckPlanetBuildingQueue.php');
+include_once(XN_ROOT.'includes/functions/GetBuildingPrice.php');
+include_once(XN_ROOT.'includes/functions/IsElementBuyable.php');
+include_once(XN_ROOT.'includes/functions/SetNextQueueElementOnTop.php');
+include_once(XN_ROOT.'includes/functions/UpdatePlanetBatimentQueueList.php');
 include_once(XN_ROOT.'includes/functions/IsTechnologieAccessible.php');
 include_once(XN_ROOT.'includes/functions/GetElementPrice.php');
 include_once(XN_ROOT.'includes/functions/HandleTechnologieBuild.php');
@@ -46,7 +20,7 @@ function scmp( $a, $b ) {
      return mt_rand(-1,1);
 }
 function UpdateBots(){
-	if (read_config('bots') > 0 && read_config('bots_last_update') < time() - 60)
+	if (read_config('bots') > 0 && read_config('bots_last_update') < time()-60)
 	{
 		if(read_config('log_bots')) $BotLog = "\n\n------------------------------------------\n";
 		$allbots = doquery("SELECT * FROM {{table}};", 'bots');
@@ -178,7 +152,7 @@ class Bot {
 				}
 
 
-				if($iPlanetCount['total'] < MAX_user_PLANETS and $maxcolofleet['total'] < (MAX_user_PLANETS - $maxcolofleet['total']) and $MaxFlyingFleets < $MaxFlottes and $this->CurrentPlanet[$resource[208]] >= 1 ){
+				if($iPlanetCount['total'] < MAX_PLAYER_PLANETS and $maxcolofleet['total'] < (MAX_PLAYER_PLANETS - $maxcolofleet['total']) and $MaxFlyingFleets < $MaxFlottes and $this->CurrentPlanet[$resource[208]] >= 1 ){
 					$this->Colonize($iPlanetCount['total']);
 				}
 				if($this->CurrentPlanet['id'] == $this->user['id_planet']){
@@ -222,7 +196,7 @@ class Bot {
 					$this->BuildDefense();
 				}
 
-				if($iPlanetCount['total'] < MAX_user_PLANETS and $maxcolofleet['total'] < (MAX_user_PLANETS - $maxcolofleet['total']) and $MaxFlyingFleets < $MaxFlottes and $this->CurrentPlanet[$resource[208]] >= 1 ){
+				if($iPlanetCount['total'] < MAX_PLAYER_PLANETS and $maxcolofleet['total'] < (MAX_PLAYER_PLANETS - $maxcolofleet['total']) and $MaxFlyingFleets < $MaxFlottes and $this->CurrentPlanet[$resource[208]] >= 1 ){
 					$this->Colonize($iPlanetCount['total']);
 				}
 				if($this->CurrentPlanet['id'] == $this->user['id_planet']){
@@ -283,7 +257,7 @@ class Bot {
 				}
 			}
 		}
-		SetNextQueueElementOnTop ( $this->CurrentPlanet, $this->user );
+		SetNextQueueElementOnTop($this->CurrentPlanet, $this->user);
 		$this->SavePlanetRecord();
 	}
 
@@ -775,9 +749,9 @@ class Bot {
 	}
 	protected function Update(){
 		//UpdatePlanet($this->CurrentPlanet, $this->user, time(), true);
-       UpdatePlanetBatimentQueueList ( $this->CurrentPlanet, $this->user );
+       UpdatePlanetBatimentQueueList($this->CurrentPlanet, $this->user);
        HandleTechnologieBuild($this->CurrentPlanet,$this->user);
-		PlanetResourceUpdate ( $this->user, $this->CurrentPlanet, time() );
+		PlanetResourceUpdate($this->user, $this->CurrentPlanet, time());
 	}
 	protected function End($planetid){
 		$QryUpdateUser  = "UPDATE {{table}} SET ";

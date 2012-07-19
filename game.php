@@ -10,17 +10,14 @@ define('INSIDE', TRUE);
 define('INSTALL', FALSE);
 define('XN_ROOT', './');
 
-include(XN_ROOT.'global.php');
+include_once(XN_ROOT.'global.php');
 
-include(XN_ROOT.'includes/functions/CheckPlanetBuildingQueue.php');
-include(XN_ROOT.'includes/functions/GetBuildingPrice.php');
-include(XN_ROOT.'includes/functions/IsElementBuyable.php');
-include(XN_ROOT.'includes/functions/SetNextQueueElementOnTop.php');
-include(XN_ROOT.'includes/functions/SortUserPlanets.php');
-include(XN_ROOT.'includes/functions/UpdatePlanetBatimentQueueList.php');
-
-include_once(XN_ROOT.'includes/classes/class.Bot.php');
-UpdateBots();
+include_once(XN_ROOT.'includes/functions/CheckPlanetBuildingQueue.php');
+include_once(XN_ROOT.'includes/functions/GetBuildingPrice.php');
+include_once(XN_ROOT.'includes/functions/IsElementBuyable.php');
+include_once(XN_ROOT.'includes/functions/SetNextQueueElementOnTop.php');
+include_once(XN_ROOT.'includes/functions/SortUserPlanets.php');
+include_once(XN_ROOT.'includes/functions/UpdatePlanetBatimentQueueList.php');
 
 $page	= isset($_GET['page']) ? $_GET['page'] : NULL;
 

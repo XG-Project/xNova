@@ -67,6 +67,9 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 
 	includeLang('INGAME');
 
+	include_once(XN_ROOT.'includes/classes/class.Bot.php');
+	UpdateBots();
+
 	include(XN_ROOT.'includes/classes/class.CheckSession.php');
 
 	$Result        	= new CheckSession();

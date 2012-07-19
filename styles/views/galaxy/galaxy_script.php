@@ -1,4 +1,4 @@
-<div style="top: 10px;" id="content">
+<div style="top: 10px; height: 650px;" id="content">
 <script language="JavaScript">
 function galaxy_submit(value) {
 	document.getElementById('auto').name = value;

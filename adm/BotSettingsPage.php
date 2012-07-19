@@ -15,9 +15,10 @@ include(XN_ROOT . 'global.php');
 
 if ($ConfigGame != 1) die(message ($lang['404_page']));
 
-$parse = $lang;
+$parse	= $lang;
+$page	= isset($_GET['page']) ? $_GET['page'] : NULL;
 
-switch ($_GET[page])
+switch ($page)
 {
 	case 'new_bot':
 		$user				= 	isset($_POST['user']) ? $_POST['user'] : NULL;
@@ -88,8 +89,6 @@ switch ($_GET[page])
 	$parse['bots_list'] = '';
 	while ($u = mysql_fetch_array($query))
 	{
-		$i++;
-
 		$parse['bots_list'] .= '
 		<tr><td width="25">'. $u['id'] .'</td>
 		<td width="25">'. $u['user'] .'</td>
@@ -115,7 +114,7 @@ switch ($_GET[page])
 
 		header ("Location: BotSettingsPage.php");
 	}
-	elseif ($deleteall == 'yes')
+	elseif (isset($deleteall))
 	{
 		doquery("TRUNCATE TABLE {{table}}", 'bots');
 		update_config('bots', 0);

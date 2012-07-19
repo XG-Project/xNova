@@ -36,6 +36,7 @@ th{text-align:left;}
 <tr><th>{re_reset_banned}</th><td><input type="checkbox" name="banneds" /></td></tr>
 <tr><th>{re_reset_messages}</th><td><input type="checkbox" name="messages" /></td></tr>
 <tr><th>{re_reset_statpoints}</th><td><input type="checkbox" name="statpoints" /></td></tr>
+<tr><th>{re_reset_bots}</th><td><input type="checkbox" name="bots" /></td></tr>
 
 <tr><td class="c" style="text-align:left;color:#FF0000;">{re_reset_all}</td><td><input type="checkbox" name="resetall" /></td></tr>
 

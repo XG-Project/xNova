@@ -74,12 +74,15 @@ function UpdateBots(){
 
 				if(mt_rand(0, 1) OR $max_time/60 <= 15)
 				{
-					$next_time		= time()+mt_rand($max_time > 60 ? $max_time-60 : 1, $max_time+60);
+					$next_time		= time()+mt_rand($max_time > 120 ? $max_time-60 : 60, $max_time+60);
 				}
 
 				if (date('H', $next_time) < 8 && $bot['minutes_per_day'] < 960) $next_time = mktime(8);
 
 				doquery('UPDATE {{table}} SET `next_time` = '.$next_time.' WHERE `id` = '.$bot['id'], 'bots');
+
+				//Cada una media de 1000 actualizaciones se cambiará la cantidad de minutos diarios
+				if ( ! mt_rand(0, 1000)) doquery('UPDATE {{table}} SET `minutes_per_day` = '.mt_rand(1, 1440).' WHERE `id` = '.$bot['id'], 'bots');
 			}
 		}
 

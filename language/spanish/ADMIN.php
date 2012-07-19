@@ -597,6 +597,7 @@ $lang['re_reset_statpoints']				= 'Reiniciar estadísticas';
 $lang['re_reset_all']						= 'Reiniciar todo el universo';
 $lang['re_reset_h1']						= 'Opciones de reseteo';
 $lang['re_reset_excess']					= 'Opciones reiniciadas con éxito';
+$lang['re_reset_bots']						= 'Reiniciar bots (No borrará bots ni usuarios)';
 //###########################################################//
 
 
@@ -957,6 +958,7 @@ $lang['log_banneds']				= 'USUARIOS SUSPENDIDOS';
 $lang['log_messages']				= 'MENSAJES';
 $lang['log_statpoints']				= 'ESTADISTICAS';
 $lang['log_moons']					= 'LUNAS';
+$lang['log_bots']					= 'BOTS';
 $lang['log_all_uni']				= 'TODO EL UNIVERSO';
 $lang['log_change_auth_1']			= 'cambio el rango al usuario con la ID ';
 $lang['log_change_auth_2']			= 'el rango actual ahora es: ';

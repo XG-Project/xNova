@@ -5,16 +5,6 @@
  *
  **/
 
-include_once(XN_ROOT.'includes/functions/CheckPlanetBuildingQueue.php');
-include_once(XN_ROOT.'includes/functions/GetBuildingPrice.php');
-include_once(XN_ROOT.'includes/functions/IsElementBuyable.php');
-include_once(XN_ROOT.'includes/functions/SetNextQueueElementOnTop.php');
-include_once(XN_ROOT.'includes/functions/UpdatePlanetBatimentQueueList.php');
-include_once(XN_ROOT.'includes/functions/IsTechnologieAccessible.php');
-include_once(XN_ROOT.'includes/functions/GetElementPrice.php');
-include_once(XN_ROOT.'includes/functions/HandleTechnologieBuild.php');
-include_once(XN_ROOT.'includes/functions/CheckPlanetUsedFields.php');
-
 function scmp( $a, $b ) {
 	 mt_srand((double)microtime()*1000000);
      return mt_rand(-1,1);
@@ -22,6 +12,16 @@ function scmp( $a, $b ) {
 function UpdateBots(){
 	if (read_config('bots') > 0 && read_config('bots_last_update') < time()-60)
 	{
+		include_once(XN_ROOT.'includes/functions/CheckPlanetBuildingQueue.php');
+		include_once(XN_ROOT.'includes/functions/GetBuildingPrice.php');
+		include_once(XN_ROOT.'includes/functions/IsElementBuyable.php');
+		include_once(XN_ROOT.'includes/functions/SetNextQueueElementOnTop.php');
+		include_once(XN_ROOT.'includes/functions/UpdatePlanetBatimentQueueList.php');
+		include_once(XN_ROOT.'includes/functions/IsTechnologieAccessible.php');
+		include_once(XN_ROOT.'includes/functions/GetElementPrice.php');
+		include_once(XN_ROOT.'includes/functions/HandleTechnologieBuild.php');
+		include_once(XN_ROOT.'includes/functions/CheckPlanetUsedFields.php');
+
 		if(read_config('log_bots')) $BotLog = "\n\n------------------------------------------\n";
 		$allbots = doquery("SELECT * FROM {{table}};", 'bots');
 		while($bot = mysql_fetch_array($allbots))

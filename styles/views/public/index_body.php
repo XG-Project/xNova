@@ -1,13 +1,13 @@
 <div id="main">
     <div id="login">
         <div id="login_input">
-            <form action="" method="post">
+            <form action="/" method="post">
             <table width="400" border="0" cellpadding="0" cellspacing="0">
             <tbody>
             <tr style="vertical-align: top;">
                 <td style="padding-right: 4px;">
-                    {user} <input name="username" value="" type="text">
-                    {pass} <input name="password" value="" type="password" autocomplete="off">
+                    {user} <input name="username" type="text">
+                    {pass} <input name="password" type="password" autocomplete="off">
                 </td>
             </tr><tr>
                 <td style="padding-right: 4px;">

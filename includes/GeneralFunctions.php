@@ -260,8 +260,8 @@ function doquery ( $query , $table , $fetch = FALSE )
 {
 	global $link, $debug;
 
-	require ( XN_ROOT . 'config.php' );
-	if ( ! isset($dbsettings)) die ();
+	require(XN_ROOT.'config.php');
+	if ( ! isset($dbsettings)) die();
 
 	if ( !$link )
 	{
@@ -346,7 +346,7 @@ function show_date($date = NULL)
 {
 	global $lang;
 
-	if (is_null($time)) $date = time();
+	if (is_null($date)) $date = time();
 	$format = read_config('date_format');
 
 	$weekday = date("w", $date);

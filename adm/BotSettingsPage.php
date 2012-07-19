@@ -108,14 +108,20 @@ switch ($_GET[page])
 
 	if (isset($delete))
 	{
-		doquery("DELETE FROM {{table}} WHERE `id`=$delete", 'bots');
+		$bot = doquery('SELECT `user` FROM {{table}} WHERE `id`='.$delete, 'bots', TRUE);
+		doquery('DELETE FROM {{table}} WHERE `id`='.$delete, 'bots');
 		update_config('bots', read_config('bots') - 1);
+		unlink(XN_ROOT.'includes/bots/'.md5($bot['user']).'.botdb');
+
 		header ("Location: BotSettingsPage.php");
 	}
 	elseif ($deleteall == 'yes')
 	{
 		doquery("TRUNCATE TABLE {{table}}", 'bots');
 		update_config('bots', 0);
+		foreach(scandir(XN_ROOT.'includes/bots/') as $file)
+			if(is_file(XN_ROOT.'includes/bots/'.$file)) unlink(XN_ROOT.'includes/bots/'.$file);
+
 		header ("Location: BotSettingsPage.php");
 	}
 	$parse['log'] = htmlentities(file_get_contents(XN_ROOT.'adm/Log/BotLog.php'));

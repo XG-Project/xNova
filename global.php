@@ -6,20 +6,24 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-if (version_compare(PHP_VERSION, "5.2.0", "<"))
-	die('<!DOCTYPE html><html><head><title>¡Error!</title><meta charset="UTF-8"></head><body>¡Error! Tu servidor debe tener al menos php 5.2.0</body></html>');
+if (version_compare(PHP_VERSION, "5.3.0", "<"))
+	die('<!DOCTYPE html><html><head><title>¡Error!</title><meta charset="UTF-8"></head><body>¡Error! Tu servidor debe tener al menos php 5.3.0</body></html>');
 
 // -1 permitirá guardar todos los errores
 error_reporting(-1);
 
+$user			= array();
+$lang			= array();
+$IsUserChecked	= FALSE;
 
-$user          	= array();
-$lang          	= array();
-$link          	= "";
-$IsUserChecked 	= FALSE;
-
-require( 'includes/classes/class.SecurePage.php' );
-SecurePage::run();
+// CONEXIÓN CON LA BASE DE DATOS \\
+require(XN_ROOT.'config.php');
+if (isset($dbsettings))
+{
+	$link = mysql_connect($dbsettings["server"], $dbsettings["user"], $dbsettings["pass"]) OR $debug->error(mysql_error(), "SQL Error");
+	mysql_select_db($dbsettings["name"]) OR $debug->error(mysql_error(), "SQL Error");
+}
+// CONEXIÓN CON LA BASE DE DATOS \\
 
 include_once(XN_ROOT.'includes/constants.php');
 include_once(XN_ROOT.'includes/GeneralFunctions.php');
@@ -153,6 +157,8 @@ else
 	define('DPATH' , "../".DEFAULT_SKINPATH);
 }
 
+require( 'includes/classes/class.SecurePage.php' );
+SecurePage::run();
 
 
 /* End of file global.php */

@@ -167,7 +167,7 @@ function StdUserHeader ($metatags = '', $onload = '')
 		$parse['-style-']  	 = "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles/css/default.css\">\n";
 		$parse['-style-']  	.= "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles/css/formate.css\">\n";
 		$parse['-style-'] 	.= "<link rel=\"stylesheet\" type=\"text/css\" href=\"". DPATH ."formate.css\" />\n";
-		$parse['-meta-']	.= "<script type=\"text/javascript\" src=\"js/overlib-min.js\"></script>\n";
+		$parse['-meta-']	.= "<script type=\"text/javascript\" src=\"js/overlib.min.js\"></script>\n";
 	}
 	else
 	{
@@ -192,7 +192,7 @@ function AdminUserHeader ($metatags = '')
 	$parse['-favi-']	 = 	"<link rel=\"shortcut icon\" href=\"./../favicon.ico\">\n";
 	$parse['-style-']	 =	"<link rel=\"stylesheet\" type=\"text/css\" href=\"./../styles/css/admin.css\">\n";
 	$parse['-meta-']	 = "<meta charset=\"UTF-8\">\n";
-	$parse['-meta-']	.= 	"<script type=\"text/javascript\" src=\"./../js/overlib-min.js\"></script>\n";
+	$parse['-meta-']	.= 	"<script type=\"text/javascript\" src=\"./../js/overlib.min.js\"></script>\n";
 	$parse['-meta-'] 	.= ($metatags) ? $metatags : "";
 
 	return parsetemplate ( gettemplate ( 'adm/simple_header' ) , $parse );

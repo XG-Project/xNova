@@ -123,7 +123,7 @@ switch ($page)
 
 		header ("Location: BotSettingsPage.php");
 	}
-	$parse['log'] = htmlentities(file_get_contents(XN_ROOT.'adm/Log/BotLog.php'), ENT_COMPAT, 'UTF-8');
+	$parse['log'] = file_get_contents(XN_ROOT.'adm/Log/BotLog.php');
 
 	display(parsetemplate(gettemplate('adm/BotSettingsBody'), $parse), false, '', true, false);
 }

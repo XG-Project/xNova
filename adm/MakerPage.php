@@ -50,18 +50,18 @@ switch ($_GET['page'])
 		$CheckRows = doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' AND `system` = '".$system."' AND `planet` = '".$planet."' LIMIT 1", "galaxy", TRUE);
 
 
-		if (!ctype_digit($galaxy) &&  !ctype_digit($system) && !ctype_digit($planet)){
+		if ( ! ctype_digit($galaxy) &&  ! ctype_digit($system) && ! ctype_digit($planet)){
 			$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['only_numbers'].'</tr></th>';
 			$i++;}
 		elseif ($galaxy > MAX_GALAXY_IN_WORLD || $system > MAX_SYSTEM_IN_GALAXY || $planet > MAX_PLANET_IN_SYSTEM || $galaxy < 1 || $system < 1 || $planet < 1){
 			$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_error_coord'].'</tr></th>';
 			$i++;}
 
-		if (!$name || !$pass || !$email || !$galaxy || !$system || !$planet){
+		if ( ! $name || ! $pass || ! $email || ! $galaxy || ! $system || ! $planet){
 			$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_complete_all'].'</tr></th>';
 			$i++;}
 
-		if (!valid_email(strip_tags($email))){
+		if ( ! valid_email(strip_tags($email))){
 			$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_error_email2'].'</tr></th>';
 			$i++;}
 
@@ -81,7 +81,7 @@ switch ($_GET['page'])
 			$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_error_passw'].'</tr></th>';
 			$i++;}
 
-		if ( ! is_null($bot_time) && ( ! is_numeric($bot_time) OR $bot_time > 1440)){
+		if ( ! empty($bot_time) && ( ! is_numeric($bot_time) OR $bot_time > 1440)){
 			$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_error_bot'].'</tr></th>';
 			$i++;}
 
@@ -126,7 +126,7 @@ switch ($_GET['page'])
 			$Log	.=	$lang['log_new_user_email'].": ".$email."\n";
 			$Log	.=	$lang['log_new_user_auth'].": ".$lang['new_range11'][$auth]."\n";
 
-			if ( ! is_null($bot_time))
+			if ( ! empty($bot_time))
 			{
 				$QryBot		= "INSERT INTO {{table}} SET ";
 				$QryBot		.= "`user` = '".$ID_USER['id']."', ";

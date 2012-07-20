@@ -28,4 +28,7 @@ Fixed errors:
 - [#44] Fixed a bug that would make times to be added in the construction queue (Thanks to Think)
 '
 );
-?>
+
+
+/* End of file CHANGELOG.php */
+/* Location: ./language/english/CHANGELOG.php */

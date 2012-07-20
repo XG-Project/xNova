@@ -65,4 +65,6 @@ $lang['email_reg']					= 'Correo electrónico';
 $lang['register_now']				= '¡Regístrate!';
 $lang['accept_terms_and_conditions']= 'Aceptar terminos y condiciones de uso';
 
-?>
+
+/* End of file PUBLIC.php */
+/* Location: ./language/spanish/PUBLIC.php */

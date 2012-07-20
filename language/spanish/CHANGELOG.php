@@ -28,4 +28,7 @@ Errores Corregidos:
 - [#44] Solucionado el error que sumaba los tiempos en la cola de construcción (Gracias a Think)
 '
 );
-?>
+
+
+/* End of file CHANGELOG.php */
+/* Location: ./language/spanish/CHANGELOG.php */

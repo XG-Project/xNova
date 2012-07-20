@@ -51,7 +51,7 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 
 		update_config ( 'users_amount' , read_config ( 'users_amount' ) - 1 );
 
-		if (doquery('SELECT * FROM {{table}} WHERE `user`='.$UserID, 'bots')) doquery('DELETE * FROM {{table}} WHERE `user`='.$UserID, 'bots');
+		if (doquery('SELECT * FROM {{table}} WHERE `user`='.$UserID, 'bots')->num_rows > 0) doquery('DELETE FROM {{table}} WHERE `user`='.$UserID, 'bots');
 	}
 
 	function DeleteSelectedPlanet ($ID)

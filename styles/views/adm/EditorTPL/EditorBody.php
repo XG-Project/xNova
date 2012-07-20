@@ -1,7 +1,7 @@
-<style>th{border:0px;text-align:left;height:50px;}a{font-size:13px;}a:hover{font-size:14px;}</style>
+<style>.menu-table th{border:0px;text-align:left;height:50px;}a{font-size:13px;}a:hover{font-size:14px;}</style>
 <body>
 <br><br><br>
-<table width="40%">
+<table class="menu-table" width="40%">
 <td class="c" colspan="9">{ad_editor_title}</td>
 <tr>
    	<th><a href="AccountEditorPage.php?page=buildings{getuser}"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> {ad_editor_buildings}</a></th>

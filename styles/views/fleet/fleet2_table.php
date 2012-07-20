@@ -1,4 +1,4 @@
-<script type="text/javascript" src="js/flotten-min.js"></script>
+<script type="text/javascript" src="js/flotten.min.js"></script>
 <script type="text/javascript">
 function getStorageFaktor() {
 	return 1

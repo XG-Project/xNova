@@ -1,4 +1,4 @@
-<script src="../js/cntchar-min.js" type="text/javascript"></script>
+<script src="../js/cntchar.min.js" type="text/javascript"></script>
 <style>.character{background-color:#344566;color:lime;text-align:center;border:0px;font-weight:bolder;}</style>
 <body>
 <form action="?mode=change" method="post" name="nameform">

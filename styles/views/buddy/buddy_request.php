@@ -1,4 +1,4 @@
-<script src=js/cntchar-min.js type=text/javascript></script>
+<script src=js/cntchar.min.js type=text/javascript></script>
 <div id="content">
 	<form action="game.php?page=buddy&mode=1&sm=3" method="post">
 		<input type="hidden" name="user" value="{user}">

@@ -5,4 +5,4 @@
 {-style-}
 {-meta-}
 </head>
-<body style="overflow: hidden;" onLoad="{onload}onBodyLoad();" onUnload="" >
+<body style="overflow: hidden;"{onload}>

@@ -1,4 +1,4 @@
-<script src="js/cntchar-min.js" type="text/javascript"></script>
+<script src="js/cntchar.min.js" type="text/javascript"></script>
 <br />
 <div id="content">
     <table width=519>

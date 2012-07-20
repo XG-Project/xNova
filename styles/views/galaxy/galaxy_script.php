@@ -9,7 +9,7 @@ function fenster(target_url,win_name) {
 	new_win.focus();
 }
 </script>
-<script language="JavaScript" src="js/tw-sack-min.js"></script>
+<script language="JavaScript" src="js/tw-sack.min.js"></script>
 <script type="text/javascript">
 var ajax = new sack();
 var strInfo = ""

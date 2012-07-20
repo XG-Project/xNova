@@ -175,7 +175,7 @@ function StdUserHeader ($metatags = '', $onload = '')
 	}
 
 	$parse['-meta-']	.= ($metatags) ? $metatags : "";
-	$parse['onload']	= $onload;
+	$parse['onload']	= ' onload="'.$onload.'"';
 
 	return parsetemplate ( gettemplate ( 'general/simple_header' ) , $parse );
 }

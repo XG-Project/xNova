@@ -1,4 +1,4 @@
-<script src="js/cntchar-min.js" type="text/javascript"></script>
+<script src="js/cntchar.min.js" type="text/javascript"></script>
 <form action="" method="POST">
   {inputs}
   <table width="519">

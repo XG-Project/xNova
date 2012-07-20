@@ -1,4 +1,4 @@
-<script src="js/cntchar-min.js" type="text/javascript"></script>
+<script src="js/cntchar.min.js" type="text/javascript"></script>
 <form action="game.php?page=alliance&mode=admin&edit=requests&show={id}&sort=0" method="POST">
    <tr>
 	 <th colspan="2">{Request_from}</th>

@@ -1,4 +1,4 @@
-<script src="../js/cntchar-min.js" type="text/javascript"></script>
+<script src="../js/cntchar.min.js" type="text/javascript"></script>
 <style>
 .center{text-align:center;}
 .character{background-color:#344566;color:lime;text-align:center;border:0px;font-weight:bold;font-size:10px;}

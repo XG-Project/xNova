@@ -1,4 +1,4 @@
-<script TYPE="text/javascript" SRC="../js/filterlist-min.js"></script>
+<script TYPE="text/javascript" SRC="../js/filterlist.min.js"></script>
 <body>
 <br />
 </table>

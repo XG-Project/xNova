@@ -1,4 +1,4 @@
-<script TYPE="text/javascript" SRC="../js/filterlist.js"></script>
+<script type="text/javascript" src="../js/filterlist.min.js"></script>
 <body>
 <form action="" method="GET" name="users">
 <table border="0px" style="background:url(./../styles/images/Adm/blank.gif);" width="60%">

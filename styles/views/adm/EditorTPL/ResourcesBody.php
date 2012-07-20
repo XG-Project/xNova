@@ -1,4 +1,4 @@
-<script type="text/javascript" src="../js/filterlist-min.js"></script>
+<script type="text/javascript" src="../js/filterlist.min.js"></script>
 <body>
 <br />
 <form action="" method="post">

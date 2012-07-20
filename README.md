@@ -23,4 +23,6 @@ Errores:
 ========
 
 Hasta el momento se han encontrado más de 3.000 errores distintos que todavía no se han solucionado.
-En este momento todos ellos son E_NOTICE. Se irán solucionando y encontrando nuevos.
+En este momento todos ellos son E_NOTICE. Se irán solucionando y encontrando nuevos. También se han
+detectado errores HTML y Javascript. En principio parte de la solución será cuando se reescriba la
+interfáz gráfica.

@@ -415,7 +415,7 @@ class ShowOverviewPage
 				$parse['micronow']	= round(microtime(TRUE)*1000);
 				$parse['date']		= show_date();
 
-				return display(parsetemplate(gettemplate('overview/overview_body'),$parse), TRUE, '', FALSE, TRUE, 'time(); ');
+				return display(parsetemplate(gettemplate('overview/overview_body'),$parse), TRUE, '', FALSE, TRUE, 'time();');
 				break;
 		}
 	}

@@ -8,16 +8,15 @@
 
 set_error_handler('catch_error');
 
-function unset_vars ( $prefix )
+function unset_vars($prefix)
 {
-	$vars = array_keys ( $GLOBALS );
+	$vars = array_keys($GLOBALS);
 
-	for( $n = 0, $i = 0;  $i < count($vars);  $i ++ )
+	for($n = 0, $i = 0; $i < count($vars); $i ++)
 	{
-		if ( strpos ( $vars[$i] , $prefix ) === 0 )
+		if (strpos($vars[$i], $prefix) === 0)
 		{
-			unset ( $GLOBALS[$vars[$i]] );
-
+			unset($GLOBALS[$vars[$i]]);
 			$n ++;
 		}
 	}
@@ -26,35 +25,35 @@ function unset_vars ( $prefix )
 }
 
 // READS CONFIGURATIONS
-function read_config ( $config_name = '' , $all = FALSE )
+function read_config($config_name = '', $all = FALSE)
 {
-	$configs		= xml::getInstance ( 'config.xml' );
+	$configs		= xml::getInstance('config.xml');
 
-	if ( $all )
+	if ($all)
 	{
-		return $configs->get_configs ();
+		return $configs->get_configs();
 	}
 	else
 	{
-		return $configs->get_config ( $config_name );
+		return $configs->get_config($config_name);
 	}
 
 }
 
 // WRITES CONFIGURATIONS
-function update_config ( $config_name, $config_value )
+function update_config($config_name, $config_value)
 {
-	$configs		= xml::getInstance ( 'config.xml' );
+	$configs		= xml::getInstance('config.xml');
 
-	$configs->write_config ( $config_name , $config_value );
+	$configs->write_config($config_name, $config_value);
 }
 
 // DETERMINES IF THE PLAYER IS WEAK
-function is_weak ( $current_points , $other_points )
+function is_weak($current_points, $other_points)
 {
 	$weak	= NoobsProtection::getInstance();
 
-	if ( $weak->is_weak ( $current_points , $other_points ) )
+	if ($weak->is_weak($current_points, $other_points))
 	{
 		return TRUE;
 	}
@@ -65,11 +64,11 @@ function is_weak ( $current_points , $other_points )
 }
 
 // DETERMINES IF THE PLAYER IS STRONG
-function is_strong ( $current_points , $other_points )
+function is_strong($current_points, $other_points)
 {
 	$strong	= NoobsProtection::getInstance();
 
-	if ( $strong->is_weak ( $current_points , $other_points ) )
+	if ($strong->is_weak($current_points, $other_points))
 	{
 		return TRUE;
 	}
@@ -80,16 +79,16 @@ function is_strong ( $current_points , $other_points )
 }
 
 // DETERMINES IF IS AN EMAIL
-function valid_email ( $address )
+function valid_email($address)
 {
-	return ( !preg_match ( "/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix" , $address ) ) ? FALSE : TRUE;
+	return ( ! preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $address)) ? FALSE : TRUE;
 }
 
-function message ( $mes , $dest = "" , $time = "3" , $topnav = FALSE , $menu = TRUE )
+function message ($mes, $dest = "", $time = "3", $topnav = FALSE, $menu = TRUE)
 {
 	$parse['mes']   = $mes;
 
-	$page = parsetemplate ( gettemplate ( 'general/message_body' ) , $parse );
+	$page = parsetemplate(gettemplate('general/message_body'), $parse);
 
 	if ( !defined ( 'IN_ADMIN' ) )
 	{
@@ -125,8 +124,8 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 
 	$DisplayPage .= "\n<center>\n". $page ."\n</center>\n";
 
-	if(!defined('LOGIN') && isset($_GET['page']) && $_GET['page'] != 'galaxy')
-		$DisplayPage .= parsetemplate ( gettemplate ( 'general/footer' ) , array());
+	if( ! defined('LOGIN') && ! defined('IN_ADMIN') && isset($_GET['page']) && $_GET['page'] != 'galaxy')
+		$DisplayPage .= parsetemplate(gettemplate('general/footer'), array());
 
 	if ( isset($user['authlevel']) && $user['authlevel'] == 3 && read_config ( 'debug' ) == 1 && !$AdminPage)
 	{

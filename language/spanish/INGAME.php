@@ -113,9 +113,10 @@ $lang['ov_server_time']						= 'Hora del servidor';
 $lang['ov_events']							= 'Eventos';
 $lang['ov_diameter']						= 'Diámetro';
 $lang['ov_distance_unit']					= 'km';
+$lang['fields']								= 'campos';
 $lang['ov_temperature']						= 'Temperatura';
 $lang['ov_aprox']							= 'aprox.';
-$lang['ov_temp_unit']						= '&ordm;C';
+$lang['ov_temp_unit']						= 'ºC';
 $lang['ov_to']								= 'hasta';
 $lang['ov_position']						= 'Posición';
 $lang['ov_points']							= 'Puntos';
@@ -378,7 +379,6 @@ $lang['tr_exchange']						= 'Intercambiar';
 $lang['tr_darkmatter_needed']				= 'Necesitas <font color="#FF8900">%s de materia oscura</font> para visitar al Mercader.';
 $lang['tr_full_storage']					= 'El %s esta lleno';
 
-
 //----------------------------------------------------------------------------//
 //TECHTREE
 $lang['tt_requirements']					= 'Requisitos';
@@ -452,7 +452,6 @@ $lang['tech'] = array(
 502 => "Misiles antibalísticos",
 503 => "Misil interplanetario",
 
-600 => "Oficial",
 601 => "Geólogo",
 602 => "Almirante",
 603 => "Ingeniero",
@@ -478,11 +477,11 @@ $lang['res']['descriptions'] = array(
 42 => "Usando el sensor phalanx, las flotas de otros imperios pueden ser descubiertas y observadas. Cuanto mayor sea la cadena de sensores phalanx, mayor el rango que pueda escanear.",
 43 => "El saltos cuánticos son transmisores enormes que son capaces de enviar grandes flotas a través del universo sin perdida de tiempo.",
 44 => "El silo es un lugar de almacenamiento y lanzamiento de misiles planetarios.",
+
 106 => "Usando esta tecnología, puede obtenerse información sobre otros planetas.",
 108 => "Cuanto más elevado sea el nivel de tecnología de computación, más flotas podrás controlar simultaneamente. Cada nivel adicional de esta tecnologia, aumenta el numero de flotas en 1.",
 109 => "Este tipo de tecnología incrementa la eficiencia de tus sistemas de armamento. Cada mejora de la tecnología militar añade un 10% de potencia a la base de daño de cualquier arma disponible.",
-110 => "La tecnología de defensa se usa para generar un escudo de partículas protectoras alrededor de tus estructuras.
-Cada nivel de esta tecnología aumenta el escudo efectivo en un 10% (basado en el nivel de una estructura dada).",
+110 => "La tecnología de defensa se usa para generar un escudo de partículas protectoras alrededor de tus estructuras. Cada nivel de esta tecnología aumenta el escudo efectivo en un 10% (basado en el nivel de una estructura dada).",
 111 => "Las aleaciones altamente sofisticadas ayudan a incrementar el blindaje de una nave añadiendo el 10% de su fuerza en cada nivel a la fuerza base.",
 113 => "Entendiendo la tecnología de diferentes tipos de energía, muchas investigaciones nuevas y avanzadas pueden ser adaptadas. La tecnología de energía es de gran importancia para un laboratorio de investigación moderno.",
 114 => "Incorporando la cuarta y quinta dimensión en la tecnología de propulsión, se puede disponer de un nuevo tipo de motor; que es más eficiente y usa menos combustible que los convencionales.",
@@ -495,6 +494,7 @@ Cada nivel de esta tecnología aumenta el escudo efectivo en un 10% (basado en e
 123 => "Los científicos de tus planetas pueden comunicarse entre ellos a través de esta red.",
 124 => "Las naves son equipadas con equipo cientifico para tomar datos en largas expediciones.",
 199 => "A través del disparo de partículas concentradas de gravitón se genera un campo gravitacional artificial con suficiente potencia y poder de atracción para destruir no solo naves, sino lunas enteras.",
+
 202 => "Las naves pequeñas de carga son naves muy ágiles usadas para transportar recursos desde un planeta a otro",
 203 => "La nave grande de carga es una versión avanzada de las naves pequeñas de carga, permitiendo así una mayor capacidad de almacenamiento y velocidades más altas gracias a un mejor sistema de propulsión.",
 204 => "El cazador ligero es una nave maniobrable que puedes encontrar en casi cualquier planeta. El coste no es particularmente alto, pero asimismo el escudo y la capacidad de carga son muy bajas.",
@@ -509,6 +509,7 @@ Cada nivel de esta tecnología aumenta el escudo efectivo en un 10% (basado en e
 213 => "El destructor es la nave más pesada jamás vista y posee un potencial de ataque sin precedentes.",
 214 => "No hay nada tan grande y peligroso como una estrella de la muerte aproximándose.",
 215 => "El Acorazado es una nave altamente especializada en la intercepción de flotas hostiles.",
+
 401 => "El lanzamisiles es un sistema de defensa sencillo, pero barato.",
 402 => "Por medio de un rayo láser concentrado, se puede provocar más daño que con las armas balísticas normales.",
 403 => "Los lásers grandes posee una mejor salida de energía y una mayor integridad estructural que los lásers pequeños.",
@@ -519,6 +520,7 @@ Cada nivel de esta tecnología aumenta el escudo efectivo en un 10% (basado en e
 408 => "La cúpula grande de protección proviene de una tecnología de defensa mejorada que absorbe incluso más energía antes de colapsarse.",
 502 => "Los misiles antibalísticos destruyen los misiles interplanetarios.",
 503 => "Los misiles interplanetarios destruyen los sistemas de defensa del enemigo.",
+
 601 => 'El geólogo es un experto en astrominerología y astrocristalografía. Apoyado por su equipo de metalúrgicos e ingenieros en química apoya a gobiernos interplanetarias a la explotación de fuentes de recursos y a la optimazación del refinamiento de estos recursos.<br><br><strong><font color="lime">+10% producción de minas</font></strong>',
 602 => 'El almirante de flota es un veterano de guerra experimentado y un habilidoso estratega. En las batallas más duras, es capaz de hacerse una idea de la situación y contactar a sus almirantes subordinados. Un emperador sabio puede confiar en su ayuda durante los combates y guiar más flotas al mismo tiempo.<br><br><strong><font color="lime">+2 huecos de flota máximos</font></strong>',
 603 => 'El Ingeniero es un especialista en gestión de energía. En tiempos de paz aumenta la energía de todas las colonias. En caso de ataque, garantiza el abastecimiento de energía a los cañones, evitando una posible sobrecarga, lo que conduce a una reducción de defensas perdidas en batalla.<br><br><strong><font color="lime">Minimiza las perdidas de las defensas a la mitad,<br />+10% de producción de energía</font></strong>',
@@ -897,7 +899,6 @@ $lang['bu_rejected_title']					= 'Solicitud rechazada';
 $lang['bu_rejected_text']					= 'El jugador %u ha rechazado tu solicitud de amistad.';
 $lang['bu_to_accept_title']					= 'Nueva solicitud de amistad';
 $lang['bu_to_accept_text']					= 'El jugador %u te ha enviado una solicitud de amistad.';
-
 
 //----------------------------------------------------------------------------//
 //NOTES

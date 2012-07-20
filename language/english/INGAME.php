@@ -113,9 +113,10 @@ $lang['ov_server_time']						= 'Server time ';
 $lang['ov_events']							= 'Events';
 $lang['ov_diameter']						= 'Diameter';
 $lang['ov_distance_unit']					= 'km';
+$lang['fields']								= 'fields';
 $lang['ov_temperature']						= 'Temperature';
 $lang['ov_aprox']							= 'approx.';
-$lang['ov_temp_unit']						= '&#186;C';
+$lang['ov_temp_unit']						= 'ºC';
 $lang['ov_to']								= 'to';
 $lang['ov_position']						= 'Position';
 $lang['ov_points']							= 'Points';
@@ -209,7 +210,6 @@ $lang['iv_resources']						= 'Resources';
 $lang['iv_buildings']						= 'Buildings';
 $lang['iv_technology']						= 'Technologies';
 $lang['iv_ships']							= 'Ships';
-
 $lang['iv_defenses']						= 'Defenses';
 
 //----------------------------------------------------------------------------//
@@ -452,7 +452,6 @@ $lang['tech'] = array(
 502 => "Anti-Ballistic Missiles",
 503 => "Interplanetary Missiles",
 
-600 => "Official",
 601 => "Geologist",
 602 => "Admiral",
 603 => "Engineer",
@@ -482,8 +481,7 @@ $lang['res']['descriptions'] = array(
 106 => "Using this technology, information can be obtained on other planets.",
 108 => "The higher the level of computer technology, more fleets you can control simultaneously. Each additional level of this technology increases the number of fleets to 1.",
 109 => "This technology increases the efficiency of your weapon systems. Each improvement of military technology adds 10% power to the base damage of any weapon available.",
-110 => "The defense technology is used to generate a protective shield around your particle structures.
-Each level of this technology increases the effective shield by 10% (based on the level of a given structure).",
+110 => "The defense technology is used to generate a protective shield around your particle structures. Each level of this technology increases the effective shield by 10% (based on the level of a given structure).",
 111 => "highly sophisticated alloys help to increase the armor of a ship by adding 10% of its strength at each level to the base strength.",
 113 => "Understanding the technology of different types of energy, many new and advanced research can be adapted. Energy technology is of great importance for a modern research laboratory.",
 114 => "Incorporating the fourth and fifth dimension in propulsion technology, you can have a new type of motor is more efficient and uses less fuel than conventional ones.",
@@ -702,7 +700,6 @@ $lang['info'][603]['description'] 			= "The Engineer is a specialist in energy m
 $lang['info'][604]['name']        			= "Technocrat";
 $lang['info'][604]['description'] 			= "The guild is composed of technocrats authentic genius, and always find that dangerous edge where it all explode into a thousand pieces before they could find an explanation and technology rational. No normal human being ever try to decode the code of a technocrat, with its presence, the researchers modeled the rule.";
 
-
 //----------------------------------------------------------------------------//
 //MESSAGES
 $lang['mg_type'][0]    						= 'Spy reports';
@@ -864,7 +861,6 @@ $lang['al_legend_admin_alliance']			= 'Manage Alliance';
 $lang['al_legend_see_connected_users']		= 'Show online status in member list';
 $lang['al_legend_create_circular']			= 'Write circular message';
 $lang['al_legend_right_hand']				= '"Right Hand" (necessary to transfer founder rank)';
-
 $lang['al_requests']						= 'Requests';
 $lang['al_circular_message']				= 'Circular message';
 $lang['al_leave_alliance']					= 'Leave this alliance';
@@ -973,7 +969,6 @@ $lang['op_save_changes']					= 'save changes';
 $lang['op_admin_title_options']				= 'Options available to management';
 $lang['op_admin_planets_protection']		= 'Protection of planets';
 $lang['op_user_data']						= 'User Data';
-
 $lang['op_username']						= 'Username';
 $lang['op_old_pass']						= 'Old password';
 $lang['op_new_pass']						= 'New password (min. 8 characters)';
@@ -1016,7 +1011,6 @@ $lang['op_sort_desc']						= 'Decreasing';
 //----------------------------------------------------------------------------//
 //BANNED
 $lang['bn_no_players_banned']				= 'No banned players';
-
 $lang['bn_exists']							= 'Exists ';
 $lang['bn_players_banned']					= ' player/s banned/s';
 $lang['bn_players_banned_list']				= 'List of banned players';
@@ -1176,7 +1170,6 @@ $lang['fgf_time']							= 'Construction Time: ';
 
 //----------------------------------------------------------------------------//
 // CombatReport.php
-
 $lang['cr_lost_contact']					= 'Contact was lost with the attacking fleet.';
 $lang['cr_first_round']						= '(The fleet was destroyed in the first round)';
 $lang['cr_type']							= 'Type';

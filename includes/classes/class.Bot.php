@@ -42,7 +42,7 @@ function UpdateBots(){
 				 **/
 
 				if (date('H') < 8)
-					$max_time			= 28800/(($bot['minutes_per_day']-959 < 15 ? 15 : $bot['minutes_per_day']-959)/15);
+					$max_time			= 28800/(($bot['minutes_per_day'] < 975 ? 15 : $bot['minutes_per_day']-960)/15);
 				elseif ($bot['minutes_per_day'] >= 960)
 					$max_time			= 60;
 				else

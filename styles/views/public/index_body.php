@@ -1,7 +1,7 @@
 <div id="main">
     <div id="login">
         <div id="login_input">
-            <form action="/" method="post">
+            <form action="" method="post">
             <table width="400" border="0" cellpadding="0" cellspacing="0">
             <tbody>
             <tr style="vertical-align: top;">

@@ -205,7 +205,7 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 	}
 	else
 	{
-		$Result	 =	"<br><table border='0px' style='background:url(./../styles/images/Adm/blank.gif);' width='100%'>";
+		$Result	 =	"<br><table border='0px' style='background:url(./../styles/images/Adm/blank.png);' width='100%'>";
 		$Result	.=	"<tr><th style='color:#00CC33;border: 2px red solid;' height='25px'><font color=red>".$lang['se_no_data']."</font></th></tr>";
 		$Result	.=	"</table>";
 		return $Result;

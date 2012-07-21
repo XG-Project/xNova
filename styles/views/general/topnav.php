@@ -21,23 +21,23 @@
 	    <tr class='header'>
 
 		     <td align="center" width="85" class='header'>
-		      <img border="0" src="{dpath}images/metall.gif" width="42" height="22">
+		      <img border="0" src="{dpath}images/metal.png" width="42" height="22">
 		     </td>
 
 		     <td align="center" width="85" class='header'>
-		      <img border="0" src="{dpath}images/kristall.gif" width="42" height="22">
+		      <img border="0" src="{dpath}images/crystal.png" width="42" height="22">
 		     </td>
 
 		     <td align="center" width="85" class='header'>
-		      <img border="0" src="{dpath}images/deuterium.gif" width="42" height="22">
+		      <img height="14" width="12" border="0" src="{dpath}images/deuterium.png" width="42" height="22">
 		     </td>
 
 		     <td align="center" width="85" class='header'>
-		      <img border="0" src="{dpath}images/darkmatter.jpg" width="42" height="22" title="Dark Matter">
+		      <img border="0" src="{dpath}images/darkmatter.png" width="42" height="22" title="Dark Matter">
 		     </td>
 
 		     <td align="center" width="85" class='header'>
-		      <img border="0" src="{dpath}images/energie.gif" width="42" height="22">
+		      <img border="0" src="{dpath}images/energy.png" width="42" height="22">
 		     </td>
 	    </tr>
 

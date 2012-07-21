@@ -1,4 +1,4 @@
-<style>table.lic{background:url(../styles/images/Adm/blank.gif);border:2px {color} solid;}
+<style>table.lic{background:url(../styles/images/Adm/blank.png);border:2px {color} solid;}
 th.lic{border:0px;}</style>
 <body>
 <h1>{ow_title}</h1>

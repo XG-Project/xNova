@@ -1,5 +1,26 @@
 Options -indexes
 
+<ifModule mod_headers.c>
+
+	<filesMatch "\.(ico|jpg|jpeg|png|gif|swf|xml|txt|css|js)$">
+		Header set Cache-Control "max-age=604800, public"
+	</filesMatch>
+
+</ifModule>
+
+<ifModule mod_deflate.c>
+
+	AddOutputFilterByType DEFLATE text/html
+	AddOutputFilterByType DEFLATE text/xml
+	AddOutputFilterByType DEFLATE text/css
+	AddOutputFilterByType DEFLATE application/javascript
+	AddOutputFilterByType DEFLATE application/x-javascript
+	AddOutputFilterByType DEFLATE application/xml
+	AddOutputFilterByType DEFLATE application/xhtml+xml
+	AddOutputFilterByType DEFLATE application/rss+xml
+
+</ifModule>
+
 <IfModule authz_core_module>
 
 	<Files "config.php">

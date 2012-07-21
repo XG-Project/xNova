@@ -1,7 +1,7 @@
 <script TYPE="text/javascript" SRC="../js/filterlist.min.js"></script>
 <body>
 <form action="" method="get" name="users">
-<table width="100%" style="background:url(./../styles/images/Adm/blank.gif);" border="0px">
+<table width="100%" style="background:url(./../styles/images/Adm/blank.png);" border="0px">
 <td style="border:0px;">
 <table align="center" width="90%">
 {display}

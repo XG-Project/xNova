@@ -739,7 +739,7 @@ class ShowAlliancePage extends bbCode
 						if ( $ally['ally_owner'] == $CurrentUser['id'] )
 						{
 							$lang['id'] 	= $a;
-							$lang['delete']	= "<a href=\"game.php?page=alliance&mode=admin&edit=rights&d={$a}\"><img src=\"" . DPATH . "pic/abort.gif\" title=\"Borrar rango\" border=\"0\"></a>";
+							$lang['delete']	= "<a href=\"game.php?page=alliance&mode=admin&edit=rights&d={$a}\"><img src=\"" . DPATH . "pic/abort.png\" title=\"Borrar rango\" border=\"0\"></a>";
 							$lang['r0'] 	= $b['name'];
 							$lang['a'] 		= $a;
 							$lang['r1'] 	= "<input type=checkbox name=\"u{$a}r0\"" . (($b['delete'] == 1)?' checked="checked"':'') . ">"; //{$b[1]}
@@ -758,7 +758,7 @@ class ShowAlliancePage extends bbCode
 						{
 							$lang['id'] 	= $a;
 							$lang['r0'] 	= $b['name'];
-							$lang['delete'] = "<a href=\"game.php?page=alliance&mode=admin&edit=rights&d={$a}\"><img src=\"{DPATH}pic/abort.gif\" alt=\"{$lang['Delete_range']}\" border=0></a>";
+							$lang['delete'] = "<a href=\"game.php?page=alliance&mode=admin&edit=rights&d={$a}\"><img src=\"{DPATH}pic/abort.png\" alt=\"{$lang['Delete_range']}\" border=0></a>";
 							$lang['a'] 		= $a;
 							$lang['r1'] 	= "<b>-</b>";
 							$lang['r2'] 	= "<input type=checkbox name=\"u{$a}r1\"" . (($b['kick'] == 1)?' checked="checked"':'') . ">";
@@ -978,11 +978,11 @@ class ShowAlliancePage extends bbCode
 					}
 					elseif ( $ally_ranks[$CurrentUser['ally_rank_id']-1]['kick'] == 1  &&  $ally_ranks[$CurrentUser['ally_rank_id']-1]['administrieren'] == 1 or $ally['ally_owner'] == $CurrentUser['id'] )
 					{
-						$u["acciones"] 	= "<a href=\"game.php?page=alliance&mode=admin&edit=members&kick=" . $u[id] . "\" onclick=\"javascript:return confirm('¿Estás seguro que deseas expulsar a " . $a[username] . "?');\"><img src=\"".DPATH."pic/abort.gif\" border=\"0\"></a> <a href=\"game.php?page=alliance&mode=admin&edit=members&rank=" . $u[id] . "\"><img src=\"" . DPATH . "pic/key.gif\" border=\"0\"></a>";
+						$u["acciones"] 	= "<a href=\"game.php?page=alliance&mode=admin&edit=members&kick=" . $u[id] . "\" onclick=\"javascript:return confirm('¿Estás seguro que deseas expulsar a " . $a[username] . "?');\"><img src=\"".DPATH."pic/abort.png\" border=\"0\"></a> <a href=\"game.php?page=alliance&mode=admin&edit=members&rank=" . $u[id] . "\"><img src=\"" . DPATH . "pic/key.png\" border=\"0\"></a>";
 					}
 					elseif ($ally_ranks[$CurrentUser['ally_rank_id']-1]['administrieren'] == 1 )
 					{
-						$u["acciones"] 	= "<a href=\"game.php?page=alliance&mode=admin&edit=members&kick=" . $u[id] . "\" onclick=\"javascript:return confirm('¿Estás seguro que deseas expulsar a " . $a[username] . "?');\"><img src=\"".DPATH."pic/abort.gif\" border=\"0\"></a> <a href=\"game.php?page=alliance&mode=admin&edit=members&rank=" . $u[id] . "\"><img src=\"" . DPATH . "pic/key.gif\" border=\"0\"></a>";
+						$u["acciones"] 	= "<a href=\"game.php?page=alliance&mode=admin&edit=members&kick=" . $u[id] . "\" onclick=\"javascript:return confirm('¿Estás seguro que deseas expulsar a " . $a[username] . "?');\"><img src=\"".DPATH."pic/abort.png\" border=\"0\"></a> <a href=\"game.php?page=alliance&mode=admin&edit=members&rank=" . $u[id] . "\"><img src=\"" . DPATH . "pic/key.png\" border=\"0\"></a>";
 					}
 					else
 					{

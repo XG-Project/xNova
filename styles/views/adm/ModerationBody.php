@@ -3,7 +3,7 @@
 <table width="30%">
 <tr><td class="c" colspan="6">{mod_title}</td></tr>
 <tr>
-<th><img title="{mod_range}" src="../styles/images/arrow.gif" /></th>
+<th><img title="{mod_range}" src="../styles/images/arrow.png" /></th>
 <th><img title="{mod_power_config}" src="../styles/images/r4.png" /></th>
 <th><img title="{mod_power_edit}" src="../styles/images/r3.png" /></th>
 <th><img title="{mod_power_view}" src="../styles/images/r2.png" /></th>

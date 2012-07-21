@@ -1,5 +1,5 @@
 <tr>
-	<th class="d"><a href="../game.php?page=messages&mode=write&id={adm_ov_data_id}" title="{write_message}"><img src="{dpath}img/{adm_ov_data_pict}" border="0"></a></th>
+	<th class="d"><a href="../game.php?page=messages&mode=write&id={adm_ov_data_id}" title="{write_message}"><img height="14" width="12" src="{dpath}img/m.png" border="0"></a></th>
 	<th class="d"><a href="#" title="{adm_ov_data_agen}">{adm_ov_data_name} ({usr_s_id})</a></th>
 	<th class="d"><a href="http://network-tools.com/default.asp?prog=trace&host={adm_ov_data_adip}">{adm_ov_data_adip}</a></th>
 	<th class="d">{adm_ov_data_ally}</th>

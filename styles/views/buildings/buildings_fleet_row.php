@@ -1,7 +1,7 @@
 <tr>
 	<th class="l">
 		<a href="game.php?page=infos&gid={element}">
-			<img border="0" src="{dpath}gebaeude/{element}.gif" align="top" width="120" height="120" />
+			<img border="0" src="{dpath}gebaeude/{element}.png" align="top" width="120" height="120" />
 		</a>
 	</th>
 	<td class="l">

@@ -6,7 +6,7 @@
 		{log_title}
 	</td>
 	<td class="c" width="2%">
-		<a href="Moderation.php?moderation=1"><img src="../styles/images/Adm/i.gif" onMouseOver='return overlib("{log_search_advert_popup}", CENTER, OFFSETX, -150, OFFSETY, -10, WIDTH, 250);' onMouseOut='return nd();'></a>
+		<a href="Moderation.php?moderation=1"><img src="../styles/images/Adm/i.png" onMouseOver='return overlib("{log_search_advert_popup}", CENTER, OFFSETX, -150, OFFSETY, -10, WIDTH, 250);' onMouseOut='return nd();'></a>
 	</td>
 </tr><tr>
 	<th align="left" colspan="2">

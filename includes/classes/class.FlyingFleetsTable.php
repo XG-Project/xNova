@@ -106,7 +106,7 @@ class FlyingFleetsTable
 		$PlayerName  = doquery ("SELECT `username` FROM {{table}} WHERE `id` = '". intval($FleetRow['fleet_owner'])."';", 'users', TRUE);
 		$Link  		 = $PlayerName['username']. " ";
 		$Link 		.= "<a href=\"game.php?page=messages&mode=write&id=".$FleetRow['fleet_owner']."\">";
-		$Link 		.= "<img src=\"".DPATH."/img/m.gif\" title=\"".$lang['write_message']."\" border=\"0\"></a>";
+		$Link 		.= "<img height=\"14\" width=\"12\" src=\"".DPATH."/img/m.png\" title=\"".$lang['write_message']."\" border=\"0\"></a>";
 
 		return $Link;
 	}

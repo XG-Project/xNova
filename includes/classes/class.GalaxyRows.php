@@ -117,25 +117,25 @@ class GalaxyRows
 				if ($user["settings_esp"] == "1" && $GalaxyInfo['id'])
 				{
 					$links .= "<a href=# onclick=\"javascript:doit(6, ".$Galaxy.", ".$System.", ".$Planet.", 1, ".$user["spio_anz"].");\" >";
-					$links .= "<img src=". DPATH ."img/e.gif title=\"".$lang['gl_spy']."\" border=0></a>";
+					$links .= "<img height=\"16\" width=\"13\" src=\"". DPATH ."img/e.png\" title=\"".$lang['gl_spy']."\" border=0></a>";
 					$links .= "&nbsp;";
 				}
 				if ($user["settings_wri"] == "1" && $GalaxyInfo['id'])
 				{
 					$links .= "<a href=game.php?page=messages&mode=write&id=".$GalaxyInfo["id"].">";
-					$links .= "<img src=". DPATH ."img/m.gif title=\"".$lang['write_message']."\" border=0></a>";
+					$links .= "<img height=\"14\" width=\"12\" src=\"". DPATH ."img/m.png\" title=\"".$lang['write_message']."\" border=0></a>";
 					$links .= "&nbsp;";
 				}
 				if ($user["settings_bud"] == "1" && $GalaxyInfo['id'])
 				{
 					$links .= "<a href=game.php?page=buddy&mode=2&u=".$GalaxyInfo['id']." >";
-					$links .= "<img src=". DPATH ."img/b.gif title=\"".$lang['gl_buddy_request']."\" border=0></a>";
+					$links .= "<img height=\"14\" width=\"14\" src=\"". DPATH ."img/b.png\" title=\"".$lang['gl_buddy_request']."\" border=0></a>";
 					$links .= "&nbsp;";
 				}
 				if ($user["settings_mis"] == "1" && $MissileBtn == TRUE && $GalaxyInfo['id'])
 				{
 					$links .= "<a href=game.php?page=galaxy&mode=2&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&current=".$user['current_planet']." >";
-					$links .= "<img src=". DPATH ."img/r.gif title=\"".$lang['gl_missile_attack']."\" border=0></a>";
+					$links .= "<img height=\"16\" width=\"13\" src=\"". DPATH ."img/r.png\" title=\"".$lang['gl_missile_attack']."\" border=0></a>";
 				}
 			}
 		}

@@ -213,7 +213,7 @@ class ShowMessagesPage
 					if ( $CurMess['message_type'] == 1 )
 					{
 						$parse['message_subject'] .= "<a href=\"game.php?page=messages&mode=write&amp;id=". $CurMess['message_sender'] ."&amp;subject=Re: " . htmlspecialchars( $CurMess['message_subject']) ."\">";
-						$parse['message_subject'] .= " <img src=\"". DPATH ."img/m.gif\" border=\"0\"></a>\n";
+						$parse['message_subject'] .= " <img height=\"14\" width=\"12\" src=\"". DPATH ."img/m.png\" border=\"0\"></a>\n";
 					}
 					else
 					{

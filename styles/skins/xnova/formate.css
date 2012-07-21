@@ -107,7 +107,7 @@ td.c
   font-weight          : bold;
   color                : #E6EBFB;
   padding-left         : 3px;
-  background-image     : url(img/bg1.gif);
+  background-image     : url(img/bg1.png);
 }
 
 td.f, input, select, textarea
@@ -163,7 +163,6 @@ td.l
   color                : #E6EBFB;
   vertical-align       : top;
   padding              : 3px;
-  background-image     : url(img/bg2.gif);
 }
 
 td.m

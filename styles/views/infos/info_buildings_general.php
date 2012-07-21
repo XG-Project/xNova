@@ -9,7 +9,7 @@
         <table>
         <tbody>
         <tr>
-            <td><img src="{dpath}gebaeude/{image}.gif" align="top" border="0" height="120" width="120"></td>
+            <td><img src="{dpath}gebaeude/{image}.png" align="top" border="0" height="120" width="120"></td>
             <td>{description}</td>
         </tr>
         </tbody>

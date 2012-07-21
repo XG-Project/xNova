@@ -84,7 +84,7 @@ if($_GET['panel'])
 	{
 		$parse['title']			=	$lang['bo_bbb_title_3'];
 		$parse['changedate']	=	$lang['bo_bbb_title_6'];
-		$parse['changedate_advert']	=	"<td class=c width=5%><img src=\"../styles/images/Adm/i.gif\" onMouseOver='return overlib(\"".$lang['bo_bbb_title_4']."\",
+		$parse['changedate_advert']	=	"<td class=c width=5%><img src=\"../styles/images/Adm/i.png\" onMouseOver='return overlib(\"".$lang['bo_bbb_title_4']."\",
 			CENTER, OFFSETX, -80, OFFSETY, -65, WIDTH, 250);' onMouseOut='return nd();'></td>";
 
 		$parse['reas']			=	$QueryUserBan['theme'];

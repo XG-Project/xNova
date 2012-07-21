@@ -1,4 +1,3 @@
-<br />
 <div id="content">
     {message}
         <form action="" method="post">

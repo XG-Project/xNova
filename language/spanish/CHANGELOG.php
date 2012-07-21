@@ -15,7 +15,8 @@ Mejoras:
 - Comienza la migración a UTF-8
 - Nuevo sistema de bots (Gracias a shoghicp)
 - Mejora de seguridad en los htaccess
-- Fecha según lenguaje, con formato configurable.
+- Fecha según lenguaje, con formato configurable
+- Se ha optimizado mucho la carga, hasta en un 90-95%
 
 Errores Corregidos:
 - Muchos errores menores

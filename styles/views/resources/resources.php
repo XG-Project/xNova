@@ -1,4 +1,3 @@
-<br />
 <div id="content">
     <form action="" method="post">
     <table width="569">

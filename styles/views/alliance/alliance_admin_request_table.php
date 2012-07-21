@@ -1,4 +1,3 @@
-<br />
 <div id="content">
     <table width="519">
         <tr>

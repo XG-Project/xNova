@@ -1,4 +1,3 @@
-<br />
 <div id="content">
     <form action="" method="post">
      <table width="519">
@@ -16,7 +15,7 @@
         &nbsp;&nbsp;
         <input type="text" name="searchtext" value="{searchtext}"/>
         &nbsp;&nbsp;
-    
+
         <input type="submit" value="{sh_search}" />
        </th>
       </tr>

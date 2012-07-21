@@ -122,12 +122,12 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 		$DisplayPage .= ShowLeftMenu ($user);
 	}
 
-	$DisplayPage .= "\n<center>\n". $page ."\n</center>\n";
+	$DisplayPage .= $page;
 
 	if( ! defined('LOGIN') && ! defined('IN_ADMIN') && isset($_GET['page']) && $_GET['page'] != 'galaxy')
 		$DisplayPage .= parsetemplate(gettemplate('general/footer'), array());
 
-	if ( isset($user['authlevel']) && $user['authlevel'] == 3 && read_config ( 'debug' ) == 1 && !$AdminPage)
+	if ( isset($user['authlevel']) && $user['authlevel'] == 3 && read_config ( 'debug' ) == 1 && !$AdminPage && isset($_GET['page']) && $_GET['page'] != 'notes')
 	{
 		// Convertir a objeto dom
 		$DisplayPage = str_get_html($DisplayPage);

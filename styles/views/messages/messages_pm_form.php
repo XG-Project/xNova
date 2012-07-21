@@ -1,5 +1,4 @@
 <script src="js/cntchar.min.js" type="text/javascript"></script>
-<br />
 <div id="content">
 	{status_message}
     <form action="game.php?page=messages&mode=write&id={id}" method="post">

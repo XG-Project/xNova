@@ -1,9 +1,10 @@
 @charset "utf8";
 
-., #, td, th, textarea, body, table
+td, th, textarea, body, table
 {
   font-family	: Tahoma,sans-serif;
   font-size	: 14px;
+  margin: auto;
 }
 
 img
@@ -74,9 +75,10 @@ td.g, td.h, td.i, td.j, td.k, td.l, td.m,
 td.n, td.o, td.q, td.r, td.v, .style td,
 textarea, p td, table.s th img
 {
-  border               : 1px #415680 solid;
-  font-size            : 14px;
-  font-family          : Tahoma,sans-serif;
+  border				: 1px #415680 solid;
+  font-size				: 14px;
+  font-family			: Tahoma,sans-serif;
+  text-align			: left;
 }
 
 th, td.a, td.b, td.c, td.f, input, select, td.g,
@@ -330,7 +332,6 @@ h1
 	filter: glow(color=#000000, strength=6);
 }
 
-
 #content {
 	position:absolute;
 	left:190px;
@@ -338,6 +339,7 @@ h1
 	overflow:auto;
 	width:80%;
 	height:100%;
+	text-align:center;
 }
 #header_top {
 	height:66px;
@@ -401,5 +403,5 @@ vertical-align		 : middle;
 }
 
 .Stil1 {
-    color: lime
+	color: lime
 }

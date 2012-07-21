@@ -16,6 +16,7 @@ Improvements:
 - New bots system (Thanks to shoghicp)
 - Better security in htaccess
 - Date according to language with custom made format.
+- Traffic optimized up to 90-95%
 
 Fixed errors:
 - Many minor issues

@@ -4,7 +4,6 @@ var new_win = window.open(target_url,win_name,'resizable=yes,scrollbars=yes,menu
 new_win.focus();
 }
 </script>
-<br />
 <div id="content">
 	<form action="game.php?page=messages" method="post">
 		<table width="519">

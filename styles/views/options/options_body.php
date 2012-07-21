@@ -1,4 +1,3 @@
-<br />
 <div id="content">
 	<form action="game.php?page=options&mode=change" method="post">
 	<table width="519">

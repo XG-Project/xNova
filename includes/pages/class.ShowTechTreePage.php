@@ -52,7 +52,6 @@ class ShowTechTreePage
 					else
 					{
 						$parse['required_list'] = "";
-						$parse['tt_detail']     = "";
 					}
 					$parse['tt_info']   = $Element;
 					$page              .= parsetemplate($TechTreeRowTPL, $parse);

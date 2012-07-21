@@ -1,4 +1,3 @@
-<br />
 <div id="content">
     <table width="519">
     <tr>
@@ -18,7 +17,7 @@
         <th>{ally_member_scount}</th>
     </tr>
         {ally_description}
-        {ally_web} 
+        {ally_web}
         {solicitud}
     </table>
 </div>

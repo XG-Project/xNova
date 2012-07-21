@@ -28,7 +28,6 @@ function getStorageFaktor() {
 <input type="hidden" name="fleet_group"    value="{fleet_group}" />
 <input type="hidden" name="acs_target_mr"  value="{acs_target_mr}" />
 {input_extra}
-<br />
 <div id="content">
     <table border="0" cellpadding="0" cellspacing="1" width="519">
         <tr align="left" height="20">

@@ -1,4 +1,3 @@
-<br />
 <div id="content">
     <form name="stats" method="post">
         <table width="519">

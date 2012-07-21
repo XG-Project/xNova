@@ -17,7 +17,6 @@ function calcul() {
 	}
 }
 </script>
-<br />
 <div id="content">
     <form id="trader" action="" method="post">
     <input type="hidden" name="ress" value="metal">

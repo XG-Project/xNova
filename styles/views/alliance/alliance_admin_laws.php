@@ -1,4 +1,3 @@
-<br />
 <div id="content">
     <table width="519"><tr><td class="c" colspan="11">{al_configura_ranks}</td></tr>
         {list}

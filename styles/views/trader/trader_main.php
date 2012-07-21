@@ -1,6 +1,5 @@
 <form action="game.php?page=trader" method="post">
 <input type="hidden" name="action" value="2">
-<br />
 <div id="content">
     <table width="600">
     <tr>

@@ -1,5 +1,4 @@
 <script src="js/cntchar.min.js" type="text/javascript"></script>
-<br />
 <div id="content">
     <form action="game.php?page=alliance&mode=circular&sendmail=1" method="POST">
       <table width="530">

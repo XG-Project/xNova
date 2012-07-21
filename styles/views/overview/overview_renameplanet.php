@@ -1,4 +1,3 @@
-<br />
 <div id="content">
     <form action="game.php?page=overview&mode=renameplanet&pl={planet_id}" method="POST">
     <table width=519>

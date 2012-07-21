@@ -1,4 +1,3 @@
-<br />
 <div id="content">
     <table width=519>
         <tr>
@@ -20,7 +19,7 @@
         <tr>
             <th>{al_rank}</th>
             <th>{range}{alliance_admin}</th>
-        </tr>   
+        </tr>
         {requests}
         {send_circular_mail}
         <tr>

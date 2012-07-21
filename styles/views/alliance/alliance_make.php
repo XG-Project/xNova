@@ -1,4 +1,3 @@
-<br />
 <div id="content">
     <form action="game.php?page=alliance&mode=make&yes=1" method="POST">
         <table width=519>

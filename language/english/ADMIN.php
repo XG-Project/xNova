@@ -536,6 +536,7 @@ $lang['ul_sure_you_want_dlte']	= 'Are you sure that you want to remove?';
 $lang['mu_general']					= 'General';
 $lang['mu_connected']				= 'Online';
 $lang['mu_settings']				= 'Configuration';
+$lang['mu_plugins']					= 'Plugins';
 $lang['mu_global_message']			= 'Global Message';
 $lang['mu_users_settings']			= 'Edit Menu';
 $lang['mu_add_delete_resources']	= 'Account Editor';

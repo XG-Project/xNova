@@ -6,7 +6,7 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-if ( !defined('INSIDE') ) die(header("location:../"));
+if ( ! defined('INSIDE') ) die(header("location:../"));
 
 	// VERSION
 	define('SYSTEM_VERSION' 			, '1.0.0-dev');
@@ -48,10 +48,10 @@ if ( !defined('INSIDE') ) die(header("location:../"));
 	define('PLANETSIZE_MULTIPLER'		,       1);
 
 	// INITIAL RESOURCE OF NEW PLANETS
-	define('BASE_STORAGE_SIZE'        	,  100000);
-	define('BUILD_METAL'              	,     500);
-	define('BUILD_CRISTAL'            	,     500);
-	define('BUILD_DEUTERIUM'          	, 	    0);
+	define('BASE_STORAGE_SIZE'			,   10000);
+	define('BUILD_METAL'				,     500);
+	define('BUILD_CRISTAL'				,     500);
+	define('BUILD_DEUTERIUM'			, 	    0);
 
 	// OFFICIERS DEFAULT VALUES
 	define('AMIRAL'				  		,       2);
@@ -68,4 +68,6 @@ if ( !defined('INSIDE') ) die(header("location:../"));
 	define('DEBRIS_LIFE_TIME'      		,  604800); //7*24*60*60
 	define('DEBRIS_MIN_VISIBLE_SIZE'	, 	  300);
 
-?>
+
+/* End of file constants.php */
+/* Location: ./includes/constants.php */

@@ -81,7 +81,7 @@ function PluginAct($name)
  */
 function AdmPlugin($name, $desc)
 {
-	$page   =   $_GET['modo'];
+	$page   =   $_GET['mode'];
 	if(is_phpself('adm/SettingsPage') && $page=='plugins')
 	{
 	    $activado		= PluginAct($name);
@@ -91,13 +91,13 @@ function AdmPlugin($name, $desc)
 	    { //if the plugin is on
 	    	$config_line .= "<td class=\"c\" style=\"color:#FFFFFF\">".$name."</td>";
 	    	$config_line .= "<td align=\"left\" class=\"c\" style=\"color:green\"><b>On</b></td>";
-	    	$config_line .= "<td align=\"center\" class=\"c\" width=\"20px\" style=\"color:#FFFFFF\"><a href=\"SettingsPage.php?modo=plugins&desactivate=".$name."\">Desactivar</a></td>";
+	    	$config_line .= "<td align=\"center\" class=\"c\" width=\"20px\" style=\"color:#FFFFFF\"><a href=\"SettingsPage.php?mode=plugins&desactivate=".$name."\">Desactivar</a></td>";
 	    }
 		else
 		{ //if the plugin is off
 	    	$config_line .= "<td class=\"c\" style=\"color:#FFFFFF\"><a href=\"#\" onMouseOver='return overlib(\"".$desc."\", CENTER, OFFSETX, 120, OFFSETY, -40, WIDTH, 250);' onMouseOut='return nd();' class=\"big\">".$name."</a></td>";
 	    	$config_line .= "<td align=\"left\" class=\"c\" style=\"color:red\"><b>Off</b></td>";
-	    	$config_line .= "<td align=\"center\" class=\"c\" width=\"20px\" style=\"color:#FFFFFF\"><a href=\"SettingsPage.php?modo=plugins&activate=".$name."\">Activar</a></td>";
+	    	$config_line .= "<td align=\"center\" class=\"c\" width=\"20px\" style=\"color:#FFFFFF\"><a href=\"SettingsPage.php?mode=plugins&activate=".$name."\">Activar</a></td>";
 	    }
 	    $config_line .= "</tr>";
 	}
@@ -137,10 +137,8 @@ closedir($dir);
 */
 if ( defined('IN_ADMIN') )
 {
-	$lang['mu_settings'] 	.= '</a></th></tr><tr><th ".$onMouseOverIE." class="ForIE"><a href="SettingsPage.php?modo=plugins" target="Hauptframe">Config. plugins';
 	if( ! defined('DPATH')) define('DPATH' , "../". DEFAULT_SKINPATH );
-	//DPATH     				= "../". DEFAULT_SKINPATH  ;
-	$page   				=   isset($_GET['modo']) ? $_GET['modo'] : NULL;
+	$page	=   isset($_GET['mode']) ? $_GET['mode'] : NULL;
 
 	if(is_phpself('adm/SettingsPage') && $page=='plugins')
 	{

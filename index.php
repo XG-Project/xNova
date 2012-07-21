@@ -30,7 +30,7 @@ switch ($page)
 
 			if (empty($ExistMail['email']))
 			{
-				message($lang['mail_not_exist'], "index.php?modo=claveperdida",2, FALSE, FALSE);
+				message($lang['mail_not_exist'], "index.php?page=lostpassword",2, FALSE, FALSE);
 			}
 			else
 			{

@@ -2,7 +2,7 @@ Options -indexes
 
 <ifModule mod_headers.c>
 
-	<filesMatch "\.(ico|jpg|jpeg|png|gif|swf|xml|txt|css|js)$">
+	<filesMatch "\.(ico|jpg|png|css|js)$">
 		Header set Cache-Control "max-age=604800, public"
 	</filesMatch>
 

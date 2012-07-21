@@ -5,12 +5,15 @@
  *
  **/
 
-function scmp( $a, $b ) {
+function scmp($a, $b)
+{
 	 mt_srand((double)microtime()*1000000);
-     return mt_rand(-1,1);
+	 return mt_rand(-1,1);
 }
+
 function UpdateBots(){
-	if (read_config('bots') > 0 && read_config('bots_last_update') < time()-60)
+	$now		= time();
+	if (read_config('bots') > 0 && read_config('bots_last_update') < $now-60)
 	{
 		include_once(XN_ROOT.'includes/functions/CheckPlanetBuildingQueue.php');
 		include_once(XN_ROOT.'includes/functions/GetBuildingPrice.php');
@@ -22,74 +25,78 @@ function UpdateBots(){
 		include_once(XN_ROOT.'includes/functions/HandleTechnologieBuild.php');
 		include_once(XN_ROOT.'includes/functions/CheckPlanetUsedFields.php');
 
-		if(read_config('log_bots')) $BotLog = "\n\n------------------------------------------\n";
-		$allbots = doquery("SELECT * FROM {{table}};", 'bots');
+		if (read_config('log_bots')) $BotLog = "\n\n------------------------------------------\n";
+		$allbots		= doquery("SELECT * FROM {{table}} WHERE `next_time`<".$now, 'bots');
+		$update_bots	= array();
+		$update_users	= array();
+
 		while($bot = $allbots->fetch_array())
 		{
-			if (time() > $bot['next_time'])
+			$user		= doquery("SELECT * FROM {{table}} WHERE `id` = '".$bot['user']."'", 'users', true);
+			$thebot		= new Bot($user, $bot);
+			$thebot->Play();
+			if(isset($BotLog)) $BotLog .= $thebot->log;
+
+			/**
+			 *	Para calcular la próxima actividad, se genera una función que decrece de
+			 *	probabilidad casi totalmente en 15 minutos. Luego se calcula la próxima
+			 *	actividad un poco aleatóriamente, teniendo en cuenta la noche, las horas
+			 *	de sueño y según los minutos que está conectado.
+			 **/
+
+			if (date('H', $now) < 8)
+				$max_time			= 28800/(($bot['minutes_per_day'] < 975 ? 15 : $bot['minutes_per_day']-960)/15);
+			elseif ($bot['minutes_per_day'] >= 960)
+				$max_time			= 60;
+			else
+				$max_time			= 57600/($bot['minutes_per_day']/15);
+
+			if($max_time/60 > 15)
 			{
-				$user = doquery("SELECT * FROM {{table}} WHERE `id` = '".$bot['user']."';", 'users', true);
-				$thebot = new Bot($user, $bot);
-				$thebot->Play();
-				if(isset($BotLog)) $BotLog .= $thebot->log;
-				unset($thebot);
+				$random			= mt_rand(1,100);
 
-				/**
-				 *	Para calcular la próxima actividad, se genera una función que decrece de
-				 *	probabilidad casi totalmente en 15 minutos. Luego se calcula la próxima
-				 *	actividad un poco aleatóriamente, teniendo en cuenta la noche, las horas
-				 *	de sueño y según los minutos que está conectado.
-				 **/
-
-				if (date('H') < 8)
-					$max_time			= 28800/(($bot['minutes_per_day'] < 975 ? 15 : $bot['minutes_per_day']-960)/15);
-				elseif ($bot['minutes_per_day'] >= 960)
-					$max_time			= 60;
+				if ($random <= 30)
+					$next_time	= $now + mt_rand(1,120);
+				elseif ($random <= 45)
+					$next_time	= $now + mt_rand(61,180);
+				elseif ($random <= 55)
+					$next_time	= $now + mt_rand(121,240);
+				elseif ($random <= 62)
+					$next_time	= $now + mt_rand(181,300);
+				elseif ($random <= 68)
+					$next_time	= $now + mt_rand(241,360);
+				elseif ($random <= 73)
+					$next_time	= $now + mt_rand(301,420);
+				elseif ($random <= 81)
+					$next_time	= $now + mt_rand(361,540);
+				elseif ($random <= 90)
+					$next_time	= $now + mt_rand(421,660);
 				else
-					$max_time			= 57600/($bot['minutes_per_day']/15);
-
-				if($max_time/60 > 15)
-				{
-					$random			= mt_rand(1,100);
-
-					if ($random <= 30)
-						$next_time	= time() + mt_rand(1,120);
-					elseif ($random <= 45)
-						$next_time	= time() + mt_rand(61,180);
-					elseif ($random <= 55)
-						$next_time	= time() + mt_rand(121,240);
-					elseif ($random <= 62)
-						$next_time	= time() + mt_rand(181,300);
-					elseif ($random <= 68)
-						$next_time	= time() + mt_rand(241,360);
-					elseif ($random <= 73)
-						$next_time	= time() + mt_rand(301,420);
-					elseif ($random <= 81)
-						$next_time	= time() + mt_rand(361,540);
-					elseif ($random <= 90)
-						$next_time	= time() + mt_rand(421,660);
-					else
-						$next_time	= time() + mt_rand(541,960);
-				}
-
-				if(mt_rand(0, 1) OR $max_time/60 <= 15)
-				{
-					$next_time		= time()+mt_rand($max_time > 120 ? $max_time-60 : 60, $max_time+60);
-				}
-
-				if (date('H', $next_time) < 8 && $bot['minutes_per_day'] < 960) $next_time = mktime(8);
-
-				doquery('UPDATE {{table}} SET `next_time` = '.$next_time.' WHERE `id` = '.$bot['id'], 'bots');
-
-				//Cada una media de 1000 actualizaciones se cambiará la cantidad de minutos diarios
-				if ( ! mt_rand(0, 1000)) doquery('UPDATE {{table}} SET `minutes_per_day` = '.mt_rand(1, 1440).' WHERE `id` = '.$bot['id'], 'bots');
+					$next_time	= $now + mt_rand(541,960);
 			}
+
+			if(mt_rand(0, 1) OR $max_time/60 <= 15)
+			{
+				$next_time		= $now+mt_rand($max_time > 120 ? $max_time-60 : 60, $max_time+60);
+			}
+
+			if (date('H', $next_time) < 8 && $bot['minutes_per_day'] < 960) $next_time = mktime(8);
+
+			$update_bots[$bot['id']] = array(	'last_time'			=> $now,
+												'next_time'			=> $next_time,
+												'minutes_per_day'	=>  ! mt_rand(0, 999) ? mt_rand(1, 1440) : $bot['minutes_per_day'],
+												'last_planet'		=> $thebot->end_planet);
+
+			$update_users[$bot['user']] = array('onlinetime'		=> $now,
+												'user_lastip'		=> 'BOT',
+												'user_agent'		=> 'BOT');
+			unset($thebot);
 		}
 
 		if(isset($BotLog))
 		{
 			$st		= fopen(XN_ROOT."adm/Log/BotLog.php", "a");
-			$BotLog	.= 'Bots actualizados a las '.date('H:i:s - j/n/Y')."\n";
+			$BotLog	.= 'Bots actualizados a las '.date('H:i:s - j/n/Y', $now)."\n";
 			$BotLog	.= "------------------------------------------";
 			fwrite($st, $BotLog);
 			fclose($st);
@@ -97,7 +104,45 @@ function UpdateBots(){
 		unset($bot);
 		unset($allbots);
 
-		update_config('bots_last_update', time());
+		if ( ! empty($update_bots))
+		{
+			$query		= 'UPDATE {{table}}';
+			$bot_ids	= array();
+			$user_ids	= array();
+
+			foreach ($update_bots as $id => $values)
+			{
+				foreach ($values as $field => $value)
+				{
+					if ( ! isset($fields[$field])) $fields[$field] = ' SET `'.$field.'` = CASE';
+					$fields[$field] .= ' WHEN `id` = \''.$id.'\' THEN \''.$value.'\'';
+				}
+				$bot_ids[] = $id;
+			}
+			foreach ($fields as $field => $text)
+				$query_bots = $query.$text.' ELSE `'.$field.'` END,';
+
+			$query_bots = substr($query_bots, 0, -1).' WHERE `id` IN ('.implode(',', $bot_ids).')';
+
+			foreach ($update_users as $id => $values)
+			{
+				foreach ($values as $field => $value)
+				{
+					if ( ! isset($fields[$field])) $fields[$field] = ' SET `'.$field.'` = CASE';
+					$fields[$field] .= ' WHEN `id` = \''.$id.'\' THEN \''.$value.'\'';
+				}
+				$user_ids[] = $id;
+			}
+			foreach ($fields as $field => $text)
+				$query_users = $query.$text.' ELSE `'.$field.'` END,';
+
+			$query_users = substr($query_users, 0, -1).' WHERE `id` IN ('.implode(',', $user_ids).')';
+
+			doquery($query_bots, 'bots');
+			doquery($query_users, 'users');
+		}
+
+		update_config('bots_last_update', $now);
 	}
 }
 
@@ -106,16 +151,16 @@ class Bot {
 	protected $Bot;
 	protected $CurrentPlanet;
 	protected $Database;
-	public $VERSION;
 	public $log;
+	public $end_planet;
 
 	function __construct($user, $bot)
 	{
-		$this->VERSION = '1.0.0-dev';
 		$this->user = $user;
 		$this->Bot = $bot;
 		$this->log = read_config('log_bots') ? '' : NULL;
 		$this->Database = new BotDatabase(md5($user['id']));
+		$this->end_planet = NULL;
 	}
 
 	function Play(){
@@ -212,7 +257,7 @@ class Bot {
 				$this->Update();
 				$planetid = $this->user['id_planet'];
 		}
-		$this->End($planetid);
+		$this->end_planet = $planetid;
 	}
 	protected function BuildBuildings(){
 		global $resource, $lang;
@@ -354,7 +399,7 @@ class Bot {
 		}
 	}
 	protected function Research($Techno){
-        if ( IsTechnologieAccessible($this->user, $this->CurrentPlanet, $Techno) && IsElementBuyable($this->user, $this->CurrentPlanet, $Techno) ) {
+		if ( IsTechnologieAccessible($this->user, $this->CurrentPlanet, $Techno) && IsElementBuyable($this->user, $this->CurrentPlanet, $Techno) ) {
 			$costs                        = GetBuildingPrice($this->user, $this->CurrentPlanet, $Techno);
 			$this->CurrentPlanet['metal']      -= $costs['metal'];
 			$this->CurrentPlanet['crystal']    -= $costs['crystal'];
@@ -434,7 +479,7 @@ class Bot {
 	}
 	protected function HangarBuild($Element, $Count){
 		global $resource, $lang;
-        $Ressource = $this->GetElementRessources ( $Element, $Count );
+		$Ressource = $this->GetElementRessources ( $Element, $Count );
 		$BuildTime = GetBuildingTime($this->user,$this->CurrentPlanet, $Element, 1);
 		if (($Count >= 1 and $this->CurrentPlanet['b_hangar_id'] == "")) {
 			$this->CurrentPlanet['metal']           -= $Ressource['metal'];
@@ -752,24 +797,9 @@ class Bot {
 	}
 	protected function Update(){
 		//UpdatePlanet($this->CurrentPlanet, $this->user, time(), true);
-       UpdatePlanetBatimentQueueList($this->CurrentPlanet, $this->user);
-       HandleTechnologieBuild($this->CurrentPlanet,$this->user);
+		UpdatePlanetBatimentQueueList($this->CurrentPlanet, $this->user);
+		HandleTechnologieBuild($this->CurrentPlanet,$this->user);
 		PlanetResourceUpdate($this->user, $this->CurrentPlanet, time());
-	}
-	protected function End($planetid){
-		$QryUpdateUser  = "UPDATE {{table}} SET ";
-		$QryUpdateUser .= "`onlinetime` = '". time() ."', ";
-		$QryUpdateUser .= "`user_lastip` = 'BOT', ";
-		$QryUpdateUser .= "`user_agent` = 'Bot v". $this->VERSION ."' ";
-		$QryUpdateUser .= "WHERE ";
-		$QryUpdateUser .= "`id` = '". $this->user['id'] ."' LIMIT 1;";
-		doquery($QryUpdateUser, 'users');
-		$QryUpdateBot  = " UPDATE {{table}} SET ";
-		$QryUpdateBot .= "`last_time` = '". time() ."', ";
-		$QryUpdateBot .= "`last_planet` = '".$planetid."' ";
-		$QryUpdateBot .= "WHERE ";
-		$QryUpdateBot .= "`id` = '". $this->Bot['id'] ."' LIMIT 1;";
-		doquery( $QryUpdateBot, 'bots');
 	}
 	protected function AddBuildingToQueue (&$CurrentPlanet, $CurrentUser, $Element, $AddMode = true)
 	{

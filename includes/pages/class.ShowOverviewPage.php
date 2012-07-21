@@ -277,7 +277,7 @@ class ShowOverviewPage
 
 				$planets_query = doquery("SELECT * FROM `{{table}}` WHERE id_owner='" . intval($CurrentUser['id']) . "' AND `destruyed` = 0","planets");
 				$Colone = 1;
-				$AllPlanets = "<tr>";
+				$AllPlanets = '';
 				while ($CurrentUserPlanet = $planets_query->fetch_array())
 				{
 					if($CurrentUserPlanet["id"] != $CurrentUser["current_planet"] && $CurrentUserPlanet['planet_type'] != 3)
@@ -325,20 +325,16 @@ class ShowOverviewPage
 				}
 				$planets_query->free_result();
 
-				$AllPlanets .= "</tr>";
-
 				if($lunarow['id'] != 0 && $lunarow['destruyed'] != 1 && $CurrentPlanet['planet_type'] != 3)
 				{
 					if($CurrentPlanet['planet_type'] == 1 or $lunarow['id'] != 0)
 					{
 						$moon = doquery("SELECT `id`,`name`,`image` FROM {{table}} WHERE `galaxy` = '" . intval($CurrentPlanet['galaxy']) . "' AND `system` = '" . intval($CurrentPlanet['system']) . "' AND `planet` = '" . intval($CurrentPlanet['planet']) . "' AND `planet_type` = '3'",'planets',TRUE);
-						$parse['moon_img'] = "<a href=\"game.php?page=overview&cp=" . $moon['id'] . "&re=0\" title=\"" . $moon['name'] . "\"><img src=\"" . DPATH . "planeten/" . $moon['image'] . ".jpg\" height=\"50\" width=\"50\"></a>";
-						$parse['moon'] = $moon['name'] . " (" . $lang['fcm_moon'] . ")";
+						$parse['moon'] = '<th><a href="game.php?page=overview&cp='.$moon['id'].'&re=0" title="'.$moon['name'].'"><img src="'.DPATH.'planeten/'.$moon['image'].'.jpg" height="50" width="50"></a><br>'.$moon['name'].' ('.$lang['fcm_moon'].')</th>';
 					}
 					else
 					{
-						$parse['moon_img'] = "";
-						$parse['moon'] = "";
+						$parse['moon'] = '';
 					}
 				}
 				else
@@ -400,10 +396,11 @@ class ShowOverviewPage
 					$parse['building'] = $lang['ov_free'];
 				}
 
-				$parse['fleet_list'] = $flotten;
-				$parse['Have_new_message'] = $Have_new_message;
-				$parse['planet_image'] = $CurrentPlanet['image'];
-				$parse['anothers_planets'] = $AllPlanets;
+				$parse['fleet_list']		= $flotten;
+				$parse['Have_new_message']	= $Have_new_message;
+				$parse['planet_image']		= $CurrentPlanet['image'];
+				$parse['anothers_planets']	= ( ! empty($AllPlanets)) ? '<th class="s"><table class="s" align="top" border="0"><tr>'.$AllPlanets.'</tr></table></th>' : '';
+				$parse['colspan']			= empty($parse['moon']) && empty($AllPlanets) ? ' colspan="3"' : (empty($parse['moon']) OR empty($AllPlanets) ?  'colspan="2"' : '');
 				$parse["dpath"] = DPATH;
 				if(read_config ( 'stat' ) == 0)
 					$parse['user_rank'] = Format::pretty_number($StatRecord['total_points']) . " (" . $lang['ov_place'] . " <a href=\"game.php?page=statistics&range=" . $StatRecord['total_rank'] . "\">" . $StatRecord['total_rank'] . "</a> " . $lang['ov_of'] . " " . read_config ( 'users_amount' ) . ")";

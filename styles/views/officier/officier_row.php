@@ -1,6 +1,6 @@
 <tr>
 	<td class="l">
-		<img border="0" src="{dpath}gebaeude/{off_id}.jpg" align="top" width=120 height=120>
+		<img border="0" src="{dpath}gebaeude/{off_id}.png" align="top" width=120 height=120>
 	</td>
 	<td class="l">
 		<strong>{off_name}</strong> ({off_status})<br>

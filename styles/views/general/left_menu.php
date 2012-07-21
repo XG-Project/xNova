@@ -15,7 +15,7 @@ function f(target_url,win_name) {
 <p style="width:110px;"><NOBR>{servername} (<a href="game.php?page=changelog">{version}</a>)</NOBR></p>
 <table width="110" cellspacing="0" cellpadding="0">
  <tr>
-  <td><img src="{dpath}gfx/ogame-produktion.jpg" width="110" height="40" /></td>
+  <td><img src="{dpath}gfx/production.png" width="110" height="40" /></td>
  </tr>
 
 
@@ -118,7 +118,7 @@ function f(target_url,win_name) {
  </tr>
 
  <tr>
-  <td><img src="{dpath}gfx/info-help.jpg" width="110" height="19"></td>
+  <td><img src="{dpath}gfx/info-help.png" width="110" height="19"></td>
 
  </tr>
 
@@ -167,7 +167,7 @@ function f(target_url,win_name) {
  </tr>
 
  <tr>
-  <td><img src="{dpath}/gfx/user-menu.jpg" width="110" height="35"></td>
+  <td><img src="{dpath}/gfx/user-menu.png" width="110" height="35"></td>
  </tr>
 
  <tr>

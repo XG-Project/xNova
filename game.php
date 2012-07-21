@@ -106,7 +106,7 @@ switch($page)
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'officier':
-		include_once(XN_ROOT.'includes/pages/class.ShowOfficierPage.php');
+		include_once(XN_ROOT.'includes/pages/class.ShowOfficerPage.php');
 		new ShowOfficierPage($user);
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//

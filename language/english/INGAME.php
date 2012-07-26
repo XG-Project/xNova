@@ -523,8 +523,8 @@ $lang['res']['descriptions'] = array(
 
 601 => 'Geologist is an expert in mining and astro crystallography. Attend their equipment in metallurgy and chemistry and is also responsible for interplanetary communications to optimize the use and refinement of raw material throughout the empire.<br><br><strong><font color="lime">+10% mine production</font></strong>',
 602 => 'The Admiral is an experienced veteran and a skillful strategist. The hardest battle is able to get an idea of the situation and contact their admirals subordinates. A wise emperor could rely on their help during the fighting.<br><br><strong><font color="lime">+2 max. fleet slots</font></strong>',
-603 => 'The Engineer is a specialist in energy management. In peacetime, it increases the energy of all the colonies. In case of attack, ensuring the supply of energy to the cannons, and avoid a possible overload, leading to a reduction in defense lost battle.<br><br><strong><font color="lime">Minimizes losses in half defenses<br />+10% energy production</font></strong>',
-604 => 'The guild is composed of technocrats authentic genius, and always find that dangerous edge where it all explode into a thousand pieces before they could find an explanation and technology rational. No normal human being ever try to decode the code of a technocrat, with its presence, the researchers modeled the rule.<br><br><strong><font color="lime">+2 Espionage level<br/>-25% Less time for research</font></strong>',
+603 => 'The Engineer is a specialist in energy management. In peacetime, it increases the energy of all the colonies. In case of attack, ensuring the supply of energy to the cannons, and avoid a possible overload, leading to a reduction in defense lost battle.<br><br><strong><font color="lime">Minimizes losses in half defenses<br>+10% energy production</font></strong>',
+604 => 'The guild is composed of technocrats authentic genius, and always find that dangerous edge where it all explode into a thousand pieces before they could find an explanation and technology rational. No normal human being ever try to decode the code of a technocrat, with its presence, the researchers modeled the rule.<br><br><strong><font color="lime">+2 Espionage level<br>-25% Less time for research</font></strong>',
 );
 
 //----------------------------------------------------------------------------//
@@ -748,8 +748,8 @@ $lang['al_alliance_closed']					= 'This alliance does not support more members';
 $lang['al_request_confirmation_message']	= 'Application registered. Will receive a message when your application is approved / rejected. <br><a href="game.php?page=alliance">back</a>';
 $lang['al_default_request_text']			= 'The alliance leaders have not set an example of application, or have no pretensions.';
 $lang['al_write_request']					= 'Write application to the alliance %s';
-$lang['al_request_deleted']					= 'Your request to the alliance %s has been deleted. <br/> Now you can write a new application or create your own alliance.';
-$lang['al_request_wait_message']			= 'You\'ve already sent a request to the alliance %s. <br/> Please wait until you receive a reply or delete this application.';
+$lang['al_request_deleted']					= 'Your request to the alliance %s has been deleted. <br> Now you can write a new application or create your own alliance.';
+$lang['al_request_wait_message']			= 'You\'ve already sent a request to the alliance %s. <br> Please wait until you receive a reply or delete this application.';
 $lang['al_delete_request']					= 'Delete aplication';
 $lang['al_founder_cant_leave_alliance']		= 'The founder can not abandon the alliance.';
 $lang['al_leave_sucess']					= 'You leaver the alliance %s succesfully.';
@@ -960,9 +960,9 @@ $lang['sh_position']						= 'Rank';
 //----------------------------------------------------------------------------//
 //OPTIONS
 $lang['op_cant_activate_vacation_mode']		= 'If you\'re building or moving fleets will not be able to enter on vacation mode.';
-$lang['op_password_changed']				= 'Password has been changed<br /><a href="index.php" target="_top">Back</a>';
-$lang['op_username_changed']				= 'Username changed<br /><a href="index.php" target="_top">Back</a>';
-$lang['op_options_changed']					= 'Changes saved.<br /><a href="game.php?page=options">Back</a>';
+$lang['op_password_changed']				= 'Password has been changed<br><a href="index.php" target="_top">Back</a>';
+$lang['op_username_changed']				= 'Username changed<br><a href="index.php" target="_top">Back</a>';
+$lang['op_options_changed']					= 'Changes saved.<br><a href="game.php?page=options">Back</a>';
 $lang['op_vacation_mode_active_message']	= 'The vacation mode is turned on. Have to be on vacation at least until: ';
 $lang['op_end_vacation_mode']				= 'Finish vacation mode';
 $lang['op_save_changes']					= 'save changes';

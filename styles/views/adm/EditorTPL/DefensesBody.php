@@ -1,5 +1,5 @@
 <body>
-<br />
+<br>
 <form action="" method="post">
 <table width="45%">
 {display}
@@ -57,7 +57,7 @@
 	<th><input name="interplanetary_misil" type="text" value="0" /></th>
 </tr><tr>
 	<th colspan="3">
-	<input type="reset" value="{button_reset}"/><br /><br />
+	<input type="reset" value="{button_reset}"/><br><br>
 	<input type="Submit" value="{button_add}" name="add" />&nbsp;
 	<input type="Submit" value="{button_delete}" name="delete"/></th>
 </tr>

@@ -27,7 +27,7 @@
         </tr>
         <tr>
             <th>{al_web_site}</th>
-            <th><a href="http://{ally_web}" target="_blanck">{ally_web}</a></th>
+            <th><a href="http://{ally_web}" target="_blank">{ally_web}</a></th>
         </tr>
         <tr>
         	<td class=c colspan=2>{al_inside_section}</th>

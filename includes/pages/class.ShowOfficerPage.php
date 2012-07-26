@@ -1,12 +1,14 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com Author's Website
+ * @author	Razican <admin@razican.com>
  */
 
-if(!defined('INSIDE')){ die(header("location:../../"));}
+if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class ShowOfficierPage
 {
@@ -66,12 +68,12 @@ class ShowOfficierPage
 
 					if ( $Result )
 					{
-						$bloc['off_link']  = "<font color=\"lime\"><strong>".Format::pretty_number ( $Price ) . '</strong><br />' . $lang['Darkmatter'] . "</font>";
-						$bloc['off_link'] .= "<br /><a href=\"game.php?page=officier&mode=2&offi=".$Element."\"><font color=\"#00ff00\">".$lang['of_recruit']."</font>";
+						$bloc['off_link']  = "<font color=\"lime\"><strong>".Format::pretty_number ( $Price ) . '</strong><br>' . $lang['Darkmatter'] . "</font>";
+						$bloc['off_link'] .= "<br><a href=\"game.php?page=officier&mode=2&offi=".$Element."\"><font color=\"#00ff00\">".$lang['of_recruit']."</font>";
 					}
 					else
 					{
-						$bloc['off_link'] = "<font color=\"red\"><strong>".Format::pretty_number ( $Price ) . '</strong><br />' . $lang['Darkmatter'] . "</font>";
+						$bloc['off_link'] = "<font color=\"red\"><strong>".Format::pretty_number ( $Price ) . '</strong><br>' . $lang['Darkmatter'] . "</font>";
 					}
 
 					$parse['disp_off_tbl'] .= parsetemplate( $OfficierRowTPL , $bloc );

@@ -4,11 +4,13 @@ $lang['404_page']			= 'Necesitas permisos especiales para ver ésta página';
 $lang['adm_cp_title']		= 'Panel de control de administración';
 $lang['adm_cp_index']		= 'Inicio';
 $lang['mu_moderation_page']	= 'Permisos';
+$lang['mu_topnav']			= 'Administración';
+$lang['mu_select_nav']		= 'Navegación';
 $lang['adm_cp_logout']		= 'Salir';
 $lang['lang_key']			= 'es';
 
 //	MISCELANEO - MISCELLANEOUS
-$lang['ad_number']			= 'N&ordm;';
+$lang['ad_number']			= 'Nº';
 $lang['only_numbers']		= '¡Solo puedes ingresar números!';
 $lang['select_option']		= 'Seleccionar...';
 
@@ -175,7 +177,7 @@ $lang['emperor']				= 'Emperador';
 $lang['qe_title_menu']	= 'Consultas SQL';
 $lang['qe_execute']		= 'Ejecutar consulta SQL';
 $lang['qe_succes']		= 'Operación realizada con éxito';
-$lang['qe_note']		= 'Nota: Ingresá de a una consulta a la vez';
+$lang['qe_note']		= 'Nota: Ingresa una consulta cada vez';
 //###########################################################//
 
 
@@ -404,18 +406,19 @@ $lang['od_select_action']	= 'Seleccionar acción';
 $lang['ow_title']				= 'Bienvenido a xNova';
 $lang['ow_welcome_text']		= 'Gracias por elegir xNova. Día a día trabajamos por ser el OGame OpenSource N&ordm;1 de la red. A continuación tienes un "vistazo" general del juego. Podrás realizar todos los cambios que desees navegando por el menú de la izquierda.';
 $lang['ow_overview']			= 'Panel de control';
+$lang['ow_bug_report']			= 'Reporte de errores';
 $lang['ow_support']				= 'Soporte';
 $lang['ow_credits']				= 'Créditos';
 $lang['ow_proyect_leader']		= 'Líder del proyecto';
 $lang['ow_principal_contributors']	= 'Principales colaboradores';
 $lang['ow_other_contributors']		= 'Otros colaboradores';
 $lang['ow_special_thanks']			= 'Agradecimientos especiales';
-$lang['ow_install_file_detected']	= 'Se detecto el directorio install/. Por razones se seguridad recomendamos eliminarlo.';
+$lang['ow_install_file_detected']	= 'Se detecto el directorio install/ o el archivo install.php. Por razones se seguridad recomendamos eliminarlo.';
 $lang['ow_config_file_writable']	= 'El archivo config.php puede ser escrito, es recomendable que sea colocado en chmod 0440 (sólo lectura).';
-$lang['ow_database_errors']			= 'Hay errores en tu base de datos. Puedes verlos haciendo <a href="ErrorPage.php">click aquí</a>';
+$lang['ow_database_errors']			= 'Hay errores en tu base de datos. Puedes verlos haciendo <a href="admin.php?page=errors">click aquí</a>';
 $lang['ow_old_version']				= 'Hay una nueva versión disponible. Haz click <a href="http://www.razican.com/" target="_blank">aquí</a> para descargarla';
 $lang['ow_none']					= 'No hay actualizaciones ni advertencias';
-$lang['ow_log_file_no_writable']	= 'Al menos uno de los archivos de logs en /adm/Log/ no puede ser escrito, por favor, dales permisos CHMOD 0777';
+$lang['ow_log_file_no_writable']	= 'Al menos uno de los archivos de logs en /includes/logs/ no puede ser escrito, por favor, dales permisos CHMOD 0777';
 $lang['ow_config_file_no_writable']	= 'El archivo de configuración /includes/xml/config.xml no es escribible, por favor, dale los permisos CHMOD 0777';
 $lang['ow_bot_folder_no_writable']	= 'La carpeta /includes/bots no es escribible, por favor, dale los permisos CHMOD 0777';
 //###########################################################//
@@ -590,7 +593,7 @@ $lang['re_reset_notes']						= 'Reiniciar notas';
 $lang['re_reset_rw']						= 'Reiniciar reportes de batalla';
 $lang['re_reset_buddies']					= 'Reiniciar lista de compañeros';
 $lang['re_reset_allys']						= 'Reiniciar alianzas';
-$lang['re_reset_fleets']					= 'Reiniciar fleets';
+$lang['re_reset_fleets']					= 'Reiniciar flotas';
 $lang['re_reset_errors']					= 'Reiniciar lista de errores';
 $lang['re_reset_banned']					= 'Reiniciar suspendidos';
 $lang['re_reset_messages']					= 'Reiniciar mensajes';

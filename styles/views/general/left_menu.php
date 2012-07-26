@@ -182,7 +182,7 @@ function f(target_url,win_name) {
  <tr>
   <td>
    <div align="center"><font color="#FFFFFF">
-     <a href="#" onClick="f('game.php?page=notes', '{lm_notes}')">{lm_notes}</a>
+     <a href="#" onclick="f('game.php?page=notes', '{lm_notes}')">{lm_notes}</a>
 
     </font></div>
   </td>

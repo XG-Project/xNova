@@ -1,7 +1,7 @@
 <script type="text/javascript" src="../js/filterlist.min.js"></script>
 <body>
 <form action="" method="GET" name="users">
-<table border="0px" style="background:url(./../styles/images/Adm/blank.png);" width="60%">
+<table border="0px" style="background-color:transparent;" width="60%">
 {error}
 </table>
 <br>
@@ -50,8 +50,8 @@
 
 	<BR>
 	<INPUT NAME="regexp" onKeyUp="UserList.set(this.value)">
-	<INPUT TYPE="button" onClick="UserList.set(this.form.regexp.value)" value="{button_filter}">
-	<INPUT TYPE="button" onClick="UserList.reset();this.form.regexp.value=''" value="{button_deselect}">
+	<INPUT TYPE="button" onclick="UserList.set(this.form.regexp.value)" value="{button_filter}">
+	<INPUT TYPE="button" onclick="UserList.reset();this.form.regexp.value=''" value="{button_deselect}">
 </th>
 </tr>
 <tr><th height="45"><center>{ac_select_id_num}&nbsp;<input type="text" name="id_u2" size="4"></center></th></tr>

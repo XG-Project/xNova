@@ -1,6 +1,6 @@
 <script TYPE="text/javascript" SRC="../js/filterlist.min.js"></script>
 <body>
-<br />
+<br>
 </table>
 <form action="" method="post" name="users">
 <table width="55%">
@@ -55,8 +55,8 @@
 
 	<BR>
 	<INPUT NAME="regexp" onKeyUp="UserList.set(this.value)">
-	<INPUT TYPE="button" onClick="UserList.set(this.form.regexp.value)" value="{button_filter}">
-	<INPUT TYPE="button" onClick="UserList.reset();this.form.regexp.value=''" value="{button_deselect}">
+	<INPUT TYPE="button" onclick="UserList.set(this.form.regexp.value)" value="{button_filter}">
+	<INPUT TYPE="button" onclick="UserList.reset();this.form.regexp.value=''" value="{button_deselect}">
 	</th>
 </tr><tr>
 	<th>{ad_authlevel_insert_id}</th>

@@ -1,5 +1,5 @@
 <center>
-<br/>
+<br>
 <div id="content">
 	<table width="520">
 		<tr>

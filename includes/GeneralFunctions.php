@@ -1,9 +1,11 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com Author's Website
+ * @author	Razican <admin@razican.com>
  */
 
 set_error_handler('catch_error');
@@ -105,49 +107,46 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 {
 	global $db, $debug, $user, $planetrow;
 
-	if (!$AdminPage)
+	if ( ! $AdminPage)
 		$DisplayPage  = StdUserHeader($metatags, $onload);
 	else
 		$DisplayPage  = AdminUserHeader($metatags);
 
-	if ($topnav)
+	if ($topnav  && !$AdminPage)
 	{
-		include_once(XN_ROOT . 'includes/functions/ShowTopNavigationBar.php');
+		require_once(XN_ROOT.'includes/functions/ShowTopNavigationBar.php');
 		$DisplayPage .= ShowTopNavigationBar( $user, $planetrow );
 	}
-
-	if ($menu && !$AdminPage)
+	elseif ($topnav)
 	{
-		include_once(XN_ROOT . 'includes/functions/ShowLeftMenu.php');
-		$DisplayPage .= ShowLeftMenu ($user);
+		require_once(XN_ROOT.'includes/functions/adm/ShowTopNavigationBar.php');
+		$DisplayPage .= ShowTopNavigationBar();
+	}
+
+	if ($menu && ! $AdminPage)
+	{
+		require_once(XN_ROOT.'includes/functions/ShowLeftMenu.php');
+		$DisplayPage .= ShowLeftMenu($user);
+	}
+	elseif ($menu)
+	{
+		require_once(XN_ROOT.'includes/functions/adm/ShowMenu.php');
+		$DisplayPage .= ShowMenu();
 	}
 
 	$DisplayPage .= $page;
 
-	if( ! defined('LOGIN') && ! defined('IN_ADMIN') && isset($_GET['page']) && $_GET['page'] != 'galaxy')
-		$DisplayPage .= parsetemplate(gettemplate('general/footer'), array());
+	$footer		  = array();
 
-	if ( isset($user['authlevel']) && $user['authlevel'] == 3 && read_config ( 'debug' ) == 1 && !$AdminPage && isset($_GET['page']) && $_GET['page'] != 'notes')
-	{
-		// Convertir a objeto dom
-		$DisplayPage = str_get_html($DisplayPage);
+	if (isset($user['authlevel']) && $user['authlevel'] == 3 && read_config('debug') == 1)
+		$footer['debug'] = $debug->echo_log();
 
-		// Modificar div#content
-		$content = $DisplayPage->find("div#content", 0);
-
-		// Contenido debug
-		if ( ! empty($content)) $content->innertext .= $debug->echo_log();
-	}
+	if ( ! defined('LOGIN') && ! defined('IN_ADMIN') && isset($_GET['page']) && $_GET['page'] !== 'galaxy')
+		$DisplayPage .= parsetemplate(gettemplate('general/footer'), $footer);
+	elseif (defined('IN_ADMIN'))
+		$DisplayPage .= parsetemplate(gettemplate('adm/footer'), $footer);
 
 	echo $DisplayPage;
-
-	if ( isset($user['authlevel']) && $user['authlevel'] == 3 && read_config ( 'debug' ) == 1 && $AdminPage)
-	{
-
-		echo "<center>";
-		echo $debug->echo_log();
-		echo "</center>";
-	}
 
 	if ($db) $db->close();
 
@@ -156,45 +155,54 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 
 function StdUserHeader ($metatags = '', $onload = '')
 {
-	$parse['-title-'] 	 = read_config ( 'game_name' );
-	$parse['-favi-']	 = "<link rel=\"shortcut icon\" href=\"./favicon.ico\">\n";
-	$parse['-meta-']	 = "<meta charset=\"UTF-8\">\n";
-	$parse['-meta-']	.= "<meta name=\"generator\" content=\"xNova " . VERSION . "\" />\n";
+	$parse = array();
+	$parse['-title-']	= read_config('game_name');
+	$parse['-favi-']	= '<link rel="shortcut icon" href="'.GAMEURL.'favicon.png">';
+	$parse['-meta-']	= '<meta charset="UTF-8">';
+	$parse['-meta-']	.= '<meta name="generator" content="xNova '.VERSION.'">';
+	$parse['-meta-']	.= '<meta name="author" content="Razican">';
+	$parse['-meta-']	.= '<meta name="application-name" content="xNova">';
+	//TODO description, keywords
 
-	if(!defined('LOGIN'))
+	if( ! defined('LOGIN'))
 	{
-		$parse['-style-']  	 = "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles/css/default.css\">\n";
-		$parse['-style-']  	.= "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles/css/formate.css\">\n";
-		$parse['-style-'] 	.= "<link rel=\"stylesheet\" type=\"text/css\" href=\"". DPATH ."formate.css\" />\n";
-		$parse['-meta-']	.= "<script type=\"application/javascript\" src=\"js/overlib.min.js\"></script>\n";
+		$parse['-style-']	= '<link rel="stylesheet" type="text/css" href="'.GAMEURL.'styles/css/default.css">';
+		$parse['-style-']	.= '<link rel="stylesheet" type="text/css" href="'.GAMEURL.'styles/css/formate.css">';
+		$parse['-style-']	.= '<link rel="stylesheet" type="text/css" href="'. DPATH .'formate.css">';
+		$parse['-meta-']	.= '<script type="application/javascript" src='.GAMEURL.'js/overlib.min.js"></script>';
 	}
 	else
 	{
-		$parse['-style-']  	 = "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles/css/styles.css\">\n";
+		$parse['-style-']	= '<link rel="stylesheet" type="text/css" href="'.GAMEURL.'styles/css/styles.css">';
 	}
 
-	$parse['-meta-']	.= ($metatags) ? $metatags : "";
-	$parse['onload']	= ' onload="'.$onload.'"';
+	$parse['-meta-']		.= ($metatags) ? $metatags : '';
+	$parse['onload']		= ! empty($onload) ? ' onload="'.$onload.'"' : '';
 
-	return parsetemplate ( gettemplate ( 'general/simple_header' ) , $parse );
+	return parsetemplate(gettemplate('general/simple_header'), $parse);
 }
 
 function AdminUserHeader ($metatags = '')
 {
-	$parse	= array();
+	global $lang;
+	$parse	= $lang;
 
 	if (!defined('IN_ADMIN'))
-		$parse['-title-'] 	= 	"xNova - Instalación";
+		$parse['-title-'] 	= 	'xNova - Instalación';
 	else
-		$parse['-title-'] 	= 	read_config ( 'game_name' ) . " - Admin CP";
+		$parse['-title-'] 	= 	read_config('game_name').' - Admin CP';
 
-	$parse['-favi-']	 = 	"<link rel=\"shortcut icon\" href=\"./../favicon.ico\">\n";
-	$parse['-style-']	 =	"<link rel=\"stylesheet\" type=\"text/css\" href=\"./../styles/css/admin.css\">\n";
-	$parse['-meta-']	 = "<meta charset=\"UTF-8\">\n";
-	$parse['-meta-']	.= 	"<script type=\"application/javascript\" src=\"./../js/overlib.min.js\"></script>\n";
-	$parse['-meta-'] 	.= ($metatags) ? $metatags : "";
+	$parse['-favi-']	 = '<link rel="shortcut icon" href="'.GAMEURL.'favicon.png">';
+	$parse['-style-']	 = '<link rel="stylesheet" type="text/css" href="'.DPATH.'/css/admin.css">';
+	$parse['-meta-']	 = '<meta charset="UTF-8">';
+	$parse['-meta-']	.= '<meta name="generator" content="xNova '.VERSION.'">';
+	$parse['-meta-']	.= '<meta name="author" content="Razican">';
+	$parse['-meta-']	.= '<meta name="application-name" content="xNova">';
+	//TODO description, keywords
 
-	return parsetemplate ( gettemplate ( 'adm/simple_header' ) , $parse );
+	$parse['-meta-'] 	.= ($metatags) ? $metatags : '';
+
+	return parsetemplate(gettemplate('adm/simple_header'), $parse);
 }
 
 function CalculateMaxPlanetFields (&$planet)
@@ -214,14 +222,16 @@ function ShowBuildTime($time)
 	return "<br>". $lang['fgf_time'] . Format::pretty_time($time);
 }
 
-function parsetemplate ( $template , $array )
+function parsetemplate ($template, $array)
 {
-	return preg_replace ( '#\{([a-z0-9\-_]*?)\}#Ssie' , '( ( isset($array[\'\1\']) ) ? $array[\'\1\'] : \'\' );' , $template );
+	$array['game_url']	= GAMEURL;
+	$array['skin_url']	= DPATH;
+	return preg_replace('#\{([a-z0-9\-_]*?)\}#Ssie', '(isset($array[\'\1\']) ? $array[\'\1\'] : \'\' );', $template);
 }
 
-function gettemplate ( $templatename )
+function gettemplate ($templatename)
 {
-	return @file_get_contents ( XN_ROOT . TEMPLATE_DIR . '/' . $templatename . '.php' );
+	return file_get_contents(XN_ROOT.TEMPLATE_DIR.'/'.$templatename.'.php');
 }
 
 function includeLang ( $filename )
@@ -263,16 +273,18 @@ function doquery($query, $table, $fetch = FALSE)
 	{
 		$db		= new mysqli($dbsettings["server"], $dbsettings["user"], $dbsettings["pass"], $dbsettings["name"]);
 		if ( ! is_null($db->connect_error)) $debug->error($db->connect_error, "SQL Error");
+
+		$db->set_charset('utf8');
 	}
 
 	$sql 		= str_replace ( "{{table}}" , $dbsettings["prefix"] . $table , $query );
 	$sqlquery 	= $db->query($sql);
-	if ( ! $sqlquery) $debug->error($db->error."<br />$sql<br />", "SQL Error");
+	if ( ! $sqlquery) $debug->error($db->error."<section class=\"sql-query\">".$sql."</section>", "SQL Error");
 
 	unset($dbsettings);
 	$numqueries++;
 
-	$debug->add("<tr><th>Query $numqueries: </th><th>".htmlentities($query, ENT_COMPAT, 'UTF-8')."</th><th>$table</th><th>$fetch</th></tr>");
+	$debug->add("<div class=\"query\"><section class=\"query-counter\">Query ".$numqueries.":</section><section class=\"query-text\">".htmlentities($query, ENT_COMPAT, 'UTF-8')."</section><section class=\"query-table\">".$table."</section><section class=\"query-fetch\"><figure class=\" ".($fetch ? 'true' : 'false')."\"></figure></section></div>");
 
 	if ($fetch)
 		return $sqlquery->fetch_array();
@@ -280,7 +292,7 @@ function doquery($query, $table, $fetch = FALSE)
 		return $sqlquery;
 }
 
-function catch_error($errno , $errstr, $errfile, $errline)
+function catch_error($errno, $errstr, $errfile, $errline)
 {
 	global $user, $db, $debug;
 

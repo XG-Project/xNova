@@ -1,21 +1,18 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com Author's Website
+ * @author	Razican <admin@razican.com>
  */
 
-if (!defined('INSIDE')){die();}
+if ( ! defined('INSIDE')) die();
 
 function phpself()
 {
 	$file = pathinfo($_SERVER['PHP_SELF']);
-
-	if (version_compare(PHP_VERSION, '5.2.0', '<'))
-	{
-		$file['filename'] = substr($file['basename'], 0, strlen($file['basename']) - strlen($file['extension']) - 1);
-	}
 
 	if (basename(XN_ROOT) != '.')
 	{
@@ -137,7 +134,7 @@ closedir($dir);
 */
 if ( defined('IN_ADMIN') )
 {
-	if( ! defined('DPATH')) define('DPATH' , "../". DEFAULT_SKINPATH );
+	if( ! defined('DPATH')) define('DPATH', XN_ROOT.DEFAULT_SKINPATH);
 	$page	=   isset($_GET['mode']) ? $_GET['mode'] : NULL;
 
 	if(is_phpself('adm/SettingsPage') && $page=='plugins')

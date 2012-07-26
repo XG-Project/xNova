@@ -1,12 +1,14 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com Author's Website
+ * @author	Razican <admin@razican.com>
  */
 
-if(!defined('INSIDE')){ die(header("location:../../"));}
+if ( ! defined('INSIDE')) die(header("location: ./../"));
 
 class bbCode
 {
@@ -34,7 +36,7 @@ class bbCode
 		);
 
 		$replace = array(
-		    '<br/>',
+		    '<br>',
 		    '',
 		    '$this->sList(\'\\1\')',
 		    '<b>\1</b>',
@@ -87,9 +89,9 @@ class bbCode
 	{
 		if(substr($img, 0, 7) != 'http://')
 		{
-			$img = './images/' . $img;
+			$img = 'images/' . $img;
 		}
-		return '<img src="' . $img . '" alt="' . $img . '" title="' . $img . '" />';
+		return '<img src="'.GAMEURL.$img.'" alt="'.$img.'" title="'.$img.'">';
 	}
 
 	private function urlfix($url, $title)

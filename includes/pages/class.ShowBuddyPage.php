@@ -1,12 +1,14 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com Author's Website
+ * @author	Razican <admin@razican.com>
  */
 
-if(!defined('INSIDE')){ die(header("location:../../"));}
+if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class ShowBuddyPage
 {
@@ -172,7 +174,7 @@ class ShowBuddyPage
 							$parse['system']			= $sender['system'];
 							$parse['planet']			= $sender['planet'];
 							$parse['text']				= $buddy['text'];
-							$parse['action']			= '<a href="game.php?page=buddy&mode=1&sm=2&bid=' . $buddy[id] . '">' . $lang['bu_accept'] . '</a><br /><a href="game.php?page=buddy&mode=1&sm=1&bid=' . $buddy[id] . '">' . $lang['bu_decline'] . '</a>';
+							$parse['action']			= '<a href="game.php?page=buddy&mode=1&sm=2&bid=' . $buddy[id] . '">' . $lang['bu_accept'] . '</a><br><a href="game.php?page=buddy&mode=1&sm=1&bid=' . $buddy[id] . '">' . $lang['bu_decline'] . '</a>';
 
 							$requestsReceived .= parsetemplate ( $subTemplate , $parse );
 						}

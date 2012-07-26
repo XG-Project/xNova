@@ -3,4 +3,4 @@
 		<td style="background:transparent;"><font color="{error_color}"><strong>{error_text}</strong></font></td>
 	</tr>
 </table>
-<br />
+<br>

@@ -15,7 +15,7 @@ $lang['mail_text']					= 'Esta es tu nueva contraseña: ';
 $lang['mail_sended']				= '¡La nueva contraseña ha sido enviado con éxito!';
 
 //case default
-$lang['login_error']				= '¡Datos ingresados incorrectos! <br /><a href="index.php" target="_top">Volver al inicio</a>';
+$lang['login_error']				= '¡Datos ingresados incorrectos! <br><a href="index.php" target="_top">Volver al inicio</a>';
 
 /* ------------------------------------------------------------------------------------------ */
 
@@ -42,17 +42,17 @@ $lang['login']						= 'Ingresar';
 $lang['reg_mail_text_part1']		= 'Muchas gracias por registrarte en nuestro juego. \n Tu contraseña es: ';
 $lang['reg_mail_text_part2']		= ' \n\n ¡Disfrutá del juego! \n ';
 $lang['register_at']				= 'Registro en ';
-$lang['invalid_mail_adress']		= '¡Correo electrónico inválido!<br />';
-$lang['empty_user_field']			= '¡El campo del usuario no puedo estar vacío!<br />';
-$lang['password_lenght_error']		= '¡La contraseña debe tener al menos 4 caracteres!<br />';
-$lang['user_field_no_alphanumeric']	= '¡El campo de usuario sólo puede contener caracteres alfanuméricos!<br />';
-$lang['terms_and_conditions']		= '¡Debes aceptar nuestros términos y condiciones de uso!<br />';
-$lang['user_already_exists']		= '¡El nombre de usuario elegido ya existe!<br />';
-$lang['mail_already_exists']		= '¡El email ingresado ya existe!<br />';
+$lang['invalid_mail_adress']		= '¡Correo electrónico inválido!<br>';
+$lang['empty_user_field']			= '¡El campo del usuario no puedo estar vacío!<br>';
+$lang['password_lenght_error']		= '¡La contraseña debe tener al menos 4 caracteres!<br>';
+$lang['user_field_no_alphanumeric']	= '¡El campo de usuario sólo puede contener caracteres alfanuméricos!<br>';
+$lang['terms_and_conditions']		= '¡Debes aceptar nuestros términos y condiciones de uso!<br>';
+$lang['user_already_exists']		= '¡El nombre de usuario elegido ya existe!<br>';
+$lang['mail_already_exists']		= '¡El email ingresado ya existe!<br>';
 $lang['welcome_message_from']		= 'Admin';
 $lang['welcome_message_sender']		= 'Admin';
 $lang['welcome_message_subject']	= '¡Bienvenido!';
-$lang['welcome_message_content']	= '¡Bienvenido a xNova!<p>Al comenzar, construye una mina de Metal.<br />Para hacerlo, haz click en el enlace \"Edificios\" en la izquierda, y dale a \"construir\" a la derecha de la mina de metal.<br />Ahora tienes algo de tiempo para conocer más cosas del juego.<p>Podrás encontrar ayuda:<br />En el <a href=\"http://www.xtreme-gamez.com.ar/foros\" target=\"_blank\">Foro</a><br />Ahora, tu mina debería estar acabada.<br />Como no producen nada sin energía, deberías construir una Planta de energía solar, vuelve a Edificios, y elige construir la Planta de energía solar.<p>Para ver todas las naves, estructuras defensivas, edificios e investigaciones que puedes investigar, puedes echarle un vistazo al árbol de tecnología en \"Tecnología\" en el menú izquierdo.<p>Ahora ya puedes empezar la conquista del universo... ¡Buena suerte!';
+$lang['welcome_message_content']	= '¡Bienvenido a xNova!<p>Al comenzar, construye una mina de Metal.<br>Para hacerlo, haz click en el enlace \"Edificios\" en la izquierda, y dale a \"construir\" a la derecha de la mina de metal.<br>Ahora tienes algo de tiempo para conocer más cosas del juego.<p>Podrás encontrar ayuda:<br>En el <a href=\"http://www.xtreme-gamez.com.ar/foros\" target=\"_blank\">Foro</a><br>Ahora, tu mina debería estar acabada.<br>Como no producen nada sin energía, deberías construir una Planta de energía solar, vuelve a Edificios, y elige construir la Planta de energía solar.<p>Para ver todas las naves, estructuras defensivas, edificios e investigaciones que puedes investigar, puedes echarle un vistazo al árbol de tecnología en \"Tecnología\" en el menú izquierdo.<p>Ahora ya puedes empezar la conquista del universo... ¡Buena suerte!';
 $lang['reg_completed']				= '¡Registro completo!';
 $lang['max_users']					= 'Se ha alcanzado el límite de usuarios para este universo';
 

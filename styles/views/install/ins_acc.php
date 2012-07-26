@@ -15,7 +15,7 @@
             	<td><input name="adm_email" size="20" maxlength="40" type="text"></td>
             </tr>
         </table>
-        <br />
+        <br>
     </th>
 </tr>
 <tr>

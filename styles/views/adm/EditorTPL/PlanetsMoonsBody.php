@@ -1,5 +1,5 @@
 <body>
-<br />
+<br>
 <form action="" method="post">
 <table width="45%">
 {display}

@@ -1,15 +1,17 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com Author's Website
+ * @author	Razican <admin@razican.com>
  */
 
-define('INSIDE'  ,  TRUE);
-define('INSTALL' , FALSE);
-define('LOGIN'   ,  TRUE);
-define('XN_ROOT',	'./');
+define('INSIDE', TRUE);
+define('INSTALL', FALSE);
+define('LOGIN', TRUE);
+define('XN_ROOT', realpath('./').'/');
 
 $InLogin = TRUE;
 

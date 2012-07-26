@@ -1,8 +1,13 @@
 <?php
+
 /**
- * SecurePage by Jstar (xgproyect.net)
- * This class implement a security controll against SQL-injection and xss
- **/
+ * @package	xNova
+ * @version	1.0.x
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com Author's Website
+ * @author	Razican <admin@razican.com>
+ * @author	Jstar
+ */
 
 class SecurePage
 {

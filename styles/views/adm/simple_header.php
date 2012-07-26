@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>{-title-}</title>
-{-favi-}
-{-style-}
-{-meta-}
-</head>
+<html lang="{lang_key}">
+	<head>
+		<title>{-title-}</title>
+		{-favi-}
+		{-style-}
+		{-meta-}
+	</head>
+	<body>

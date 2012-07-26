@@ -1,12 +1,14 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com Author's Website
+ * @author	Razican <admin@razican.com>
  */
 
-if(!defined('INSIDE')){ die(header("location:../../"));}
+if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class ShowTraderPage
 {
@@ -39,14 +41,14 @@ class ShowTraderPage
 												'crystal' => $_POST['cristal'],
 												'deuterium' => $_POST['deut']
 											);
-											
-						$storage	= $this->check_storage ( $CurrentPlanet , $amout );					
-						
+
+						$storage	= $this->check_storage ( $CurrentPlanet , $amout );
+
 						if ( is_string ( $storage ) )
 						{
 							die ( message ( $storage , 'game.php?page=trader' , '2' ) );
 						}
-												
+
 						if ($CurrentPlanet['metal'] > $necessaire)
 						{
 							$QryUpdatePlanet  = "UPDATE {{table}} SET ";
@@ -83,14 +85,14 @@ class ShowTraderPage
 												'crystal' => 0,
 												'deuterium' => $_POST['deut']
 											);
-											
-						$storage	= $this->check_storage ( $CurrentPlanet , $amout );					
-						
+
+						$storage	= $this->check_storage ( $CurrentPlanet , $amout );
+
 						if ( is_string ( $storage ) )
 						{
 							die ( message ( $storage , 'game.php?page=trader' , '2' ) );
 						}
-						
+
 						if ($CurrentPlanet['crystal'] > $necessaire)
 						{
 							$QryUpdatePlanet  = "UPDATE {{table}} SET ";
@@ -127,14 +129,14 @@ class ShowTraderPage
 												'crystal' => $_POST['cristal'],
 												'deuterium' => 0
 											);
-											
-						$storage	= $this->check_storage ( $CurrentPlanet , $amout );					
-						
+
+						$storage	= $this->check_storage ( $CurrentPlanet , $amout );
+
 						if ( is_string ( $storage ) )
 						{
 							die ( message ( $storage , 'game.php?page=trader' , '2' ) );
 						}
-						
+
 						if ($CurrentPlanet['deuterium'] > $necessaire)
 						{
 							$QryUpdatePlanet  = "UPDATE {{table}} SET ";
@@ -194,7 +196,7 @@ class ShowTraderPage
 		}
 		display(parsetemplate($template,$parse));
 	}
-	
+
 	/**
 	 * method check_storage
 	 * param $current_planet
@@ -205,25 +207,25 @@ class ShowTraderPage
 	public static function check_storage ( $current_planet , $amount , $force = NULL )
 	{
 		global $resource, $lang;
-		
-		
+
+
 		if ( !is_array ( $amount ) )
 		{
 			throw new Exception ( "Must be array" , 1 );
 		}
-		
-		
+
+
 		$hangar	= array ( 'metal' => 22 , 'crystal' => 23 , 'deuterium' => 24 );
 		$check 	= array();
-		
-		
+
+
 		foreach ( $hangar as $k => $v )
 		{
 			if ( $amount[$k] == 0 )
 			{
 				unset ( $amount[$k] );
 			}
-			
+
 			if ( array_key_exists ( $k , $amount ) )
 			{
 				if ( $current_planet[$k] + $amount[$k] >= Production::max_storable ( $current_planet[$resource[$v]] ) )
@@ -240,8 +242,8 @@ class ShowTraderPage
 				$check[$k] = TRUE;
 			}
 		}
-		
-		
+
+
 		if ( $check['metal'] === true && $check['crystal'] === true && $check['deuterium'] === true )
 		{
 			return FALSE;
@@ -258,8 +260,8 @@ class ShowTraderPage
 					}
 					else
 					{
-						continue;	
-					}	
+						continue;
+					}
 				}
 			}
 			else
@@ -267,6 +269,6 @@ class ShowTraderPage
 				return $check;
 			}
 		}
-	}  
+	}
 }
 ?>

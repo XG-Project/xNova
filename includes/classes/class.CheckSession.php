@@ -1,9 +1,11 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com Author's Website
+ * @author	Razican <admin@razican.com>
  */
 
 if ( ! defined('INSIDE')) die(header ( 'location:../../' ));
@@ -111,7 +113,7 @@ class CheckSession
 
 			if ($user['bana'] == 1)
 			{
-				die("<div align=\"center\"><h1>".$lang['css_account_banned_message']."</h1><br /> <strong>".$lang['css_account_banned_expire'].date("d-m-y H:i", $user['banaday'])."</strong></div>");
+				die("<div align=\"center\"><h1>".$lang['css_account_banned_message']."</h1><br> <strong>".$lang['css_account_banned_expire'].date("d-m-y H:i", $user['banaday'])."</strong></div>");
 			}
 
 			$RetValue['record'] = $user;

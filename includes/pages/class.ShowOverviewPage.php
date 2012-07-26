@@ -1,9 +1,11 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com Author's Website
+ * @author	Razican <admin@razican.com>
  */
 
 if(!defined('INSIDE')) {die(header("location:../../"));}
@@ -376,7 +378,7 @@ class ShowOverviewPage
 						$PlanetID = $CurrentPlanet['id'];
 						$Build = InsertBuildListScript("overview");
 						$Build .= $lang['tech'][$CurrBuild[0]] . ' (' . ($CurrBuild[1]) . ')';
-						$Build .= "<br /><div id=\"blc\" class=\"z\">" . Format::pretty_time($RestTime) . "</div>";
+						$Build .= "<br><div id=\"blc\" class=\"z\">" . Format::pretty_time($RestTime) . "</div>";
 						$Build .= "\n<script language=\"JavaScript\">";
 						$Build .= "\n	pp = \"" . $RestTime . "\";\n";
 						$Build .= "\n	pk = \"" . 1 . "\";\n";

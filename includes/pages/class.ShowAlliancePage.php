@@ -1,14 +1,16 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com Author's Website
+ * @author	Razican <admin@razican.com>
  */
 
-if(!defined('INSIDE')){ die(header("location:../../"));}
+if( ! defined('INSIDE')) die(header("location:../../"));
 
-include ( './includes/classes/class.BBCode.php' );
+include(XN_ROOT.'includes/classes/class.BBCode.php');
 
 class ShowAlliancePage extends bbCode
 {
@@ -81,7 +83,7 @@ class ShowAlliancePage extends bbCode
 		return $sort; // RETORNA LA FORMA DE ORDEN
 	}
 
-	public function __construct ( $CurrentUser )
+	public function __construct($CurrentUser)
 	{
 		global $lang, $db;
 
@@ -257,7 +259,7 @@ class ShowAlliancePage extends bbCode
 
 					$page 		= $this->message_box ( str_replace ( '%s' , $_POST['atag'] , $lang['al_created'] ),
 
-					str_replace ( '%s' , $_POST['atag'] , $lang['al_created'] ) . "<br/><br/>" , "" , $lang['al_continue'] );
+					str_replace ( '%s' , $_POST['atag'] , $lang['al_created'] ) . "<br><br>" , "" , $lang['al_continue'] );
 				}
 				else
 				{
@@ -546,7 +548,7 @@ class ShowAlliancePage extends bbCode
 				{
 					$list 			= '';
 					$_POST['r'] 	= intval ( $_POST['r'] );
-					$_POST['text']	= preg_replace ( "/([^\s]{80}?)/" , "\\1<br />" , trim ( nl2br ( strip_tags ( $_POST['text'], '<br>' ) ) ) );
+					$_POST['text']	= preg_replace ( "/([^\s]{80}?)/" , "\\1<br>" , trim ( nl2br ( strip_tags ( $_POST['text'], '<br>' ) ) ) );
 
 					if ( $_POST['r'] == 0 )
 					{

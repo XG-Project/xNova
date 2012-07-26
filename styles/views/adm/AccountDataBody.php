@@ -1,6 +1,6 @@
 <body>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript" src="../js/animatedcollapse.min.js"></script>
+<script type="text/javascript" src="{game_url}js/animatedcollapse.min.js"></script>
 <script type="text/javascript">
 animatedcollapse.addDiv('pla', 'fade=1,height=auto')
 animatedcollapse.addDiv('inves', 'fade=1,height=auto')
@@ -32,11 +32,11 @@ animatedcollapse.init()
 a.link{font-size:14px;font-variant:small-caps;margin-left:120px;}a.link:hover{font-size:16px;font-variant:small-caps;margin-left:120px;}
 span.no_moon{font-size:14px;font-variant:small-caps;margin-left:120px;font-family: Arial, Helvetica, sans-serif;}span.no_moon:hover{font-size:14px;font-variant:small-caps;margin-left:120px;color:#FF0000;cursor:default;font-family: Arial, Helvetica, sans-serif;}
 a.ccc{font-size:15px;}a.ccc:hover{font-size:15px;color:aqua;}
-table.tableunique{border:0px;background:url(./../styles/images/Adm/blank.png);width:100%;}
+table.tableunique{border:0px;background-color:transparent;width:100%;}
 th.unico{border:0px;text-align:left;}
 th.unico2{border:0px;text-align:center;}
 td{color:#FFFFFF;font-size:10px;font-variant:normal;}
-td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:right;padding-right:80px;font-size:15px;}
+td.blank{border:0px;background-color:transparent;text-align:right;padding-right:80px;font-size:15px;}
 </style>
 
 
@@ -46,7 +46,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 	</tr>
 	<tr>
 		<th class="unico"><a href="javascript:animatedcollapse.toggle('datos')" class="link">
-		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> {ac_account_data}</a></th>
+		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {ac_account_data}</a></th>
 	</tr><tr>
 		<th class="unico">
 			<div id="datos">
@@ -208,7 +208,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 				<th colspan="5" height="30px">{darkmatter}: &nbsp;&nbsp;{mo}</th>
 			</tr>
 			</table>
-			<br />
+			<br>
 			</div>
 		</th>
 	</tr><tr>
@@ -239,7 +239,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 			</tr>
 				{buildings}
 			</table>
-			<br />
+			<br>
 			</div>
 		</th>
 	</tr><tr>
@@ -256,7 +256,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 			</tr>
 				{moon_buildings}
 			</table>
-			<br />
+			<br>
 			</div>
 		</th>
 	</tr><tr>
@@ -286,7 +286,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 			</tr>
 				{ships}
 			</table>
-			<br />
+			<br>
 			</div>
 		</th>
 	</tr><tr>
@@ -312,7 +312,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 			</tr>
 				{defenses}
 			</table>
-			<br />
+			<br>
 			</div>
 		</th>
 	</tr><tr>
@@ -343,7 +343,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 			<tr><th>{expedition_tech}: <font color=aqua>{tec_expedicion}</font></th><th>{emperor}: <font color=aqua>{ofi_emperador}</font></th></tr>
 			<tr><th>{graviton_tech}: <font color=aqua>{tec_graviton}</font></th></tr>
 			</table>
-			<br />
+			<br>
 			</div>
 		</th>
 	</tr><tr>
@@ -360,7 +360,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 			</tr>
 				{destroyed}
 			</table>
-			<br />
+			<br>
 			</div>
 		</th>
 	</tr>

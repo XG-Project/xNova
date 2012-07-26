@@ -1,47 +1,157 @@
-<style>
-th{text-align:left;}
-.grand{font-size:14px;}
-</style>
-<body>
-<form action="" method="post">
-<table width="40%">
-{good}
-<tr><td colspan="2" class="c">{re_defenses_and_ships}</td></tr>
-<tr><th>{re_defenses}</th><td><input type="checkbox" name="defenses" /></td></tr>
-<tr><th>{re_ships}</th><td><input type="checkbox" name="ships" /></td></tr>
-<tr><th>{re_reset_hangar}</th><td><input type="checkbox" name="h_d" /></td></tr>
+<section class="page">
+	<section class="content-table table thin divided">
+		{result}
+		<form action="admin.php?page=reset" method="post" accept-charset="UTF-8">
+			<h3>{re_defenses_and_ships}</h3>
+			<div class="row">
+				<div class="content">{re_defenses}</div>
+				<div class="content">
+					<input type="checkbox" name="defenses">
+				</div>
+			</div>
+			<div class="row">
+				<div class="content">{re_ships}</div>
+				<div class="content">
+					<input type="checkbox" name="ships">
+				</div>
+			</div>
+			<div class="row">
+				<div class="content">{re_reset_hangar}</div>
+				<div class="content">
+					<input type="checkbox" name="h_d">
+				</div>
+			</div>
 
-<tr><td colspan="2" class="c">{re_buldings}</td></tr>
-<tr><th>{re_buildings_pl}</th><td><input type="checkbox" name="edif_p" /></td></tr>
-<tr><th>{re_buildings_lu}</th><td><input type="checkbox" name="edif_l" /></td></tr>
-<tr><th>{re_reset_buldings}</th><td><input type="checkbox" name="edif" /></td></tr>
+			<h3>{re_buldings}</h3>
+			<div class="row">
+				<div class="content">{re_buildings_pl}</div>
+				<div class="content">
+					<input type="checkbox" name="dif_p">
+				</div>
+			</div>
+			<div class="row">
+				<div class="content">{re_buildings_lu}</div>
+				<div class="content">
+					<input type="checkbox" name="edif_l">
+				</div>
+			</div>
+			<div class="row">
+				<div class="content">{re_reset_buldings}</div>
+				<div class="content">
+					<input type="checkbox" name="edif">
+				</div>
+			</div>
 
-<tr><td colspan="2" class="c">{re_inve_ofis}</td></tr>
-<tr><th>{re_ofici}</th><td><input type="checkbox" name="ofis" /></td></tr>
-<tr><th>{re_investigations}</th><td><input type="checkbox" name="inves" /></td></tr>
-<tr><th>{re_reset_invest}</th><td><input type="checkbox" name="inves_c" /></td></tr>
+			<h3>{re_inve_ofis}</h3>
+			<div class="row">
+				<div class="content">{re_ofici}</div>
+				<div class="content">
+					<input type="checkbox" name="ofis">
+				</div>
+			</div>
+			<div class="row">
+				<div class="content">{re_investigations}</div>
+				<div class="content">
+					<input type="checkbox" name="inves">
+				</div>
+			</div>
+			<div class="row">
+				<div class="content">{re_reset_invest}</div>
+				<div class="content">
+					<input type="checkbox" name="inves_c">
+				</div>
+			</div>
 
-<tr><td colspan="2" class="c">{re_resources}</td></tr>
-<tr><th>{re_resources_dark}</th><td><input type="checkbox" name="dark" /></td></tr>
-<tr><th>{re_resources_met_cry}</th><td><input type="checkbox" name="resources" /></td></tr>
+			<h3>{re_resources}</h3>
+			<div class="row">
+				<div class="content">{re_resources_dark}</div>
+				<div class="content">
+					<input type="checkbox" name="dark">
+				</div>
+			</div>
+			<div class="row">
+				<div class="content">{re_resources_met_cry}</div>
+				<div class="content">
+					<input type="checkbox" name="resources">
+				</div>
+			</div>
 
-<tr><td colspan="2" class="c">{re_general}</td></tr>
-<tr><th>{re_reset_moons}</th><td><input type="checkbox" name="moons" /></td></tr>
-<tr><th>{re_reset_notes}</th><td><input type="checkbox" name="notes" /></td></tr>
-<tr><th>{re_reset_rw}</th><td><input type="checkbox" name="rw" /></td></tr>
-<tr><th>{re_reset_buddies}</th><td><input type="checkbox" name="friends" /></td></tr>
-<tr><th>{re_reset_allys}</th><td><input type="checkbox" name="alliances" /></td></tr>
-<tr><th>{re_reset_fleets}</th><td><input type="checkbox" name="fleets" /></td></tr>
-<tr><th>{re_reset_errors}</th><td><input type="checkbox" name="errors" /></td></tr>
-<tr><th>{re_reset_banned}</th><td><input type="checkbox" name="banneds" /></td></tr>
-<tr><th>{re_reset_messages}</th><td><input type="checkbox" name="messages" /></td></tr>
-<tr><th>{re_reset_statpoints}</th><td><input type="checkbox" name="statpoints" /></td></tr>
-<tr><th>{re_reset_bots}</th><td><input type="checkbox" name="bots" /></td></tr>
+			<h3>{re_general}</h3>
+			<div class="row">
+				<div class="content">{re_reset_moons}</div>
+				<div class="content">
+					<input type="checkbox" name="moons">
+				</div>
+			</div>
+			<div class="row">
+				<div class="content">{re_reset_notes}</div>
+				<div class="content">
+					<input type="checkbox" name="notes">
+				</div>
+			</div>
+			<div class="row">
+				<div class="content">{re_reset_rw}</div>
+				<div class="content">
+					<input type="checkbox" name="rw">
+				</div>
+			</div>
+			<div class="row">
+				<div class="content">{re_reset_buddies}</div>
+				<div class="content">
+					<input type="checkbox" name="friends">
+				</div>
+			</div>
+			<div class="row">
+				<div class="content">{re_reset_allys}</div>
+				<div class="content">
+					<input type="checkbox" name="alliances">
+				</div>
+			</div>
+			<div class="row">
+				<div class="content">{re_reset_fleets}</div>
+				<div class="content">
+					<input type="checkbox" name="fleet">
+				</div>
+			</div>
+			<div class="row">
+				<div class="content">{re_reset_errors}</div>
+				<div class="content">
+					<input type="checkbox" name="errors">
+				</div>
+			</div>
+			<div class="row">
+				<div class="content">{re_reset_banned}</div>
+				<div class="content">
+					<input type="checkbox" name="banned">
+				</div>
+			</div>
+			<div class="row">
+				<div class="content">{re_reset_messages}</div>
+				<div class="content">
+					<input type="checkbox" name="messages">
+				</div>
+			</div>
+			<div class="row">
+				<div class="content">{re_reset_statpoints}</div>
+				<div class="content">
+					<input type="checkbox" name="statpoints">
+				</div>
+			</div>
+			<div class="row">
+				<div class="content">{re_reset_bots}</div>
+				<div class="content">
+					<input type="checkbox" name="bots">
+				</div>
+			</div>
 
-<tr><td class="c" style="text-align:left;color:#FF0000;">{re_reset_all}</td><td><input type="checkbox" name="resetall" /></td></tr>
+			<div class="row">
+				<div class="content reset-universe">{re_reset_all}</div>
+				<div class="content">
+					<input type="checkbox" name="resetall">
+				</div>
+			</div>
 
-
-<tr><td colspan="2" height="60"><input type="submit" value="{button_submit}" onClick="return confirm('{re_reset_universe_confirmation}');"/></td></tr>
-</table>
-</form>
-</body>
+			<div class="content"><input type="submit" value="{button_submit}" onclick="return confirm('{re_reset_universe_confirmation}');"></div>
+		</form>
+	</section>
+</section>

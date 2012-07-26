@@ -80,7 +80,7 @@ function xd() {
 
 window.onload = t;
 </script>
-<br />
+<br>
 <form name="Atr" method="get" action="game.php?page=buildings">
 <input type="hidden" name="mode" value="fleet">
 <table width="530">
@@ -95,6 +95,6 @@ window.onload = t;
 </tr>
 </table>
 </form>
-<br />
+<br>
 {total_left_time} {pretty_time_b_hangar}<br></center>
-<br />
+<br>

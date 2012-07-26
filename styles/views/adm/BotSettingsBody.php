@@ -1,7 +1,7 @@
 <body>
 <table width="700">
 	<tr>
-		<td class="c" colspan="8">{bot_list} <a href="BotSettingsPage.php?deleteall=yes" onClick="return confirm('{bot_delete_all_confirm}');">[{er_dlte_all}]</a><a href="BotSettingsPage.php?page=delete_log" onClick="return confirm('Si borra el archivo de logs borrará la información de lo que los bots han hecho hasta ahora. ¿Estás seguro?');">[{log_delete_link}]</a></td>
+		<td class="c" colspan="8">{bot_list} <a href="BotSettingsPage.php?deleteall=yes" onclick="return confirm('{bot_delete_all_confirm}');">[{er_dlte_all}]</a><a href="BotSettingsPage.php?page=delete_log" onclick="return confirm('Si borra el archivo de logs borrará la información de lo que los bots han hecho hasta ahora. ¿Estás seguro?');">[{log_delete_link}]</a></td>
 	</tr>
 	<tr>
 		<td class="b" colspan="8">{mu_user_logs}:<br><textarea style="resize: none;" rows="10" cols="500" overflow="scroll" readonly>{log}</textarea></td>

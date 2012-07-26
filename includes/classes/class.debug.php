@@ -1,9 +1,11 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com Author's Website
+ * @author	Razican <admin@razican.com>
  */
 
 if(!defined('INSIDE')){ die(header ( 'location:../../' ));}
@@ -26,7 +28,7 @@ class debug
 
 	function echo_log()
 	{
-		return  "<br><table><tr><td class=k colspan=4><a href=".XN_ROOT."adm/SettingsPage.php>Debug Log</a>:</td></tr>".$this->log."</table>";
+		return  "<section id=\"debug\" class=\"content-table\"><h3><a href=\"".XN_ROOT."admin.php?page=settings\">Debug Log</a>:</h3><section class=\"debug\">".str_replace('{DPATH}', DPATH, $this->log)."</section></section>";
 		die();
 	}
 
@@ -34,10 +36,10 @@ class debug
 	{
 		global $db, $lang, $user;
 
-		if ( read_config ( 'debug' ) == 1 )
+		if (read_config('debug') == 1)
 		{
 			echo "<h2>$title</h2><br><font color=red>$message</font><br><hr>";
-			echo  "<table>".$this->log."</table>";
+			echo  "<section class=\"debug\">".$this->log."/section>";
 		}
 
 		include(XN_ROOT.'config.php');

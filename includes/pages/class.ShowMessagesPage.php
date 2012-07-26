@@ -1,12 +1,14 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com Author's Website
+ * @author	Razican <admin@razican.com>
  */
 
-if(!defined('INSIDE')){ die(header("location:../../"));}
+if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class ShowMessagesPage
 {
@@ -108,7 +110,7 @@ class ShowMessagesPage
 						$Sender  				= intval ( $CurrentUser['id'] );
 						$From    				= $CurrentUser['username'] . " [" .$CurrentUser['galaxy'] . ":" . $CurrentUser['system'] . ":" . $CurrentUser['planet'] . "]";
 						$Subject 				= $_POST['subject'];
-						$Message				= preg_replace ( "/([^\s]{80}?)/" , "\\1<br />" , trim ( nl2br ( strip_tags ( $_POST['text'] , '<br>' ) ) ) );
+						$Message				= preg_replace ( "/([^\s]{80}?)/" , "\\1<br>" , trim ( nl2br ( strip_tags ( $_POST['text'] , '<br>' ) ) ) );
 
 						SendSimpleMessage ( $Owner , $Sender , '' , 1 , $From , $Subject , $Message );
 

@@ -3,7 +3,7 @@
 <table>
 <tr>
 	<td class="c">
-		<a href="LogToolPage.php?options=delete&file={setarchive}" onClick=" return confirm('{log_alert}');">[{log_delete_link}]</a>&nbsp;
+		<a href="LogToolPage.php?options=delete&file={setarchive}" onclick=" return confirm('{log_alert}');">[{log_delete_link}]</a>&nbsp;
 		<a href="LogToolPage.php?options=edit&file={setarchive}">[{log_edit_link}]</a>&nbsp;
 		<a href="LogToolPage.php?options=links&file={setarchive}">[{log_go_back}]</a>
 	</td>
@@ -17,7 +17,7 @@
 	</th>
 </tr><tr>
 	<th>
-	<input type="submit" value="{log_input_value}" name="editnow" onClick="LogToolPage.php?options=edit&file={setarchive}"/>
+	<input type="submit" value="{log_input_value}" name="editnow" onclick="LogToolPage.php?options=edit&file={setarchive}"/>
 	</th>
 </tr>
 </form>

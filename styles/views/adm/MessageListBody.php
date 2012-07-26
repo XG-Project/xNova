@@ -45,9 +45,9 @@ function checkedAll (frm1) {
             </select>
             </th>
 			<th>
-			<input type="text" name="selday" onClick="if(this.value == 'dd') this.value = '';" onBlur="if(this.value == '') this.value= 'dd';" value="dd" size="3" maxlength="2" />
-			<input type="text" name="selmonth" onClick="if(this.value == 'mm') this.value = '';" onBlur="if(this.value == '') this.value= 'mm';" value="mm" size="3"  maxlength="2"/>
-			<input type="text" name="selyear" onClick="if(this.value == 'yyyy') this.value = '';" onBlur="if(this.value == '') this.value= 'yyyy';" value="yyyy" size="6"  maxlength="4"/></th>
+			<input type="text" name="selday" onclick="if(this.value == 'dd') this.value = '';" onBlur="if(this.value == '') this.value= 'dd';" value="dd" size="3" maxlength="2" />
+			<input type="text" name="selmonth" onclick="if(this.value == 'mm') this.value = '';" onBlur="if(this.value == '') this.value= 'mm';" value="mm" size="3"  maxlength="2"/>
+			<input type="text" name="selyear" onclick="if(this.value == 'yyyy') this.value = '';" onBlur="if(this.value == '') this.value= 'yyyy';" value="yyyy" size="6"  maxlength="4"/></th>
         </tr>
 		<tr>
             <th><input type="submit" name="prev" value="[ &lt;- ]" />&nbsp;<input type="submit" name="next" value="[ -&gt; ]" /></th>
@@ -58,7 +58,7 @@ function checkedAll (frm1) {
             <th colspan="3">
                 <table width="100%" border="0" cellspacing="1" cellpadding="1">
                     <tr align="center">
-                        <td class="c"><input title="{button_des_se}" type="checkbox" name="checkall" onClick="checkedAll(select_all);" value="{ml_select_all_messages}"></td>
+                        <td class="c"><input title="{button_des_se}" type="checkbox" name="checkall" onclick="checkedAll(select_all);" value="{ml_select_all_messages}"></td>
                         <td class="c">{input_id}</td>
                         <td class="c">{ml_date}</td>
                         <td class="c">{ml_from}</td>

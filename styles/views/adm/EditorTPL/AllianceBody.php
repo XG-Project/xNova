@@ -1,6 +1,6 @@
 <script src="../js/cntchar.min.js" type="text/javascript"></script>
 <body>
-<br />
+<br>
 </table>
 <form action="" method="post">
 <table width="55%">

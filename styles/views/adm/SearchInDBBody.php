@@ -8,14 +8,14 @@ animatedcollapse.ontoggle=function($, divobj, state){
 animatedcollapse.init()
 </script>
 <style>
-.button{background:url(./../styles/images/Adm/blank.png);border:1px lime solid;color:#FFFFFF;}
-.button:hover{background:url(./../styles/images/Adm/blank.png);border:1px aqua solid;cursor:pointer;color:#FFFFFF;}
+.button{background-color:transparent;border:1px lime solid;color:#FFFFFF;}
+.button:hover{background-color:transparent;border:1px aqua solid;cursor:pointer;color:#FFFFFF;}
 .span{ vertical-align:baseline}</style>
 
 <form action="" method="GET">
 <div align="left">
 <input type="checkbox" {minimize} name="minimize"/><input type="submit" value="{se_contrac}" class="button"/>
-<img src="../styles/images/Adm/GO.png" onClick="javascript:animatedcollapse.toggle('search')" style="cursor:pointer;padding-right:60px;"
+<img src="../styles/images/Adm/GO.png" onclick="javascript:animatedcollapse.toggle('search')" style="cursor:pointer;padding-right:60px;"
 onMouseOver='return overlib("{ac_minimize_maximize}", CENTER, OFFSETX, 120, OFFSETY, 5, WIDTH, 200);' onMouseOut='return nd();'>
 </div>
 

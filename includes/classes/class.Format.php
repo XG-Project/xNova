@@ -1,15 +1,17 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com Author's Website
+ * @author	Razican <admin@razican.com>
  */
 
-if(!defined('INSIDE')){ die(header("location:../../"));}
+if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class Format
-{	
+{
 	/**
 	 * method pretty_time
 	 * param $seconds
@@ -21,20 +23,20 @@ class Format
 		$hs 	= floor ( $seconds / 3600 % 24 );
 		$ms 	= floor ( $seconds / 60 % 60 );
 		$sr 	= floor ( $seconds / 1 % 60 );
-	
+
 		if ( $hs < 10 ) { $hh = "0" . $hs; } else { $hh = $hs; }
 		if ( $ms < 10 ) { $mm = "0" . $ms; } else { $mm = $ms; }
 		if ( $sr < 10 ) { $ss = "0" . $sr; } else { $ss = $sr; }
-	
+
 		$time = '';
 		if ( $day != 0 ) { $time .= $day . 'd '; }
 		if ( $hs  != 0 ) { $time .= $hh . 'h ';  } else { $time .= '00h '; }
 		if ( $ms  != 0 ) { $time .= $mm . 'm ';  } else { $time .= '00m '; }
 		$time .= $ss . 's';
-	
+
 		return $time;
 	}
-	
+
 	/**
 	 * method pretty_time_hour
 	 * param $seconds
@@ -44,15 +46,15 @@ class Format
 	{
 		$min 	= floor ( $seconds / 60 % 60 );
 		$time 	= '';
-		
-		if ( $min != 0 ) 
-		{ 
-			$time .= $min . 'min '; 
+
+		if ( $min != 0 )
+		{
+			$time .= $min . 'min ';
 		}
-		
+
 		return $time;
 	}
-	
+
 	/**
 	 * method get_max_fleets
 	 * param1 $n
@@ -66,23 +68,23 @@ class Format
 			if ( $s != '' )
 			{
 				$s = self::color_green ( $s );
-			}		
+			}
 			else
 			{
 				$s = self::color_green ( $n );
 			}
-				
+
 		}
 		elseif ( $n < 0 )
 		{
 			if ($s != '')
 			{
 				$s = self::color_red ( $s );
-			}	
+			}
 			else
 			{
 				$s = self::color_red ( $n );
-			}	
+			}
 		}
 		else
 		{
@@ -93,12 +95,12 @@ class Format
 			else
 			{
 				$s = $n;
-			}	
+			}
 		}
-	
+
 		return $s;
 	}
-	
+
 	/**
 	 * method color_red
 	 * param $n
@@ -108,7 +110,7 @@ class Format
 	{
 		return '<font color="#ff0000">' . $n . '</font>';
 	}
-	
+
 	/**
 	 * method color_green
 	 * param $n
@@ -118,7 +120,7 @@ class Format
 	{
 		return '<font color="#00ff00">' . $n . '</font>';
 	}
-	
+
 	/**
 	 * method pretty_number
 	 * param1 $n
@@ -131,10 +133,10 @@ class Format
 		{
 			$n = floor ( $n );
 		}
-			
+
 		return number_format ( $n , 0 , "," , "." );
 	}
-	
+
 	/**
 	 * method shortly_number
 	 * param $number
@@ -166,14 +168,14 @@ class Format
 		elseif ( $number >= 1000 && $number < 1000000 )
 		{
 			return self::pretty_number ( ( $number / 1000 ) ) . "&nbsp;<font color=lime>K</font>";
-		}	
+		}
 		// NUMERO SIN DEFINIR
 		else
 		{
 			return self::pretty_number ( $number );
 		}
 	}
-	
+
 	/**
 	 * method float_to_string
 	 * param1 $numeric
@@ -185,7 +187,7 @@ class Format
 	{
 		return ( $output ) ? str_replace ( "," , "." , sprintf ( "%." . $pro . "f" , $numeric ) ) : sprintf ( "%." . $pro . "f" , $numeric );
 	}
-	
+
 	/**
 	 * method round_up
 	 * param1 $value
@@ -202,7 +204,7 @@ class Format
 		{
 			$precisionFactor = pow ( 10, $precision );
 		}
-	
+
 		return ceil ( $value * $precisionFactor ) / $precisionFactor;
 	}
 }

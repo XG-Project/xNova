@@ -471,7 +471,7 @@ function ol_content_caption(text,title,close) {
 	if (o3_capicon != "") {
 	  nameId = ' hspace = \"5\"'+' align = \"middle\" alt = \"\"';
 	  if (typeof o3_dragimg != 'undefined' && o3_dragimg) nameId =' hspace=\"5\"'+' name=\"'+o3_dragimg+'\" id=\"'+o3_dragimg+'\" align=\"middle\" alt=\"Drag Enabled\" title=\"Drag Enabled\"';
-	  o3_capicon = '<img src=\"'+o3_capicon+'\"'+nameId+' />';
+	  o3_capicon = '<img src=\"'+o3_capicon+'\"'+nameId+'>';
 	}
 
 	if (close != "")

@@ -32,13 +32,13 @@
 	<th>{se_forum_link}</th>
 	<th><input name="forum_url" size="25" maxlength="254" value="{forum_url}" type="text"></th>
 </tr><tr>
-	<th>{se_max_users}<br /></th>
+	<th>{se_max_users}<br></th>
 	<th><input name="max_users" value="{max_users_sett}" type="text" /></th>
 </tr><tr>
-	<th>{se_server_op_close}<br /></th>
+	<th>{se_server_op_close}<br></th>
 	<th><input name="closed"{closed} type="checkbox" /></th>
 </tr><tr>
-	<th>{se_server_status_message}<br /></th>
+	<th>{se_server_status_message}<br></th>
 	<th><textarea name="close_reason" cols="80" rows="5" size="80" >{close_reason}</textarea></th>
 </tr><tr>
 	<td class="c" colspan="2">{se_server_planet_parameters}</td>
@@ -87,24 +87,24 @@
 <tr>
 	<th>{se_log_php_errors}</th>
 	<th>
-		E_WARNING <input name="errors_2" type="checkbox" {errors_2}><br />
-		E_NOTICE <input name="errors_8" type="checkbox" {errors_8}><br />
-		E_STRICT <input name="errors_2048" type="checkbox" {errors_2048}><br />
-		E_RECOVERABLE_ERROR <input name="errors_4096" type="checkbox" {errors_4096}><br />
-		E_DEPRECATED <input name="errors_8192" type="checkbox" {errors_8192}><br />
-		E_ALL <input name="errors_32767" type="checkbox" {errors_32767}><br />
+		E_WARNING <input name="errors_2" type="checkbox" {errors_2}><br>
+		E_NOTICE <input name="errors_8" type="checkbox" {errors_8}><br>
+		E_STRICT <input name="errors_2048" type="checkbox" {errors_2048}><br>
+		E_RECOVERABLE_ERROR <input name="errors_4096" type="checkbox" {errors_4096}><br>
+		E_DEPRECATED <input name="errors_8192" type="checkbox" {errors_8192}><br>
+		E_ALL <input name="errors_32767" type="checkbox" {errors_32767}><br>
 	</th>
 </tr>
 <tr>
 	<th>{se_log_bots}</th>
 	<th>
-		<input name="log_bots" type="checkbox" {log_bots}><br />
+		<input name="log_bots" type="checkbox" {log_bots}><br>
 	</th>
 </tr>
 <tr>
 	<th>{se_date_format}</th>
 	<th>
-		<input name="date_format" size="35" type="text" value="{date_format}"><br />
+		<input name="date_format" size="35" type="text" value="{date_format}"><br>
 	</th>
 	<th><img src="../styles/images/Adm/i.png" onMouseOver='return overlib("{se_date_format_message}", CENTER,OFFSETX, -150, OFFSETY, -150, WIDTH, 250);' onMouseOut='return nd();'></th>
 </tr>

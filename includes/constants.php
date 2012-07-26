@@ -1,9 +1,11 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com Author's Website
+ * @author	Razican <admin@razican.com>
  */
 
 if ( ! defined('INSIDE') ) die(header("location:../"));
@@ -19,7 +21,17 @@ if ( ! defined('INSIDE') ) die(header("location:../"));
 
 	// ADMINISTRATOR EMAIL AND GAME URL - THIS DATA IS REQUESTED BY REG.PHP
 	define('ADMINEMAIL'               	, "admin@razican.com");
-	define('GAMEURL'                  	, "http://".$_SERVER['HTTP_HOST']."/");
+	if (isset($_SERVER['HTTP_HOST']))
+	{
+		$base_url = ( ! empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off') ? 'https' : 'http';
+		$base_url .= '://'.$_SERVER['HTTP_HOST']
+			.str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
+	}
+	else
+	{
+		$base_url = 'http://localhost/';
+	}
+	define('GAMEURL'                  	, $base_url);
 
 	// UNIVERSE DATA, GALAXY, SYSTEMS AND PLANETS || DEFAULT 9-499-15 RESPECTIVELY
 	define('MAX_GALAXY_IN_WORLD'      	,       9);

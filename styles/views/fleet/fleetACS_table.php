@@ -10,7 +10,7 @@
 					<form action="game.php?page=fleetACS" method="POST">
 						<input name="fleetid" value="{fleetid}" type="hidden">
 						<input name="txt_name_acs" type="text" id="txt_name_acs" value="{acs_code}" />
-						<br />
+						<br>
 						<input type="submit" value="{fl_continue}" />
 					</form>
 				</th>
@@ -33,10 +33,10 @@
 								<input name="fleetid" value="{fleetid}" type="hidden">
 								<input name="acs_invited" value="{acs_invited}" type="hidden">
 							<td>
-								<input name="addtogroup" type="text" /> <br /><input type="submit" value="{fl_continue}" />
+								<input name="addtogroup" type="text" /> <br><input type="submit" value="{fl_continue}" />
 							</td>
 							</form>
-							<br />
+							<br>
 							{add_user_message}
 						</tr>
 					</table>

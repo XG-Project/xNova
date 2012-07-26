@@ -35,7 +35,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 </tr>
 </table>
 
-<br /><br /><br />
+<br><br><br>
 <table width="70%">
 <tr>
 	<a name="ACCDATA"></a>
@@ -48,7 +48,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 </tr>
 </table>
 
-<br />
+<br>
 <table width="70%">
 <tr>
 	<a name="SEARCH"></a>
@@ -69,12 +69,12 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 		.- <b>Descendiente:</b> <i>ordena de mayor a menor.</i>	<br><br>
 
 		Tambien pueden ordenarse por ID, Nombre, etc. (Según la búsqueda).	<br>
-		Si la palabra clave esta en blanco (vacio), buscara todos los nombres que haya en la tabla.
+		Si la palabra clave esta en blanco (vacío), buscara todos los nombres que haya en la tabla.
 	</th>
 </tr>
 </table>
 
-<br />
+<br>
 <table width="70%">
 <tr>
 	<a name="EDIT"></a>
@@ -103,7 +103,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 </tr>
 </table>
 
-<br />
+<br>
 <table width="70%">
 <tr>
 	<a name="BAN"></a>
@@ -123,7 +123,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 </tr>
 </table>
 
-<br />
+<br>
 <table width="70%">
 <tr>
 	<a name="CREATEUSER"></a>
@@ -143,7 +143,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 </tr>
 </table>
 
-<br />
+<br>
 <table width="70%">
 <tr>
 	<a name="MESSAGES"></a>
@@ -156,7 +156,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 </tr>
 </table>
 
-<br />
+<br>
 <table width="70%">
 <tr>
 	<a name="ERRORS"></a>
@@ -169,7 +169,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 </tr>
 </table>
 
-<br />
+<br>
 <table width="70%">
 <tr>
 	<a name="BD"></a>
@@ -185,7 +185,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 </tr>
 </table>
 
-<br />
+<br>
 <table width="70%">
 <tr>
 	<a name="STATS"></a>
@@ -205,7 +205,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 </tr>
 </table>
 
-<br />
+<br>
 <table width="70%">
 <tr>
 	<a name="GMESS"></a>
@@ -218,7 +218,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 </tr>
 </table>
 
-<br />
+<br>
 <table width="70%">
 <tr>
 	<a name="ENCRIPT"></a>
@@ -231,7 +231,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 </tr>
 </table>
 
-<br />
+<br>
 <table width="70%">
 <tr>
 	<a name="ACCESS"></a>
@@ -249,7 +249,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 </tr>
 </table>
 
-<br />
+<br>
 <table width="70%">
 <tr>
 	<a name="AUTH"></a>
@@ -266,7 +266,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 </tr>
 </table>
 
-<br />
+<br>
 <table width="70%">
 <tr>
 	<a name="PLANETSMOONS"></a>

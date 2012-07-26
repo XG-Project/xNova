@@ -1,12 +1,14 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com Author's Website
+ * @author	Razican <admin@razican.com>
  */
 
-if(!defined('INSIDE')){ die(header("location:../../"));}
+if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class ShowInfosPage
 {
@@ -350,7 +352,7 @@ class ShowInfosPage
 		$parse['image']       = $BuildID;
 		$parse['description'] = $lang['info'][$BuildID]['description'];
 
-		if ($BuildID < 13 OR ($BuildID == 43 && $CurrentPlanet[$resource[43]] > 0))
+		if ($BuildID < 13 OR ($BuildID === 43 && $CurrentPlanet[$resource[43]] > 0))
 			$PageTPL = gettemplate('infos/info_buildings_table');
 		elseif ($BuildID < 200)
 			$PageTPL = gettemplate('infos/info_buildings_general');
@@ -371,35 +373,35 @@ class ShowInfosPage
 			$TableHeadTPL         = gettemplate('infos/info_production_header');
 			$TableTPL             = gettemplate('infos/info_production_body');
 		}
-		elseif ($BuildID ==   4)
+		elseif ($BuildID === 4)
 		{
 			$PageTPL              = gettemplate('infos/info_buildings_table');
 			$TableHeadTPL         = gettemplate('infos/info_production_simple_header');
 			$TableTPL             = gettemplate('infos/info_production_simple_body');
 		}
-		elseif ($BuildID ==  12)
+		elseif ($BuildID === 12)
 		{
 			$TableHeadTPL         = gettemplate('infos/info_energy_header');
 			$TableTPL             = gettemplate('infos/info_energy_body');
 		}
-		/*elseif ($BuildID >=  14 AND $BuildID <= 100 AND $BuildID != 42 AND $BuildID != 41 AND $BuildID != 33 AND $BuildID != 43)
+		/*elseif ($BuildID >= 14 AND $BuildID <= 100 AND $BuildID != 42 AND $BuildID != 41 AND $BuildID != 33 AND $BuildID != 43)
 		{
 			No hacemos NADA
 		}*/
-		/*elseif ($BuildID ==  33)
+		/*elseif ($BuildID === 33)
 		{
 			$PageTPL              = gettemplate('infos/info_buildings_general');
 		}
-		elseif ($BuildID ==  41)
+		elseif ($BuildID === 41)
 		{
 			$PageTPL              = gettemplate('infos/info_buildings_general');
 		}*/
-		elseif ($BuildID ==  42)
+		elseif ($BuildID === 42)
 		{
 			$TableHeadTPL         = gettemplate('infos/info_range_header');
 			$TableTPL             = gettemplate('infos/info_range_body');
 		}
-		elseif ($BuildID ==  43)
+		elseif ($BuildID === 43)
 		{
 			$GateTPL              = gettemplate('infos/info_gate_table');
 
@@ -441,7 +443,7 @@ class ShowInfosPage
 			$parse['shield_pt']   = Format::pretty_number ($CombatCaps[$BuildID]['shield']);
 			$parse['attack_pt']   = Format::pretty_number ($CombatCaps[$BuildID]['attack']);
 		}
-		elseif ($BuildID == 502 && $BuildID == 503)
+		elseif ($BuildID === 502 OR $BuildID === 503)
 		{
 			$PageTPL              = gettemplate('infos/info_buildings_defense');
 			$parse['element_typ'] = $lang['tech'][400];
@@ -450,14 +452,14 @@ class ShowInfosPage
 			$parse['attack_pt']   = Format::pretty_number ($CombatCaps[$BuildID]['attack']);
 		}
 
-		if ($TableHeadTPL != '')
+		if ( ! empty($TableHeadTPL))
 		{
 			$parse['table_head']  = parsetemplate ($TableHeadTPL, $lang);
 			$parse['table_data']  = $this->ShowProductionTable ($CurrentUser, $CurrentPlanet, $BuildID, $TableTPL);
 		}
 
 		$page  = parsetemplate($PageTPL, $parse);
-		if ($GateTPL != '')
+		if ( ! empty($GateTPL))
 		{
 			if ($CurrentPlanet[$resource[$BuildID]] > 0)
 			{
@@ -483,7 +485,7 @@ class ShowInfosPage
 			}
 		}
 
-		if ($DestroyTPL != '')
+		if ( ! empty($DestroyTPL))
 		{
 			if ($CurrentPlanet[$resource[$BuildID]] > 0)
 			{

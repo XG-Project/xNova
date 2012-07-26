@@ -1,33 +1,35 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright © 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com Author's Website
+ * @author	Razican <admin@razican.com>
  */
 
-if(!defined('INSIDE')){ die(header("location:../../"));}
+if(!defined('INSIDE')) die(header("location:../../"));
 
 class NoobsProtection
 {
 	private static $instance = null;
-	private $_protection; // 1 OR 0
+	private $_protection;
 	private $_protectiontime;
 	private $_protectionmulti;
-	
+
 	// READ SOME CONFIG BY DEFAULT
 	private function __construct()
-	{	
-		$this->_protection      	= read_config ( 'noobprotection' );
-		$this->_protectiontime  	= read_config ( 'noobprotectiontime' );
-		$this->_protectionmulti 	= read_config ( 'noobprotectionmulti' );		
+	{
+		$this->_protection      	= (bool) read_config('noobprotection');
+		$this->_protectiontime  	= read_config('noobprotectiontime');
+		$this->_protectionmulti 	= read_config('noobprotectionmulti');
 	}
-	
+
 	// DETERMINES IF THE PLAYER IS WEAK OR NOT
-	public function is_weak ( $current_points , $other_points )
-	{						
-		if ( ( $current_points > ( $other_points * $this->_protectionmulti ) ) && ( $this->_protection == 1 ) && 
-			( $other_points < $this->_protectiontime ) )
+	public function is_weak($current_points, $other_points)
+	{
+		if (($current_points > ($other_points*$this->_protectionmulti)) OR ($other_points < $this->_protectiontime)
+			&& ($this->_protection))
 		{
 			return TRUE;
 		}
@@ -36,12 +38,12 @@ class NoobsProtection
 			return FALSE;
 		}
 	}
-	
+
 	// DETERMINES IF THE PLAYER IS STRONG OR NOT
-	public function is_strong ( $current_points , $other_points )
-	{		
-		if ( ( $current_points * $this->_protectionmulti ) < $other_points && ( $this->_protection == 1 ) && 
-			( $current_points < $this->_protectiontime ) )
+	public function is_strong($current_points, $other_points)
+	{
+		if ((($current_points * $this->_protectionmulti) < $other_points) OR ($current_points < $this->_protectiontime)
+		 && ($this->_protection))
 		{
 			return TRUE;
 		}
@@ -50,7 +52,7 @@ class NoobsProtection
 			return FALSE;
 		}
 	}
-	
+
     public static function getInstance()
     {
         if (self::$instance == null)

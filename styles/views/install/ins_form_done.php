@@ -1,13 +1,13 @@
 <tr>
   <th colspan="2">
-	<br />
+	<br>
     {first}
-    <br />
+    <br>
     {second}
-    <br />
+    <br>
     {third}
-    <br />
-    <br />
+    <br>
+    <br>
     </th>
 </tr>
 <tr>

@@ -187,7 +187,7 @@ class ShowFleetPage
 				}
 				else
 				{
-					$ships['fleet_max_speed']	= 	Fleets::fleet_max_speed ( "" , $i , $CurrentUser );
+					$ships['fleet_max_speed']	= 	Fleets::fleet_max_speed( "" , $i , $CurrentUser );
 				}
 
 				$ships['ship']					= 	$lang['tech'][$i];
@@ -195,7 +195,7 @@ class ShowFleetPage
 				$inputs['i']					=	$i;
 				$inputs['maxship']				=	$CurrentPlanet[$resource[$i]];
 				$inputs['consumption']			=	Fleets::ship_consumption ( $i, $CurrentUser );
-				$inputs['speed']				=	Fleets::fleet_max_speed ("", $i, $CurrentUser );
+				$inputs['speed']				=	Fleets::fleet_max_speed("", $i, $CurrentUser );
 				$inputs['capacity']				=	$pricelist[$i]['capacity'];
 
 				if ($i == 212)

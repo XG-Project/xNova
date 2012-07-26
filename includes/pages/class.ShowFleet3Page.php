@@ -324,7 +324,7 @@ class ShowFleet3Page
 
 		$missiontype	= Fleets::get_missions();
 		$speed_possible	= array(10, 9, 8, 7, 6, 5, 4, 3, 2, 1);
-		$AllFleetSpeed	= Fleets::fleet_max_speed ($fleetarray, 0, $CurrentUser);
+		$AllFleetSpeed	= Fleets::fleet_max_speed($fleetarray, 0, $CurrentUser);
 		$GenFleetSpeed  = $_POST['speed'];
 		$SpeedFactor    = read_config ( 'fleet_speed' ) / 2500;
 		$MaxFleetSpeed  = min($AllFleetSpeed);

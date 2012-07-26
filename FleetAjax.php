@@ -192,10 +192,10 @@ if ($_POST['thisgalaxy'] != $planetrow['galaxy'] |
 	die ($ResultMessage);
 }
 
-$Distance    = Fleets::target_distance ($_POST['thisgalaxy'], $_POST['galaxy'], $_POST['thissystem'], $_POST['system'], $_POST['thisplanet'], $_POST['planet']);
-$speedall    = Fleets::fleet_max_speed ($FleetArray, 0, $user);
+$Distance    = Fleets::target_distance($_POST['thisgalaxy'], $_POST['galaxy'], $_POST['thissystem'], $_POST['system'], $_POST['thisplanet'], $_POST['planet']);
+$speedall    = Fleets::fleet_max_speed($FleetArray, 0, $user);
 $SpeedAllMin = min($speedall);
-$Duration    = Fleets::mission_duration ( 10, $SpeedAllMin, $Distance, GetGameSpeedFactor ());
+$Duration    = Fleets::mission_duration( 10, $SpeedAllMin, $Distance, GetGameSpeedFactor ());
 
 $fleet['fly_time']   = $Duration;
 $fleet['start_time'] = $Duration + time();

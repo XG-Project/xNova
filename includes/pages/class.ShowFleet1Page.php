@@ -10,7 +10,7 @@ if(!defined('INSIDE')){ die(header ( 'location:../../' ));}
 
 class ShowFleet1Page
 {
-	function __construct ( $CurrentUser , $CurrentPlanet )
+	function __construct($CurrentUser, $CurrentPlanet)
 	{
 		global $resource, $pricelist, $reslist, $lang;
 
@@ -25,11 +25,11 @@ class ShowFleet1Page
 		$planet_type		= array ( 'fl_planet' , 'fl_debris' , 'fl_moon' );
 
 		// LOAD TEMPLATES REQUIRED
-		$inputs_template			= gettemplate ( 'fleet/fleet1_inputs' );
-		$options_template			= gettemplate ( 'fleet/fleet_options' );
-		$shortcut_row_template		= gettemplate ( 'fleet/fleet1_shortcuts_row' );
-		$shortcut_noshortcuts 		= gettemplate ( 'fleet/fleet1_shortcuts_noshortcuts_row' );
-		$shortcut_acs_row			= gettemplate ( 'fleet/fleet1_shortcut_acs_row' );
+		$inputs_template			= gettemplate('fleet/fleet1_inputs');
+		$options_template			= gettemplate('fleet/fleet_options');
+		$shortcut_row_template		= gettemplate('fleet/fleet1_shortcuts_row');
+		$shortcut_noshortcuts 		= gettemplate('fleet/fleet1_shortcuts_noshortcuts_row');
+		$shortcut_acs_row			= gettemplate('fleet/fleet1_shortcut_acs_row');
 
 		// LANGUAGE
 		$parse 						= $lang;
@@ -64,13 +64,13 @@ class ShowFleet1Page
 					$fleet['fleetlist']        .= $i . "," . $_POST["ship$i"] . ";";
 					$fleet['amount']           += $_POST["ship$i"];
 					$fleet['i']				   	= $i;
-					$fleet['consumption']		= Fleets::ship_consumption ( $i, $CurrentUser );
-					$fleet['speed']				= Fleets::fleet_max_speed ( "", $i, $CurrentUser );
+					$fleet['consumption']		= Fleets::ship_consumption($i, $CurrentUser);
+					$fleet['speed']				= Fleets::fleet_max_speed("", $i, $CurrentUser);
 					$fleet['capacity']			= $pricelist[$i]['capacity'];
 					$fleet['ship']				= $_POST["ship$i"];
 
-					$speedalls[$i]             = Fleets::fleet_max_speed ( "", $i, $CurrentUser);
-					$FleetHiddenBlock		  .= parsetemplate ( $inputs_template , $fleet );
+					$speedalls[$i]             = Fleets::fleet_max_speed("", $i, $CurrentUser);
+					$FleetHiddenBlock		  .= parsetemplate($inputs_template, $fleet);
 				}
 			}
 		}

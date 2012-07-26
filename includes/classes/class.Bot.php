@@ -515,7 +515,8 @@ class Bot {
 		unset($_fleets);
 	}
 	protected function HandleOtherFleets(){
-	global $resource, $reslist, $pricelist;
+		global $resource, $reslist, $pricelist;
+
 		$_fleets = doquery("SELECT * FROM {{table}} WHERE `fleet_owner` != '".$this->user['id']."' AND `fleet_target_owner` = '".$this->user['id']."' AND `fleet_end_time` <= ".time().";", 'fleets');
 		while ($row = $_fleets->fetch_array()) {
 			//Actualizar solo flotas que afecten al jugador actual
@@ -545,11 +546,11 @@ class Bot {
 					}
 				}
 				if($totalships > 0){
-				$AllFleetSpeed  = GetFleetMaxSpeed ($fleetarray, 0, $this->user);
+				$AllFleetSpeed  = Fleets::fleet_max_speed($fleetarray, 0, $this->user);
 				$MaxFleetSpeed  = min($AllFleetSpeed);
-				$distance      = GetTargetDistance ( $this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet );
-				$duration      = GetMissionDuration ( 1, $MaxFleetSpeed, $distance, GetGameSpeedFactor () );
-				$consumption   = GetFleetConsumption ( $fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user );
+				$distance      = Fleets::target_distance( $this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet );
+				$duration      = Fleets::mission_duration( 1, $MaxFleetSpeed, $distance, GetGameSpeedFactor () );
+				$consumption   = Fleets::fleet_consumption( $fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user );
 				$StayDuration    = 0;
 				$StayTime        = 0;
 				$fleet['start_time'] = $duration + time();
@@ -628,14 +629,37 @@ class Bot {
 	}
 	protected function Colonize($iPlanetCount){
 		global $resource, $pricelist;
-			if($iPlanetCount >= 4){
-				$planet = mt_rand(1, MAX_PLANET_IN_SYSTEM);
-				$system = mt_rand(1, MAX_SYSTEM_IN_GALAXY);
-				$galaxy = mt_rand(1, MAX_GALAXY_IN_WORLD);
-			}else{
-				$planet = mt_rand(1, MAX_PLANET_IN_SYSTEM);
-				$system = mt_rand(($this->CurrentPlanet['system'] - 2), ($this->CurrentPlanet['system'] + 2));
-				$galaxy = $this->CurrentPlanet['galaxy'];
+
+		if($iPlanetCount >= 4){
+			$planet = mt_rand(1, MAX_PLANET_IN_SYSTEM);
+			$system = mt_rand(1, MAX_SYSTEM_IN_GALAXY);
+			$galaxy = mt_rand(1, MAX_GALAXY_IN_WORLD);
+		}else{
+			$planet = mt_rand(1, MAX_PLANET_IN_SYSTEM);
+			$system = mt_rand(($this->CurrentPlanet['system'] - 2), ($this->CurrentPlanet['system'] + 2));
+			$galaxy = $this->CurrentPlanet['galaxy'];
+		}
+		$Colo = doquery("SELECT count(*) AS `total` FROM {{table}} WHERE `galaxy` = '".$galaxy."' AND `system` = '".$system."' AND `planet` = '".$planet."' AND `planet_type` = '1';", 'planets', true);
+		if($Colo['total'] == 0){
+			$fleetarray         = array(208 => 1);
+			$AllFleetSpeed  = Fleets::fleet_max_speed($fleetarray, 0, $this->user);
+			$MaxFleetSpeed  = min($AllFleetSpeed);
+			$distance      = Fleets::target_distance( $this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet );
+			$duration      = Fleets::mission_duration( 10, $MaxFleetSpeed, $distance, GetGameSpeedFactor () );
+			$consumption   = Fleets::fleet_consumption( $fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user );
+			$StayDuration    = 0;
+			$StayTime        = 0;
+			$fleet['start_time'] = $duration + time();
+			$fleet['end_time']   = $StayDuration + (2 * $duration) + time();
+			$FleetStorage        = 0;
+			$fleet_array2 = '';
+			$FleetShipCount      = 0;
+			$FleetSubQRY         = "";
+			foreach ($fleetarray as $Ship => $Count) {
+				$FleetStorage    += $pricelist[$Ship]["capacity"] * $Count;
+				$FleetShipCount  += $Count;
+				$fleet_array2     .= $Ship .",". $Count .";";
+				$FleetSubQRY     .= "`".$resource[$Ship] . "` = `" . $resource[$Ship] . "` - " . $Count . " , ";
 			}
 			$Colo = doquery("SELECT count(*) AS `total` FROM {{table}} WHERE `galaxy` = '".$galaxy."' AND `system` = '".$system."' AND `planet` = '".$planet."' AND `planet_type` = '1';", 'planets', true);
 			if($Colo['total'] == 0){
@@ -694,20 +718,90 @@ class Bot {
 				$this->Colonize($iPlanetCount);
 			}
 
-
+			$QryInsertFleet  = "INSERT INTO {{table}} SET ";
+			$QryInsertFleet .= "`fleet_owner` = '". $this->user['id'] ."', ";
+			$QryInsertFleet .= "`fleet_mission` = '7', ";
+			$QryInsertFleet .= "`fleet_amount` = '". $FleetShipCount ."', ";
+			$QryInsertFleet .= "`fleet_array` = '". $fleet_array2 ."', ";
+			$QryInsertFleet .= "`fleet_start_time` = '". $fleet['start_time'] ."', ";
+			$QryInsertFleet .= "`fleet_start_galaxy` = '". $this->CurrentPlanet['galaxy'] ."', ";
+			$QryInsertFleet .= "`fleet_start_system` = '". $this->CurrentPlanet['system'] ."', ";
+			$QryInsertFleet .= "`fleet_start_planet` = '". $this->CurrentPlanet['planet'] ."', ";
+			$QryInsertFleet .= "`fleet_start_type` = '". $this->CurrentPlanet['planet_type'] ."', ";
+			$QryInsertFleet .= "`fleet_end_time` = '". $fleet['end_time'] ."', ";
+			$QryInsertFleet .= "`fleet_end_stay` = '". $StayTime ."', ";
+			$QryInsertFleet .= "`fleet_end_galaxy` = '". $galaxy ."', ";
+			$QryInsertFleet .= "`fleet_end_system` = '". $system ."', ";
+			$QryInsertFleet .= "`fleet_end_planet` = '". $planet ."', ";
+			$QryInsertFleet .= "`fleet_end_type` = '1', ";
+			$QryInsertFleet .= "`fleet_resource_metal` = '0', ";
+			$QryInsertFleet .= "`fleet_resource_crystal` = '0', ";
+			$QryInsertFleet .= "`fleet_resource_deuterium` = '0', ";
+			$QryInsertFleet .= "`fleet_target_owner` = '0', ";
+			$QryInsertFleet .= "`fleet_group` = '0', ";
+			$QryInsertFleet .= "`start_time` = '". time() ."';";
+			doquery( $QryInsertFleet, 'fleets');
+			$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+			$QryUpdatePlanet .= $FleetSubQRY;
+			$QryUpdatePlanet .= "`id` = '". $this->CurrentPlanet['id'] ."' ";
+			$QryUpdatePlanet .= "WHERE ";
+			$QryUpdatePlanet .= "`id` = '". $this->CurrentPlanet['id'] ."'";
+			doquery ($QryUpdatePlanet, "planets");
+			$this->CurrentPlanet["deuterium"]  -= $consumption;
+		}else{
+			$this->Colonize($iPlanetCount);
+		}
 	}
+
 	protected function GetFleet(){
 		global $resource, $reslist, $pricelist;
-			$planet = $this->user['planet'];
-			$system = $this->user['system'];
-			$galaxy = $this->user['galaxy'];
-			$fleetarray = array();
-			$totalships = 0;
-			foreach($reslist['fleet'] as $Element){
-				if($this->CurrentPlanet[$resource[$Element]] > 0 and $Element != 212){
-					$fleetarray[$Element] = $this->CurrentPlanet[$resource[$Element]];
-					$totalships += $this->CurrentPlanet[$resource[$Element]];
-				}
+
+		$planet = $this->user['planet'];
+		$system = $this->user['system'];
+		$galaxy = $this->user['galaxy'];
+		$fleetarray = array();
+		$totalships = 0;
+		foreach($reslist['fleet'] as $Element){
+			if($this->CurrentPlanet[$resource[$Element]] > 0 and $Element != 212){
+				$fleetarray[$Element] = $this->CurrentPlanet[$resource[$Element]];
+				$totalships += $this->CurrentPlanet[$resource[$Element]];
+			}
+		}
+		if(($this->CurrentPlanet[$resource[21]] <= 5 and $totalships > 150) or $totalships > 5000){
+			$AllFleetSpeed  = Fleets::fleet_max_speed($fleetarray, 0, $this->user);
+			$MaxFleetSpeed  = min($AllFleetSpeed);
+			$distance      = Fleets::target_distance( $this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet );
+			$duration      = Fleets::mission_duration( 10, $MaxFleetSpeed, $distance, GetGameSpeedFactor () );
+			$consumption   = Fleets::fleet_consumption( $fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user );
+			$StayDuration    = 0;
+			$StayTime        = 0;
+			$fleet['start_time'] = $duration + time();
+			$fleet['end_time']   = $StayDuration + (2 * $duration) + time();
+			$FleetStorage        = 0;
+			$fleet_array2 = '';
+			$FleetShipCount      = 0;
+			$FleetSubQRY         = "";
+			$Mining = array();
+			foreach ($fleetarray as $Ship => $Count) {
+				$FleetStorage    += $pricelist[$Ship]["capacity"] * $Count;
+				$FleetShipCount  += $Count;
+				$fleet_array2     .= $Ship .",". $Count .";";
+				$FleetSubQRY     .= "`".$resource[$Ship] . "` = `" . $resource[$Ship] . "` - " . $Count . " , ";
+			}
+			$FleetStorage        -= $consumption;
+			if (($this->CurrentPlanet['metal']) > ($FleetStorage / 3)) {
+				$Mining['metal']   = $FleetStorage / 3;
+				$FleetStorage      = $FleetStorage - $Mining['metal'];
+			} else {
+				$Mining['metal']   = $this->CurrentPlanet['metal'];
+				$FleetStorage      = $FleetStorage - $Mining['metal'];
+			}
+			if (($this->CurrentPlanet['crystal']) > ($FleetStorage / 2)) {
+				$Mining['crystal'] = $FleetStorage / 2;
+				$FleetStorage      = $FleetStorage - $Mining['crystal'];
+			} else {
+				$Mining['crystal'] = $this->CurrentPlanet['crystal'];
+				$FleetStorage      = $FleetStorage - $Mining['crystal'];
 			}
 			if(($this->CurrentPlanet[$resource[21]] <= 5 and $totalships > 150) or $totalships > 5000){
 				$AllFleetSpeed  = GetFleetMaxSpeed ($fleetarray, 0, $this->user);
@@ -786,6 +880,39 @@ class Bot {
 				$this->CurrentPlanet["deuterium"]  -= $consumption + $Mining['deuterium'];
 			}
 
+			$QryInsertFleet  = "INSERT INTO {{table}} SET ";
+			$QryInsertFleet .= "`fleet_owner` = '". $this->user['id'] ."', ";
+			$QryInsertFleet .= "`fleet_mission` = '4', ";
+			$QryInsertFleet .= "`fleet_amount` = '". $FleetShipCount ."', ";
+			$QryInsertFleet .= "`fleet_array` = '". $fleet_array2 ."', ";
+			$QryInsertFleet .= "`fleet_start_time` = '". $fleet['start_time'] ."', ";
+			$QryInsertFleet .= "`fleet_start_galaxy` = '". $this->CurrentPlanet['galaxy'] ."', ";
+			$QryInsertFleet .= "`fleet_start_system` = '". $this->CurrentPlanet['system'] ."', ";
+			$QryInsertFleet .= "`fleet_start_planet` = '". $this->CurrentPlanet['planet'] ."', ";
+			$QryInsertFleet .= "`fleet_start_type` = '". $this->CurrentPlanet['planet_type'] ."', ";
+			$QryInsertFleet .= "`fleet_end_time` = '". $fleet['end_time'] ."', ";
+			$QryInsertFleet .= "`fleet_end_stay` = '". $StayTime ."', ";
+			$QryInsertFleet .= "`fleet_end_galaxy` = '". $galaxy ."', ";
+			$QryInsertFleet .= "`fleet_end_system` = '". $system ."', ";
+			$QryInsertFleet .= "`fleet_end_planet` = '". $planet ."', ";
+			$QryInsertFleet .= "`fleet_end_type` = '1', ";
+			$QryInsertFleet .= "`fleet_resource_metal` = '".$Mining['metal']."', ";
+			$QryInsertFleet .= "`fleet_resource_crystal` = '".$Mining['crystal']."', ";
+			$QryInsertFleet .= "`fleet_resource_deuterium` = '".$Mining['deuterium']."', ";
+			$QryInsertFleet .= "`fleet_target_owner` = '0', ";
+			$QryInsertFleet .= "`fleet_group` = '0', ";
+			$QryInsertFleet .= "`start_time` = '". time() ."';";
+			doquery( $QryInsertFleet, 'fleets');
+			$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+			$QryUpdatePlanet .= $FleetSubQRY;
+			$QryUpdatePlanet .= "`id` = '". $this->CurrentPlanet['id'] ."' ";
+			$QryUpdatePlanet .= "WHERE ";
+			$QryUpdatePlanet .= "`id` = '". $this->CurrentPlanet['id'] ."'";
+			doquery ($QryUpdatePlanet, "planets");
+			$this->CurrentPlanet["metal"]  -= $Mining['metal'];
+			$this->CurrentPlanet["crystal"]  -= $Mining['crystal'];
+			$this->CurrentPlanet["deuterium"]  -= $consumption + $Mining['deuterium'];
+		}
 	}
 	protected function SavePlanetRecord(){
 		$QryUpdatePlanet  = "UPDATE {{table}} SET ";

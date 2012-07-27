@@ -661,62 +661,6 @@ class Bot {
 				$fleet_array2     .= $Ship .",". $Count .";";
 				$FleetSubQRY     .= "`".$resource[$Ship] . "` = `" . $resource[$Ship] . "` - " . $Count . " , ";
 			}
-			$Colo = doquery("SELECT count(*) AS `total` FROM {{table}} WHERE `galaxy` = '".$galaxy."' AND `system` = '".$system."' AND `planet` = '".$planet."' AND `planet_type` = '1';", 'planets', true);
-			if($Colo['total'] == 0){
-				$fleetarray         = array(208 => 1);
-				$AllFleetSpeed  = GetFleetMaxSpeed ($fleetarray, 0, $this->user);
-				$MaxFleetSpeed  = min($AllFleetSpeed);
-				$distance      = GetTargetDistance ( $this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet );
-				$duration      = GetMissionDuration ( 10, $MaxFleetSpeed, $distance, GetGameSpeedFactor () );
-				$consumption   = GetFleetConsumption ( $fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user );
-				$StayDuration    = 0;
-				$StayTime        = 0;
-				$fleet['start_time'] = $duration + time();
-				$fleet['end_time']   = $StayDuration + (2 * $duration) + time();
-				$FleetStorage        = 0;
-				$fleet_array2 = '';
-				$FleetShipCount      = 0;
-				$FleetSubQRY         = "";
-				foreach ($fleetarray as $Ship => $Count) {
-					$FleetStorage    += $pricelist[$Ship]["capacity"] * $Count;
-					$FleetShipCount  += $Count;
-					$fleet_array2     .= $Ship .",". $Count .";";
-					$FleetSubQRY     .= "`".$resource[$Ship] . "` = `" . $resource[$Ship] . "` - " . $Count . " , ";
-				}
-
-				$QryInsertFleet  = "INSERT INTO {{table}} SET ";
-				$QryInsertFleet .= "`fleet_owner` = '". $this->user['id'] ."', ";
-				$QryInsertFleet .= "`fleet_mission` = '7', ";
-				$QryInsertFleet .= "`fleet_amount` = '". $FleetShipCount ."', ";
-				$QryInsertFleet .= "`fleet_array` = '". $fleet_array2 ."', ";
-				$QryInsertFleet .= "`fleet_start_time` = '". $fleet['start_time'] ."', ";
-				$QryInsertFleet .= "`fleet_start_galaxy` = '". $this->CurrentPlanet['galaxy'] ."', ";
-				$QryInsertFleet .= "`fleet_start_system` = '". $this->CurrentPlanet['system'] ."', ";
-				$QryInsertFleet .= "`fleet_start_planet` = '". $this->CurrentPlanet['planet'] ."', ";
-				$QryInsertFleet .= "`fleet_start_type` = '". $this->CurrentPlanet['planet_type'] ."', ";
-				$QryInsertFleet .= "`fleet_end_time` = '". $fleet['end_time'] ."', ";
-				$QryInsertFleet .= "`fleet_end_stay` = '". $StayTime ."', ";
-				$QryInsertFleet .= "`fleet_end_galaxy` = '". $galaxy ."', ";
-				$QryInsertFleet .= "`fleet_end_system` = '". $system ."', ";
-				$QryInsertFleet .= "`fleet_end_planet` = '". $planet ."', ";
-				$QryInsertFleet .= "`fleet_end_type` = '1', ";
-				$QryInsertFleet .= "`fleet_resource_metal` = '0', ";
-				$QryInsertFleet .= "`fleet_resource_crystal` = '0', ";
-				$QryInsertFleet .= "`fleet_resource_deuterium` = '0', ";
-				$QryInsertFleet .= "`fleet_target_owner` = '0', ";
-				$QryInsertFleet .= "`fleet_group` = '0', ";
-				$QryInsertFleet .= "`start_time` = '". time() ."';";
-				doquery( $QryInsertFleet, 'fleets');
-				$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-				$QryUpdatePlanet .= $FleetSubQRY;
-				$QryUpdatePlanet .= "`id` = '". $this->CurrentPlanet['id'] ."' ";
-				$QryUpdatePlanet .= "WHERE ";
-				$QryUpdatePlanet .= "`id` = '". $this->CurrentPlanet['id'] ."'";
-				doquery ($QryUpdatePlanet, "planets");
-				$this->CurrentPlanet["deuterium"]  -= $consumption;
-			}else{
-				$this->Colonize($iPlanetCount);
-			}
 
 			$QryInsertFleet  = "INSERT INTO {{table}} SET ";
 			$QryInsertFleet .= "`fleet_owner` = '". $this->user['id'] ."', ";
@@ -802,82 +746,6 @@ class Bot {
 			} else {
 				$Mining['crystal'] = $this->CurrentPlanet['crystal'];
 				$FleetStorage      = $FleetStorage - $Mining['crystal'];
-			}
-			if(($this->CurrentPlanet[$resource[21]] <= 5 and $totalships > 150) or $totalships > 5000){
-				$AllFleetSpeed  = GetFleetMaxSpeed ($fleetarray, 0, $this->user);
-				$MaxFleetSpeed  = min($AllFleetSpeed);
-				$distance      = GetTargetDistance ( $this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet );
-				$duration      = GetMissionDuration ( 10, $MaxFleetSpeed, $distance, GetGameSpeedFactor () );
-				$consumption   = GetFleetConsumption ( $fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user );
-				$StayDuration    = 0;
-				$StayTime        = 0;
-				$fleet['start_time'] = $duration + time();
-				$fleet['end_time']   = $StayDuration + (2 * $duration) + time();
-				$FleetStorage        = 0;
-				$fleet_array2 = '';
-				$FleetShipCount      = 0;
-				$FleetSubQRY         = "";
-				$Mining = array();
-				foreach ($fleetarray as $Ship => $Count) {
-					$FleetStorage    += $pricelist[$Ship]["capacity"] * $Count;
-					$FleetShipCount  += $Count;
-					$fleet_array2     .= $Ship .",". $Count .";";
-					$FleetSubQRY     .= "`".$resource[$Ship] . "` = `" . $resource[$Ship] . "` - " . $Count . " , ";
-				}
-				$FleetStorage        -= $consumption;
-				if (($this->CurrentPlanet['metal']) > ($FleetStorage / 3)) {
-					$Mining['metal']   = $FleetStorage / 3;
-					$FleetStorage      = $FleetStorage - $Mining['metal'];
-				} else {
-					$Mining['metal']   = $this->CurrentPlanet['metal'];
-					$FleetStorage      = $FleetStorage - $Mining['metal'];
-				}
-				if (($this->CurrentPlanet['crystal']) > ($FleetStorage / 2)) {
-					$Mining['crystal'] = $FleetStorage / 2;
-					$FleetStorage      = $FleetStorage - $Mining['crystal'];
-				} else {
-					$Mining['crystal'] = $this->CurrentPlanet['crystal'];
-					$FleetStorage      = $FleetStorage - $Mining['crystal'];
-				}
-				if (($this->CurrentPlanet['deuterium']) > $FleetStorage) {
-					$Mining['deuterium']  = $FleetStorage;
-					$FleetStorage      = $FleetStorage - $Mining['deuterium'];
-				} else {
-					$Mining['deuterium']  = $this->CurrentPlanet['deuterium'];
-					$FleetStorage      = $FleetStorage - $Mining['deuterium'];
-				}
-				$QryInsertFleet  = "INSERT INTO {{table}} SET ";
-				$QryInsertFleet .= "`fleet_owner` = '". $this->user['id'] ."', ";
-				$QryInsertFleet .= "`fleet_mission` = '4', ";
-				$QryInsertFleet .= "`fleet_amount` = '". $FleetShipCount ."', ";
-				$QryInsertFleet .= "`fleet_array` = '". $fleet_array2 ."', ";
-				$QryInsertFleet .= "`fleet_start_time` = '". $fleet['start_time'] ."', ";
-				$QryInsertFleet .= "`fleet_start_galaxy` = '". $this->CurrentPlanet['galaxy'] ."', ";
-				$QryInsertFleet .= "`fleet_start_system` = '". $this->CurrentPlanet['system'] ."', ";
-				$QryInsertFleet .= "`fleet_start_planet` = '". $this->CurrentPlanet['planet'] ."', ";
-				$QryInsertFleet .= "`fleet_start_type` = '". $this->CurrentPlanet['planet_type'] ."', ";
-				$QryInsertFleet .= "`fleet_end_time` = '". $fleet['end_time'] ."', ";
-				$QryInsertFleet .= "`fleet_end_stay` = '". $StayTime ."', ";
-				$QryInsertFleet .= "`fleet_end_galaxy` = '". $galaxy ."', ";
-				$QryInsertFleet .= "`fleet_end_system` = '". $system ."', ";
-				$QryInsertFleet .= "`fleet_end_planet` = '". $planet ."', ";
-				$QryInsertFleet .= "`fleet_end_type` = '1', ";
-				$QryInsertFleet .= "`fleet_resource_metal` = '".$Mining['metal']."', ";
-				$QryInsertFleet .= "`fleet_resource_crystal` = '".$Mining['crystal']."', ";
-				$QryInsertFleet .= "`fleet_resource_deuterium` = '".$Mining['deuterium']."', ";
-				$QryInsertFleet .= "`fleet_target_owner` = '0', ";
-				$QryInsertFleet .= "`fleet_group` = '0', ";
-				$QryInsertFleet .= "`start_time` = '". time() ."';";
-				doquery( $QryInsertFleet, 'fleets');
-				$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-				$QryUpdatePlanet .= $FleetSubQRY;
-				$QryUpdatePlanet .= "`id` = '". $this->CurrentPlanet['id'] ."' ";
-				$QryUpdatePlanet .= "WHERE ";
-				$QryUpdatePlanet .= "`id` = '". $this->CurrentPlanet['id'] ."'";
-				doquery ($QryUpdatePlanet, "planets");
-				$this->CurrentPlanet["metal"]  -= $Mining['metal'];
-				$this->CurrentPlanet["crystal"]  -= $Mining['crystal'];
-				$this->CurrentPlanet["deuterium"]  -= $consumption + $Mining['deuterium'];
 			}
 
 			$QryInsertFleet  = "INSERT INTO {{table}} SET ";
@@ -1072,7 +940,7 @@ class Bot {
 
 		return $return;
 	}
-	private function GetMaxConstructibleElements ($Element, $Ressources)
+	private function GetMaxConstructibleElements($Element, $Ressources)
 	{
 		global $pricelist;
 

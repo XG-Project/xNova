@@ -315,17 +315,18 @@ function catch_error($errno, $errstr, $errfile, $errline)
 
 	if (read_config('errors_'.$errno))
 	{
-		$errfile = str_replace(realpath(XN_ROOT), 'XN_ROOT', $errfile);
+		$errfile = str_replace(XN_ROOT, 'XN_ROOT', $errfile);
 		$sender	= isset($user['id']) ? intval($user['id']) : 0;
 
+		//$debug->php_error($sender, $errno, $errstr, $errfile, $errline);
 		$query = "INSERT IGNORE INTO {{table}} SET
-		`error_hash` = '".md5($errno.$errstr.$errfile.$errline)."' ,
-		`error_sender` = '".$sender."' ,
-		`error_time` = '".time()."' ,
-		`error_type` = 'PHP' ,
-		`error_level` = '".$errno."' ,
-		`error_line` = '".addslashes($errline)."' ,
-		`error_file` = '".addslashes($errfile)."' ,
+		`error_hash` = '".md5($errno.$errstr.$errfile.$errline)."',
+		`error_sender` = '".$sender."',
+		`error_time` = '".time()."',
+		`error_type` = 'PHP',
+		`error_level` = '".$errno."',
+		`error_line` = '".addslashes($errline)."',
+		`error_file` = '".addslashes($errfile)."',
 		`error_text` = '".addslashes(str_replace('[<a href=\'', '[<a target="blank" href=\'http://php.net/manual/%lang%/', $errstr))."';";
 
 		doquery($query, 'errors');

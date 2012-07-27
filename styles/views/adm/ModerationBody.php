@@ -1,6 +1,6 @@
 <section class="page">
 	<section class="content-table table thin">
-		<form action="admin.php?page=moderation&amp;moderation=1" method="post" accept-charset="UTF-8">
+		<form action="admin.php?page=moderate&amp;moderation=1" method="post" accept-charset="UTF-8">
 			<h3>{mod_title}</h3>
 			<div class="row">
 				<div class="content">

@@ -50,7 +50,7 @@ class ShowModerationPage {
 			$parse['oper']	=	$lang['rank'][2];
 			$parse['adm']	=	$lang['rank'][3];
 
-			if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mode']))
+			if ($_SERVER['REQUEST_METHOD'] === 'POST')
 			{
 				$view_m		= isset($_POST['view_m']) ? (int)(bool) $_POST['view_m'] : 0;
 				$edit_m		= isset($_POST['edit_m']) ? (int)(bool) $_POST['edit_m'] : 0;

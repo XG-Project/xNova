@@ -136,6 +136,8 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 
 	$DisplayPage .= $page;
 
+	$debug->log_php();
+
 	$footer		  = array();
 
 	if (isset($user['authlevel']) && $user['authlevel'] == 3 && read_config('debug') == 1)
@@ -315,21 +317,11 @@ function catch_error($errno, $errstr, $errfile, $errline)
 
 	if (read_config('errors_'.$errno))
 	{
-		$errfile = str_replace(XN_ROOT, 'XN_ROOT', $errfile);
-		$sender	= isset($user['id']) ? intval($user['id']) : 0;
+		$errfile	= str_replace(XN_ROOT, 'XN_ROOT', $errfile);
+		$sender		= isset($user['id']) ? intval($user['id']) : 0;
+		$errstr		= str_replace('[<a href=\'', '[<a target="_blank" href=\'http://php.net/manual/%lang%/', $errstr);
 
-		//$debug->php_error($sender, $errno, $errstr, $errfile, $errline);
-		$query = "INSERT IGNORE INTO {{table}} SET
-		`error_hash` = '".md5($errno.$errstr.$errfile.$errline)."',
-		`error_sender` = '".$sender."',
-		`error_time` = '".time()."',
-		`error_type` = 'PHP',
-		`error_level` = '".$errno."',
-		`error_line` = '".addslashes($errline)."',
-		`error_file` = '".addslashes($errfile)."',
-		`error_text` = '".addslashes(str_replace('[<a href=\'', '[<a target="blank" href=\'http://php.net/manual/%lang%/', $errstr))."';";
-
-		doquery($query, 'errors');
+		$debug->php_error($sender, $errno, $errstr, $errfile, $errline);
 	}
 
 	return TRUE;

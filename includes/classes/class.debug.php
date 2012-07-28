@@ -12,27 +12,30 @@ if(!defined('INSIDE')){ die(header ( 'location:../../' ));}
 
 class debug
 {
-	protected $log,$numqueries;
+	protected $log;
+	protected $numqueries;
+	protected $php_log;
 
-	function __construct()
+	public function __construct()
 	{
 		$this->vars = $this->log = '';
 		$this->numqueries = 0;
+		$this->php_log = array();
 	}
 
-	function add($mes)
+	public function add($mes)
 	{
 		$this->log .= $mes;
 		$this->numqueries++;
 	}
 
-	function echo_log()
+	public function echo_log()
 	{
 		return  "<section id=\"debug\" class=\"content-table\"><h3><a href=\"".XN_ROOT."admin.php?page=settings\">Debug Log</a>:</h3><section class=\"debug\">".str_replace('{DPATH}', DPATH, $this->log)."</section></section>";
 		die();
 	}
 
-	function error($message,$title)
+	public function error($message, $title)
 	{
 		global $db, $lang, $user;
 
@@ -67,6 +70,36 @@ class debug
 			message($lang['cdg_error_message']." <b>".$q['rows']."</b>", '', '', FALSE, FALSE);
 
 		die();
+	}
+
+	public function php_error($sender, $errno, $errstr, $errfile, $errline)
+	{
+		global $db;
+
+		$this->php_log[] = array(	'hash'		=> md5($errno.$errstr.$errfile.$errline),
+									'sender'	=> $sender,
+									'time'		=> time(),
+									'type'		=> 'PHP',
+									'level'		=> $errno,
+									'line'		=> $errline,
+									'file'		=> $db->real_escape_string($errfile),
+									'text'		=> $db->real_escape_string($errstr));
+	}
+
+	public function log_php()
+	{
+		if ( ! empty($this->php_log))
+		{
+			$query	= 'INSERT IGNORE INTO {{table}}';
+			$query	.= '(`error_hash`, `error_sender`, `error_time`, `error_type`, `error_level`, `error_line`, `error_file`, `error_text`) VALUES';
+
+			foreach ($this->php_log as $error)
+			{
+				$query	.= "('".$error['hash']."', '".$error['sender']."', ".$error['time'].", '".$error['type']."', ".$error['level'].", ".$error['line'].", '".$error['file']."', '".$error['text']."'),";
+			}
+
+			doquery(substr($query, 0, -1), 'errors');
+		}
 	}
 }
 ?>

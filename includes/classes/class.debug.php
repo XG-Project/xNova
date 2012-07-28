@@ -91,11 +91,14 @@ class debug
 		if ( ! empty($this->php_log))
 		{
 			$query	= 'INSERT IGNORE INTO {{table}}';
-			$query	.= '(`error_hash`, `error_sender`, `error_time`, `error_type`, `error_level`, `error_line`, `error_file`, `error_text`) VALUES';
+			$query	.= '(`error_hash`, `error_sender`, `error_time`, `error_type`,
+						`error_level`, `error_line`, `error_file`, `error_text`) VALUES';
 
 			foreach ($this->php_log as $error)
 			{
-				$query	.= "('".$error['hash']."', '".$error['sender']."', ".$error['time'].", '".$error['type']."', ".$error['level'].", ".$error['line'].", '".$error['file']."', '".$error['text']."'),";
+				$query	.= "('".$error['hash']."', '".$error['sender']."', ".$error['time'].",
+							'".$error['type']."', ".$error['level'].", ".$error['line'].",
+							'".$error['file']."', '".$error['text']."'),";
 			}
 
 			doquery(substr($query, 0, -1), 'errors');

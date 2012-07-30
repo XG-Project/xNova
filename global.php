@@ -113,7 +113,7 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 
 	if ( ! empty($user))
 	{
-		include( XN_ROOT.'includes/classes/class.FlyingFleetHandler.php');
+		include_once(XN_ROOT.'includes/classes/class.FlyingFleetHandler.php');
 		$_fleets = doquery("SELECT fleet_start_galaxy,fleet_start_system,fleet_start_planet,fleet_start_type FROM {{table}} WHERE `fleet_start_time` <= '".time()."' and `fleet_mess` ='0' order by fleet_id asc;", 'fleets'); // OR fleet_end_time <= ".time()
 
 		while ($row = $_fleets->fetch_array())

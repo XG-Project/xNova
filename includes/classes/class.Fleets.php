@@ -18,7 +18,7 @@ class Fleets
 	 * param2 $user
 	 * return the ship consumption
 	 */
-	public static function ship_consumption ( $ship, $user )
+	public static function ship_consumption($ship, $user)
 	{
 		global $pricelist;
 
@@ -45,7 +45,7 @@ class Fleets
 	 * param6 $dest_planet
 	 * return the distance to the target
 	 */
-	public static function target_distance ( $orig_galaxy , $dest_galaxy , $orig_system , $dest_system , $orig_planet , $dest_planet )
+	public static function target_distance($orig_galaxy, $dest_galaxy, $orig_system, $dest_system, $orig_planet, $dest_planet)
 	{
 		$distance = 0;
 
@@ -77,7 +77,7 @@ class Fleets
 	 * param4 $speed_factor
 	 * return the mission duration
 	 */
-	public static function mission_duration ( $game_speed , $max_fleet_speed , $distance , $speed_factor )
+	public static function mission_duration($game_speed, $max_fleet_speed, $distance, $speed_factor)
 	{
 		$duration = 0;
 		$duration = round ( ( ( 35000 / $game_speed * sqrt ( $distance * 10 / $max_fleet_speed ) + 10 ) / $speed_factor ) );
@@ -91,7 +91,7 @@ class Fleets
 	 * param3 $user
 	 * return the fleet maximum speed
 	 */
-	public static function fleet_max_speed ( $fleet_array , $fleet , $user )
+	public static function fleet_max_speed($fleet_array, $fleet, $user)
 	{
 		global $reslist, $pricelist;
 

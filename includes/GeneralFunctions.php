@@ -213,7 +213,7 @@ function CalculateMaxPlanetFields (&$planet)
 	return $planet["field_max"] + ($planet[ $resource[33] ] * FIELDS_BY_TERRAFORMER);
 }
 
-function GetGameSpeedFactor ()
+function GetGameSpeedFactor()
 {
 	return read_config ( 'fleet_speed' ) / 2500;
 }

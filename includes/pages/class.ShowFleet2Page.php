@@ -140,7 +140,7 @@ class ShowFleet2Page
 		$fleetarray    		= unserialize(base64_decode(str_rot13($_POST["usedfleet"])));
 		$mission       		= $_POST['target_mission'];
 		$SpeedFactor   		= $_POST['speedfactor'];
-		$AllFleetSpeed 		= Fleets::fleet_max_speed ($fleetarray, 0, $CurrentUser);
+		$AllFleetSpeed 		= Fleets::fleet_max_speed($fleetarray, 0, $CurrentUser);
 		$GenFleetSpeed 		= $_POST['speed'];
 		$MaxFleetSpeed 		= min($AllFleetSpeed);
 		$distance      		= Fleets::target_distance($_POST['thisgalaxy'], $_POST['galaxy'], $_POST['thissystem'], $_POST['system'], $_POST['thisplanet'], $_POST['planet']);
@@ -182,7 +182,7 @@ class ShowFleet2Page
 			$input_parse['amount']		=	$Count;
 			$input_parse['capacity']	=	$pricelist[$Ship]['capacity'];
 			$input_parse['consumption']	=	Fleets::ship_consumption ( $Ship , $CurrentUser );
-			$input_parse['speed']		=	Fleets::fleet_max_speed ( "" , $Ship , $CurrentUser );
+			$input_parse['speed']		=	Fleets::fleet_max_speed( "" , $Ship , $CurrentUser );
 
 			$input_extra .= parsetemplate ( $input_template , array_merge($input_parse, $lang) );
 		}

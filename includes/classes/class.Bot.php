@@ -28,6 +28,7 @@ function UpdateBots(){
 		include_once(XN_ROOT.'includes/functions/GetElementPrice.php');
 		include_once(XN_ROOT.'includes/functions/HandleTechnologieBuild.php');
 		include_once(XN_ROOT.'includes/functions/CheckPlanetUsedFields.php');
+		include_once(XN_ROOT.'includes/classes/class.FlyingFleetHandler.php');
 
 		if (read_config('log_bots')) $BotLog = "\n\n------------------------------------------\n";
 		$allbots		= doquery("SELECT * FROM {{table}} WHERE `next_time`<".$now, 'bots');
@@ -510,7 +511,7 @@ class Bot {
 					$array['planet_type'] = $row['fleet_end_type'];
 				}
 
-				$fleet = new FlyingFleetHandler ($array);
+				$fleet = new FlyingFleetHandler($array);
 				unset($fleet);
 				unset($array);
 			}
@@ -519,8 +520,8 @@ class Bot {
 		unset($_fleets);
 	}
 	protected function HandleOtherFleets(){
-	global $resource, $reslist, $pricelist;
-	/*
+		global $resource, $reslist, $pricelist;
+
 		$_fleets = doquery("SELECT * FROM {{table}} WHERE `fleet_owner` != '".$this->user['id']."' AND `fleet_target_owner` = '".$this->user['id']."' AND `fleet_end_time` <= ".time().";", 'fleets');
 		while ($row = $_fleets->fetch_array()) {
 			//Actualizar solo flotas que afecten al jugador actual
@@ -550,11 +551,11 @@ class Bot {
 					}
 				}
 				if($totalships > 0){
-				$AllFleetSpeed  = GetFleetMaxSpeed ($fleetarray, 0, $this->user);
+				$AllFleetSpeed  = Fleets::fleet_max_speed($fleetarray, 0, $this->user);
 				$MaxFleetSpeed  = min($AllFleetSpeed);
-				$distance      = GetTargetDistance ( $this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet );
-				$duration      = GetMissionDuration ( 1, $MaxFleetSpeed, $distance, GetGameSpeedFactor () );
-				$consumption   = GetFleetConsumption ( $fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user );
+				$distance      = Fleets::target_distance( $this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet );
+				$duration      = Fleets::mission_duration( 1, $MaxFleetSpeed, $distance, GetGameSpeedFactor () );
+				$consumption   = Fleets::fleet_consumption( $fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user );
 				$StayDuration    = 0;
 				$StayTime        = 0;
 				$fleet['start_time'] = $duration + time();
@@ -630,11 +631,10 @@ class Bot {
 			unset($row);
 		}
 		unset($_fleets);
-		*/
 	}
 	protected function Colonize($iPlanetCount){
-		/*
 		global $resource, $pricelist;
+
 		if($iPlanetCount >= 4){
 			$planet = mt_rand(1, MAX_PLANET_IN_SYSTEM);
 			$system = mt_rand(1, MAX_SYSTEM_IN_GALAXY);
@@ -647,11 +647,11 @@ class Bot {
 		$Colo = doquery("SELECT count(*) AS `total` FROM {{table}} WHERE `galaxy` = '".$galaxy."' AND `system` = '".$system."' AND `planet` = '".$planet."' AND `planet_type` = '1';", 'planets', true);
 		if($Colo['total'] == 0){
 			$fleetarray         = array(208 => 1);
-			$AllFleetSpeed  = GetFleetMaxSpeed($fleetarray, 0, $this->user);
+			$AllFleetSpeed  = Fleets::fleet_max_speed($fleetarray, 0, $this->user);
 			$MaxFleetSpeed  = min($AllFleetSpeed);
-			$distance      = GetTargetDistance ( $this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet );
-			$duration      = GetMissionDuration ( 10, $MaxFleetSpeed, $distance, GetGameSpeedFactor () );
-			$consumption   = GetFleetConsumption ( $fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user );
+			$distance      = Fleets::target_distance( $this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet );
+			$duration      = Fleets::mission_duration( 10, $MaxFleetSpeed, $distance, GetGameSpeedFactor () );
+			$consumption   = Fleets::fleet_consumption( $fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user );
 			$StayDuration    = 0;
 			$StayTime        = 0;
 			$fleet['start_time'] = $duration + time();
@@ -700,11 +700,11 @@ class Bot {
 		}else{
 			$this->Colonize($iPlanetCount);
 		}
-		*/
 	}
+
 	protected function GetFleet(){
 		global $resource, $reslist, $pricelist;
-		/*
+
 		$planet = $this->user['planet'];
 		$system = $this->user['system'];
 		$galaxy = $this->user['galaxy'];
@@ -717,11 +717,11 @@ class Bot {
 			}
 		}
 		if(($this->CurrentPlanet[$resource[21]] <= 5 and $totalships > 150) or $totalships > 5000){
-			$AllFleetSpeed  = GetFleetMaxSpeed ($fleetarray, 0, $this->user);
+			$AllFleetSpeed  = Fleets::fleet_max_speed($fleetarray, 0, $this->user);
 			$MaxFleetSpeed  = min($AllFleetSpeed);
-			$distance      = GetTargetDistance ( $this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet );
-			$duration      = GetMissionDuration ( 10, $MaxFleetSpeed, $distance, GetGameSpeedFactor () );
-			$consumption   = GetFleetConsumption ( $fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user );
+			$distance      = Fleets::target_distance( $this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet );
+			$duration      = Fleets::mission_duration( 10, $MaxFleetSpeed, $distance, GetGameSpeedFactor () );
+			$consumption   = Fleets::fleet_consumption( $fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user );
 			$StayDuration    = 0;
 			$StayTime        = 0;
 			$fleet['start_time'] = $duration + time();
@@ -752,13 +752,7 @@ class Bot {
 				$Mining['crystal'] = $this->CurrentPlanet['crystal'];
 				$FleetStorage      = $FleetStorage - $Mining['crystal'];
 			}
-			if (($this->CurrentPlanet['deuterium']) > $FleetStorage) {
-				$Mining['deuterium']  = $FleetStorage;
-				$FleetStorage      = $FleetStorage - $Mining['deuterium'];
-			} else {
-				$Mining['deuterium']  = $this->CurrentPlanet['deuterium'];
-				$FleetStorage      = $FleetStorage - $Mining['deuterium'];
-			}
+
 			$QryInsertFleet  = "INSERT INTO {{table}} SET ";
 			$QryInsertFleet .= "`fleet_owner` = '". $this->user['id'] ."', ";
 			$QryInsertFleet .= "`fleet_mission` = '4', ";
@@ -792,7 +786,6 @@ class Bot {
 			$this->CurrentPlanet["crystal"]  -= $Mining['crystal'];
 			$this->CurrentPlanet["deuterium"]  -= $consumption + $Mining['deuterium'];
 		}
-		*/
 	}
 	protected function SavePlanetRecord(){
 		$QryUpdatePlanet  = "UPDATE {{table}} SET ";
@@ -952,7 +945,7 @@ class Bot {
 
 		return $return;
 	}
-	private function GetMaxConstructibleElements ($Element, $Ressources)
+	private function GetMaxConstructibleElements($Element, $Ressources)
 	{
 		global $pricelist;
 

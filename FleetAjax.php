@@ -6,21 +6,21 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-define('INSIDE'  ,  TRUE);
-define('INSTALL' , FALSE);
-define('XN_ROOT',	'./');
+define('INSIDE', TRUE);
+define('INSTALL', FALSE);
+define('XN_ROOT', './');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 
-$UserSpyProbes  = $planetrow['spy_sonde'];
-$UserRecycles   = $planetrow['recycler'];
-$UserDeuterium  = $planetrow['deuterium'];
-$UserMissiles   = $planetrow['interplanetary_misil'];
+$UserSpyProbes	= $planetrow['spy_sonde'];
+$UserRecycles	= $planetrow['recycler'];
+$UserDeuterium	= $planetrow['deuterium'];
+$UserMissiles	= $planetrow['interplanetary_misil'];
 
-$fleet          = array();
-$speedalls      = array();
-$PartialFleet   = FALSE;
-$PartialCount   = 0;
+$fleet			= array();
+$speedalls		= array();
+$PartialFleet	= FALSE;
+$PartialCount	= 0;
 
 foreach ($reslist['fleet'] as $Node => $ShipID)
 {
@@ -29,18 +29,18 @@ foreach ($reslist['fleet'] as $Node => $ShipID)
 	{
 		if ($_POST[$TName] > $planetrow[$resource[$ShipID]])
 		{
-			$fleet['fleetarray'][$ShipID]   = $planetrow[$resource[$ShipID]];
-			$fleet['fleetlist']            .= $ShipID .",". $planetrow[$resource[$ShipID]] .";";
-			$fleet['amount']               += $planetrow[$resource[$ShipID]];
-			$PartialCount                  += $planetrow[$resource[$ShipID]];
-			$PartialFleet                   = TRUE;
+			$fleet['fleetarray'][$ShipID]	= $planetrow[$resource[$ShipID]];
+			$fleet['fleetlist']				.= $ShipID .",". $planetrow[$resource[$ShipID]] .";";
+			$fleet['amount']				+= $planetrow[$resource[$ShipID]];
+			$PartialCount					+= $planetrow[$resource[$ShipID]];
+			$PartialFleet					= TRUE;
 		}
 		else
 		{
-			$fleet['fleetarray'][$ShipID]   = $_POST[$TName];
-			$fleet['fleetlist']            .= $ShipID .",". $_POST[$TName] .";";
-			$fleet['amount']               += $_POST[$TName];
-			$speedalls[$ShipID]             = $_POST[$TName];
+			$fleet['fleetarray'][$ShipID]	= $_POST[$TName];
+			$fleet['fleetlist']				.= $ShipID .",". $_POST[$TName] .";";
+			$fleet['amount']				+= $_POST[$TName];
+			$speedalls[$ShipID]				= $_POST[$TName];
 		}
 	}
 }
@@ -54,7 +54,7 @@ if ($PartialFleet)
 	}
 }
 
-$galaxy          = intval($_POST['galaxy']);
+$galaxy = intval($_POST['galaxy']);
 if ($galaxy > MAX_GALAXY_IN_WORLD || $galaxy < 1)
 {
 	$ResultMessage = "602; ".$lang['fa_galaxy_not_exist']." |".$CurrentFlyingFleets." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
@@ -110,26 +110,26 @@ if ($_POST['mission']== 8)
 	}
 }
 
-$UserPoints    = doquery("SELECT * FROM {{table}} WHERE `stat_type` = '1' AND `stat_code` = '1' AND `id_owner` = '". $user['id'] ."';", 'statpoints', TRUE);
-$User2Points   = doquery("SELECT * FROM {{table}} WHERE `stat_type` = '1' AND `stat_code` = '1' AND `id_owner` = '". $TargetUser['id'] ."';", 'statpoints', TRUE);
+$UserPoints		= doquery("SELECT * FROM {{table}} WHERE `stat_type` = '1' AND `stat_code` = '1' AND `id_owner` = '". $user['id'] ."';", 'statpoints', TRUE);
+$User2Points	= doquery("SELECT * FROM {{table}} WHERE `stat_type` = '1' AND `stat_code` = '1' AND `id_owner` = '". $TargetUser['id'] ."';", 'statpoints', TRUE);
 
-$CurrentPoints = $UserPoints['total_points'];
-$TargetPoints  = $User2Points['total_points'];
-$TargetVacat   = $TargetUser['urlaubs_modus'];
+$CurrentPoints	= $UserPoints['total_points'];
+$TargetPoints	= $User2Points['total_points'];
+$TargetVacat	= $TargetUser['urlaubs_modus'];
 
-if ((Fleets::get_max_fleets ( $user[$resource[108]] , $user['rpg_amiral'] )) <= $CurrentFlyingFleets)
+if ((Fleets::get_max_fleets($user[$resource[108]], $user['rpg_amiral'])) <= $CurrentFlyingFleets)
 {
 	$ResultMessage = "612; ".$lang['fa_no_more_slots']." |".$CurrentFlyingFleets." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
 	die ($ResultMessage);
 }
 
-if (!is_array($FleetArray))
+if ( ! is_array($FleetArray))
 {
 	$ResultMessage = "618; ".$lang['fa_no_recyclers']." |".$CurrentFlyingFleets." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
 	die ($ResultMessage);
 }
 
-if (!(($_POST["mission"] == 6) OR ($_POST["mission"] == 8)))
+if ( ! (($_POST["mission"] == 6) OR ($_POST["mission"] == 8)))
 {
 	$ResultMessage = "618; ".$lang['fa_mission_not_available']." |".$CurrentFlyingFleets." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
 	die ($ResultMessage);
@@ -192,29 +192,29 @@ if ($_POST['thisgalaxy'] != $planetrow['galaxy'] |
 	die ($ResultMessage);
 }
 
-$Distance    = Fleets::target_distance($_POST['thisgalaxy'], $_POST['galaxy'], $_POST['thissystem'], $_POST['system'], $_POST['thisplanet'], $_POST['planet']);
-$speedall    = Fleets::fleet_max_speed($FleetArray, 0, $user);
-$SpeedAllMin = min($speedall);
-$Duration    = Fleets::mission_duration( 10, $SpeedAllMin, $Distance, GetGameSpeedFactor ());
+$Distance				= Fleets::target_distance($_POST['thisgalaxy'], $_POST['galaxy'], $_POST['thissystem'], $_POST['system'], $_POST['thisplanet'], $_POST['planet']);
+$speedall				= Fleets::fleet_max_speed($FleetArray, 0, $user);
+$SpeedAllMin			= min($speedall);
+$Duration				= Fleets::mission_duration( 10, $SpeedAllMin, $Distance, GetGameSpeedFactor ());
 
-$fleet['fly_time']   = $Duration;
-$fleet['start_time'] = $Duration + time();
-$fleet['end_time']   = ($Duration * 2) + time();
+$fleet['fly_time']		= $Duration;
+$fleet['start_time']	= $Duration + time();
+$fleet['end_time']		= ($Duration * 2) + time();
 
-$FleetShipCount      = 0;
-$FleetDBArray        = "";
-$FleetSubQRY         = "";
-$consumption         = 0;
-$SpeedFactor         = GetGameSpeedFactor ();
+$FleetShipCount			= 0;
+$FleetDBArray			= "";
+$FleetSubQRY			= "";
+$consumption			= 0;
+$SpeedFactor			= GetGameSpeedFactor ();
 foreach ($FleetArray as $Ship => $Count)
 {
-	$ShipSpeed        = $pricelist[$Ship]["speed"];
-	$spd              = 35000 / ($Duration * $SpeedFactor - 10) * sqrt($Distance * 10 / $ShipSpeed);
-	$basicConsumption = $pricelist[$Ship]["consumption"] * $Count ;
-	$consumption     += $basicConsumption * $Distance / 35000 * (($spd / 10) + 1) * (($spd / 10) + 1);
-	$FleetShipCount  += $Count;
-	$FleetDBArray    .= $Ship .",". $Count .";";
-	$FleetSubQRY     .= "`".$resource[$Ship] . "` = `" . $resource[$Ship] . "` - " . $Count . " , ";
+	$ShipSpeed			= $pricelist[$Ship]["speed"];
+	$spd				= 35000 / ($Duration * $SpeedFactor - 10) * sqrt($Distance * 10 / $ShipSpeed);
+	$basicConsumption	= $pricelist[$Ship]["consumption"] * $Count ;
+	$consumption		+= $basicConsumption * $Distance / 35000 * (($spd / 10) + 1) * (($spd / 10) + 1);
+	$FleetShipCount		+= $Count;
+	$FleetDBArray		.= $Ship .",". $Count .";";
+	$FleetSubQRY		.= "`".$resource[$Ship] . "` = `" . $resource[$Ship] . "` - " . $Count . " , ";
 }
 $consumption = round($consumption) + 1;
 

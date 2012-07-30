@@ -9,5 +9,5 @@
 	<th>{En_Owner}</th>
 	<th>{En_Posit}</th>
 	<th>{En_Time}</th>
-    <th>{Wa_Time}</th>
+	<th>{Wa_Time}</th>
 </tr>

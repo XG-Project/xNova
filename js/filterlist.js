@@ -52,129 +52,129 @@ function filterlist(selectobj) {
 
   //--------------------------------------------------
   this.init = function() {
-    // This method initilizes the object.
-    // This method is called automatically when you create the object.
-    // You should call this again if you alter the selectobj parameter.
+	// This method initilizes the object.
+	// This method is called automatically when you create the object.
+	// You should call this again if you alter the selectobj parameter.
 
-    if (!this.selectobj) return this.debug('selectobj not defined');
-    if (!this.selectobj.options) return this.debug('selectobj.options not defined');
+	if (!this.selectobj) return this.debug('selectobj not defined');
+	if (!this.selectobj.options) return this.debug('selectobj.options not defined');
 
-    // Make a copy of the select list options array
-    this.optionscopy = new Array();
-    if (this.selectobj && this.selectobj.options) {
-      for (var i=0; i < this.selectobj.options.length; i++) {
+	// Make a copy of the select list options array
+	this.optionscopy = new Array();
+	if (this.selectobj && this.selectobj.options) {
+	  for (var i=0; i < this.selectobj.options.length; i++) {
 
-        // Create a new Option
-        this.optionscopy[i] = new Option();
+		// Create a new Option
+		this.optionscopy[i] = new Option();
 
-        // Set the text for the Option
-        this.optionscopy[i].text = selectobj.options[i].text;
+		// Set the text for the Option
+		this.optionscopy[i].text = selectobj.options[i].text;
 
-        // Set the value for the Option.
-        // If the value wasn't set in the original select list,
-        // then use the text.
-        if (selectobj.options[i].value) {
-          this.optionscopy[i].value = selectobj.options[i].value;
-        } else {
-          this.optionscopy[i].value = selectobj.options[i].text;
-        }
+		// Set the value for the Option.
+		// If the value wasn't set in the original select list,
+		// then use the text.
+		if (selectobj.options[i].value) {
+		  this.optionscopy[i].value = selectobj.options[i].value;
+		} else {
+		  this.optionscopy[i].value = selectobj.options[i].text;
+		}
 
-      }
-    }
+	  }
+	}
   }
 
   //--------------------------------------------------
   this.reset = function() {
-    // This method resets the select list to the original state.
-    // It also unselects all of the options.
+	// This method resets the select list to the original state.
+	// It also unselects all of the options.
 
-    this.set('');
+	this.set('');
   }
 
 
   //--------------------------------------------------
   this.set = function(pattern) {
-    // This method removes all of the options from the select list,
-    // then adds only the options that match the pattern regexp.
-    // It also unselects all of the options.
+	// This method removes all of the options from the select list,
+	// then adds only the options that match the pattern regexp.
+	// It also unselects all of the options.
 
-    var loop=0, index=0, regexp, e;
+	var loop=0, index=0, regexp, e;
 
-    if (!this.selectobj) return this.debug('selectobj not defined');
-    if (!this.selectobj.options) return this.debug('selectobj.options not defined');
+	if (!this.selectobj) return this.debug('selectobj not defined');
+	if (!this.selectobj.options) return this.debug('selectobj.options not defined');
 
-    // Clear the select list so nothing is displayed
-    this.selectobj.options.length = 0;
+	// Clear the select list so nothing is displayed
+	this.selectobj.options.length = 0;
 
-    // Set up the regular expression.
-    // If there is an error in the regexp,
-    // then return without selecting any items.
-    try {
+	// Set up the regular expression.
+	// If there is an error in the regexp,
+	// then return without selecting any items.
+	try {
 
-      // Initialize the regexp
-      regexp = new RegExp(pattern, this.flags);
+	  // Initialize the regexp
+	  regexp = new RegExp(pattern, this.flags);
 
-    } catch(e) {
+	} catch(e) {
 
-      // There was an error creating the regexp.
+	  // There was an error creating the regexp.
 
-      // If the user specified a function hook,
-      // call it now, then return
-      if (typeof this.hook == 'function') {
-        this.hook();
-      }
+	  // If the user specified a function hook,
+	  // call it now, then return
+	  if (typeof this.hook == 'function') {
+		this.hook();
+	  }
 
-      return;
-    }
+	  return;
+	}
 
-    // Loop through the entire select list and
-    // add the matching items to the select list
-    for (loop=0; loop < this.optionscopy.length; loop++) {
+	// Loop through the entire select list and
+	// add the matching items to the select list
+	for (loop=0; loop < this.optionscopy.length; loop++) {
 
-      // This is the option that we're currently testing
-      var option = this.optionscopy[loop];
+	  // This is the option that we're currently testing
+	  var option = this.optionscopy[loop];
 
-      // Check if we have a match
-      if ((this.match_text && regexp.test(option.text)) ||
-          (this.match_value && regexp.test(option.value))) {
+	  // Check if we have a match
+	  if ((this.match_text && regexp.test(option.text)) ||
+		  (this.match_value && regexp.test(option.value))) {
 
-        // We have a match, so add this option to the select list
-        // and increment the index
+		// We have a match, so add this option to the select list
+		// and increment the index
 
-        this.selectobj.options[index++] =
-          new Option(option.text, option.value, false);
+		this.selectobj.options[index++] =
+		  new Option(option.text, option.value, false);
 
-      }
-    }
+	  }
+	}
 
-    // If the user specified a function hook,
-    // call it now
-    if (typeof this.hook == 'function') {
-      this.hook();
-    }
+	// If the user specified a function hook,
+	// call it now
+	if (typeof this.hook == 'function') {
+	  this.hook();
+	}
 
   }
 
 
   //--------------------------------------------------
   this.set_ignore_case = function(value) {
-    // This method sets the regexp flags.
-    // If value is true, sets the flags to "i".
-    // If value is false, sets the flags to "".
+	// This method sets the regexp flags.
+	// If value is true, sets the flags to "i".
+	// If value is false, sets the flags to "".
 
-    if (value) {
-      this.flags = 'i';
-    } else {
-      this.flags = '';
-    }
+	if (value) {
+	  this.flags = 'i';
+	} else {
+	  this.flags = '';
+	}
   }
 
 
   //--------------------------------------------------
   this.debug = function(msg) {
-    if (this.show_debug) {
-      alert('FilterList: ' + msg);
-    }
+	if (this.show_debug) {
+	  alert('FilterList: ' + msg);
+	}
   }
 
 

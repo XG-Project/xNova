@@ -29,7 +29,7 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 	if (!$Page)
 	{
 		$INI = 0;
-    	$Page = 1;
+		$Page = 1;
 	}
 	else
 		$INI = ($Page - 1) * $Limit;

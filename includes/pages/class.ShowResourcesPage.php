@@ -176,12 +176,12 @@ class ShowResourcesPage
 
 		if ($SubQry)
 		{
-            $QryUpdatePlanet  = "UPDATE {{table}} SET ";
-            $QryUpdatePlanet .= substr($SubQry,0,-1);
-            $QryUpdatePlanet .= "WHERE ";
-            $QryUpdatePlanet .= "`id` = '". $CurrentPlanet['id'] ."';";
-            doquery($QryUpdatePlanet, 'planets');
-        }
+			$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+			$QryUpdatePlanet .= substr($SubQry,0,-1);
+			$QryUpdatePlanet .= "WHERE ";
+			$QryUpdatePlanet .= "`id` = '". $CurrentPlanet['id'] ."';";
+			doquery($QryUpdatePlanet, 'planets');
+		}
 
 		return display(parsetemplate( gettemplate('resources/resources'), $parse));
 	}

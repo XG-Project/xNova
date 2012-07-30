@@ -53,13 +53,13 @@ class GalaxyRows
 	}
 
 	public function CheckAbandonPlanetState(&$planet)
-    {
-        if ($planet['destruyed'] <= time())
-        {
-            doquery("DELETE FROM {{table}} WHERE `id_planet` = '".$planet['id_planet']."' LIMIT 1;" , 'galaxy');
-            doquery("DELETE FROM {{table}} WHERE `id` = '".$planet['id_planet']."'", 'planets');
-        }
-    }
+	{
+		if ($planet['destruyed'] <= time())
+		{
+			doquery("DELETE FROM {{table}} WHERE `id_planet` = '".$planet['id_planet']."' LIMIT 1;" , 'galaxy');
+			doquery("DELETE FROM {{table}} WHERE `id` = '".$planet['id_planet']."'", 'planets');
+		}
+	}
 
 	public function GalaxyRowActions($GalaxyInfo, $Galaxy, $System, $Planet, $CurrentGalaxy, $CurrentSystem, $CurrentMIP)
 	{

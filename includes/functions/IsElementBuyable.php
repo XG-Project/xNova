@@ -14,8 +14,8 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 		include_once(XN_ROOT . 'includes/functions/IsVacationMode.php');
 
-	    if (IsVacationMode($CurrentUser))
-	       return FALSE;
+		if (IsVacationMode($CurrentUser))
+		   return FALSE;
 
 		if ($Incremental)
 			$level  = ($CurrentPlanet[$resource[$Element]]) ? $CurrentPlanet[$resource[$Element]] : $CurrentUser[$resource[$Element]];

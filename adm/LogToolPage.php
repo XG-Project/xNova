@@ -34,7 +34,7 @@ switch ($_GET['options'])
 
 		while(!feof($Fopen))
 		{
-    		$parse['display']	.= fgets($Fopen);
+			$parse['display']	.= fgets($Fopen);
 		}
 		fclose($Fopen);
 
@@ -91,7 +91,7 @@ switch ($_GET['options'])
 			$parse['display']	.=	"<tr><th align=\"left\" colspan=2><font color=#E6E6E6>";
 			while(!feof($Log))
 			{
-    			$parse['display']	.= fgets($Log)."<br>";
+				$parse['display']	.= fgets($Log)."<br>";
 			}
 			$parse['display']	.=	"</font></th></tr>";
 			$parse['display']	.=	$EditAndDelete;

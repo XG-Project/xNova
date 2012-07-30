@@ -96,11 +96,11 @@ class ShowBuildingsPage
 			$CurrentQueue  = $CurrentPlanet['b_building_id'];
 
 			if (!empty($CurrentQueue))
-            {
-                $QueueArray    = explode ( ";", $CurrentQueue );
-                $ActualCount   = count ( $QueueArray );
-                if ($ActualCount< 2)
-                   die(header("location:game.php?page=buildings"));
+			{
+				$QueueArray    = explode ( ";", $CurrentQueue );
+				$ActualCount   = count ( $QueueArray );
+				if ($ActualCount< 2)
+				   die(header("location:game.php?page=buildings"));
 
 				//  finding the buildings time
 				$ListIDArrayToDelete   = explode ( ",", $QueueArray[$QueueID - 1] );

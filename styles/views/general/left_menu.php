@@ -23,8 +23,8 @@ function f(target_url,win_name) {
   <td>
 
    <div align="center"><font color="#FFFFFF">
-     <a href='game.php?page=overview'>{lm_overview}</a>
-    </font></div>
+	 <a href='game.php?page=overview'>{lm_overview}</a>
+	</font></div>
   </td>
  </tr>
 
@@ -33,8 +33,8 @@ function f(target_url,win_name) {
   <td>
 
    <div align="center"><font color="#FFFFFF">
-     <a href='game.php?page=imperium'>{lm_empire}</a>
-    </font></div>
+	 <a href='game.php?page=imperium'>{lm_empire}</a>
+	</font></div>
   </td>
  </tr>
 
@@ -42,26 +42,26 @@ function f(target_url,win_name) {
   <td>
    <div align="center"><font color="#FFFFFF">
 
-     <a href='game.php?page=buildings'>{lm_buildings}</a>
-    </font></div>
+	 <a href='game.php?page=buildings'>{lm_buildings}</a>
+	</font></div>
   </td>
  </tr>
 
  <tr>
   <td>
    <div align="center"><font color="#FFFFFF">
-     <a href='game.php?page=resources'>{lm_resources}</a>
+	 <a href='game.php?page=resources'>{lm_resources}</a>
 
-    </font></div>
+	</font></div>
   </td>
  </tr>
 
   <tr>
   <td>
    <div align="center" ><font color="#FFFFFF">
-     <a href='game.php?page=trader'><font color='FF8900'>{lm_trader}</font></a>
+	 <a href='game.php?page=trader'><font color='FF8900'>{lm_trader}</font></a>
 
-    </font></div>
+	</font></div>
   </td>
  </tr>
 
@@ -69,8 +69,8 @@ function f(target_url,win_name) {
  <tr>
   <td>
    <div align="center"><font color="#FFFFFF">
-     <a href='game.php?page=buildings&mode=research'>{lm_research}</a>
-    </font></div>
+	 <a href='game.php?page=buildings&mode=research'>{lm_research}</a>
+	</font></div>
 
   </td>
  </tr>
@@ -78,8 +78,8 @@ function f(target_url,win_name) {
  <tr>
   <td>
    <div align="center"><font color="#FFFFFF">
-     <a href='game.php?page=buildings&mode=fleet'>{lm_shipshard}</a>
-    </font></div>
+	 <a href='game.php?page=buildings&mode=fleet'>{lm_shipshard}</a>
+	</font></div>
   </td>
 
  </tr>
@@ -87,24 +87,24 @@ function f(target_url,win_name) {
  <tr>
   <td>
    <div align="center"><font color="#FFFFFF">
-     <a href='game.php?page=fleet'>{lm_fleet}</a>
-    </font></div>
+	 <a href='game.php?page=fleet'>{lm_fleet}</a>
+	</font></div>
   </td>
  </tr>
 
  <tr>
   <td>
    <div align="center"><font color="#FFFFFF">
-     <a href='game.php?page=techtree'>{lm_technology}</a>
-    </font></div>
+	 <a href='game.php?page=techtree'>{lm_technology}</a>
+	</font></div>
   </td>
  </tr>
 
  <tr>
   <td>
    <div align="center"><font color="#FFFFFF">
-     <a href='game.php?page=galaxy&mode=0'>{lm_galaxy}</a>
-    </font></div>
+	 <a href='game.php?page=galaxy&mode=0'>{lm_galaxy}</a>
+	</font></div>
   </td>
  </tr>
 
@@ -112,8 +112,8 @@ function f(target_url,win_name) {
 
   <td>
    <div align="center"><font color="#FFFFFF">
-     <a href='game.php?page=buildings&mode=defense' accesskey="d">{lm_defenses}</a>
-    </font></div>
+	 <a href='game.php?page=buildings&mode=defense' accesskey="d">{lm_defenses}</a>
+	</font></div>
   </td>
  </tr>
 
@@ -125,25 +125,25 @@ function f(target_url,win_name) {
  <tr>
   <td>
    <div align="center"><font color="#FFFFFF">
-     <a href='game.php?page=alliance'>{lm_alliance}</a>
-    </font></div>
+	 <a href='game.php?page=alliance'>{lm_alliance}</a>
+	</font></div>
   </td>
  </tr>
 
   <tr>
   <td>
    <div align="center"><font color="#FFFFFF">
-    <a href="{forum_url}" target="_blank">{lm_forums}</a>
+	<a href="{forum_url}" target="_blank">{lm_forums}</a>
    </font></div>
   </td>
  </tr>
 
 
- 	<tr>
+	<tr>
 
 	   <td>
-       	<div align="center"><font color="#FFFFFF">
-	   		<a  href='game.php?page=officier'><font color='FF8900'>{lm_officiers}</font></a>
+		<div align="center"><font color="#FFFFFF">
+			<a  href='game.php?page=officier'><font color='FF8900'>{lm_officiers}</font></a>
 	   </font></div>
 	  </td>
 	 </tr>
@@ -153,16 +153,16 @@ function f(target_url,win_name) {
    <div align="center"><font color="#FFFFFF">
 
   <a href='game.php?page=statistics&range={user_rank}'>{lm_statistics}</a>
-    </font></div>
+	</font></div>
   </td>
  </tr>
 
  <tr>
   <td>
    <div align="center"><font color="#FFFFFF">
-     <a href='game.php?page=search'>{lm_search}</a>
+	 <a href='game.php?page=search'>{lm_search}</a>
 
-    </font></div>
+	</font></div>
   </td>
  </tr>
 
@@ -174,25 +174,25 @@ function f(target_url,win_name) {
   <td>
    <div align="center"><font color="#FFFFFF">
 
-     <a href='game.php?page=messages'>{lm_messages}</a>
-    </font></div>
+	 <a href='game.php?page=messages'>{lm_messages}</a>
+	</font></div>
   </td>
  </tr>
 
  <tr>
   <td>
    <div align="center"><font color="#FFFFFF">
-     <a href="#" onClick="f('game.php?page=notes', '{lm_notes}')">{lm_notes}</a>
+	 <a href="#" onClick="f('game.php?page=notes', '{lm_notes}')">{lm_notes}</a>
 
-    </font></div>
+	</font></div>
   </td>
  </tr>
 
  <tr>
   <td>
    <div align="center"><font color="#FFFFFF">
-     <a href='game.php?page=buddy'>{lm_buddylist}</a>
-    </font></div>
+	 <a href='game.php?page=buddy'>{lm_buddylist}</a>
+	</font></div>
 
   </td>
  </tr>
@@ -200,8 +200,8 @@ function f(target_url,win_name) {
  <tr>
   <td>
    <div align="center"><font color="#FFFFFF">
-     <a href='game.php?page=options'>{lm_options}</a>
-    </font></div>
+	 <a href='game.php?page=options'>{lm_options}</a>
+	</font></div>
   </td>
 
  </tr>
@@ -210,8 +210,8 @@ function f(target_url,win_name) {
  <tr>
   <td>
    <div align="center"><font color="#FFFFFF">
-     <a href='game.php?page=logout'>{lm_logout}</a>
-    </font></div>
+	 <a href='game.php?page=logout'>{lm_logout}</a>
+	</font></div>
   </td>
  </tr>
 
@@ -220,8 +220,8 @@ function f(target_url,win_name) {
  <tr>
   <td>
    <div align="center"><font color="#FFFFFF">
-     <a href="https://github.com/Razican/xNova" title="Powered by xNova {version} © 2012 Creative Commons BY-SA based on XG Proyect">© 2012</a>
-    </font></div>
+	 <a href="https://github.com/Razican/xNova" title="Powered by xNova {version} © 2012 Creative Commons BY-SA based on XG Proyect">© 2012</a>
+	</font></div>
   </td>
  </tr>
 

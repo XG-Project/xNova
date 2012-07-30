@@ -301,10 +301,10 @@ switch ($_GET['page'])
 
 	if ($_POST && $mode == 'agregar')
 	{
-   		$id          = $_POST['id'];
-    	$galaxy      = $_POST['galaxy'];
-   	 	$system      = $_POST['system'];
-   	 	$planet      = $_POST['planet'];
+		$id          = $_POST['id'];
+		$galaxy      = $_POST['galaxy'];
+		$system      = $_POST['system'];
+		$planet      = $_POST['planet'];
 		$name        = $_POST['name'];
 
 
@@ -316,8 +316,8 @@ switch ($_GET['page'])
 		$QueryS2	=	doquery("SELECT * FROM {{table}} WHERE `id` = '".$id."'", "users", TRUE);
 		if (is_numeric($_POST['id']) && isset($_POST['id']) && !$QueryS && $QueryS2)
 		{
-    		if ($galaxy < 1 or $system < 1 or $planet < 1 or !is_numeric($galaxy) or !is_numeric($system) or !is_numeric($planet)){
-    			$Error	.=	'<tr><th colspan="2"><font color=red>'.$lang['po_complete_all'].'</font></th></tr>';
+			if ($galaxy < 1 or $system < 1 or $planet < 1 or !is_numeric($galaxy) or !is_numeric($system) or !is_numeric($planet)){
+				$Error	.=	'<tr><th colspan="2"><font color=red>'.$lang['po_complete_all'].'</font></th></tr>';
 				$i++;}
 
 			if ($galaxy > MAX_GALAXY_IN_WORLD or $system > MAX_SYSTEM_IN_GALAXY or $planet > MAX_PLANET_IN_SYSTEM){
@@ -342,7 +342,7 @@ switch ($_GET['page'])
 				$QryUpdatePlanet .= "`planet_type` = '1'";
 				doquery($QryUpdatePlanet , 'planets');
 
-    			$parse['display']	=	'<tr><th colspan="2"><font color=lime>'.$lang['po_complete_succes'].'</font></th></tr>';
+				$parse['display']	=	'<tr><th colspan="2"><font color=lime>'.$lang['po_complete_succes'].'</font></th></tr>';
 			}
 			else
 			{
@@ -372,7 +372,7 @@ switch ($_GET['page'])
 							`planet` = '".$QueryS['planet']."' AND `planet_type` = '3'", "planets");
 					}
 					doquery("DELETE FROM {{table}} WHERE `id` = '".$id."'", 'planets');
-    				doquery("DELETE FROM {{table}} WHERE `id_planet` ='".$id."'", 'galaxy');
+					doquery("DELETE FROM {{table}} WHERE `id_planet` ='".$id."'", 'galaxy');
 					$Error	.=	'<tr><th colspan="2"><font color=lime>'.$lang['po_complete_succes2'].'</font></th></tr>';
 				}
 				else

@@ -23,18 +23,18 @@ $mode      = $_POST['mode'];
 
 if ($mode == 'agregar')
 {
-   	$id            = $_POST['id'];
-    $galaxy        = $_POST['galaxy'];
-    $system        = $_POST['system'];
-    $planet        = $_POST['planet'];
+	$id            = $_POST['id'];
+	$galaxy        = $_POST['galaxy'];
+	$system        = $_POST['system'];
+	$planet        = $_POST['planet'];
 
 	$i	=	0;
 	$QueryS	=	doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' AND `system` = '".$system."' AND `planet` = '".$planet."'", "galaxy", TRUE);
 	$QueryS2	=	doquery("SELECT * FROM {{table}} WHERE `id` = '".$id."'", "users", TRUE);
 	if (is_numeric($_POST['id']) && isset($_POST['id']) && !$QueryS && $QueryS2)
 	{
-    	if ($galaxy < 1 or $system < 1 or $planet < 1 or !is_numeric($galaxy) or !is_numeric($system) or !is_numeric($planet)){
-    		$Error	.=	'<tr><th colspan="2"><font color=red>'.$lang['po_complete_all'].'</font></th></tr>';
+		if ($galaxy < 1 or $system < 1 or $planet < 1 or !is_numeric($galaxy) or !is_numeric($system) or !is_numeric($planet)){
+			$Error	.=	'<tr><th colspan="2"><font color=red>'.$lang['po_complete_all'].'</font></th></tr>';
 			$i++;}
 
 
@@ -48,7 +48,7 @@ if ($mode == 'agregar')
 			$QueryS3	=	doquery("SELECT * FROM {{table}} WHERE `id_owner` = '".$id."'", "planets", TRUE);
 			doquery("UPDATE {{table}} SET `id_level` = '".$QueryS3['id_level']."' WHERE
 			`galaxy` = '".$galaxy."' AND `system` = '".$system."' AND `planet` = '".$planet."' AND `planet_type` = '1'", "planets");
-    		$parse['display']	=	'<tr><th colspan="2"><font color=lime>'.$lang['po_complete_succes'].'</font></th></tr>';
+			$parse['display']	=	'<tr><th colspan="2"><font color=lime>'.$lang['po_complete_succes'].'</font></th></tr>';
 		}
 		else
 		{
@@ -78,7 +78,7 @@ elseif ($mode == 'borrar')
 						`planet` = '".$QueryS['planet']."' AND `planet_type` = '3'", "planets");
 				}
 				doquery("DELETE FROM {{table}} WHERE `id` = '".$id."'", 'planets');
-    			doquery("DELETE FROM {{table}} WHERE `id_planet` ='".$id."'", 'galaxy');
+				doquery("DELETE FROM {{table}} WHERE `id_planet` ='".$id."'", 'galaxy');
 				$Error	.=	'<tr><th colspan="2"><font color=lime>'.$lang['po_complete_succes2'].'</font></th></tr>';
 			}
 			else

@@ -79,7 +79,7 @@ class ShowFleetShortcuts
 		$parse['system']		=$c[2];
 		$parse['planet']		=$c[3];
 		$parse['moon'.$c[4]]	='selected="selected"';
-      	$parse['visibility'] 	="button";
+		$parse['visibility'] 	="button";
 
 		display(parsetemplate(gettemplate("shortcuts/shortcuts_editPanel"),$parse));
 	}
@@ -96,7 +96,7 @@ class ShowFleetShortcuts
 		header("location:game.php?page=shortcuts");
 	}
 
-    private function addFleetShortcuts($name,$galaxy,$system,$planet,$moon)
+	private function addFleetShortcuts($name,$galaxy,$system,$planet,$moon)
 	{
 		$this->CurrentUser['fleet_shortcut'] .= "{$name},{$galaxy},{$system},{$planet},{$moon};";
 

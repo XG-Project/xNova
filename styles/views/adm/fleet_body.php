@@ -11,7 +11,7 @@
 	<td class="c" >{ff_objective}</td>
 	<td class="c" >{ff_arrival}</td>
 	<td class="c" >{ff_arrival_hour}</td>
-    <td class="c" >{ff_hold_position}</td>
+	<td class="c" >{ff_hold_position}</td>
 </tr>
 {flt_table}
 </table>

@@ -58,7 +58,7 @@
 	<td class="c" colspan="2">{se_several_parameters}</td>
 </tr><tr>
 	<th>{se_admin_protection}</th>
-    <th><input name="adm_attack" {adm_attack} type="checkbox" /></th>
+	<th><input name="adm_attack" {adm_attack} type="checkbox" /></th>
 	<th><img src="../styles/images/Adm/i.png" onMouseOver='return overlib("{se_title_admins_protection}", CENTER, OFFSETX, -150, OFFSETY, -10, WIDTH, 250);' onMouseOut='return nd();'/></th>
 </tr><tr>
 	<th>{se_debug_mode}</th>

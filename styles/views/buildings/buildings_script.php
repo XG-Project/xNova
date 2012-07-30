@@ -44,15 +44,15 @@ function t() {
 	}
 	if ( s < 10 ) {
 		s = "0" + s;
-    }
-    if (m < 10) {
-      m = "0" + m;
+	}
+	if (m < 10) {
+	  m = "0" + m;
 	}
 	if ( p > b.length - 2 ) {
 		document.getElementById("bx").innerHTML=aa ;
-    } else {
+	} else {
 		document.getElementById("bx").innerHTML=b[p]+" "+h+":"+m+":"+s;
-    }
+	}
 	window.setTimeout("t();", 200);
 }
 

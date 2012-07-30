@@ -12,24 +12,24 @@ class ShowShipyardPage
 {
 	//optimized by alivan & jstar
 	private function GetMaxConstructibleElements ($Element, $Ressources)
-    {
-        global $pricelist;
+	{
+		global $pricelist;
 
-        $Buildable=array();
-        if ($pricelist[$Element]['metal'] != 0)
-            $Buildable['metal']     = floor($Ressources["metal"] / $pricelist[$Element]['metal']);
+		$Buildable=array();
+		if ($pricelist[$Element]['metal'] != 0)
+			$Buildable['metal']     = floor($Ressources["metal"] / $pricelist[$Element]['metal']);
 
-        if ($pricelist[$Element]['crystal'] != 0)
-            $Buildable['crystal']   = floor($Ressources["crystal"] / $pricelist[$Element]['crystal']);
+		if ($pricelist[$Element]['crystal'] != 0)
+			$Buildable['crystal']   = floor($Ressources["crystal"] / $pricelist[$Element]['crystal']);
 
-        if ($pricelist[$Element]['deuterium'] != 0)
-            $Buildable['deuterium'] = floor($Ressources["deuterium"] / $pricelist[$Element]['deuterium']);
+		if ($pricelist[$Element]['deuterium'] != 0)
+			$Buildable['deuterium'] = floor($Ressources["deuterium"] / $pricelist[$Element]['deuterium']);
 
-        if ($pricelist[$Element]['energy'] != 0)
-            $Buildable['energy']    = floor($Ressources["energy_max"] / $pricelist[$Element]['energy']);
+		if ($pricelist[$Element]['energy'] != 0)
+			$Buildable['energy']    = floor($Ressources["energy_max"] / $pricelist[$Element]['energy']);
 
-        return max(min($Buildable),0);
-    }
+		return max(min($Buildable),0);
+	}
 
 	private function GetElementRessources($Element, $Count)
 	{

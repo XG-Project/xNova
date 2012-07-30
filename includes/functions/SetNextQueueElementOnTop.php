@@ -81,11 +81,11 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 						array_shift( $QueueArray );
 						foreach($QueueArray as $num => $info)
-                        {
-                            $fixEle                = explode(",",$info);
-                            $fixEle[3]            = $fixEle[3] - $BuildTime;
-                            $QueueArray[$num]     = implode(",",$fixEle);
-                        }
+						{
+							$fixEle                = explode(",",$info);
+							$fixEle[3]            = $fixEle[3] - $BuildTime;
+							$QueueArray[$num]     = implode(",",$fixEle);
+						}
 
 						$ActualCount         = count ($QueueArray);
 						if ( $ActualCount == 0 )

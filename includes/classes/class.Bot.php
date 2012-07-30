@@ -24,6 +24,7 @@ function UpdateBots(){
 		include_once(XN_ROOT.'includes/functions/GetElementPrice.php');
 		include_once(XN_ROOT.'includes/functions/HandleTechnologieBuild.php');
 		include_once(XN_ROOT.'includes/functions/CheckPlanetUsedFields.php');
+		include_once(XN_ROOT.'includes/classes/class.FlyingFleetHandler.php');
 
 		if (read_config('log_bots')) $BotLog = "\n\n------------------------------------------\n";
 		$allbots		= doquery("SELECT * FROM {{table}} WHERE `next_time`<".$now, 'bots');
@@ -506,7 +507,7 @@ class Bot {
 					$array['planet_type'] = $row['fleet_end_type'];
 				}
 
-				$fleet = new FlyingFleetHandler ($array);
+				$fleet = new FlyingFleetHandler($array);
 				unset($fleet);
 				unset($array);
 			}

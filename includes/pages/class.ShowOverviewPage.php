@@ -381,7 +381,7 @@ class ShowOverviewPage
 						$Build .= "<br><div id=\"blc\" class=\"z\">".Format::pretty_time($RestTime)."</div>";
 						$Build .= "\n<script language=\"JavaScript\">";
 						$Build .= "\n	pp = \"".$RestTime."\";\n";
-						$Build .= "\n	pk = \"".1."\";\n";
+						$Build .= "\n	pk = \"1\";\n";
 						$Build .= "\n	pm = \"cancel\";\n";
 						$Build .= "\n	pl = \"".$PlanetID."\";\n";
 						$Build .= "\n	t();\n";

@@ -1,6 +1,18 @@
-<script TYPE="text/javascript" SRC="../js/filterlist.min.js"></script>
-<body>
-<br>
+<section class="page">
+	<script type="text/javascript">var UserList = new filterlist(document.users.id_1);</script>
+	<div class="content-table">
+		{display}
+
+	</div>
+</section>
+
+
+
+
+
+
+
+
 </table>
 <form action="" method="post" name="users">
 <table width="55%">
@@ -13,9 +25,6 @@
 		{List}
 	</select>
 
-	<SCRIPT TYPE="text/javascript">
-		var UserList = new filterlist(document.users.id_1);
-	</SCRIPT>
 	<BR>
 	<a href="Moderation.php?moderation=2&page=authlevels&get=adm">{ad_authlevel_aa}</a>&nbsp;
 	<a href="Moderation.php?moderation=2&page=authlevels&get=ope">{ad_authlevel_oo}</a>&nbsp;
@@ -69,4 +78,3 @@
 </tr>
 </table>
 </form>
-</body>

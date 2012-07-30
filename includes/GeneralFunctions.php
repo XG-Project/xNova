@@ -159,19 +159,19 @@ function StdUserHeader ($metatags = '', $onload = '')
 {
 	$parse = array();
 	$parse['-title-']	= read_config('game_name');
-	$parse['-favi-']	= '<link rel="shortcut icon" href="'.GAMEURL.'favicon.png">';
+	$parse['-favi-']	= '<link rel="icon" href="'.GAMEURL.'favicon.png">';
 	$parse['-meta-']	= '<meta charset="UTF-8">';
 	$parse['-meta-']	.= '<meta name="generator" content="xNova '.VERSION.'">';
 	$parse['-meta-']	.= '<meta name="author" content="Razican">';
 	$parse['-meta-']	.= '<meta name="application-name" content="xNova">';
-	//TODO description, keywords
+	//TODO description, keywords, link author, link license
 
 	if( ! defined('LOGIN'))
 	{
 		$parse['-style-']	= '<link rel="stylesheet" type="text/css" href="'.GAMEURL.'styles/css/default.css">';
 		$parse['-style-']	.= '<link rel="stylesheet" type="text/css" href="'.GAMEURL.'styles/css/formate.css">';
 		$parse['-style-']	.= '<link rel="stylesheet" type="text/css" href="'. DPATH .'formate.css">';
-		$parse['-meta-']	.= '<script type="application/javascript" src='.GAMEURL.'js/overlib.min.js"></script>';
+		$parse['-meta-']	.= '<script charset="UTF-8" src='.GAMEURL.'js/overlib.min.js"></script>';
 	}
 	else
 	{
@@ -194,13 +194,13 @@ function AdminUserHeader ($metatags = '')
 	else
 		$parse['-title-'] 	= 	read_config('game_name').' - Admin CP';
 
-	$parse['-favi-']	 = '<link rel="shortcut icon" href="'.GAMEURL.'favicon.png">';
+	$parse['-favi-']	 = '<link rel="icon" href="'.GAMEURL.'favicon.png">';
 	$parse['-style-']	 = '<link rel="stylesheet" type="text/css" href="'.DPATH.'/css/admin.css">';
 	$parse['-meta-']	 = '<meta charset="UTF-8">';
 	$parse['-meta-']	.= '<meta name="generator" content="xNova '.VERSION.'">';
 	$parse['-meta-']	.= '<meta name="author" content="Razican">';
 	$parse['-meta-']	.= '<meta name="application-name" content="xNova">';
-	//TODO description, keywords
+	//TODO description, keywords, link author, link license
 
 	$parse['-meta-'] 	.= ($metatags) ? $metatags : '';
 

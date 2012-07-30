@@ -92,7 +92,87 @@ class ShowModerationPage {
 		}
 		elseif ($moderation === 2)
 		{
-			//
+			for ($i	= 0; $i < 4; $i++)
+			{
+				$parse['authlevels']	.=	"<option value=\"".$i."\">".$lang['rank'][$i]."</option>";
+			}
+
+			if (isset($_GET['get']) && ! empty($_GET['get']))
+			{
+				if ($_GET['get'] === 'adm')		$where	=	" WHERE `authlevel` = '3'";
+				elseif ($_GET['get'] === 'ope')	$where	=	" WHERE `authlevel` = '2'";
+				elseif ($_GET['get'] === 'mod')	$where	=	" WHERE `authlevel` = '1'";
+				elseif ($_GET['get'] === 'pla')	$where	=	" WHERE `authlevel` = '0'";
+				else	$where = '';
+			}
+
+
+			$QueryUsers	= doquery("SELECT `id`, `username`, `authlevel` FROM {{table}}".$where."", "users");
+
+
+			while ($List = $QueryUsers->fetch_array())
+			{
+				$parse['List']	.= "<option value=\"".$List['id']."\">".$List['username']." (".$lang['rank'][$List['authlevel']].")</option>";
+			}
+
+
+			if ($_SERVER['REQUEST_METHOD'] === 'POST')
+			{
+				if (isset($_POST['id_1']) && isset($_POST['id_2']) && ! empty($_POST['id_1']) && ! empty($_POST['id_2']))
+				{
+					$parse['display']	=	'<div class="content some_errors">'.$lang['ad_authlevel_error_2'].'</div>';
+				}
+				elseif (( ! isset($_POST['id_1']) && ! isset($_POST['id_2'])) OR (empty($_POST['id_1']) && empty($_POST['id_2'])))
+				{
+					$parse['display']	=	'<div class="content some_errors">'.$lang['ad_forgiven_id'].'</div>';
+				}
+				elseif ((isset($_POST['id_1']) && ! is_numeric($_POST['id_1'])) OR (isset($_POST['id_2']) && ! is_numeric($_POST['id_2'])))
+				{
+					$parse['display']	=	'<div class="content some_errors">'.$lang['only_numbers'].'</div>';
+				}
+				elseif ($_POST['id_1'] == 1 OR $_POST['id_2'] == 1)
+				{
+					$parse['display']	=	'<div class="content some_errors">'.$lang['ad_authlevel_error_3'].'</div>';
+				}
+				else
+				{
+					if (isset($_POST['id_1']) &&  ! empty($_POST['id_1']))
+						$id	=	$_POST['id_1'];
+					else
+						$id	=	$_POST['id_2'];
+
+					//TODO no se comprueba que la query sea correcta (rows = 1) ni si está set $_POST['authlevel']
+					$QueryFind	=	doquery("SELECT `authlevel` FROM {{table}} WHERE `id` = '".$id."'", "users", TRUE);
+
+					if($QueryFind['authlevel'] != $_POST['authlevel'])
+					{
+						doquery("UPDATE {{table}} SET `authlevel` = '".$_POST['authlevel']."' WHERE `id` = '".$id."'", "users");
+						doquery("UPDATE {{table}} SET `id_level` = '".$_POST['authlevel']."' WHERE `id_owner` = '".$id."';", 'planets');
+
+
+						$ASD	=	$_POST['authlevel'];
+						$Log	.=	"\n".$lang['log_system_auth_title']."\n";
+						$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_change_auth_1'].$id.",\n";
+						$Log	.=	$lang['log_change_auth_2'].$lang['ad_authlevel'][$ASD]."\n";
+
+						LogFunction($Log, "ModerationLog", $LogCanWork);
+
+						header ( 'location: admin.php?page=moderate&moderation=2&succes=yes' );
+					}
+					else
+					{
+						$parse['display']	=	'<div class="content some_errors">'.$lang['ad_authlevel_error'].'</div>';
+					}
+				}
+			}
+
+			if (isset($_GET['succes']) && $_GET['succes']	===	'yes')
+				$parse['display']	=	'<div class="content no_errors">'.$lang['ad_authlevel_succes'].'</div>';
+
+
+			$script	= '<script charset="UTF-8" src="'.GAMEURL.'js/filterlist.min.js"></script>';
+
+			display (parsetemplate(gettemplate("adm/AuthlevelBody"), $parse), TRUE, $script, TRUE, TRUE);
 		}
 		else
 		{
@@ -100,101 +180,7 @@ class ShowModerationPage {
 		}
 	}
 }
-/*
-
-$parse	=	$lang;
-
-if ($_GET['moderation'] == '1')
-{
 
 
-
-}
-elseif ($_GET['moderation'] == '2')
-{
-		for ($i	= 0; $i < 4; $i++)
-		{
-			$parse['authlevels']	.=	"<option value=\"".$i."\">".$lang['rank'][$i]."</option>";
-		}
-
-
-		if ($_GET['get'] == 'adm')
-			$WHEREUSERS	=	"WHERE `authlevel` = '3'";
-		elseif ($_GET['get'] == 'ope')
-			$WHEREUSERS	=	"WHERE `authlevel` = '2'";
-		elseif ($_GET['get'] == 'mod')
-			$WHEREUSERS	=	"WHERE `authlevel` = '1'";
-		elseif ($_GET['get'] == 'pla')
-			$WHEREUSERS	=	"WHERE `authlevel` = '0'";
-
-
-		$QueryUsers	=	doquery("SELECT `id`, `username`, `authlevel` FROM {{table}} ".$WHEREUSERS."", "users");
-
-
-		while ($List = $QueryUsers->fetch_array())
-		{
-			$parse['List']	.=	"<option value=\"".$List['id']."\">".$List['username']."&nbsp;&nbsp;(".$lang['rank'][$List['authlevel']].")</option>";
-		}
-
-
-		if ($_POST)
-		{
-			if (isset($_POST[''] && $_POST['id_1'] != NULL && $_POST['id_2'] != NULL)
-			{
-				$parse['display']	=	'<tr><th colspan="3"><font color=red>'.$lang['ad_authlevel_error_2'].'</font></th></tr>';
-			}
-			elseif( ! $_POST['id_1'] && !$_POST['id_2'])
-			{
-				$parse['display']	=	'<tr><th colspan="3"><font color=red>'.$lang['ad_forgiven_id'].'</font></th></tr>';
-			}
-			elseif( ! $_POST['id_1'] && ! is_numeric($_POST['id_2']))
-			{
-				$parse['display']	=	'<tr><th colspan="3"><font color=red>'.$lang['only_numbers'].'</font></th></tr>';
-			}
-			elseif($_POST['id_1'] == '1' || $_POST['id_2'] == '1')
-			{
-				$parse['display']	=	'<tr><th colspan="3"><font color=red>'.$lang['ad_authlevel_error_3'].'</font></th></tr>';
-			}
-			else
-			{
-				if (isset($_POST[''] && $_POST['id_1'] != NULL)
-					$id	=	$_POST['id_1'];
-				else
-					$id	=	$_POST['id_2'];
-
-
-				$QueryFind	=	doquery("SELECT `authlevel` FROM {{table}} WHERE `id` = '".$id."'", "users", TRUE);
-
-				if($QueryFind['authlevel'] != $_POST['authlevel'])
-				{
-					doquery("UPDATE {{table}} SET `authlevel` = '".$_POST['authlevel']."' WHERE `id` = '".$id."'", "users");
-					doquery("UPDATE {{table}} SET `id_level` = '".$_POST['authlevel']."' WHERE `id_owner` = '".$id."';", 'planets');
-
-
-					$ASD	=	$_POST['authlevel'];
-					$Log	.=	"\n".$lang['log_system_auth_title']."\n";
-					$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_change_auth_1'].$id.",\n";
-					$Log	.=	$lang['log_change_auth_2'].$lang['ad_authlevel'][$ASD]."\n";
-
-					LogFunction($Log, "ModerationLog", $LogCanWork);
-
-					header ( 'location:Moderation.php?moderation=2&succes=yes' );
-				}
-				else
-				{
-					$parse['display']	=	'<tr><th colspan="3"><font color=red>'.$lang['ad_authlevel_error'].'</font></th></tr>';
-				}
-			}
-		}
-
-		if ($_GET['succes']	==	'yes')
-			$parse['display']	=	'<tr><th colspan="3"><font color=lime>'.$lang['ad_authlevel_succes'].'</font></th></tr>';
-
-
-		display (parsetemplate(gettemplate("adm/AuthlevelBody"), $parse), FALSE, '', TRUE, FALSE);
-}
-else
-{
-	die();
-}
-?>*/
+/* End of file class.ShowModerationPage.php */
+/* Location: ./includes/pages/adm/class.ShowModerationPage.php */

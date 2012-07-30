@@ -38,7 +38,6 @@ switch($page)
 		new ShowModerationPage(isset($_GET['moderation']) ? (int) $_GET['moderation'] : NULL);
 	break;
 //====================================================================================================//
-
 	default:
 		require_once(XN_ROOT.'includes/pages/adm/class.ShowOverviewPage.php');
 		new ShowOverviewPage();

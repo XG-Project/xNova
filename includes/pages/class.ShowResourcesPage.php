@@ -53,9 +53,9 @@ class ShowResourcesPage
 			}
 		}
 
-		$CurrentPlanet['metal_max']			 = Production::max_storable ( $CurrentPlanet[ $resource[22] ]);
-		$CurrentPlanet['crystal_max']		 = Production::max_storable ( $CurrentPlanet[ $resource[23] ]);
-		$CurrentPlanet['deuterium_max']	     = Production::max_storable ( $CurrentPlanet[ $resource[24] ]);
+		$CurrentPlanet['metal_max']			 = Production::max_storable($CurrentPlanet[$resource[22]]);
+		$CurrentPlanet['crystal_max']		 = Production::max_storable($CurrentPlanet[$resource[23]]);
+		$CurrentPlanet['deuterium_max']	     = Production::max_storable($CurrentPlanet[$resource[24]]);
 
 		$parse['production_level'] 			 = 100;
 		$post_porcent 						 = Production::max_production ( $CurrentPlanet['energy_max'] , $CurrentPlanet['energy_used'] );

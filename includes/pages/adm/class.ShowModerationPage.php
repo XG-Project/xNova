@@ -29,21 +29,21 @@ class ShowModerationPage {
 
 
 			// MODERADORES
-			if ($Moderator[0]) $parse['view_m'] = ' checked';
-			if ($Moderator[1]) $parse['edit_m'] = ' checked';
-			if ($Moderator[2]) $parse['config_m'] = ' checked';
-			if ($Moderator[3]) $parse['tools_m'] = ' checked';
-			if ($Moderator[4]) $parse['log_m'] = ' checked';
+			if ($Moderator[0]) $parse['view_m']		= ' checked';
+			if ($Moderator[1]) $parse['edit_m']		= ' checked';
+			if ($Moderator[2]) $parse['config_m']	= ' checked';
+			if ($Moderator[3]) $parse['tools_m']	= ' checked';
+			if ($Moderator[4]) $parse['log_m']		= ' checked';
 
 			// OPERADORES
-			if ($Operator[0]) $parse['view_o'] = ' checked';
-			if ($Operator[1]) $parse['edit_o'] = ' checked';
-			if ($Operator[2]) $parse['config_o'] = ' checked';
-			if ($Operator[3]) $parse['tools_o'] = ' checked';
-			if ($Operator[4]) $parse['log_o'] = ' checked';
+			if ($Operator[0]) $parse['view_o']		= ' checked';
+			if ($Operator[1]) $parse['edit_o']		= ' checked';
+			if ($Operator[2]) $parse['config_o']	= ' checked';
+			if ($Operator[3]) $parse['tools_o']		= ' checked';
+			if ($Operator[4]) $parse['log_o']		= ' checked';
 
 			// ADMINISTRADOR (SOLO PARA EL HISTORIAL)
-			if ($Administrator[0]) $parse['log_a'] = ' checked';
+			if ($Administrator[0]) $parse['log_a']	= ' checked';
 
 
 			$parse['mods']	=	$lang['rank'][1];

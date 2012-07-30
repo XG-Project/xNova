@@ -15,10 +15,14 @@ class ShowOverviewPage {
 
 	private function check_updates()
 	{
-		if (function_exists('file_get_contents'))
-			return version_compare(read_config('version'), file_get_contents('http://xnova.razican.com/current.php'), '<');
-		else
-			return FALSE;
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, 'http://xnova.razican.com/current.php');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+		$latest_version	= curl_exec($ch);
+		curl_close($ch);
+
+		return version_compare(read_config('version'), $latest_version, '<');
 	}
 
 	public function __construct()

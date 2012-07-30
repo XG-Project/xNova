@@ -28,7 +28,7 @@
        </td>
       </tr>
       <tr class="header">
-        <td class="header" style="background-color:transparent;border:0px;" colspan="2" align="center"> 
+        <td class="header" style="background-color:transparent;border:0px;" colspan="2" align="center">
         	<input type="submit" value="{gl_show}">
         </td>
       </tr>

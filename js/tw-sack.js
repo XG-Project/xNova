@@ -29,10 +29,10 @@ function sack(file){
 		if(!this.xmlhttp && typeof XMLHttpRequest != "undefined")
 			this.xmlhttp = new XMLHttpRequest();
 		if (!this.xmlhttp){
-			this.failed = true; 
+			this.failed = true;
 		}
 	};
-	
+
 	this.setVar = function(name, value){
 		if (this.URLString.length < 3){
 			this.URLString = name + "=" + value;
@@ -40,12 +40,12 @@ function sack(file){
 			this.URLString += "&" + name + "=" + value;
 		}
 	}
-	
+
 	this.encVar = function(name, value){
 		var varString = encodeURIComponent(name) + "=" + encodeURIComponent(value);
 	return varString;
 	}
-	
+
 	this.encodeURLString = function(string){
 		varArray = string.split('&');
 		for (i = 0; i < varArray.length; i++){
@@ -57,25 +57,25 @@ function sack(file){
 		}
 	return varArray.join('&');
 	}
-	
+
 	this.runResponse = function(){
 		eval(this.response);
 	}
-	
+
 	this.runAJAX = function(urlstring){
 		this.responseStatus = new Array(2);
-		if(this.failed && this.AjaxFailedAlert){ 
-			alert(this.AjaxFailedAlert); 
+		if(this.failed && this.AjaxFailedAlert){
+			alert(this.AjaxFailedAlert);
 		} else {
-			if (urlstring){ 
+			if (urlstring){
 				if (this.URLString.length){
-					this.URLString = this.URLString + "&" + urlstring; 
+					this.URLString = this.URLString + "&" + urlstring;
 				} else {
-					this.URLString = urlstring; 
+					this.URLString = urlstring;
 				}
 			}
 			if (this.encodeURIString){
-				var timeval = new Date().getTime(); 
+				var timeval = new Date().getTime();
 				this.URLString = this.encodeURLString(this.URLString);
 				this.setVar("rndval", timeval);
 			}
@@ -90,7 +90,7 @@ function sack(file){
 				}
 				if (this.method == "POST"){
   					try {
-						this.xmlhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded')  
+						this.xmlhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
 					} catch (e) {}
 				}
 

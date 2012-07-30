@@ -86,7 +86,7 @@ function valid_email($address)
 	return ( ! preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $address)) ? FALSE : TRUE;
 }
 
-function message ($mes, $dest = "", $time = "3", $topnav = FALSE, $menu = TRUE)
+function message($mes, $dest = "", $time = "3", $topnav = FALSE, $menu = TRUE)
 {
 	$parse['mes']   = $mes;
 
@@ -103,7 +103,7 @@ function message ($mes, $dest = "", $time = "3", $topnav = FALSE, $menu = TRUE)
 
 }
 
-function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $menu = TRUE, $onload='')
+function display($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $menu = TRUE, $onload='')
 {
 	global $db, $debug, $user, $planetrow;
 
@@ -155,7 +155,7 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 	die();
 }
 
-function StdUserHeader ($metatags = '', $onload = '')
+function StdUserHeader($metatags = '', $onload = '')
 {
 	$parse = array();
 	$parse['-title-']	= read_config('game_name');
@@ -184,7 +184,7 @@ function StdUserHeader ($metatags = '', $onload = '')
 	return parsetemplate(gettemplate('general/simple_header'), $parse);
 }
 
-function AdminUserHeader ($metatags = '')
+function AdminUserHeader($metatags = '')
 {
 	global $lang;
 	$parse	= $lang;
@@ -207,7 +207,7 @@ function AdminUserHeader ($metatags = '')
 	return parsetemplate(gettemplate('adm/simple_header'), $parse);
 }
 
-function CalculateMaxPlanetFields (&$planet)
+function CalculateMaxPlanetFields(&$planet)
 {
 	global $resource;
 	return $planet["field_max"] + ($planet[ $resource[33] ] * FIELDS_BY_TERRAFORMER);
@@ -224,40 +224,40 @@ function ShowBuildTime($time)
 	return "<br>". $lang['fgf_time'] . Format::pretty_time($time);
 }
 
-function parsetemplate ($template, $array)
+function parsetemplate($template, $array)
 {
 	$array['game_url']	= GAMEURL;
 	$array['skin_url']	= DPATH;
 	return preg_replace('#\{([a-z0-9\-_]*?)\}#Ssie', '(isset($array[\'\1\']) ? $array[\'\1\'] : \'\' );', $template);
 }
 
-function gettemplate ($templatename)
+function gettemplate($templatename)
 {
 	return file_get_contents(XN_ROOT.TEMPLATE_DIR.'/'.$templatename.'.php');
 }
 
-function includeLang ( $filename )
+function includeLang($filename)
 {
 	global $lang;
 
 	include ( XN_ROOT . "language/" . DEFAULT_LANG ."/". $filename . '.php' );
 }
 
-function GetStartAdressLink ( $FleetRow, $FleetType )
+function GetStartAdressLink($FleetRow, $FleetType)
 {
 	$Link  = "<a href=\"game.php?page=galaxy&mode=3&galaxy=".$FleetRow['fleet_start_galaxy']."&system=".$FleetRow['fleet_start_system']."\" ". $FleetType ." >";
 	$Link .= "[".$FleetRow['fleet_start_galaxy'].":".$FleetRow['fleet_start_system'].":".$FleetRow['fleet_start_planet']."]</a>";
 	return $Link;
 }
 
-function GetTargetAdressLink ( $FleetRow, $FleetType )
+function GetTargetAdressLink($FleetRow, $FleetType)
 {
 	$Link  = "<a href=\"game.php?page=galaxy&mode=3&galaxy=".$FleetRow['fleet_end_galaxy']."&system=".$FleetRow['fleet_end_system']."\" ". $FleetType ." >";
 	$Link .= "[".$FleetRow['fleet_end_galaxy'].":".$FleetRow['fleet_end_system'].":".$FleetRow['fleet_end_planet']."]</a>";
 	return $Link;
 }
 
-function BuildPlanetAdressLink ( $CurrentPlanet )
+function BuildPlanetAdressLink($CurrentPlanet)
 {
 	$Link  = "<a href=\"game.php?page=galaxy&mode=3&galaxy=".$CurrentPlanet['galaxy']."&system=".$CurrentPlanet['system']."\">";
 	$Link .= "[".$CurrentPlanet['galaxy'].":".$CurrentPlanet['system'].":".$CurrentPlanet['planet']."]</a>";

@@ -64,13 +64,13 @@ class ShowFleet3Page
 
 		if ( $TargetPlanet["destruyed"] != 0 )
 		{
-			exit ( header ( "Location: game.php?page=fleet" ) );
+			exit ( header ( "Location: ".GAMEURL."game.php?page=fleet" ) );
 		}
 
 
 		if ( !is_array ( $fleetarray ) )
 		{
-			exit ( header ( "Location: game.php?page=fleet" ) );
+			exit ( header ( "Location: ".GAMEURL."game.php?page=fleet" ) );
 		}
 
 
@@ -80,7 +80,7 @@ class ShowFleet3Page
 
 			if ($Count > $CurrentPlanet[$resource[$Ship]])
 			{
-				exit ( header ( "location:game.php?page=fleet" ) );
+				exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 			}
 		}
 
@@ -94,12 +94,12 @@ class ShowFleet3Page
 		//fix by jstar
 		if ( $fleetmission == 7 && !isset($fleetarray[208]) )
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 		}
 
 		if ($planettype != 1 && $planettype != 2 && $planettype != 3)
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 		}
 
 		//fix invisible debris like ogame by jstar
@@ -111,7 +111,7 @@ class ShowFleet3Page
 			$select2    = doquery("SELECT invisible_start_time, metal, crystal FROM {{table}} WHERE galaxy = '". $galaxy ."' AND system = '". $system ."' AND planet = '". $planet ."'", "galaxy",TRUE);
 			if($select2['metal'] == 0 && $select2['crystal'] == 0 && time() > ($select2['invisible_start_time']+DEBRIS_LIFE_TIME))
 			{
-				exit ( header ( "location:game.php?page=fleet" ) );
+				exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 			}
 		}
 		else
@@ -124,18 +124,18 @@ class ShowFleet3Page
 		if ($CurrentPlanet['galaxy'] == $galaxy && $CurrentPlanet['system'] == $system &&
 			$CurrentPlanet['planet'] == $planet && $CurrentPlanet['planet_type'] == $planettype)
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 		}
 
 		if ($_POST['mission'] != 15)
 		{
 			if ($select->num_rows < 1 && $fleetmission != 7)
 			{
-				exit (header("location:game.php?page=fleet"));
+				exit (header("location: ".GAMEURL."game.php?page=fleet"));
 			}
 			elseif ($fleetmission == 9 && $select->num_rows < 1)
 			{
-				exit (header("location:game.php?page=fleet"));
+				exit (header("location: ".GAMEURL."game.php?page=fleet"));
 			}
 		}
 		else
@@ -190,25 +190,25 @@ class ShowFleet3Page
 
 			if($YourPlanet or !$UsedPlanet or $planettype != 3)
 			{
-				exit ( header ( "location:game.php?page=fleet" ) );
+				exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 			}
 			elseif($countfleettype==1 && !(isset($fleetarray[214])))
 			{
-				exit ( header ( "location:game.php?page=fleet" ) );
+				exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 			}
 			elseif($countfleettype==2 && !(isset($fleetarray[214])))
 			{
-				exit ( header ( "location:game.php?page=fleet" ) );
+				exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 			}
 			elseif($countfleettype>2)
 			{
-				exit ( header ( "location:game.php?page=fleet" ) );
+				exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 			}
 		}
 
 		if (empty($fleetmission))
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 		}
 
 		if ($TargetPlanet['id_owner'] == '')
@@ -265,7 +265,7 @@ class ShowFleet3Page
 		{
 			if ($TargetPlanet['id_owner'] == '' && $_POST['mission'] < 7)
 			{
-				exit ( header ( "location:game.php?page=fleet" ) );
+				exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 			}
 
 			if ($TargetPlanet['id_owner'] != '' && $_POST['mission'] == 7)
@@ -280,7 +280,7 @@ class ShowFleet3Page
 
 			if (($TargetPlanet["id_owner"] == $CurrentPlanet["id_owner"]) && (($_POST["mission"] == 1) or ($_POST["mission"] == 6)))
 			{
-				exit ( header ( "location:game.php?page=fleet" ) );
+				exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 			}
 
 			if (($TargetPlanet["id_owner"] != $CurrentPlanet["id_owner"]) && ($_POST["mission"] == 4))
@@ -333,32 +333,32 @@ class ShowFleet3Page
 
 		if (!in_array($GenFleetSpeed, $speed_possible))
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 		}
 
 		if ($MaxFleetSpeed != $_POST['speedallsmin'])
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 		}
 
 		if (!$_POST['planettype'])
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 		}
 
 		if (!$_POST['galaxy'] || !is_numeric($_POST['galaxy']) || $_POST['galaxy'] > MAX_GALAXY_IN_WORLD || $_POST['galaxy'] < 1)
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 		}
 
 		if (!$_POST['system'] || !is_numeric($_POST['system']) || $_POST['system'] > MAX_SYSTEM_IN_GALAXY || $_POST['system'] < 1)
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 		}
 
 		if (!$_POST['planet'] || !is_numeric($_POST['planet']) || $_POST['planet'] > (MAX_PLANET_IN_SYSTEM + 1) || $_POST['planet'] < 1)
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 		}
 
 		if ($_POST['thisgalaxy'] != $CurrentPlanet['galaxy'] |
@@ -366,12 +366,12 @@ class ShowFleet3Page
 			$_POST['thisplanet'] != $CurrentPlanet['planet'] |
 			$_POST['thisplanettype'] != $CurrentPlanet['planet_type'])
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 		}
 
 		if (!isset($fleetarray))
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 		}
 
 		$distance      = Fleets::target_distance($_POST['thisgalaxy'], $_POST['galaxy'], $_POST['thissystem'], $_POST['system'], $_POST['thisplanet'], $_POST['planet']);
@@ -392,7 +392,7 @@ class ShowFleet3Page
 			}
 			else
 			{
-				exit ( header ( "location:game.php?page=fleet" ) );
+				exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 			}
 		} // END CODE BY JSTAR
 		elseif ($_POST['mission'] == 5)
@@ -432,7 +432,7 @@ class ShowFleet3Page
 
 		if(!$haveSpyProbos AND $_POST['mission'] == 6)
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 		}
 
 		$FleetStorage        -= $consumption;

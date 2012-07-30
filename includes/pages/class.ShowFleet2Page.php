@@ -235,7 +235,7 @@ class ShowFleet2Page
 		}
 		else
 		{
-			header ( "location:game.php?page=fleet" );
+			header ( "location: ".GAMEURL."game.php?page=fleet" );
 		}
 
 		#####################################################################################################

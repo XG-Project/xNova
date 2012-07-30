@@ -66,7 +66,7 @@ if (is_numeric($_POST['fleetid']))
 		}
 	}
 }
-header("location:game.php?page=fleet");
+header("location: ".GAMEURL."game.php?page=fleet");
 
 
 /* End of file SendFleetBack.php */

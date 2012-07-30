@@ -198,7 +198,7 @@ if($_GET['panel'])
 
 		LogFunction($Log, "GeneralLog", $LogCanWork);
 
-		header ( 'location:BanPage.php?panel=ban_name&ban_name='.$_GET['ban_name'].'&succes=yes' );
+		header('location: BanPage.php?panel=ban_name&ban_name='.$_GET['ban_name'].'&succes=yes');
 	}
 	if ($_GET['succes']	==	'yes')
 		$parse['display']	=	"<tr><th colspan=\"2\"><font color=lime>". $lang['bo_the_player'] . $name . $lang['bo_banned'] ."</font></th></tr>";
@@ -217,7 +217,7 @@ elseif($_POST && $_POST['unban_name'])
 
 	LogFunction($Log, "GeneralLog", $LogCanWork);
 
-	header ( 'location:BanPage.php?succes2=yes' );
+	header('location: BanPage.php?succes2=yes');
 }
 	if ($_GET['succes2'] == 'yes')
 		$parse['display2']	=	"<tr><th colspan=\"2\"><font color=lime>". $lang['bo_the_player2'] . $name . $lang['bo_unbanned'] ."</font></th></tr>";

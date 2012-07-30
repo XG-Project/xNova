@@ -127,7 +127,7 @@ class ShowShipyardPage
 				}
 			}
 
-			header ("Location: game.php?page=buildings&mode=fleet");
+			header ("Location: ".GAMEURL."game.php?page=buildings&mode=fleet");
 
 		}
 
@@ -329,7 +329,7 @@ class ShowShipyardPage
 				}
 			}
 
-			header ("Location: game.php?page=buildings&mode=defense");
+			header ("Location: ".GAMEURL."game.php?page=buildings&mode=defense");
 
 		}
 

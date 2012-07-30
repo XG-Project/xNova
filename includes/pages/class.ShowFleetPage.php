@@ -174,7 +174,7 @@ class ShowFleetPage
 
 		if (!$CurrentPlanet)
 		{
-			header("location:game.php?page=fleet");
+			header("location: ".GAMEURL."game.php?page=fleet");
 		}
 
 		$ships							=	$lang;

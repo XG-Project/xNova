@@ -163,12 +163,12 @@ class ShowAlliancePage extends bbCode
 			}
 			else
 			{
-				header ( "location:game.php?page=alliance" , 2 );
+				header("location: ".GAMEURL."game.php?page=alliance" , 2 );
 			}
 
 			if ( !$allyrow )
 			{
-				header ( "location:game.php?page=alliance" , 2 );
+				header("location: ".GAMEURL."game.php?page=alliance", 2);
 			}
 
 			extract ( $allyrow );
@@ -315,14 +315,14 @@ class ShowAlliancePage extends bbCode
 				{
 					if ( !is_numeric ( $_GET['allyid'] ) or !$_GET['allyid'] or $CurrentUser['ally_request'] != 0 or $CurrentUser['ally_id'] != 0 )
 					{
-						header ( "location:game.php?page=alliance" , 2 );
+						header("location: ".GAMEURL."game.php?page=alliance", 2);
 					}
 
 					$allyrow = doquery ( "SELECT ally_tag,ally_request FROM {{table}} WHERE id='" . intval ( $_GET['allyid'] ) . "'", "alliance", TRUE);
 
 					if ( !$allyrow )
 					{
-						header ( "location:game.php?page=alliance" , 2 );
+						header("location: ".GAMEURL."game.php?page=alliance", 2);
 					}
 
 					extract ( $allyrow );
@@ -401,7 +401,7 @@ class ShowAlliancePage extends bbCode
 			if ( !$ally )
 			{
 				doquery ( "UPDATE `{{table}}` SET `ally_id` = 0 WHERE `id` = " . intval ( $CurrentUser['id'] ) . "" , "users" );
-				header ( "location:game.php?page=alliance" , 2 );
+				header("location: ".GAMEURL."game.php?page=alliance", 2);
 			}
 			##############################################################################################
 			# SALIR DE LA ALIANZA
@@ -436,7 +436,7 @@ class ShowAlliancePage extends bbCode
 			{
 				if ( $ally['ally_owner'] != $CurrentUser['id'] && !$user_can_watch_memberlist )
 				{
-					header ( "location:game.php?page=alliance" , 2 );
+					header("location: ".GAMEURL."game.php?page=alliance", 2);
 				}
 
 				if ( $sort2 )
@@ -540,7 +540,7 @@ class ShowAlliancePage extends bbCode
 			{
 				if ( $ally['ally_owner'] != $CurrentUser['id'] && !$user_can_send_mails )
 				{
-					header ( "location:game.php?page=alliance" , 2 );
+					header("location: ".GAMEURL."game.php?page=alliance", 2);
 				}
 
 
@@ -590,7 +590,7 @@ class ShowAlliancePage extends bbCode
 			{
 				if ( $ally['ally_owner'] != $CurrentUser['id'] && !$user_can_edit_rights )
 				{
-					header ( "location:game.php?page=alliance" , 2 );
+					header("location: ".GAMEURL."game.php?page=alliance", 2);
 				}
 
 				if ( !empty ( $_POST['newrangname'] ) )
@@ -816,7 +816,7 @@ class ShowAlliancePage extends bbCode
 
 					if ( $ally['ally_request_notallow'] != 0 && $ally['ally_request_notallow'] != 1 )
 					{
-						exit ( header ( "location:game.php?page=alliance?mode=admin&edit=ally" , 2 ) );
+						exit ( header ( "location: ".GAMEURL."game.php?page=alliance?mode=admin&edit=ally" , 2 ) );
 					}
 
 					doquery ( "UPDATE {{table}} SET
@@ -837,7 +837,7 @@ class ShowAlliancePage extends bbCode
 						`ally_request`='" . $ally['ally_request'] . "'
 						WHERE `id`='" . $ally['id'] . "'", "alliance");
 
-						header ( "Location: game.php?page=alliance&mode=admin&edit=ally&t=3" );
+						header ( "Location: ".GAMEURL."game.php?page=alliance&mode=admin&edit=ally&t=3" );
 					}
 					elseif ($t == 2)
 					{
@@ -847,7 +847,7 @@ class ShowAlliancePage extends bbCode
 						`ally_text`='" . $ally['ally_text'] . "'
 						WHERE `id`='" . $ally['id'] . "'", "alliance");
 
-						header ( "Location: game.php?page=alliance&mode=admin&edit=ally&t=2" );
+						header ( "Location: ".GAMEURL."game.php?page=alliance&mode=admin&edit=ally&t=2" );
 					}
 					else
 					{
@@ -857,7 +857,7 @@ class ShowAlliancePage extends bbCode
 						`ally_description`='" . $ally['ally_description'] . "'
 						WHERE `id`='" . $ally['id'] . "'", "alliance");
 
-						header ( "Location: game.php?page=alliance&mode=admin&edit=ally&t=1" );
+						header ( "Location: ".GAMEURL."game.php?page=alliance&mode=admin&edit=ally&t=1" );
 					}
 				}
 
@@ -906,14 +906,14 @@ class ShowAlliancePage extends bbCode
 			{
 				if ( $ally['ally_owner'] != $CurrentUser['id'] && $user_admin == FALSE )
 				{
-					header ( "location:game.php?page=alliance" , 2 );
+					header("location: ".GAMEURL."game.php?page=alliance", 2);
 				}
 
 				if ( isset ( $kick ) )
 				{
 					if ($ally['ally_owner'] != $CurrentUser['id'] && !$user_can_kick)
 					{
-						header ( "location:game.php?page=alliance" , 2 );
+						header("location: ".GAMEURL."game.php?page=alliance", 2);
 					}
 
 					$u	= doquery ( "SELECT * FROM {{table}} WHERE id='" . intval ( $kick ) . "' LIMIT 1" , 'users' , TRUE );
@@ -1062,7 +1062,7 @@ class ShowAlliancePage extends bbCode
 			{
 				if ( $ally['ally_owner'] != $CurrentUser['id'] && !$user_bewerbungen_bearbeiten )
 				{
-					header ( "location:game.php?page=alliance" , 2 );
+					header("location: ".GAMEURL."game.php?page=alliance", 2);
 				}
 
 				if ( $_POST['action'] == $lang['al_acept_request'] )
@@ -1142,7 +1142,7 @@ class ShowAlliancePage extends bbCode
 			{
 				if ( $ally['ally_owner'] != $CurrentUser['id'] && !$user_admin )
 				{
-					header ( "location:game.php?page=alliance" , 2 );
+					header("location: ".GAMEURL."game.php?page=alliance", 2);
 				}
 
 				if ( $_POST['nombre'] && !empty($_POST['nombre'] ) )
@@ -1164,7 +1164,7 @@ class ShowAlliancePage extends bbCode
 			{
 				if ( $ally['ally_owner'] != $CurrentUser['id'] && !$user_admin )
 				{
-					header ( "location:game.php?page=alliance" , 2 );
+					header("location: ".GAMEURL."game.php?page=alliance", 2);
 				}
 
 				if ( $_POST['etiqueta'] && !empty ( $_POST['etiqueta'] ) )
@@ -1184,13 +1184,13 @@ class ShowAlliancePage extends bbCode
 			{
 				if ( $ally['ally_owner'] != $CurrentUser['id'] && !$user_can_exit_alliance )
 				{
-					header ( "location:game.php?page=alliance" , 2 );
+					header("location: ".GAMEURL."game.php?page=alliance", 2);
 				}
 
 				doquery ( "UPDATE {{table}} SET `ally_name` = '', `ally_id`='0' WHERE `ally_id`='" . intval ( $ally['id'] ) . "'" , 'users' );
 				doquery ( "DELETE FROM {{table}} WHERE id='" . intval ( $ally['id'] ) . "' LIMIT 1" , "alliance" );
 
-				exit ( header ( "location:game.php?page=alliance" , 2 ) );
+				exit ( header ( "location: ".GAMEURL."game.php?page=alliance" , 2 ) );
 			}
 			##############################################################################################
 			# TRANSFERIR LA ALIANZA
@@ -1202,11 +1202,11 @@ class ShowAlliancePage extends bbCode
 					doquery ( "UPDATE {{table}} SET `ally_rank_id`='0' WHERE `id`=" . intval ( $CurrentUser['id'] ) . "", 'users');
 					doquery ( "UPDATE {{table}} SET `ally_owner`='" . $db->real_escape_string ( strip_tags ( $_POST['newleader'] ) ) . "' WHERE `id`=" . intval ( $CurrentUser['ally_id'] ) . "" , 'alliance' );
 					doquery ( "UPDATE {{table}} SET `ally_rank_id`='0' WHERE `id`='" . $db->real_escape_string ( strip_tags ( $_POST['newleader'] ) ) . "' " , 'users' );
-					exit ( header ( "location:game.php?page=alliance" , 2 ) );
+					exit ( header ( "location: ".GAMEURL."game.php?page=alliance" , 2 ) );
 				}
 				if ( $ally['ally_owner'] != $CurrentUser['id'] )
 				{
-					header ( "location:game.php?page=alliance" , 2 );
+					header("location: ".GAMEURL."game.php?page=alliance", 2);
 				}
 				else
 				{

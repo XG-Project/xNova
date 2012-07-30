@@ -64,7 +64,7 @@ class ShowMessagesPage
 
 				if ( ! is_numeric($OwnerID))
 				{
-					header("location:game.php?page=messages");
+					header("location: ".GAMEURL."game.php?page=messages");
 				}
 				else
 				{
@@ -73,7 +73,7 @@ class ShowMessagesPage
 
 					if ( ! $OwnerRecord or ! $OwnerHome )
 					{
-						header ( "location:game.php?page=messages" );
+						header ( "location: ".GAMEURL."game.php?page=messages" );
 					}
 				}
 
@@ -174,7 +174,7 @@ class ShowMessagesPage
 					}
 				}
 
-				header("location:game.php?page=messages");
+				header("location: ".GAMEURL."game.php?page=messages");
 
 				break;
 			case 'show':

@@ -102,7 +102,7 @@ class ShowBuildingsPage
                 $QueueArray    = explode ( ";", $CurrentQueue );
                 $ActualCount   = count ( $QueueArray );
                 if ($ActualCount< 2)
-                   die(header("location:game.php?page=buildings"));
+                   die(header("location: ".GAMEURL."game.php?page=buildings"));
 
 				//  finding the buildings time
 				$ListIDArrayToDelete   = explode ( ",", $QueueArray[$QueueID - 1] );
@@ -154,7 +154,7 @@ class ShowBuildingsPage
 		$CurrentMaxFields  	= CalculateMaxPlanetFields($CurrentPlanet);
 
 		if ($CurrentPlanet["field_current"] >= ($CurrentMaxFields - $Queue['lenght']) && $_GET['cmd'] != 'destroy')
-			die(header("location:game.php?page=buildings"));
+			die(header("location: ".GAMEURL."game.php?page=buildings"));
 
 		if ($CurrentQueue != 0)
 		{
@@ -386,7 +386,7 @@ class ShowBuildingsPage
 				}
 				else
 				{
-					header("location:game.php?page=buildings");
+					header("location: ".GAMEURL."game.php?page=buildings");
 				}
 			}
 			elseif ( isset ( $ListID ))
@@ -429,7 +429,7 @@ class ShowBuildingsPage
 			}
 			else
 			{
-				header ("Location: game.php?page=buildings&mode=buildings");
+				header ("Location: ".GAMEURL."game.php?page=buildings&mode=buildings");
 			}
 		}
 

@@ -30,7 +30,7 @@ class ShowNotesPage
 			if($_POST["s"] ==1)
 			{
 				doquery("INSERT INTO {{table}} SET owner=".intval($CurrentUser[id]).", time=$time, priority=$priority, title='$title', text='$text'","notes");
-				header("location:game.php?page=notes");
+				header("location: ".GAMEURL."game.php?page=notes");
 			}
 			elseif($_POST["s"] == 2)
 			{
@@ -38,10 +38,10 @@ class ShowNotesPage
 				$note_query = doquery("SELECT * FROM {{table}} WHERE id=".intval($id)." AND owner=".intval($CurrentUser[id])."","notes");
 
 				if(!$note_query)
-					header("location:game.php?page=notes");
+					header("location: ".GAMEURL."game.php?page=notes");
 
 				doquery("UPDATE {{table}} SET time=$time, priority=$priority, title='$title', text='$text' WHERE id=".intval($id)."","notes");
-				header("location:game.php?page=notes");
+				header("location: ".GAMEURL."game.php?page=notes");
 			}
 		}
 		elseif($_POST)
@@ -62,9 +62,9 @@ class ShowNotesPage
 			}
 
 			if($deleted)
-				header("location:game.php?page=notes");
+				header("location: ".GAMEURL."game.php?page=notes");
 			else
-				header("Location:game.php?page=notes");
+				header("location: ".GAMEURL."game.php?page=notes");
 		}
 		else
 		{
@@ -84,7 +84,7 @@ class ShowNotesPage
 				$note = doquery("SELECT * FROM {{table}} WHERE owner=".intval($CurrentUser[id])." AND id=".intval($n)."",'notes',TRUE);
 
 				if(!$note)
-					header("location:game.php?page=notes");
+					header("location: ".GAMEURL."game.php?page=notes");
 
 				$SELECTED[$note['priority']] = ' selected="selected"';
 

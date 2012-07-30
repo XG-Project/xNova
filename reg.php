@@ -233,7 +233,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
 		unset($dbsettings);
 
-		header("location:game.php?page=overview");
+		header("location: ".GAMEURL."game.php?page=overview");
 	}
 }
 else

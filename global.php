@@ -45,16 +45,16 @@ include_once(XN_ROOT.'includes/classes/class.Fleets.php');
 
 $debug			= new debug();
 
-if (filesize(XN_ROOT.'config.php') == 0 && (( ! defined('INSTALL')) OR ( ! INSTALL)))
+if (filesize(XN_ROOT.'config.php') === 0 && (( ! defined('INSTALL')) OR ( ! INSTALL)))
 {
-	exit(header('location:'.XN_ROOT.'install.php'));
+	exit(header('location: '.GAMEURL.'install.php'));
 }
 
-if (filesize(XN_ROOT.'config.php') != 0)
+if (filesize(XN_ROOT.'config.php') !== 0)
 {
 	$game_version	=	read_config('version');
 
-	define('VERSION', ($game_version == '') ? "" : "v" . $game_version );
+	define('VERSION', empty($game_version) ? "" : "v" . $game_version );
 }
 
 if ( ! defined('INSTALL') OR ( ! INSTALL))
@@ -86,11 +86,11 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 
 	if (isset($InLogin) && $InLogin && $IsUserChecked)
 	{
-		header('Location: game.php?page=overview');
+		header('Location: '.GAMEURL.'game.php?page=overview');
 	}
 	elseif (( ! isset($InLogin) OR ( ! $InLogin)) && ( ! $IsUserChecked))
 	{
-		header('Location: '.XN_ROOT);
+		header('Location: '.GAMEURL);
 	}
 	$user          	= $Result['record'];
 

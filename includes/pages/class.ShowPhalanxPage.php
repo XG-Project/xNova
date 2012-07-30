@@ -36,7 +36,7 @@ class ShowPhalanxPage
 		$PlType = intval($_GET["planettype"]);
 		/* cheater detection */
 		if ($System < $radar_limit_inf || $System > $radar_limit_sup || $Galaxy != $CurrentPlanet['galaxy'] || $PlType != 1 || $CurrentPlanet['planet_type'] != 3)
-			die(header("Location: game.php?page=galaxy"));
+			die(header("Location: ".GAMEURL."game.php?page=galaxy"));
 		/* main page */
 		if ($CurrentPlanet['deuterium'] > 10000)
 		{

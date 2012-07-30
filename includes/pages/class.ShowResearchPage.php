@@ -177,14 +177,14 @@ class ShowResearchPage
 					}
 				}
 				else
-					die(header("location:game.php?page=buildings&mode=research"));
+					die(header("location: ".GAMEURL."game.php?page=buildings&mode=research"));
 			}
 			else
 			{
 				$bContinue = FALSE;
 			}
 
-			header ("Location: game.php?page=buildings&mode=research");
+			header ("Location: ".GAMEURL."game.php?page=buildings&mode=research");
 
 		}
 

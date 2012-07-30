@@ -1417,8 +1417,8 @@ class FlyingFleetHandler
 		{
 			if ($FleetRow['fleet_mess'] == 0)
 			{
-				if (!isset($CombatCaps[202]['sd']))
-					header("location:game.php?page=fleet");
+				if ( ! isset($CombatCaps[202]['sd']))
+					header("location: ".GAMEURL."game.php?page=fleet");
 
 				$QryTargetPlanet  = "SELECT * FROM {{table}} ";
 				$QryTargetPlanet .= "WHERE ";

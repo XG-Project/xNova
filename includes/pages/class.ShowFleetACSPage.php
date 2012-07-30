@@ -65,7 +65,7 @@ class ShowFleetACSPage
 
 		if ( !is_numeric ( $fleetid ) or empty ( $fleetid ) )
 		{
-			exit ( header ( "Location: game.php?page=fleet" ) );
+			exit ( header ( "Location: ".GAMEURL."game.php?page=fleet" ) );
 		}
 
 		if ( isset ( $_POST['add_member_to_acs'] ) && !empty ( $_POST['add_member_to_acs'] ) )
@@ -97,7 +97,7 @@ class ShowFleetACSPage
 
 		if ($query->num_rows != 1)
 		{
-			exit(header("Location: game.php?page=fleet"));
+			exit(header("Location: ".GAMEURL."game.php?page=fleet"));
 		}
 
 		$daten = $query->fetch_array();
@@ -106,7 +106,7 @@ class ShowFleetACSPage
 			 $daten['fleet_end_time'] < time() or
 			 $daten['fleet_mess'] == 1 )
 		{
-			exit(header("Location: game.php?page=fleet"));
+			exit(header("Location: ".GAMEURL."game.php?page=fleet"));
 		}
 
 		if ( ! isset($_POST['send']))
@@ -173,7 +173,7 @@ class ShowFleetACSPage
 
 				if ( $acs[0] != 1 )
 				{
-					exit ( header ( "Location: game.php?page=fleet" ) );
+					exit ( header ( "Location: ".GAMEURL."game.php?page=fleet" ) );
 				}
 			}
 
@@ -305,7 +305,7 @@ class ShowFleetACSPage
 
 			if (!$CurrentPlanet)
 			{
-				header("location:game.php?page=fleet");
+				header("location: ".GAMEURL."game.php?page=fleet");
 			}
 
 			$ships							=	$lang;

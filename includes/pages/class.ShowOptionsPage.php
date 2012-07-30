@@ -54,12 +54,12 @@ class ShowOptionsPage
 				`urlaubs_until` = '0'
 				WHERE `id` = '".intval($CurrentUser['id'])."' LIMIT 1", "users");
 
-				die(header("location:game.php?page=options"));
+				die(header("location: ".GAMEURL."game.php?page=options"));
 			}
 			else
 			{
 				$urlaubs_modus = "1";
-				die(header("location:game.php?page=options"));
+				die(header("location: ".GAMEURL."game.php?page=options"));
 			}
 		}
 

@@ -42,7 +42,7 @@ class ShowResourcesPage
 				{
 					if ( ! in_array( $Value, $ValidList['percent']) )
 					{
-						header("Location: game.php?page=ressources");
+						header("Location: ".GAMEURL."game.php?page=ressources");
 						exit;
 					}
 

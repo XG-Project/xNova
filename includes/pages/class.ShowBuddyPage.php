@@ -58,7 +58,7 @@ class ShowBuddyPage
 
 						doquery ( "DELETE FROM {{table}} WHERE `id`='" . intval ( $bid ) . "' AND (`owner`='" . $CurrentUser['id'] . "' OR `sender`='" . $CurrentUser['id'] . "') " , "buddy" );
 
-						header("location:game.php?page=buddy");
+						header("location: ".GAMEURL."game.php?page=buddy");
 
 						break;
 
@@ -71,7 +71,7 @@ class ShowBuddyPage
 
 						doquery ( "UPDATE {{table}} SET `active` = '1' WHERE `id` ='" . intval ( $bid ) . "' AND `owner`='" . $CurrentUser['id'] . "'" , "buddy" );
 
-						header("location:game.php?page=buddy");
+						header("location: ".GAMEURL."game.php?page=buddy");
 
 						break;
 
@@ -89,7 +89,7 @@ class ShowBuddyPage
 
 							doquery ( "INSERT INTO {{table}} SET `sender`='" . intval ( $CurrentUser[id] ) . "', `owner`='" . intval ( $_POST['user'] ) . "', `active`='0', `text`='" . $text . "'" , "buddy" );
 
-							header("location:game.php?page=buddy");
+							header("location: ".GAMEURL."game.php?page=buddy");
 						}
 						else
 						{
@@ -100,7 +100,7 @@ class ShowBuddyPage
 						// ANY OTHER OPTION EXIT
 					default:
 
-						header("location:game.php?page=buddy");
+						header("location: ".GAMEURL."game.php?page=buddy");
 
 						break;
 				}
@@ -130,7 +130,7 @@ class ShowBuddyPage
 					}
 					else // EXIT
 					{
-						header("location:game.php?page=buddy");
+						header("location: ".GAMEURL."game.php?page=buddy");
 					}
 				}
 

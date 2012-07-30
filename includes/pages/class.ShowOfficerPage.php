@@ -42,11 +42,11 @@ class ShowOfficierPage
 				}
 				else
 				{
-					header("location:game.php?page=officier");
+					header("location: ".GAMEURL."game.php?page=officier");
 				}
 			}
 
-			header("location:game.php?page=officier");
+			header("location: ".GAMEURL."game.php?page=officier");
 
 		}
 		else

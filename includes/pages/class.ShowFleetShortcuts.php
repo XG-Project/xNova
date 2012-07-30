@@ -95,7 +95,7 @@ class ShowFleetShortcuts
 
 		doquery("UPDATE {{table}} SET fleet_shortcut='".($this->CurrentUser['fleet_shortcut'])."' WHERE id=".($this->CurrentUser['id']), "users");
 
-		header("location:game.php?page=shortcuts");
+		header("location: ".GAMEURL."game.php?page=shortcuts");
 	}
 
     private function addFleetShortcuts($name,$galaxy,$system,$planet,$moon)
@@ -104,7 +104,7 @@ class ShowFleetShortcuts
 
 		doquery("UPDATE {{table}} SET fleet_shortcut='".($this->CurrentUser['fleet_shortcut'])."' WHERE id=".($this->CurrentUser['id']), "users");
 
-		header("location:game.php?page=shortcuts");
+		header("location: ".GAMEURL."game.php?page=shortcuts");
 	}
 
 	private function deleteFleetShortcuts($id)
@@ -117,7 +117,7 @@ class ShowFleetShortcuts
 
 		doquery("UPDATE {{table}} SET fleet_shortcut='".($this->CurrentUser['fleet_shortcut'])."' WHERE id=".($this->CurrentUser['id']), "users");
 
-		header("location:game.php?page=shortcuts");
+		header("location: ".GAMEURL."game.php?page=shortcuts");
 	}
 
 	private function showAll()

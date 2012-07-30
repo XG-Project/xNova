@@ -36,7 +36,7 @@ if ($Observation != 1) die(message ($lang['404_page']));
 		$ViewPage = ( !empty($SelPage) ) ? $SelPage : 1;
 	}
 
-	if($Prev   == TRUE)
+	if($Prev  )
 	{
 		$CurrPage -= 1;
 		if ($CurrPage >= 1)
@@ -45,7 +45,7 @@ if ($Observation != 1) die(message ($lang['404_page']));
 			$ViewPage = 1;
 
 	}
-	elseif ($Next   == TRUE && $_POST['page'])
+	elseif ($Next   && $_POST['page'])
 	{
 		if ($Selected < 100)
 			$Mess      = doquery("SELECT COUNT(*) AS `max` FROM {{table}} WHERE `message_type` = '". $Selected ."';", 'messages', TRUE);
@@ -62,7 +62,7 @@ if ($Observation != 1) die(message ($lang['404_page']));
 
 	if ($_POST['delsel'] && $_POST['sele'] >= 1 && $_POST['page'])
 	{
-		if ($DelSel == TRUE)
+		if ($DelSel)
 		{
 			foreach($_POST['sele'] as $MessId => $Value)
 			{
@@ -75,7 +75,7 @@ if ($Observation != 1) die(message ($lang['404_page']));
 	if ($_POST['deldat'] && $_POST['sele'] >= 1 && is_numeric($_POST['selday']) && is_numeric($_POST['selmonth']) && is_numeric($_POST['selyear'])
 		&& $_POST['page'])
 	{
-		if ($DelDat == TRUE)
+		if ($DelDat)
 		{
 			$SelDay    = $_POST['selday'];
 			$SelMonth  = $_POST['selmonth'];

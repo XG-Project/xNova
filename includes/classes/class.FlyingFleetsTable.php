@@ -6,7 +6,7 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-if(!defined('INSIDE')){ die(header("location:../../"));}
+if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class FlyingFleetsTable
 {
@@ -112,7 +112,7 @@ class FlyingFleetsTable
 	}
 
 	// For ShowFlyingFleets.php in admin panel.
-	public function BuildFlyingFleetTable ()
+	public function BuildFlyingFleetTable()
 	{
 		global $lang;
 
@@ -180,7 +180,7 @@ class FlyingFleetsTable
 
 		$FleetStatus = array ( 0 => 'flight', 1 => 'holding', 2 => 'return' );
 
-		if ( $Owner == TRUE )
+		if ( $Owner )
 			$FleetPrefix = 'own';
 		else
 			$FleetPrefix = '';
@@ -259,7 +259,7 @@ class FlyingFleetsTable
 		}
 		else
 		{
-			if ($Owner == TRUE)
+			if ($Owner)
 			{
 				$EventString  = $lang['cff_one_of_your'];
 				$EventString .= $FleetContent;

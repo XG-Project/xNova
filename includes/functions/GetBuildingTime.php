@@ -6,7 +6,7 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-if(!defined('INSIDE')){ die(header("location:../../"));}
+if ( ! defined('INSIDE')) die(header("location:../../"));
 
 	//function GetBuildingTime ($user, $planet, $Element) OLD CODE
 	function GetBuildingTime ($user, $planet, $Element, $level = FALSE, $total_lab_level = 0)

@@ -6,7 +6,7 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-if(!defined('INSIDE')){ die(header("location:../../"));}
+if ( ! defined('INSIDE')) die(header("location:../../"));
 
 function UpdatePlanetBatimentQueueList ( &$CurrentPlanet, &$CurrentUser ) {
 
@@ -19,7 +19,7 @@ function UpdatePlanetBatimentQueueList ( &$CurrentPlanet, &$CurrentUser ) {
 			{
 				PlanetResourceUpdate ( $CurrentUser, $CurrentPlanet, $CurrentPlanet['b_building'], FALSE );
 				$IsDone = CheckPlanetBuildingQueue( $CurrentPlanet, $CurrentUser );
-				if ( $IsDone == TRUE )
+				if ( $IsDone )
 					SetNextQueueElementOnTop ( $CurrentPlanet, $CurrentUser );
 			}
 			else

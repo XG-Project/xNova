@@ -17,7 +17,7 @@
  *   echo $c->get_config('version');
  */
 
-if(!defined('INSIDE')){ die(header("location:../../"));}
+if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class xml
 {

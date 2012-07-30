@@ -135,7 +135,7 @@ class bbcode
 		$Form .= "<td class=\"c\" colspan=\"2\">" . $Title . "</td>";
 		$Form .= "</tr><tr>";
 
-		if ( $TwoLines == TRUE )
+		if ( $TwoLines )
 		{
 			$Form .= "<th colspan=\"2\">" . $Message . "</th>";
 			$Form .= "</tr><tr>";

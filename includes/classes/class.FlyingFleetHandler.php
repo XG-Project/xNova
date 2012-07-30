@@ -6,7 +6,7 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-if (!defined('INSIDE'))die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class FlyingFleetHandler
 {
@@ -130,7 +130,7 @@ class FlyingFleetHandler
 			$Loops      = 1;
 		}
 
-		if ($LookAtLoop == TRUE)
+		if ($LookAtLoop)
 		{
 			$String  = "<table width=\"440\" cellspacing=\"1\"><tr><td class=\"c\" colspan=\"". ((2 * SPY_REPORT_ROW) + (SPY_REPORT_ROW - 1))."\">". $TitleString ."</td></tr>";
 			$Count       = 0;
@@ -180,7 +180,7 @@ class FlyingFleetHandler
 		return $return;
 	}
 
-	private function walka ($CurrentSet, $TargetSet, $CurrentTechno, $TargetTechno)
+	private function walka($CurrentSet, $TargetSet, $CurrentTechno, $TargetTechno)
 	{
 		global $pricelist, $CombatCaps, $user;
 
@@ -254,7 +254,7 @@ class FlyingFleetHandler
 				break;
 			}
 
-			if (!is_null($TargetSet))
+			if ( ! is_null($TargetSet))
 			{
 				foreach($TargetSet as $a => $b)
 				{
@@ -415,7 +415,7 @@ class FlyingFleetHandler
 
 		$atakujacy_zlom_koniec['metal'] = 0;
 		$atakujacy_zlom_koniec['crystal'] = 0;
-		if (!is_null($CurrentSet))
+		if ( ! is_null($CurrentSet))
 		{
 			foreach($CurrentSet as $a => $b)
 			{
@@ -426,7 +426,7 @@ class FlyingFleetHandler
 
 		$wrog_zlom_koniec['metal'] = 0;
 		$wrog_zlom_koniec['crystal'] = 0;
-		if (!is_null($TargetSet))
+		if ( ! is_null($TargetSet))
 		{
 			foreach($TargetSet as $a => $b)
 			{
@@ -445,7 +445,7 @@ class FlyingFleetHandler
 		$ilosc_wrog = 0;
 		$straty_obrona_wrog = 0;
 
-		if (!is_null($TargetSet))
+		if ( ! is_null($TargetSet))
 		{
 			foreach($TargetSet as $a => $b)
 			{
@@ -476,7 +476,7 @@ class FlyingFleetHandler
 		return array("atakujacy" => $CurrentSet, "wrog" => $TargetSet, "wygrana" => $wygrana, "dane_do_rw" => $runda, "zlom" => $zlom);
 	}
 
-	private function RestoreFleetToPlanet ($FleetRow, $Start = TRUE)
+	private function RestoreFleetToPlanet($FleetRow, $Start = TRUE)
 	{
 		global $resource;
 
@@ -506,7 +506,7 @@ class FlyingFleetHandler
 		$QryUpdatePlanet  .= "`deuterium` = `deuterium` + '". $FleetRow['fleet_resource_deuterium'] ."' ";
 		$QryUpdatePlanet  .= "WHERE ";
 
-		if ($Start == TRUE)
+		if ($Start)
 		{
 			$QryUpdatePlanet  .= "`galaxy` = '". $FleetRow['fleet_start_galaxy'] ."' AND ";
 			$QryUpdatePlanet  .= "`system` = '". $FleetRow['fleet_start_system'] ."' AND ";
@@ -524,7 +524,7 @@ class FlyingFleetHandler
 		doquery( $QryUpdatePlanet, 'planets');
 	}
 
-	private function StoreGoodsToPlanet ($FleetRow, $Start = FALSE)
+	private function StoreGoodsToPlanet($FleetRow, $Start = FALSE)
 	{
 
 		//fix resource by jstar
@@ -539,7 +539,7 @@ class FlyingFleetHandler
 		$QryUpdatePlanet  .= "`deuterium` = `deuterium` + '". $FleetRow['fleet_resource_deuterium'] ."' ";
 		$QryUpdatePlanet  .= "WHERE ";
 
-		if ($Start == TRUE)
+		if ($Start)
 		{
 			$QryUpdatePlanet  .= "`galaxy` = '". $FleetRow['fleet_start_galaxy'] ."' AND ";
 			$QryUpdatePlanet  .= "`system` = '". $FleetRow['fleet_start_system'] ."' AND ";
@@ -1339,7 +1339,7 @@ class FlyingFleetHandler
 				else
 				{
 					$NewOwnerPlanet = CreateOnePlanetRecord($FleetRow['fleet_end_galaxy'], $FleetRow['fleet_end_system'], $FleetRow['fleet_end_planet'], $FleetRow['fleet_owner'], $lang['sys_colo_defaultname'], FALSE);
-					if ( $NewOwnerPlanet == TRUE )
+					if ( $NewOwnerPlanet )
 					{
 						$TheMessage = $lang['sys_colo_arrival'] . $TargetAdress . $lang['sys_colo_allisok'];
 						SendSimpleMessage ( $FleetRow['fleet_owner'], '', $FleetRow['fleet_start_time'], 0, $lang['sys_colo_mess_from'], $lang['sys_colo_mess_report'], $TheMessage);

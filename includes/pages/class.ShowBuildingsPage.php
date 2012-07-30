@@ -6,7 +6,7 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-if(!defined('INSIDE')){ die(header("location:../../"));}
+if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class ShowBuildingsPage
 {
@@ -165,7 +165,7 @@ class ShowBuildingsPage
 			$ActualCount   = 0;
 		}
 
-		if ($AddMode == TRUE)
+		if ($AddMode)
 		{
 			$BuildMode = 'build';
 		}
@@ -205,7 +205,7 @@ class ShowBuildingsPage
 			if ($InArray != 0)
 			{
 				$ActualLevel  = $CurrentPlanet[$resource[$Element]];
-				if ($AddMode == TRUE)
+				if ($AddMode)
 				{
 					$BuildLevel   = $ActualLevel + 1 + $InArray;
 					$CurrentPlanet[$resource[$Element]] += $InArray;
@@ -223,7 +223,7 @@ class ShowBuildingsPage
 			else
 			{
 				$ActualLevel  = $CurrentPlanet[$resource[$Element]];
-				if ($AddMode == TRUE)
+				if ($AddMode)
 				{
 					$BuildLevel   = $ActualLevel + 1;
 					$BuildTime    = GetBuildingTime($CurrentUser, $CurrentPlanet, $Element);
@@ -402,7 +402,7 @@ class ShowBuildingsPage
 				$bDoItNow = FALSE;
 			}
 
-			if ($bDoItNow == TRUE)
+			if ($bDoItNow)
 			{
 				switch($TheCommand)
 				{
@@ -499,14 +499,14 @@ class ShowBuildingsPage
 						{
 							if ($NextBuildLevel == 1)
 							{
-								if ( $HaveRessources == TRUE )
+								if ( $HaveRessources )
 									$parse['click'] = "<a href=\"game.php?page=buildings&cmd=insert&building=". $Element ."\"><font color=#00FF00>".$lang['bd_build']."</font></a>";
 								else
 									$parse['click'] = "<font color=#FF0000>".$lang['bd_build']."</font>";
 							}
 							else
 							{
-								if ( $HaveRessources == TRUE )
+								if ( $HaveRessources )
 									$parse['click'] = "<a href=\"game.php?page=buildings&cmd=insert&building=". $Element ."\"><font color=#00FF00>". $lang['bd_build_next_level'] . $NextBuildLevel ."</font></a>";
 								else
 									$parse['click'] = "<font color=#FF0000>". $lang['bd_build_next_level'] . $NextBuildLevel ."</font>";

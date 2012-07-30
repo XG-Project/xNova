@@ -6,7 +6,7 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-if(!defined('INSIDE')){ die(header("location:../../"));}
+if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class GalaxyRows
 {
@@ -132,7 +132,7 @@ class GalaxyRows
 					$links .= "<img height=\"14\" width=\"14\" src=\"". DPATH ."img/b.png\" title=\"".$lang['gl_buddy_request']."\" border=0></a>";
 					$links .= "&nbsp;";
 				}
-				if ($user["settings_mis"] == "1" && $MissileBtn == TRUE && $GalaxyInfo['id'])
+				if ($user["settings_mis"] == "1" && $MissileBtn && $GalaxyInfo['id'])
 				{
 					$links .= "<a href=game.php?page=galaxy&mode=2&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&current=".$user['current_planet']." >";
 					$links .= "<img height=\"16\" width=\"13\" src=\"". DPATH ."img/r.png\" title=\"".$lang['gl_missile_attack']."\" border=0></a>";
@@ -386,7 +386,7 @@ class GalaxyRows
 			elseif ($GalaxyInfo['id'] != $user['id'])
 				$MissionType4Link = "";
 
-			if ($user["settings_mis"] == "1" AND $MissileBtn == TRUE && $GalaxyInfo['id'])
+			if ($user["settings_mis"] == "1" AND $MissileBtn && $GalaxyInfo['id'])
 				$MissionType10Link = "<a href=game.php?page=galaxy&mode=2&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&current=".$user['current_planet']." >".$lang['gl_missile_attack']."</a><br />";
 			elseif ($GalaxyInfo['id'] != $user['id'])
 				$MissionType10Link = "";

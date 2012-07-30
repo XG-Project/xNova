@@ -6,11 +6,11 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-if(!defined('INSIDE')){ die(header("location:../../"));}
+if ( ! defined('INSIDE')) die(header("location:../../"));
 
 	function InsertJavaScriptChronoApplet ($Type, $Ref, $Value, $Init)
 	{
-		if ($Init == TRUE)
+		if ($Init)
 		{
 			$JavaString  = "<script type=\"text/javascript\">\n";
 			$JavaString .= "function t". $Type . $Ref ."() {\n";

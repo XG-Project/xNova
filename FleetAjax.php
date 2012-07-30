@@ -45,7 +45,7 @@ foreach ($reslist['fleet'] as $Node => $ShipID)
 	}
 }
 
-if ($PartialFleet == TRUE)
+if ($PartialFleet)
 {
 	if ( $PartialCount < 1 )
 	{

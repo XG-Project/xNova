@@ -6,7 +6,7 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-if(!defined('INSIDE')){ die(header("location:../../"));}
+if ( ! defined('INSIDE')) die(header("location:../../"));
 
 	function SetNextQueueElementOnTop ( &$CurrentPlanet, $CurrentUser )
 	{
@@ -19,7 +19,7 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 			{
 				$QueueArray = explode ( ";", $CurrentQueue );
 				$Loop       = TRUE;
-				while ($Loop == TRUE)
+				while ($Loop)
 				{
 					$ListIDArray         = explode ( ",", $QueueArray[0] );
 					$Element             = $ListIDArray[0];
@@ -44,7 +44,7 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 						}
 					}
 
-					if ( $HaveRessources == TRUE )
+					if ( $HaveRessources )
 					{
 						$Needed                        = GetBuildingPrice ($CurrentUser, $CurrentPlanet, $Element, TRUE, $ForDestroy);
 						$CurrentPlanet['metal']       -= $Needed['metal'];
@@ -63,7 +63,7 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 					{
 						$ElementName = $lang['tech'][$Element];
 
-						if ($HaveNoMoreLevel == TRUE)
+						if ($HaveNoMoreLevel)
 							$Message     = sprintf ($lang['sys_nomore_level'], $ElementName );
 						else
 						{

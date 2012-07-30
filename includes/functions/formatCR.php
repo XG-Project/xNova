@@ -6,7 +6,7 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-if(!defined('INSIDE')){ die(header("location:../../"));}
+if ( ! defined('INSIDE')) die(header("location:../../"));
 
 	function formatCR (&$result_array,&$steal_array,&$moon_int,&$moon_string,&$time_float)
 	{

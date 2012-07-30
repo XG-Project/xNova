@@ -6,7 +6,7 @@
  * @copyright Copyright © 2008 - 2012
  */
 
-if(!defined('INSIDE')){ die(header("location:../../"));}
+if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class NoobsProtection
 {
@@ -14,19 +14,19 @@ class NoobsProtection
 	private $_protection; // 1 OR 0
 	private $_protectiontime;
 	private $_protectionmulti;
-	
+
 	// READ SOME CONFIG BY DEFAULT
 	private function __construct()
-	{	
+	{
 		$this->_protection      	= read_config ( 'noobprotection' );
 		$this->_protectiontime  	= read_config ( 'noobprotectiontime' );
-		$this->_protectionmulti 	= read_config ( 'noobprotectionmulti' );		
+		$this->_protectionmulti 	= read_config ( 'noobprotectionmulti' );
 	}
-	
+
 	// DETERMINES IF THE PLAYER IS WEAK OR NOT
 	public function is_weak ( $current_points , $other_points )
-	{						
-		if ( ( $current_points > ( $other_points * $this->_protectionmulti ) ) && ( $this->_protection == 1 ) && 
+	{
+		if ( ( $current_points > ( $other_points * $this->_protectionmulti ) ) && ( $this->_protection == 1 ) &&
 			( $other_points < $this->_protectiontime ) )
 		{
 			return TRUE;
@@ -36,11 +36,11 @@ class NoobsProtection
 			return FALSE;
 		}
 	}
-	
+
 	// DETERMINES IF THE PLAYER IS STRONG OR NOT
 	public function is_strong ( $current_points , $other_points )
-	{		
-		if ( ( $current_points * $this->_protectionmulti ) < $other_points && ( $this->_protection == 1 ) && 
+	{
+		if ( ( $current_points * $this->_protectionmulti ) < $other_points && ( $this->_protection == 1 ) &&
 			( $current_points < $this->_protectiontime ) )
 		{
 			return TRUE;
@@ -50,7 +50,7 @@ class NoobsProtection
 			return FALSE;
 		}
 	}
-	
+
     public static function getInstance()
     {
         if (self::$instance == null)

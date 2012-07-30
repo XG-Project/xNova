@@ -6,7 +6,7 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-if(!defined('INSIDE')){ die(header("location:../../"));}
+if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class ShowResearchPage
 {
@@ -139,7 +139,7 @@ class ShowResearchPage
 								}
 								break;
 						}
-						if ($UpdateData == TRUE)
+						if ($UpdateData)
 						{
 							$QryUpdatePlanet  = "UPDATE {{table}} SET ";
 							$QryUpdatePlanet .= "`b_tech_id` = '".   $WorkingPlanet['b_tech_id']   ."', ";

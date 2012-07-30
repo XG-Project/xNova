@@ -435,10 +435,10 @@ function getLayerRef(id, document) {
 function setVisibility(objLayer, visible) {
 	if (document.layers) {
 		objLayer.visibility =
-		(visible == true) ? 'show' : 'hide';
+		(visible) ? 'show' : 'hide';
 	} else {
 		objLayer.style.visibility =
-		(visible == true) ? 'visible' : 'hidden';
+		(visible) ? 'visible' : 'hidden';
 	}
 }
 

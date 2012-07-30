@@ -177,7 +177,7 @@ class Bot {
 		$planetwork = false;
 		$planetquery = doquery("SELECT * FROM {{table}} WHERE `id_owner` = '".$this->user['id']."' AND `planet_type` = '1' ORDER BY `id` ASC;",'planets', false);
 		while($this->CurrentPlanet = $planetquery->fetch_array()){
-			if($planetselected == true and $this->CurrentPlanet['id_owner'] == $this->user['id']){
+			if($planetselected and $this->CurrentPlanet['id_owner'] == $this->user['id']){
 				CheckPlanetUsedFields ( $this->CurrentPlanet );
 
 				if( ! is_null($this->log)) $this->log .= $this->user['username'].' - Hora: '.date('H:i:s - j/n/Y').' - Planeta: '.$this->CurrentPlanet['name'].' ['.$this->CurrentPlanet['id'].']'."\n";
@@ -384,7 +384,7 @@ class Bot {
 	}
 	protected function ResearchTechs(){
 		global $resource, $lang;
-		if ($this->CheckLabSettingsInQueue ( $this->CurrentPlanet ) == true) {
+		if ($this->CheckLabSettingsInQueue ( $this->CurrentPlanet )) {
 			$TechLevel =  array(122 => 5, 114 => 9, 118 => 11, 109 => 20, 108 => 20, 113 => 12, 115 => 8, 117 => 8, 124 => 3, 120 => 12, 106 => 12, 111 => 4, 110 => 20, 121 => 7, 199 => 1  );
 			uasort( $TechLevel, 'scmp' );
 			foreach($TechLevel as $Techno => $Max){
@@ -815,7 +815,7 @@ class Bot {
 			$ActualCount   = 0;
 		}
 
-		if ($AddMode == true)
+		if ($AddMode)
 		{
 			$BuildMode = 'build';
 		}
@@ -855,7 +855,7 @@ class Bot {
 			if ($InArray != 0)
 			{
 				$ActualLevel  = $CurrentPlanet[$resource[$Element]];
-				if ($AddMode == true)
+				if ($AddMode)
 				{
 					$BuildLevel   = $ActualLevel + 1 + $InArray;
 					$CurrentPlanet[$resource[$Element]] += $InArray;
@@ -873,7 +873,7 @@ class Bot {
 			else
 			{
 				$ActualLevel  = $CurrentPlanet[$resource[$Element]];
-				if ($AddMode == true)
+				if ($AddMode)
 				{
 					$BuildLevel   = $ActualLevel + 1;
 					$BuildTime    = GetBuildingTime($CurrentUser, $CurrentPlanet, $Element);

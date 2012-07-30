@@ -356,7 +356,7 @@ function MakeStats()
 		//TODO, make a end string check in case that insert_user_query end in VALUE...
 		//Here we change the end of the query for ;
 
-		if($CheckUserQuery == TRUE)
+		if($CheckUserQuery)
 		{
 			$insert_user_query	=	substr_replace($insert_user_query, ';', -1);
 			doquery ( $insert_user_query , 'statpoints');
@@ -480,7 +480,7 @@ function MakeStats()
 			}
 			//Here we change the end of the query for ;
 
-			if($CheckAllyQuery == TRUE)
+			if($CheckAllyQuery)
 			{
 				$insert_ally_query	=	substr_replace($insert_ally_query, ';', -1);
 				doquery ( $insert_ally_query , 'statpoints');

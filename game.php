@@ -21,7 +21,7 @@ include_once(XN_ROOT.'includes/functions/UpdatePlanetBatimentQueueList.php');
 
 $page	= isset($_GET['page']) ? $_GET['page'] : NULL;
 
-switch($page)
+switch ($page)
 {
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'changelog':

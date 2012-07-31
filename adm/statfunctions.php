@@ -33,7 +33,7 @@ function GetBuildPoints ( $CurrentPlanet ) {
 
 	$BuildCounts = 0;
 	$BuildPoints = 0;
-	foreach($reslist['build'] as $n => $Building) {
+	foreach ($reslist['build'] as $n => $Building) {
 		if ( $CurrentPlanet[ $resource[ $Building ] ] > 0 )
 		{
 			for ( $Level = 0; $Level < $CurrentPlanet[ $resource[ $Building ] ]; $Level++ ) {
@@ -55,7 +55,7 @@ function GetDefensePoints ( $CurrentPlanet ) {
 
 	$DefenseCounts = 0;
 	$DefensePoints = 0;
-	foreach($reslist['defense'] as $n => $Defense) {
+	foreach ($reslist['defense'] as $n => $Defense) {
 		if (isset($CurrentPlanet[ $resource[ $Defense ] ]) && $CurrentPlanet[ $resource[ $Defense ] ] > 0) {
 			$Units          = $pricelist[ $Defense ]['metal'] + $pricelist[ $Defense ]['crystal'] + $pricelist[ $Defense ]['deuterium'];
 			$DefensePoints += ($Units * $CurrentPlanet[ $resource[ $Defense ] ]);
@@ -73,7 +73,7 @@ function GetFleetPoints ( $CurrentPlanet ) {
 
 	$FleetCounts = 0;
 	$FleetPoints = 0;
-	foreach($reslist['fleet'] as $n => $Fleet) {
+	foreach ($reslist['fleet'] as $n => $Fleet) {
 		if ($CurrentPlanet[ $resource[ $Fleet ] ] > 0) {
 			$Units          = $pricelist[ $Fleet ]['metal'] + $pricelist[ $Fleet ]['crystal'] + $pricelist[ $Fleet ]['deuterium'];
 			$FleetPoints   += ($Units * $CurrentPlanet[ $resource[ $Fleet ] ]);
@@ -91,9 +91,9 @@ function GetFlyingFleetPoints($fleet_array)
 	// PADA FUNCTION
 	// USE AT YOUR OWN RISK :3
 	$FleetRec     = explode(";", $fleet_array);
-	if(is_array($FleetRec))
+	if (is_array($FleetRec))
 	{
-		foreach($FleetRec as $Item => $Group)
+		foreach ($FleetRec as $Item => $Group)
 		{
 			if ($Group  != '')
 			{
@@ -132,11 +132,11 @@ function MakeStats()
 
 	$ChooseToDelete = doquery("SELECT `id` FROM `{{table}}` WHERE (`db_deaktjava` < '".$del_deleted."' AND `db_deaktjava` <> 0) OR (`onlinetime` < '".$del_inactive."' AND `authlevel` <> 3)", 'users');
 
-	if($ChooseToDelete)
+	if ($ChooseToDelete)
 	{
 		include_once(XN_ROOT . 'includes/functions/DeleteSelectedUser.php');
 
-		while($delete = $ChooseToDelete->fetch_array())
+		while ($delete = $ChooseToDelete->fetch_array())
 		{
 			DeleteSelectedUser($delete[id]);
 		}
@@ -147,7 +147,7 @@ function MakeStats()
 	//STATS FOR USERS....
 	//Here we make the select query, with this all the custom stuff with be included
 	$select_defenses	=	'';
-	foreach($reslist['defense'] as $n => $Defense)
+	foreach ($reslist['defense'] as $n => $Defense)
 	{
 		if ($resource[ $Defense ] != 'small_protection_shield' && $resource[ $Defense ] != 'big_protection_shield')
 		{
@@ -155,17 +155,17 @@ function MakeStats()
 		}
 	}
 	$select_buildings	=	'';
-	foreach($reslist['build'] as $n => $Building)
+	foreach ($reslist['build'] as $n => $Building)
 	{
 		$select_buildings	.= " p.`".$resource[ $Building ]."`,";
 	}
 	$selected_tech	=	'';
-	foreach($reslist['tech'] as $n => $Techno)
+	foreach ($reslist['tech'] as $n => $Techno)
 	{
 			$selected_tech	.= " u.`".$resource[ $Techno ]."`,";
 	}
 	$select_fleets	=	'';
-	foreach($reslist['fleet'] as $n => $Fleet)
+	foreach ($reslist['fleet'] as $n => $Fleet)
 	{
 			$select_fleets	.= " SUM(p.`".$resource[ $Fleet ]."`) AS `".$resource[ $Fleet ]."`,";
 	}
@@ -235,7 +235,7 @@ function MakeStats()
 		//We take the data of flying fleets if stat_flying is =1 in game config
 		//If you have trouble with the RAM and CPU usage, please set stat_flying = 0 and a low value of stat_amount (25, 15...)
 		$flying_fleets_array	= array();
-		if($game_stat_flying == 1)
+		if ($game_stat_flying == 1)
 		{
 			$sql_flying_fleets	=	'SELECT fleet_array, fleet_owner, fleet_id FROM {{table}} WHERE fleet_owner <= '. $minmax['max'].' AND fleet_owner >= '. $minmax['min'].';';
 			$flying_fleets		=	doquery($sql_flying_fleets, 'fleets');
@@ -285,12 +285,12 @@ function MakeStats()
 			$u_TFleetCount	= $u_points['FleetCount'];
 			$u_TFleetPoints	= ($u_points['FleetPoint'] / $game_stat_settings);
 			//Now we add the flying fleets points
-			//This is used if($game_stat_flying == 1)
-			if($game_stat_flying == 1)
+			//This is used if ($game_stat_flying == 1)
+			if ($game_stat_flying == 1)
 			{
-				if(isset($flying_fleets_array[$CurUser['id']]) && $flying_fleets_array[$CurUser['id']])
+				if (isset($flying_fleets_array[$CurUser['id']]) && $flying_fleets_array[$CurUser['id']])
 				{
-					foreach($flying_fleets_array[$CurUser['id']] as $fleet_id => $fleet_array)
+					foreach ($flying_fleets_array[$CurUser['id']] as $fleet_id => $fleet_array)
 					{
 						$u_points			= GetFlyingFleetPoints ( $fleet_array );
 						$u_TFleetCount  	+= $u_points['FleetCount'];
@@ -314,9 +314,9 @@ function MakeStats()
 			}
 			$u_TBuildCount    = 0;
 			$u_TBuildPoints   = 0;
-			if($Buildings_array[$CurUser['id']])
+			if ($Buildings_array[$CurUser['id']])
 			{
-				foreach($Buildings_array[$CurUser['id']] as $planet_id => $building)
+				foreach ($Buildings_array[$CurUser['id']] as $planet_id => $building)
 				{
 					$u_points				= GetBuildPoints ( $building );
 					$u_TBuildCount		+= $u_points['BuildCount'];
@@ -356,7 +356,7 @@ function MakeStats()
 		//TODO, make a end string check in case that insert_user_query end in VALUE...
 		//Here we change the end of the query for ;
 
-		if($CheckUserQuery)
+		if ($CheckUserQuery)
 		{
 			$insert_user_query	=	substr_replace($insert_user_query, ';', -1);
 			doquery ( $insert_user_query , 'statpoints');
@@ -480,7 +480,7 @@ function MakeStats()
 			}
 			//Here we change the end of the query for ;
 
-			if($CheckAllyQuery)
+			if ($CheckAllyQuery)
 			{
 				$insert_ally_query	=	substr_replace($insert_ally_query, ';', -1);
 				doquery ( $insert_ally_query , 'statpoints');

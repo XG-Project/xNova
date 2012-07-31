@@ -94,7 +94,7 @@ class bbcode
 
 	function imagefix($img)
 	{
-		if(substr($img, 0, 7) != 'http://')
+		if (substr($img, 0, 7) != 'http://')
 		{
 			$img = './images/' . $img;
 		}

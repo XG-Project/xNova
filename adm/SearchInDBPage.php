@@ -20,7 +20,7 @@ $parse			=	$lang;
 $key_user		=	$_POST['key_user'];
 $parse['key']	=	$key_user;
 
-switch($_POST[search])
+switch ($_POST[search])
 {
 
 	// USUARIOS ####################################################################

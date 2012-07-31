@@ -13,7 +13,7 @@
 			</tr>
 			<tr>
 				<th>{ma_characters}</th>
-				<th><input name="result" value=5000 size="4" readonly="true" class="character"></th>
+				<th><input name="result" value=5000 size="4" readonly="TRUE" class="character"></th>
 			</tr>
 			<tr>
 				<th colspan="2"><textarea name="tresc" cols="50" rows="10" onKeyDown="contar('nameform','tresc')" onKeyUp="contar('nameform','tresc')"></textarea></th>

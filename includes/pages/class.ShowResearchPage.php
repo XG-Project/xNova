@@ -20,12 +20,12 @@ class ShowResearchPage
 				// FIX BY LUCKY - IF THE LAB IS IN QUEUE THE USER CANT RESEARCH ANYTHING...
 				$QueueArray		= explode (";", $CurrentQueue);
 
-				for($i = 0; $i < MAX_BUILDING_QUEUE_SIZE; $i++)
+				for ($i = 0; $i < MAX_BUILDING_QUEUE_SIZE; $i++)
 				{
 					$ListIDArray	= explode (",", $QueueArray[$i]);
 					$Element		= $ListIDArray[0];
 
-					if($Element == 31)
+					if ($Element == 31)
 						break;
 				}
 				// END - FIX
@@ -108,7 +108,7 @@ class ShowResearchPage
 							$WorkingPlanet = $CurrentPlanet;
 						}
 
-						switch($TheCommand)
+						switch ($TheCommand)
 						{
 							case 'cancel':
 								if ($ThePlanet['b_tech_id'] == $Techno)
@@ -189,7 +189,7 @@ class ShowResearchPage
 		$TechRowTPL 	= gettemplate('buildings/buildings_research_row');
 		$TechScrTPL 	= gettemplate('buildings/buildings_research_script');
 
-		foreach($lang['tech'] as $Tech => $TechName)
+		foreach ($lang['tech'] as $Tech => $TechName)
 		{
 			if ($Tech > 105 && $Tech <= 199)
 			{
@@ -199,12 +199,12 @@ class ShowResearchPage
 					$RowParse['tech_id']     = $Tech;
 					$building_level          = $CurrentUser[$resource[$Tech]];
 
-					if($Tech == 106)
+					if ($Tech == 106)
 					{
 						$RowParse['tech_level']  = ($building_level == 0 ) ? "" : "(". $lang['bd_lvl'] . " ".$building_level .")" ;
 						$RowParse['tech_level']  .= ($CurrentUser['rpg_technocrate'] == 0) ? "" : "<strong><font color=\"lime\"> +" . ($CurrentUser['rpg_technocrate'] * TECHNOCRATE_SPY) . $lang['bd_spy']	. "</font></strong>";
 					}
-					elseif($Tech == 108)
+					elseif ($Tech == 108)
 					{
 						$RowParse['tech_level']  = ($building_level == 0) ? "" : "(". $lang['bd_lvl'] . " ".$building_level .")";
 						$RowParse['tech_level']  .= ($CurrentUser['rpg_amiral'] == 0) ? "" : "<strong><font color=\"lime\"> +" . ($CurrentUser['rpg_amiral'] * AMIRAL) . $lang['bd_commander'] . "</font></strong>";

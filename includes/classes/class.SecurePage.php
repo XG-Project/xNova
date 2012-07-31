@@ -6,7 +6,7 @@
 
 class SecurePage
 {
-	private static $instance = null;
+	private static $instance = NULL;
 
 	public function __construct()
 	{
@@ -21,16 +21,16 @@ class SecurePage
 	private function validate($value)
 	{
 		global $db;
-		if( ! is_array($value))
+		if ( ! is_array($value))
 		{
 			$value = str_ireplace("script","blocked",$value);
-			$value = (get_magic_quotes_gpc()) ? htmlentities(stripslashes($value), ENT_QUOTES, 'UTF-8',false) : htmlentities($value, ENT_QUOTES, 'UTF-8',false);
+			$value = (get_magic_quotes_gpc()) ? htmlentities(stripslashes($value), ENT_QUOTES, 'UTF-8',FALSE) : htmlentities($value, ENT_QUOTES, 'UTF-8',FALSE);
 			$value = $db->real_escape_string($value);
 		}
 		else
 		{
 			$c = 0;
-			foreach($value as $val)
+			foreach ($value as $val)
 			{
 				$value[$c] = $this->validate($val);
 				$c++;
@@ -41,7 +41,7 @@ class SecurePage
 	//singleton pattern
 	public static function run()
 	{
-		if(self::$instance == null)
+		if (self::$instance == NULL)
 		{
 			$c = __CLASS__;
 			self::$instance = new $c();

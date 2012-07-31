@@ -6,7 +6,7 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-if(!defined('INSIDE')){ die(header ( 'location:../../' ));}
+if (!defined('INSIDE')){ die(header ( 'location:../../' ));}
 
 class debug
 {
@@ -42,7 +42,7 @@ class debug
 
 		include(XN_ROOT.'config.php');
 
-		if( ! $db)
+		if ( ! $db)
 			die($lang['cdg_mysql_not_available']);
 
 		$query = "INSERT INTO {{table}} SET

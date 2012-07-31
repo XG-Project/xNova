@@ -21,7 +21,7 @@ class ShowSearchPage
 		//queries fixed by Jstar
 		if ( $_POST )
 		{
-			switch($type)
+			switch ($type)
 			{
 				case "playername":
 					$table 	= gettemplate('search/search_user_table');
@@ -51,13 +51,13 @@ class ShowSearchPage
 			}
 		}
 
-		if(isset($searchtext) && isset($type))
+		if (isset($searchtext) && isset($type))
 		{
 			while ($s = $search->fetch_array())
 			{
-				if($type == 'playername' or $type == 'planetname')
+				if ($type == 'playername' or $type == 'planetname')
 				{
-					if($s['ally_id'] != 0 && $s['ally_request'] == 0)
+					if ($s['ally_id'] != 0 && $s['ally_request'] == 0)
 					{
 						$aquery = doquery("SELECT id,ally_name FROM {{table}} WHERE id = ".intval($s['ally_id'])."","alliance",TRUE);
 					}
@@ -85,7 +85,7 @@ class ShowSearchPage
 					$s['coordinated'] 	= "{$s['galaxy']}:{$s['system']}:{$s['planet']}";
 					$result_list 	   .= parsetemplate($row, $s);
 				}
-				elseif($type=='allytag'||$type=='allyname')
+				elseif ($type=='allytag'||$type=='allyname')
 				{
 					$s['ally_points'] = Format::pretty_number($s['ally_points']);
 
@@ -93,7 +93,7 @@ class ShowSearchPage
 					$result_list .= parsetemplate($row, $s);
 				}
 			}
-			if($result_list!='')
+			if ($result_list!='')
 			{
 				$parse['result_list'] = $result_list;
 				$search_results = parsetemplate($table, $parse);

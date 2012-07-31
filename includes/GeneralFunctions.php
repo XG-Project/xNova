@@ -12,7 +12,7 @@ function unset_vars($prefix)
 {
 	$vars = array_keys($GLOBALS);
 
-	for($n = 0, $i = 0; $i < count($vars); $i ++)
+	for ($n = 0, $i = 0; $i < count($vars); $i ++)
 	{
 		if (strpos($vars[$i], $prefix) === 0)
 		{
@@ -124,7 +124,7 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 
 	$DisplayPage .= $page;
 
-	if( ! defined('LOGIN') && ! defined('IN_ADMIN') && isset($_GET['page']) && $_GET['page'] != 'galaxy')
+	if ( ! defined('LOGIN') && ! defined('IN_ADMIN') && isset($_GET['page']) && $_GET['page'] != 'galaxy')
 		$DisplayPage .= parsetemplate(gettemplate('general/footer'), array());
 
 	if ( isset($user['authlevel']) && $user['authlevel'] == 3 && read_config ( 'debug' ) == 1 && !$AdminPage && isset($_GET['page']) && $_GET['page'] != 'notes')
@@ -161,7 +161,7 @@ function StdUserHeader ($metatags = '', $onload = '')
 	$parse['-meta-']	 = "<meta charset=\"UTF-8\">\n";
 	$parse['-meta-']	.= "<meta name=\"generator\" content=\"xNova " . VERSION . "\" />\n";
 
-	if(!defined('LOGIN'))
+	if (!defined('LOGIN'))
 	{
 		$parse['-style-']  	 = "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles/css/default.css\">\n";
 		$parse['-style-']  	.= "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles/css/formate.css\">\n";
@@ -259,10 +259,10 @@ function doquery($query, $table, $fetch = FALSE)
 	require(XN_ROOT.'config.php');
 	if ( ! isset($dbsettings)) die();
 
-	if (is_null($db))
+	if (is_NULL($db))
 	{
 		$db		= new mysqli($dbsettings["server"], $dbsettings["user"], $dbsettings["pass"], $dbsettings["name"]);
-		if ( ! is_null($db->connect_error)) $debug->error($db->connect_error, "SQL Error");
+		if ( ! is_NULL($db->connect_error)) $debug->error($db->connect_error, "SQL Error");
 	}
 
 	$sql 		= str_replace ( "{{table}}" , $dbsettings["prefix"] . $table , $query );
@@ -284,14 +284,14 @@ function catch_error($errno , $errstr, $errfile, $errline)
 {
 	global $user, $db, $debug;
 
-	if( ! $db)
+	if ( ! $db)
 	{
 		require(XN_ROOT.'config.php');
 
 		if (isset($dbsettings))
 		{
 			$db		= new mysqli($dbsettings["server"], $dbsettings["user"], $dbsettings["pass"], $dbsettings["name"]);
-			if ( ! is_null($db->connect_error)) $debug->error($db->connect_error, "SQL Error");
+			if ( ! is_NULL($db->connect_error)) $debug->error($db->connect_error, "SQL Error");
 		}
 		else
 		{
@@ -326,7 +326,7 @@ function show_date($date = NULL)
 {
 	global $lang;
 
-	if (is_null($date)) $date = time();
+	if (is_NULL($date)) $date = time();
 	$format = read_config('date_format');
 
 	$weekday = date("w", $date);

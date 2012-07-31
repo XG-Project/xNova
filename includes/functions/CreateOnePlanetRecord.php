@@ -12,7 +12,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 function PlanetSizeRandomiser($Position,$HomeWorld = FALSE)
 {
    global $user;
-   if(!$HomeWorld)
+   if (!$HomeWorld)
    {
 	  // linear distribution probability with right average, information from http://www.osite.it/index.php?zone=guide=colonizzare
 	  $RandomMin = array(37,43,50,65,47,34,97,105,110,65,71,71,30,14,22);
@@ -42,7 +42,7 @@ function CreateOnePlanetRecord($Galaxy,$System,$Position,$PlanetOwnerID,$PlanetN
    $QrySelectPlanet .= "`planet` = '" . $Position . "';";
    $PlanetExist = doquery($QrySelectPlanet,'planets',TRUE);
 
-   if(!$PlanetExist)
+   if (!$PlanetExist)
    {
 	  $planet = PlanetSizeRandomiser($Position,$HomeWorld);
 	  $planet['diameter'] = ($planet['field_max'] ^ (14 / 1.5)) * 75;
@@ -67,7 +67,7 @@ function CreateOnePlanetRecord($Galaxy,$System,$Position,$PlanetOwnerID,$PlanetN
 	  $planet['system'] = $System;
 	  $planet['planet'] = $Position;
 
-	  if($Position == 1 || $Position == 2 || $Position == 3)
+	  if ($Position == 1 || $Position == 2 || $Position == 3)
 	  {
 		 $PlanetType = array('trocken');
 		 $PlanetClass = array('planet');
@@ -75,7 +75,7 @@ function CreateOnePlanetRecord($Galaxy,$System,$Position,$PlanetOwnerID,$PlanetN
 		 $planet['temp_min'] = rand(0,100);
 		 $planet['temp_max'] = $planet['temp_min'] + 40;
 	  }
-	  elseif($Position == 4 || $Position == 5 || $Position == 6)
+	  elseif ($Position == 4 || $Position == 5 || $Position == 6)
 	  {
 		 $PlanetType = array('dschjungel');
 		 $PlanetClass = array('planet');
@@ -83,7 +83,7 @@ function CreateOnePlanetRecord($Galaxy,$System,$Position,$PlanetOwnerID,$PlanetN
 		 $planet['temp_min'] = rand(-25,75);
 		 $planet['temp_max'] = $planet['temp_min'] + 40;
 	  }
-	  elseif($Position == 7 || $Position == 8 || $Position == 9)
+	  elseif ($Position == 7 || $Position == 8 || $Position == 9)
 	  {
 		 $PlanetType = array('normaltemp');
 		 $PlanetClass = array('planet');
@@ -91,7 +91,7 @@ function CreateOnePlanetRecord($Galaxy,$System,$Position,$PlanetOwnerID,$PlanetN
 		 $planet['temp_min'] = rand(-50,50);
 		 $planet['temp_max'] = $planet['temp_min'] + 40;
 	  }
-	  elseif($Position == 10 || $Position == 11 || $Position == 12)
+	  elseif ($Position == 10 || $Position == 11 || $Position == 12)
 	  {
 		 $PlanetType = array('wasser');
 		 $PlanetClass = array('planet');
@@ -99,7 +99,7 @@ function CreateOnePlanetRecord($Galaxy,$System,$Position,$PlanetOwnerID,$PlanetN
 		 $planet['temp_min'] = rand(-75,25);
 		 $planet['temp_max'] = $planet['temp_min'] + 40;
 	  }
-	  elseif($Position == 13 || $Position == 14 || $Position == 15)
+	  elseif ($Position == 13 || $Position == 14 || $Position == 15)
 	  {
 		 $PlanetType = array('eis');
 		 $PlanetClass = array('planet');
@@ -126,7 +126,7 @@ function CreateOnePlanetRecord($Galaxy,$System,$Position,$PlanetOwnerID,$PlanetN
 
 	  $QryInsertPlanet = "INSERT INTO {{table}} SET ";
 
-	  if($HomeWorld == FALSE)
+	  if ($HomeWorld == FALSE)
 		 $QryInsertPlanet .= "`name` = '" . $lang['fcp_colony'] . "', ";
 
 	  $QryInsertPlanet .= "`id_owner` = '" . $planet['id_owner'] . "', ";
@@ -169,7 +169,7 @@ function CreateOnePlanetRecord($Galaxy,$System,$Position,$PlanetOwnerID,$PlanetN
 	  $QrySelectGalaxy .= "`planet` = '" . $planet['planet'] . "';";
 	  $GetGalaxyID = doquery($QrySelectGalaxy,'galaxy',TRUE);
 
-	  if($GetGalaxyID)
+	  if ($GetGalaxyID)
 	  {
 		 $QryUpdateGalaxy = "UPDATE {{table}} SET ";
 		 $QryUpdateGalaxy .= "`id_planet` = '" . $GetPlanetID['id'] . "' ";

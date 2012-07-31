@@ -66,7 +66,7 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 						&key_acc=".$_GET['key_acc']."
 						&Limit=".$_GET['Limit'];
 
-		if($NumberOfPages > 1)
+		if ($NumberOfPages > 1)
 		{
 			$BeforePage	=	($Page - 1);
 			$NextPage	=	($Page + 1);
@@ -79,11 +79,11 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 					$PAGEE	.=	 " <a href='".$UrlForPage."&Page=".$i.$Minimize."'>".$i."</a> ";
 			}
 
-			if(($Page - 1) > 0)
+			if (($Page - 1) > 0)
 				$BEFORE	=	 "<a href='".$UrlForPage."&Page=".$BeforePage.$Minimize."'>
 						<img src=\"../styles/images/Adm/arrowleft.png\" title=".$lang['se__before']." height=10 width=14></a> ";
 
-			if(($Page + 1) <= $NumberOfPages)
+			if (($Page + 1) <= $NumberOfPages)
 				$NEXT	=	 "<a href='".$UrlForPage."&Page=".$NextPage.$Minimize."'>
 						<img src=\"../styles/images/Adm/arrowright.png\" title=".$lang['se__next']." height=10 width=14></a>";
 
@@ -112,7 +112,7 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 
 		if ($Table == "planets")
 		{
-			if($_GET['search'] == 'planet')
+			if ($_GET['search'] == 'planet')
 				$Search['LIST']	.=	"<td class=c>".$lang['se_input_have_moon']."</td>";
 
 			if ($EditUsers == '1')
@@ -176,7 +176,7 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 
 			if ($Table == "planets"){
 
-				if($_GET['search'] == 'planet')
+				if ($_GET['search'] == 'planet')
 				{
 				$QueryForMoons	=	doquery("SELECT id_luna FROM {{table}} WHERE id_planet = '".$WhileResult[0]."'", "galaxy", TRUE);
 				(($QueryForMoons['id_luna'] > '0')	? $QueryForMoons2 = "<font color=lime>".$lang['one_is_yes'][1]."</font>" : $QueryForMoons2 = $lang['one_is_yes'][0]);

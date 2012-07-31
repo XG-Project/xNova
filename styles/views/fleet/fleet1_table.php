@@ -6,15 +6,15 @@ function getStorageFaktor() {
 function returnValue(param) {
 /* By lucky - required for the new select box */
 var string = shortcuts.options[shortcuts.selectedIndex].value;
-	if(string!=0){
+	if (string!=0){
 		var array=string.split(";");
 		return array[param];
 	}else{
-		return null;
+		return NULL;
 	}
 }
 </script>
-<form action="game.php?page=fleet2" method="post" onsubmit='this.submit.disabled = true;'>
+<form action="game.php?page=fleet2" method="post" onsubmit='this.submit.disabled = TRUE;'>
 	{fleetblock}
 	<input type="hidden" name="speedallsmin"   value="{speedallsmin}" />
 	<input type="hidden" name="usedfleet"      value="{fleetarray}" />

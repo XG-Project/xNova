@@ -34,7 +34,7 @@ function whenResponse () {
 function doit (order, galaxy, system, planet, planettype, shipcount) {
 	ajax.requestFile = "FleetAjax.php?action=send";
 	ajax.runResponse = whenResponse;
-	ajax.execute = true;
+	ajax.execute = TRUE;
 	ajax.setVar("thisgalaxy", {current_galaxy});
 	ajax.setVar("thissystem", {current_system});
 	ajax.setVar("thisplanet", {current_planet});
@@ -58,7 +58,7 @@ function addToTable(strDataResult, strClass) {
 	var e = document.getElementById('fleetstatusrow');
 	var e2 = document.getElementById('fleetstatustable');
 	e.style.display = '';
-	if(e2.rows.length > 2) {
+	if (e2.rows.length > 2) {
 		e2.deleteRow(2);
 	}
 	var row = e2.insertRow(0);

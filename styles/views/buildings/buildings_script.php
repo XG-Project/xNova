@@ -58,7 +58,7 @@ function t() {
 
 function xd() {
 	while (document.Atr.auftr.length > 0) {
-		document.Atr.auftr.options[document.Atr.auftr.length-1] = null;
+		document.Atr.auftr.options[document.Atr.auftr.length-1] = NULL;
 	}
 	if ( p > b.length - 2 ) {
 		document.Atr.auftr.options[document.Atr.auftr.length] = new Option(aa);

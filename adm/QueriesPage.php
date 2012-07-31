@@ -22,7 +22,7 @@ if ($_POST)
 {
 	$FinalQuery	=	str_replace("\'", "'", str_replace('\"', '"', $Query));
 
-	if( ! $db->query($FinalQuery))
+	if ( ! $db->query($FinalQuery))
 	{
 		$parse['display'] = "<tr><th><font color=red>".$db->error."</font></th></tr>";
 	}

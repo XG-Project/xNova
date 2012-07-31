@@ -10,7 +10,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class NoobsProtection
 {
-	private static $instance = null;
+	private static $instance = NULL;
 	private $_protection; // 1 OR 0
 	private $_protectiontime;
 	private $_protectionmulti;
@@ -53,7 +53,7 @@ class NoobsProtection
 
 	public static function getInstance()
 	{
-		if (self::$instance == null)
+		if (self::$instance == NULL)
 		{
 			//make new istance of this class and save it to field for next usage
 			$c = __class__;

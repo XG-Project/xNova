@@ -70,7 +70,7 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 			$show			= array();
 			foreach ($error_level as $error)
 			{
-				if( ! isset($_POST['submit']))
+				if ( ! isset($_POST['submit']))
 				{
 					$show[$error] = TRUE;
 					$parse['checked_'.$error] = 'checked';
@@ -86,7 +86,7 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 				}
 			}
 
-			if( ! empty($show))
+			if ( ! empty($show))
 			{
 				$filter	= ' AND (';
 				$i		= 0;
@@ -95,7 +95,7 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 				{
 					$i++;
 					$filter .= '`error_level` = '.$key;
-					if($i != $total) $filter .= ' OR ';
+					if ($i != $total) $filter .= ' OR ';
 				}
 				$filter .= ')';
 			}

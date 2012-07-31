@@ -16,7 +16,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 		{
 			$enabled = TRUE;
 
-			foreach($requeriments[$Element] as $ReqElement => $EleLevel)
+			foreach ($requeriments[$Element] as $ReqElement => $EleLevel)
 			{
 				if (@$user[$resource[$ReqElement]] && $user[$resource[$ReqElement]] >= $EleLevel)
 				{

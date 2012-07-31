@@ -122,25 +122,25 @@ $ToolsTable	=
 
 
 // MODERADORES
-if($user['authlevel'] == 1)
+if ($user['authlevel'] == 1)
 {
-	if($Observation == 1) $parse['ViewTable']	=	$ViewTable;
-	if($EditUsers 	== 1) $parse['EditTable']	=	$EditTable;
-	if($ConfigGame 	== 1) $parse['ConfigTable']	=	$ConfigTable;
-	if($ToolsCanUse == 1) $parse['ToolsTable']	=	$ToolsTable;
+	if ($Observation == 1) $parse['ViewTable']	=	$ViewTable;
+	if ($EditUsers 	== 1) $parse['EditTable']	=	$EditTable;
+	if ($ConfigGame 	== 1) $parse['ConfigTable']	=	$ConfigTable;
+	if ($ToolsCanUse == 1) $parse['ToolsTable']	=	$ToolsTable;
 }
 
 // OPERADORES
-if($user['authlevel'] == 2)
+if ($user['authlevel'] == 2)
 {
-	if($Observation == 1) $parse['ViewTable']	=	$ViewTable;
-	if($EditUsers 	== 1) $parse['EditTable']	=	$EditTable;
-	if($ConfigGame 	== 1) $parse['ConfigTable']	=	$ConfigTable;
-	if($ToolsCanUse == 1) $parse['ToolsTable']	=	$ToolsTable;
+	if ($Observation == 1) $parse['ViewTable']	=	$ViewTable;
+	if ($EditUsers 	== 1) $parse['EditTable']	=	$EditTable;
+	if ($ConfigGame 	== 1) $parse['ConfigTable']	=	$ConfigTable;
+	if ($ToolsCanUse == 1) $parse['ToolsTable']	=	$ToolsTable;
 }
 
 //ADMINISTRADORES
-if($user['authlevel'] == 3)
+if ($user['authlevel'] == 3)
 {
 	$parse['ViewTable']		=	$ViewTable;
 	$parse['EditTable']		=	$EditTable;

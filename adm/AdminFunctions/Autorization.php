@@ -6,9 +6,9 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-if( ! defined('INSIDE')) define('INSIDE'  , TRUE);
-if( ! defined('INSTALL')) define('INSTALL' , FALSE);
-if( ! defined('IN_ADMIN')) define('IN_ADMIN', TRUE);
+if ( ! defined('INSIDE')) define('INSIDE'  , TRUE);
+if ( ! defined('INSTALL')) define('INSTALL' , FALSE);
+if ( ! defined('IN_ADMIN')) define('IN_ADMIN', TRUE);
 
 include_once ( 'LogFunction.php' );
 

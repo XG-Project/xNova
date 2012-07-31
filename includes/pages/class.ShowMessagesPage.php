@@ -131,7 +131,7 @@ class ShowMessagesPage
 
 				$DeleteWhat 	= $_POST['deletemessages'];
 
-				if($DeleteWhat == 'deleteall')
+				if ($DeleteWhat == 'deleteall')
 				{
 					doquery("DELETE FROM {{table}} WHERE `message_owner` = '". intval($CurrentUser['id']) ."';", 'messages');
 				}

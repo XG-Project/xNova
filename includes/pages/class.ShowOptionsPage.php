@@ -192,7 +192,7 @@ class ShowOptionsPage
 			// < ------------------------------------------------- MODO VACACIONES ----------------------------------------------------- >
 			if (isset($_POST["urlaubs_modus"]) && $_POST["urlaubs_modus"] == 'on')
 			{
-				if($this->CheckIfIsBuilding($CurrentUser))
+				if ($this->CheckIfIsBuilding($CurrentUser))
 				{
 					message($lang['op_cant_activate_vacation_mode'], "game.php?page=options",2);
 				}
@@ -206,7 +206,7 @@ class ShowOptionsPage
 
 				$query = doquery("SELECT * FROM {{table}} WHERE id_owner = '".intval($CurrentUser['id'])."'", 'planets');
 
-				while($id =$query->fetch_array())
+				while ($id =$query->fetch_array())
 				{
 					doquery("UPDATE {{table}} SET
 					metal_perhour = '".read_config ( 'metal_basic_income' )."',
@@ -291,7 +291,7 @@ class ShowOptionsPage
 			$parse			= $lang;
 			$parse['dpath'] = DPATH;
 
-			if($CurrentUser['urlaubs_modus'])
+			if ($CurrentUser['urlaubs_modus'])
 			{
 				$parse['opt_modev_data'] 	= ($CurrentUser['urlaubs_modus'] == 1)?" checked='checked'/":'';
 				$parse['opt_modev_exit'] 	= ($CurrentUser['urlaubs_modus'] == 0)?" checked='1'/":'';
@@ -312,11 +312,11 @@ class ShowOptionsPage
 				$parse['opt_skin_data']	= '';
 				while (($SkinsSubFolder = readdir($SkinsFolder)) !== FALSE)
 				{
-					if($SkinsSubFolder != '.' && $SkinsSubFolder != '..' && $SkinsSubFolder != '.htaccess' && $SkinsSubFolder != '.svn' && $SkinsSubFolder != 'index.html')
+					if ($SkinsSubFolder != '.' && $SkinsSubFolder != '..' && $SkinsSubFolder != '.htaccess' && $SkinsSubFolder != '.svn' && $SkinsSubFolder != 'index.html')
 					{
 						$parse['opt_skin_data'] .= "<option ";
 
-						if($CurrentUser['dpath'] == $SkinsSubFolder)
+						if ($CurrentUser['dpath'] == $SkinsSubFolder)
 							$parse['opt_skin_data'] .= "selected = selected";
 
 						$parse['opt_skin_data'] .= " value=\"".$SkinsSubFolder."\">".$SkinsSubFolder."</option>";

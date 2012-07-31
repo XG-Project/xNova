@@ -32,7 +32,7 @@ switch ($_GET['options'])
 		if ($user['authlevel']	!=	3) die();
 		$Fopen		=	fopen($Archive, "r+");
 
-		while(!feof($Fopen))
+		while (!feof($Fopen))
 		{
 			$parse['display']	.= fgets($Fopen);
 		}
@@ -67,7 +67,7 @@ switch ($_GET['options'])
 		$Log	=	fopen($Archive, "r");
 
 
-		if($user['authlevel']	==	3)
+		if ($user['authlevel']	==	3)
 		{
 			$Excuse_me		=
 			"<a href=\"LogToolPage.php?options=delete&file=".$_GET['file']."\" onClick=\" return confirm('".$lang['log_alert']."');\">
@@ -89,7 +89,7 @@ switch ($_GET['options'])
 		else
 		{
 			$parse['display']	.=	"<tr><th align=\"left\" colspan=2><font color=#E6E6E6>";
-			while(!feof($Log))
+			while (!feof($Log))
 			{
 				$parse['display']	.= fgets($Log)."<br>";
 			}

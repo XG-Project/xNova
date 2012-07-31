@@ -130,7 +130,7 @@ class ShowFleet2Page
 			}
 		}
 
-		if($_POST['planettype'] == 3 && $_POST['ship214'] >= 1 && !$YourPlanet && $UsedPlanet)
+		if ($_POST['planettype'] == 3 && $_POST['ship214'] >= 1 && !$YourPlanet && $UsedPlanet)
 		{
 			$missiontype[9] = $lang['type_mission'][9];
 		}

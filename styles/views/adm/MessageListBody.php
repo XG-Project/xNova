@@ -4,16 +4,16 @@ var new_win = window.open(target_url,win_name,'resizable=yes,scrollbars=yes,menu
 new_win.focus();
 }
 
-checked=false;
+checked=FALSE;
 function checkedAll (frm1) {
 	var aa= document.getElementById('select_all');
-	 if (checked == false)
+	 if (checked == FALSE)
 		  {
-		   checked = true
+		   checked = TRUE
 		  }
 		else
 		  {
-		  checked = false
+		  checked = FALSE
 		  }
 	for (var i =0; i < aa.elements.length; i++)
 	{
@@ -45,9 +45,9 @@ function checkedAll (frm1) {
 			</select>
 			</th>
 			<th>
-			<input type="text" name="selday" onClick="if(this.value == 'dd') this.value = '';" onBlur="if(this.value == '') this.value= 'dd';" value="dd" size="3" maxlength="2" />
-			<input type="text" name="selmonth" onClick="if(this.value == 'mm') this.value = '';" onBlur="if(this.value == '') this.value= 'mm';" value="mm" size="3"  maxlength="2"/>
-			<input type="text" name="selyear" onClick="if(this.value == 'yyyy') this.value = '';" onBlur="if(this.value == '') this.value= 'yyyy';" value="yyyy" size="6"  maxlength="4"/></th>
+			<input type="text" name="selday" onClick="if (this.value == 'dd') this.value = '';" onBlur="if (this.value == '') this.value= 'dd';" value="dd" size="3" maxlength="2" />
+			<input type="text" name="selmonth" onClick="if (this.value == 'mm') this.value = '';" onBlur="if (this.value == '') this.value= 'mm';" value="mm" size="3"  maxlength="2"/>
+			<input type="text" name="selyear" onClick="if (this.value == 'yyyy') this.value = '';" onBlur="if (this.value == '') this.value= 'yyyy';" value="yyyy" size="6"  maxlength="4"/></th>
 		</tr>
 		<tr>
 			<th><input type="submit" name="prev" value="[ &lt;- ]" />&nbsp;<input type="submit" name="next" value="[ -&gt; ]" /></th>

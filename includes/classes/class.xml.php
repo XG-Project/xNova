@@ -22,7 +22,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 class xml
 {
 	//an istance of this class: see singleton pattern
-	private static $instance = null;
+	private static $instance = NULL;
 	//the complete path to xml config: used to load and save it
 	private $path;
 	//SimpleXMLElement object that rappresent xml config
@@ -33,7 +33,7 @@ class xml
 	 * Constructor: access is private to enable class istancing only by getInstance() method, to ensure better performace
 	 *
 	 * @param String $sheet
-	 * @return null
+	 * @return NULL
 	 */
 	private function __construct($sheet)
 	{
@@ -104,7 +104,7 @@ class xml
 	 *
 	 * @param mixed $config_name : String for single update or an associative array of key=>value
 	 * @param String $config_value : The value that will be setted in corrispective key $config_name
-	 * @return null
+	 * @return NULL
 	 */
 	public function write_config($config_name, $config_value)
 	{
@@ -131,7 +131,7 @@ class xml
 	 */
 	public static function getInstance($sheet)
 	{
-		if (self::$instance == null)
+		if (self::$instance == NULL)
 		{
 			//make new istance of this class and save it to field for next usage
 			$c = __class__;

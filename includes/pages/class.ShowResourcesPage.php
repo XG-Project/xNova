@@ -33,7 +33,7 @@ class ShowResourcesPage
 
 		if ($_POST)
 		{
-			foreach($_POST as $Field => $Value)
+			foreach ($_POST as $Field => $Value)
 			{
 				$FieldName = $Field."_porcent";
 				if ( isset( $CurrentPlanet[ $FieldName ] ) )
@@ -67,7 +67,7 @@ class ShowResourcesPage
 		$CurrentPlanet['energy_used']        = 0;
 		$BuildTemp                           = $CurrentPlanet[ 'temp_max' ];
 		$ResourcesRowTPL					 = gettemplate('resources/resources_row');
-		foreach($reslist['prod'] as $ProdID)
+		foreach ($reslist['prod'] as $ProdID)
 		{
 			if ($CurrentPlanet[$resource[$ProdID]] > 0 && isset($ProdGrid[$ProdID]))
 			{

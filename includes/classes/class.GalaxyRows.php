@@ -18,7 +18,7 @@ class GalaxyRows
 		{
 			$MissileRange = ($user[$resource[117]] * 2) - 1;
 		}
-		elseif($user[$resource[117]] == 0)
+		elseif ($user[$resource[117]] == 0)
 		{
 			$MissileRange = 0;
 		}
@@ -33,7 +33,7 @@ class GalaxyRows
 		{
 			$PhalanxRange = pow($PhalanxLevel, 2) - 1;
 		}
-		elseif($PhalanxLevel == 1)
+		elseif ($PhalanxLevel == 1)
 		{
 			$PhalanxRange = 1;
 		}
@@ -457,7 +457,7 @@ class GalaxyRows
 				}
 			}
 		}
-		elseif($GalaxyInfo["destruyed"] != 0)
+		elseif ($GalaxyInfo["destruyed"] != 0)
 		{
 			$planetname .= $lang['gl_planet_destroyed'];
 		}

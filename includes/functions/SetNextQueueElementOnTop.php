@@ -80,7 +80,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 						SendSimpleMessage ( $CurrentUser['id'], '', '', 99, $lang['sys_buildlist'], $lang['sys_buildlist_fail'], $Message);
 
 						array_shift( $QueueArray );
-						foreach($QueueArray as $num => $info)
+						foreach ($QueueArray as $num => $info)
 						{
 							$fixEle                = explode(",",$info);
 							$fixEle[3]            = $fixEle[3] - $BuildTime;

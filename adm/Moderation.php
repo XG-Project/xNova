@@ -29,22 +29,22 @@ if ($_GET['moderation'] == '1')
 
 
 	// MODERADORES
-	if($Moderator[0] == 1){$parse['view_m'] = 'checked = "checked"';}
-	if($Moderator[1] == 1){$parse['edit_m'] = 'checked = "checked"';}
-	if($Moderator[2] == 1){$parse['config_m'] = 'checked = "checked"';}
-	if($Moderator[3] == 1){$parse['tools_m'] = 'checked = "checked"';}
-	if($Moderator[4] == 1){$parse['log_m'] = 'checked = "checked"';}
+	if ($Moderator[0] == 1){$parse['view_m'] = 'checked = "checked"';}
+	if ($Moderator[1] == 1){$parse['edit_m'] = 'checked = "checked"';}
+	if ($Moderator[2] == 1){$parse['config_m'] = 'checked = "checked"';}
+	if ($Moderator[3] == 1){$parse['tools_m'] = 'checked = "checked"';}
+	if ($Moderator[4] == 1){$parse['log_m'] = 'checked = "checked"';}
 
 
 	// OPERADORES
-	if($Operator[0] == 1){$parse['view_o'] = 'checked = "checked"';}
-	if($Operator[1] == 1){$parse['edit_o'] = 'checked = "checked"';}
-	if($Operator[2] == 1){$parse['config_o'] = 'checked = "checked"';}
-	if($Operator[3] == 1){$parse['tools_o'] = 'checked = "checked"';}
-	if($Operator[4] == 1){$parse['log_o'] = 'checked = "checked"';}
+	if ($Operator[0] == 1){$parse['view_o'] = 'checked = "checked"';}
+	if ($Operator[1] == 1){$parse['edit_o'] = 'checked = "checked"';}
+	if ($Operator[2] == 1){$parse['config_o'] = 'checked = "checked"';}
+	if ($Operator[3] == 1){$parse['tools_o'] = 'checked = "checked"';}
+	if ($Operator[4] == 1){$parse['log_o'] = 'checked = "checked"';}
 
 	// ADMINISTRADOR (SOLO PARA EL HISTORIAL)
-	if($Administrator[0] == 1){$parse['log_a'] = 'checked = "checked"';}
+	if ($Administrator[0] == 1){$parse['log_a'] = 'checked = "checked"';}
 
 
 
@@ -54,20 +54,20 @@ if ($_GET['moderation'] == '1')
 
 	if ($_POST['mode'])
 	{
-		if($_POST['view_m'] == 'on') $view_m = 1; else $view_m = 0;
-		if($_POST['edit_m'] == 'on') $edit_m = 1; else $edit_m = 0;
-		if($_POST['config_m'] == 'on') $config_m = 1; else $config_m = 0;
-		if($_POST['tools_m'] == 'on') $tools_m = 1; else $tools_m = 0;
-		if($_POST['log_m'] == 'on') $log_m = 1; else $log_m = 0;
+		if ($_POST['view_m'] == 'on') $view_m = 1; else $view_m = 0;
+		if ($_POST['edit_m'] == 'on') $edit_m = 1; else $edit_m = 0;
+		if ($_POST['config_m'] == 'on') $config_m = 1; else $config_m = 0;
+		if ($_POST['tools_m'] == 'on') $tools_m = 1; else $tools_m = 0;
+		if ($_POST['log_m'] == 'on') $log_m = 1; else $log_m = 0;
 
-		if($_POST['view_o'] == 'on') $view_o = 1; else $view_o = 0;
-		if($_POST['edit_o'] == 'on') $edit_o = 1; else $edit_o = 0;
+		if ($_POST['view_o'] == 'on') $view_o = 1; else $view_o = 0;
+		if ($_POST['edit_o'] == 'on') $edit_o = 1; else $edit_o = 0;
 
-		if($_POST['config_o'] == 'on') $config_o = 1; else $config_o = 0;
-		if($_POST['tools_o'] == 'on') $tools_o = 1; else $tools_o = 0;
-		if($_POST['log_o'] == 'on') $log_o = 1; else $log_o = 0;
+		if ($_POST['config_o'] == 'on') $config_o = 1; else $config_o = 0;
+		if ($_POST['tools_o'] == 'on') $tools_o = 1; else $tools_o = 0;
+		if ($_POST['log_o'] == 'on') $log_o = 1; else $log_o = 0;
 
-		if($_POST['log_a'] == 'on') $log_a = 1; else $log_a = 0;
+		if ($_POST['log_a'] == 'on') $log_a = 1; else $log_a = 0;
 
 
 
@@ -129,15 +129,15 @@ elseif ($_GET['moderation'] == '2')
 			{
 				$parse['display']	=	'<tr><th colspan="3"><font color=red>'.$lang['ad_authlevel_error_2'].'</font></th></tr>';
 			}
-			elseif( ! $_POST['id_1'] && !$_POST['id_2'])
+			elseif ( ! $_POST['id_1'] && !$_POST['id_2'])
 			{
 				$parse['display']	=	'<tr><th colspan="3"><font color=red>'.$lang['ad_forgiven_id'].'</font></th></tr>';
 			}
-			elseif( ! $_POST['id_1'] && ! is_numeric($_POST['id_2']))
+			elseif ( ! $_POST['id_1'] && ! is_numeric($_POST['id_2']))
 			{
 				$parse['display']	=	'<tr><th colspan="3"><font color=red>'.$lang['only_numbers'].'</font></th></tr>';
 			}
-			elseif($_POST['id_1'] == '1' || $_POST['id_2'] == '1')
+			elseif ($_POST['id_1'] == '1' || $_POST['id_2'] == '1')
 			{
 				$parse['display']	=	'<tr><th colspan="3"><font color=red>'.$lang['ad_authlevel_error_3'].'</font></th></tr>';
 			}
@@ -151,7 +151,7 @@ elseif ($_GET['moderation'] == '2')
 
 				$QueryFind	=	doquery("SELECT `authlevel` FROM {{table}} WHERE `id` = '".$id."'", "users", TRUE);
 
-				if($QueryFind['authlevel'] != $_POST['authlevel'])
+				if ($QueryFind['authlevel'] != $_POST['authlevel'])
 				{
 					doquery("UPDATE {{table}} SET `authlevel` = '".$_POST['authlevel']."' WHERE `id` = '".$id."'", "users");
 					doquery("UPDATE {{table}} SET `id_level` = '".$_POST['authlevel']."' WHERE `id_owner` = '".$id."';", 'planets');

@@ -137,7 +137,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			foreach ($attackers as $fleetID => $attacker) {
 				$attacker_n[$fleetID] = array();
 
-				foreach($attacker['detail'] as $element => $amount) {
+				foreach ($attacker['detail'] as $element => $amount) {
 					$defender_moc = $amount * ($defenseDamage['total'] * $attackPct[$fleetID]) / $attackAmount[$fleetID];
 
 					if ($amount > 0) {
@@ -176,7 +176,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			foreach ($defenders as $fleetID => $defender) {
 				$defender_n[$fleetID] = array();
 
-				foreach($defender['def'] as $element => $amount) {
+				foreach ($defender['def'] as $element => $amount) {
 					$attacker_moc = $amount * ($attackDamage['total'] * $defensePct[$fleetID]) / $defenseAmount[$fleetID];
 
 					if ($amount > 0) {
@@ -212,7 +212,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			// "Rapidfire"
 			foreach ($attackers as $fleetID => $attacker) {
 				foreach ($defenders as $fleetID2 => $defender) {
-					foreach($attacker['detail'] as $element => $amount) {
+					foreach ($attacker['detail'] as $element => $amount) {
 						if ($amount > 0) {
 							foreach ($CombatCaps[$element]['sd'] as $c => $d) {
 								if (isset($defender['def'][$c])) {
@@ -228,7 +228,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 						}
 					}
 
-					foreach($defender['def'] as $element => $amount) {
+					foreach ($defender['def'] as $element => $amount) {
 						if ($amount > 0) {
 							foreach ($CombatCaps[$element]['sd'] as $c => $d) {
 								if (isset($attacker['detail'][$c])) {

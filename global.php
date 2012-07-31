@@ -21,7 +21,7 @@ require(XN_ROOT.'config.php');
 if (isset($dbsettings))
 {
 	$db			= new mysqli($dbsettings["server"], $dbsettings["user"], $dbsettings["pass"], $dbsettings["name"]);
-	if ( ! is_null($db->connect_error)) $debug->error($db->connect_error, "SQL Error");
+	if ( ! is_NULL($db->connect_error)) $debug->error($db->connect_error, "SQL Error");
 
 	unset($dbsettings);
 }

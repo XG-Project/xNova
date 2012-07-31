@@ -4,7 +4,7 @@ function getStorageFaktor() {
 	return 1
 }
 </script>
-<form action="game.php?page=fleet3" method="post" onsubmit='this.submit.disabled = true;'>
+<form action="game.php?page=fleet3" method="post" onsubmit='this.submit.disabled = TRUE;'>
 <input type="hidden" name="thisresource1"  value="{metal}" />
 <input type="hidden" name="thisresource2"  value="{crystal}" />
 <input type="hidden" name="thisresource3"  value="{deuterium}" />

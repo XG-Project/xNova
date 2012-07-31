@@ -60,7 +60,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 				$Caps['crystal_perhour']	+= Production::current_production ( Production::production_amount ( $crystal_prod , $geologe_boost ) , $post_porcent);
 				$Caps['deuterium_perhour']	+= Production::current_production ( Production::production_amount ( $deuterium_prod , $geologe_boost ) , $post_porcent);
 
-				if( $ProdID >= 4 )
+				if ( $ProdID >= 4 )
 				{
 					if ( $ProdID == 12 && $CurrentPlanet['deuterium'] == 0 )
 					{
@@ -115,7 +115,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 		{
 			$production_level = floor(($CurrentPlanet['energy_max'] / $CurrentPlanet['energy_used']) * 100);
 		}
-		if($production_level > 100)
+		if ($production_level > 100)
 		{
 			$production_level = 100;
 		}
@@ -169,17 +169,17 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			}
 		}
 
-		if( $CurrentPlanet['metal'] < 0 )
+		if ( $CurrentPlanet['metal'] < 0 )
 		{
 			$CurrentPlanet['metal']  = 0;
 		}
 
-		if( $CurrentPlanet['crystal'] < 0 )
+		if ( $CurrentPlanet['crystal'] < 0 )
 		{
 			$CurrentPlanet['crystal']  = 0;
 		}
 
-		if( $CurrentPlanet['deuterium'] < 0 )
+		if ( $CurrentPlanet['deuterium'] < 0 )
 		{
 			$CurrentPlanet['deuterium']  = 0;
 		}

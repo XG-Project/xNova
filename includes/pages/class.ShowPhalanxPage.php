@@ -55,7 +55,7 @@ class ShowPhalanxPage
 			$QryTargetInfo .= "`system` = '" . $System . "' AND ";
 			$QryTargetInfo .= "`planet` = '" . $Planet . "' AND ";
 			$QryTargetInfo .= "`planet_type` = 1 ";
-			$TargetInfo = doquery($QryTargetInfo, 'planets', true);
+			$TargetInfo = doquery($QryTargetInfo, 'planets', TRUE);
 			$TargetID = $TargetInfo['id_owner'];
 			$TargetName = $TargetInfo['name'];
 
@@ -66,11 +66,11 @@ class ShowPhalanxPage
 			$QryTargetInfo .= "`system` = '" . $System . "' AND ";
 			$QryTargetInfo .= "`planet` = '" . $Planet . "' AND ";
 			$QryTargetInfo .= "`planet_type` = 3 ";
-			$TargetInfo = doquery($QryTargetInfo, 'planets', true);
+			$TargetInfo = doquery($QryTargetInfo, 'planets', TRUE);
 			//if there isn't a moon,
-			if ($TargetInfo === false)
+			if ($TargetInfo === FALSE)
 			{
-				$TargetMoonIsDestroyed = true;
+				$TargetMoonIsDestroyed = TRUE;
 			}
 			else
 			{
@@ -101,7 +101,7 @@ class ShowPhalanxPage
 				$EndStayTime = $FleetRow['fleet_end_stay'];
 				$ReturnTime = $FleetRow['fleet_end_time'];
 				$Mission = $FleetRow['fleet_mission'];
-				$myFleet = ($FleetRow['fleet_owner'] == $TargetID) ? true : false;
+				$myFleet = ($FleetRow['fleet_owner'] == $TargetID) ? TRUE : FALSE;
 				$FleetRow['fleet_resource_metal'] = 0;
 				$FleetRow['fleet_resource_crystal'] = 0;
 				$FleetRow['fleet_resource_deuterium'] = 0;
@@ -165,7 +165,7 @@ class ShowPhalanxPage
 		$parse['phl_pl_place'] = $Planet;
 		$parse['phl_pl_name'] = $TargetName;
 
-		return display(parsetemplate(gettemplate('galaxy/phalanx_body'), $parse), false, '', false, false);
+		return display(parsetemplate(gettemplate('galaxy/phalanx_body'), $parse), FALSE, '', FALSE, FALSE);
 	}
 }
 

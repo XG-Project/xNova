@@ -51,7 +51,7 @@ class ShowOfficierPage
 		{
 			$OfficierRowTPL			=	gettemplate('officier/officier_row');
 
-			foreach($lang['tech'] as $Element => $ElementName)
+			foreach ($lang['tech'] as $Element => $ElementName)
 			{
 				$Result = $this->IsOfficierAccessible ($CurrentUser, $Element);
 				$Price	= $this->GetOfficierPrice ( $Element );

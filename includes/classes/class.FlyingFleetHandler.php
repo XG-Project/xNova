@@ -19,7 +19,7 @@ class FlyingFleetHandler
 
 		foreach ($attackFleets as $FleetID => $Attacker)
 		{
-			foreach($Attacker['detail'] as $Element => $amount)
+			foreach ($Attacker['detail'] as $Element => $amount)
 			{
 				if ($Element != 210) //fix probos capacity in attack by jstar
 					$SortFleets[$FleetID]        += $pricelist[$Element]['capacity'] * $amount;
@@ -54,7 +54,7 @@ class FlyingFleetHandler
 		//END FIX
 
 		$steal                 = array_map('floor', $booty);
-		if($ForSim)
+		if ($ForSim)
 			return $steal;
 
 		$AllCapacity    = array_sum($SortFleets);
@@ -62,7 +62,7 @@ class FlyingFleetHandler
 
 		if ( $AllCapacity != 0 )
 		{
-			foreach($SortFleets as $FleetID => $Capacity)
+			foreach ($SortFleets as $FleetID => $Capacity)
 			{
 				$QryUpdateFleet = 'UPDATE {{table}} SET ';
 				$QryUpdateFleet .= '`fleet_resource_metal` = `fleet_resource_metal` + '.Format::float_to_string($steal['metal'] * ($Capacity / $AllCapacity)).', ';
@@ -188,11 +188,11 @@ class FlyingFleetHandler
 		$atakujacy_n = array();
 		$wrog_n      = array();
 
-		if (!is_null($CurrentSet))
+		if (!is_NULL($CurrentSet))
 		{
 			$atakujacy_zlom_poczatek['metal']   = 0;
 			$atakujacy_zlom_poczatek['crystal'] = 0;
-			foreach($CurrentSet as $a => $b)
+			foreach ($CurrentSet as $a => $b)
 			{
 				$atakujacy_zlom_poczatek['metal']   = $atakujacy_zlom_poczatek['metal']   + $CurrentSet[$a]['count'] * $pricelist[$a]['metal'];
 				$atakujacy_zlom_poczatek['crystal'] = $atakujacy_zlom_poczatek['crystal'] + $CurrentSet[$a]['count'] * $pricelist[$a]['crystal'];
@@ -203,9 +203,9 @@ class FlyingFleetHandler
 		$wrog_zlom_poczatek['crystal'] 	= 0;
 		$wrog_poczatek 					= $TargetSet;
 
-		if (!is_null($TargetSet))
+		if (!is_NULL($TargetSet))
 		{
-			foreach($TargetSet as $a => $b)
+			foreach ($TargetSet as $a => $b)
 			{
 				if ($a < 300)
 				{
@@ -231,9 +231,9 @@ class FlyingFleetHandler
 			$wrog_tarcza      = 0;
 			$atakujacy_tarcza = 0;
 
-			if (!is_null($CurrentSet))
+			if (!is_NULL($CurrentSet))
 			{
-				foreach($CurrentSet as $a => $b)
+				foreach ($CurrentSet as $a => $b)
 				{
 					$CurrentSet[$a]["obrona"] 	= $CurrentSet[$a]['count'] * ($pricelist[$a]['metal'] + $pricelist[$a]['crystal']) / 10 * (1 + (0.1 * ($CurrentTechno["defence_tech"])));
 					$rand 						= rand(80, 120) / 100;
@@ -254,9 +254,9 @@ class FlyingFleetHandler
 				break;
 			}
 
-			if ( ! is_null($TargetSet))
+			if ( ! is_NULL($TargetSet))
 			{
-				foreach($TargetSet as $a => $b)
+				foreach ($TargetSet as $a => $b)
 				{
 					$TargetSet[$a]["obrona"] 	= $TargetSet[$a]['count'] * ($pricelist[$a]['metal'] + $pricelist[$a]['crystal']) / 10 * (1 + (0.1 * ($TargetTechno["defence_tech"])));
 					$rand 						= rand(80, 120) / 100;
@@ -293,7 +293,7 @@ class FlyingFleetHandler
 			if (($atakujacy_ilosc == 0) or ($wrog_ilosc == 0))
 				break;
 
-			foreach($CurrentSet as $a => $b)
+			foreach ($CurrentSet as $a => $b)
 			{
 				if ($atakujacy_ilosc > 0)
 				{
@@ -325,7 +325,7 @@ class FlyingFleetHandler
 				}
 			}
 
-			foreach($TargetSet as $a => $b)
+			foreach ($TargetSet as $a => $b)
 			{
 				if ($wrog_ilosc > 0)
 				{
@@ -359,7 +359,7 @@ class FlyingFleetHandler
 				}
 			}
 
-			foreach($CurrentSet as $a => $b)
+			foreach ($CurrentSet as $a => $b)
 			{
 				foreach ($CombatCaps[$a]['sd'] as $c => $d)
 				{
@@ -372,7 +372,7 @@ class FlyingFleetHandler
 				}
 			}
 
-			foreach($TargetSet as $a => $b)
+			foreach ($TargetSet as $a => $b)
 			{
 				foreach ($CombatCaps[$a]['sd'] as $c => $d)
 				{
@@ -415,9 +415,9 @@ class FlyingFleetHandler
 
 		$atakujacy_zlom_koniec['metal'] = 0;
 		$atakujacy_zlom_koniec['crystal'] = 0;
-		if ( ! is_null($CurrentSet))
+		if ( ! is_NULL($CurrentSet))
 		{
-			foreach($CurrentSet as $a => $b)
+			foreach ($CurrentSet as $a => $b)
 			{
 				$atakujacy_zlom_koniec['metal']   = $atakujacy_zlom_koniec['metal'] + $CurrentSet[$a]['count'] * $pricelist[$a]['metal'];
 				$atakujacy_zlom_koniec['crystal'] = $atakujacy_zlom_koniec['crystal'] + $CurrentSet[$a]['count'] * $pricelist[$a]['crystal'];
@@ -426,9 +426,9 @@ class FlyingFleetHandler
 
 		$wrog_zlom_koniec['metal'] = 0;
 		$wrog_zlom_koniec['crystal'] = 0;
-		if ( ! is_null($TargetSet))
+		if ( ! is_NULL($TargetSet))
 		{
-			foreach($TargetSet as $a => $b)
+			foreach ($TargetSet as $a => $b)
 			{
 				if ($a < 300)
 				{
@@ -445,9 +445,9 @@ class FlyingFleetHandler
 		$ilosc_wrog = 0;
 		$straty_obrona_wrog = 0;
 
-		if ( ! is_null($TargetSet))
+		if ( ! is_NULL($TargetSet))
 		{
-			foreach($TargetSet as $a => $b)
+			foreach ($TargetSet as $a => $b)
 			{
 				if ($a > 300)
 				{
@@ -759,18 +759,18 @@ class FlyingFleetHandler
 			$DebrisField      = $StrAttackerUnits ."<br />". $StrDefenderUnits ."<br />". $StrRuins;
 			$MoonChance       = $FleetDebris / 100000;
 
-			if($FleetDebris > 2000000)
+			if ($FleetDebris > 2000000)
 			{
 				$MoonChance = 20;
 				$UserChance = mt_rand(1, 100);
 				$ChanceMoon = sprintf ($lang['sys_moonproba'], $MoonChance);
 			}
-			elseif($FleetDebris < 100000)
+			elseif ($FleetDebris < 100000)
 			{
 				$UserChance = 0;
 				$ChanceMoon = sprintf ($lang['sys_moonproba'], $MoonChance);
 			}
-			elseif($FleetDebris >= 100000)
+			elseif ($FleetDebris >= 100000)
 			{
 				$UserChance = mt_rand(1, 100);
 				$ChanceMoon = sprintf ($lang['sys_moonproba'], $MoonChance);
@@ -811,7 +811,7 @@ class FlyingFleetHandler
 			$QryInsertRapport .= '`raport` = "'. $db->real_escape_string($raport) .'"';
 			doquery($QryInsertRapport,'rw') or die("Error inserting CR to database<br /><br />Trying to execute:".$db->error);
 
-			if($result['won'] == "a")
+			if ($result['won'] == "a")
 			{
 				$style = "green";
 			}
@@ -828,7 +828,7 @@ class FlyingFleetHandler
 
 			SendSimpleMessage ( $FleetRow['fleet_owner'], '', $FleetRow['fleet_start_time'], 3, $lang['sys_mess_tower'], $raport, '' );
 
-			if($result['won'] == "a")
+			if ($result['won'] == "a")
 			{
 				$style = "red";
 			}
@@ -1048,7 +1048,7 @@ class FlyingFleetHandler
 				doquery( $QryUpdateFleet, 'fleets');
 
 			}
-			elseif($FleetRow['fleet_end_stay'] <= time())
+			elseif ($FleetRow['fleet_end_stay'] <= time())
 			{
 				$QryUpdateFleet  = "UPDATE {{table}} SET ";
 				$QryUpdateFleet .= "`fleet_mess` = 1 ";
@@ -1174,7 +1174,7 @@ class FlyingFleetHandler
 
 						$TargetMessage  = $lang['sys_mess_spy_ennemyfleet'] ." ". $CurrentPlanet['name'];
 
-						if($FleetRow['fleet_start_type'] == 3)
+						if ($FleetRow['fleet_start_type'] == 3)
 							$TargetMessage .= $lang['sys_mess_spy_report_moon'] . " ";
 
 						$TargetMessage .= "<a href=\"game.php?page=galaxy&mode=3&galaxy=". $CurrentPlanet["galaxy"] ."&system=". $CurrentPlanet["system"] ."\">";
@@ -1455,7 +1455,7 @@ class FlyingFleetHandler
 
 				$TheFleet = explode(";", $FleetRow['fleet_array']);
 
-				foreach($TheFleet as $a => $b)
+				foreach ($TheFleet as $a => $b)
 				{
 					if ($b != '')
 					{
@@ -1485,9 +1485,9 @@ class FlyingFleetHandler
 
 				$TargetPlanetUpd = "";
 
-				if (!is_null($TargetSet))
+				if (!is_NULL($TargetSet))
 				{
-					foreach($TargetSet as $Ship => $Count)
+					foreach ($TargetSet as $Ship => $Count)
 					{
 						$TargetPlanetUpd .= "`". $resource[$Ship] ."` = '". $Count['count'] ."', ";
 					}
@@ -1507,7 +1507,7 @@ class FlyingFleetHandler
 					$tirage 	= mt_rand(0, 100);
 					$probalune	= sprintf ($lang['sys_destruc_lune'], $chance);
 
-					if($tirage <= $chance)
+					if ($tirage <= $chance)
 					{
 						$resultat 	= '1';
 						$finmess 	= $lang['sys_destruc_reussi'];
@@ -1570,7 +1570,7 @@ class FlyingFleetHandler
 					{
 						$tirage2 	= mt_rand(0, 100);
 						$probarip	= sprintf ($lang['sys_destruc_rip'], $chance2);
-						if($tirage2 <= $chance2)
+						if ($tirage2 <= $chance2)
 						{
 							$resultat2 = ' detruite 1';
 							$finmess = $lang['sys_destruc_echec'];
@@ -1579,7 +1579,7 @@ class FlyingFleetHandler
 						else
 						{
 							$resultat2 = 'sauvees 0';
-							$finmess = $lang['sys_destruc_null'];
+							$finmess = $lang['sys_destruc_NULL'];
 						}
 					}
 				}
@@ -1796,7 +1796,7 @@ class FlyingFleetHandler
 				$raport  = "<a href=\"#\" OnClick=\'f(\"CombatReport.php?raport=". $rid ."\", \"\");\' >";
 				$raport .= "<center>";
 
-				if($FleetResult == "a")
+				if ($FleetResult == "a")
 					$raport .= "<font color=\"green\">";
 				elseif ($FleetResult == "r")
 					$raport .= "<font color=\"orange\">";
@@ -1821,7 +1821,7 @@ class FlyingFleetHandler
 				$raport2  = "<a href=\"#\" OnClick=\'f(\"CombatReport.php?raport=". $rid ."\", \"\");\' >";
 				$raport2 .= "<center>";
 
-				if($FleetResult == "a")
+				if ($FleetResult == "a")
 					$raport2 .= "<font color=\"red\">";
 				elseif ($FleetResult == "r")
 					$raport2 .= "<font color=\"orange\">";
@@ -1837,9 +1837,9 @@ class FlyingFleetHandler
 
 			if ($FleetRow['fleet_end_time'] <= time())
 			{
-				if (!is_null($CurrentSet))
+				if (!is_NULL($CurrentSet))
 				{
-					foreach($CurrentSet as $Ship => $Count)
+					foreach ($CurrentSet as $Ship => $Count)
 					{
 						$fquery .= "`". $resource[$Ship] ."` = `". $resource[$Ship] ."` + '". $Count['count'] ."', ";
 					}
@@ -1847,7 +1847,7 @@ class FlyingFleetHandler
 				else
 				{
 					$fleet = explode(";", $FleetRow['fleet_array']);
-					foreach($fleet as $a => $b)
+					foreach ($fleet as $a => $b)
 					{
 						if ($b != '')
 						{
@@ -2060,14 +2060,14 @@ class FlyingFleetHandler
 						$all_destroyed = TRUE;
 						foreach ($LaFlotte as $Ship => $Count)
 						{
-							if(floor($Count * $LostAmount)!=0)
+							if (floor($Count * $LostAmount)!=0)
 							{
 								$LostShips[$Ship] 	= floor($Count * $LostAmount);
 								$NewFleetArray     .= $Ship.",". ($Count - $LostShips[$Ship]) .";";
 								$all_destroyed 		= FALSE;
 							}
 						}
-						if(!$all_destroyed)
+						if (!$all_destroyed)
 						{
 							$QryUpdateFleet  = "UPDATE {{table}} SET ";
 							$QryUpdateFleet .= "`fleet_array` = '". $NewFleetArray ."', ";
@@ -2203,25 +2203,24 @@ class FlyingFleetHandler
 		}
 	}
 
-	public function __construct (&$planet)
+	public function __construct(&$planet)
 	{
 		global $resource;
 
 		doquery("LOCK TABLE {{table}}aks WRITE, {{table}}rw WRITE, {{table}}errors WRITE, {{table}}messages WRITE, {{table}}fleets WRITE,  {{table}}planets WRITE, {{table}}galaxy WRITE ,{{table}}users WRITE", "");
 
 		$QryFleet   = "SELECT * FROM {{table}} ";
-		$QryFleet  .= "WHERE (";
-		$QryFleet  .= "( ";
-		$QryFleet  .= "`fleet_start_galaxy` = ". $planet['galaxy']      ." AND ";
+		$QryFleet  .= "WHERE ";
+		$QryFleet  .= "(`fleet_start_galaxy` = ". $planet['galaxy']      ." AND ";
 		$QryFleet  .= "`fleet_start_system` = ". $planet['system']      ." AND ";
 		$QryFleet  .= "`fleet_start_planet` = ". $planet['planet']      ." AND ";
 		$QryFleet  .= "`fleet_start_type` = ".   $planet['planet_type'] ." ";
 		$QryFleet  .= ") OR ( ";
 		$QryFleet  .= "`fleet_end_galaxy` = ".   $planet['galaxy']      ." AND ";
 		$QryFleet  .= "`fleet_end_system` = ".   $planet['system']      ." AND ";
-		$QryFleet  .= "`fleet_end_planet` = ".   $planet['planet']      ." ) AND ";
-		$QryFleet  .= "`fleet_end_type`= ".      $planet['planet_type'] ." ) AND ";
-		$QryFleet  .= "( `fleet_start_time` < '". time() ."' OR `fleet_end_time` < '". time() ."' );";
+		$QryFleet  .= "`fleet_end_planet` = ".   $planet['planet']      ." AND ";
+		$QryFleet  .= "`fleet_end_type`= ".      $planet['planet_type'] ." AND ";
+		$QryFleet  .= "`fleet_start_time` < '". time() ."');";
 		$fleetquery = doquery( $QryFleet, 'fleets' );
 
 

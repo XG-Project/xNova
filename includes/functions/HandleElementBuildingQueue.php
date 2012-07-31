@@ -43,11 +43,11 @@ function HandleElementBuildingQueue ( $CurrentUser, &$CurrentPlanet, $Production
 			{
 				$AllTime = $BuildTime * $Count;
 
-				if($CurrentPlanet['b_hangar'] >= $BuildTime)
+				if ($CurrentPlanet['b_hangar'] >= $BuildTime)
 				{
 					$Done = min($Count, floor( $CurrentPlanet['b_hangar'] / $BuildTime));
 
-					if($Count > $Done)
+					if ($Count > $Done)
 					{
 						$CurrentPlanet['b_hangar'] -= $BuildTime * $Done;
 						$UnFinished = TRUE;
@@ -68,7 +68,7 @@ function HandleElementBuildingQueue ( $CurrentUser, &$CurrentPlanet, $Production
 					$UnFinished = TRUE;
 				}
 			}
-			elseif(!$UnFinished)
+			elseif (!$UnFinished)
 			{
 				$Builded[$Element] += $Count;
 				$CurrentPlanet[$resource[$Element]] += $Count;

@@ -36,7 +36,7 @@ if ($Observation != 1) die(message ($lang['404_page']));
 		$ViewPage = ( !empty($SelPage) ) ? $SelPage : 1;
 	}
 
-	if($Prev  )
+	if ($Prev  )
 	{
 		$CurrPage -= 1;
 		if ($CurrPage >= 1)
@@ -64,7 +64,7 @@ if ($Observation != 1) die(message ($lang['404_page']));
 	{
 		if ($DelSel)
 		{
-			foreach($_POST['sele'] as $MessId => $Value)
+			foreach ($_POST['sele'] as $MessId => $Value)
 			{
 				if ($Value = "on")
 					doquery ( "DELETE FROM {{table}} WHERE `message_id` = '". $MessId ."';", 'messages');

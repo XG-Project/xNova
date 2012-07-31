@@ -72,13 +72,13 @@ switch ($page)
 			}
 		}
 
-		display(parsetemplate(gettemplate('adm/CreateBotBody'), $parse), false, '', true, false);
+		display(parsetemplate(gettemplate('adm/CreateBotBody'), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case 'delete_log':
 			$file = fopen(XN_ROOT."adm/Log/BotLog.php", "w");
 			fclose($file);
-			display(parsetemplate(gettemplate('adm/DeleteBotBody'), $parse), false, '', true, false);
+			display(parsetemplate(gettemplate('adm/DeleteBotBody'), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	default:
@@ -118,14 +118,14 @@ switch ($page)
 	{
 		doquery("TRUNCATE TABLE {{table}}", 'bots');
 		update_config('bots', 0);
-		foreach(scandir(XN_ROOT.'includes/bots/') as $file)
-			if(is_file(XN_ROOT.'includes/bots/'.$file)) unlink(XN_ROOT.'includes/bots/'.$file);
+		foreach (scandir(XN_ROOT.'includes/bots/') as $file)
+			if (is_file(XN_ROOT.'includes/bots/'.$file)) unlink(XN_ROOT.'includes/bots/'.$file);
 
 		header ("Location: BotSettingsPage.php");
 	}
 	$parse['log'] = file_get_contents(XN_ROOT.'adm/Log/BotLog.php');
 
-	display(parsetemplate(gettemplate('adm/BotSettingsBody'), $parse), false, '', true, false);
+	display(parsetemplate(gettemplate('adm/BotSettingsBody'), $parse), FALSE, '', TRUE, FALSE);
 }
 
 

@@ -11,9 +11,9 @@
 	<td class="c" colspan="3">{title}</td>
 </tr><tr>
 	<th>{bo_username}</th>
-	<th colspan="2"><input name="ban_name" type="text" value="{name}" readonly="true" class="character"/></th>
+	<th colspan="2"><input name="ban_name" type="text" value="{name}" readonly="TRUE" class="character"/></th>
 </tr><tr>
-	<th>{bo_reason} <br><br>{bo_characters_1}<input name="result2" value=50 size="2" readonly="true" class="character"></th>
+	<th>{bo_reason} <br><br>{bo_characters_1}<input name="result2" value=50 size="2" readonly="TRUE" class="character"></th>
 	<th colspan="2"><textarea name="why" maxlength="50" cols="20" rows="5" onKeyDown="contar2('countt','why')" onKeyUp="contar2('countt','why')">{reas}</textarea></th>
 </tr>
 	{timesus}

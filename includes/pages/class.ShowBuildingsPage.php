@@ -41,7 +41,7 @@ class ShowBuildingsPage
 				for ($ID = 0; $ID < $NewCount ; $ID++ )
 				{
 					$ListIDArray          = explode ( ",", $QueueArray[$ID] );
-					if($ListIDArray[0] == $Element)
+					if ($ListIDArray[0] == $Element)
 						$ListIDArray[1] -= 1;
 
 					$BuildEndTime        += $ListIDArray[2];
@@ -113,7 +113,7 @@ class ShowBuildingsPage
 					//next buildings
 					$nextListIDArray     = explode ( ",", $QueueArray[$ID] );
 					//if same type of element
-					if($nextListIDArray[0] == $ListIDArrayToDelete[0])
+					if ($nextListIDArray[0] == $ListIDArrayToDelete[0])
 					{
 						$lastB=$nextListIDArray;
 						$lastID=$ID;
@@ -121,7 +121,7 @@ class ShowBuildingsPage
 				}
 
 				// update the rest of buildings queue
-				for( $ID=$lastID; $ID < $ActualCount-1; $ID++ )
+				for ( $ID=$lastID; $ID < $ActualCount-1; $ID++ )
 				{
 
 					$nextListIDArray		= explode ( ",", $QueueArray[$ID+1] );
@@ -366,7 +366,7 @@ class ShowBuildingsPage
 				unset($Element);
 			}
 
-			if( isset ( $Element ))
+			if ( isset ( $Element ))
 			{
 				if ( !strchr ( $Element, ",") && !strchr ( $Element, " ") &&
 					 !strchr ( $Element, "+") && !strchr ( $Element, "*") &&
@@ -404,7 +404,7 @@ class ShowBuildingsPage
 
 			if ($bDoItNow)
 			{
-				switch($TheCommand)
+				switch ($TheCommand)
 				{
 					case 'cancel':
 						$this->CancelBuildingFromQueue ($CurrentPlanet, $CurrentUser);
@@ -451,7 +451,7 @@ class ShowBuildingsPage
 		$BuildingPage        = "";
 		$zaehler         	 = 1;
 
-		foreach($lang['tech'] as $Element => $ElementName)
+		foreach ($lang['tech'] as $Element => $ElementName)
 		{
 			if (in_array($Element, $Allowed[$CurrentPlanet['planet_type']]))
 			{

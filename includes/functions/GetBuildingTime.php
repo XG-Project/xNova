@@ -14,7 +14,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 		global $pricelist, $resource, $reslist;
 
 		// IF ROUTINE FIX BY JSTAR
-		if($level === FALSE)
+		if ($level === FALSE)
 		{
 			$level = ($planet[$resource[$Element]]) ? $planet[$resource[$Element]] : $user[$resource[$Element]];//ORIGINAL LINE
 		}
@@ -32,7 +32,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			$cost_crystal = floor($pricelist[$Element]['crystal'] * pow($pricelist[$Element]['factor'], $level));
 			$intergal_lab = $user[$resource[123]];
 
-			if($intergal_lab < 1)
+			if ($intergal_lab < 1)
 			{
 				$lablevel 	= $planet[$resource['31']];
 			}

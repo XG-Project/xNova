@@ -129,7 +129,7 @@ if ($search->num_rows != 0)
 		message ($lang['mo_planet_doesnt_exist'],"MoonOptionsPage.php",2);
 	}
 }
-elseif($_POST && $_POST['del_moon'])
+elseif ($_POST && $_POST['del_moon'])
 {
 	$MoonID	= $_POST['del_moon'];
 
@@ -167,7 +167,7 @@ elseif($_POST && $_POST['del_moon'])
 		message ($lang['mo_moon_doesnt_exist'], "MoonOptionsPage.php", 2);
 	}
 }
-elseif($_POST && $_POST['search_moon'])
+elseif ($_POST && $_POST['search_moon'])
 {
 	$UserID		=	$_POST['search_moon'];
 	$search_m	=	doquery("SELECT * FROM {{table}} WHERE `id_owner` LIKE '%{$UserID}%' AND `planet_type` = '3'", "planets");

@@ -27,7 +27,6 @@ class ShowModerationPage {
 			$Operator			=	explode(",", $QueryModerationEx[1]);
 			$Administrator		=	explode(",", $QueryModerationEx[2]); // Solo sirve para el historial
 
-
 			// MODERADORES
 			if ($Moderator[0]) $parse['view_m']		= ' checked';
 			if ($Moderator[1]) $parse['edit_m']		= ' checked';
@@ -44,7 +43,6 @@ class ShowModerationPage {
 
 			// ADMINISTRADOR (SOLO PARA EL HISTORIAL)
 			if ($Administrator[0]) $parse['log_a']	= ' checked';
-
 
 			$parse['mods']	=	$lang['rank'][1];
 			$parse['oper']	=	$lang['rank'][2];
@@ -157,7 +155,7 @@ class ShowModerationPage {
 
 						LogFunction($Log, "ModerationLog", $LogCanWork);
 
-						header ( 'location: admin.php?page=moderate&moderation=2&succes=yes' );
+						header('location: admin.php?page=moderate&moderation=2&succes=yes');
 					}
 					else
 					{

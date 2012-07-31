@@ -24,7 +24,7 @@ class ShowQueriesPage {
 		{
 			$FinalQuery	=	$db->real_escape_string($Query);
 
-			if( ! $db->query($FinalQuery))
+			if ( ! $db->query($FinalQuery))
 			{
 				$parse['display']	= '<div class="content some_errors">'.$db->error.'</div>';
 			}

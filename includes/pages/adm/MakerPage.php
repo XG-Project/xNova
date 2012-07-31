@@ -258,7 +258,7 @@ switch ($_GET['page'])
 			$parse['display']	=	"<tr><th colspan=3><font color=red>".$lang['mo_planet_doesnt_exist']."</font></th></tr>";
 		}
 	}
-	elseif($_POST && $_POST['del_moon'])
+	elseif ($_POST && $_POST['del_moon'])
 	{
 		$MoonID	= $_POST['del_moon'];
 

@@ -40,7 +40,7 @@ class ShowTechTreePage
 						$parse['required_list'] = "";
 						foreach($requeriments[$Element] as $ResClass => $Level)
 						{
-							if( isset($CurrentUser[$resource[$ResClass]] ) && $CurrentUser[$resource[$ResClass]] >= $Level)
+							if ( isset($CurrentUser[$resource[$ResClass]] ) && $CurrentUser[$resource[$ResClass]] >= $Level)
 								$parse['required_list'] .= "<font color=\"#00ff00\">";
 							elseif ( isset($CurrentPlanet[$resource[$ResClass]] ) && $CurrentPlanet[$resource[$ResClass]] >= $Level)
 								$parse['required_list'] .= "<font color=\"#00ff00\">";

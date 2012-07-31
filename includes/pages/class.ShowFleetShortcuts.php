@@ -19,23 +19,23 @@ class ShowFleetShortcuts
 		global $db;
 		$this->CurrentUser=$CurrentUser;
 
-		if(!empty($_GET['mode']))
+		if (!empty($_GET['mode']))
 		{
 			$mode=$_GET['mode'];
 
-			if($mode == "add" && !empty($_POST['galaxy'])&&!empty($_POST['system'])&&!empty($_POST['planet']))
+			if ($mode == "add" && !empty($_POST['galaxy'])&&!empty($_POST['system'])&&!empty($_POST['planet']))
 			{
 				$this->addFleetShortcuts($db->real_escape_string(strip_tags($_POST["name"])),intval($_POST["galaxy"]),intval($_POST["system"]),intval($_POST["planet"]),intval($_POST["moon"]));
 			}
-			elseif($mode=="edit" && isset($_GET['a']) && !empty($_POST['galaxy'])&&!empty($_POST['system'])&&!empty($_POST['planet']) )
+			elseif ($mode=="edit" && isset($_GET['a']) && !empty($_POST['galaxy'])&&!empty($_POST['system'])&&!empty($_POST['planet']) )
 			{
 				$this->saveFleetShortcuts(intval($_GET['a']),$db->real_escape_string(strip_tags($_POST["name"])),intval($_POST["galaxy"]),intval($_POST["system"]),intval($_POST["planet"]),intval($_POST["moon"]));
 			}
-			elseif($mode=="delete" && isset($_GET['a']))
+			elseif ($mode=="delete" && isset($_GET['a']))
 			{
 				$this->deleteFleetShortcuts(intval($_GET['a']));
 			}
-			elseif(isset($_GET['a']))
+			elseif (isset($_GET['a']))
 			{
 				$this->showEditPanelWithID(intval($_GET['a']));
 			}

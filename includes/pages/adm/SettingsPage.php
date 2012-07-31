@@ -295,11 +295,11 @@ function DisplayGameSettingsPage ( $CurrentUser )
 
 		while (($LangSubFolder = readdir($LangFolder)) !== FALSE)
 		{
-			if($LangSubFolder != '.' && $LangSubFolder != '..' && $LangSubFolder != '.htaccess' && $LangSubFolder != '.svn' && $LangSubFolder != 'index.html')
+			if ($LangSubFolder != '.' && $LangSubFolder != '..' && $LangSubFolder != '.htaccess' && $LangSubFolder != '.svn' && $LangSubFolder != 'index.html')
 			{
 				$parse['language_settings'] .= "<option ";
 
-				if($game_config['lang'] == $LangSubFolder)
+				if ($game_config['lang'] == $LangSubFolder)
 					$parse['language_settings'] .= "selected = selected";
 
 				$parse['language_settings'] .= " value=\"".$LangSubFolder."\">".ucfirst($LangSubFolder)."</option>";

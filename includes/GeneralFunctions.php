@@ -166,7 +166,7 @@ function StdUserHeader($metatags = '', $onload = '')
 	$parse['-meta-']	.= '<meta name="application-name" content="xNova">';
 	//TODO description, keywords, link author, link license
 
-	if( ! defined('LOGIN'))
+	if ( ! defined('LOGIN'))
 	{
 		$parse['-style-']	= '<link rel="stylesheet" type="text/css" href="'.GAMEURL.'styles/css/default.css">';
 		$parse['-style-']	.= '<link rel="stylesheet" type="text/css" href="'.GAMEURL.'styles/css/formate.css">';
@@ -298,7 +298,7 @@ function catch_error($errno, $errstr, $errfile, $errline)
 {
 	global $user, $db, $debug;
 
-	if( ! $db)
+	if ( ! $db)
 	{
 		require(XN_ROOT.'config.php');
 

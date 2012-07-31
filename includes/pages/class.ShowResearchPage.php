@@ -27,7 +27,7 @@ class ShowResearchPage
 					$ListIDArray	= explode (",", $QueueArray[$i]);
 					$Element		= $ListIDArray[0];
 
-					if($Element == 31)
+					if ($Element == 31)
 						break;
 				}
 				// END - FIX
@@ -201,12 +201,12 @@ class ShowResearchPage
 					$RowParse['tech_id']     = $Tech;
 					$building_level          = $CurrentUser[$resource[$Tech]];
 
-					if($Tech == 106)
+					if ($Tech == 106)
 					{
 						$RowParse['tech_level']  = ($building_level == 0 ) ? "" : "(". $lang['bd_lvl'] . " ".$building_level .")" ;
 						$RowParse['tech_level']  .= ($CurrentUser['rpg_technocrate'] == 0) ? "" : "<strong><font color=\"lime\"> +" . ($CurrentUser['rpg_technocrate'] * TECHNOCRATE_SPY) . $lang['bd_spy']	. "</font></strong>";
 					}
-					elseif($Tech == 108)
+					elseif ($Tech == 108)
 					{
 						$RowParse['tech_level']  = ($building_level == 0) ? "" : "(". $lang['bd_lvl'] . " ".$building_level .")";
 						$RowParse['tech_level']  .= ($CurrentUser['rpg_amiral'] == 0) ? "" : "<strong><font color=\"lime\"> +" . ($CurrentUser['rpg_amiral'] * AMIRAL) . $lang['bd_commander'] . "</font></strong>";

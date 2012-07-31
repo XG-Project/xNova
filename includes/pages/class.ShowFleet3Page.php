@@ -52,7 +52,7 @@ class ShowFleet3Page
 			}
 		}
 
-		if(($_POST['fleet_group'] == 0) && ($_POST['mission'] == 2))
+		if (($_POST['fleet_group'] == 0) && ($_POST['mission'] == 2))
 		{
 			$_POST['mission'] = 1;
 		}
@@ -109,7 +109,7 @@ class ShowFleet3Page
 			$UsedPlanet = FALSE;
 			$select     = doquery("SELECT * FROM {{table}} WHERE galaxy = '". $galaxy ."' AND system = '". $system ."' AND planet = '". $planet ."'", "planets");
 			$select2    = doquery("SELECT invisible_start_time, metal, crystal FROM {{table}} WHERE galaxy = '". $galaxy ."' AND system = '". $system ."' AND planet = '". $planet ."'", "galaxy",TRUE);
-			if($select2['metal'] == 0 && $select2['crystal'] == 0 && time() > ($select2['invisible_start_time']+DEBRIS_LIFE_TIME))
+			if ($select2['metal'] == 0 && $select2['crystal'] == 0 && time() > ($select2['invisible_start_time']+DEBRIS_LIFE_TIME))
 			{
 				exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 			}
@@ -154,7 +154,7 @@ class ShowFleet3Page
 				$EnvoiMaxExpedition = 0;
 			}
 
-			if($EnvoiMaxExpedition == 0 )
+			if ($EnvoiMaxExpedition == 0 )
 			{
 				message ("<font color=\"red\"><b>".$lang['fl_expedition_tech_required']."</b></font>", "game.php?page=fleet", 2);
 
@@ -184,23 +184,23 @@ class ShowFleet3Page
 		}
 
 		//fix by jstar
-		if($fleetmission == 9)
+		if ($fleetmission == 9)
 		{
 			$countfleettype = count ( $fleetarray );
 
-			if($YourPlanet or !$UsedPlanet or $planettype != 3)
+			if ($YourPlanet or !$UsedPlanet or $planettype != 3)
 			{
 				exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 			}
-			elseif($countfleettype==1 && !(isset($fleetarray[214])))
+			elseif ($countfleettype==1 && !(isset($fleetarray[214])))
 			{
 				exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 			}
-			elseif($countfleettype==2 && !(isset($fleetarray[214])))
+			elseif ($countfleettype==2 && !(isset($fleetarray[214])))
 			{
 				exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 			}
-			elseif($countfleettype>2)
+			elseif ($countfleettype>2)
 			{
 				exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 			}
@@ -226,7 +226,7 @@ class ShowFleet3Page
 		$MyGameLevel  = $UserPoints['total_points'];
 		$HeGameLevel  = $User2Points['total_points'];
 
-		if($HeDBRec['onlinetime'] >= (time()-60 * 60 * 24 * 7))
+		if ($HeDBRec['onlinetime'] >= (time()-60 * 60 * 24 * 7))
 		{
 			if ( is_weak ( $MyGameLevel , $HeGameLevel ) &&
 					$TargetPlanet['id_owner'] != '' &&
@@ -288,7 +288,7 @@ class ShowFleet3Page
 				message ("<font color=\"red\"><b>".$lang['fl_deploy_only_your_planets']."</b></font>","game.php?page=fleet", 2);
 			}
 
-			if($_POST['mission'] == 5)
+			if ($_POST['mission'] == 5)
 			{
 				$buddy = doquery ( "SELECT COUNT( * ) AS buddys
 										FROM  `{{table}}`
@@ -419,7 +419,7 @@ class ShowFleet3Page
 		{
 			$Count = intval($Count);
 
-			if($Ship == 210)
+			if ($Ship == 210)
 			{
 				$haveSpyProbos = TRUE;
 			}
@@ -430,7 +430,7 @@ class ShowFleet3Page
 			$FleetSubQRY     .= "`".$resource[$Ship] . "` = `" . $resource[$Ship] . "` - " . $Count . ", ";
 		}
 
-		if(!$haveSpyProbos AND $_POST['mission'] == 6)
+		if (!$haveSpyProbos AND $_POST['mission'] == 6)
 		{
 			exit ( header ( "location: ".GAMEURL."game.php?page=fleet" ) );
 		}

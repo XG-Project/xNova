@@ -216,7 +216,7 @@ class ShowInfosPage
 		$Prod[2]			= Production::production_amount ( $crystal_prod , $geologe_boost );
 		$Prod[3]			= Production::production_amount ( $deuterium_prod , $geologe_boost );
 
-		if( $BuildID >= 4 )
+		if ( $BuildID >= 4 )
 		{
 			$Prod[4]		= Production::production_amount ( $energy_prod , $engineer_boost );
 			$ActualProd    	= floor ( $Prod[4] );
@@ -258,7 +258,7 @@ class ShowInfosPage
 				$Prod[2]			= Production::production_amount ( $crystal_prod , $geologe_boost );
 				$Prod[3]			= Production::production_amount ( $deuterium_prod , $geologe_boost );
 
-				if( $BuildID >= 4 )
+				if ( $BuildID >= 4 )
 				{
 					$Prod[4]		= Production::production_amount ( $energy_prod , $engineer_boost );
 				}
@@ -364,7 +364,7 @@ class ShowInfosPage
 			$PageTPL = gettemplate('infos/info_officiers_general');
 
 		//Solo hay destroy en <200
-		if($BuildID < 200 AND $BuildID != 33 AND $BuildID != 41)
+		if ($BuildID < 200 AND $BuildID != 33 AND $BuildID != 41)
 			$DestroyTPL           = gettemplate('infos/info_buildings_destroy');
 
 		if ($BuildID >=   1 && $BuildID <=   3)
@@ -405,7 +405,7 @@ class ShowInfosPage
 		{
 			$GateTPL              = gettemplate('infos/info_gate_table');
 
-			if($_POST)
+			if ($_POST)
 				message($this->DoFleetJump($CurrentUser, $CurrentPlanet), "game.php?page=infos&gid=43", 2);
 		}
 		/*elseif ($BuildID >= 106 && $BuildID <= 199)

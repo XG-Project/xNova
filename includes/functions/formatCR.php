@@ -22,7 +22,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 		foreach( $result_array['rw'] as $round => $data1)
 		{
-			if($round_no <= 6)
+			if ($round_no <= 6)
 			{
 				$html 		.= $lang['sys_attack_round']." ".$round_no." :<br><br>";
 				$attackers1 = $data1['attackers'];
@@ -45,9 +45,9 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 					$shie 	= ($data2['user']['defence_tech'] * 10);
 					$armr 	= ($data2['user']['shield_tech'] * 10);
 
-					if($coord4 == 0){$coord4 += $data2['fleet']['fleet_end_galaxy'];}
-					if($coord5 == 0){$coord5 += $data2['fleet']['fleet_end_system'];}
-					if($coord6 == 0){$coord6 += $data2['fleet']['fleet_end_planet'];}
+					if ($coord4 == 0){$coord4 += $data2['fleet']['fleet_end_galaxy'];}
+					if ($coord5 == 0){$coord5 += $data2['fleet']['fleet_end_system'];}
+					if ($coord6 == 0){$coord6 += $data2['fleet']['fleet_end_planet'];}
 
 					$fl_info1  	= "<table><tr><th>";
 					$fl_info1 	.= $lang['sys_attack_attacker_pos']." ".$name." ([".$coord1.":".$coord2.":".$coord3."])<br>";
@@ -56,7 +56,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 					if (number_format($data1['attack']['total']) >= 0 && $round_no == 1)
 					{
-						if(number_format($data1['attack']['total']) == 0)
+						if (number_format($data1['attack']['total']) == 0)
 						{
 							$ships1 = "<tr><br><br>". $lang['sys_destroyed']."<br></tr>";
 							$count1 = "";
@@ -82,7 +82,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 						$ships1 .= "</tr>";
 						$count1 .= "</tr>";
 					}
-					elseif(number_format($data1['attack']['total']) > 0)
+					elseif (number_format($data1['attack']['total']) > 0)
 					{
 						$ships1  = "<tr><th>".$lang['sys_ship_type']."</th>";
 						$count1  = "<tr><th>".$lang['sys_ship_count']."</th>";

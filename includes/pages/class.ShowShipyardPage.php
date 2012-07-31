@@ -92,7 +92,7 @@ class ShowShipyardPage
 
 			foreach($_POST['fmenge'] as $Element => $Count)
 			{
-				if($Element < 200 OR $Element > 300)
+				if ($Element < 200 OR $Element > 300)
 				{
 					continue;
 				}
@@ -195,7 +195,7 @@ class ShowShipyardPage
 						$parse['add_element'] 	= "<input type=text name=fmenge[".$Element."] alt='".$lang['tech'][$Element]."' size=6 maxlength=6 value=0 tabindex=".$TabIndex.">";
 					}
 
-					if($NotBuilding)
+					if ($NotBuilding)
 					{
 						$parse[build_fleet] 	= "<tr><td class=\"c\" colspan=\"2\" align=\"center\"><input type=\"submit\" value=\"".$lang['bd_build_ships']."\"></td></tr>";
 					}
@@ -234,11 +234,11 @@ class ShowShipyardPage
 			for ($QElement = 0; $QElement < count($BuildArray); $QElement++)
 			{
 				$ElmentArray = explode (",", $BuildArray[$QElement] );
-				if($ElmentArray[0] == 502)
+				if ($ElmentArray[0] == 502)
 				{
 					$Missiles[502] += $ElmentArray[1];
 				}
-				elseif($ElmentArray[0] == 503)
+				elseif ($ElmentArray[0] == 503)
 				{
 					$Missiles[503] += $ElmentArray[1];
 				}
@@ -246,7 +246,7 @@ class ShowShipyardPage
 
 			foreach($_POST['fmenge'] as $Element => $Count)
 			{
-				if($Element < 300 OR $Element > 550)
+				if ($Element < 300 OR $Element > 550)
 				{
 					continue;
 				}
@@ -417,13 +417,13 @@ class ShowShipyardPage
 						{
 							$parse['add_element'] = "<font color=\"red\">".$lang['bd_protection_shield_only_one']."</font>";
 						}
-						elseif($NotBuilding)
+						elseif ($NotBuilding)
 						{
 							$TabIndex++;
 							$parse['add_element'] = "<input type=text name=fmenge[".$Element."] alt='".$lang['tech'][$Element]."' size=6 maxlength=6 value=0 tabindex=".$TabIndex.">";
 						}
 
-						if($NotBuilding)
+						if ($NotBuilding)
 						{
 							$parse[build_defenses] = "<tr><td class=\"c\" colspan=\"2\" align=\"center\"><input type=\"submit\" value=\"".$lang['bd_build_defenses']."\"></td></tr>";
 						}

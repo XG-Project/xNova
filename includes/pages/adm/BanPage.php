@@ -72,7 +72,7 @@ $parse['banneds']	=	"<font color=lime>".$Banneds."</font>";
 $UserList->free_result();
 $UserListBan->free_result();
 
-if($_GET['panel'])
+if ($_GET['panel'])
 {
 	$QueryUserBan			=	doquery("SELECT * FROM {{table}} WHERE `who` = '".$_GET['ban_name']."'", "banned", TRUE);
 	$QueryUserBanVacation	=	doquery("SELECT urlaubs_modus FROM {{table}} WHERE `username` = '".$_GET['ban_name']."'", "users", TRUE);
@@ -109,7 +109,7 @@ if($_GET['panel'])
 
 	if ($_POST['bannow'])
 	{
-		if(!is_numeric($_POST['days']) || !is_numeric($_POST['hour']) || !is_numeric($_POST['mins']) || !is_numeric($_POST['secs']))
+		if (!is_numeric($_POST['days']) || !is_numeric($_POST['hour']) || !is_numeric($_POST['mins']) || !is_numeric($_POST['secs']))
 			return display( parsetemplate(gettemplate("adm/BanOptionsResultBody"), $parse), FALSE, '', TRUE, FALSE);
 
 		$name              = $_POST['ban_name'];
@@ -164,7 +164,7 @@ if($_GET['panel'])
 		$QryUpdateUser    .= "`bana` = '1', ";
 		$QryUpdateUser    .= "`banaday` = '". $BannedUntil ."', ";
 
-		if(isset($_POST['vacat']))
+		if (isset($_POST['vacat']))
 		{
 			$QryUpdateUser    .= "`urlaubs_modus` = '1'";
 			$ASD	=	1;
@@ -204,7 +204,7 @@ if($_GET['panel'])
 		$parse['display']	=	"<tr><th colspan=\"2\"><font color=lime>". $lang['bo_the_player'] . $name . $lang['bo_banned'] ."</font></th></tr>";
 	display( parsetemplate(gettemplate("adm/BanOptionsResultBody"), $parse), FALSE, '', TRUE, FALSE);
 }
-elseif($_POST && $_POST['unban_name'])
+elseif ($_POST && $_POST['unban_name'])
 {
 	$name = $_POST['unban_name'];
 	doquery("DELETE FROM {{table}} WHERE who = '".$name."'", 'banned');

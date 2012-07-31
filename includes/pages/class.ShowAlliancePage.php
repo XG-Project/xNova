@@ -8,7 +8,7 @@
  * @author	Razican <admin@razican.com>
  */
 
-if( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("location:../../"));
 
 include(XN_ROOT.'includes/classes/class.BBCode.php');
 
@@ -1083,7 +1083,7 @@ class ShowAlliancePage extends bbCode
 
 					exit ( header ( 'Location:game.php?page=alliance&mode=admin&edit=ally' ) );
 				}
-				elseif($_POST['action'] == $lang['al_decline_request'] && $_POST['action'] != '')
+				elseif ($_POST['action'] == $lang['al_decline_request'] && $_POST['action'] != '')
 				{
 					$_POST['text']  = trim ( nl2br ( strip_tags ( $_POST['text'], '<br>' ) ) );
 
@@ -1321,7 +1321,7 @@ class ShowAlliancePage extends bbCode
 				$lang['range'] 				= $range;
 				$lang['ally_description'] 	= nl2br($this->bbCode($ally['ally_description']));
 				$lang['ally_text'] 			= nl2br($this->bbCode($ally['ally_text']));
-				if($ally['ally_web'] != '')
+				if ($ally['ally_web'] != '')
 				{
 					$lang['ally_web'] 		= str_replace ( "http://" , "" , $ally['ally_web'] );
 				}

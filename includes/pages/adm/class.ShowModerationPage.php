@@ -144,7 +144,7 @@ class ShowModerationPage {
 					//TODO no se comprueba que la query sea correcta (rows = 1) ni si está set $_POST['authlevel']
 					$QueryFind	=	doquery("SELECT `authlevel` FROM {{table}} WHERE `id` = '".$id."'", "users", TRUE);
 
-					if($QueryFind['authlevel'] != $_POST['authlevel'])
+					if ($QueryFind['authlevel'] != $_POST['authlevel'])
 					{
 						doquery("UPDATE {{table}} SET `authlevel` = '".$_POST['authlevel']."' WHERE `id` = '".$id."'", "users");
 						doquery("UPDATE {{table}} SET `id_level` = '".$_POST['authlevel']."' WHERE `id_owner` = '".$id."';", 'planets');

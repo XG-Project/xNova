@@ -18,7 +18,7 @@ class ShowTraderPage
 
 		$parse = $lang;
 
-		if($CurrentUser['darkmatter'] < TR_DARK_MATTER)
+		if ($CurrentUser['darkmatter'] < TR_DARK_MATTER)
 		{
 			message(str_replace('%s',TR_DARK_MATTER,$lang['tr_darkmatter_needed']), '', '', TRUE);
 			die();

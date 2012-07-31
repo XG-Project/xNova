@@ -14,7 +14,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 	{
 		global $lang;
 
-		if($CurrentUser['urlaubs_modus'] == 0)
+		if ($CurrentUser['urlaubs_modus'] == 0)
 			PlanetResourceUpdate($CurrentUser, $CurrentPlanet, time());
 		else
 			doquery("UPDATE {{table}} SET `deuterium_sintetizer_porcent` = 0, `metal_mine_porcent` = 0, `crystal_mine_porcent` = 0 WHERE id_owner = ".intval($CurrentUser['id']),"planets");
@@ -24,7 +24,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 		$parse['image']      			= $CurrentPlanet['image'];
 
 
-		if($CurrentUser['urlaubs_modus'] && $CurrentUser['db_deaktjava'])
+		if ($CurrentUser['urlaubs_modus'] && $CurrentUser['db_deaktjava'])
 		{
 		$parse['show_umod_notice']      	.= $CurrentUser['db_deaktjava'] ? '<table width="100%" style="border: 2px solid red; text-align:center;background:transparent;"><tr style="background:transparent;"><td style="background:transparent;">' . $lang['tn_delete_mode'] . date('d.m.Y h:i:s',$CurrentUser['db_deaktjava'] + (60 * 60 * 24 * 7)).'</td></tr></table>' : '';
 	}
@@ -49,7 +49,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 				$parse['planetlist'] .= "value=\"game.php?page=".$_GET['page']."&gid=".$gid."&cp=".$CurPlanet['id']."";
 				$parse['planetlist'] .= "&amp;mode=".$mode;
 				$parse['planetlist'] .= "&amp;re=0\">";
-				if($CurPlanet['planet_type'] != 3)
+				if ($CurPlanet['planet_type'] != 3)
 					$parse['planetlist'] .= "".$CurPlanet['name'];
 				else
 					$parse['planetlist'] .= "".$CurPlanet['name'] . " (" . $lang['fcm_moon'] . ")";

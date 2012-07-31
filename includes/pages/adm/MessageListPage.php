@@ -38,7 +38,7 @@ if ($Observation != 1) die(message ($lang['404_page']));
 		$ViewPage = ( !empty($SelPage) ) ? $SelPage : 1;
 	}
 
-	if($Prev   == TRUE)
+	if ($Prev   == TRUE)
 	{
 		$CurrPage -= 1;
 		if ($CurrPage >= 1)

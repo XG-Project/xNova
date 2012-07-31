@@ -65,7 +65,7 @@ function get_hook($name)
 function PluginAct($name)
 {
     $Exists = doquery("SELECT status FROM {{table}} WHERE `plugin` = '" . $name . "' LIMIT 1;", "plugins", TRUE);
-	if(!$Exists) doquery("INSERT INTO {{table}} SET `plugin` = '" . $name . "';", "plugins");
+	if (!$Exists) doquery("INSERT INTO {{table}} SET `plugin` = '" . $name . "';", "plugins");
 
 	return ($Exists[0]);
 }
@@ -79,12 +79,12 @@ function PluginAct($name)
 function AdmPlugin($name, $desc)
 {
 	$page   =   $_GET['mode'];
-	if(is_phpself('adm/SettingsPage') && $page=='plugins')
+	if (is_phpself('adm/SettingsPage') && $page=='plugins')
 	{
 	    $activado		= PluginAct($name);
 	    $config_line	.= "<tr>";
 
-	    if($activado == "1")
+	    if ($activado == "1")
 	    { //if the plugin is on
 	    	$config_line .= "<td class=\"c\" style=\"color:#FFFFFF\">".$name."</td>";
 	    	$config_line .= "<td align=\"left\" class=\"c\" style=\"color:green\"><b>On</b></td>";
@@ -134,13 +134,13 @@ closedir($dir);
 */
 if ( defined('IN_ADMIN') )
 {
-	if( ! defined('DPATH')) define('DPATH', XN_ROOT.DEFAULT_SKINPATH);
+	if ( ! defined('DPATH')) define('DPATH', XN_ROOT.DEFAULT_SKINPATH);
 	$page	=   isset($_GET['mode']) ? $_GET['mode'] : NULL;
 
-	if(is_phpself('adm/SettingsPage') && $page=='plugins')
+	if (is_phpself('adm/SettingsPage') && $page=='plugins')
 	{
 		//Si existe activar, activamos el plugin, xD
-		if($_GET['activate'])
+		if ($_GET['activate'])
 		{
 			$plugin = $_GET['activate'];
 			$ex 	= doquery("SELECT status FROM {{table}} WHERE `plugin`='". $plugin ."' LIMIT 1", 'plugins', TRUE);
@@ -152,7 +152,7 @@ if ( defined('IN_ADMIN') )
 			}
 		}
 		//Si existe desactivar, lo desactivamos
-		if($_GET['desactivate'])
+		if ($_GET['desactivate'])
 		{
 			$plugin = $_GET['desactivate'];
 			$ex 	= doquery("SELECT status FROM {{table}} WHERE `plugin`='". $plugin ."' LIMIT 1", 'plugins', TRUE);

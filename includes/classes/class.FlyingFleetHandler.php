@@ -56,7 +56,7 @@ class FlyingFleetHandler
 		//END FIX
 
 		$steal                 = array_map('floor', $booty);
-		if($ForSim)
+		if ($ForSim)
 			return $steal;
 
 		$AllCapacity    = array_sum($SortFleets);
@@ -761,18 +761,18 @@ class FlyingFleetHandler
 			$DebrisField      = $StrAttackerUnits ."<br>". $StrDefenderUnits ."<br>". $StrRuins;
 			$MoonChance       = $FleetDebris / 100000;
 
-			if($FleetDebris > 2000000)
+			if ($FleetDebris > 2000000)
 			{
 				$MoonChance = 20;
 				$UserChance = mt_rand(1, 100);
 				$ChanceMoon = sprintf ($lang['sys_moonproba'], $MoonChance);
 			}
-			elseif($FleetDebris < 100000)
+			elseif ($FleetDebris < 100000)
 			{
 				$UserChance = 0;
 				$ChanceMoon = sprintf ($lang['sys_moonproba'], $MoonChance);
 			}
-			elseif($FleetDebris >= 100000)
+			elseif ($FleetDebris >= 100000)
 			{
 				$UserChance = mt_rand(1, 100);
 				$ChanceMoon = sprintf ($lang['sys_moonproba'], $MoonChance);
@@ -813,7 +813,7 @@ class FlyingFleetHandler
 			$QryInsertRapport .= '`raport` = "'. $db->real_escape_string($raport) .'"';
 			doquery($QryInsertRapport,'rw') or die("Error inserting CR to database<br><br>Trying to execute:".$db->error);
 
-			if($result['won'] == "a")
+			if ($result['won'] == "a")
 			{
 				$style = "green";
 			}
@@ -830,7 +830,7 @@ class FlyingFleetHandler
 
 			SendSimpleMessage ( $FleetRow['fleet_owner'], '', $FleetRow['fleet_start_time'], 3, $lang['sys_mess_tower'], $raport, '' );
 
-			if($result['won'] == "a")
+			if ($result['won'] == "a")
 			{
 				$style = "red";
 			}
@@ -1050,7 +1050,7 @@ class FlyingFleetHandler
 				doquery( $QryUpdateFleet, 'fleets');
 
 			}
-			elseif($FleetRow['fleet_end_stay'] <= time())
+			elseif ($FleetRow['fleet_end_stay'] <= time())
 			{
 				$QryUpdateFleet  = "UPDATE {{table}} SET ";
 				$QryUpdateFleet .= "`fleet_mess` = 1 ";
@@ -1176,7 +1176,7 @@ class FlyingFleetHandler
 
 						$TargetMessage  = $lang['sys_mess_spy_ennemyfleet'] ." ". $CurrentPlanet['name'];
 
-						if($FleetRow['fleet_start_type'] == 3)
+						if ($FleetRow['fleet_start_type'] == 3)
 							$TargetMessage .= $lang['sys_mess_spy_report_moon'] . " ";
 
 						$TargetMessage .= "<a href=\"game.php?page=galaxy&mode=3&galaxy=". $CurrentPlanet["galaxy"] ."&system=". $CurrentPlanet["system"] ."\">";
@@ -1509,7 +1509,7 @@ class FlyingFleetHandler
 					$tirage 	= mt_rand(0, 100);
 					$probalune	= sprintf ($lang['sys_destruc_lune'], $chance);
 
-					if($tirage <= $chance)
+					if ($tirage <= $chance)
 					{
 						$resultat 	= '1';
 						$finmess 	= $lang['sys_destruc_reussi'];
@@ -1572,7 +1572,7 @@ class FlyingFleetHandler
 					{
 						$tirage2 	= mt_rand(0, 100);
 						$probarip	= sprintf ($lang['sys_destruc_rip'], $chance2);
-						if($tirage2 <= $chance2)
+						if ($tirage2 <= $chance2)
 						{
 							$resultat2 = ' detruite 1';
 							$finmess = $lang['sys_destruc_echec'];
@@ -1798,7 +1798,7 @@ class FlyingFleetHandler
 				$raport  = "<a href=\"#\" OnClick=\'f(\"CombatReport.php?raport=". $rid ."\", \"\");\' >";
 				$raport .= "<center>";
 
-				if($FleetResult == "a")
+				if ($FleetResult == "a")
 					$raport .= "<font color=\"green\">";
 				elseif ($FleetResult == "r")
 					$raport .= "<font color=\"orange\">";
@@ -1823,7 +1823,7 @@ class FlyingFleetHandler
 				$raport2  = "<a href=\"#\" OnClick=\'f(\"CombatReport.php?raport=". $rid ."\", \"\");\' >";
 				$raport2 .= "<center>";
 
-				if($FleetResult == "a")
+				if ($FleetResult == "a")
 					$raport2 .= "<font color=\"red\">";
 				elseif ($FleetResult == "r")
 					$raport2 .= "<font color=\"orange\">";
@@ -2062,14 +2062,14 @@ class FlyingFleetHandler
 						$all_destroyed = TRUE;
 						foreach ($LaFlotte as $Ship => $Count)
 						{
-							if(floor($Count * $LostAmount)!=0)
+							if (floor($Count * $LostAmount)!=0)
 							{
 								$LostShips[$Ship] 	= floor($Count * $LostAmount);
 								$NewFleetArray     .= $Ship.",". ($Count - $LostShips[$Ship]) .";";
 								$all_destroyed 		= FALSE;
 							}
 						}
-						if(!$all_destroyed)
+						if (!$all_destroyed)
 						{
 							$QryUpdateFleet  = "UPDATE {{table}} SET ";
 							$QryUpdateFleet .= "`fleet_array` = '". $NewFleetArray ."', ";

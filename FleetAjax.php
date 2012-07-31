@@ -106,7 +106,7 @@ if ($_POST['mission']== 8)
 {
 	$TargetGPlanet = doquery("SELECT invisible_start_time, metal, crystal FROM {{table}} WHERE galaxy = '". intval($_POST['galaxy']) ."' AND system = '". intval($_POST['system']) ."' AND planet = '". intval($_POST['planet']) ."'", "galaxy",TRUE);
 
-	if($TargetGPlanet['metal'] == 0 && $TargetGPlanet['crystal'] == 0 && time() > ($TargetGPlanet['invisible_start_time']+DEBRIS_LIFE_TIME))
+	if ($TargetGPlanet['metal'] == 0 && $TargetGPlanet['crystal'] == 0 && time() > ($TargetGPlanet['invisible_start_time']+DEBRIS_LIFE_TIME))
 	{
 		die();
 	}
@@ -152,13 +152,13 @@ if ($TargetVacat && $_POST['mission'] != 8)
 	die ($ResultMessage);
 }
 
-if($user['urlaubs_modus'])
+if ($user['urlaubs_modus'])
 {
 	$ResultMessage = "620; ".$lang['fa_vacation_mode_current']." |".$CurrentFlyingFleets." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
 	die ($ResultMessage);
 }
 
-if($TargetUser['onlinetime'] >= (time()-60 * 60 * 24 * 7))
+if ($TargetUser['onlinetime'] >= (time()-60 * 60 * 24 * 7))
 {
 	if ( is_weak ( $CurrentPoints , $TargetPoints ) && $TargetRow['id_owner'] != '' && $_POST['mission'] == 6 )
 	{
@@ -274,7 +274,7 @@ doquery( $QryInsertFleet, 'fleets');
 
 $UserDeuterium   -= $consumption;
 
-if($UserDeuterium < 1)
+if ($UserDeuterium < 1)
 	exit();
 
 $QryUpdatePlanet  = "UPDATE {{table}} SET ";

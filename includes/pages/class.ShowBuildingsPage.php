@@ -43,7 +43,7 @@ class ShowBuildingsPage
 				for ($ID = 0; $ID < $NewCount ; $ID++ )
 				{
 					$ListIDArray          = explode ( ",", $QueueArray[$ID] );
-					if($ListIDArray[0] == $Element)
+					if ($ListIDArray[0] == $Element)
 						$ListIDArray[1] -= 1;
 
 					$BuildEndTime        += $ListIDArray[2];
@@ -115,7 +115,7 @@ class ShowBuildingsPage
 					//next buildings
 					$nextListIDArray     = explode ( ",", $QueueArray[$ID] );
 					//if same type of element
-					if($nextListIDArray[0] == $ListIDArrayToDelete[0])
+					if ($nextListIDArray[0] == $ListIDArrayToDelete[0])
 					{
 						$lastB=$nextListIDArray;
 						$lastID=$ID;
@@ -368,7 +368,7 @@ class ShowBuildingsPage
 				unset($Element);
 			}
 
-			if( isset ( $Element ))
+			if ( isset ( $Element ))
 			{
 				if ( !strchr ( $Element, ",") && !strchr ( $Element, " ") &&
 					 !strchr ( $Element, "+") && !strchr ( $Element, "*") &&

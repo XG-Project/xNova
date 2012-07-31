@@ -30,7 +30,7 @@ class ShowOverviewPage {
 		global $lang, $db, $user;
 		$parse 		= $lang;
 
-		if(file_exists(XN_ROOT.'install/') OR file_exists(XN_ROOT.'install.php'))
+		if (file_exists(XN_ROOT.'install/') OR file_exists(XN_ROOT.'install.php'))
 		{
 			$Message	.= '<span>'.$lang['ow_install_file_detected'].'</span>';
 			$error++;
@@ -38,27 +38,27 @@ class ShowOverviewPage {
 
 		if ($user['authlevel'] >= 3)
 		{
-			if(is_writable(XN_ROOT.'config.php'))
+			if (is_writable(XN_ROOT.'config.php'))
 			{
 				$Message	.= '<span>'.$lang['ow_config_file_writable'].'</span>';
 				$error++;
 			}
 
-			if( ! is_writable(XN_ROOT.'includes/bots'))
+			if ( ! is_writable(XN_ROOT.'includes/bots'))
 			{
 				$Message	.= '<span>'.$lang['ow_bot_folder_no_writable'].'</span>';
 				$error++;
 			}
 
-			if( ! is_writable(XN_ROOT.'includes/xml/config.xml'))
+			if ( ! is_writable(XN_ROOT.'includes/xml/config.xml'))
 			{
 				$Message	.= '<span>'.$lang['ow_config_file_no_writable'].'</span>';
 				$error++;
 			}
 
-			foreach(scandir(XN_ROOT.'includes/logs') as $log_file)
+			foreach (scandir(XN_ROOT.'includes/logs') as $log_file)
 			{
-				if($log_file != '.htaccess' && $log_file != 'index.html' && is_file(XN_ROOT.'adm/Log/'.$log_file) && ( ! is_writable(XN_ROOT.'adm/Log/'.$log_file)))
+				if (is_file(XN_ROOT.'includes/logs/'.$log_file) && ( ! is_writable(XN_ROOT.'includes/logs/'.$log_file)))
 				{
 					$Message	.= '<span>'.$lang['ow_log_file_no_writable'].'</span>';
 					$error++;
@@ -68,20 +68,20 @@ class ShowOverviewPage {
 
 			$Errors = doquery("SELECT COUNT(*) AS `errors` FROM {{table}} WHERE 1;", 'errors', TRUE);
 
-			if($Errors['errors'] != 0)
+			if ($Errors['errors'] != 0)
 			{
 				$Message	.= '<span>'.$lang['ow_database_errors'].'</span>';
 				$error++;
 			}
 
-			if($this->check_updates())
+			if ($this->check_updates())
 			{
 				$Message	.= '<span>'.$lang['ow_old_version'].'</span>';
 				$error++;
 			}
 		}
 
-		if($error != 0)
+		if ($error != 0)
 		{
 			$parse['error_message']		=	$Message;
 			$parse['error_class']		=	"some_errors";

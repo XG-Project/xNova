@@ -93,7 +93,7 @@ function GetFlyingFleetPoints($fleet_array)
 	// PADA FUNCTION
 	// USE AT YOUR OWN RISK :3
 	$FleetRec     = explode(";", $fleet_array);
-	if(is_array($FleetRec))
+	if (is_array($FleetRec))
 	{
 		foreach($FleetRec as $Item => $Group)
 		{
@@ -134,7 +134,7 @@ function MakeStats()
 
 	$ChooseToDelete = doquery("SELECT `id` FROM `{{table}}` WHERE (`db_deaktjava` < '".$del_deleted."' AND `db_deaktjava` <> 0) OR (`onlinetime` < '".$del_inactive."' AND `authlevel` <> 3)", 'users');
 
-	if($ChooseToDelete)
+	if ($ChooseToDelete)
 	{
 		include_once(XN_ROOT . 'includes/functions/DeleteSelectedUser.php');
 
@@ -237,7 +237,7 @@ function MakeStats()
 		//We take the data of flying fleets if stat_flying is =1 in game config
 		//If you have trouble with the RAM and CPU usage, please set stat_flying = 0 and a low value of stat_amount (25, 15...)
 		$flying_fleets_array	= array();
-		if($game_stat_flying == 1)
+		if ($game_stat_flying == 1)
 		{
 			$sql_flying_fleets	=	'SELECT fleet_array, fleet_owner, fleet_id FROM {{table}} WHERE fleet_owner <= '. $minmax['max'].' AND fleet_owner >= '. $minmax['min'].';';
 			$flying_fleets		=	doquery($sql_flying_fleets, 'fleets');
@@ -287,10 +287,10 @@ function MakeStats()
 			$u_TFleetCount	= $u_points['FleetCount'];
 			$u_TFleetPoints	= ($u_points['FleetPoint'] / $game_stat_settings);
 			//Now we add the flying fleets points
-			//This is used if($game_stat_flying == 1)
-			if($game_stat_flying == 1)
+			//This is used if ($game_stat_flying == 1)
+			if ($game_stat_flying == 1)
 			{
-				if(isset($flying_fleets_array[$CurUser['id']]) && $flying_fleets_array[$CurUser['id']])
+				if (isset($flying_fleets_array[$CurUser['id']]) && $flying_fleets_array[$CurUser['id']])
 				{
 					foreach($flying_fleets_array[$CurUser['id']] as $fleet_id => $fleet_array)
 					{
@@ -316,7 +316,7 @@ function MakeStats()
 			}
 			$u_TBuildCount    = 0;
 			$u_TBuildPoints   = 0;
-			if($Buildings_array[$CurUser['id']])
+			if ($Buildings_array[$CurUser['id']])
 			{
 				foreach($Buildings_array[$CurUser['id']] as $planet_id => $building)
 				{
@@ -358,7 +358,7 @@ function MakeStats()
 		//TODO, make a end string check in case that insert_user_query end in VALUE...
 		//Here we change the end of the query for ;
 
-		if($CheckUserQuery == TRUE)
+		if ($CheckUserQuery == TRUE)
 		{
 			$insert_user_query	=	substr_replace($insert_user_query, ';', -1);
 			doquery ( $insert_user_query , 'statpoints');
@@ -482,7 +482,7 @@ function MakeStats()
 			}
 			//Here we change the end of the query for ;
 
-			if($CheckAllyQuery == TRUE)
+			if ($CheckAllyQuery == TRUE)
 			{
 				$insert_ally_query	=	substr_replace($insert_ally_query, ';', -1);
 				doquery ( $insert_ally_query , 'statpoints');

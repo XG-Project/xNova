@@ -34,7 +34,7 @@ switch ($Mode)
 	case 'ins':
 		if ($Page == 1)
 		{
-			if(isset($_GET['error']))
+			if (isset($_GET['error']))
 			{
 				if ($_GET['error'] == 1)
 				{
@@ -67,7 +67,7 @@ switch ($Mode)
 			$parse['first']	= "Conexión establecida con éxito...";
 
 			fwrite($dz, "<?php\n");
-			fwrite($dz, "if(!defined(\"INSIDE\")){ header(\"location: ".XN_ROOT."\"); }\n");
+			fwrite($dz, "if (!defined(\"INSIDE\")){ header(\"location: ".XN_ROOT."\"); }\n");
 			fwrite($dz, "\$dbsettings = Array(\n");
 			fwrite($dz, "\"server\"     => \"".$host."\", // MySQL server name.\n");
 			fwrite($dz, "\"user\"       => \"".$user."\", // MySQL username.\n");
@@ -209,7 +209,7 @@ switch ($Mode)
 				die(message("¡Error! - ¡El administrador ingresado no existe o el usuario no tiene permisos administrativos!","index.php?mode=upgrade", "3", FALSE, FALSE));
 			}
 
-			if(filesize(XN_ROOT.'config.php') == 0)
+			if (filesize(XN_ROOT.'config.php') == 0)
 			{
 				die(message("¡Error! - Tu archivo config.php se encuentra vacío o no configurado. En caso de no ser así verifica que su chmod sea de 777","", "", FALSE, FALSE));
 			}

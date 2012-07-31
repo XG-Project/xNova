@@ -31,7 +31,7 @@ switch($_GET[page])
 		$dark		= $_POST['dark'];
 
 		if ($_POST){
-		if(is_numeric($id) && is_numeric($metal) && is_numeric($cristal) && is_numeric($deut) && is_numeric($dark) && is_numeric($id_dark))
+		if (is_numeric($id) && is_numeric($metal) && is_numeric($cristal) && is_numeric($deut) && is_numeric($dark) && is_numeric($id_dark))
 		{
 			if ($_POST['add'])
 			{
@@ -102,7 +102,7 @@ switch($_GET[page])
 	break;
 
 	case'ships':
-		if($_POST)
+		if ($_POST)
 		{
 			$id          		= $_POST['id'];
 			$light_hunter       = $_POST['light_hunter'];
@@ -121,7 +121,7 @@ switch($_GET[page])
 			$battleship      	= $_POST['battleship'];
 
 
-			if(is_numeric($id) && is_numeric($light_hunter) && is_numeric($heavy_hunter) && is_numeric($small_ship_cargo) && is_numeric($big_ship_cargo) &&
+			if (is_numeric($id) && is_numeric($light_hunter) && is_numeric($heavy_hunter) && is_numeric($small_ship_cargo) && is_numeric($big_ship_cargo) &&
 				is_numeric($crusher) && is_numeric($battle_ship) && is_numeric($colonizer) && is_numeric($recycler) && is_numeric($spy_sonde) &&
 				is_numeric($bomber_ship) && is_numeric($solar_satelit) && is_numeric($destructor) && is_numeric($dearth_star) &&
 				is_numeric($battleship))
@@ -221,7 +221,7 @@ switch($_GET[page])
 			$interceptor_misil       	= $_POST['interceptor_misil'];
 			$interplanetary_misil      	= $_POST['interplanetary_misil'];
 
-			if(is_numeric($id) && is_numeric($misil_launcher) && is_numeric($small_laser) && is_numeric($big_laser) && is_numeric($gauss_canyon) &&
+			if (is_numeric($id) && is_numeric($misil_launcher) && is_numeric($small_laser) && is_numeric($big_laser) && is_numeric($gauss_canyon) &&
 				is_numeric($ionic_canyon) && is_numeric($buster_canyon) && is_numeric($small_protection_shield) && is_numeric($big_protection_shield) &&
 				is_numeric($interceptor_misil) && is_numeric($interplanetary_misil))
 			{
@@ -316,7 +316,7 @@ switch($_GET[page])
 			$phalanx      			= $_POST['phalanx'];
 			$sprungtor      		= $_POST['sprungtor'];
 
-			if(is_numeric($id) && is_numeric($metal_mine) && is_numeric($crystal_mine) && is_numeric($deuterium_sintetizer) && is_numeric($solar_plant) &&
+			if (is_numeric($id) && is_numeric($metal_mine) && is_numeric($crystal_mine) && is_numeric($deuterium_sintetizer) && is_numeric($solar_plant) &&
 				is_numeric($fusion_plant) && is_numeric($robot_factory) && is_numeric($nano_factory) && is_numeric($hangar) &&
 				is_numeric($metal_store) && is_numeric($crystal_store) && is_numeric($deuterium_store) && is_numeric($laboratory) &&
 				is_numeric($terraformer)&& is_numeric($ally_deposit) && is_numeric($silo) && is_numeric($mondbasis) &&
@@ -493,7 +493,7 @@ switch($_GET[page])
 			$expedition_tech     	= $_POST['expedition_tech'];
 			$graviton_tech     		= $_POST['graviton_tech'];
 
-			if(is_numeric($id) && is_numeric($spy_tech) && is_numeric($computer_tech) && is_numeric($military_tech) && is_numeric($defence_tech) &&
+			if (is_numeric($id) && is_numeric($spy_tech) && is_numeric($computer_tech) && is_numeric($military_tech) && is_numeric($defence_tech) &&
 				is_numeric($shield_tech) && is_numeric($energy_tech) && is_numeric($hyperspace_tech) && is_numeric($combustion_tech) &&
 				is_numeric($impulse_motor_tech) && is_numeric($hyperspace_motor_tech) && is_numeric($laser_tech) && is_numeric($ionic_tech) &&
 				is_numeric($buster_tech)&& is_numeric($intergalactic_tech) && is_numeric($expedition_tech) && is_numeric($graviton_tech))
@@ -594,7 +594,7 @@ switch($_GET[page])
 			if ($user['authlevel'] != 3 && $_POST['username'] != NULL && $_POST['password'] != NULL && $_POST['email_2'] != NULL &&
 				$_POST['email'] != NULL ) die();
 
-			if(!$_POST['id'])
+			if (!$_POST['id'])
 			{
 				$parse['display']    =    '<tr><th colspan="3"><font color=red>'.$lang['ad_forgiven_id'].'</font></th></tr>';
 			}
@@ -606,22 +606,22 @@ switch($_GET[page])
 
 
 
-				if($_POST['username'] != NULL){
+				if ($_POST['username'] != NULL){
 					$PersonalQuery    .=    "`username` = '".$_POST['username']."', ";
 					$Log    .=    $lang['ad_personal_name'].": ".$_POST['username']."\n";}
 
-				if($_POST['email'] != NULL){
+				if ($_POST['email'] != NULL){
 					$PersonalQuery    .=    "`email` = '".$_POST['email']."', ";
 					$Log    .=    $lang['ad_personal_email'].": ".$_POST['email']."\n";}
 
-				if($_POST['email_2'] != NULL){
+				if ($_POST['email_2'] != NULL){
 					$PersonalQuery    .=    "`email_2` = '".$_POST['email_2']."', ";
 					$Log    .=    $lang['ad_personal_email2'].": ".$_POST['email_2']."\n";}
 
-				if($_POST['password'] != NULL)
+				if ($_POST['password'] != NULL)
 					$PersonalQuery    .=    "`password` = '".sha1($_POST['password'])."', ";
 
-				if($_POST['vacation'] != '')
+				if ($_POST['vacation'] != '')
 				{
 					if ($_POST['vacation'] == 'no')
 					{
@@ -667,7 +667,7 @@ switch($_GET[page])
 			$rpg_ingenieur      = $_POST['rpg_ingenieur'];
 			$rpg_technocrate    = $_POST['rpg_technocrate'];
 
-			if(is_numeric($id) && is_numeric($rpg_geologue) && is_numeric($rpg_amiral) && is_numeric($rpg_ingenieur) && is_numeric($rpg_technocrate))
+			if (is_numeric($id) && is_numeric($rpg_geologue) && is_numeric($rpg_amiral) && is_numeric($rpg_ingenieur) && is_numeric($rpg_technocrate))
 			{
 
 				if ($_POST['add'])

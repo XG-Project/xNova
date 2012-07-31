@@ -48,7 +48,7 @@ ende = ende + 100;
 function countdown() {
 var zeit2 = new Date();
 var jetzt = zeit2.getTime();
-if(jetzt >= ende) {
+if (jetzt >= ende) {
 window.location.href="game.php?page=fleet";
 }
 }

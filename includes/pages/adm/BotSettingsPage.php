@@ -121,7 +121,7 @@ switch ($page)
 		doquery("TRUNCATE TABLE {{table}}", 'bots');
 		update_config('bots', 0);
 		foreach(scandir(XN_ROOT.'includes/bots/') as $file)
-			if(is_file(XN_ROOT.'includes/bots/'.$file)) unlink(XN_ROOT.'includes/bots/'.$file);
+			if (is_file(XN_ROOT.'includes/bots/'.$file)) unlink(XN_ROOT.'includes/bots/'.$file);
 
 		header ("Location: BotSettingsPage.php");
 	}

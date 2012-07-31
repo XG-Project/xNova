@@ -23,7 +23,7 @@ class FlyingFleetsTable
 			$FRessource  .= "<tr><td width=50% align=left><font color=white>".$lang['Metal']."<font></td><td width=50% align=right><font color=white>". Format::pretty_number($FleetRow['fleet_resource_metal']) ."<font></td></tr>";
 			$FRessource  .= "<tr><td width=50% align=left><font color=white>".$lang['Crystal']."<font></td><td width=50% align=right><font color=white>". Format::pretty_number($FleetRow['fleet_resource_crystal']) ."<font></td></tr>";
 			$FRessource  .= "<tr><td width=50% align=left><font color=white>".$lang['Deuterium']."<font></td><td width=50% align=right><font color=white>". Format::pretty_number($FleetRow['fleet_resource_deuterium']) ."<font></td></tr>";
-			if($FleetRow['fleet_resource_darkmatter'] > 0)
+			if ($FleetRow['fleet_resource_darkmatter'] > 0)
 				$FRessource  .= "<tr><td width=50% align=left><font color=white>".$lang['Darkmatter']."<font></td><td width=50% align=right><font color=white>". Format::pretty_number($FleetRow['fleet_resource_darkmatter']) ."<font></td></tr>";
 			$FRessource  .= "</table>";
 		}
@@ -48,19 +48,19 @@ class FlyingFleetsTable
 		$FleetRec     = explode(";", $FleetRow['fleet_array']);
 		$FleetPopup   = "<a href='#' onmouseover=\"return overlib('";
 		$FleetPopup  .= "<table width=200>";
-		if(!defined('IN_ADMIN'))
+		if (!defined('IN_ADMIN'))
 		{
-			if($user['spy_tech'] < 2 && $FleetRow['fleet_owner'] != $user['id'])
+			if ($user['spy_tech'] < 2 && $FleetRow['fleet_owner'] != $user['id'])
 			{
 				$FleetPopup .= "<tr><td width=50% align=left><font color=white>".$lang['cff_no_fleet_data']."<font></td></tr>";
 			}
-			elseif($user['spy_tech'] >= 2 && $user['spy_tech'] < 4 && $FleetRow['fleet_owner'] != $user['id'])
+			elseif ($user['spy_tech'] >= 2 && $user['spy_tech'] < 4 && $FleetRow['fleet_owner'] != $user['id'])
 			{
 				$FleetPopup .= "<tr><td width=50% align=left><font color=white>".$lang['cff_aproaching'].$FleetRow[fleet_amount].$lang['cff_ships']."<font></td></tr>";
 			}
 			else
 			{
-				if($FleetRow['fleet_owner'] != $user['id'])
+				if ($FleetRow['fleet_owner'] != $user['id'])
 					$FleetPopup .= "<tr><td width=100% align=left><font color=white>".$lang['cff_aproaching'].$FleetRow[fleet_amount].$lang['cff_ships'].":<font></td></tr>";
 
 				foreach($FleetRec as $Item => $Group)
@@ -68,20 +68,20 @@ class FlyingFleetsTable
 					if ($Group  != '')
 					{
 						$Ship    = explode(",", $Group);
-						if($FleetRow['fleet_owner'] == $user['id'])
+						if ($FleetRow['fleet_owner'] == $user['id'])
 							$FleetPopup .= "<tr><td width=50% align=left><font color=white>". $lang['tech'][$Ship[0]] .":<font></td><td width=50% align=right><font color=white>". Format::pretty_number($Ship[1]) ."<font></td></tr>";
-						elseif($FleetRow['fleet_owner'] != $user['id'])
+						elseif ($FleetRow['fleet_owner'] != $user['id'])
 						{
-							if($user['spy_tech'] >= 4 && $user['spy_tech'] < 8)
+							if ($user['spy_tech'] >= 4 && $user['spy_tech'] < 8)
 								$FleetPopup .= "<tr><td width=50% align=left><font color=white>". $lang['tech'][$Ship[0]] ."<font></td></tr>";
-							elseif($user['spy_tech'] >= 8)
+							elseif ($user['spy_tech'] >= 8)
 								$FleetPopup .= "<tr><td width=50% align=left><font color=white>". $lang['tech'][$Ship[0]] .":<font></td><td width=50% align=right><font color=white>". Format::pretty_number($Ship[1]) ."<font></td></tr>";
 						}
 					}
 				}
 			}
 		}
-		elseif(defined('IN_ADMIN'))
+		elseif (defined('IN_ADMIN'))
 		{
 			foreach($FleetRec as $Item => $Group)
 			{
@@ -224,7 +224,7 @@ class FlyingFleetsTable
 		}
 		else
 		{
-			if($StartType == 1)
+			if ($StartType == 1)
 				$StartID  = $lang['cff_to_the_planet'];
 			elseif ($StartType == 3)
 				$StartID  = $lang['cff_the_moon'];
@@ -234,7 +234,7 @@ class FlyingFleetsTable
 
 			if ( $MissionType != 15 )
 			{
-				if($TargetType == 1)
+				if ($TargetType == 1)
 					$TargetID  = $lang['cff_from_planet'];
 				elseif ($TargetType == 2)
 					$TargetID  = $lang['cff_from_debris_field'];

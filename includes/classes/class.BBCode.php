@@ -78,7 +78,7 @@ class bbCode
 		$tmp = explode('[*]', stripslashes($string));
 		$out = NULL;
 		foreach($tmp as $list) {
-			if(strlen(str_replace('', '', $list)) > 0) {
+			if (strlen(str_replace('', '', $list)) > 0) {
 				$out .= '<li>' . trim($list) . '</li>';
 			}
 		}
@@ -87,7 +87,7 @@ class bbCode
 
 	private function imagefix($img)
 	{
-		if(substr($img, 0, 7) != 'http://')
+		if (substr($img, 0, 7) != 'http://')
 		{
 			$img = 'images/' . $img;
 		}

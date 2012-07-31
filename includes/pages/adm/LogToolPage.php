@@ -69,7 +69,7 @@ switch ($_GET['options'])
 		$Log	=	fopen($Archive, "r");
 
 
-		if($user['authlevel']	==	3)
+		if ($user['authlevel']	==	3)
 		{
 			$Excuse_me		=
 			"<a href=\"LogToolPage.php?options=delete&file=".$_GET['file']."\" onclick=\" return confirm('".$lang['log_alert']."');\">

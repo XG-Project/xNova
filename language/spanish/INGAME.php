@@ -1230,7 +1230,7 @@ $lang['ma_missile_string']					='Un ataque con misiles (%1%) de %2% llega al pla
 // DATE
 $lang['days']								= array('Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado');
 $lang['dayshort']							= array('Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb');
-$lang['months']								= array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Augosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+$lang['months']								= array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
 $lang['monthshort']							= array('Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic');
 $lang['of']									= 'de';
 

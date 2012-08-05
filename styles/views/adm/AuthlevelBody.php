@@ -1,5 +1,5 @@
 <section class="page">
-	<script type="text/javascript">var UserList = new filterlist(document.users.id_1);</script>
+	<script type="text/javascript">var UserList = new filterlist(document.form.id_1);</script>
 	<section class="content-table">
 		{display}
 		<form action="admin.php?page=moderation&amp;moderation=2" method="post" accept-charset="UTF-8">

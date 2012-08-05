@@ -18,6 +18,7 @@ nav.left ul{padding:0px;margin-top:0px;}
 nav.left li{display:block;text-align:center;font-family:Arial,Helvetica,sans-serif;font-size:0.7em;margin:3px 15px;padding:2px;border:1px transparent solid;}nav.left li:hover{border-color:#415680;background-color:#0F1F3C;}
 nav.left li a{color:#FFFFFF;}nav.left li a:hover{color:#66CCFF;}
 nav.auth_selector{font-size:1.2em;}nav.auth_selector a{margin:0px 2px;}
+nav.a_to_z a{font-size:1.2em;margin:0px 2px;}
 section.content{padding:10px;}
 .content span{display:block;margin:2px 0px;}
 .top{border-radius:0.75em;}

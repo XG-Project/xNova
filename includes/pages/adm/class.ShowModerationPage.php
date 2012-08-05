@@ -113,9 +113,9 @@ class ShowModerationPage {
 				$parse['list']	.= '<option value="'.$List['id'].'">'.$List['username'].' ('.$lang['rank'][$List['authlevel']].')</option>';
 			}
 
-			for ($i=0; $i<27; $i++)
+			for ($i=65; $i<91; $i++)
 			{
-				$parse['a_to_z']	.= '<a href="javascript:UserList.set(\'^A\')" title="{bo_select_title} A">A</A>';
+				$parse['a_to_z']	.= '<a href="javascript:UserList.set(\'^'.chr($i).'\')" title="{bo_select_title} '.chr($i).'">'.chr($i).'</a>';
 			}
 
 

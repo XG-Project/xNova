@@ -275,16 +275,18 @@ class ShowOverviewPage
 				}
 				$OtherFleets->free_result();
 
-				$planets_query = doquery("SELECT * FROM `{{table}}` WHERE id_owner='" . intval($CurrentUser['id']) . "' AND `destruyed` = 0","planets");
-				$Colone = 1;
-				$AllPlanets = '';
+				$planets_query	= doquery("SELECT * FROM `{{table}}` WHERE id_owner='" . intval($CurrentUser['id']) . "' AND `destruyed` = 0","planets");
+				$Colonies		= $planets_query->num_rows;
+				$Colony			= 0;
+				$AllPlanets		= '';
 				while ($CurrentUserPlanet = $planets_query->fetch_array())
 				{
-					if($CurrentUserPlanet["id"] != $CurrentUser["current_planet"] && $CurrentUserPlanet['planet_type'] != 3)
+					if ($CurrentUserPlanet["id"] != $CurrentUser["current_planet"] && $CurrentUserPlanet['planet_type'] != 3)
 					{
-						$Colone++;
+						$Colony++;
+						if ($Colony%(((MAX_PLAYER_PLANETS-1)/2)>5 ? 5 : ((MAX_PLAYER_PLANETS-1)/2)) === 1 && $Colony != 1) $AllPlanets .= '</tr><tr>';
 						$AllPlanets .= "<th>" . $CurrentUserPlanet['name'] . "<br>";
-						$AllPlanets .= "<a href=\"game.php?page=overview&cp=" . $CurrentUserPlanet['id'] . "&re=0\" title=\"" . $CurrentUserPlanet['name'] . "\"><img src=\"" . DPATH . "planeten/small/s_" . $CurrentUserPlanet['image'] . ".jpg\" height=\"50\" width=\"50\"></a><br>";
+						$AllPlanets .= "<a href=\"game.php?page=overview&cp=" . $CurrentUserPlanet['id'] . "&re=0\" title=\"" . $CurrentUserPlanet['name'] . "\"><img src=\"" . DPATH . "planeten/small/s_" . $CurrentUserPlanet['image'] . ".jpg\" height=\"88\" width=\"88\"></a><br>";
 						$AllPlanets .= "<center>";
 
 						if($CurrentUserPlanet['b_building'] != 0)
@@ -313,14 +315,6 @@ class ShowOverviewPage
 						}
 
 						$AllPlanets .= "</center></th>";
-
-						if($Colone <= 1)
-							$Colone++;
-						else
-						{
-							$AllPlanets .= "</tr><tr>";
-							$Colone = 1;
-						}
 					}
 				}
 				$planets_query->free_result();
@@ -399,9 +393,9 @@ class ShowOverviewPage
 				$parse['fleet_list']		= $flotten;
 				$parse['Have_new_message']	= $Have_new_message;
 				$parse['planet_image']		= $CurrentPlanet['image'];
-				$parse['anothers_planets']	= ( ! empty($AllPlanets)) ? '<th class="s"><table class="s" align="top" border="0"><tr>'.$AllPlanets.'</tr></table></th>' : '';
-				$parse['colspan']			= empty($parse['moon']) && empty($AllPlanets) ? ' colspan="3"' : (empty($parse['moon']) OR empty($AllPlanets) ?  'colspan="2"' : '');
-				$parse["dpath"] = DPATH;
+				$parse['other_planets']		= ( ! empty($AllPlanets)) ? '<tr></tr><td class="c" colspan="2">'.$lang['colonies'].'</td><tr><th colspan="2"><table><tr>'.$AllPlanets.'</tr></table></th><tr>' : '';
+				$parse['colspan']			= empty($parse['moon']) ? ' colspan="2"' : '';
+				$parse["dpath"]				= DPATH;
 				if(read_config ( 'stat' ) == 0)
 					$parse['user_rank'] = Format::pretty_number($StatRecord['total_points']) . " (" . $lang['ov_place'] . " <a href=\"game.php?page=statistics&range=" . $StatRecord['total_rank'] . "\">" . $StatRecord['total_rank'] . "</a> " . $lang['ov_of'] . " " . read_config ( 'users_amount' ) . ")";
 				elseif(read_config ( 'stat' ) == 1 && $CurrentUser['authlevel'] < read_config ( 'stat_level' ))

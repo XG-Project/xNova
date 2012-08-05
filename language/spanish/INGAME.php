@@ -133,6 +133,7 @@ $lang['ov_actions']							= 'Acciones';
 $lang['ov_planet_rename']					= 'Nombrar';
 $lang['ov_planet_rename_action']			= 'Nombrar';
 $lang['ov_abandon_planet_not_possible']		= 'No es posible abandonar un planeta cuando hay flotas moviendose';
+$lang['colonies']							= 'Colonias';
 
 //----------------------------------------------------------------------------//
 //GALAXY

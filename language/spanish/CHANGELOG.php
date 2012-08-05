@@ -17,6 +17,7 @@ Mejoras:
 - Mejora de seguridad en los htaccess
 - Fecha según lenguaje, con formato configurable
 - Se ha optimizado mucho la carga, hasta en un 90-95%
+- Colonias en horizontal
 
 Errores Corregidos:
 - Muchos errores menores

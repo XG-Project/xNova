@@ -15,8 +15,9 @@ Improvements:
 - Starts migration to UTF-8
 - New bots system (Thanks to shoghicp)
 - Better security in htaccess
-- Date according to language with custom made format.
+- Date according to language with custom made format
 - Traffic optimized up to 90-95%
+- Colonies in horizontal
 
 Fixed errors:
 - Many minor issues

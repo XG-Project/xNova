@@ -402,7 +402,7 @@ class ShowOverviewPage
 				$parse['Have_new_message']	= $Have_new_message;
 				$parse['planet_image']		= $CurrentPlanet['image'];
 				$parse['anothers_planets']	= ( ! empty($AllPlanets)) ? '<th class="s"><table class="s" align="top" border="0"><tr>'.$AllPlanets.'</tr></table></th>' : '';
-				$parse['colspan']			= empty($parse['moon']) && empty($AllPlanets) ? ' colspan="3"' : (empty($parse['moon']) OR empty($AllPlanets) ?  'colspan="2"' : '');
+				$parse['colspan']			= (empty($parse['moon']) && empty($AllPlanets)) ? ' colspan="3"' : ((empty($parse['moon']) OR empty($AllPlanets)) ?  ' colspan="2"' : '');
 				$parse["dpath"] = DPATH;
 				if (read_config ( 'stat' ) == 0)
 					$parse['user_rank'] = Format::pretty_number($StatRecord['total_points'])." (".$lang['ov_place']." <a href=\"game.php?page=statistics&range=".$StatRecord['total_rank']."\">".$StatRecord['total_rank']."</a> ".$lang['ov_of']." ".read_config ( 'users_amount' ).")";

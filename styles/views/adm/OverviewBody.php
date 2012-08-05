@@ -10,7 +10,7 @@
 
 		<h3>{ow_support}</h3>
 		<div class="content">
-			<span><a href="https://github.com/Razican/xNova/issues" target="_blank">{ow_bug_report}Reporte de bugs (Bug Report)</a></span>
+			<span><a href="https://github.com/Razican/xNova/issues" target="_blank">{ow_bug_report}</a></span>
 			<span><a href="http://www.razican.com/" target="_blank">El Blog de Razican</a></span>
 		</div>
 

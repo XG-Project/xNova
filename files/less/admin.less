@@ -34,6 +34,7 @@ a
 {
 	text-decoration:				none;
 	color:							@link_color;
+	font-weight:					bold;
 }
 
 h3
@@ -84,8 +85,9 @@ header
 
 			a
 			{
-				color:				#FFFFFF;
 				font-size:			0.8em;
+				position:			relative;
+				top:				-1px;
 
 				&:hover
 				{
@@ -192,6 +194,15 @@ nav.left
 	}
 }
 
+nav.auth_selector
+{
+	font-size:						1.2em;
+
+	a
+	{
+		margin:						0px 2px;
+	}
+}
 section.content
 {
 	padding:						10px;
@@ -256,7 +267,7 @@ div.content
 	{
 		color:						red;
 		font-weight:				bolder;
-		font-size:					1.1em;
+		font-size:					1.5em;
 	}
 
 	.content:last-of-type:not([class*="errors"])
@@ -330,6 +341,11 @@ div.content
 			height:					25em;
 			resize:					vertical;
 			color:					#FFFFFF;
+		}
+
+		select[size]
+		{
+			width:					80%;
 		}
 
 		&.note

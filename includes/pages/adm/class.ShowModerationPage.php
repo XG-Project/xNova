@@ -110,7 +110,12 @@ class ShowModerationPage {
 
 			while ($List = $QueryUsers->fetch_array())
 			{
-				$parse['List']	.= "<option value=\"".$List['id']."\">".$List['username']." (".$lang['rank'][$List['authlevel']].")</option>";
+				$parse['list']	.= '<option value="'.$List['id'].'">'.$List['username'].' ('.$lang['rank'][$List['authlevel']].')</option>';
+			}
+
+			for ($i=0; $i<27; $i++)
+			{
+				$parse['a_to_z']	.= '<a href="javascript:UserList.set(\'^A\')" title="{bo_select_title} A">A</A>';
 			}
 
 
@@ -139,10 +144,9 @@ class ShowModerationPage {
 					else
 						$id	=	$_POST['id_2'];
 
-					//TODO no se comprueba que la query sea correcta (rows = 1) ni si está set $_POST['authlevel']
 					$QueryFind	=	doquery("SELECT `authlevel` FROM {{table}} WHERE `id` = '".$id."'", "users", TRUE);
 
-					if ($QueryFind['authlevel'] != $_POST['authlevel'])
+					if (isset($QueryFind['authlevel']) && isset($_POST['authlevel']) && $QueryFind['authlevel'] != $_POST['authlevel'])
 					{
 						doquery("UPDATE {{table}} SET `authlevel` = '".$_POST['authlevel']."' WHERE `id` = '".$id."'", "users");
 						doquery("UPDATE {{table}} SET `id_level` = '".$_POST['authlevel']."' WHERE `id_owner` = '".$id."';", 'planets');
@@ -164,8 +168,8 @@ class ShowModerationPage {
 				}
 			}
 
-			if (isset($_GET['succes']) && $_GET['succes']	===	'yes')
-				$parse['display']	=	'<div class="content no_errors">'.$lang['ad_authlevel_succes'].'</div>';
+			if (isset($_GET['success']) && $_GET['success']	===	'yes')
+				$parse['display']	=	'<div class="content no_errors top">'.$lang['ad_authlevel_succes'].'</div>';
 
 
 			$script	= '<script charset="UTF-8" src="'.GAMEURL.'js/filterlist.min.js"></script>';

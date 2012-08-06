@@ -2,11 +2,11 @@
 <configurations>
 	<config>
 		<name>version</name>
-		<value>2.10.3</value>
+		<value>2.10.4</value>
 	</config>
 	<config>
 		<name>users_amount</name>
-		<value>0</value>
+		<value>1</value>
 	</config>
 	<config>
 		<name>moderation</name>
@@ -14,15 +14,15 @@
 	</config>
 	<config>
 		<name>game_speed</name>
-		<value>25000</value>
+		<value>2500</value>
 	</config>
 	<config>
 		<name>fleet_speed</name>
-		<value>25000</value>
+		<value>2500</value>
 	</config>
 	<config>
 		<name>resource_multiplier</name>
-		<value>10</value>
+		<value>1</value>
 	</config>
 	<config>
 		<name>fleet_cdr</name>
@@ -118,7 +118,7 @@
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1339976211</value>
+		<value>1343923217</value>
 	</config>
 	<config>
 		<name>stat_settings</name>

@@ -23,7 +23,7 @@ class ShowNotesPage
 			$time 		= time();
 			$priority 	= intval($_POST["u"]);
 			$title 		= ($_POST["title"]) ? mysql_escape_string(strip_tags($_POST["title"])) : "Sin t&iacute;tulo";
-			$text 		= ($_POST["text"]) ? mysql_escape_string(strip_tags($_POST["text"])) : "Sin texto";
+			$text 		= ( $_POST["text"] ) ? str_replace ( "&lt;br /&gt;" , "" , stripslashes ( strip_tags ( mysql_escape_string ( $_POST["text"] ) ) ) ) : "Sin texto";
 
 			if($_POST["s"] ==1)
 			{

@@ -222,7 +222,7 @@ class ShowStatisticsPage
 						$parse['player_name']     = $StatRow['username'];
 
 					if ($StatRow['id'] != $CurrentUser['id'])
-						$parse['player_mes']      = "<a href=\"game.php?page=messages&mode=write&id=" . $StatRow['id'] . "\"><img src=\"" . DPATH . "img/m.gif\" border=\"0\" title=\"Escribir un mensaje\" /></a>";
+						$parse['player_mes']      = "<a href=\"game.php?page=messages&mode=write&id=" . $StatRow['id'] . "\"><img src=\"" . DPATH . "img/m.gif\" border=\"0\" title=\"" . $lang['write_message'] . "\" /></a>";
 					else
 						$parse['player_mes']      = "";
 

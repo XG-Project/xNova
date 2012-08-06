@@ -26,8 +26,7 @@ class NoobsProtection
 	// DETERMINES IF THE PLAYER IS WEAK OR NOT
 	public function is_weak ( $current_points , $other_points )
 	{						
-		if ( ( $current_points > ( $other_points * $this->_protectionmulti ) ) && ( $this->_protection == 1 ) && 
-			( $other_points < $this->_protectiontime ) )
+		if ( ( ( $current_points > ( $other_points * $this->_protectionmulti ) ) || ( $other_points < $this->_protectiontime ) ) && ( $this->_protection == 1 ) )
 		{
 			return TRUE;
 		}
@@ -40,8 +39,7 @@ class NoobsProtection
 	// DETERMINES IF THE PLAYER IS STRONG OR NOT
 	public function is_strong ( $current_points , $other_points )
 	{		
-		if ( ( $current_points * $this->_protectionmulti ) < $other_points && ( $this->_protection == 1 ) && 
-			( $current_points < $this->_protectiontime ) )
+		if ( ( ( ( $current_points * $this->_protectionmulti ) < $other_points ) || ( $current_points < $this->_protectiontime ) ) && ( $this->_protection == 1 ) )
 		{
 			return TRUE;
 		}

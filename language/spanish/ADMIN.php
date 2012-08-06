@@ -488,8 +488,6 @@ $lang['ff_arrival_hour']		= 'H. de llegada';
 $lang['ff_go_back_now']			= 'Regresar';
 $lang['ff_delete_succes']		= 'Vuelo borrado con &eacute;xito';
 $lang['ff_goback_succes']		= 'El vuelo ahora est&aacute; regresando a su planeta de origen';
-$lang['ff_confirm_dele_fleet']	= '&iquest;Est&aacute;s seguro que quer&eacute;s borrar el vuelo seleccionado?';
-$lang['ff_confirm_back_fleet']	= '&iquest;Est&aacute;s seguro que quer&eacute;s enviar de regreso al vuelo seleccionado?';
 //###########################################################//
 
 
@@ -538,7 +536,6 @@ $lang['mu_search_page']				= 'Buscador avanzado';
 $lang['mu_info_account_page']		= 'Informaci&oacute;n de cuentas';
 $lang['mu_planets_options']			= 'Opciones de planetas';
 $lang['mu_user_logs']				= 'Historial';
-$lang['mu_user_faq']				= 'F.A.Q.';
 //###########################################################//
 
 
@@ -860,6 +857,8 @@ $lang['po_delete_moon']				= 'Borrar luna';
 
 
 //---------------	HISTORIAL - LOG	------------------------//
+$lang['log_viewmod'][0] 			= 'No';
+$lang['log_viewmod'][1] 			= 'Si';
 $lang['log_log_body_build']			= 'Log de edificios';
 $lang['log_log_body_resou']			= 'Log de recursos';
 $lang['log_log_body_def']			= 'Log de defensas';

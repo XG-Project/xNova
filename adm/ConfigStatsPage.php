@@ -32,7 +32,7 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 			update_config('stat' , $_POST['stat']);
 			$game_stat	= $_POST['stat'];
 			$ASD3		=	$_POST['stat'];
-			$Log		.=	$lang['log_stats_value_5'].": ".$lang['log_viewmod2'][$ASD3]."\n";
+			$Log		.=	$lang['log_stats_value_5'].": ".$lang['log_viewmod'][$ASD3]."\n";
 		}
 		if (isset($_POST['stat_level']) &&  is_numeric($_POST['stat_level']) && $_POST['stat_level'] != $game_stat_level)
 		{

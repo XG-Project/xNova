@@ -29,11 +29,11 @@ function DisplayGameSettingsPage ( $CurrentUser )
 		if (isset($_POST['closed']) && $_POST['closed'] == 'on') {
 		$game_config['game_disable']         = 1;
 		$game_config['close_reason']         = addslashes( $_POST['close_reason'] );
-		$Log	.=	$lang['log_sett_close'].": ".$lang['log_viewmod2'][1]."\n";
+		$Log	.=	$lang['log_sett_close'].": ".$lang['log_viewmod'][1]."\n";
 		} else {
 		$game_config['game_disable']         = 0;
 		$game_config['close_reason']         = addslashes( $_POST['close_reason'] );
-		$Log	.=	$lang['log_sett_close'].": ".$lang['log_viewmod2'][0]."\n";
+		$Log	.=	$lang['log_sett_close'].": ".$lang['log_viewmod'][0]."\n";
 		$Log	.=	$lang['log_sett_close_rea'].": ".$_POST['close_reason']."\n";
 		}
 

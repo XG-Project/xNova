@@ -9,6 +9,7 @@
 define('INSIDE'  , TRUE);
 define('INSTALL' , FALSE);
 define('IN_ADMIN', TRUE);
+define('NO_DEBUG',TRUE);
 define('XGP_ROOT', './../');
 
 include(XGP_ROOT . 'global.php');

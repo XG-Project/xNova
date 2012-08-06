@@ -21,15 +21,8 @@ function check_updates()
 	{
 		$last_v 	= @file_get_contents ( 'http://xgproyect.xgproyect.net/current.php' );
 		$system_v	= read_config ( 'version' );		
-				
-		if ( version_compare ( $system_v , $last_v , '<' ) )
-		{
-			return TRUE;
-		}
-		else
-		{
-			return FALSE;
-		}
+			
+		return version_compare ( $system_v , $last_v , '<' );
 	}
 }
 

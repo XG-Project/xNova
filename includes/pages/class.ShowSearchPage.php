@@ -21,34 +21,30 @@ class ShowSearchPage
 		//queries fixed by Jstar
 		if ( $_POST )
 		{
-			switch($type)
-			{
-				case "playername":
-					$table 	= gettemplate('search/search_user_table');
-					$row 	= gettemplate('search/search_user_row');
-					$search	= doquery("SELECT * ,{{table}}statpoints.total_rank as rank FROM {{table}}users , {{table}}statpoints  WHERE {{table}}users.id = {{table}}statpoints.id_owner AND {{table}}users.username LIKE '%".$searchtext."%' LIMIT 25 ; ","");
-				break;
-				case "planetname":
-					$table 	= gettemplate('search/search_user_table');
-					$row 	= gettemplate('search/search_user_row');
-					$search	= doquery("SELECT * ,{{table}}statpoints.total_rank as rank FROM {{table}}planets , {{table}}statpoints  WHERE {{table}}planets.id_owner = {{table}}statpoints.id_owner AND {{table}}planets.name LIKE '%".$searchtext."%' LIMIT 25 ; ","");
-				break;
-				case "allytag":
-					$table 	= gettemplate('search/search_ally_table');
-					$row 	= gettemplate('search/search_ally_row');
-					$search	= doquery("SELECT * ,{{table}}statpoints.total_points as points FROM {{table}}alliance , {{table}}statpoints  WHERE {{table}}alliance.id = {{table}}statpoints.id_owner AND {{table}}alliance.ally_tag LIKE '%".$searchtext."%' LIMIT 25 ; ","");
-				break;
-				case "allyname":
-					$table 	= gettemplate('search/search_ally_table');
-					$row 	= gettemplate('search/search_ally_row');
-					$search = doquery("SELECT * ,{{table}}statpoints.total_points as points FROM {{table}}alliance , {{table}}statpoints  WHERE {{table}}alliance.id = {{table}}statpoints.id_owner AND {{table}}alliance.ally_name LIKE '%".$searchtext."%' LIMIT 25 ; ","");
-				break;
-				default:
-					$table 	= gettemplate('search/search_user_table');
-					$row 	= gettemplate('search/search_user_row');
-					$search = doquery("SELECT * ,{{table}}statpoints.total_rank as rank FROM {{table}}users , {{table}}statpoints  WHERE {{table}}users.id = {{table}}statpoints.id_owner AND {{table}}users.username LIKE '%".$searchtext."%' LIMIT 25 ; ","");
-				break;
-			}
+			switch ( $type )
+            {
+                case "playername":
+                default:
+                    $table     = gettemplate('search/search_user_table');
+                    $row     = gettemplate('search/search_user_row');
+                    $search    = doquery("SELECT u.*,s.total_rank as rank FROM {{table}}users as u, {{table}}statpoints as s WHERE u.id = s.id_owner AND s.stat_type=1 AND u.username LIKE '%".$searchtext."%' LIMIT 25 ; ","");
+                break;
+                case "planetname":
+                    $table     = gettemplate('search/search_user_table');
+                    $row     = gettemplate('search/search_user_row');
+                    $search    = doquery("SELECT p.*,s.total_rank as rank FROM {{table}}planets as p, {{table}}statpoints as s WHERE p.id_owner = s.id_owner AND s.stat_type=1 AND p.name LIKE '%".$searchtext."%' LIMIT 25 ; ","");
+                break;
+                case "allytag":
+                    $table     = gettemplate('search/search_ally_table');
+                    $row     = gettemplate('search/search_ally_row');
+                    $search    = doquery("SELECT a.* ,s.total_points as points FROM {{table}}alliance as a , {{table}}statpoints as s  WHERE a.id = s.id_owner AND s.stat_type=2 AND a.ally_tag LIKE '%".$searchtext."%' LIMIT 25 ; ","");
+                break;
+                case "allyname":
+                    $table     = gettemplate('search/search_ally_table');
+                    $row     = gettemplate('search/search_ally_row');
+                    $search = doquery("SELECT a.* ,s.total_points as points FROM {{table}}alliance as a , {{table}}statpoints as s  WHERE a.id = s.id_owner AND s.stat_type=2 AND a.ally_name LIKE '%".$searchtext."%' LIMIT 25 ; ","");
+                break;
+            } 
 		}
 
 		if(isset($searchtext) && isset($type))

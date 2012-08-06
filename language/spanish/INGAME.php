@@ -18,7 +18,7 @@ $lang['type_mission'][6]  					= 'Espiar';
 $lang['type_mission'][7]  					= 'Colonizar';
 $lang['type_mission'][8]  					= 'Reciclar';
 $lang['type_mission'][9]  					= 'Destruir';
-$lang['type_mission'][15] 					= 'Expedición';
+$lang['type_mission'][15] 					= 'Expedici&oacute;n';
 
 $lang['user_level'] = array (
 	'0' => 'Jugador',
@@ -61,6 +61,7 @@ $lang['tech_rc'] = array (
 //----------------------------------------------------------------------------//
 //TOPNAV
 $lang['tn_vacation_mode']					= 'Modo vacaciones activo hasta el ';
+$lang['tn_vacation_mode_active'] 			= "Modo vacaciones activo"; 
 $lang['tn_delete_mode']						= 'Tu cuenta se encuentra en modo borrar. La misma ser&aacute; borrada el ';
 
 //----------------------------------------------------------------------------//
@@ -1059,7 +1060,7 @@ $lang['sys_spy_defenses'] 					= "Defensas";
 $lang['sys_mess_qg'] 						= "Cuartel General";
 $lang['sys_mess_spy_report_moon']			= "(Luna)";
 $lang['sys_mess_spy_report'] 				= "Reporte de espionaje";
-$lang['sys_mess_spy_lostproba'] 			= "Probabilidad de detecci&oacute;n de la flota de espionaje : %d %% ";
+$lang['sys_mess_spy_lostproba'] 			= "La probabilidad de contra-espionaje es del: %d %% ";
 $lang['sys_mess_spy_control'] 				= "Control Espacial";
 $lang['sys_mess_spy_activity'] 				= "Actividad de espionaje";
 $lang['sys_mess_spy_ennemyfleet'] 			= "Una flota enemiga del planeta";

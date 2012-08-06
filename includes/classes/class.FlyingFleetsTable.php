@@ -187,7 +187,7 @@ class FlyingFleetsTable
 
 		$RowsTPL        = gettemplate ('overview/overview_fleet_event');
 		$MissionType    = $FleetRow['fleet_mission'];
-		$FleetContent   = $this->CreateFleetPopupedFleetLink ( $FleetRow, "flotas", $FleetPrefix . $FleetStyle[ $MissionType ] );
+		$FleetContent   = $this->CreateFleetPopupedFleetLink ( $FleetRow, $lang['cff_flotte'], $FleetPrefix . $FleetStyle[ $MissionType ] );
 		$FleetCapacity  = $this->CreateFleetPopupedMissionLink ( $FleetRow, $lang['type_mission'][ $MissionType ], $FleetPrefix . $FleetStyle[ $MissionType ] );
 		$StartPlanet    = doquery("SELECT `name` FROM {{table}} WHERE `galaxy` = '".intval($FleetRow['fleet_start_galaxy'])."' AND `system` = '".intval($FleetRow['fleet_start_system'])."' AND `planet` = '".intval($FleetRow['fleet_start_planet'])."' AND `planet_type` = '".intval($FleetRow['fleet_start_type'])."';", 'planets', TRUE);
 		$StartType      = $FleetRow['fleet_start_type'];
@@ -248,7 +248,7 @@ class FlyingFleetsTable
 
 		if ($MissionType == 10)
 		{
-			$EventString  = $lang['cff_missile_attack']." ( ".eregi_replace("(503,)","",$FleetRow["fleet_array"])." ) ";
+			$EventString  = $lang['cff_missile_attack']." ( ".preg_replace("(503,)i","",$FleetRow["fleet_array"])." ) ";
 			$Time         = $FleetRow['fleet_start_time'];
 			$Rest         = $Time - time();
 			$EventString .= $lang['cff_from'];

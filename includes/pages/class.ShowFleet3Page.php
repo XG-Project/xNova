@@ -383,7 +383,7 @@ class ShowFleet3Page
 		{
 			$StayDuration	= floor($_POST['expeditiontime']);
 
-			if ( $StayDuration <= floor ( sqrt ( $CurrentUser['expedition_tech'] ) ) && $StayDuration > 0 )
+			if ( $StayDuration > 0 )
 			{
 				$StayDuration    = $StayDuration  * 3600;
 				$StayTime        = $fleet['start_time'] + $StayDuration;

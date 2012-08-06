@@ -316,7 +316,7 @@ class ShowOptionsPage
 				if ($CurrentUser['authlevel'] > 0)
 				{
 					$IsProtOn 					= doquery ("SELECT `id_level` FROM {{table}} WHERE `id_owner` = '".intval($CurrentUser['id'])."' LIMIT 1;", 'planets', TRUE);
-					$parse['adm_pl_prot_data']	= ($IsProtOn['id_level'] > 0) ? " checked='checked'/":'';
+					$parse['adm_pl_prot_data']	= ($IsProtOn['id_level'] > 0) ? " checked='checked'":'';
 					$parse['opt_adm_frame']  	= parsetemplate(gettemplate('options/options_admadd'), $parse);
 				}
 				$parse['opt_usern_data'] 	= $CurrentUser['username'];
@@ -328,14 +328,14 @@ class ShowOptionsPage
 				$parse['opt_fleet_data'] 	= $CurrentUser['settings_fleetactions'];
 				$parse['opt_sskin_data'] 	= ($CurrentUser['design'] == 1) ? " checked='checked'":'';
 				$parse['opt_noipc_data'] 	= ($CurrentUser['noipcheck'] == 1) ? " checked='checked'":'';
-				$parse['opt_allyl_data'] 	= ($CurrentUser['settings_allylogo'] == 1) ? " checked='checked'/":'';
-				$parse['opt_delac_data'] 	= ($CurrentUser['db_deaktjava'] == 1) ? " checked='checked'/":'';
-				$parse['user_settings_rep'] = ($CurrentUser['settings_rep'] == 1) ? " checked='checked'/":'';
-				$parse['user_settings_esp'] = ($CurrentUser['settings_esp'] == 1) ? " checked='checked'/":'';
-				$parse['user_settings_wri'] = ($CurrentUser['settings_wri'] == 1) ? " checked='checked'/":'';
-				$parse['user_settings_mis'] = ($CurrentUser['settings_mis'] == 1) ? " checked='checked'/":'';
-				$parse['user_settings_bud'] = ($CurrentUser['settings_bud'] == 1) ? " checked='checked'/":'';
-				$parse['db_deaktjava']		= ($CurrentUser['db_deaktjava']  > 0) ? " checked='checked'/":'';
+				$parse['opt_allyl_data'] 	= ($CurrentUser['settings_allylogo'] == 1) ? " checked='checked'":'';
+				$parse['opt_delac_data'] 	= ($CurrentUser['db_deaktjava'] == 1) ? " checked='checked'":'';
+				$parse['user_settings_rep'] = ($CurrentUser['settings_rep'] == 1) ? " checked='checked'":'';
+				$parse['user_settings_esp'] = ($CurrentUser['settings_esp'] == 1) ? " checked='checked'":'';
+				$parse['user_settings_wri'] = ($CurrentUser['settings_wri'] == 1) ? " checked='checked'":'';
+				$parse['user_settings_mis'] = ($CurrentUser['settings_mis'] == 1) ? " checked='checked'":'';
+				$parse['user_settings_bud'] = ($CurrentUser['settings_bud'] == 1) ? " checked='checked'":'';
+				$parse['db_deaktjava']		= ($CurrentUser['db_deaktjava']  > 0) ? " checked='checked'":'';
 
 				display(parsetemplate(gettemplate('options/options_body'), $parse));
 			}

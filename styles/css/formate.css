@@ -112,7 +112,7 @@ td.c
   background-image     : url(img/bg1.gif);
 }
 
-td.f, input, select, textarea
+td.f, input, select, textarea, option
 {
   color                : #E6EBFB;
   background-color     : #344566;

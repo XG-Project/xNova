@@ -267,12 +267,12 @@ if ( defined('INSIDE'))
 		),
 
 		12  => array( 'metal' =>  500, 'crystal' =>  200, 'deuterium' =>  100, 'energy' => 0, 'factor' => 1.8,
-			'formule' => array(
-				'metal'     => 'return   "0";',
-				'crystal'   => 'return   "0";',
-				'deuterium' => 'return - (05 * $BuildLevel * pow((1.1), $BuildLevel)) * (0.1 * $BuildLevelFactor);',
-				'energy'    => 'return   (50 * $BuildLevel * pow((1.1), $BuildLevel)) * (0.1 * $BuildLevelFactor);')
-		),
+            'formule' => array(
+                'metal'     => 'return   "0";',
+                'crystal'   => 'return   "0";',
+                'deuterium' => 'return - (05 * $BuildLevel * pow((1.1), $BuildLevel)) * (0.1 * $BuildLevelFactor);',
+                'energy'    => 'return   (30 * $BuildLevel * pow((1.05 + $EnergyLevel * 0.01) , $BuildLevel));')
+        ),
 
 		212 => array( 'metal' =>    0, 'crystal' => 2000, 'deuterium' =>  500, 'energy' => 0, 'factor' => 0.5,
 			'formule' => array(

@@ -801,7 +801,8 @@ class ShowAlliancePage extends bbCode
 						$_POST['owner_range'] 		= stripslashes ( $_POST['owner_range'] );
 						$_POST['web'] 				= stripslashes ( $_POST['web'] );
 						$_POST['image'] 			= stripslashes ( $_POST['image'] );
-						$_POST['text'] 				= stripslashes ( $_POST['text'] );
+				//		$_POST['text'] 				= stripslashes ( $_POST['text'] );
+						$_POST['text']				= str_replace ( "&lt;br /&gt;" , "" , stripslashes ( strip_tags ( mysql_escape_string ( $_POST["text"] ) ) ) );
 					}
 				}
 
@@ -829,7 +830,7 @@ class ShowAlliancePage extends bbCode
 				{
 					if ( $t == 3 )
 					{
-						$ally['ally_request']		= mysql_escape_string ( strip_tags ( $_POST['text'] ) );
+						$ally['ally_request']		= $_POST['text'];
 
 						doquery("UPDATE {{table}} SET
 						`ally_request`='" . $ally['ally_request'] . "'
@@ -839,7 +840,7 @@ class ShowAlliancePage extends bbCode
 					}
 					elseif ($t == 2)
 					{
-						$ally['ally_text']			= mysql_escape_string ( strip_tags ( $_POST['text'] ) );
+						$ally['ally_text']			= $_POST['text'];
 
 						doquery("UPDATE {{table}} SET
 						`ally_text`='" . $ally['ally_text'] . "'
@@ -849,7 +850,7 @@ class ShowAlliancePage extends bbCode
 					}
 					else
 					{
-						$ally['ally_description']	= mysql_escape_string ( strip_tags ( $_POST['text'] ) );
+						$ally['ally_description']	= $_POST['text'];
 
 						doquery("UPDATE {{table}} SET
 						`ally_description`='" . $ally['ally_description'] . "'
@@ -1164,7 +1165,12 @@ class ShowAlliancePage extends bbCode
 				{
 					header ( "location:game.php?page=alliance" , 2 );
 				}
-
+				
+				if ( isset ( $_POST['etiqueta'] ) && ( strlen ( $_POST['etiqueta'] ) < 3 OR strlen ( $_POST['etiqueta'] ) > 8 ) )
+				{
+					exit ( message ( $lang['al_make_ally_tag_required'] , "game.php?page=alliance&mode=admin&edit=tag" , 4 ) ); 
+				}
+					
 				if ( $_POST['etiqueta'] && !empty ( $_POST['etiqueta'] ) )
 				{
 					doquery ( "UPDATE {{table}} SET `ally_tag` = '". mysql_escape_string ( strip_tags ( $_POST['etiqueta'] ) ) . "' WHERE `id` = '" . $CurrentUser['ally_id'] . "';" , 'alliance' );

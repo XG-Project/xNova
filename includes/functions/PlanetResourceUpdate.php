@@ -38,6 +38,7 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 			{				
 				$BuildLevelFactor			= $CurrentPlanet[ $resource[$ProdID] ."_porcent" ];
 				$BuildLevel					= $CurrentPlanet[ $resource[$ProdID] ];
+				$EnergyLevel                = $CurrentUser["energy_tech"]; 
 						        
 				// BOOST
 				$geologe_boost				= 1 + ( $CurrentUser['rpg_geologue']  * GEOLOGUE );

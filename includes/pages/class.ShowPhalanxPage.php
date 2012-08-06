@@ -20,9 +20,9 @@ class ShowPhalanxPage
     {
         global $lang;
 
-        include_once (XGP_ROOT . 'includes/functions/InsertJavaScriptChronoApplet.' . $phpEx);
-        include_once (XGP_ROOT . 'includes/classes/class.FlyingFleetsTable.' . $phpEx);
-        include_once (XGP_ROOT . 'includes/classes/class.GalaxyRows.' . $phpEx);
+        include_once (XGP_ROOT . 'includes/functions/InsertJavaScriptChronoApplet.php');
+        include_once (XGP_ROOT . 'includes/classes/class.FlyingFleetsTable.php');
+        include_once (XGP_ROOT . 'includes/classes/class.GalaxyRows.php');
 
         $FlyingFleetsTable = new FlyingFleetsTable();
         $GalaxyRows = new GalaxyRows();
@@ -122,7 +122,7 @@ class ShowPhalanxPage
                         if ($Mission != 4)
                         {
                             $Label = "fs";
-                            $fpage[$ArrivetoTargetTime] = .= "\n". $FlyingFleetsTable->BuildFleetEventTable($FleetRow, 0, $myFleet, $Label, $Record);
+                            $fpage[$ArrivetoTargetTime] .= "\n". $FlyingFleetsTable->BuildFleetEventTable($FleetRow, 0, $myFleet, $Label, $Record);
                         }
                     }
                     //scanning of destination fleet planet

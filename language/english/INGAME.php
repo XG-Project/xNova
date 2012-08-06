@@ -61,6 +61,7 @@ $lang['tech_rc'] = array (
 //----------------------------------------------------------------------------//
 //TOPNAV
 $lang['tn_vacation_mode']					= 'Vacation mode active until ';
+$lang['tn_vacation_mode_active'] 			= "Vacation mode active"; 
 $lang['tn_delete_mode']						= 'Your account is in erase mode. The same will be deleted the ';
 
 //----------------------------------------------------------------------------//

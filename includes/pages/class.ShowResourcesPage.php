@@ -28,29 +28,6 @@ class ShowResourcesPage
 			$game_deuterium_basic_income 	= 0;
 		}
 
-		$ValidList['percent'] = array (  0,  10,  20,  30,  40,  50,  60,  70,  80,  90, 100 );
-		$SubQry               = "";
-
-		if ($_POST)
-		{
-			foreach($_POST as $Field => $Value)
-			{
-				$FieldName = $Field."_porcent";
-				if ( isset( $CurrentPlanet[ $FieldName ] ) )
-				{
-					if ( ! in_array( $Value, $ValidList['percent']) )
-					{
-						header("Location: game.php?page=ressources");
-						exit;
-					}
-
-					$Value                        = $Value / 10;
-					$CurrentPlanet[ $FieldName ]  = $Value;
-					$SubQry                      .= ", `".$FieldName."` = '".$Value."'";
-				}
-			}
-		}
-
 		$CurrentPlanet['metal_max']			 = Production::max_storable ( $CurrentPlanet[ $resource[22] ]);
 		$CurrentPlanet['crystal_max']		 = Production::max_storable ( $CurrentPlanet[ $resource[23] ]);
 		$CurrentPlanet['deuterium_max']	     = Production::max_storable ( $CurrentPlanet[ $resource[24] ]);
@@ -73,6 +50,7 @@ class ShowResourcesPage
 			{
 				$BuildLevelFactor	= $CurrentPlanet[ $resource[$ProdID]."_porcent" ];
 				$BuildLevel			= $CurrentPlanet[ $resource[$ProdID] ];
+				$EnergyLevel        = $CurrentUser["energy_tech"];
 				
 				// BOOST
 				$geologe_boost		= 1 + ( $CurrentUser['rpg_geologue']  * GEOLOGUE );
@@ -174,12 +152,37 @@ class ShowResourcesPage
 		$parse['weekly_deuterium']      = Format::color_number(Format::pretty_number($parse['weekly_deuterium']));
 
 
-		$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-		$QryUpdatePlanet .= "`id` = '". $CurrentPlanet['id'] ."' ";
-		$QryUpdatePlanet .= $SubQry;
-		$QryUpdatePlanet .= "WHERE ";
-		$QryUpdatePlanet .= "`id` = '". $CurrentPlanet['id'] ."';";
-		doquery( $QryUpdatePlanet, 'planets');
+		$ValidList['percent'] = array (  0,  10,  20,  30,  40,  50,  60,  70,  80,  90, 100 );
+		$SubQry               = "";
+
+		if ($_POST)
+		{
+			foreach($_POST as $Field => $Value)
+			{
+				$FieldName = $Field."_porcent";
+				if ( isset( $CurrentPlanet[ $FieldName ] ) )
+				{
+					if ( ! in_array( $Value, $ValidList['percent']) )
+					{
+						header("Location: game.php?page=resources");
+						exit;
+					}
+
+					$Value                        = $Value / 10;
+					$CurrentPlanet[ $FieldName ]  = $Value;
+					$SubQry                      .= ", `".$FieldName."` = '".$Value."'";
+				}
+			}
+				
+			$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+			$QryUpdatePlanet .= "`id` = '". $CurrentPlanet['id'] ."' ";
+			$QryUpdatePlanet .= $SubQry;
+			$QryUpdatePlanet .= "WHERE ";
+			$QryUpdatePlanet .= "`id` = '". $CurrentPlanet['id'] ."';";
+			doquery( $QryUpdatePlanet, 'planets');
+			
+			header("Location: game.php?page=resources");
+		}
 
 		return display(parsetemplate( gettemplate('resources/resources'), $parse));
 	}

@@ -264,13 +264,25 @@ class ShowGalaxyPage extends GalaxyRows
 					}
 
 					$parse['pos']  	   		= $Planet;
-					$parse['planet'] 		= $this->GalaxyRowPlanet     ( $GalaxyInfo, $Galaxy, $System, $Planet, 1, $HavePhalanx, $CurrentGalaxy, $CurrentSystem);
-					$parse['planetname'] 	= $this->GalaxyRowPlanetName ( $GalaxyInfo, $Galaxy, $System, $Planet, 1, $HavePhalanx, $CurrentGalaxy, $CurrentSystem);
-					$parse['moon'] 			= $this->GalaxyRowMoon       ( $GalaxyInfo, $Galaxy, $System, $Planet, 3 );
-					$parse['debris'] 		= $this->GalaxyRowDebris     ( $GalaxyInfo, $Galaxy, $System, $Planet, 2, $CurrentRC);
-					$parse['username'] 		= $this->GalaxyRowUser       ( $GalaxyInfo, $Galaxy, $System, $Planet );
-					$parse['alliance'] 		= $this->GalaxyRowAlly       ( $GalaxyInfo, $Galaxy, $System, $Planet );
-					$parse['actions'] 		= $this->GalaxyRowActions    ( $GalaxyInfo, $Galaxy, $System, $Planet, $CurrentGalaxy, $CurrentSystem, $CurrentMIP);
+					$parse['planetname']	= $this->GalaxyRowPlanetName ( $GalaxyInfo, $Galaxy, $System, $Planet, 1, $HavePhalanx, $CurrentGalaxy, $CurrentSystem);
+                    $parse['debris']		= $this->GalaxyRowDebris     ( $GalaxyInfo, $Galaxy, $System, $Planet, 2, $CurrentRC);
+                    
+                    if ( $GalaxyInfo['destruyed'] == 0 )
+                    {
+                        $parse['planet']	= $this->GalaxyRowPlanet     ( $GalaxyInfo, $Galaxy, $System, $Planet, 1, $HavePhalanx, $CurrentGalaxy, $CurrentSystem);
+                        $parse['moon']      = $this->GalaxyRowMoon       ( $GalaxyInfo, $Galaxy, $System, $Planet, 3 );
+                        $parse['username']  = $this->GalaxyRowUser       ( $GalaxyInfo, $Galaxy, $System, $Planet );
+                        $parse['alliance']  = $this->GalaxyRowAlly       ( $GalaxyInfo, $Galaxy, $System, $Planet );
+                        $parse['actions']   = $this->GalaxyRowActions    ( $GalaxyInfo, $Galaxy, $System, $Planet, $CurrentGalaxy, $CurrentSystem, $CurrentMIP);
+                    }
+                    else
+                    {
+                        $parse['planet']	= '';
+                        $parse['moon']      = '';
+                        $parse['username']  = '';
+                        $parse['alliance']  = '';
+                        $parse['actions']   = '';
+                    } 
 
 					$rows	.= parsetemplate($template, $parse);
 

@@ -858,6 +858,8 @@ $lang['po_delete_moon']				= 'Delete moon';
 
 
 //---------------	HISTORIAL - LOG	------------------------//
+$lang['log_viewmod'][0] 			= 'No';
+$lang['log_viewmod'][1] 			= 'Yes';
 $lang['log_log_body_build']			= 'Buildings log';
 $lang['log_log_body_resou']			= 'Resources log';
 $lang['log_log_body_def']			= 'Defenses log';

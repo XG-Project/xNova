@@ -1,8 +1,8 @@
 <section class="page">
-	<script type="text/javascript">var UserList = new filterlist(document.form.id_1);</script>
+	<script type="text/javascript">var UserList = new filterlist(authlevel.id_1);</script>
 	<section class="content-table">
 		{display}
-		<form action="admin.php?page=moderation&amp;moderation=2" method="post" accept-charset="UTF-8">
+		<form name="authlevel" action="admin.php?page=moderate&amp;moderation=2" method="post" accept-charset="UTF-8">
 			<h3>{ad_authlevel_title}</h3>
 			<div class="content">
 				<select name="id_1" size="20">

@@ -132,6 +132,8 @@ class ShowModerationPage {
 				elseif ((isset($_POST['id_1']) && ! is_numeric($_POST['id_1'])) OR (isset($_POST['id_2']) && ! is_numeric($_POST['id_2'])))
 				{
 					$parse['display']	=	'<div class="content some_errors">'.$lang['only_numbers'].'</div>';
+					var_dump($_POST['id_1']);
+					var_dump($_POST['id_2']);
 				}
 				elseif ($_POST['id_1'] == 1 OR $_POST['id_2'] == 1)
 				{

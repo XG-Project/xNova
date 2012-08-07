@@ -10,8 +10,9 @@ define('INSIDE'  , TRUE);
 define('INSTALL' , FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
+define('NO_DEBUG',TRUE);
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 
 if ($user['authlevel'] < 1) die(message ($lang['404_page']));
 
@@ -24,7 +25,6 @@ if ($user['authlevel'] == 3)
 	$parse['resetuniverse']	=	'<a href="ResetPage.php" target="Hauptframe" class="topn">&nbsp;'.$lang['re_reset_universe'].'&nbsp;</a>';
 	$parse['queries']		=	'<a href="QueriesPage.php" target="Hauptframe" class="topn">&nbsp;'.$lang['qe_title_menu'].'&nbsp;</a>';
 }
-
 
 display( parsetemplate(gettemplate('adm/Topnav'), $parse), FALSE, '', TRUE, FALSE);
 ?>

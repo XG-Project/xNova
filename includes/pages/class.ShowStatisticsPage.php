@@ -222,7 +222,7 @@ class ShowStatisticsPage
 						$parse['player_name']     = $StatRow['username'];
 
 					if ($StatRow['id'] != $CurrentUser['id'])
-						$parse['player_mes']      = "<a href=\"game.php?page=messages&mode=write&id=" . $StatRow['id'] . "\"><img height=\"14\" width=\"12\" src=\"" . DPATH . "img/m.png\" border=\"0\" title=\"Escribir un mensaje\" /></a>";
+						$parse['player_mes']      = "<a href=\"game.php?page=messages&mode=write&id=" . $StatRow['id'] . "\"><img height=\"14\" width=\"12\" src=\"" . DPATH . "img/m.png\" border=\"0\" title=\"".$lang['write_message']."\" /></a>";
 					else
 						$parse['player_mes']      = "";
 
@@ -246,4 +246,7 @@ class ShowStatisticsPage
 		display(parsetemplate( gettemplate('stat/stat_body'), $parse ));
 	}
 }
-?>
+
+
+/* End of file class.ShowStatisticsPage.php */
+/* Location: ./includes/pages/class.ShowStatisticsPage.php */

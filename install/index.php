@@ -198,16 +198,16 @@ switch ($Mode)
 		{
 			$administrator	=	doquery("SELECT id
 											FROM {{table}}
-											WHERE password = '" . sha1( $_POST['adm_pass'] ) . "' AND
-													email = '" . $db->real_escape_string ( $_POST['adm_email'] ) . "' AND
-													authlevel = 3" , 'users' , TRUE );
+											WHERE password = '".sha1($_POST['adm_pass'])."' AND
+													email = '".$db->real_escape_string($_POST['adm_email'])."' AND
+													authlevel = 3", 'users', TRUE);
 
-			if ( !$administrator )
+			if ( ! $administrator)
 			{
 				die(message("¡Error! - ¡El administrador ingresado no existe o el usuario no tiene permisos administrativos!","index.php?mode=upgrade", "3", FALSE, FALSE));
 			}
 
-			if(filesize('../config.php') == 0)
+			if (filesize('../config.php') === 0)
 			{
 				die(message("¡Error! - Tu archivo config.php se encuentra vacío o no configurado. En caso de no ser así verifica que su chmod sea de 777","", "", FALSE, FALSE));
 			}
@@ -215,7 +215,7 @@ switch ($Mode)
 			{
 				include("../config.php");
 
-				$system_version	=	str_replace ( 'v' , '' , VERSION );
+				$system_version	=	str_replace('v', '', VERSION);
 
 				// ALL QUERYS NEEDED
 				$Qry1	= "DELETE FROM `".$dbsettings['prefix']."config` WHERE `config_name` = 'VERSION'";
@@ -318,6 +318,7 @@ switch ($Mode)
 						case '2.10.1':
 						case '2.10.2':
 						case '2.10.3':
+						case '2.10.4':
 							$QrysArray	= array($Qry12, $Qry13, $Qry14);
 							update_config ( 'version' , SYSTEM_VERSION );
 							upgrade_xml();
@@ -352,4 +353,7 @@ $parse['ins_state']    = $Page;
 $parse['ins_page']     = $frame;
 $parse['dis_ins_btn']  = "?mode=$Mode&page=$nextpage";
 display (parsetemplate (gettemplate('install/ins_body'), $parse), FALSE, '', TRUE, FALSE);
-?>
+
+
+/* End of file index.php */
+/* Location: ./install/index.php */

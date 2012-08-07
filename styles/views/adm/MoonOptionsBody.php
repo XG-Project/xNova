@@ -41,16 +41,16 @@
 <table width="40%">
 	{display2}
 <tr>
-   <td class="c" colspan="2">{po_delete_moon}</td>
+	<td class="c" colspan="2">{po_delete_moon}</td>
 </tr>
 <tr>
-   <th width="200">{input_id_moon}</th>
-   <th width="200"><input type="text" name="del_moon" size="4"></th>
+	<th width="200">{input_id_moon}</th>
+	<th width="200"><input type="text" name="del_moon" size="4"></th>
 </tr>
 <tr>
-   <th colspan="2"><input type="submit" value="{button_delete}"></th>
+	<th colspan="2"><input type="submit" value="{button_delete}"></th>
 </tr><tr>
-   <th colspan="2" style="text-align:left;"><a href="MakerPage.php">{new_creator_go_back}</a>&nbsp;<a href="MakerPage.php?page=new_moon">{new_creator_refresh}</a></th>
+	<th colspan="2" style="text-align:left;"><a href="MakerPage.php">{new_creator_go_back}</a>&nbsp;<a href="MakerPage.php?page=new_moon">{new_creator_refresh}</a></th>
 </tr>
 </table>
 </form>

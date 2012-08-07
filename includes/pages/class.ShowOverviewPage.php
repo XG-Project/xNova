@@ -6,7 +6,7 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-if(!defined('INSIDE')) {die(header("location:../../"));}
+if( ! defined('INSIDE')) die(header("location:../../"));
 
 class ShowOverviewPage
 {
@@ -14,9 +14,9 @@ class ShowOverviewPage
 	{
 		global $planetrow, $lang, $db;
 
-		include_once (XN_ROOT . 'includes/functions/InsertJavaScriptChronoApplet.php');
-		include_once (XN_ROOT . 'includes/classes/class.FlyingFleetsTable.php');
-		include_once (XN_ROOT . 'includes/functions/CheckPlanetUsedFields.php');
+		include_once (XN_ROOT.'includes/functions/InsertJavaScriptChronoApplet.php');
+		include_once (XN_ROOT.'includes/classes/class.FlyingFleetsTable.php');
+		include_once (XN_ROOT.'includes/functions/CheckPlanetUsedFields.php');
 
 		$FlyingFleetsTable = new FlyingFleetsTable();
 

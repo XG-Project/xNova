@@ -198,6 +198,7 @@ class ShowInfosPage
 		$BuildTemp        	= $CurrentPlanet[ 'temp_max' ];
 		$CurrentBuildtLvl 	= $CurrentPlanet[ $resource[$BuildID] ];
 		$BuildLevel       	= ($CurrentBuildtLvl > 0) ? $CurrentBuildtLvl : 1;
+		$EnergyLevel        = $CurrentUser["energy_tech"];
 
 		// BOOST
 		$geologe_boost		= 1 + ( $CurrentUser['rpg_geologue']  * GEOLOGUE );
@@ -430,21 +431,17 @@ class ShowInfosPage
 			elseif ($BuildID == 211)
 				$parse['upd_speed']   = "<font color=\"yellow\">(". Format::pretty_number ($pricelist[$BuildID]['speed2']) .")</font>";
 		}
-		elseif ($BuildID >= 401 && $BuildID <= 450)
+		elseif ($BuildID >= 401 OR $BuildID <= 550)
 		{
 			$PageTPL              = gettemplate('infos/info_buildings_defense');
 			$parse['element_typ'] = $lang['tech'][400];
 
-			$parse['rf_info_to']  = $this->ShowRapidFireTo ($BuildID);
-			$parse['rf_info_fr']  = $this->ShowRapidFireFrom ($BuildID);
-			$parse['hull_pt']     = Format::pretty_number ($pricelist[$BuildID]['metal'] + $pricelist[$BuildID]['crystal']);
-			$parse['shield_pt']   = Format::pretty_number ($CombatCaps[$BuildID]['shield']);
-			$parse['attack_pt']   = Format::pretty_number ($CombatCaps[$BuildID]['attack']);
-		}
-		elseif ($BuildID == 502 && $BuildID == 503)
-		{
-			$PageTPL              = gettemplate('infos/info_buildings_defense');
-			$parse['element_typ'] = $lang['tech'][400];
+			if ($BuildID < 500)
+			{
+				$parse['rf_info_to']  = $this->ShowRapidFireTo ($BuildID);
+				$parse['rf_info_fr']  = $this->ShowRapidFireFrom ($BuildID);
+			}
+
 			$parse['hull_pt']     = Format::pretty_number ($pricelist[$BuildID]['metal'] + $pricelist[$BuildID]['crystal']);
 			$parse['shield_pt']   = Format::pretty_number ($CombatCaps[$BuildID]['shield']);
 			$parse['attack_pt']   = Format::pretty_number ($CombatCaps[$BuildID]['attack']);
@@ -504,3 +501,7 @@ class ShowInfosPage
 		display($page);
 	}
 }
+
+
+/* End of file class.ShowInfosPage.php */
+/* Location: ./includes/pages/class.ShowInfosPage.php */

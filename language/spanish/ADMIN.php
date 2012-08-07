@@ -508,10 +508,6 @@ $lang['ff_arrival']				= 'Objetivo';
 $lang['ff_hold_position']		= 'Mantener posición';
 $lang['ff_arrival_hour']		= 'H. de llegada';
 $lang['ff_go_back_now']			= 'Regresar';
-$lang['ff_delete_succes']		= 'Vuelo borrado con éxito';
-$lang['ff_goback_succes']		= 'El vuelo ahora está regresando a su planeta de origen';
-$lang['ff_confirm_dele_fleet']	= '¿Estás seguro que querés borrar el vuelo seleccionado?';
-$lang['ff_confirm_back_fleet']	= '¿Estás seguro que querés enviar de regreso al vuelo seleccionado?';
 //###########################################################//
 
 
@@ -561,7 +557,6 @@ $lang['mu_search_page']				= 'Buscador avanzado';
 $lang['mu_info_account_page']		= 'Información de cuentas';
 $lang['mu_planets_options']			= 'Opciones de planetas';
 $lang['mu_user_logs']				= 'Historial';
-$lang['mu_user_faq']				= 'F.A.Q.';
 $lang['mu_bots_sett']				= 'Configurar bots';
 //###########################################################//
 
@@ -887,6 +882,7 @@ $lang['po_delete_moon']				= 'Borrar luna';
 
 
 //---------------	HISTORIAL - LOG	------------------------//
+$lang['log_viewmod']				= array('No', 'Si');
 $lang['log_log_body_build']			= 'Log de edificios';
 $lang['log_log_body_resou']			= 'Log de recursos';
 $lang['log_log_body_def']			= 'Log de defensas';
@@ -1049,7 +1045,6 @@ $lang['log_searchindb_susp']		= 'Suspendidos';
 $lang['log_searchindb_admin']		= 'Administradores';
 $lang['log_searchindb_inac']		= 'Inactivos';
 $lang['log_search_advert_popup']	= 'Para Activar/Desactivar el historial puedes hacerlo desde la sección de Permisos. Click para ir al panel de permisos.';
-$lang['log_viewmod']				= array('Desactivado', 'Activado');
 //###########################################################//
 
 

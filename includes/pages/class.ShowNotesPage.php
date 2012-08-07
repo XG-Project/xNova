@@ -22,13 +22,13 @@ class ShowNotesPage
 		{
 			$time 		= time();
 			$priority 	= intval($_POST["u"]);
-			$title 		= ($_POST["title"]) ? $db->real_escape_string(strip_tags($_POST["title"])) : "Sin título";
-			$text 		= ($_POST["text"]) ? $db->real_escape_string(strip_tags($_POST["text"])) : "Sin texto";
+			$title 		= isset($_POST["title"]) ? $db->real_escape_string(strip_tags($_POST["title"])) : "Sin título";
+			$text 		= isset($_POST["text"]) ? str_replace("&lt;br /&gt;", "", stripslashes(strip_tags($db->real_escape_string($_POST["text"])))) : "Sin texto";
 
 			if($_POST["s"] ==1)
 			{
 				doquery("INSERT INTO {{table}} SET owner=".intval($CurrentUser[id]).", time=$time, priority=$priority, title='$title', text='$text'","notes");
-				header("location:game.php?page=notes");
+				header("Location: game.php?page=notes");
 			}
 			elseif($_POST["s"] == 2)
 			{
@@ -39,7 +39,7 @@ class ShowNotesPage
 					header("location:game.php?page=notes");
 
 				doquery("UPDATE {{table}} SET time=$time, priority=$priority, title='$title', text='$text' WHERE id=".intval($id)."","notes");
-				header("location:game.php?page=notes");
+				header("Location: game.php?page=notes");
 			}
 		}
 		elseif($_POST)
@@ -134,4 +134,7 @@ class ShowNotesPage
 		}
 	}
 }
-?>
+
+
+/* End of file class.ShowNotesPage.php */
+/* Location: ./includes/pages/class.ShowNotesPage.php */

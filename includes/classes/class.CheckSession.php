@@ -16,9 +16,9 @@ class CheckSession
 
 		$UserRow = array();
 
-		include(XN_ROOT . 'config.php');
+		include(XN_ROOT.'config.php');
 
-		$game_cookie	=	read_config ( 'cookie_name' );
+		$game_cookie	=	read_config('cookie_name');
 
 		if (isset($_COOKIE[$game_cookie]))
 		{
@@ -29,7 +29,7 @@ class CheckSession
 			// END FIX BY JSTAR
 
 			// BETTER QUERY BY LUCKY! REDUCE GENERAL QUERY FROM 11 TO 10.
-			$UserResult = doquery("SELECT {{table}}users.*, {{table}}statpoints.total_rank, {{table}}statpoints.total_points, {{table}}users.id
+			$UserResult = doquery("SELECT {{table}}users.*, {{table}}statpoints.total_rank, {{table}}statpoints.total_points
 									FROM {{table}}statpoints
 									RIGHT JOIN {{table}}users ON {{table}}statpoints.id_owner = {{table}}users.id
 									WHERE ({{table}}users.username = '{$TheCookie[1]}') LIMIT 1;", '');
@@ -63,31 +63,19 @@ class CheckSession
 				$ExpireTime = 0;
 			}
 
-			if ($IsUserChecked == FALSE)
-			{
+			if ( ! $IsUserChecked)
 				setcookie ($game_cookie, $NextCookie, $ExpireTime, "/", "", 0);
-				$QryUpdateUser  = "UPDATE {{table}} SET ";
-				$QryUpdateUser .= "`onlinetime` = '". time() ."', ";
-				$QryUpdateUser .= "`current_page` = '". $db->real_escape_string(htmlspecialchars($_SERVER['REQUEST_URI'])) ."', ";
-				$QryUpdateUser .= "`user_lastip` = '". $db->real_escape_string(htmlspecialchars($_SERVER['REMOTE_ADDR'])) ."', ";
-				$QryUpdateUser .= "`user_agent` = '". $db->real_escape_string(htmlspecialchars($_SERVER['HTTP_USER_AGENT'])) ."' ";
-				$QryUpdateUser .= "WHERE ";
-				$QryUpdateUser .= "`id` = '". intval($TheCookie[0]) ."' LIMIT 1;";
-				doquery( $QryUpdateUser, 'users');
-				$IsUserChecked = TRUE;
-			}
-			else
-			{
-				$QryUpdateUser  = "UPDATE {{table}} SET ";
-				$QryUpdateUser .= "`onlinetime` = '". time() ."', ";
-				$QryUpdateUser .= "`current_page` = '". $db->real_escape_string(htmlspecialchars($_SERVER['REQUEST_URI'])) ."', ";
-				$QryUpdateUser .= "`user_lastip` = '". $db->real_escape_string(htmlspecialchars($_SERVER['REMOTE_ADDR'])) ."', ";
-				$QryUpdateUser .= "`user_agent` = '". $db->real_escape_string(htmlspecialchars($_SERVER['HTTP_USER_AGENT'])) ."' ";
-				$QryUpdateUser .= "WHERE ";
-				$QryUpdateUser .= "`id` = '". intval($TheCookie[0]) ."' LIMIT 1;";
-				doquery( $QryUpdateUser, 'users');
-				$IsUserChecked = TRUE;
-			}
+
+			$QryUpdateUser  = "UPDATE {{table}} SET ";
+			$QryUpdateUser .= "`onlinetime` = '". time() ."', ";
+			$QryUpdateUser .= "`current_page` = '". $db->real_escape_string(htmlspecialchars($_SERVER['REQUEST_URI'])) ."', ";
+			$QryUpdateUser .= "`user_lastip` = '". $db->real_escape_string(htmlspecialchars($_SERVER['REMOTE_ADDR'])) ."', ";
+			$QryUpdateUser .= "`user_agent` = '". $db->real_escape_string(htmlspecialchars($_SERVER['HTTP_USER_AGENT'])) ."' ";
+			$QryUpdateUser .= "WHERE ";
+			$QryUpdateUser .= "`id` = '". intval($TheCookie[0]) ."' LIMIT 1;";
+			doquery( $QryUpdateUser, 'users');
+
+			$IsUserChecked = TRUE;
 		}
 
 		unset($dbsettings);
@@ -126,3 +114,7 @@ class CheckSession
 		return $RetValue;
 	}
 }
+
+
+/* End of file class.CheckSession.php */
+/* Location: ./includes/classes/class.CheckSession.php */

@@ -17,7 +17,7 @@ $lang			= array();
 $IsUserChecked	= FALSE;
 
 // CONEXIÓN CON LA BASE DE DATOS \\
-require(XN_ROOT.'config.php');
+require_once(XN_ROOT.'config.php');
 if (isset($dbsettings))
 {
 	$db			= new mysqli($dbsettings["server"], $dbsettings["user"], $dbsettings["pass"], $dbsettings["name"]);
@@ -30,6 +30,12 @@ else
 	$db			= NULL;
 }
 // CONEXIÓN CON LA BASE DE DATOS \\
+
+if ( ! is_null($db))
+{
+	require_once('includes/classes/class.SecurePage.php');
+	SecurePage::run();
+}
 
 include_once(XN_ROOT.'includes/constants.php');
 include_once(XN_ROOT.'includes/GeneralFunctions.php');
@@ -165,9 +171,6 @@ else
 {
 	define('DPATH' , "../".DEFAULT_SKINPATH);
 }
-
-require( 'includes/classes/class.SecurePage.php' );
-SecurePage::run();
 
 
 /* End of file global.php */

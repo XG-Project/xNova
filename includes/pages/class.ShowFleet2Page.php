@@ -10,7 +10,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class ShowFleet2Page
 {
-	function __construct ( $CurrentUser , $CurrentPlanet )
+	function __construct($CurrentUser, $CurrentPlanet)
 	{
 		global $resource, $pricelist, $reslist, $lang;
 
@@ -18,17 +18,17 @@ class ShowFleet2Page
 		// SOME DEFAULT VALUES
 		#####################################################################################################
 		// ARRAYS
-		$exp_values		= array ( 1,2,3,4,5 );
-		$hold_values	= array ( 0,1,2,4,8,16,32 );
+		$exp_values				= array(1,2,3,4,5);
+		$hold_values			= array(0,1,2,4,8,16,32);
 
 		// LANG
 		$parse					= $lang;
 
 		// LOAD TEMPLATES REQUIRED
-		$mission_row_template	= gettemplate ( 'fleet/fleet2_mission_row' );
-		$input_template			= gettemplate ( 'fleet/fleet2_inputs' );
-		$stay_template			= gettemplate ( 'fleet/fleet2_stay_row' );
-		$options_template		= gettemplate ( 'fleet/fleet_options' );
+		$mission_row_template	= gettemplate('fleet/fleet2_mission_row');
+		$input_template			= gettemplate('fleet/fleet2_inputs');
+		$stay_template			= gettemplate('fleet/fleet2_stay_row');
+		$options_template		= gettemplate('fleet/fleet_options');
 
 		// OTHER VALUES
 		$galaxy     			= intval($_POST['galaxy']);
@@ -249,33 +249,33 @@ class ShowFleet2Page
 				$stay['selected']		= '';
 				$stay['title']			= $value;
 
-				$stay_row['options']  .= parsetemplate ( $options_template , array_merge($stay, $lang) );
+				$stay_row['options']  .= parsetemplate($options_template, array_merge($stay, $lang));
 			}
 
-			$StayBlock = parsetemplate ( $stay_template , array_merge($stay_row, $lang) );
+			$StayBlock = parsetemplate($stay_template, array_merge($stay_row, $lang));
 		}
 		elseif ( $missiontype[5] != '' )
 		{
 			$stay_row['stay_type']				= 'holdingtime';
 
-			foreach ( $hold_values as $value )
+			foreach ($hold_values as $value)
 			{
 
 				$stay['value']			= $value;
 				$stay['selected']		= ( ( $value == 1 ) ? ' selected' : '' );
 				$stay['title']			= $value;
 
-				$stay_row['options']  .= parsetemplate ( $options_template , array_merge($stay, $lang) );
+				$stay_row['options']  .= parsetemplate($options_template, array_merge($stay, $lang));
 			}
 
-			$StayBlock = parsetemplate ( $stay_template , array_merge($stay_row, $lang) );
+			$StayBlock = parsetemplate($stay_template, array_merge($stay_row, $lang));
 		}
 
 		$parse['input_extra'] 			= $input_extra;
 		$parse['missionselector'] 		= $MissionSelector;
 		$parse['stayblock'] 			= $StayBlock;
 
-		display ( parsetemplate ( gettemplate ( 'fleet/fleet2_table' ) , $parse ) );
+		display(parsetemplate(gettemplate('fleet/fleet2_table'), $parse));
 	}
 }
 ?>

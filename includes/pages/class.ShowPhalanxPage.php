@@ -14,8 +14,8 @@
 
 if ( ! defined('INSIDE')) die(header("location:../../"));
 
-class ShowPhalanxPage
-{
+class ShowPhalanxPage {
+
 	public function __construct($CurrentUser, $CurrentPlanet)
 	{
 		global $lang;
@@ -169,4 +169,6 @@ class ShowPhalanxPage
 	}
 }
 
-?>
+
+/* End of file class.ShowPhalanxPage.php */
+/* Location: ./includes/pages/class.ShowPhalanxPage.php */

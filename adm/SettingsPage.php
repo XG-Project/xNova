@@ -6,12 +6,12 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-define('INSIDE'  , TRUE);
-define('INSTALL' , FALSE);
+define('INSIDE', TRUE);
+define('INSTALL', FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 
 if ($ConfigGame != 1) die(message ($lang['404_page']));
 $AreLog	=	$LogCanWork;
@@ -20,7 +20,7 @@ function DisplayGameSettingsPage ( $CurrentUser )
 {
 	global $lang, $AreLog;
 
-	$game_config	= 	read_config ( '' , TRUE );
+	$game_config	= 	read_config('', TRUE);
 
 	if ( $_POST['opt_save'] == "1" )
 	{
@@ -30,11 +30,11 @@ function DisplayGameSettingsPage ( $CurrentUser )
 		if (isset($_POST['closed']) && $_POST['closed'] == 'on') {
 		$game_config['game_disable']         = 1;
 		$game_config['close_reason']         = addslashes( $_POST['close_reason'] );
-		$Log	.=	$lang['log_sett_close'].": ".$lang['log_viewmod2'][1]."\n";
+		$Log	.=	$lang['log_sett_close'].": ".$lang['log_viewmod'][1]."\n";
 		} else {
 		$game_config['game_disable']         = 0;
 		$game_config['close_reason']         = addslashes( $_POST['close_reason'] );
-		$Log	.=	$lang['log_sett_close'].": ".$lang['log_viewmod2'][0]."\n";
+		$Log	.=	$lang['log_sett_close'].": ".$lang['log_viewmod'][0]."\n";
 		$Log	.=	$lang['log_sett_close_rea'].": ".$_POST['close_reason']."\n";
 		}
 

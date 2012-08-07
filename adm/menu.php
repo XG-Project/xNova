@@ -6,10 +6,11 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-define('INSIDE'  , TRUE);
-define('INSTALL' , FALSE);
+define('INSIDE', TRUE);
+define('INSTALL', FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
+define('NO_DEBUG',TRUE);
 
 include(XN_ROOT . 'global.php');
 

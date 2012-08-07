@@ -92,7 +92,7 @@ function message($mes, $dest = "", $time = "3", $topnav = FALSE, $menu = TRUE)
 
 	$page = parsetemplate(gettemplate('general/message_body'), $parse);
 
-	if ( !defined ( 'IN_ADMIN' ))
+	if ( !defined ( 'IN_ADMIN'))
 	{
 		display ($page , $topnav , (($dest != "" ) ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : "") , FALSE , $menu );
 	}

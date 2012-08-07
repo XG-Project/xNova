@@ -368,7 +368,7 @@ class ShowBuildingsPage
 				unset($Element);
 			}
 
-			if ( isset ($Element ))
+			if ( isset ($Element))
 			{
 				if ( !strchr ($Element, ",") && !strchr ($Element, " ") &&
 					 !strchr ($Element, "+") && !strchr ($Element, "*") &&
@@ -389,7 +389,7 @@ class ShowBuildingsPage
 					header("location: ".GAMEURL."game.php?page=buildings");
 				}
 			}
-			elseif ( isset ($ListID ))
+			elseif ( isset ($ListID))
 			{
 				$bDoItNow = TRUE;
 			}

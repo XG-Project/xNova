@@ -31,11 +31,11 @@ class Production
 	 */
 	public static function max_production($max_energy, $energy_used)
 	{
-		if (($max_energy == 0 ) && ($energy_used > 0 ))
+		if (($max_energy == 0 ) && ($energy_used > 0))
 		{
 			$percentage	= 0;
 		}
-		elseif (($max_energy > 0 ) && (($energy_used + $max_energy ) < 0 ))
+		elseif (($max_energy > 0 ) && (($energy_used + $max_energy ) < 0))
 		{
 			$percentage	= floor (($max_energy ) / ($energy_used * -1 ) * 100 );
 		}

@@ -19,7 +19,7 @@ class Format
 	 */
 	public static function pretty_time ($seconds )
 	{
-		$day	= floor ($seconds / (24 * 3600 ));
+		$day	= floor ($seconds / (24 * 3600));
 		$hs 	= floor ($seconds / 3600 % 24 );
 		$ms 	= floor ($seconds / 60 % 60 );
 		$sr 	= floor ($seconds / 1 % 60 );
@@ -147,27 +147,27 @@ class Format
 		// MAS DEL TRILLON
 		if ($number >= 1000000000000000000000000 )
 		{
-			return self::pretty_number (($number / 1000000000000000000 )) . "&nbsp;<font color=lime>T+</font>";
+			return self::pretty_number (($number / 1000000000000000000)) . "&nbsp;<font color=lime>T+</font>";
 		}
 		// TRILLON
 		elseif ($number >= 1000000000000000000 && $number < 1000000000000000000000000 )
 		{
-			return self::pretty_number (($number / 1000000000000000000 )) . "&nbsp;<font color=lime>T</font>";
+			return self::pretty_number (($number / 1000000000000000000)) . "&nbsp;<font color=lime>T</font>";
 		}
 		// BILLON
 		elseif ($number >= 1000000000000 && $number < 1000000000000000000 )
 		{
-			return self::pretty_number (($number / 1000000000000 )) . "&nbsp;<font color=lime>B</font>";
+			return self::pretty_number (($number / 1000000000000)) . "&nbsp;<font color=lime>B</font>";
 		}
 		// MILLON
 		elseif ($number >= 1000000 && $number < 1000000000000 )
 		{
-			return self::pretty_number (($number / 1000000 )) . "&nbsp;<font color=lime>M</font>";
+			return self::pretty_number (($number / 1000000)) . "&nbsp;<font color=lime>M</font>";
 		}
 		// MIL
 		elseif ($number >= 1000 && $number < 1000000 )
 		{
-			return self::pretty_number (($number / 1000 )) . "&nbsp;<font color=lime>K</font>";
+			return self::pretty_number (($number / 1000)) . "&nbsp;<font color=lime>K</font>";
 		}
 		// NUMERO SIN DEFINIR
 		else
@@ -185,7 +185,7 @@ class Format
 	 */
 	public static function float_to_string ($numeric , $pro = 0 , $output = FALSE )
 	{
-		return ($output ) ? str_replace ( "," , "." , sprintf ( "%." . $pro . "f" , $numeric )) : sprintf ( "%." . $pro . "f" , $numeric );
+		return ($output ) ? str_replace ( "," , "." , sprintf ( "%." . $pro . "f" , $numeric)) : sprintf ( "%." . $pro . "f" , $numeric );
 	}
 
 	/**

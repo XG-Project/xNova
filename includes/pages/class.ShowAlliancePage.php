@@ -105,47 +105,47 @@ class ShowAlliancePage extends bbCode
 		$tag      	= $db->real_escape_string($_GET['tag']); // ETIQUETA DE LA ALIANZA
 
 		// VALIDACIONES
-		if ( empty ($mode ))
+		if ( empty ($mode))
 		{
 			unset ($mode );
 		}
 
-		if ( empty ($a ))
+		if ( empty ($a))
 		{
 			unset ($a );
 		}
 
-		if ( empty ($sort1 ))
+		if ( empty ($sort1))
 		{
 			unset ($sort1 );
 		}
 
-		if ( empty ($sort2 ))
+		if ( empty ($sort2))
 		{
 			unset ($sort2 );
 		}
 
-		if (( !is_numeric ($d )) or ( empty ($d ) && $d != 0 ))
+		if (( !is_numeric ($d)) or ( empty ($d ) && $d != 0))
 		{
 			unset ($d );
 		}
 
-		if ( empty ($edit ))
+		if ( empty ($edit))
 		{
 			unset ($edit );
 		}
 
-		if ( empty ($rank ))
+		if ( empty ($rank))
 		{
 			unset ($rank );
 		}
 
-		if ( empty ($kick ))
+		if ( empty ($kick))
 		{
 			unset ($kick );
 		}
 
-		if ( empty ($id ))
+		if ( empty ($id))
 		{
 			unset ($id );
 		}
@@ -180,7 +180,7 @@ class ShowAlliancePage extends bbCode
 
 			if ($ally_description != "" )
 			{
-				$ally_description 	= "<tr><th colspan=2 height=100>" . nl2br ($this->bbCode ($ally_description )) . "</th></tr>";
+				$ally_description 	= "<tr><th colspan=2 height=100>" . nl2br ($this->bbCode ($ally_description)) . "</th></tr>";
 			}
 			else
 			{
@@ -209,7 +209,7 @@ class ShowAlliancePage extends bbCode
 				$parse['solicitud'] 		= "";
 			}
 
-			display ( parsetemplate ( gettemplate ( 'alliance/alliance_ainfo' ) , $parse ));
+			display ( parsetemplate ( gettemplate ( 'alliance/alliance_ainfo' ) , $parse));
 		}
 
 		// EN ESTE CASO EL USUARIO NO SE ENCUENTRA AUN EN NINGUNA ALIANZA
@@ -342,7 +342,7 @@ class ShowAlliancePage extends bbCode
 					$parse['text_apply'] 		= $text_apply;
 					$parse['Write_to_alliance'] = str_replace('%s', $ally_tag, $lang['al_write_request']);
 
-					display ( parsetemplate ( gettemplate ( 'alliance/alliance_applyform' ) , $parse ));
+					display ( parsetemplate ( gettemplate ( 'alliance/alliance_applyform' ) , $parse));
 				}
 			}
 
@@ -375,7 +375,7 @@ class ShowAlliancePage extends bbCode
 			}
 			else
 			{
-				display ( parsetemplate ( gettemplate ( 'alliance/alliance_defaultmenu' ) , $lang ));
+				display ( parsetemplate ( gettemplate ( 'alliance/alliance_defaultmenu' ) , $lang));
 			}
 		}
 
@@ -531,7 +531,7 @@ class ShowAlliancePage extends bbCode
 				$parse['s'] 	= $s;
 				$parse['list'] 	= $page_list;
 
-				display ( parsetemplate ( gettemplate ( 'alliance/alliance_memberslist_table' ) , $parse ));
+				display ( parsetemplate ( gettemplate ( 'alliance/alliance_memberslist_table' ) , $parse));
 			}
 			##############################################################################################
 			# CORREO CIRCULAR
@@ -548,7 +548,7 @@ class ShowAlliancePage extends bbCode
 				{
 					$list 			= '';
 					$_POST['r'] 	= intval ($_POST['r']);
-					$_POST['text']	= preg_replace ( "/([^\s]{80}?)/" , "\\1<br>" , trim ( nl2br ( strip_tags ($_POST['text'], '<br>' ))));
+					$_POST['text']	= preg_replace ( "/([^\s]{80}?)/" , "\\1<br>" , trim ( nl2br ( strip_tags ($_POST['text'], '<br>'))));
 
 					if ($_POST['r'] == 0 )
 					{
@@ -581,7 +581,7 @@ class ShowAlliancePage extends bbCode
 					}
 				}
 
-				display ( parsetemplate ( gettemplate ( 'alliance/alliance_circular' ) , $lang ));
+				display ( parsetemplate ( gettemplate ( 'alliance/alliance_circular' ) , $lang));
 			}
 			##############################################################################################
 			# EDICION DE LOS PERMISOS O LEYES
@@ -616,7 +616,7 @@ class ShowAlliancePage extends bbCode
 
 					$goto 			= $_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING'];
 
-					exit(header ( "Location: " . $goto ));
+					exit(header ( "Location: " . $goto));
 				}
 				elseif ($_POST['id'] != '' && is_array ($_POST['id']))
 				{
@@ -715,7 +715,7 @@ class ShowAlliancePage extends bbCode
 
 					$goto 	= $_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING'];
 
-					exit(header ( "Location: " . $goto ));
+					exit(header ( "Location: " . $goto));
 
 				}
 				elseif ( isset ($d ) && isset ($ally_ranks[$d]))
@@ -784,7 +784,7 @@ class ShowAlliancePage extends bbCode
 
 				$lang['list']	= $list;
 				$lang['dpath'] 	= DPATH;
-				display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin_laws' ) , $lang ));
+				display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin_laws' ) , $lang));
 			}
 			##############################################################################################
 			# EDICIONES GENERALES DE LA ALIANZA
@@ -816,7 +816,7 @@ class ShowAlliancePage extends bbCode
 
 					if ($ally['ally_request_notallow'] != 0 && $ally['ally_request_notallow'] != 1 )
 					{
-						exit(header ( "location: ".GAMEURL."game.php?page=alliance?mode=admin&edit=ally" , 2 ));
+						exit(header ( "location: ".GAMEURL."game.php?page=alliance?mode=admin&edit=ally" , 2));
 					}
 
 					doquery ( "UPDATE {{table}} SET
@@ -897,7 +897,7 @@ class ShowAlliancePage extends bbCode
 				$lang['ally_request_notallow_1'] 	= (($ally['ally_request_notallow'] == 0) ? ' SELECTED' : '');
 				$lang['ally_owner_range'] 			= $ally['ally_owner_range'];
 
-				display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin' ) , $lang ));
+				display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin' ) , $lang));
 			}
 			##############################################################################################
 			# EDICION DE LOS MIEMBROS
@@ -909,7 +909,7 @@ class ShowAlliancePage extends bbCode
 					header("location: ".GAMEURL."game.php?page=alliance", 2);
 				}
 
-				if ( isset ($kick ))
+				if ( isset ($kick))
 				{
 					if ($ally['ally_owner'] != $CurrentUser['id'] && !$user_can_kick)
 					{
@@ -1052,7 +1052,7 @@ class ShowAlliancePage extends bbCode
 				$lang['memberslist'] 	= $page_list;
 				$lang['s'] 				= $s;
 
-				display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin_members_table' ) , $lang ));
+				display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin_members_table' ) , $lang));
 			}
 
 			##############################################################################################
@@ -1067,7 +1067,7 @@ class ShowAlliancePage extends bbCode
 
 				if ($_POST['action'] == $lang['al_acept_request'])
 				{
-					$_POST['text']  = trim ( nl2br ( strip_tags ($_POST['text'], '<br>' )));
+					$_POST['text']  = trim ( nl2br ( strip_tags ($_POST['text'], '<br>')));
 
 					doquery ( "UPDATE {{table}} SET `ally_members` = `ally_members` + 1 WHERE id='".intval($ally['id'])."'", 'alliance');
 
@@ -1081,17 +1081,17 @@ class ShowAlliancePage extends bbCode
 
 					SendSimpleMessage ($show , $CurrentUser['id'] , '' , 2 ,$ally['ally_tag'] , $lang['al_you_was_acceted'] . $ally['ally_name'] , $lang['al_hi_the_alliance'] . $ally['ally_name'] . $lang['al_has_accepted'] . $_POST['text']);
 
-					exit(header ( 'Location:game.php?page=alliance&mode=admin&edit=ally' ));
+					exit(header ( 'Location:game.php?page=alliance&mode=admin&edit=ally'));
 				}
 				elseif ($_POST['action'] == $lang['al_decline_request'] && $_POST['action'] != '')
 				{
-					$_POST['text']  = trim ( nl2br ( strip_tags ($_POST['text'], '<br>' )));
+					$_POST['text']  = trim ( nl2br ( strip_tags ($_POST['text'], '<br>')));
 
 					doquery ( "UPDATE {{table}} SET ally_request_text='',ally_request='0',ally_id='0' WHERE id='" . intval ($show ) . "'" , 'users' );
 
 					SendSimpleMessage ($show , $CurrentUser['id'] , '' , 2 , $ally['ally_tag'] , $lang['al_you_was_declined'] . $ally['ally_name'] , $lang['al_hi_the_alliance'] . $ally['ally_name'] . $lang['al_has_declined'] . $_POST['text']);
 
-					exit(header ( 'Location:game.php?page=alliance&mode=admin&edit=ally' ));
+					exit(header ( 'Location:game.php?page=alliance&mode=admin&edit=ally'));
 				}
 
 				$i 		= 0;
@@ -1123,7 +1123,7 @@ class ShowAlliancePage extends bbCode
 				if ( isset ($show ) && $show != 0 && $parse['list'] != '' )
 				{
 					$s[$show]['Request_from']	= str_replace ( '%s' , $s[$show]['username'] , $lang['al_request_from']);
-					$parse['request']     		= parsetemplate ( gettemplate ( 'alliance/alliance_admin_request_form' ) , array_merge ($s[$show] , $lang ));
+					$parse['request']     		= parsetemplate ( gettemplate ( 'alliance/alliance_admin_request_form' ) , array_merge ($s[$show] , $lang));
 				} /***end fix***/
 				else
 				{
@@ -1133,7 +1133,7 @@ class ShowAlliancePage extends bbCode
 				$parse['ally_tag'] 					= $ally['ally_tag'];
 				$parse['There_is_hanging_request'] 	= str_replace ( '%n' , $i , $lang['al_no_request_pending']);
 
-				display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin_request_table' ) , $parse ));
+				display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin_request_table' ) , $parse));
 			}
 			##############################################################################################
 			# CAMBIAR NOMBRE DE LA ALIANZA
@@ -1155,7 +1155,7 @@ class ShowAlliancePage extends bbCode
 				$parse[caso] 		= $lang['al_name'];
 				$parse[caso_titulo]	= $lang['al_new_name'];
 
-				display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin_rename' ) , $parse ));
+				display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin_rename' ) , $parse));
 			}
 			##############################################################################################
 			# CAMBIAR ETIQUETA DE LA ALIANZA
@@ -1167,9 +1167,9 @@ class ShowAlliancePage extends bbCode
 					header("location: ".GAMEURL."game.php?page=alliance", 2);
 				}
 
-				if ( isset ($_POST['etiqueta']) && ( strlen ($_POST['etiqueta']) < 3 OR strlen ($_POST['etiqueta']) > 8 ))
+				if ( isset ($_POST['etiqueta']) && ( strlen ($_POST['etiqueta']) < 3 OR strlen ($_POST['etiqueta']) > 8))
 				{
-					exit(message ($lang['al_make_ally_tag_required'] , "game.php?page=alliance&mode=admin&edit=tag" , 4 ));
+					exit(message ($lang['al_make_ally_tag_required'] , "game.php?page=alliance&mode=admin&edit=tag" , 4));
 				}
 
 				if ($_POST['etiqueta'] && !empty ($_POST['etiqueta']))
@@ -1180,7 +1180,7 @@ class ShowAlliancePage extends bbCode
 				$parse[caso] 		= $lang['al_tag'];
 				$parse[caso_titulo]	= $lang['al_new_tag'];
 
-				display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin_rename' ) , $parse ));
+				display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin_rename' ) , $parse));
 			}
 			##############################################################################################
 			# SALIR DE LA ALIANZA
@@ -1195,7 +1195,7 @@ class ShowAlliancePage extends bbCode
 				doquery ( "UPDATE {{table}} SET `ally_name` = '', `ally_id`='0' WHERE `ally_id`='" . intval ($ally['id']) . "'" , 'users' );
 				doquery ( "DELETE FROM {{table}} WHERE id='" . intval ($ally['id']) . "' LIMIT 1" , "alliance" );
 
-				exit(header ( "location: ".GAMEURL."game.php?page=alliance" , 2 ));
+				exit(header ( "location: ".GAMEURL."game.php?page=alliance" , 2));
 			}
 			##############################################################################################
 			# TRANSFERIR LA ALIANZA
@@ -1207,7 +1207,7 @@ class ShowAlliancePage extends bbCode
 					doquery ( "UPDATE {{table}} SET `ally_rank_id`='0' WHERE `id`=" . intval ($CurrentUser['id']) . "", 'users');
 					doquery ( "UPDATE {{table}} SET `ally_owner`='" . $db->real_escape_string ( strip_tags ($_POST['newleader'])) . "' WHERE `id`=" . intval ($CurrentUser['ally_id']) . "" , 'alliance' );
 					doquery ( "UPDATE {{table}} SET `ally_rank_id`='0' WHERE `id`='" . $db->real_escape_string ( strip_tags ($_POST['newleader'])) . "' " , 'users' );
-					exit(header ( "location: ".GAMEURL."game.php?page=alliance" , 2 ));
+					exit(header ( "location: ".GAMEURL."game.php?page=alliance" , 2));
 				}
 				if ($ally['ally_owner'] != $CurrentUser['id'])
 				{
@@ -1241,7 +1241,7 @@ class ShowAlliancePage extends bbCode
 					$parse['s'] 	= $s;
 					$parse['list'] 	= $page_list;
 
-					display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin_transfer' ) , $parse ));
+					display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin_transfer' ) , $parse));
 				}
 			}
 			##############################################################################################
@@ -1338,7 +1338,7 @@ class ShowAlliancePage extends bbCode
 				$lang['ally_members'] 		= $ally['ally_members'];
 				$lang['ally_name'] 			= $ally['ally_name'];
 
-				display ( parsetemplate ( gettemplate ( 'alliance/alliance_frontpage' ) , $lang ));
+				display ( parsetemplate ( gettemplate ( 'alliance/alliance_frontpage' ) , $lang));
 			}
 		}
 	}

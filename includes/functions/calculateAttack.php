@@ -321,7 +321,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 						$lost = $originalDef[$element] - $amount;
 					}
 
-					$giveback = round ($lost * ( rand ( 70 * 0.8 , 70 * 1.2 ) / 100 ));
+					$giveback = round ($lost * ( rand ( 70 * 0.8 , 70 * 1.2 ) / 100));
 					$defenders[$fleetID]['def'][$element] += $giveback;
 					$resourcePointsDefenderDefs['metal'] += $pricelist[$element]['metal'] * ($lost - $giveback) ;
 					$resourcePointsDefenderDefs['crystal'] += $pricelist[$element]['crystal'] * ($lost - $giveback) ;

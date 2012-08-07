@@ -30,7 +30,7 @@ class ShowChangelogPage
 		$parse 			= $lang;
 		$parse['body'] 	= $body;
 
-		display ( parsetemplate ( gettemplate ( 'changelog/changelog_body' ) , $parse ));
+		display ( parsetemplate ( gettemplate ( 'changelog/changelog_body' ) , $parse));
 	}
 }
 ?>

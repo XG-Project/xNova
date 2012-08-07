@@ -226,7 +226,7 @@ class ShowResearchPage
 						$LevelToDo = 1 + $CurrentUser[$resource[$Tech]];
 						if ($CanBeDone)
 						{
-							if ( ! $this->CheckLabSettingsInQueue ($CurrentPlanet ))
+							if ( ! $this->CheckLabSettingsInQueue ($CurrentPlanet))
 							{
 								if ($LevelToDo == 1)
 									$TechnoLink  = "<font color=#FF0000>".$lang['bd_research']."</font>";

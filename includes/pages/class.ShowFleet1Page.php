@@ -8,7 +8,7 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')){ die(header ( 'location:../../' ));}
+if ( ! defined('INSIDE')){ die(header ( 'location:../../'));}
 
 class ShowFleet1Page
 {
@@ -252,7 +252,7 @@ class ShowFleet1Page
 		$parse['curepedition'] 		= $_POST['curepedition'];
 		$parse['target_mission'] 	= $_POST['target_mission'];
 
-		display ( parsetemplate ( gettemplate ( 'fleet/fleet1_table' ) , $parse ));
+		display ( parsetemplate ( gettemplate ( 'fleet/fleet1_table' ) , $parse));
 	}
 }
 ?>

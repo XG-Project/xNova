@@ -110,7 +110,7 @@ class ShowStatisticsPage
 			ORDER BY `'. $Order .'` DESC LIMIT '. $start .',100;';
 
 			$start++;
-			$parse['stat_date']   = date("Y-m-d, H:i:s",read_config ( 'stat_last_update' ));
+			$parse['stat_date']   = date("Y-m-d, H:i:s",read_config ( 'stat_last_update'));
 			$parse['stat_values'] = "";
 			$query = doquery($stats_sql, '');
 			$StatAllianceTableTPL=gettemplate('stat/stat_alliancetable');
@@ -185,7 +185,7 @@ class ShowStatisticsPage
 
 			$start++;
 
-			$parse['stat_date']   = date("Y-m-d, H:i:s",read_config ( 'stat_last_update' ));
+			$parse['stat_date']   = date("Y-m-d, H:i:s",read_config ( 'stat_last_update'));
 			$parse['stat_values'] = "";
 
 			$previusId = 0;
@@ -245,7 +245,7 @@ class ShowStatisticsPage
 			}
 		}
 
-		display(parsetemplate( gettemplate('stat/stat_body'), $parse ));
+		display(parsetemplate( gettemplate('stat/stat_body'), $parse));
 	}
 }
 

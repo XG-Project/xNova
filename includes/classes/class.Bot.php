@@ -428,7 +428,7 @@ class Bot {
 	{
 		global $resource, $lang;
 
-		if ($this->CheckLabSettingsInQueue ($this->CurrentPlanet ))
+		if ($this->CheckLabSettingsInQueue ($this->CurrentPlanet))
 		{
 			$TechLevel =  array(122 => 5, 114 => 9, 118 => 11, 109 => 20, 108 => 20, 113 => 12, 115 => 8, 117 => 8, 124 => 3, 120 => 12, 106 => 12, 111 => 4, 110 => 20, 121 => 7, 199 => 1  );
 

@@ -59,7 +59,7 @@ class bbcode
 			'$this->sizefix(\'\\1\',\'\\2\')'
 		);
 
-		return preg_replace ($pattern , $replace , nl2br ( htmlspecialchars ( stripslashes ($string ))));
+		return preg_replace ($pattern , $replace , nl2br ( htmlspecialchars ( stripslashes ($string))));
 	}
 
 	function sCode ($string )
@@ -80,12 +80,12 @@ class bbcode
 
 	function sList ($string )
 	{
-		$tmp 	= explode ( '[*]' , stripslashes ($string ));
+		$tmp 	= explode ( '[*]' , stripslashes ($string));
 		$out 	= NULL;
 
 		foreach ($tmp as $list )
 		{
-			if ( strlen ( str_replace ( '' , '' , $list )) > 0 )
+			if ( strlen ( str_replace ( '' , '' , $list)) > 0 )
 			{
 				$out .= '<li>' . trim ($list ) . '</li>';
 			}

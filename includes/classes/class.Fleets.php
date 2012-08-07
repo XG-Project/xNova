@@ -80,7 +80,7 @@ class Fleets
 	public static function mission_duration($game_speed, $max_fleet_speed, $distance, $speed_factor)
 	{
 		$duration = 0;
-		$duration = round (( ( 35000 / $game_speed * sqrt ($distance * 10 / $max_fleet_speed ) + 10 ) / $speed_factor ));
+		$duration = round (( ( 35000 / $game_speed * sqrt ($distance * 10 / $max_fleet_speed ) + 10 ) / $speed_factor));
 		return $duration;
 	}
 

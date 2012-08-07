@@ -79,11 +79,11 @@ if ($anz==0)
 	$errors++;
 }
 if ($tempvar4['onlinetime'] >= (time()-60 * 60 * 24 * 7)){
-	if ( is_weak ($MyGameLevel , $HeGameLevel ))
+	if ( is_weak ($MyGameLevel , $HeGameLevel))
 	{
 		$error .= $lang['fl_week_player'].'<br>';
 		$errors++;
-	}elseif ( is_strong ($MyGameLevel , $HeGameLevel )){
+	}elseif ( is_strong ($MyGameLevel , $HeGameLevel)){
 		$error .= $lang['fl_strong_player'].'<br>';
 		$errors++;
 	}
@@ -100,7 +100,7 @@ if ($errors != 0)
 
 $ziel_id = $tempvar3["id_owner"];
 
-$flugzeit = round(((30 + (60 * $tempvar1)) * 2500) / read_config ( 'fleet_speed' ));
+$flugzeit = round(((30 + (60 * $tempvar1)) * 2500) / read_config ( 'fleet_speed'));
 
 $DefenseLabel =
 array(

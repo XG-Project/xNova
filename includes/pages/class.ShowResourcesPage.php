@@ -226,7 +226,7 @@ class ShowResourcesPage
 	 */
 	private function calculate_daily ($prod_per_hour , $prod_level , $basic_income )
 	{
-		return floor (($basic_income + ($prod_per_hour * 0.01 * $prod_level )) * 24 );
+		return floor (($basic_income + ($prod_per_hour * 0.01 * $prod_level)) * 24 );
 	}
 
 	/**
@@ -238,7 +238,7 @@ class ShowResourcesPage
 	 */
 	private function calculate_weekly ($prod_per_hour , $prod_level , $basic_income )
 	{
-		return floor (($basic_income + ($prod_per_hour * 0.01 * $prod_level )) * 24 * 7 );
+		return floor (($basic_income + ($prod_per_hour * 0.01 * $prod_level)) * 24 * 7 );
 	}
 
 	/**
@@ -251,11 +251,11 @@ class ShowResourcesPage
 	{
 		if ($max_amount < $current_amount )
 		{
-			return ( Format::color_red ( Format::pretty_number($max_amount / 1000 ) . 'k' ));
+			return ( Format::color_red ( Format::pretty_number($max_amount / 1000 ) . 'k'));
 		}
 		else
 		{
-			return ( Format::color_green ( Format::pretty_number($max_amount / 1000 ) . 'k' ));
+			return ( Format::color_green ( Format::pretty_number($max_amount / 1000 ) . 'k'));
 		}
 	}
 

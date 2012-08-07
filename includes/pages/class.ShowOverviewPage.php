@@ -401,7 +401,7 @@ class ShowOverviewPage
 				$parse["dpath"]				= DPATH;
 				if (read_config('stat') == 0)
 					$parse['user_rank'] = Format::pretty_number($StatRecord['total_points']) . " (" . $lang['ov_place'] . " <a href=\"game.php?page=statistics&range=" . $StatRecord['total_rank'] . "\">" . $StatRecord['total_rank'] . "</a> " . $lang['ov_of'] . " " . read_config ( 'users_amount' ) . ")";
-				elseif (read_config ( 'stat' ) == 1 && $CurrentUser['authlevel'] < read_config ( 'stat_level' ))
+				elseif (read_config ( 'stat' ) == 1 && $CurrentUser['authlevel'] < read_config ( 'stat_level'))
 					$parse['user_rank'] = Format::pretty_number($StatRecord['total_points']) . " (" . $lang['ov_place'] . " <a href=\"game.php?page=statistics&range=" . $StatRecord['total_rank'] . "\">" . $StatRecord['total_rank'] . "</a> " . $lang['ov_of'] . " " . read_config ( 'users_amount' ) . ")";
 				else
 					$parse['user_rank'] = "-";

@@ -502,12 +502,12 @@ class GalaxyRows
 				$Systemtatus2 	= "<span class=\"inactive\">".$lang['gl_i']."</span><span class=\"longinactive\">".$lang['gl_I']."</span>";
 				$Systemtatus 	= "<span class=\"longinactive\">";
 			}
-			elseif ( is_weak ($MyGameLevel , $HeGameLevel ))
+			elseif ( is_weak ($MyGameLevel , $HeGameLevel))
 			{
 				$Systemtatus2 	= "<span class=\"noob\">".$lang['gl_w']."</span>";
 				$Systemtatus 	= "<span class=\"noob\">";
 			}
-			elseif ( is_strong ($MyGameLevel , $HeGameLevel ))
+			elseif ( is_strong ($MyGameLevel , $HeGameLevel))
 			{
 				$Systemtatus2 	= $lang['gl_s'];
 				$Systemtatus 	= "<span class=\"strong\">";

@@ -25,7 +25,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 		{
 			$cost_metal   = floor($pricelist[$Element]['metal']   * pow($pricelist[$Element]['factor'], $level));
 			$cost_crystal = floor($pricelist[$Element]['crystal'] * pow($pricelist[$Element]['factor'], $level));
-			$time         = ((($cost_crystal) + ($cost_metal)) / read_config ( 'game_speed' )) * (1 / ($planet[$resource['14']] + 1)) * pow(0.5, $planet[$resource['15']]);
+			$time         = ((($cost_crystal) + ($cost_metal)) / read_config ( 'game_speed')) * (1 / ($planet[$resource['14']] + 1)) * pow(0.5, $planet[$resource['15']]);
 			$time         = floor(($time * 60 * 60));
 		}
 		elseif (in_array($Element, $reslist['tech']))
@@ -51,17 +51,17 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 		//		}
 			}
 
-			$time         = (($cost_metal + $cost_crystal) / read_config ( 'game_speed' )) / (($lablevel + 1) * 2);
+			$time         = (($cost_metal + $cost_crystal) / read_config ( 'game_speed')) / (($lablevel + 1) * 2);
 			$time         = floor(($time * 60 * 60) * (1 - (($user['rpg_technocrate']) * TECHNOCRATE_SPEED)));
 		}
 		elseif (in_array($Element, $reslist['defense']))
 		{
-			$time         = (($pricelist[$Element]['metal'] + $pricelist[$Element]['crystal']) / read_config ( 'game_speed' )) * (1 / ($planet[$resource['21']] + 1)) * pow(1 / 2, $planet[$resource['15']]);
+			$time         = (($pricelist[$Element]['metal'] + $pricelist[$Element]['crystal']) / read_config ( 'game_speed')) * (1 / ($planet[$resource['21']] + 1)) * pow(1 / 2, $planet[$resource['15']]);
 			$time         = floor(($time * 60 * 60));
 		}
 		elseif (in_array($Element, $reslist['fleet']))
 		{
-			$time         = (($pricelist[$Element]['metal'] + $pricelist[$Element]['crystal']) / read_config ( 'game_speed' )) * (1 / ($planet[$resource['21']] + 1)) * pow(1 / 2, $planet[$resource['15']]);
+			$time         = (($pricelist[$Element]['metal'] + $pricelist[$Element]['crystal']) / read_config ( 'game_speed')) * (1 / ($planet[$resource['21']] + 1)) * pow(1 / 2, $planet[$resource['15']]);
 			$time         = floor(($time * 60 * 60));
 		}
 

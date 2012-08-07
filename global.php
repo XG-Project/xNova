@@ -110,7 +110,7 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 		message(stripslashes(read_config('close_reason')), '', '', FALSE, FALSE);
 	}
 
-	if ((time() >= (read_config('stat_last_update') + (60 * read_config ( 'stat_update_time' )))))
+	if ((time() >= (read_config('stat_last_update') + (60 * read_config ( 'stat_update_time')))))
 	{
 		require_once(XN_ROOT.'includes/functions/adm/statfunctions.php');
 		$result	= MakeStats();

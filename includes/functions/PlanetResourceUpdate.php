@@ -130,7 +130,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 		if ($CurrentPlanet['metal'] <= $MaxMetalStorage )
 		{
 			$MetalProduction = (($ProductionTime * ($CurrentPlanet['metal_perhour'] / 3600))) * (0.01 * $production_level);
-			$MetalBaseProduc = (($ProductionTime * ($game_metal_basic_income / 3600 )));
+			$MetalBaseProduc = (($ProductionTime * ($game_metal_basic_income / 3600)));
 			$MetalTheorical  = $CurrentPlanet['metal'] + $MetalProduction  +  $MetalBaseProduc;
 			if ($MetalTheorical <= $MaxMetalStorage )
 			{
@@ -145,7 +145,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 		if ($CurrentPlanet['crystal'] <= $MaxCristalStorage )
 		{
 			$CristalProduction = (($ProductionTime * ($CurrentPlanet['crystal_perhour'] / 3600))) * (0.01 * $production_level);
-			$CristalBaseProduc = (($ProductionTime * ($game_crystal_basic_income / 3600 )));
+			$CristalBaseProduc = (($ProductionTime * ($game_crystal_basic_income / 3600)));
 			$CristalTheorical  = $CurrentPlanet['crystal'] + $CristalProduction  +  $CristalBaseProduc;
 			if ($CristalTheorical <= $MaxCristalStorage )
 			{
@@ -160,7 +160,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 		if ($CurrentPlanet['deuterium'] <= $MaxDeuteriumStorage )
 		{
 			$DeuteriumProduction = (($ProductionTime * ($CurrentPlanet['deuterium_perhour'] / 3600))) * (0.01 * $production_level);
-			$DeuteriumBaseProduc = (($ProductionTime * ($game_deuterium_basic_income / 3600 )));
+			$DeuteriumBaseProduc = (($ProductionTime * ($game_deuterium_basic_income / 3600)));
 			$DeuteriumTheorical  = $CurrentPlanet['deuterium'] + $DeuteriumProduction  +  $DeuteriumBaseProduc;
 			if ($DeuteriumTheorical <= $MaxDeuteriumStorage )
 			{

@@ -177,11 +177,11 @@ class ShowGalaxyPage extends GalaxyRows
 		// START FIX BY alivan
 		if ($mode != 2)
 		{
-			if (($CurrentPlanet['system'] != ($_POST["system"] - 1 )) && ($CurrentPlanet['system'] != $_GET['system'] or $CurrentPlanet['galaxy'] != $_GET['galaxy']) && ($mode != 0 ) && ($CurrentPlanet['deuterium'] < 10 ))
+			if (($CurrentPlanet['system'] != ($_POST["system"] - 1)) && ($CurrentPlanet['system'] != $_GET['system'] or $CurrentPlanet['galaxy'] != $_GET['galaxy']) && ($mode != 0 ) && ($CurrentPlanet['deuterium'] < 10))
 			{
 				die (message($lang['gl_no_deuterium_to_view_galaxy'], "game.php?page=galaxy&mode=0", 2));
 			}
-			elseif (($CurrentPlanet['system'] != ($_POST["system"] - 1 )) && ($CurrentPlanet['system'] != $_GET['system'] or $CurrentPlanet['galaxy'] != $_GET['galaxy']) && ($mode != 0 ))
+			elseif (($CurrentPlanet['system'] != ($_POST["system"] - 1)) && ($CurrentPlanet['system'] != $_GET['system'] or $CurrentPlanet['galaxy'] != $_GET['galaxy']) && ($mode != 0))
 			{
 				$QryGalaxyDeuterium   = "UPDATE {{table}} SET ";
 				$QryGalaxyDeuterium  .= "`deuterium` = `deuterium` -  10 ";
@@ -198,7 +198,7 @@ class ShowGalaxyPage extends GalaxyRows
 		// END FIX BY alivan
 
 		$GalaxyInfo = doquery( "SELECT {{table}}galaxy.metal, {{table}}galaxy.crystal, {{table}}galaxy.id_luna, {{table}}galaxy.id_planet, {{table}}planets.galaxy, {{table}}planets.system, {{table}}planets.planet, {{table}}planets.destruyed, {{table}}planets.name, {{table}}planets.image, {{table}}planets.last_update,{{table}}planets.id_owner,{{table}}users.id, {{table}}users.ally_id, {{table}}users.bana, {{table}}users.urlaubs_modus, {{table}}users.onlinetime, {{table}}users.username,{{table}}statpoints.stat_type, {{table}}statpoints.stat_code, {{table}}statpoints.total_rank, {{table}}statpoints.total_points, {{table}}moons.diameter, {{table}}moons.temp_min, {{table}}moons.destruyed AS destruyed_moon, {{table}}moons.name AS name_moon, {{table}}alliance.ally_name, {{table}}alliance.ally_tag, {{table}}alliance.ally_web, {{table}}alliance.ally_members,{{table}}buddy.owner AS friends_owner,{{table}}buddy.sender AS friends_sender
-			FROM {{table}}alliance RIGHT JOIN ({{table}}planets AS {{table}}moons RIGHT JOIN ({{table}}statpoints RIGHT JOIN ((({{table}}planets INNER JOIN {{table}}users ON {{table}}planets.id_owner = {{table}}users.id ) INNER JOIN {{table}}galaxy ON {{table}}planets.id = {{table}}galaxy.id_planet ) LEFT JOIN {{table}}buddy ON ({{table}}buddy.owner = {{table}}planets.id_owner OR {{table}}buddy.sender = {{table}}planets.id_owner ))  ON {{table}}statpoints.id_owner={{table}}users.id AND {{table}}statpoints.stat_code=1 AND {{table}}statpoints.stat_type=1 ) ON {{table}}moons.id = {{table}}galaxy.id_luna) ON {{table}}alliance.id = {{table}}users.ally_id
+			FROM {{table}}alliance RIGHT JOIN ({{table}}planets AS {{table}}moons RIGHT JOIN ({{table}}statpoints RIGHT JOIN ((({{table}}planets INNER JOIN {{table}}users ON {{table}}planets.id_owner = {{table}}users.id ) INNER JOIN {{table}}galaxy ON {{table}}planets.id = {{table}}galaxy.id_planet ) LEFT JOIN {{table}}buddy ON ({{table}}buddy.owner = {{table}}planets.id_owner OR {{table}}buddy.sender = {{table}}planets.id_owner))  ON {{table}}statpoints.id_owner={{table}}users.id AND {{table}}statpoints.stat_code=1 AND {{table}}statpoints.stat_type=1 ) ON {{table}}moons.id = {{table}}galaxy.id_luna) ON {{table}}alliance.id = {{table}}users.ally_id
 			WHERE ({{table}}galaxy.galaxy='".$galaxy."' AND {{table}}galaxy.system='".$system."' AND ({{table}}galaxy.planet>'0' AND {{table}}galaxy.planet<='".MAX_PLANET_IN_SYSTEM."'))
 			GROUP BY `id_planet`
 			ORDER BY {{table}}planets.planet; " , '' );

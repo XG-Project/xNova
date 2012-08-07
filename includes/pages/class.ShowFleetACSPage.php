@@ -63,9 +63,9 @@ class ShowFleetACSPage
 
 		$MaxFlottes 		= Fleets::get_max_fleets ($CurrentUser[$resource[108]] , $CurrentUser['rpg_amiral']);
 
-		if ( !is_numeric ($fleetid ) or empty ($fleetid ))
+		if ( !is_numeric ($fleetid ) or empty ($fleetid))
 		{
-			exit(header ( "Location: ".GAMEURL."game.php?page=fleet" ));
+			exit(header ( "Location: ".GAMEURL."game.php?page=fleet"));
 		}
 
 		if ( isset ($_POST['add_member_to_acs']) && !empty ($_POST['add_member_to_acs']))
@@ -173,7 +173,7 @@ class ShowFleetACSPage
 
 				if ($acs[0] != 1 )
 				{
-					exit(header ( "Location: ".GAMEURL."game.php?page=fleet" ));
+					exit(header ( "Location: ".GAMEURL."game.php?page=fleet"));
 				}
 			}
 
@@ -375,7 +375,7 @@ class ShowFleetACSPage
 			$parse['currentexpeditions']	= $ExpeditionEnCours;
 			$parse['maxexpeditions']		= $EnvoiMaxExpedition;
 		}
-		display ( parsetemplate ( gettemplate ( 'fleet/fleet_table' ) , $parse ));
+		display ( parsetemplate ( gettemplate ( 'fleet/fleet_table' ) , $parse));
 	}
 }
 ?>

@@ -101,38 +101,41 @@ function AdmPlugin($name, $desc)
 	return ($config_line);
 }
 
-$config_line  		= "";
-$plugins_path 		= XN_ROOT . 'includes/plugins/';
-$plugins_version 	= '0.3';
-$plugins_hooks 		= array();
+$config_line		= "";
+$plugins_path		= XN_ROOT.'includes/plugins/';
+$plugins_version	= '0.3';
+$plugins_hooks		= array();
 
 // open all files inside plugins folder
 
-$dir = opendir($plugins_path);
-
-while (($file = readdir($dir)) !== FALSE)
+if (is_dir($plugins_path))
 {
-	// we check if the file is a include file
-	$extension = '.'.substr($file, -3);
-	// and include once the file
-	if ($extension == '.php')
+	$dir = opendir($plugins_path);
+
+	while ($file = readdir($dir))
 	{
-		include $plugins_path . $file;
+		$extension = pathinfo($file, PATHINFO_EXTENSION);
+
+		if ($extension === 'php')
+		{
+			include_once $plugins_path.$file;
+		}
+		elseif (file_exists($plugins_path.$file.'/'.$file.'.php'))
+		{
+			include_once $plugins_path.$file.'/'.$file.'.php';
+		}
 	}
-	elseif (file_exists($plugins_path.$file.'/'.$file.'.php'))
-	{ // by the way, we check if the plugin is inside of a folder
-		include $plugins_path.$file.'/'.$file.'.php';
-	}
+
+	closedir($dir);
 }
 
-closedir($dir);
 /**
-*Plugins admin panel
-*This is a little plugin integrated in the system
-*for control the others plugins.
-*@author adri93
+* Plugins admin panel
+* This is a little plugin integrated in the system
+* for control the others plugins.
+* @author adri93
 */
-if ( defined('IN_ADMIN') )
+if (defined('IN_ADMIN'))
 {
 	if ( ! defined('DPATH')) define('DPATH', XN_ROOT.DEFAULT_SKINPATH);
 	$page	=   isset($_GET['mode']) ? $_GET['mode'] : NULL;
@@ -140,19 +143,20 @@ if ( defined('IN_ADMIN') )
 	if (is_phpself('adm/SettingsPage') && $page=='plugins')
 	{
 		//Si existe activar, activamos el plugin, xD
-		if ($_GET['activate'])
+		if (isset($_GET['activate']))
 		{
 			$plugin = $_GET['activate'];
 			$ex 	= doquery("SELECT status FROM {{table}} WHERE `plugin`='". $plugin ."' LIMIT 1", 'plugins', TRUE);
 
-			if ( $ex )
+			if ($ex)
 			{
 				doquery("UPDATE {{table}} SET `status` = 1 WHERE `plugin`='".$plugin."' LIMIT 1", "plugins");
 				$info = "<big>Plugin Activado</big>";
 			}
 		}
+
 		//Si existe desactivar, lo desactivamos
-		if ($_GET['desactivate'])
+		if (isset($_GET['desactivate']))
 		{
 			$plugin = $_GET['desactivate'];
 			$ex 	= doquery("SELECT status FROM {{table}} WHERE `plugin`='". $plugin ."' LIMIT 1", 'plugins', TRUE);
@@ -163,17 +167,17 @@ if ( defined('IN_ADMIN') )
 			}
 		}
 
-		$settingsplug	='       <br><br>';
-		$settingsplug 	.=' <h2>Plugins Panel</h2>';
+		$settingsplug	='<br><br>';
+		$settingsplug 	.='<h2>Plugins Panel</h2>';
 		$settingsplug 	.= $info;
-		$settingsplug 	.=' <br><table width="250">';
-		$settingsplug 	.=' <tr>';
-		$settingsplug 	.='     <td class="a" colspan="3" style="color:#FFFFFF"><strong> Plugins instalados </strong></td>';
-		$settingsplug 	.=' </tr>';
+		$settingsplug 	.='<br><table width="250">';
+		$settingsplug 	.='<tr>';
+		$settingsplug 	.='<td class="a" colspan="3" style="color:#FFFFFF"><strong> Plugins instalados </strong></td>';
+		$settingsplug 	.='</tr>';
 		$settingsplug 	.= $config_line;
-		$settingsplug 	.=' </table>';
+		$settingsplug 	.='</table>';
 
-		display ( $settingsplug , FALSE , '' , TRUE , FALSE );
+		display($settingsplug, FALSE, '', TRUE, FALSE);
 	}
 }
 ?>

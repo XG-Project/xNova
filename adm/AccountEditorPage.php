@@ -592,7 +592,7 @@ switch ($_GET[page])
 			if ($user['authlevel'] != 3 && $_POST['username'] != NULL && $_POST['password'] != NULL && $_POST['email_2'] != NULL &&
 				$_POST['email'] != NULL ) die();
 
-			if (!$_POST['id'])
+			if ( ! $_POST['id'])
 			{
 				$parse['display']    =    '<tr><th colspan="3"><font color=red>'.$lang['ad_forgiven_id'].'</font></th></tr>';
 			}
@@ -804,7 +804,7 @@ switch ($_GET[page])
 
 							if ($P['planet_type'] == '1')
 							{
-								if (!$Queryyy)
+								if ( ! $Queryyy)
 								{
 									if ($Queryyy['id_luna'] != '0')
 									{
@@ -939,7 +939,7 @@ switch ($_GET[page])
 						doquery("UPDATE {{table}} SET `ally_owner` = '".$changeleader."' WHERE `id` = '".$id."'", "alliance");
 						doquery("UPDATE {{table}} SET `ally_rank_id` = '0' WHERE `id` = '".$changeleader."'", "users");
 						$Log	.=	$lang['log_idnewleader'].": ".$changeleader."\n";}
-					elseif (!$QueryF2 && $changeleader != NULL){
+					elseif ( ! $QueryF2 && $changeleader != NULL){
 						$Error	.=	'<tr><th colspan="3"><font color=red>'.$lang['ad_ally_not_exist3'].'</font></th></tr>';
 						$i++;}
 
@@ -969,7 +969,7 @@ switch ($_GET[page])
 						doquery("UPDATE {{table}} SET `ally_id` = '0', `ally_name` = '', `ally_request` = '0', `ally_rank_id` = '0', `ally_register_time` = '0',
 							`ally_request` = '0' WHERE `id` = '".$delete_u."' AND `ally_id` = '".$id."'", "users");
 						$Log	.=	$lang['log_id_user_expu'].": ".$delete_u."\n";}
-					elseif (!$QueryF3 && $delete_u != NULL){
+					elseif ( ! $QueryF3 && $delete_u != NULL){
 						$Error	.=	'<tr><th colspan="3"><font color=red>'.$lang['ad_ally_not_exist2'].'</font></th></tr>';
 						$i++;}
 

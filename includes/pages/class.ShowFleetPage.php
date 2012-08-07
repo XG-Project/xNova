@@ -59,13 +59,13 @@ class ShowFleetPage
 		$target_mission = intval($_GET['target_mission']);
 		$ShipData       = "";
 
-		if (!$galaxy)
+		if ( ! $galaxy)
 			$galaxy = $CurrentPlanet['galaxy'];
-		if (!$system)
+		if ( ! $system)
 			$system = $CurrentPlanet['system'];
-		if (!$planet)
+		if ( ! $planet)
 			$planet = $CurrentPlanet['planet'];
-		if (!$planettype)
+		if ( ! $planettype)
 			$planettype = $CurrentPlanet['planet_type'];
 
 		$parse['flyingfleets']			= $MaxFlyingFleets;
@@ -170,7 +170,7 @@ class ShowFleetPage
 			$parse['message_nofreeslot'] .= parsetemplate ( gettemplate ( 'fleet/fleet_noslots_row' ) , $parse );
 		}
 
-		if (!$CurrentPlanet)
+		if ( ! $CurrentPlanet)
 		{
 			header("location:game.php?page=fleet");
 		}
@@ -215,7 +215,7 @@ class ShowFleetPage
 			$have_ships = TRUE;
 		}
 
-		if (!$have_ships)
+		if ( ! $have_ships)
 		{
 			$parse['noships_row']	=	parsetemplate ( gettemplate ( 'fleet/fleet_noships_row' ) , $lang );
 		}

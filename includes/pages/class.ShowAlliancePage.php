@@ -220,12 +220,12 @@ class ShowAlliancePage extends bbCode
 			{
 				if ( $yes == 1 && $_POST )
 				{
-					if (!$_POST['atag'])
+					if ( ! $_POST['atag'])
 					{
 						message ( $lang['al_tag_required'] , "game.php?page=alliance&mode=make" , 2 );
 					}
 
-					if (!$_POST['aname'])
+					if ( ! $_POST['aname'])
 					{
 						message ( $lang['al_name_required'] , "game.php?page=alliance&mode=make" , 2 );
 					}
@@ -742,15 +742,15 @@ class ShowAlliancePage extends bbCode
 							$lang['delete']	= "<a href=\"game.php?page=alliance&mode=admin&edit=rights&d={$a}\"><img src=\"" . DPATH . "pic/abort.png\" title=\"Borrar rango\" border=\"0\"></a>";
 							$lang['r0'] 	= $b['name'];
 							$lang['a'] 		= $a;
-							$lang['r1'] 	= "<input type=checkbox name=\"u{$a}r0\"" . (($b['delete'] == 1)?' checked="checked"':'') . ">"; //{$b[1]}
-							$lang['r2'] 	= "<input type=checkbox name=\"u{$a}r1\"" . (($b['kick'] == 1)?' checked="checked"':'') . ">";
-							$lang['r3'] 	= "<input type=checkbox name=\"u{$a}r2\"" . (($b['bewerbungen'] == 1)?' checked="checked"':'') . ">";
-							$lang['r4'] 	= "<input type=checkbox name=\"u{$a}r3\"" . (($b['memberlist'] == 1)?' checked="checked"':'') . ">";
-							$lang['r5'] 	= "<input type=checkbox name=\"u{$a}r4\"" . (($b['bewerbungenbearbeiten'] == 1)?' checked="checked"':'') . ">";
-							$lang['r6'] 	= "<input type=checkbox name=\"u{$a}r5\"" . (($b['administrieren'] == 1)?' checked="checked"':'') . ">";
-							$lang['r7'] 	= "<input type=checkbox name=\"u{$a}r6\"" . (($b['onlinestatus'] == 1)?' checked="checked"':'') . ">";
-							$lang['r8'] 	= "<input type=checkbox name=\"u{$a}r7\"" . (($b['mails'] == 1)?' checked="checked"':'') . ">";
-							$lang['r9'] 	= "<input type=checkbox name=\"u{$a}r8\"" . (($b['rechtehand'] == 1)?' checked="checked"':'') . ">";
+							$lang['r1'] 	= "<input type=checkbox name=\"u{$a}r0\"" . (($b['delete'] == 1)?' checked':'') . ">"; //{$b[1]}
+							$lang['r2'] 	= "<input type=checkbox name=\"u{$a}r1\"" . (($b['kick'] == 1)?' checked':'') . ">";
+							$lang['r3'] 	= "<input type=checkbox name=\"u{$a}r2\"" . (($b['bewerbungen'] == 1)?' checked':'') . ">";
+							$lang['r4'] 	= "<input type=checkbox name=\"u{$a}r3\"" . (($b['memberlist'] == 1)?' checked':'') . ">";
+							$lang['r5'] 	= "<input type=checkbox name=\"u{$a}r4\"" . (($b['bewerbungenbearbeiten'] == 1)?' checked':'') . ">";
+							$lang['r6'] 	= "<input type=checkbox name=\"u{$a}r5\"" . (($b['administrieren'] == 1)?' checked':'') . ">";
+							$lang['r7'] 	= "<input type=checkbox name=\"u{$a}r6\"" . (($b['onlinestatus'] == 1)?' checked':'') . ">";
+							$lang['r8'] 	= "<input type=checkbox name=\"u{$a}r7\"" . (($b['mails'] == 1)?' checked':'') . ">";
+							$lang['r9'] 	= "<input type=checkbox name=\"u{$a}r8\"" . (($b['rechtehand'] == 1)?' checked':'') . ">";
 
 							$list 			.= parsetemplate ( gettemplate ( 'alliance/alliance_admin_laws_row' ) , $lang );
 						}
@@ -761,14 +761,14 @@ class ShowAlliancePage extends bbCode
 							$lang['delete'] = "<a href=\"game.php?page=alliance&mode=admin&edit=rights&d={$a}\"><img src=\"{DPATH}pic/abort.png\" alt=\"{$lang['Delete_range']}\" border=0></a>";
 							$lang['a'] 		= $a;
 							$lang['r1'] 	= "<b>-</b>";
-							$lang['r2'] 	= "<input type=checkbox name=\"u{$a}r1\"" . (($b['kick'] == 1)?' checked="checked"':'') . ">";
-							$lang['r3'] 	= "<input type=checkbox name=\"u{$a}r2\"" . (($b['bewerbungen'] == 1)?' checked="checked"':'') . ">";
-							$lang['r4'] 	= "<input type=checkbox name=\"u{$a}r3\"" . (($b['memberlist'] == 1)?' checked="checked"':'') . ">";
-							$lang['r5'] 	= "<input type=checkbox name=\"u{$a}r4\"" . (($b['bewerbungenbearbeiten'] == 1)?' checked="checked"':'') . ">";
-							$lang['r6'] 	= "<input type=checkbox name=\"u{$a}r5\"" . (($b['administrieren'] == 1)?' checked="checked"':'') . ">";
-							$lang['r7'] 	= "<input type=checkbox name=\"u{$a}r6\"" . (($b['onlinestatus'] == 1)?' checked="checked"':'') . ">";
-							$lang['r8'] 	= "<input type=checkbox name=\"u{$a}r7\"" . (($b['mails'] == 1)?' checked="checked"':'') . ">";
-							$lang['r9'] 	= "<input type=checkbox name=\"u{$a}r8\"" . (($b['rechtehand'] == 1)?' checked="checked"':'') . ">";
+							$lang['r2'] 	= "<input type=checkbox name=\"u{$a}r1\"" . (($b['kick'] == 1)?' checked':'') . ">";
+							$lang['r3'] 	= "<input type=checkbox name=\"u{$a}r2\"" . (($b['bewerbungen'] == 1)?' checked':'') . ">";
+							$lang['r4'] 	= "<input type=checkbox name=\"u{$a}r3\"" . (($b['memberlist'] == 1)?' checked':'') . ">";
+							$lang['r5'] 	= "<input type=checkbox name=\"u{$a}r4\"" . (($b['bewerbungenbearbeiten'] == 1)?' checked':'') . ">";
+							$lang['r6'] 	= "<input type=checkbox name=\"u{$a}r5\"" . (($b['administrieren'] == 1)?' checked':'') . ">";
+							$lang['r7'] 	= "<input type=checkbox name=\"u{$a}r6\"" . (($b['onlinestatus'] == 1)?' checked':'') . ">";
+							$lang['r8'] 	= "<input type=checkbox name=\"u{$a}r7\"" . (($b['mails'] == 1)?' checked':'') . ">";
+							$lang['r9'] 	= "<input type=checkbox name=\"u{$a}r8\"" . (($b['rechtehand'] == 1)?' checked':'') . ">";
 
 							$list 			.= parsetemplate ( gettemplate ( 'alliance/alliance_admin_laws_row' ) , $lang );
 						}
@@ -789,19 +789,19 @@ class ShowAlliancePage extends bbCode
 			##############################################################################################
 			if ( $mode == 'admin' && $edit == 'ally' )
 			{
-				if ( $t != 1 && $t != 2 && $t != 3 )
+				if ($t != 1 && $t != 2 && $t != 3)
 				{
 					$t = 1;
 				}
 
-				if ( $_POST )
+				if ($_POST)
 				{
-					if ( !get_magic_quotes_gpc() )
+					if ( ! get_magic_quotes_gpc())
 					{
-						$_POST['owner_range'] 		= stripslashes ( $_POST['owner_range'] );
-						$_POST['web'] 				= stripslashes ( $_POST['web'] );
-						$_POST['image'] 			= stripslashes ( $_POST['image'] );
-						$_POST['text'] 				= stripslashes ( $_POST['text'] );
+						$_POST['owner_range'] 		= stripslashes($_POST['owner_range']);
+						$_POST['web'] 				= stripslashes($_POST['web']);
+						$_POST['image'] 			= stripslashes($_POST['image']);
+						$_POST['text']				= str_replace("&lt;br /&gt;", "", stripslashes(strip_tags($db->real_escape_string($_POST['text']))));
 					}
 				}
 
@@ -829,7 +829,7 @@ class ShowAlliancePage extends bbCode
 				{
 					if ( $t == 3 )
 					{
-						$ally['ally_request']		= $db->real_escape_string ( strip_tags ( $_POST['text'] ) );
+						$ally['ally_request']		= $_POST['text'];
 
 						doquery("UPDATE {{table}} SET
 						`ally_request`='" . $ally['ally_request'] . "'
@@ -839,7 +839,7 @@ class ShowAlliancePage extends bbCode
 					}
 					elseif ($t == 2)
 					{
-						$ally['ally_text']			= $db->real_escape_string ( strip_tags ( $_POST['text'] ) );
+						$ally['ally_text']			= $_POST['text'];
 
 						doquery("UPDATE {{table}} SET
 						`ally_text`='" . $ally['ally_text'] . "'
@@ -849,7 +849,7 @@ class ShowAlliancePage extends bbCode
 					}
 					else
 					{
-						$ally['ally_description']	= $db->real_escape_string ( strip_tags ( $_POST['text'] ) );
+						$ally['ally_description']	= $_POST['text'];
 
 						doquery("UPDATE {{table}} SET
 						`ally_description`='" . $ally['ally_description'] . "'
@@ -1163,6 +1163,11 @@ class ShowAlliancePage extends bbCode
 				if ( $ally['ally_owner'] != $CurrentUser['id'] && !$user_admin )
 				{
 					header ( "location:game.php?page=alliance" , 2 );
+				}
+
+				if ( isset ( $_POST['etiqueta'] ) && ( strlen ( $_POST['etiqueta'] ) < 3 OR strlen ( $_POST['etiqueta'] ) > 8 ) )
+				{
+					exit ( message ( $lang['al_make_ally_tag_required'] , "game.php?page=alliance&mode=admin&edit=tag" , 4 ) );
 				}
 
 				if ( $_POST['etiqueta'] && !empty ( $_POST['etiqueta'] ) )

@@ -41,7 +41,7 @@ if ($_POST)
 		$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_error_coord'].'</tr></th>';
 		$i++;}
 
-	if (!$name || !$pass || !$email || !$galaxy || !$system || !$planet){
+	if ( ! $name || !$pass || !$email || !$galaxy || !$system || !$planet){
 		$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_complete_all'].'</tr></th>';
 		$i++;}
 

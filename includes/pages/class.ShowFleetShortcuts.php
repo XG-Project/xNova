@@ -78,7 +78,7 @@ class ShowFleetShortcuts
 		$parse['galaxy']		=$c[1];
 		$parse['system']		=$c[2];
 		$parse['planet']		=$c[3];
-		$parse['moon'.$c[4]]	='selected="selected"';
+		$parse['moon'.$c[4]]	='selected';
 		$parse['visibility'] 	="button";
 
 		display(parsetemplate(gettemplate("shortcuts/shortcuts_editPanel"),$parse));
@@ -163,7 +163,7 @@ class ShowFleetShortcuts
 
 					$parse['block_rows'] .= parsetemplate($ShortcutsRowTPL,$block);
 
-					if (!$sx)
+					if ( ! $sx)
 					{
 						$parse['block_rows'] .= "</tr>";
 					}
@@ -171,7 +171,7 @@ class ShowFleetShortcuts
 					$sx=!$sx;
 				}
 			}
-			if (!$sx)
+			if ( ! $sx)
 			{
 				$parse['block_rows'] .= "<td>&nbsp;</td></tr>";
 			}

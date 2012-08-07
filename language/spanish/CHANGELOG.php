@@ -5,7 +5,7 @@ $lang['Description'] = 'Descripción';
 $lang['changelog']   = array(
 
 '1.0.0-dev' => ' Sin fecha
-Basado en XG Proyect 2.10.3
+Basado en XG Proyect 2.10.4
 
 Mejoras:
 - Sistema de logging de errores PHP
@@ -17,6 +17,7 @@ Mejoras:
 - Mejora de seguridad en los htaccess
 - Fecha según lenguaje, con formato configurable
 - Se ha optimizado mucho la carga, hasta en un 90-95%
+- Colonias en horizontal
 
 Errores Corregidos:
 - Muchos errores menores

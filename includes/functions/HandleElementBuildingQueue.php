@@ -39,7 +39,7 @@ function HandleElementBuildingQueue ( $CurrentUser, &$CurrentPlanet, $Production
 			$BuildTime 			= $Item[2];
 			$Builded[$Element] 	= 0;
 
-			if (!$UnFinished and $BuildTime > 0)
+			if ( ! $UnFinished and $BuildTime > 0)
 			{
 				$AllTime = $BuildTime * $Count;
 
@@ -68,7 +68,7 @@ function HandleElementBuildingQueue ( $CurrentUser, &$CurrentPlanet, $Production
 					$UnFinished = TRUE;
 				}
 			}
-			elseif (!$UnFinished)
+			elseif ( ! $UnFinished)
 			{
 				$Builded[$Element] += $Count;
 				$CurrentPlanet[$resource[$Element]] += $Count;

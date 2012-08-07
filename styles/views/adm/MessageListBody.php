@@ -17,7 +17,7 @@ function checkedAll (frm1) {
 		  }
 	for (var i =0; i < aa.elements.length; i++)
 	{
-	 aa.elements[i].checked = checked;
+	 aa.elements[i].checked;
 	}
 }
 </script>

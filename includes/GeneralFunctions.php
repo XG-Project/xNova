@@ -105,7 +105,7 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 {
 	global $db, $debug, $user, $planetrow;
 
-	if (!$AdminPage)
+	if ( ! $AdminPage)
 		$DisplayPage  = StdUserHeader($metatags, $onload);
 	else
 		$DisplayPage  = AdminUserHeader($metatags);
@@ -141,7 +141,7 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 
 	echo $DisplayPage;
 
-	if ( isset($user['authlevel']) && $user['authlevel'] == 3 && read_config ( 'debug' ) == 1 && $AdminPage)
+	if ( isset($user['authlevel']) && $user['authlevel'] == 3 && read_config('debug') == 1 && $AdminPage && ! defined('NO_DEBUG'))
 	{
 
 		echo "<center>";

@@ -11,11 +11,11 @@ class SecurePage
 	public function __construct()
 	{
 		//apply controller to all
-		$_GET = array_map(array($this,'validate'),$_GET);
-		$_POST = array_map(array($this,'validate'),$_POST);
-		$_REQUEST = array_map(array($this,'validate'),$_REQUEST);
-		$_SERVER = array_map(array($this,'validate'),$_SERVER);
-		$_COOKIE = array_map(array($this,'validate'),$_COOKIE);
+		$_GET		= array_map(array($this,'validate'), $_GET);
+		$_POST		= array_map(array($this,'validate'), $_POST);
+		$_REQUEST	= array_map(array($this,'validate'), $_REQUEST);
+		$_SERVER	= array_map(array($this,'validate'), $_SERVER);
+		$_COOKIE	= array_map(array($this,'validate'), $_COOKIE);
 	}
 	//recursively function
 	private function validate($value)
@@ -24,7 +24,7 @@ class SecurePage
 		if ( ! is_array($value))
 		{
 			$value = str_ireplace("script","blocked",$value);
-			$value = (get_magic_quotes_gpc()) ? htmlentities(stripslashes($value), ENT_QUOTES, 'UTF-8',FALSE) : htmlentities($value, ENT_QUOTES, 'UTF-8',FALSE);
+			$value = (get_magic_quotes_gpc()) ? htmlentities(stripslashes($value), ENT_QUOTES, 'UTF-8', FALSE) : htmlentities($value, ENT_QUOTES, 'UTF-8', FALSE);
 			$value = $db->real_escape_string($value);
 		}
 		else

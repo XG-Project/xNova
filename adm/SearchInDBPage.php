@@ -25,27 +25,27 @@ switch ($_POST[search])
 
 	// USUARIOS ####################################################################
 	case 'user':
-	$parse['selected_u']	=	'selected = "selected"';
+	$parse['selected_u']	=	'selected';
 
 	if ($_POST['key_order'] == 'username')
-		$b	=	'checked = "checked"';
+		$b	=	'checked';
 	elseif ($_POST['key_order'] == 'email_2')
-		$c	=	'checked = "checked"';
+		$c	=	'checked';
 	elseif ($_POST['key_order'] == 'authlevel')
-		$d	=	'checked = "checked"';
+		$d	=	'checked';
 	elseif ($_POST['key_order'] == 'onlinetime')
-		$e	=	'checked = "checked"';
+		$e	=	'checked';
 	elseif ($_POST['key_order'] == 'register_time')
-		$f	=	'checked = "checked"';
+		$f	=	'checked';
 	elseif ($_POST['key_order'] == 'user_lastip')
-		$g	=	'checked = "checked"';
+		$g	=	'checked';
 	else
-		$a	=	'checked = "checked"';
+		$a	=	'checked';
 
 	if ($_POST['key_acc']	==	'DESC')
-		$y	=	'checked = "checked"';
+		$y	=	'checked';
 	else
-		$z	=	'checked = "checked"';
+		$z	=	'checked';
 
 	$parse['orderby']	=
 				'<table width="70%">
@@ -78,7 +78,7 @@ switch ($_POST[search])
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "users", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if (!$ORDERBY || !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY || !$QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -142,25 +142,25 @@ switch ($_POST[search])
 
 	// PLANETAS ####################################################################
 	case 'planet':
-	$parse['selected_p']	=	'selected = "selected"';
+	$parse['selected_p']	=	'selected';
 
 	if ($_POST['key_order'] == 'name')
-		$b	=	'checked = "checked"';
+		$b	=	'checked';
 	elseif ($_POST['key_order'] == 'id_owner')
-		$c	=	'checked = "checked"';
+		$c	=	'checked';
 	elseif ($_POST['key_order'] == 'galaxy')
-		$d	=	'checked = "checked"';
+		$d	=	'checked';
 	elseif ($_POST['key_order'] == 'system')
-		$e	=	'checked = "checked"';
+		$e	=	'checked';
 	elseif ($_POST['key_order'] == 'planet')
-		$f	=	'checked = "checked"';
+		$f	=	'checked';
 	else
-		$a	=	'checked = "checked"';
+		$a	=	'checked';
 
 	if ($_POST['key_acc']	==	'DESC')
-		$y	=	'checked = "checked"';
+		$y	=	'checked';
 	else
-		$z	=	'checked = "checked"';
+		$z	=	'checked';
 
 	$parse['orderby']	=
 				'<table width="60%">
@@ -191,7 +191,7 @@ switch ($_POST[search])
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "planets", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if (!$ORDERBY || !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY || !$QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -246,25 +246,25 @@ switch ($_POST[search])
 
 	// LUNAS ####################################################################
 	case 'moon':
-	$parse['selected_m']	=	'selected = "selected"';
+	$parse['selected_m']	=	'selected';
 
 	if ($_POST['key_order'] == 'name')
-		$b	=	'checked = "checked"';
+		$b	=	'checked';
 	elseif ($_POST['key_order'] == 'id_owner')
-		$c	=	'checked = "checked"';
+		$c	=	'checked';
 	elseif ($_POST['key_order'] == 'galaxy')
-		$d	=	'checked = "checked"';
+		$d	=	'checked';
 	elseif ($_POST['key_order'] == 'system')
-		$e	=	'checked = "checked"';
+		$e	=	'checked';
 	elseif ($_POST['key_order'] == 'planet')
-		$f	=	'checked = "checked"';
+		$f	=	'checked';
 	else
-		$a	=	'checked = "checked"';
+		$a	=	'checked';
 
 	if ($_POST['key_acc']	==	'DESC')
-		$y	=	'checked = "checked"';
+		$y	=	'checked';
 	else
-		$z	=	'checked = "checked"';
+		$z	=	'checked';
 
 	$parse['orderby']	=
 				'<table width="60%">
@@ -295,7 +295,7 @@ switch ($_POST[search])
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "planets", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if (!$ORDERBY || !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY || !$QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -342,25 +342,25 @@ switch ($_POST[search])
 
 	// ALIANZAS ####################################################################
 	case 'ally':
-	$parse['selected_a']	=	'selected = "selected"';
+	$parse['selected_a']	=	'selected';
 
 	if ($_POST['key_order'] == 'ally_name')
-		$b	=	'checked = "checked"';
+		$b	=	'checked';
 	elseif ($_POST['key_order'] == 'ally_tag')
-		$c	=	'checked = "checked"';
+		$c	=	'checked';
 	elseif ($_POST['key_order'] == 'ally_owner')
-		$d	=	'checked = "checked"';
+		$d	=	'checked';
 	elseif ($_POST['key_order'] == 'ally_register_time')
-		$e	=	'checked = "checked"';
+		$e	=	'checked';
 	elseif ($_POST['key_order'] == 'ally_members')
-		$f	=	'checked = "checked"';
+		$f	=	'checked';
 	else
-		$a	=	'checked = "checked"';
+		$a	=	'checked';
 
 	if ($_POST['key_acc']	==	'DESC')
-		$y	=	'checked = "checked"';
+		$y	=	'checked';
 	else
-		$z	=	'checked = "checked"';
+		$z	=	'checked';
 
 	$parse['orderby']	=
 				'<table width="70%">
@@ -391,7 +391,7 @@ switch ($_POST[search])
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "alliance", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if (!$ORDERBY || !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY || !$QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -440,21 +440,21 @@ switch ($_POST[search])
 
 	// VACACIONES ####################################################################
 	case 'vacation':
-	$parse['selected_v']	=	'selected = "selected"';
+	$parse['selected_v']	=	'selected';
 
 	if ($_POST['key_order'] == 'username')
-		$b	=	'checked = "checked"';
+		$b	=	'checked';
 	elseif ($_POST['key_order'] == 'email_2')
-		$c	=	'checked = "checked"';
+		$c	=	'checked';
 	elseif ($_POST['key_order'] == 'authlevel')
-		$d	=	'checked = "checked"';
+		$d	=	'checked';
 	else
-		$a	=	'checked = "checked"';
+		$a	=	'checked';
 
 	if ($_POST['key_acc']	==	'DESC')
-		$y	=	'checked = "checked"';
+		$y	=	'checked';
 	else
-		$z	=	'checked = "checked"';
+		$z	=	'checked';
 
 	$parse['orderby']	=
 				'<table width="65%">
@@ -481,7 +481,7 @@ switch ($_POST[search])
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "users", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if (!$ORDERBY || !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY || !$QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -536,21 +536,21 @@ switch ($_POST[search])
 
 	// SUSPENDIDOS ####################################################################
 	case 'suspended':
-	$parse['selected_b']	=	'selected = "selected"';
+	$parse['selected_b']	=	'selected';
 
 	if ($_POST['key_order'] == 'who')
-		$b	=	'checked = "checked"';
+		$b	=	'checked';
 	elseif ($_POST['key_order'] == 'time')
-		$c	=	'checked = "checked"';
+		$c	=	'checked';
 	elseif ($_POST['key_order'] == 'longer')
-		$d	=	'checked = "checked"';
+		$d	=	'checked';
 	else
-		$a	=	'checked = "checked"';
+		$a	=	'checked';
 
 	if ($_POST['key_acc']	==	'DESC')
-		$y	=	'checked = "checked"';
+		$y	=	'checked';
 	else
-		$z	=	'checked = "checked"';
+		$z	=	'checked';
 
 	$parse['orderby']	=
 				'<table width="65%">
@@ -577,7 +577,7 @@ switch ($_POST[search])
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "banned", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if (!$ORDERBY || !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY || !$QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -628,21 +628,21 @@ switch ($_POST[search])
 
 	// ADMINISTRADORES ####################################################################
 	case 'admin':
-	$parse['selected_s']	=	'selected = "selected"';
+	$parse['selected_s']	=	'selected';
 
 	if ($_POST['key_order'] == 'username')
-		$b	=	'checked = "checked"';
+		$b	=	'checked';
 	elseif ($_POST['key_order'] == 'email_2')
-		$c	=	'checked = "checked"';
+		$c	=	'checked';
 	elseif ($_POST['key_order'] == 'authlevel')
-		$d	=	'checked = "checked"';
+		$d	=	'checked';
 	else
-		$a	=	'checked = "checked"';
+		$a	=	'checked';
 
 	if ($_POST['key_acc']	==	'DESC')
-		$y	=	'checked = "checked"';
+		$y	=	'checked';
 	else
-		$z	=	'checked = "checked"';
+		$z	=	'checked';
 
 	$parse['orderby']	=
 				'<table width="60%">
@@ -669,7 +669,7 @@ switch ($_POST[search])
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "users", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if (!$ORDERBY || !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY || !$QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -725,21 +725,21 @@ switch ($_POST[search])
 
 	// INACTIVOS ####################################################################
 	case 'inactives':
-	$parse['selected_i']	=	'selected = "selected"';
+	$parse['selected_i']	=	'selected';
 	$Time	=	time() - 604800;
 
 
 	if ($_POST['key_order'] == 'username')
-		$b	=	'checked = "checked"';
+		$b	=	'checked';
 	elseif ($_POST['key_order'] == 'onlinetime')
-		$c	=	'checked = "checked"';
+		$c	=	'checked';
 	else
-		$a	=	'checked = "checked"';
+		$a	=	'checked';
 
 	if ($_POST['key_acc']	==	'DESC')
-		$y	=	'checked = "checked"';
+		$y	=	'checked';
 	else
-		$z	=	'checked = "checked"';
+		$z	=	'checked';
 
 	$parse['orderby']	=
 				'<table width="60%">
@@ -764,7 +764,7 @@ switch ($_POST[search])
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "users", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if (!$ORDERBY || !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY || !$QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];

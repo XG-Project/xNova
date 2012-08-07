@@ -31,10 +31,10 @@
 
 <tr>
 <th>{adm}</th>
-<th><input type="checkbox" checked="checked" disabled="disabled"/></th>
-<th><input type="checkbox" checked="checked" disabled="disabled"/></th>
-<th><input type="checkbox" checked="checked" disabled="disabled"/></th>
-<th><input type="checkbox" checked="checked" disabled="disabled"/></th>
+<th><input type="checkbox" checked disabled="disabled"/></th>
+<th><input type="checkbox" checked disabled="disabled"/></th>
+<th><input type="checkbox" checked disabled="disabled"/></th>
+<th><input type="checkbox" checked disabled="disabled"/></th>
 <th><input type="checkbox" {log_a} name="log_a" value="on"/></th>
 </tr>
 <tr><th colspan="6"><input type="submit" value="{button_submit}" name="mode" /></th></tr>

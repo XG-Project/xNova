@@ -219,12 +219,12 @@ class ShowResearchPage
 					$RowParse['search_time'] = ShowBuildTime($SearchTime);
 					$CanBeDone               = IsElementBuyable($CurrentUser, $CurrentPlanet, $Tech);
 
-					if (!$InResearch)
+					if ( ! $InResearch)
 					{
 						$LevelToDo = 1 + $CurrentUser[$resource[$Tech]];
 						if ($CanBeDone)
 						{
-							if (!$this->CheckLabSettingsInQueue ( $CurrentPlanet ))
+							if ( ! $this->CheckLabSettingsInQueue ( $CurrentPlanet ))
 							{
 								if ($LevelToDo == 1)
 									$TechnoLink  = "<font color=#FF0000>".$lang['bd_research']."</font>";

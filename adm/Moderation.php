@@ -29,22 +29,22 @@ if ($_GET['moderation'] == '1')
 
 
 	// MODERADORES
-	if ($Moderator[0] == 1){$parse['view_m'] = 'checked = "checked"';}
-	if ($Moderator[1] == 1){$parse['edit_m'] = 'checked = "checked"';}
-	if ($Moderator[2] == 1){$parse['config_m'] = 'checked = "checked"';}
-	if ($Moderator[3] == 1){$parse['tools_m'] = 'checked = "checked"';}
-	if ($Moderator[4] == 1){$parse['log_m'] = 'checked = "checked"';}
+	if ($Moderator[0] == 1){$parse['view_m'] = 'checked';}
+	if ($Moderator[1] == 1){$parse['edit_m'] = 'checked';}
+	if ($Moderator[2] == 1){$parse['config_m'] = 'checked';}
+	if ($Moderator[3] == 1){$parse['tools_m'] = 'checked';}
+	if ($Moderator[4] == 1){$parse['log_m'] = 'checked';}
 
 
 	// OPERADORES
-	if ($Operator[0] == 1){$parse['view_o'] = 'checked = "checked"';}
-	if ($Operator[1] == 1){$parse['edit_o'] = 'checked = "checked"';}
-	if ($Operator[2] == 1){$parse['config_o'] = 'checked = "checked"';}
-	if ($Operator[3] == 1){$parse['tools_o'] = 'checked = "checked"';}
-	if ($Operator[4] == 1){$parse['log_o'] = 'checked = "checked"';}
+	if ($Operator[0] == 1){$parse['view_o'] = 'checked';}
+	if ($Operator[1] == 1){$parse['edit_o'] = 'checked';}
+	if ($Operator[2] == 1){$parse['config_o'] = 'checked';}
+	if ($Operator[3] == 1){$parse['tools_o'] = 'checked';}
+	if ($Operator[4] == 1){$parse['log_o'] = 'checked';}
 
 	// ADMINISTRADOR (SOLO PARA EL HISTORIAL)
-	if ($Administrator[0] == 1){$parse['log_a'] = 'checked = "checked"';}
+	if ($Administrator[0] == 1){$parse['log_a'] = 'checked';}
 
 
 

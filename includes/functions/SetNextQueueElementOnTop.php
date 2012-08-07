@@ -77,18 +77,19 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 							Format::pretty_number ($Needed['deuterium']), $lang['Deuterium']);
 						}
 
-						SendSimpleMessage ( $CurrentUser['id'], '', '', 99, $lang['sys_buildlist'], $lang['sys_buildlist_fail'], $Message);
+						SendSimpleMessage($CurrentUser['id'], '', '', 99, $lang['sys_buildlist'], $lang['sys_buildlist_fail'], $Message);
 
-						array_shift( $QueueArray );
-						foreach ($QueueArray as $num => $info)
+						array_shift($QueueArray);
+
+						foreach($QueueArray as $num => $info)
 						{
-							$fixEle                = explode(",",$info);
-							$fixEle[3]            = $fixEle[3] - $BuildTime;
-							$QueueArray[$num]     = implode(",",$fixEle);
+							$fixEle				= explode(",",$info);
+							$fixEle[3]			= $fixEle[3] - $BuildTime;
+							$QueueArray[$num]	= implode(",",$fixEle);
 						}
 
 						$ActualCount         = count ($QueueArray);
-						if ( $ActualCount == 0 )
+						if ($ActualCount === 0)
 						{
 							$BuildEndTime  = '0';
 							$NewQueue      = '0';
@@ -115,7 +116,6 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			$QryUpdatePlanet .= "WHERE ";
 			$QryUpdatePlanet .= "`id` = '" .           $CurrentPlanet['id']            . "';";
 			doquery( $QryUpdatePlanet, 'planets');
-
 		}
 		return;
 	}

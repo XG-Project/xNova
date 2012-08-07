@@ -51,7 +51,7 @@ if ($tempvar1 >= $tempvar2 || $g != $currentplanet['galaxy'])
 	$error .= $lang['ma_not_send_other_galaxy'].'<br>';
 	$errors++;
 }
-if (!$tempvar3)
+if ( ! $tempvar3)
 {
 	$error .= $lang['ma_planet_doesnt_exists'].'<br>';
 	$errors++;

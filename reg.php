@@ -192,7 +192,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 			if ($GalaxyRow["id_planet"] == "0")
 				$newpos_checked = TRUE;
 
-			if (!$GalaxyRow)
+			if ( ! $GalaxyRow)
 			{
 				CreateOnePlanetRecord ($Galaxy, $System, $Planet, $NewUser['id'], $UserPlanet, TRUE);
 				$newpos_checked = TRUE;

@@ -68,7 +68,7 @@ function get_hook($name)
 function PluginAct($name)
 {
 	$Exists = doquery("SELECT status FROM {{table}} WHERE `plugin` = '" . $name . "' LIMIT 1;", "plugins", TRUE);
-	if (!$Exists) doquery("INSERT INTO {{table}} SET `plugin` = '" . $name . "';", "plugins");
+	if ( ! $Exists) doquery("INSERT INTO {{table}} SET `plugin` = '" . $name . "';", "plugins");
 
 	return ($Exists[0]);
 }

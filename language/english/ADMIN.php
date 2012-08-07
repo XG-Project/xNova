@@ -508,10 +508,6 @@ $lang['ff_arrival']				= 'Objetive';
 $lang['ff_hold_position']		= 'Maintain position';
 $lang['ff_arrival_hour']		= 'Arribal time';
 $lang['ff_go_back_now']			= 'Back';
-$lang['ff_delete_succes']		= 'Flight deleted successfully';
-$lang['ff_goback_succes']		= "The flight is now returning to it's original planet";
-$lang['ff_confirm_dele_fleet']	= 'Are you sure you want to delete the selected flight?';
-$lang['ff_confirm_back_fleet']	= 'Are you sure you want to send the selected flight back to its origin?';
 //###########################################################//
 
 
@@ -887,6 +883,7 @@ $lang['po_delete_moon']				= 'Delete moon';
 
 
 //---------------	HISTORIAL - LOG	------------------------//
+$lang['log_viewmod']				= array('No', 'Yes');
 $lang['log_log_body_build']			= 'Buildings log';
 $lang['log_log_body_resou']			= 'Resources log';
 $lang['log_log_body_def']			= 'Defenses log';
@@ -1049,7 +1046,6 @@ $lang['log_searchindb_susp']		= 'Suspended';
 $lang['log_searchindb_admin']		= 'Administrators';
 $lang['log_searchindb_inac']		= 'Inactive';
 $lang['log_search_advert_popup']	= 'To activate / deactivate history do so from the Permissions section. Click to go to the permissions panel.';
-$lang['log_viewmod']				= array('Deactivated', 'Activated');
 //###########################################################//
 
 

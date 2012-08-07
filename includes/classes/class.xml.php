@@ -63,7 +63,7 @@ class xml
 		//searching inside <configurations> and where config name=$config_name
 		$result = $this->doXpathQuery('/configurations/config[name="' . $config_name . '"]');
 		//if multiple result are returned so key is not unique
-		if (!$result || count($result) !== 1)
+		if ( ! $result || count($result) !== 1)
 		{
 			throw new Exception(sprintf('Item with id "%s" does not exists or is not unique.', $config_name));
 		}

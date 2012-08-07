@@ -2067,7 +2067,7 @@ class FlyingFleetHandler
 								$all_destroyed 		= FALSE;
 							}
 						}
-						if (!$all_destroyed)
+						if ( ! $all_destroyed)
 						{
 							$QryUpdateFleet  = "UPDATE {{table}} SET ";
 							$QryUpdateFleet .= "`fleet_array` = '". $NewFleetArray ."', ";

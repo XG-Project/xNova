@@ -75,7 +75,7 @@ if ($_GET['panel'])
 	$QueryUserBan			=	doquery("SELECT * FROM {{table}} WHERE `who` = '".$_GET['ban_name']."'", "banned", TRUE);
 	$QueryUserBanVacation	=	doquery("SELECT urlaubs_modus FROM {{table}} WHERE `username` = '".$_GET['ban_name']."'", "users", TRUE);
 
-	if (!$QueryUserBan)
+	if ( ! $QueryUserBan)
 	{
 		$parse['title']			=	$lang['bo_bbb_title_1'];
 		$parse['changedate']	=	$lang['bo_bbb_title_2'];

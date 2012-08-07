@@ -63,6 +63,7 @@ $lang['tech_rc'] = array (
 //----------------------------------------------------------------------------//
 //TOPNAV
 $lang['tn_vacation_mode']					= 'Vacation mode active until ';
+$lang['tn_vacation_mode_active'] 			= "Vacation mode active";
 $lang['tn_delete_mode']						= 'Your account is in erase mode. The same will be deleted the ';
 
 //----------------------------------------------------------------------------//
@@ -133,6 +134,7 @@ $lang['ov_actions']							= 'Functions';
 $lang['ov_planet_rename']					= 'rename';
 $lang['ov_planet_rename_action']			= 'rename';
 $lang['ov_abandon_planet_not_possible']		= 'It\'s not possible abandon a planet where are fleets moving';
+$lang['colonies']							= 'Colonies';
 
 //----------------------------------------------------------------------------//
 //GALAXY

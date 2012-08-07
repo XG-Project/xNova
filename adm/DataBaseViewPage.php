@@ -17,7 +17,7 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 
 $parse = $lang;
 
-if (!$_POST)
+if ( ! $_POST)
 {
 	$Tablas = doquery("SHOW TABLES","todas");
 	while ($row = $Tablas->fetch_assoc())

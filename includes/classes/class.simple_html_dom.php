@@ -350,13 +350,13 @@ class simple_html_dom_node {
 			if ($pass && $key && $val  && $val!=='*') {
 				$check = $this->match($exp, $val, $node->attr[$key]);
 				// handle multiple class
-				if (!$check && strcasecmp($key, 'class')===0) {
+				if ( ! $check && strcasecmp($key, 'class')===0) {
 					foreach (explode(' ',$node->attr[$key]) as $k) {
 						$check = $this->match($exp, $val, $k);
 						if ($check) break;
 					}
 				}
-				if (!$check) $pass = FALSE;
+				if ( ! $check) $pass = FALSE;
 			}
 			if ($pass) $ret[$i] = 1;
 			unset($node);

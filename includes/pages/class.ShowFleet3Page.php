@@ -339,22 +339,22 @@ class ShowFleet3Page
 			exit ( header ( "location:game.php?page=fleet" ) );
 		}
 
-		if (!$_POST['planettype'])
+		if ( ! $_POST['planettype'])
 		{
 			exit ( header ( "location:game.php?page=fleet" ) );
 		}
 
-		if (!$_POST['galaxy'] || !is_numeric($_POST['galaxy']) || $_POST['galaxy'] > MAX_GALAXY_IN_WORLD || $_POST['galaxy'] < 1)
+		if ( ! $_POST['galaxy'] || !is_numeric($_POST['galaxy']) || $_POST['galaxy'] > MAX_GALAXY_IN_WORLD || $_POST['galaxy'] < 1)
 		{
 			exit ( header ( "location:game.php?page=fleet" ) );
 		}
 
-		if (!$_POST['system'] || !is_numeric($_POST['system']) || $_POST['system'] > MAX_SYSTEM_IN_GALAXY || $_POST['system'] < 1)
+		if ( ! $_POST['system'] || !is_numeric($_POST['system']) || $_POST['system'] > MAX_SYSTEM_IN_GALAXY || $_POST['system'] < 1)
 		{
 			exit ( header ( "location:game.php?page=fleet" ) );
 		}
 
-		if (!$_POST['planet'] || !is_numeric($_POST['planet']) || $_POST['planet'] > (MAX_PLANET_IN_SYSTEM + 1) || $_POST['planet'] < 1)
+		if ( ! $_POST['planet'] || !is_numeric($_POST['planet']) || $_POST['planet'] > (MAX_PLANET_IN_SYSTEM + 1) || $_POST['planet'] < 1)
 		{
 			exit ( header ( "location:game.php?page=fleet" ) );
 		}
@@ -383,7 +383,7 @@ class ShowFleet3Page
 		{
 			$StayDuration	= floor($_POST['expeditiontime']);
 
-			if ( $StayDuration <= floor ( sqrt ( $CurrentUser['expedition_tech'] ) ) && $StayDuration > 0 )
+			if ($StayDuration > 0)
 			{
 				$StayDuration    = $StayDuration  * 3600;
 				$StayTime        = $fleet['start_time'] + $StayDuration;
@@ -428,7 +428,7 @@ class ShowFleet3Page
 			$FleetSubQRY     .= "`".$resource[$Ship] . "` = `" . $resource[$Ship] . "` - " . $Count . ", ";
 		}
 
-		if (!$haveSpyProbos AND $_POST['mission'] == 6)
+		if ( ! $haveSpyProbos AND $_POST['mission'] == 6)
 		{
 			exit ( header ( "location:game.php?page=fleet" ) );
 		}
@@ -487,7 +487,7 @@ class ShowFleet3Page
 			}
 		}
 
-		if (!$StockOk)
+		if ( ! $StockOk)
 		{
 			message ("<font color=\"red\"><b>". $lang['fl_no_enought_deuterium'] . Format::pretty_number($consumption) ."</b></font>", "game.php?page=fleet", 2);
 		}

@@ -14,8 +14,8 @@
 
 if ( ! defined('INSIDE')) die(header("location:../../"));
 
-class ShowPhalanxPage
-{
+class ShowPhalanxPage {
+
 	public function __construct($CurrentUser, $CurrentPlanet)
 	{
 		global $lang;
@@ -126,7 +126,7 @@ class ShowPhalanxPage
 						}
 					}
 					//scanning of destination fleet planet
-					elseif (!$isStartedfromThis && ($FleetRow['fleet_end_type'] == 1 || ($FleetRow['fleet_end_type'] == 3 && $TargetMoonIsDestroyed)))
+					elseif ( ! $isStartedfromThis && ($FleetRow['fleet_end_type'] == 1 || ($FleetRow['fleet_end_type'] == 3 && $TargetMoonIsDestroyed)))
 					{
 						$Label = "fs";
 						$fpage[$ArrivetoTargetTime] .= "\n". $FlyingFleetsTable->BuildFleetEventTable($FleetRow, 0, $myFleet, $Label, $Record);
@@ -169,4 +169,6 @@ class ShowPhalanxPage
 	}
 }
 
-?>
+
+/* End of file class.ShowPhalanxPage.php */
+/* Location: ./includes/pages/class.ShowPhalanxPage.php */

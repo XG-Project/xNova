@@ -301,7 +301,7 @@ class ShowFleetACSPage
 				$parse['message_nofreeslot'] .= parsetemplate ( gettemplate ( 'fleet/fleet_noslots_row' ) , $parse );
 			}
 
-			if (!$CurrentPlanet)
+			if ( ! $CurrentPlanet)
 			{
 				header("location:game.php?page=fleet");
 			}
@@ -346,7 +346,7 @@ class ShowFleetACSPage
 
 				$have_ships = TRUE;
 
-				if (!$have_ships)
+				if ( ! $have_ships)
 				{
 					$parse['noships_row']	=	parsetemplate ( gettemplate ( 'fleet/fleet_noships_row' ) , $lang );
 				}

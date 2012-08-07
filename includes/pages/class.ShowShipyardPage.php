@@ -411,7 +411,7 @@ class ShowShipyardPage
 
 						}
 
-						if (!$BuildIt)
+						if ( ! $BuildIt)
 						{
 							$parse['add_element'] = "<font color=\"red\">".$lang['bd_protection_shield_only_one']."</font>";
 						}

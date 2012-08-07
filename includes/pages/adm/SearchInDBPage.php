@@ -8,12 +8,12 @@
  * @author	Razican <admin@razican.com>
  */
 
-define('INSIDE'  , TRUE);
-define('INSTALL' , FALSE);
+define('INSIDE' , TRUE);
+define('INSTALL', FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 include('AdminFunctions/Autorization.php');
 
 if ($Observation != 1) die();
@@ -79,7 +79,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "users", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if ( ! $ORDERBY || !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY OR !$QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -109,11 +109,12 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 			$suspended	=	$user['bana'];
 			$vacations	=	$user['urlaubs_modus'];
 
-			if ($suspended == '0' or $suspended == NULL){$suspended = $lang['se_no'];}else{$suspended = "<font color=lime>".$lang['se_yes']."</font>";}
-			if ($vacations == '0'){$vacations = $lang['se_no'];}else{$vacations = "<font color=aqua>".$lang['se_yes']."</font>";}
+			$suspended	=	(is_null($suspended) OR ! $suspended) ? $lang['se_no'] : "<font color=lime>".$lang['se_yes']."</font>";
+			$vacations	= 	! $vacations ? $lang['se_no'] : "<font color=aqua>".$lang['se_yes']."</font>";
+
 			for ($i = 0; $i < 5; $i++)
 			{
-				if ($authlevel == $i){$authlevel = $lang['se_authlevel'][$i];}
+				if ($authlevel == $i) $authlevel = $lang['se_authlevel'][$i];
 			}
 
 
@@ -192,7 +193,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "planets", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if ( ! $ORDERBY || !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY OR !$QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -296,7 +297,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "planets", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if ( ! $ORDERBY || !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY OR !$QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -392,7 +393,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "alliance", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if ( ! $ORDERBY || !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY OR !$QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -482,7 +483,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "users", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if ( ! $ORDERBY || !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY OR !$QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -497,7 +498,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	}
 
 	$cnt	=	$search->num_rows;
-	if ($cnt	==	NULL)
+	if (is_null($cnt))
 	{
 		$parse['error']	=	$lang['se_no_data'];
 	}
@@ -512,7 +513,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 			$suspended		=	$vacation['bana'];
 			$vacations		=	$vacation['urlaubs_modus'];
 
-			if ($suspended == '0' or $suspended == NULL){$suspended = $lang['se_no'];}else{$suspended = "<font color=lime>".$lang['se_yes']."</font>";}
+			if ($suspended == '0' OR is_null($suspended)){$suspended = $lang['se_no'];}else{$suspended = "<font color=lime>".$lang['se_yes']."</font>";}
 			if ($vacations == '0'){$vacations = $lang['se_no'];}else{$vacations = "<font color=aqua>".$lang['se_yes']."</font>";}
 			for ($i = 0; $i < 5; $i++)
 			{
@@ -578,7 +579,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "banned", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if ( ! $ORDERBY || !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY OR !$QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -670,7 +671,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "users", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if ( ! $ORDERBY || !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY OR !$QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -701,7 +702,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 			$suspended	=	$admin['bana'];
 			$vacations	=	$admin['urlaubs_modus'];
 
-			if ($suspended == '0' or $suspended == NULL){$suspended = $lang['se_no'];}else{$suspended = "<font color=lime>".$lang['se_yes']."</font>";}
+			if ($suspended == '0' OR is_null($suspended)){$suspended = $lang['se_no'];}else{$suspended = "<font color=lime>".$lang['se_yes']."</font>";}
 			if ($vacations == '0'){$vacations = $lang['se_no'];}else{$vacations = "<font color=aqua>".$lang['se_yes']."</font>";}
 			for ($i = 0; $i < 5; $i++)
 			{
@@ -765,7 +766,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "users", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if ( ! $ORDERBY || !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY OR !$QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -795,11 +796,11 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 			$vacations		=	$inactives['urlaubs_modus'];
 			$suspended		=	$inactives['bana'];
 
-			if ($suspended == '0' or $suspended == NULL){$suspended = $lang['se_no'];}else{$suspended = "<font color=lime>".$lang['se_yes']."</font>";}
+			if ($suspended == '0' OR is_null($suspended)){$suspended = $lang['se_no'];}else{$suspended = "<font color=lime>".$lang['se_yes']."</font>";}
 			if ($vacations == '0'){$vacations = $lang['se_no'];}else{$vacations = "<font color=aqua>".$lang['se_yes']."</font>";}
 			for ($i = 0; $i < 5; $i++)
 			{
-				if ($authlevel == $i){$authlevel = $lang['se_authlevel'][$i];}
+				if ($authlevel == $i) $authlevel = $lang['se_authlevel'][$i];
 			}
 
 

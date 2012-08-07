@@ -25,9 +25,9 @@ class ShowOptionsPage
 														WHERE id_owner = '" . intval ($CurrentUser['id']) . "' AND
 														(b_building <> 0 OR b_tech <> 0 OR b_hangar <> 0)
 											)
-										) as total" , '' , TRUE );
+										) as total", '', TRUE);
 
-		if ($activity['total'] > 0 )
+		if ($activity['total'] > 0)
 		{
 			return TRUE;
 		}
@@ -309,10 +309,10 @@ class ShowOptionsPage
 				$parse['opt_lst_cla_data']   = "<option value =\"0\"". (($CurrentUser['planet_sort_order'] == 0) ? " selected": "") .">" . $lang['op_sort_asc'] . "</option>";
 				$parse['opt_lst_cla_data']  .= "<option value =\"1\"". (($CurrentUser['planet_sort_order'] == 1) ? " selected": "") .">" . $lang['op_sort_desc'] . "</option>";
 
-				$SkinsFolder = opendir(XN_ROOT . 'styles/skins');
+				$SkinsFolder = opendir(XN_ROOT.'styles/skins');
 
 				$parse['opt_skin_data']	= '';
-				while (($SkinsSubFolder = readdir($SkinsFolder)) !== FALSE)
+				while ($SkinsSubFolder = readdir($SkinsFolder))
 				{
 					if ($SkinsSubFolder != '.' && $SkinsSubFolder != '..' && $SkinsSubFolder != '.htaccess' && $SkinsSubFolder != '.svn' && $SkinsSubFolder != 'index.html')
 					{

@@ -50,7 +50,7 @@ class GalaxyRows
 			$QryUpdateGalaxy  = "UPDATE {{table}} SET `id_luna` = '0' WHERE `galaxy` = '". intval($lunarow['galaxy']) ."' AND `system` = '". intval($lunarow['system']) ."' AND `planet` = '". intval($lunarow['planet']) ."' LIMIT 1;";
 		}
 
-		doquery($QryUpdateGalaxy , 'galaxy');
+		doquery($QryUpdateGalaxy, 'galaxy');
 		doquery("DELETE FROM {{table}} WHERE `id` = ".intval($lunarow['id'])."", 'planets');
 	}
 
@@ -58,7 +58,7 @@ class GalaxyRows
 	{
 		if ($planet['destruyed'] <= time())
 		{
-			doquery("DELETE FROM {{table}} WHERE `id_planet` = '".$planet['id_planet']."' LIMIT 1;" , 'galaxy');
+			doquery("DELETE FROM {{table}} WHERE `id_planet` = '".$planet['id_planet']."' LIMIT 1;", 'galaxy');
 			doquery("DELETE FROM {{table}} WHERE `id` = '".$planet['id_planet']."'", 'planets');
 		}
 	}
@@ -295,7 +295,7 @@ class GalaxyRows
 				{
 					if ($GalaxyInfo["galaxy"] == $CurrentGalaxy)
 					{
-						$PhRange = $this->GetPhalanxRange ($HavePhalanx );
+						$PhRange = $this->GetPhalanxRange ($HavePhalanx);
 						$SystemLimitMin = $CurrentSystem - $PhRange;
 						if ($SystemLimitMin < 1)
 							$SystemLimitMin = 1;
@@ -430,7 +430,7 @@ class GalaxyRows
 			{
 				if ($GalaxyInfo["galaxy"] == $CurrentGalaxy)
 				{
-					$Range = $this->GetPhalanxRange ($HavePhalanx );
+					$Range = $this->GetPhalanxRange ($HavePhalanx);
 					if ($CurrentGalaxy + $Range <= $CurrentSystem && $CurrentSystem >= $CurrentGalaxy - $Range)
 						$PhalanxTypeLink = "<a href=# onclick=fenster('game.php?page=phalanx&galaxy=".$Galaxy."&amp;system=".$System."&amp;planet=".$Planet."&amp;planettype=".$PlanetType."')  title=\"Phalanx\">".$GalaxyInfo['name']."</a><br>";
 					else
@@ -502,12 +502,12 @@ class GalaxyRows
 				$Systemtatus2 	= "<span class=\"inactive\">".$lang['gl_i']."</span><span class=\"longinactive\">".$lang['gl_I']."</span>";
 				$Systemtatus 	= "<span class=\"longinactive\">";
 			}
-			elseif ( is_weak ($MyGameLevel , $HeGameLevel))
+			elseif ( is_weak ($MyGameLevel, $HeGameLevel))
 			{
 				$Systemtatus2 	= "<span class=\"noob\">".$lang['gl_w']."</span>";
 				$Systemtatus 	= "<span class=\"noob\">";
 			}
-			elseif ( is_strong ($MyGameLevel , $HeGameLevel))
+			elseif ( is_strong ($MyGameLevel, $HeGameLevel))
 			{
 				$Systemtatus2 	= $lang['gl_s'];
 				$Systemtatus 	= "<span class=\"strong\">";

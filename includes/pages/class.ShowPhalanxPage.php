@@ -35,7 +35,7 @@ class ShowPhalanxPage {
 		$Planet = intval($_GET["planet"]);
 		$PlType = intval($_GET["planettype"]);
 		/* cheater detection */
-		if ($System < $radar_limit_inf || $System > $radar_limit_sup || $Galaxy != $CurrentPlanet['galaxy'] || $PlType != 1 || $CurrentPlanet['planet_type'] != 3)
+		if ($System < $radar_limit_inf OR $System > $radar_limit_sup OR $Galaxy != $CurrentPlanet['galaxy'] OR $PlType != 1 OR $CurrentPlanet['planet_type'] != 3)
 			die(header("Location: ".GAMEURL."game.php?page=galaxy"));
 		/* main page */
 		if ($CurrentPlanet['deuterium'] > 10000)
@@ -64,7 +64,7 @@ class ShowPhalanxPage {
 			$QryTargetInfo .= "`planet_type` = 3 ";
 			$TargetInfo = doquery($QryTargetInfo, 'planets', TRUE);
 			//if there isn't a moon,
-			if ($TargetInfo === FALSE)
+			if ( ! $TargetInfo)
 			{
 				$TargetMoonIsDestroyed = TRUE;
 			}
@@ -113,7 +113,7 @@ class ShowPhalanxPage {
 				if ($ArrivetoTargetTime > time())
 				{
 					//scannig of fleet started planet
-					if ($isStartedfromThis && ($FleetRow['fleet_start_type'] == 1 || ($FleetRow['fleet_start_type'] == 3 && $TargetMoonIsDestroyed)))
+					if ($isStartedfromThis && ($FleetRow['fleet_start_type'] == 1 OR ($FleetRow['fleet_start_type'] == 3 && $TargetMoonIsDestroyed)))
 					{
 						if ($Mission != 4)
 						{
@@ -122,7 +122,7 @@ class ShowPhalanxPage {
 						}
 					}
 					//scanning of destination fleet planet
-					elseif ( ! $isStartedfromThis && ($FleetRow['fleet_end_type'] == 1 || ($FleetRow['fleet_end_type'] == 3 && $TargetMoonIsDestroyed)))
+					elseif ( ! $isStartedfromThis && ($FleetRow['fleet_end_type'] == 1 OR ($FleetRow['fleet_end_type'] == 3 && $TargetMoonIsDestroyed)))
 					{
 						$Label = "fs";
 						$fpage[$ArrivetoTargetTime] .= "\n". $FlyingFleetsTable->BuildFleetEventTable($FleetRow, 0, $myFleet, $Label, $Record);
@@ -131,7 +131,7 @@ class ShowPhalanxPage {
 				/* 2)the stay fleet table event
 				* you can see stay-fleet event only if the target is a planet(or destroyed moon) and is the targetPlanet
 				*/
-				if ($EndStayTime > time() && $Mission == 5 && ($FleetRow['fleet_end_type'] == 1 || ($FleetRow['fleet_end_type'] == 3 && $TargetMoonIsDestroyed)) && $isTheTarget)
+				if ($EndStayTime > time() && $Mission == 5 && ($FleetRow['fleet_end_type'] == 1 OR ($FleetRow['fleet_end_type'] == 3 && $TargetMoonIsDestroyed)) && $isTheTarget)
 				{
 					$Label = "ft";
 					$fpage[$EndStayTime] .= "\n". $FlyingFleetsTable->BuildFleetEventTable($FleetRow, 1, $myFleet, $Label, $Record);
@@ -140,7 +140,7 @@ class ShowPhalanxPage {
 				* you can see the return fleet if this is the started planet(or destroyed moon)
 				* but no if it is a hold mission or mip
 				*/
-				if ($ReturnTime > time() && $Mission != 4 && $Mission != 10 && $isStartedfromThis && ($FleetRow['fleet_start_type'] == 1 || ($FleetRow['fleet_start_type'] == 3 && $TargetMoonIsDestroyed)))
+				if ($ReturnTime > time() && $Mission != 4 && $Mission != 10 && $isStartedfromThis && ($FleetRow['fleet_start_type'] == 1 OR ($FleetRow['fleet_start_type'] == 3 && $TargetMoonIsDestroyed)))
 				{
 					$Label = "fe";
 					$fpage[$ReturnTime] .= "\n". $FlyingFleetsTable->BuildFleetEventTable($FleetRow, 2, $myFleet, $Label, $Record);

@@ -54,23 +54,23 @@ class ShowInfosPage
 			$NextJumpTime = $RestString['value'];
 			$JumpTime     = time();
 
-			if ($NextJumpTime == 0 )
+			if ($NextJumpTime == 0)
 			{
 				$TargetPlanet = $_POST['jmpto'];
 				$TargetGate   = doquery ( "SELECT `id`, `sprungtor`, `last_jump_time` FROM {{table}} WHERE `id` = '". $TargetPlanet ."';", 'planets', TRUE);
 
 				if ($TargetGate['sprungtor'] > 0)
 				{
-					$RestString   = $this->GetNextJumpWaitTime ($TargetGate );
+					$RestString   = $this->GetNextJumpWaitTime ($TargetGate);
 					$NextDestTime = $RestString['value'];
 
-					if ($NextDestTime == 0 )
+					if ($NextDestTime == 0)
 					{
 						$ShipArray   = array();
 						$SubQueryOri = "";
 						$SubQueryDes = "";
 
-						for ($Ship = 200; $Ship < 300; $Ship++ )
+						for ($Ship = 200; $Ship < 300; $Ship++)
 						{
 							$ShipLabel = "c". $Ship;
 							$gemi_kontrol    =    $_POST[ $ShipLabel ];
@@ -117,7 +117,7 @@ class ShowInfosPage
 							doquery ($QryUpdateUsr, 'users');
 
 							$CurrentPlanet['last_jump_time'] = $JumpTime;
-							$RestString    = $this->GetNextJumpWaitTime ($CurrentPlanet );
+							$RestString    = $this->GetNextJumpWaitTime ($CurrentPlanet);
 							$RetMessage    = $lang['in_jump_gate_done'] . $RestString['string'];
 						}
 						else
@@ -155,7 +155,7 @@ class ShowInfosPage
 		$RowsTPL  = gettemplate('infos/info_gate_rows');
 		$CurrIdx  = 1;
 		$Result   = "";
-		for ($Ship = 200; $Ship < 250; $Ship++ )
+		for ($Ship = 200; $Ship < 250; $Ship++)
 		{
 			if ($resource[$Ship] != "")
 			{
@@ -166,7 +166,7 @@ class ShowInfosPage
 					$bloc['fleet_name']      = $lang['tech'][$Ship];
 					$bloc['fleet_max']       = Format::pretty_number($CurrentPlanet[$resource[$Ship]]);
 					$bloc['gate_ship_dispo'] = $lang['in_jump_gate_available'];
-					$Result                 .= parsetemplate ($RowsTPL, $bloc );
+					$Result                 .= parsetemplate ($RowsTPL, $bloc);
 					$CurrIdx++;
 				}
 			}
@@ -174,7 +174,7 @@ class ShowInfosPage
 		return $Result;
 	}
 
-	private function BuildJumpableMoonCombo ($CurrentUser, $CurrentPlanet )
+	private function BuildJumpableMoonCombo ($CurrentUser, $CurrentPlanet)
 	{
 		global $resource;
 		$QrySelectMoons	= "SELECT * FROM {{table}} WHERE `planet_type` = '3' AND `id_owner` = '". intval($CurrentUser['id']) ."';";
@@ -184,7 +184,7 @@ class ShowInfosPage
 		{
 			if ($CurMoon['id'] != $CurrentPlanet['id'])
 			{
-				$RestString = $this->GetNextJumpWaitTime ($CurMoon );
+				$RestString = $this->GetNextJumpWaitTime ($CurMoon);
 				if ($CurMoon[$resource[43]] >= 1)
 					$Combo .= "<option value=\"". $CurMoon['id'] ."\">[". $CurMoon['galaxy'] .":". $CurMoon['system'] .":". $CurMoon['planet'] ."] ". $CurMoon['name'] . $RestString['string'] ."</option>\n";
 			}
@@ -203,8 +203,8 @@ class ShowInfosPage
 		$EnergyLevel        = $CurrentUser["energy_tech"];
 
 		// BOOST
-		$geologe_boost		= 1 + ($CurrentUser['rpg_geologue']  * GEOLOGUE );
-		$engineer_boost		= 1 + ($CurrentUser['rpg_ingenieur'] * ENGINEER_ENERGY );
+		$geologe_boost		= 1 + ($CurrentUser['rpg_geologue']  * GEOLOGUE);
+		$engineer_boost		= 1 + ($CurrentUser['rpg_ingenieur'] * ENGINEER_ENERGY);
 
 		// PRODUCTION FORMULAS
 		$metal_prod			= eval ($ProdGrid[$BuildID]['formule']['metal']);
@@ -213,22 +213,22 @@ class ShowInfosPage
 		$energy_prod		= eval ($ProdGrid[$BuildID]['formule']['energy']);
 
 		// PRODUCTION
-		$Prod[1]			= Production::production_amount ($metal_prod , $geologe_boost );
-		$Prod[2]			= Production::production_amount ($crystal_prod , $geologe_boost );
-		$Prod[3]			= Production::production_amount ($deuterium_prod , $geologe_boost );
+		$Prod[1]			= Production::production_amount ($metal_prod, $geologe_boost);
+		$Prod[2]			= Production::production_amount ($crystal_prod, $geologe_boost);
+		$Prod[3]			= Production::production_amount ($deuterium_prod, $geologe_boost);
 
-		if ($BuildID >= 4 )
+		if ($BuildID >= 4)
 		{
-			$Prod[4]		= Production::production_amount ($energy_prod , $engineer_boost );
+			$Prod[4]		= Production::production_amount ($energy_prod, $engineer_boost);
 			$ActualProd    	= floor ($Prod[4]);
 		}
 		else
 		{
-			$Prod[4]		= Production::production_amount ($energy_prod , 1 );
+			$Prod[4]		= Production::production_amount ($energy_prod, 1);
 			$ActualProd    	= floor ($Prod[$BuildID]);
 		}
 
-		if ($BuildID != 12 )
+		if ($BuildID != 12)
 		{
 			$ActualNeed     = floor ($Prod[4]);
 		}
@@ -244,9 +244,9 @@ class ShowInfosPage
 		$Table     = "";
 		$ProdFirst = 0;
 
-		for ($BuildLevel = $BuildStartLvl; $BuildLevel < $BuildStartLvl + 15; $BuildLevel++ )
+		for ($BuildLevel = $BuildStartLvl; $BuildLevel < $BuildStartLvl + 15; $BuildLevel++)
 		{
-			if ($BuildID != 42 )
+			if ($BuildID != 42)
 			{
 				// PRODUCTION FORMULAS
 				$metal_prod			= eval ($ProdGrid[$BuildID]['formule']['metal']);
@@ -255,17 +255,17 @@ class ShowInfosPage
 				$energy_prod		= eval ($ProdGrid[$BuildID]['formule']['energy']);
 
 				// PRODUCTION
-				$Prod[1]			= Production::production_amount ($metal_prod , $geologe_boost );
-				$Prod[2]			= Production::production_amount ($crystal_prod , $geologe_boost );
-				$Prod[3]			= Production::production_amount ($deuterium_prod , $geologe_boost );
+				$Prod[1]			= Production::production_amount ($metal_prod, $geologe_boost);
+				$Prod[2]			= Production::production_amount ($crystal_prod, $geologe_boost);
+				$Prod[3]			= Production::production_amount ($deuterium_prod, $geologe_boost);
 
-				if ($BuildID >= 4 )
+				if ($BuildID >= 4)
 				{
-					$Prod[4]		= Production::production_amount ($energy_prod , $engineer_boost );
+					$Prod[4]		= Production::production_amount ($energy_prod, $engineer_boost);
 				}
 				else
 				{
-					$Prod[4]		= Production::production_amount ($energy_prod , 1 );
+					$Prod[4]		= Production::production_amount ($energy_prod, 1);
 				}
 
 				$bloc['build_lvl']       = ($CurrentBuildtLvl == $BuildLevel) ? "<font color=\"#ff0000\">".$BuildLevel."</font>" : $BuildLevel;
@@ -460,15 +460,15 @@ class ShowInfosPage
 		{
 			if ($CurrentPlanet[$resource[$BuildID]] > 0)
 			{
-				$RestString               = $this->GetNextJumpWaitTime ($CurrentPlanet );
-				$parse['gate_start_link'] = BuildPlanetAdressLink ($CurrentPlanet );
+				$RestString               = $this->GetNextJumpWaitTime ($CurrentPlanet);
+				$parse['gate_start_link'] = BuildPlanetAdressLink ($CurrentPlanet);
 				if ($RestString['value'] != 0)
 				{
-					include(XN_ROOT . 'includes/functions/InsertJavaScriptChronoApplet.php');
+					include(XN_ROOT.'includes/functions/InsertJavaScriptChronoApplet.php');
 
-					$parse['gate_time_script'] = InsertJavaScriptChronoApplet ( "Gate", "1", $RestString['value'], TRUE );
+					$parse['gate_time_script'] = InsertJavaScriptChronoApplet ( "Gate", "1", $RestString['value'], TRUE);
 					$parse['gate_wait_time']   = "<div id=\"bxx". "Gate" . "1" ."\"></div>";
-					$parse['gate_script_go']   = InsertJavaScriptChronoApplet ( "Gate", "1", $RestString['value'], FALSE );
+					$parse['gate_script_go']   = InsertJavaScriptChronoApplet ( "Gate", "1", $RestString['value'], FALSE);
 				}
 				else
 				{
@@ -486,7 +486,7 @@ class ShowInfosPage
 		{
 			if ($CurrentPlanet[$resource[$BuildID]] > 0)
 			{
-				$NeededRessources     = GetBuildingPrice ($CurrentUser, $CurrentPlanet, $BuildID, TRUE, TRUE);
+				$NeededRessources     = GetBuildingPrice($CurrentUser, $CurrentPlanet, $BuildID, TRUE, TRUE);
 				$DestroyTime          = GetBuildingTime  ($CurrentUser, $CurrentPlanet, $BuildID) / 2;
 				$parse['destroyurl']  = "game.php?page=buildings&cmd=destroy&building=".$BuildID;
 				$parse['levelvalue']  = $CurrentPlanet[$resource[$BuildID]];

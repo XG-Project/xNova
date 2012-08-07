@@ -102,7 +102,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 					$thisDef    = $amount * ($CombatCaps[$element]['shield']) * $defTech ; //bouclier
 					$thisShield    = $amount * ($pricelist[$element]['metal'] + $pricelist[$element]['crystal']) / 10 * $shieldTech; //coque
 
-					if ($element == 407 || $element == 408 ) $thisAtt = 0;
+					if ($element == 407 OR $element == 408 ) $thisAtt = 0;
 
 					$defArray[$fleetID][$element] = array('def' => $thisDef, 'shield' => $thisShield, 'att' => $thisAtt);
 
@@ -117,7 +117,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 			$rounds[$round] = array('attackers' => $attackers, 'defenders' => $defenders, 'attack' => $attackDamage, 'defense' => $defenseDamage, 'attackA' => $attackAmount, 'defenseA' => $defenseAmount, 'infoA' => $attArray, 'infoD' => $defArray);
 
-			if ($defenseAmount['total'] <= 0 || $attackAmount['total'] <= 0) {
+			if ($defenseAmount['total'] <= 0 OR $attackAmount['total'] <= 0) {
 				break;
 			}
 
@@ -312,16 +312,16 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 					$totalResourcePoints['defender'] -= $pricelist[$element]['metal'] * $amount ;
 					$totalResourcePoints['defender'] -= $pricelist[$element]['crystal'] * $amount ;
 
-					if ($user['rpg_technocrate'] == 1 )
+					if ($user['rpg_technocrate'] == 1)
 					{
-						$lost = floor (($originalDef[$element] - $amount ) / ENGINEER_DEFENSE );
+						$lost = floor (($originalDef[$element] - $amount ) / ENGINEER_DEFENSE);
 					}
 					else
 					{
 						$lost = $originalDef[$element] - $amount;
 					}
 
-					$giveback = round ($lost * ( rand ( 70 * 0.8 , 70 * 1.2 ) / 100));
+					$giveback = round ($lost * ( rand ( 70 * 0.8, 70 * 1.2 ) / 100));
 					$defenders[$fleetID]['def'][$element] += $giveback;
 					$resourcePointsDefenderDefs['metal'] += $pricelist[$element]['metal'] * ($lost - $giveback) ;
 					$resourcePointsDefenderDefs['crystal'] += $pricelist[$element]['crystal'] * ($lost - $giveback) ;
@@ -330,8 +330,8 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			}
 		}
 
-		$game_fleet_cdr	=	read_config ( 'fleet_cdr' );
-		$game_defs_cdr	=	read_config ( 'defs_cdr' );
+		$game_fleet_cdr	=	read_config ( 'fleet_cdr');
+		$game_defs_cdr	=	read_config ( 'defs_cdr');
 		$totalLost 		= array('att' => $totalResourcePoints['attacker'], 'def' => $totalResourcePoints['defender']);
 		$debAttMet 		= ($resourcePointsAttacker['metal'] * ($game_fleet_cdr / 100));
 		$debAttCry 		= ($resourcePointsAttacker['crystal'] * ($game_fleet_cdr / 100));

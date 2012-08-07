@@ -10,7 +10,7 @@
 
 if ( ! defined('INSIDE')) die(header("location:../../"));
 
-	function GetBuildingPrice ($CurrentUser, $CurrentPlanet, $Element, $Incremental = TRUE, $ForDestroy = FALSE)
+	function GetBuildingPrice($CurrentUser, $CurrentPlanet, $Element, $Incremental = TRUE, $ForDestroy = FALSE)
 	{
 		global $pricelist, $resource;
 

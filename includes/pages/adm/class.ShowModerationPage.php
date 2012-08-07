@@ -82,7 +82,7 @@ class ShowModerationPage {
 
 				LogFunction($Log, "ModerationLog", $LogCanWork);
 
-				update_config('moderation' , $QueryEdit);
+				update_config('moderation', $QueryEdit);
 				header('location: admin.php?page=moderate&moderation=1');
 			}
 

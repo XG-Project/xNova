@@ -18,7 +18,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			$Time = time();
 		}
 
-		$Message = (strpos($Message, "/adm/") === FALSE ) ? $Message : "";
+		$Message = ! strpos($Message, "/adm/") ? $Message : "";
 
 		$QryInsertMessage  = "INSERT INTO {{table}} SET ";
 		$QryInsertMessage .= "`message_owner` 	= '". $Owner 	."', ";

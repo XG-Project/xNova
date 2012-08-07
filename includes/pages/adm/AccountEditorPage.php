@@ -8,12 +8,12 @@
  * @author	Razican <admin@razican.com>
  */
 
-define('INSIDE'  , TRUE);
-define('INSTALL' , FALSE);
+define('INSIDE' , TRUE);
+define('INSTALL', FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 
 if ($EditUsers != 1) die(message ($lang['404_page']));
 
@@ -78,7 +78,7 @@ switch ($_GET[page])
 				$parse['display']	=	'<tr><th colspan="2"><font color=lime>'.$lang['ad_delete_sucess'].'</font></th></tr>';
 			}
 
-			if ($_POST['add'] || $_POST['delete'])
+			if ($_POST['add'] OR $_POST['delete'])
 			{
 				$Log	.=	"\n".$lang['log_the_user'].$user['username']." ".$Name.":\n";
 				$Log	.=	$lang['metal'].": ".$metal."\n";
@@ -175,7 +175,7 @@ switch ($_GET[page])
 					$parse['display']	=	'<tr><th colspan="3"><font color=lime>'.$lang['ad_delete_sucess_ships'].'</font></th></tr>';
 				}
 
-				if ($_POST['add'] || $_POST['delete'])
+				if ($_POST['add'] OR $_POST['delete'])
 				{
 					$Log	.=	"\n".$lang['log_the_user'].$user['username']." ".$Name.":\n";
 					$Log	.=	$lang['small_ship_cargo'].": ".$small_ship_cargo."\n";
@@ -266,7 +266,7 @@ switch ($_GET[page])
 					$parse['display']	=	'<tr><th colspan="3"><font color=lime>'.$lang['ad_delete_defenses_succes'].'</font></th></tr>';
 				}
 
-				if ($_POST['add'] || $_POST['delete'])
+				if ($_POST['add'] OR $_POST['delete'])
 				{
 					$Log	.=	"\n".$lang['log_the_user'].$user['username']." ".$Name.":\n";
 					$Log	.=	$lang['misil_launcher'].": ".$misil_launcher."\n";
@@ -437,7 +437,7 @@ switch ($_GET[page])
 				}
 
 
-				if ($_POST['add'] || $_POST['delete'])
+				if ($_POST['add'] OR $_POST['delete'])
 				{
 					$Log	.=	"\n".$lang['log_the_user'].$user['username']." ".$Name.":\n";
 					$Log	.=	$lang['metal_mine'].": ".$metal_mine."\n";
@@ -552,7 +552,7 @@ switch ($_GET[page])
 					$parse['display']	=	'<tr><th colspan="3"><font color=lime>'.$lang['ad_delete_succes'].'</font></th></tr>';
 				}
 
-				if ($_POST['add'] || $_POST['delete'])
+				if ($_POST['add'] OR $_POST['delete'])
 				{
 					$Log	.=	"\n".$lang['log_the_user'].$user['username']." ".$Name.":\n";
 					$Log	.=	$lang['spy_tech'].": ".$spy_tech."\n";
@@ -699,7 +699,7 @@ switch ($_GET[page])
 					$parse['display']	=	'<tr><th colspan="3"><font color=lime>'.$lang['ad_offi_succes_delete'].'</font></th></tr>';
 				}
 
-				if ($_POST['add'] || $_POST['delete'])
+				if ($_POST['add'] OR $_POST['delete'])
 				{
 					$Log	.=	"\n".$lang['log_the_user'].$user['username']." ".$Name.":\n";
 					$Log	.=	$lang['geologist'].": ".$rpg_geologue."\n";

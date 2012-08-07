@@ -43,7 +43,7 @@ class NoobsProtection
 
 	public static function getInstance()
 	{
-		if (self::$instance == NULL)
+		if (is_null(self::$instance))
 		{
 			//make new istance of this class and save it to field for next usage
 			$c = __class__;

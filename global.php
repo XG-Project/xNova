@@ -60,7 +60,7 @@ if (filesize(XN_ROOT.'config.php') !== 0)
 {
 	$game_version	=	read_config('version');
 
-	define('VERSION', empty($game_version) ? "" : "v" . $game_version );
+	define('VERSION', empty($game_version) ? "" : "v" . $game_version);
 }
 
 if ( ! defined('INSTALL') OR ( ! INSTALL))

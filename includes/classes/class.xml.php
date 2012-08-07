@@ -21,8 +21,7 @@
 
 if ( ! defined('INSIDE')) die(header("location:../../"));
 
-class xml
-{
+class xml {
 	//an istance of this class: see singleton pattern
 	private static $instance = NULL;
 	//the complete path to xml config: used to load and save it
@@ -39,7 +38,7 @@ class xml
 	 */
 	private function __construct($sheet)
 	{
-		$this->path = XN_ROOT . 'includes' . DIRECTORY_SEPARATOR . 'xml' . DIRECTORY_SEPARATOR . $sheet;
+		$this->path = XN_ROOT.'includes' . DIRECTORY_SEPARATOR . 'xml' . DIRECTORY_SEPARATOR . $sheet;
 		$this->config = simplexml_load_file($this->path);
 	}
 	/**
@@ -65,7 +64,7 @@ class xml
 		//searching inside <configurations> and where config name=$config_name
 		$result = $this->doXpathQuery('/configurations/config[name="' . $config_name . '"]');
 		//if multiple result are returned so key is not unique
-		if ( ! $result || count($result) !== 1)
+		if ( ! $result OR count($result) !== 1)
 		{
 			throw new Exception(sprintf('Item with id "%s" does not exists or is not unique.', $config_name));
 		}
@@ -133,7 +132,7 @@ class xml
 	 */
 	public static function getInstance($sheet)
 	{
-		if (self::$instance == NULL)
+		if (is_null(self::$instance))
 		{
 			//make new istance of this class and save it to field for next usage
 			$c = __class__;

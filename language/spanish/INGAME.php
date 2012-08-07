@@ -603,7 +603,7 @@ Una vez construido, el terraformer no puede ser desmontado.";
 $lang['info'][34]['name']         			= "Depósito de la Alianza";
 $lang['info'][34]['description']  			= "El depósito de la alianza ofrece la posibilidad de repostar a las flotas aliadas que estén estacionadas en la órbita ayudando a defender. Cada mejora del depósito de alianza permite proveer de 10.000 unidades adicionales de deuterio, por hora, a las flotas estacionadas en la órbita.";
 $lang['info'][41]['name']         			= "Base Lunar";
-$lang['info'][41]['description']  			= "Dado que la luna no tiene atmósfera, se necesita una base lunar para generar espacio habitable. La base lunar no solo provee el oxígeno necesario, también la gravedad artificial, temperatura y protección necesarias. Cuanto más se mejore la base lunar, mayor es el área para construir estructuras. Cada nivel de la base lunar proporciona 3 campos lunares , hasta que la luna esté totalmente llena.
+$lang['info'][41]['description']  			= "Dado que la luna no tiene atmósfera, se necesita una base lunar para generar espacio habitable. La base lunar no solo provee el oxígeno necesario, también la gravedad artificial, temperatura y protección necesarias. Cuanto más se mejore la base lunar, mayor es el área para construir estructuras. Cada nivel de la base lunar proporciona 3 campos lunares, hasta que la luna esté totalmente llena.
 <br><br>
 Una vez construida, la base lunar no puede ser desmontada.";
 $lang['info'][42]['name']         			= "Sensor Phalanx";

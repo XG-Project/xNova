@@ -18,7 +18,7 @@ class ShowGalaxyPage extends GalaxyRows
 	{
 		global $resource, $lang;
 
-		$fleetmax      	= Fleets::get_max_fleets ($CurrentUser['computer_tech'] , $CurrentUser['rpg_amiral']);
+		$fleetmax      	= Fleets::get_max_fleets ($CurrentUser['computer_tech'], $CurrentUser['rpg_amiral']);
 		$CurrentPlID   	= $CurrentPlanet['id'];
 		$CurrentMIP    	= $CurrentPlanet['interplanetary_misil'];
 		$CurrentRC     	= $CurrentPlanet['recycler'];
@@ -201,7 +201,7 @@ class ShowGalaxyPage extends GalaxyRows
 			FROM {{table}}alliance RIGHT JOIN ({{table}}planets AS {{table}}moons RIGHT JOIN ({{table}}statpoints RIGHT JOIN ((({{table}}planets INNER JOIN {{table}}users ON {{table}}planets.id_owner = {{table}}users.id ) INNER JOIN {{table}}galaxy ON {{table}}planets.id = {{table}}galaxy.id_planet ) LEFT JOIN {{table}}buddy ON ({{table}}buddy.owner = {{table}}planets.id_owner OR {{table}}buddy.sender = {{table}}planets.id_owner))  ON {{table}}statpoints.id_owner={{table}}users.id AND {{table}}statpoints.stat_code=1 AND {{table}}statpoints.stat_type=1 ) ON {{table}}moons.id = {{table}}galaxy.id_luna) ON {{table}}alliance.id = {{table}}users.ally_id
 			WHERE ({{table}}galaxy.galaxy='".$galaxy."' AND {{table}}galaxy.system='".$system."' AND ({{table}}galaxy.planet>'0' AND {{table}}galaxy.planet<='".MAX_PLANET_IN_SYSTEM."'))
 			GROUP BY `id_planet`
-			ORDER BY {{table}}planets.planet; " , '' );
+			ORDER BY {{table}}planets.planet; ", '');
 
 		$parse						= $lang;
 		$parse['galaxy']			= $galaxy;
@@ -244,7 +244,7 @@ class ShowGalaxyPage extends GalaxyRows
 			{
 				$parcialCount++;
 
-				if ($GalaxyInfo['galaxy'] == $Galaxy && $GalaxyInfo['system'] == $System && $GalaxyInfo['planet'] == $Planet )
+				if ($GalaxyInfo['galaxy'] == $Galaxy && $GalaxyInfo['system'] == $System && $GalaxyInfo['planet'] == $Planet)
 				{
 					if ($GalaxyInfo["id_planet"] != 0)
 					{
@@ -267,12 +267,12 @@ class ShowGalaxyPage extends GalaxyRows
 					$parse['planetname']	= $this->GalaxyRowPlanetName ($GalaxyInfo, $Galaxy, $System, $Planet, 1, $HavePhalanx, $CurrentGalaxy, $CurrentSystem);
 					$parse['debris']		= $this->GalaxyRowDebris     ($GalaxyInfo, $Galaxy, $System, $Planet, 2, $CurrentRC);
 
-					if ($GalaxyInfo['destruyed'] == 0 )
+					if ($GalaxyInfo['destruyed'] == 0)
 					{
 						$parse['planet']	= $this->GalaxyRowPlanet     ($GalaxyInfo, $Galaxy, $System, $Planet, 1, $HavePhalanx, $CurrentGalaxy, $CurrentSystem);
-						$parse['moon']      = $this->GalaxyRowMoon       ($GalaxyInfo, $Galaxy, $System, $Planet, 3 );
-						$parse['username']  = $this->GalaxyRowUser       ($GalaxyInfo, $Galaxy, $System, $Planet );
-						$parse['alliance']  = $this->GalaxyRowAlly       ($GalaxyInfo, $Galaxy, $System, $Planet );
+						$parse['moon']      = $this->GalaxyRowMoon       ($GalaxyInfo, $Galaxy, $System, $Planet, 3);
+						$parse['username']  = $this->GalaxyRowUser       ($GalaxyInfo, $Galaxy, $System, $Planet);
+						$parse['alliance']  = $this->GalaxyRowAlly       ($GalaxyInfo, $Galaxy, $System, $Planet);
 						$parse['actions']   = $this->GalaxyRowActions    ($GalaxyInfo, $Galaxy, $System, $Planet, $CurrentGalaxy, $CurrentSystem, $CurrentMIP);
 					}
 					else
@@ -306,7 +306,7 @@ class ShowGalaxyPage extends GalaxyRows
 			}
 		}
 
-		for ($i = $start; $i <= MAX_PLANET_IN_SYSTEM; $i++ )
+		for ($i = $start; $i <= MAX_PLANET_IN_SYSTEM; $i++)
 		{
 			$parse['pos']			= $i;
 			$parse['planet'] 		= '';

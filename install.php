@@ -81,17 +81,17 @@ switch ($Mode)
 			$parse['second']	= "Archivo config.php creado conéxito...";
 
 			doquery ($QryTableAks			, 'aks'    	);
-			doquery ($QryTableAlliance		, 'alliance'   );
-			doquery ($QryTableBanned		, 'banned'     );
-			doquery ($QryTableBuddy			, 'buddy'      );
-			doquery ($QryTableErrors		, 'errors'     );
-			doquery ($QryTableFleets		, 'fleets'     );
-			doquery ($QryTableGalaxy		, 'galaxy'     );
-			doquery ($QryTableMessages		, 'messages'   );
-			doquery ($QryTableNotes			, 'notes'      );
-			doquery ($QryTablePlanets		, 'planets'    );
-			doquery ($QryTablePlugins		, 'plugins'    );
-			doquery ($QryTableRw			, 'rw'         );
+			doquery ($QryTableAlliance		, 'alliance'  );
+			doquery ($QryTableBanned		, 'banned'    );
+			doquery ($QryTableBuddy			, 'buddy'     );
+			doquery ($QryTableErrors		, 'errors'    );
+			doquery ($QryTableFleets		, 'fleets'    );
+			doquery ($QryTableGalaxy		, 'galaxy'    );
+			doquery ($QryTableMessages		, 'messages'  );
+			doquery ($QryTableNotes			, 'notes'     );
+			doquery ($QryTablePlanets		, 'planets'   );
+			doquery ($QryTablePlugins		, 'plugins'   );
+			doquery ($QryTableRw			, 'rw'        );
 			doquery ($QryTableStatPoints	, 'statpoints'	);
 			doquery ($QryTableUsers			, 'users'  	);
 			doquery ($QryTableBots			, 'bots'  	);
@@ -177,21 +177,21 @@ switch ($Mode)
 			$QryAddAdmGlx .= "`id_planet`         = '1'; ";
 			doquery($QryAddAdmGlx, 'galaxy');
 
-			update_config ( 'stat_last_update' , time());
+			update_config ( 'stat_last_update', time());
 
 			$frame  = parsetemplate(gettemplate('install/ins_acc_done'), $parse);
 		}
 		break;
 	case'upgrade':
 
-		$system_version	=	str_replace ( 'v' , '' , VERSION );
+		$system_version	=	str_replace ( 'v', '', VERSION);
 
 		if (filesize(XN_ROOT.'config.php' ) == 0)
 		{
 			die(message("¡Error! - Tu juego no est&aacute; instalado","", "", FALSE, FALSE));
 		}
 
-		if ( SYSTEM_VERSION == $system_version )
+		if ( SYSTEM_VERSION == $system_version)
 		{
 			die(message("¡Error! - No hay actualizaciones disponibles","", "", FALSE, FALSE));
 		}
@@ -312,7 +312,7 @@ switch ($Mode)
 							migrate_to_sha1();
 						break;
 						case '2.9.10':
-							$QrysArray	= array($Qry1, $Qry2 , $Qry10, $Qry11, $Qry12, $Qry13, $Qry14);
+							$QrysArray	= array($Qry1, $Qry2, $Qry10, $Qry11, $Qry12, $Qry13, $Qry14);
 							migrate_to_xml();
 							migrate_to_sha1();
 						break;
@@ -322,7 +322,7 @@ switch ($Mode)
 						case '2.10.3':
 						case '2.10.4':
 							$QrysArray	= array($Qry12, $Qry13, $Qry14);
-							update_config ( 'version' , SYSTEM_VERSION );
+							update_config ( 'version', SYSTEM_VERSION);
 							upgrade_xml();
 							migrate_to_sha1();
 						break;

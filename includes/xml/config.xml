@@ -118,7 +118,7 @@
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1344365000</value>
+		<value>1344376013</value>
 	</config>
 	<config>
 		<name>stat_settings</name>
@@ -170,7 +170,7 @@
 	</config>
 	<config>
 		<name>bots_last_update</name>
-		<value>1344365000</value>
+		<value>1344376013</value>
 	</config>
 	<config>
 		<name>log_bots</name>

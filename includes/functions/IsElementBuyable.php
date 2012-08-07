@@ -14,7 +14,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 	{
 		global $pricelist, $resource;
 
-		include_once(XN_ROOT . 'includes/functions/IsVacationMode.php');
+		include_once(XN_ROOT.'includes/functions/IsVacationMode.php');
 
 		if (IsVacationMode($CurrentUser))
 		   return FALSE;

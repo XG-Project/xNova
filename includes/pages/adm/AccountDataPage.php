@@ -8,14 +8,14 @@
  * @author	Razican <admin@razican.com>
 */
 
-define('INSIDE'  , TRUE);
-define('INSTALL' , FALSE);
+define('INSIDE' , TRUE);
+define('INSTALL', FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 
-if ($Observation != 1 )
+if ($Observation != 1)
 {
 	die(message ($lang['404_page']));
 }
@@ -24,12 +24,12 @@ $parse	= $lang;
 
 
 $NOSUPERMI = '';
-if ($user['authlevel']	!= 3 )
+if ($user['authlevel']	!= 3)
 {
 	$NOSUPERMI	= "WHERE `authlevel` < '" . $user['authlevel'] . "'";
 }
 
-$UserWhileLogin		= doquery ( "SELECT `id`, `username`, `authlevel` FROM {{table}} " . $NOSUPERMI . " ORDER BY `username` ASC" , "users" );
+$UserWhileLogin		= doquery ( "SELECT `id`, `username`, `authlevel` FROM {{table}} " . $NOSUPERMI . " ORDER BY `username` ASC", "users");
 
 $parse['lista']	= '';
 while ($UserList 	= $UserWhileLogin->fetch_array())
@@ -48,7 +48,7 @@ elseif (isset($_GET['id_u']))
 $OnlyQueryLogin;
 
 if (isset($id_u))
-	$OnlyQueryLogin 	= doquery ( "SELECT `id`, `authlevel` FROM {{table}} WHERE `id` = '" . $id_u . "'" , "users" , TRUE );
+	$OnlyQueryLogin 	= doquery ( "SELECT `id`, `authlevel` FROM {{table}} WHERE `id` = '" . $id_u . "'", "users", TRUE);
 
 if ($_GET)
 {
@@ -64,7 +64,7 @@ if ($_GET)
 	{
 		$parse['error']	=	"<tr><th height=25 style=\"border: 2px red solid;\"><font color=red>" . $lang['ac_no_character'] . "</font></th></tr>";
 	}
-	elseif ($OnlyQueryLogin == NULL OR $OnlyQueryLogin == 0 )
+	elseif (is_null($OnlyQueryLogin) OR $OnlyQueryLogin == 0)
 	{
 		$parse['error']	=	"<tr><th height=25 style=\"border: 2px red solid;\"><font color=red>" . $lang['ac_username_doesnt'] . "</font></th></tr>";
 	}
@@ -81,7 +81,7 @@ if ($_GET)
 		hyperspace_motor_tech,laser_tech,ionic_tech,buster_tech,intergalactic_tech,expedition_tech,graviton_tech,ally_id,ally_name,ally_request,
 		ally_request_text,ally_register_time,ally_rank_id,rpg_geologue,rpg_amiral,rpg_ingenieur,rpg_technocrate,darkmatter,bana,banaday";
 
-		$UserQuery 	= 	doquery ( "SELECT " . $SpecifyItemsU . " FROM {{table}} WHERE `id` = '" . $id_u . "'" , "users" , TRUE );
+		$UserQuery 	= 	doquery ( "SELECT " . $SpecifyItemsU . " FROM {{table}} WHERE `id` = '" . $id_u . "'", "users", TRUE);
 
 
 		$parse['reg_time']		=	date("d-m-Y H:i:s", $UserQuery['register_time']);
@@ -101,7 +101,7 @@ if ($_GET)
 		$parse['nivel']			=	$lang['rank'][$UserQuery['authlevel']];
 		$parse['ipcheck']		=	$lang['ac_checkip'][$UserQuery['noipcheck']];
 
-		if ($UserQuery['urlaubs_modus'] == 1 )
+		if ($UserQuery['urlaubs_modus'] == 1)
 		{
 			$parse['vacas'] = $lang['one_is_yes'][1];
 		}
@@ -110,7 +110,7 @@ if ($_GET)
 			$parse['vacas'] = $lang['one_is_yes'][0];
 		}
 
-		if ($UserQuery['bana'] == 1 )
+		if ($UserQuery['bana'] == 1)
 		{
 			$parse['suspen'] = $lang['one_is_yes'][1];
 		}
@@ -124,7 +124,7 @@ if ($_GET)
 		$Log	 =	"\n" . $lang['log_info_detail_title'] . "\n";
 		$Log	.=	$lang['log_the_user'] . $user['username'] . $lang['log_searchto_1'] . $UserQuery['username'] . "\n";
 
-		LogFunction ($Log , "GeneralLog" , $LogCanWork );
+		LogFunction ($Log, "GeneralLog", $LogCanWork);
 
 		// TECNOLOGIAS
 		$parse['tec_espia']				=	$UserQuery['spy_tech'];
@@ -154,10 +154,10 @@ if ($_GET)
 		{
 			$parse['mas']			= "<a href=\"javascript:animatedcollapse.toggle('banned')\">" . $lang['ac_more'] . "</a>";
 
-			$BannedQuery			= doquery ( "SELECT theme,time,longer,author FROM {{table}} WHERE `who` = '" . $UserQuery['username'] . "'" , "banned" , TRUE );
+			$BannedQuery			= doquery ( "SELECT theme,time,longer,author FROM {{table}} WHERE `who` = '" . $UserQuery['username'] . "'", "banned", TRUE);
 
-			$parse['sus_longer']	=	date ( "d-m-Y H-i-s" , $BannedQuery['longer']);
-			$parse['sus_time']		=	date ( "d-m-Y H-i-s" , $BannedQuery['time']);
+			$parse['sus_longer']	=	date ( "d-m-Y H-i-s", $BannedQuery['longer']);
+			$parse['sus_time']		=	date ( "d-m-Y H-i-s", $BannedQuery['time']);
 			$parse['sus_reason']	=	$BannedQuery['theme'];
 			$parse['sus_author']	=	$BannedQuery['author'];
 		}
@@ -165,7 +165,7 @@ if ($_GET)
 		// COMIENZA EL SAQUEO DE DATOS DE LA TABLA DE PUNTAJE
 		$SpecifyItemsS	= "tech_count,defs_count,fleet_count,build_count,build_points,tech_points,defs_points,fleet_points,tech_rank,build_rank,defs_rank,fleet_rank,total_points,stat_type";
 
-		$StatQuery	=	doquery ( "SELECT " . $SpecifyItemsS . " FROM {{table}} WHERE `id_owner` = '" .$id_u . "' AND `stat_type` = '1'" , "statpoints" , TRUE );
+		$StatQuery	=	doquery ( "SELECT " . $SpecifyItemsS . " FROM {{table}} WHERE `id_owner` = '" .$id_u . "' AND `stat_type` = '1'", "statpoints", TRUE);
 
 		$parse['count_tecno']		=	Format::pretty_number($StatQuery['tech_count']);
 		$parse['count_def']			=	Format::pretty_number($StatQuery['defs_count']);
@@ -188,12 +188,12 @@ if ($_GET)
 		$AliID	= $UserQuery['ally_id'];
 
 
-		if ($alianza == 0 && $AliID == 0 )
+		if ($alianza == 0 && $AliID == 0)
 		{
 			$parse['alianza']		=	$lang['ac_no_ally'];
 			$parse['AllianceHave']	=	"<span class=\"no_moon\"><img src=\"../styles/images/Adm/arrowright.png\" width=\"16\" height=\"10\"/>" . $lang['ac_alliance'] . "&nbsp;" . $lang['ac_no_alliance'] . "</span>";
 		}
-		elseif ($alianza != NULL && $AliID != 0 )
+		elseif ($alianza != NULL && $AliID != 0)
 		{
 			include_once("AdminFunctions/BBCode-Panel-Adm.php");
 			$bbcode = new bbcode;
@@ -202,7 +202,7 @@ if ($_GET)
 
 			$SpecifyItemsA					= "ally_owner,id,ally_tag,ally_name,ally_web,ally_description,ally_text,ally_request,ally_image,ally_members,ally_register_time";
 
-			$AllianceQuery					=	doquery ( "SELECT " . $SpecifyItemsA . " FROM {{table}} WHERE `ally_name` = '" . $alianza . "'" , "alliance" , TRUE );
+			$AllianceQuery					=	doquery ( "SELECT " . $SpecifyItemsA . " FROM {{table}} WHERE `ally_name` = '" . $alianza . "'", "alliance", TRUE);
 
 			$parse['alianza']				=	$alianza;
 			$parse['id_ali']				=	" (".$lang['ac_ali_idid']."&nbsp;".$AliID.")";
@@ -213,7 +213,7 @@ if ($_GET)
 			$parse['ally_register_time']	=	date("d-m-Y H:i:s", $AllianceQuery['ally_register_time']);
 			$ali_lider						=	$AllianceQuery['ally_owner'];
 
-			if ($AllianceQuery['ally_web'] != NULL )
+			if ($AllianceQuery['ally_web'] != NULL)
 			{
 				$parse['ali_web'] = "<a href=" . $AllianceQuery['ally_web'] . " target=_blank>" . $AllianceQuery['ally_web'] . "</a>";
 			}
@@ -222,7 +222,7 @@ if ($_GET)
 				$parse['ali_web'] = $lang['ac_no_web'];
 			}
 
-			if ($AllianceQuery['ally_description'] != NULL )
+			if ($AllianceQuery['ally_description'] != NULL)
 			{
 				$parse['ali_ext2'] = $bbcode->reemplazo ($AllianceQuery['ally_description']);
 				$parse['ali_ext']  = "<a href=\"#\" rel=\"toggle[externo]\">" . $lang['ac_view_text_ext'] . "</a>";
@@ -234,7 +234,7 @@ if ($_GET)
 
 
 
-			if ($AllianceQuery['ally_text'] != NULL )
+			if ($AllianceQuery['ally_text'] != NULL)
 			{
 				$parse['ali_int2'] = $bbcode->reemplazo($AllianceQuery['ally_text']);
 				$parse['ali_int']  = "<a href=\"#\" rel=\"toggle[interno]\">".$lang['ac_view_text_int']."</a>";
@@ -245,7 +245,7 @@ if ($_GET)
 			}
 
 
-			if ($AllianceQuery['ally_request'] != NULL )
+			if ($AllianceQuery['ally_request'] != NULL)
 			{
 				$parse['ali_sol2'] = $bbcode->reemplazo($AllianceQuery['ally_request']);
 				$parse['ali_sol']  = "<a href=\"#\" rel=\"toggle[solicitud]\">".$lang['ac_view_text_sol']."</a>";
@@ -256,7 +256,7 @@ if ($_GET)
 			}
 
 
-			if ($AllianceQuery['ally_image'] != NULL )
+			if ($AllianceQuery['ally_image'] != NULL)
 			{
 				$parse['ali_logo2'] = $AllianceQuery['ally_image'];
 				$parse['ali_logo'] = "<a href=\"#\" rel=\"toggle[imagen]\">".$lang['ac_view_image2']."</a>";
@@ -269,7 +269,7 @@ if ($_GET)
 			$SearchLeader			=	doquery("SELECT `username` FROM {{table}} WHERE `id` = '".$ali_lider."'", "users", TRUE);
 			$parse['ali_lider']		=	$SearchLeader['username'];
 
-			$StatQueryAlly			=	doquery("SELECT " . $SpecifyItemsS . " FROM {{table}} WHERE `id_owner` = '".$ali_lider."' AND `stat_type` = '2'" , "statpoints" , TRUE );
+			$StatQueryAlly			=	doquery("SELECT " . $SpecifyItemsS . " FROM {{table}} WHERE `id_owner` = '".$ali_lider."' AND `stat_type` = '2'", "statpoints", TRUE);
 
 			$parse['count_tecno_ali']		=	Format::pretty_number($StatQueryAlly['tech_count']);
 			$parse['count_def_ali']			=	Format::pretty_number($StatQueryAlly['defs_count']);
@@ -298,11 +298,11 @@ if ($_GET)
 		buster_canyon,small_protection_shield,big_protection_shield,interceptor_misil,interplanetary_misil,mondbasis,phalanx,sprungtor,
 		energy_used";
 
-		$PlanetsQuery = doquery ( "SELECT " . $SpecifyItemsP . " FROM {{table}} WHERE `id_owner` = '" . $id_u . "'" , "planets" );
+		$PlanetsQuery = doquery ( "SELECT " . $SpecifyItemsP . " FROM {{table}} WHERE `id_owner` = '" . $id_u . "'", "planets");
 
 		while ($PlanetsWhile = $PlanetsQuery->fetch_array())
 		{
-			if ($PlanetsWhile['planet_type'] == 3 )
+			if ($PlanetsWhile['planet_type'] == 3)
 			{
 				$Planettt = $PlanetsWhile['name'] . "&nbsp;(" . $lang['ac_moon'] . ")<br><font color=aqua>[" . $PlanetsWhile['galaxy'] . ":" . $PlanetsWhile['system'] . ":" . $PlanetsWhile['planet'] . "]</font>";
 
@@ -328,7 +328,7 @@ if ($_GET)
 
 				$SumOfEnergy = ($PlanetsWhile['energy_max'] + $PlanetsWhile['energy_used']);
 
-				if ($SumOfEnergy < 0 )
+				if ($SumOfEnergy < 0)
 				{
 					$Color	=	"<font color=#FF6600>" . Format::shortly_number ($SumOfEnergy ) . "</font>";
 				}
@@ -340,7 +340,7 @@ if ($_GET)
 
 				else
 				{
-					$Color	=	Format::shortly_number ($SumOfEnergy );
+					$Color	=	Format::shortly_number ($SumOfEnergy);
 				}
 
 				$parse['resources']	=	"
@@ -407,7 +407,7 @@ if ($_GET)
 				<th width=\"30%\"><a title=\"".Format::pretty_number($PlanetsWhile['silo'])."\">".Format::shortly_number($PlanetsWhile['silo'])."</a></th>
 				</tr>";
 
-				if ($PlanetsWhile['planet_type'] == 3 )
+				if ($PlanetsWhile['planet_type'] == 3)
 				{
 					$parse['moon_buildings'] =	"
 					<tr>
@@ -418,7 +418,7 @@ if ($_GET)
 					</tr>";
 				}
 
-				if (isset($MoonZ) && $MoonZ != 0 )
+				if (isset($MoonZ) && $MoonZ != 0)
 				{
 					$parse['MoonHave']	=	"<a href=\"javascript:animatedcollapse.toggle('especiales')\" class=\"link\">
 					<img src=\"../styles/images/Adm/arrowright.png\" width=\"16\" height=\"10\"/> ".$lang['moon_build']."</a>";
@@ -432,7 +432,7 @@ if ($_GET)
 
 			$DestruyeD	=	0;
 
-			if ($PlanetsWhile["destruyed"] > 0 )
+			if ($PlanetsWhile["destruyed"] > 0)
 			{
 				$parse['destroyed']	.=	"
 				<tr>

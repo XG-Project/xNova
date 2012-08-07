@@ -12,7 +12,7 @@ if ( ! defined('INSIDE')) die(header("location: ./../../"));
 
 class bbCode
 {
-	public function bbCode ($string )
+	public function bbCode ($string)
 	{
 		$pattern = array(
 			'/\\n/',

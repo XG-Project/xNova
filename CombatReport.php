@@ -12,7 +12,7 @@ define('INSIDE', TRUE);
 define('INSTALL', FALSE);
 define('XN_ROOT', realpath('./').'/');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 
 includeLang('INGAME');
 $Page .= "<div id=\"content\">";

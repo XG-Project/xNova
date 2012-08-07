@@ -8,12 +8,12 @@
  * @author	Razican <admin@razican.com>
  */
 
-define('INSIDE'  , TRUE);
-define('INSTALL' , FALSE);
+define('INSIDE' , TRUE);
+define('INSTALL', FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 include('AdminFunctions/Autorization.php');
 
 if ($EditUsers != 1) die();
@@ -39,11 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 	if (!is_numeric($galaxy) &&  !is_numeric($system) && !is_numeric($planet)){
 		$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_only_numbers'].'</tr></th>';
 		$i++;}
-	elseif ($galaxy > MAX_GALAXY_IN_WORLD || $system > MAX_SYSTEM_IN_GALAXY || $planet > MAX_PLANET_IN_SYSTEM || $galaxy < 1 || $system < 1 || $planet < 1){
+	elseif ($galaxy > MAX_GALAXY_IN_WORLD OR $system > MAX_SYSTEM_IN_GALAXY OR $planet > MAX_PLANET_IN_SYSTEM OR $galaxy < 1 OR $system < 1 OR $planet < 1){
 		$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_error_coord'].'</tr></th>';
 		$i++;}
 
-	if ( ! $name || !$pass || !$email || !$galaxy || !$system || !$planet){
+	if ( ! $name OR !$pass OR !$email OR !$galaxy OR !$system OR !$planet){
 		$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_complete_all'].'</tr></th>';
 		$i++;}
 
@@ -77,13 +77,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$Query1 .= "`password`='".$pass."';";
 		doquery($Query1, "users");
 
-		update_config ( 'users_amount' , read_config ( 'users_amount' ) + 1 );
+		update_config ( 'users_amount', read_config ( 'users_amount' ) + 1);
 
 		$ID_USER 	= doquery("SELECT `id` FROM {{table}} WHERE `username` = '".$db->real_escape_string($name)."' LIMIT 1", "users", TRUE);
 
 		CreateOnePlanetRecord ($galaxy, $system, $planet, $ID_USER['id'], $UserPlanet, TRUE);
 
-		$ID_PLANET 	= doquery("SELECT `id` FROM {{table}} WHERE `id_owner` = '".$ID_USER['id']."' LIMIT 1" , "planets", TRUE);
+		$ID_PLANET 	= doquery("SELECT `id` FROM {{table}} WHERE `id_owner` = '".$ID_USER['id']."' LIMIT 1", "planets", TRUE);
 
 		doquery("UPDATE {{table}} SET `id_level` = '".$auth."' WHERE `id` = '".$ID_PLANET['id']."'", "planets");
 

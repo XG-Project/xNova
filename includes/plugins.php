@@ -13,21 +13,13 @@ if ( ! defined('INSIDE')) die();
 function phpself()
 {
 	$file = pathinfo($_SERVER['PHP_SELF']);
-
-	if (basename(XN_ROOT) != '.')
-	{
-		return basename($file['dirname']).'/'.$file['filename'];
-	}
-	else
-	{
-		return $file['filename'];
-	}
+	return $file['filename'];
 }
 
 // return if a name of php file is same of $name
 function is_phpself($name)
 {
-	return (phpself() == $name);
+	return (phpself() === $name);
 }
 
 /**
@@ -160,7 +152,7 @@ if (defined('IN_ADMIN'))
 		{
 			$plugin = $_GET['desactivate'];
 			$ex 	= doquery("SELECT status FROM {{table}} WHERE `plugin`='". $plugin ."' LIMIT 1", 'plugins', TRUE);
-			if ($ex )
+			if ($ex)
 			{
 				doquery("UPDATE {{table}} SET `status` = 0 WHERE `plugin`='". $plugin ."' LIMIT 1", "plugins");
 				$info = "<h1>Plugin Desactivado</h1>";

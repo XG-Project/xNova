@@ -8,12 +8,12 @@
  * @author	Razican <admin@razican.com>
  */
 
-define('INSIDE'  , TRUE);
-define('INSTALL' , FALSE);
+define('INSIDE' , TRUE);
+define('INSTALL', FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 
 if ($EditUsers != 1) die(message ($lang['404_page']));
 
@@ -55,11 +55,11 @@ switch ($_GET['page'])
 		if ( ! ctype_digit($galaxy) &&  ! ctype_digit($system) && ! ctype_digit($planet)){
 			$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['only_numbers'].'</tr></th>';
 			$i++;}
-		elseif ($galaxy > MAX_GALAXY_IN_WORLD || $system > MAX_SYSTEM_IN_GALAXY || $planet > MAX_PLANET_IN_SYSTEM || $galaxy < 1 || $system < 1 || $planet < 1){
+		elseif ($galaxy > MAX_GALAXY_IN_WORLD OR $system > MAX_SYSTEM_IN_GALAXY OR $planet > MAX_PLANET_IN_SYSTEM OR $galaxy < 1 OR $system < 1 OR $planet < 1){
 			$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_error_coord'].'</tr></th>';
 			$i++;}
 
-		if ( ! $name || ! $pass || ! $email || ! $galaxy || ! $system || ! $planet){
+		if ( ! $name OR ! $pass OR ! $email OR ! $galaxy OR ! $system OR ! $planet){
 			$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_complete_all'].'</tr></th>';
 			$i++;}
 
@@ -100,13 +100,13 @@ switch ($_GET['page'])
 			$Query1 .= "`password`='".sha1($pass)."';";
 			doquery($Query1, "users");
 
-			update_config ( 'users_amount' , read_config ( 'users_amount' ) + 1 );
+			update_config ( 'users_amount', read_config ( 'users_amount' ) + 1);
 
 			$ID_USER 	= doquery("SELECT `id` FROM {{table}} WHERE `username` = '" . $db->real_escape_string($name) . "' LIMIT 1", "users", TRUE);
 
 			CreateOnePlanetRecord ($galaxy, $system, $planet, $ID_USER['id'], $UserPlanet, TRUE);
 
-			$ID_PLANET 	= doquery("SELECT `id` FROM {{table}} WHERE `id_owner` = '". $ID_USER['id'] ."' LIMIT 1" , "planets", TRUE);
+			$ID_PLANET 	= doquery("SELECT `id` FROM {{table}} WHERE `id_owner` = '". $ID_USER['id'] ."' LIMIT 1", "planets", TRUE);
 
 			doquery("UPDATE {{table}} SET `id_level` = '".$auth."' WHERE `id` = '".$ID_PLANET['id']."'", "planets");
 
@@ -228,14 +228,14 @@ switch ($_GET['page'])
 				$QryInsertMoonInPlanet .= "`deuterium` = '0', ";
 				$QryInsertMoonInPlanet .= "`deuterium_perhour` = '0', ";
 				$QryInsertMoonInPlanet .= "`deuterium_max` = '".BASE_STORAGE_SIZE."';";
-				doquery($QryInsertMoonInPlanet , 'planets');
+				doquery($QryInsertMoonInPlanet, 'planets');
 
 				$QryGetMoonIdFromLunas  = "SELECT * FROM {{table}} WHERE ";
 				$QryGetMoonIdFromLunas .= "`galaxy` = '".  $Galaxy ."' AND ";
 				$QryGetMoonIdFromLunas .= "`system` = '".  $System ."' AND ";
 				$QryGetMoonIdFromLunas .= "`planet` = '". $Planet ."' AND ";
 				$QryGetMoonIdFromLunas .= "`planet_type` = '3';";
-				$PlanetRow = doquery($QryGetMoonIdFromLunas , 'planets', TRUE);
+				$PlanetRow = doquery($QryGetMoonIdFromLunas, 'planets', TRUE);
 
 				$QryUpdateMoonInGalaxy  = "UPDATE {{table}} SET ";
 				$QryUpdateMoonInGalaxy .= "`id_luna` = '". $PlanetRow['id'] ."', ";
@@ -244,7 +244,7 @@ switch ($_GET['page'])
 				$QryUpdateMoonInGalaxy .= "`galaxy` = '". $Galaxy ."' AND ";
 				$QryUpdateMoonInGalaxy .= "`system` = '". $System ."' AND ";
 				$QryUpdateMoonInGalaxy .= "`planet` = '". $Planet ."';";
-				doquery($QryUpdateMoonInGalaxy , 'galaxy');
+				doquery($QryUpdateMoonInGalaxy, 'galaxy');
 
 				$parse['display']	=	"<tr><th colspan=3><font color=lime>".$lang['mo_moon_added']."</font></th></tr>";
 			}
@@ -280,7 +280,7 @@ switch ($_GET['page'])
 				$QryUpdateGalaxy .= "`system` = '". $System ."' AND ";
 				$QryUpdateGalaxy .= "`planet` = '". $Planet ."' ";
 				$QryUpdateGalaxy .= "LIMIT 1;";
-				doquery($QryUpdateGalaxy , 'galaxy');
+				doquery($QryUpdateGalaxy, 'galaxy');
 
 				$parse['display2']	=	"<tr><th colspan=3><font color=lime>".$lang['mo_moon_deleted']."</font></th></tr>";
 			}
@@ -342,7 +342,7 @@ switch ($_GET['page'])
 				$QryUpdatePlanet .= "`system` = '". $system ."' AND ";
 				$QryUpdatePlanet .= "`planet` = '". $planet ."' AND ";
 				$QryUpdatePlanet .= "`planet_type` = '1'";
-				doquery($QryUpdatePlanet , 'planets');
+				doquery($QryUpdatePlanet, 'planets');
 
 				$parse['display']	=	'<tr><th colspan="2"><font color=lime>'.$lang['po_complete_succes'].'</font></th></tr>';
 			}

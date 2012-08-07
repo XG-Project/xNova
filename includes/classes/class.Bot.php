@@ -187,7 +187,7 @@ class Bot {
 		{
 			if ($planetselected && $this->CurrentPlanet['id_owner'] == $this->user['id'])
 			{
-				CheckPlanetUsedFields ($this->CurrentPlanet );
+				CheckPlanetUsedFields ($this->CurrentPlanet);
 
 				if ( ! is_null($this->log)) $this->log .= $this->user['username'].' - Hora: '.date('H:i:s - j/n/Y').' - Planeta: '.$this->CurrentPlanet['name'].' ['.$this->CurrentPlanet['id'].']'."\n";
 
@@ -209,7 +209,7 @@ class Bot {
 				if ($iPlanetCount['total']	< MAX_PLAYER_PLANETS &&
 					$maxcolofleet['total']	< (MAX_PLAYER_PLANETS - $maxcolofleet['total']) &&
 					$MaxFlyingFleets		< $MaxFlottes &&
-					$this->CurrentPlanet[$resource[208]] >= 1 )
+					$this->CurrentPlanet[$resource[208]] >= 1)
 				{
 					$this->Colonize($iPlanetCount['total']);
 				}
@@ -253,7 +253,7 @@ class Bot {
 
 				if ($iPlanetCount['total'] < MAX_PLAYER_PLANETS &&
 					$maxcolofleet['total'] < (MAX_PLAYER_PLANETS - $maxcolofleet['total']) &&
-					$MaxFlyingFleets < $MaxFlottes && $this->CurrentPlanet[$resource[208]] >= 1 )
+					$MaxFlyingFleets < $MaxFlottes && $this->CurrentPlanet[$resource[208]] >= 1)
 				{
 					$this->Colonize($iPlanetCount['total']);
 				}
@@ -275,8 +275,8 @@ class Bot {
 
 		$CurrentQueue  = $this->CurrentPlanet['b_building_id'];
 		if ($CurrentQueue != 0) {
-			$QueueArray    = explode ( ";", $CurrentQueue );
-			$ActualCount   = count ($QueueArray );
+			$QueueArray    = explode(";", $CurrentQueue);
+			$ActualCount   = count($QueueArray);
 		} else {
 			$QueueArray    = "";
 			$ActualCount   = 0;
@@ -331,13 +331,13 @@ class Bot {
 
 		$CurrentQueue  = $this->CurrentPlanet['b_building_id'];
 		if ($CurrentQueue != 0) {
-			$QueueArray    = explode ( ";", $CurrentQueue );
-			$ActualCount   = count ($QueueArray );
+			$QueueArray    = explode(";", $CurrentQueue);
+			$ActualCount   = count($QueueArray);
 		} else {
 			$QueueArray    = "";
 			$ActualCount   = 0;
 		}
-		$MaxBuildings = array(/*33 => 100, */ 14 => 20, 15 => 10, 21 => 17, 31 => 16 );
+		$MaxBuildings = array(/*33 => 100, */ 14 => 20, 15 => 10, 21 => 17, 31 => 16);
 			uasort($MaxBuildings, 'scmp');
 
 			foreach ($MaxBuildings as $Element => $Max)
@@ -357,7 +357,7 @@ class Bot {
 
 			}
 
-		SetNextQueueElementOnTop ($this->CurrentPlanet, $this->user );
+		SetNextQueueElementOnTop ($this->CurrentPlanet, $this->user);
 		$this->SavePlanetRecord();
 	}
 
@@ -367,8 +367,8 @@ class Bot {
 
 		$CurrentQueue  = $this->CurrentPlanet['b_building_id'];
 		if ($CurrentQueue != 0) {
-			$QueueArray    = explode ( ";", $CurrentQueue );
-			$ActualCount   = count ($QueueArray );
+			$QueueArray    = explode(";", $CurrentQueue);
+			$ActualCount   = count($QueueArray);
 		} else {
 			$QueueArray    = "";
 			$ActualCount   = 0;
@@ -420,7 +420,7 @@ class Bot {
 				}
 			}
 		}
-		SetNextQueueElementOnTop ($this->CurrentPlanet, $this->user );
+		SetNextQueueElementOnTop ($this->CurrentPlanet, $this->user);
 		$this->SavePlanetRecord();
 	}
 
@@ -430,7 +430,7 @@ class Bot {
 
 		if ($this->CheckLabSettingsInQueue ($this->CurrentPlanet))
 		{
-			$TechLevel =  array(122 => 5, 114 => 9, 118 => 11, 109 => 20, 108 => 20, 113 => 12, 115 => 8, 117 => 8, 124 => 3, 120 => 12, 106 => 12, 111 => 4, 110 => 20, 121 => 7, 199 => 1  );
+			$TechLevel =  array(122 => 5, 114 => 9, 118 => 11, 109 => 20, 108 => 20, 113 => 12, 115 => 8, 117 => 8, 124 => 3, 120 => 12, 106 => 12, 111 => 4, 110 => 20, 121 => 7, 199 => 1 );
 
 			uasort($TechLevel, 'scmp');
 
@@ -479,13 +479,13 @@ class Bot {
 		global $resource;
 
 		$FleetLevel =  array(212 => 300,218 => 200, 219 => 150, 215 => 150, 214 => 50, 211 => 200, 207 => 500, 209 => 500, 202 => 200,203 => 150, 204 => 345, 205 => 100, 206 => 30, 208 => 1, 210 => 20, 213 => 100);
-		uasort($FleetLevel, 'scmp' );
+		uasort($FleetLevel, 'scmp');
 		foreach ($FleetLevel as $Element => $Max)
 		{
 			if ($Element === 0 OR $Element == 212 OR $Element == 218)
 				continue;
 
-			$MaxElements   = $this->GetMaxConstructibleElements ($Element,$this->CurrentPlanet );
+			$MaxElements   = $this->GetMaxConstructibleElements ($Element,$this->CurrentPlanet);
 			$Count = $MaxElements;
 			if ($Count > ($Max * $this->CurrentPlanet[$resource[21]]))
 				$Count = ($Max * $this->CurrentPlanet[$resource[21]]);
@@ -509,12 +509,12 @@ class Bot {
 		global $resource;
 
 		$DefLevel =  array(401 => 150,402 => 150, 403 => 90, 403 => 110,404 => 70,  406 => 50 /*, 407 => 1, 408 => 1 */);
-		uasort($DefLevel, 'scmp' );
+		uasort($DefLevel, 'scmp');
 		foreach ($DefLevel as $Element => $Max)
 		{
 			if ($Element == 0) continue;
 
-			$MaxElements   = $this->GetMaxConstructibleElements ($Element,$this->CurrentPlanet );
+			$MaxElements   = $this->GetMaxConstructibleElements ($Element,$this->CurrentPlanet);
 			$Count = $MaxElements;
 			if ($Count > ($Max * $this->CurrentPlanet[$resource[21]])) {
 				$Count = ($Max * $this->CurrentPlanet[$resource[21]]);
@@ -536,7 +536,7 @@ class Bot {
 	{
 		global $resource, $lang;
 
-		$Ressource = $this->GetElementRessources ($Element, $Count );
+		$Ressource = $this->GetElementRessources ($Element, $Count);
 		$BuildTime = GetBuildingTime($this->user,$this->CurrentPlanet, $Element, 1);
 		if (($Count >= 1 and $this->CurrentPlanet['b_hangar_id'] == ""))
 		{
@@ -618,9 +618,9 @@ class Bot {
 				{
 					$AllFleetSpeed  = Fleets::fleet_max_speed($fleetarray, 0, $this->user);
 					$MaxFleetSpeed  = min($AllFleetSpeed);
-					$distance      = Fleets::target_distance($this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet );
+					$distance      = Fleets::target_distance($this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet);
 					$duration      = Fleets::mission_duration( 1, $MaxFleetSpeed, $distance, GetGameSpeedFactor ());
-					$consumption   = Fleets::fleet_consumption($fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user );
+					$consumption   = Fleets::fleet_consumption($fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user);
 					$StayDuration    = 0;
 					$StayTime        = 0;
 					$fleet['start_time'] = $duration + time();
@@ -635,7 +635,7 @@ class Bot {
 						$FleetStorage    += $pricelist[$Ship]["capacity"] * $Count;
 						$FleetShipCount  += $Count;
 						$fleet_array2     .= $Ship .",". $Count .";";
-						$FleetSubQRY     .= "`".$resource[$Ship] . "` = `" . $resource[$Ship] . "` - " . $Count . " , ";
+						$FleetSubQRY     .= "`".$resource[$Ship] . "` = `" . $resource[$Ship] . "` - " . $Count . ", ";
 					}
 
 					$FleetStorage        -= $consumption;
@@ -738,9 +738,9 @@ class Bot {
 			$fleetarray         = array(208 => 1);
 			$AllFleetSpeed  = Fleets::fleet_max_speed($fleetarray, 0, $this->user);
 			$MaxFleetSpeed  = min($AllFleetSpeed);
-			$distance      = Fleets::target_distance($this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet );
+			$distance      = Fleets::target_distance($this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet);
 			$duration      = Fleets::mission_duration( 10, $MaxFleetSpeed, $distance, GetGameSpeedFactor ());
-			$consumption   = Fleets::fleet_consumption($fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user );
+			$consumption   = Fleets::fleet_consumption($fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user);
 			$StayDuration    = 0;
 			$StayTime        = 0;
 			$fleet['start_time'] = $duration + time();
@@ -755,7 +755,7 @@ class Bot {
 				$FleetStorage    += $pricelist[$Ship]["capacity"] * $Count;
 				$FleetShipCount  += $Count;
 				$fleet_array2     .= $Ship .",". $Count .";";
-				$FleetSubQRY     .= "`".$resource[$Ship] . "` = `" . $resource[$Ship] . "` - " . $Count . " , ";
+				$FleetSubQRY     .= "`".$resource[$Ship] . "` = `" . $resource[$Ship] . "` - " . $Count . ", ";
 			}
 
 			$QryInsertFleet  = "INSERT INTO {{table}} SET ";
@@ -817,9 +817,9 @@ class Bot {
 		{
 			$AllFleetSpeed  = Fleets::fleet_max_speed($fleetarray, 0, $this->user);
 			$MaxFleetSpeed  = min($AllFleetSpeed);
-			$distance      = Fleets::target_distance($this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet );
+			$distance      = Fleets::target_distance($this->CurrentPlanet['galaxy'], $galaxy, $this->CurrentPlanet['system'], $system, $this->CurrentPlanet['planet'], $planet);
 			$duration      = Fleets::mission_duration( 10, $MaxFleetSpeed, $distance, GetGameSpeedFactor ());
-			$consumption   = Fleets::fleet_consumption($fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user );
+			$consumption   = Fleets::fleet_consumption($fleetarray, GetGameSpeedFactor (), $duration, $distance, $MaxFleetSpeed, $this->user);
 			$StayDuration    = 0;
 			$StayTime        = 0;
 			$fleet['start_time'] = $duration + time();
@@ -835,7 +835,7 @@ class Bot {
 				$FleetStorage    += $pricelist[$Ship]["capacity"] * $Count;
 				$FleetShipCount  += $Count;
 				$fleet_array2     .= $Ship .",". $Count .";";
-				$FleetSubQRY     .= "`".$resource[$Ship] . "` = `" . $resource[$Ship] . "` - " . $Count . " , ";
+				$FleetSubQRY     .= "`".$resource[$Ship] . "` = `" . $resource[$Ship] . "` - " . $Count . ", ";
 			}
 
 			$FleetStorage        -= $consumption;
@@ -924,8 +924,8 @@ class Bot {
 		$CurrentMaxFields  	= CalculateMaxPlanetFields($CurrentPlanet);
 		if ($CurrentQueue != 0)
 		{
-			$QueueArray    = explode ( ";", $CurrentQueue );
-			$ActualCount   = count ($QueueArray );
+			$QueueArray    = explode(";", $CurrentQueue);
+			$ActualCount   = count($QueueArray);
 		}
 		else
 		{
@@ -951,14 +951,14 @@ class Bot {
 			$QueueID      = FALSE;
 		}
 
-		if ($QueueID != FALSE )
+		if ($QueueID)
 		{
 			if ($QueueID > 1)
 			{
 				$InArray = 0;
-				for ($QueueElement = 0; $QueueElement < $ActualCount; $QueueElement++ )
+				for ($QueueElement = 0; $QueueElement < $ActualCount; $QueueElement++)
 				{
-					$QueueSubArray = explode ( ",", $QueueArray[$QueueElement]);
+					$QueueSubArray = explode(",", $QueueArray[$QueueElement]);
 					if ($QueueSubArray[0] == $Element)
 					{
 						$InArray++;
@@ -1014,7 +1014,7 @@ class Bot {
 			}
 
 			$QueueArray[$ActualCount]       = $Element .",". $BuildLevel .",". $BuildTime .",". $BuildEndTime .",". $BuildMode;
-			$NewQueue                       = implode ( ";", $QueueArray );
+			$NewQueue                       = implode(";", $QueueArray);
 			$CurrentPlanet['b_building_id'] = $NewQueue;
 		}
 	}

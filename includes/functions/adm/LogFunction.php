@@ -8,7 +8,7 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ($user['authlevel'] < 1 )
+if ($user['authlevel'] < 1)
 {
 	die();
 }
@@ -27,7 +27,7 @@ function LogFunction($Text, $Estado, $LogCanWork)
 			fclose(fopen($Archive, "w+"));
 		}
 
-		$FP		 =	fopen ($Archive , "r+" );
+		$FP		 =	fopen ($Archive, "r+");
 		$Date	 =	$Text;
 		$Date	.=	$lang['log_operation_succes'];
 		$Date	.=	date("d-m-Y H:i:s", time())."\n";

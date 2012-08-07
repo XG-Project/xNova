@@ -8,12 +8,12 @@
  * @author	Razican <admin@razican.com>
  */
 
-define('INSIDE'  , TRUE);
-define('INSTALL' , FALSE);
+define('INSIDE' , TRUE);
+define('INSTALL', FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 include('AdminFunctions/Autorization.php');
 
 if ($Observation != 1) die();
@@ -71,7 +71,7 @@ while ($TheUser = $Last15Mins->fetch_array())
 	$Bloc['usr_planet_gal']    	= $TheUser['galaxy'];
 	$Bloc['usr_planet_sys']    	= $TheUser['system'];
 	$Bloc['usr_planet_pos']    	= $TheUser['planet'];
-	$parse['adm_ov_data_table'] .= parsetemplate( gettemplate('adm/OnlineUsersRow'), $Bloc );
+	$parse['adm_ov_data_table'] .= parsetemplate( gettemplate('adm/OnlineUsersRow'), $Bloc);
 	$Count++;
 }
 

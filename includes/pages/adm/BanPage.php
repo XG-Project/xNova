@@ -8,12 +8,12 @@
  * @author	Razican <admin@razican.com>
  */
 
-define('INSIDE'  , TRUE);
-define('INSTALL' , FALSE);
+define('INSIDE' , TRUE);
+define('INSTALL', FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 include('AdminFunctions/Autorization.php');
 
 if ($EditUsers != 1) die(message ($lang['404_page']));
@@ -109,7 +109,7 @@ if ($_GET['panel'])
 
 	if ($_POST['bannow'])
 	{
-		if (!is_numeric($_POST['days']) || !is_numeric($_POST['hour']) || !is_numeric($_POST['mins']) || !is_numeric($_POST['secs']))
+		if (!is_numeric($_POST['days']) OR !is_numeric($_POST['hour']) OR !is_numeric($_POST['mins']) OR !is_numeric($_POST['secs']))
 			return display( parsetemplate(gettemplate("adm/BanOptionsResultBody"), $parse), FALSE, '', TRUE, FALSE);
 
 		$name              = $_POST['ban_name'];

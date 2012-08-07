@@ -133,7 +133,7 @@ class ShowFleetShortcuts
 			$e 			= 0;
 			$ShortcutsRowTPL=gettemplate("shortcuts/shortcuts_row");
 
-			foreach ($scarray as $a => $b )
+			foreach ($scarray as $a => $b)
 			{
 				if ( ! empty($b))
 				{

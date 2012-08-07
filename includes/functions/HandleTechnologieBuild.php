@@ -10,7 +10,7 @@
 
 if ( ! defined('INSIDE')) die(header("location:../../"));
 
-	function HandleTechnologieBuild ( &$CurrentPlanet, &$CurrentUser )
+	function HandleTechnologieBuild ( &$CurrentPlanet, &$CurrentUser)
 	{
 		global $resource;
 

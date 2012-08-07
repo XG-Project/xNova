@@ -16,7 +16,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 		global $pricelist, $resource, $reslist;
 
 		// IF ROUTINE FIX BY JSTAR
-		if ($level === FALSE)
+		if ( ! $level)
 		{
 			$level = ($planet[$resource[$Element]]) ? $planet[$resource[$Element]] : $user[$resource[$Element]];//ORIGINAL LINE
 		}

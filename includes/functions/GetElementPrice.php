@@ -16,7 +16,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 		global $pricelist, $resource, $lang;
 
 		//if ($userfactor) // OLD CODE
-		if ($userfactor && ($level === FALSE)) // FIX BY JSTAR
+		if ($userfactor && ! $level) // FIX BY JSTAR
 			$level = ($planet[$resource[$Element]]) ? $planet[$resource[$Element]] : $user[$resource[$Element]];
 
 		$is_buyeable = TRUE;

@@ -12,7 +12,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class ShowTechTreePage
 {
-	function __construct ($CurrentUser , $CurrentPlanet )
+	function __construct ($CurrentUser, $CurrentPlanet)
 	{
 		global $resource, $requeriments, $lang;
 
@@ -23,7 +23,7 @@ class ShowTechTreePage
 
 		foreach ($lang['tech'] as $Element => $ElementName)
 		{
-			if ($Element < 600 )
+			if ($Element < 600)
 			{
 				$parse            = array();
 				$parse['tt_name'] = $ElementName;

@@ -17,8 +17,8 @@ function ShowLeftMenu ()
 	$parse					= $lang;
 	$parse['dpath']			= DPATH;
 	$parse['version']   	= VERSION;
-	$parse['servername']	= read_config ( 'game_name' );
-	$parse['forum_url']     = read_config ( 'forum_url' );
+	$parse['servername']	= read_config ( 'game_name');
+	$parse['forum_url']     = read_config ( 'forum_url');
 	$parse['user_rank']     = $user['total_rank'];
 
 	if ($user['authlevel'] > 0)

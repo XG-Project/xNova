@@ -37,14 +37,14 @@ class Production
 		}
 		elseif (($max_energy > 0 ) && (($energy_used + $max_energy ) < 0))
 		{
-			$percentage	= floor (($max_energy ) / ($energy_used * -1 ) * 100 );
+			$percentage	= floor (($max_energy ) / ($energy_used * -1 ) * 100);
 		}
 		else
 		{
 			$percentage	= 100;
 		}
 
-		if ($percentage > 100 )
+		if ($percentage > 100)
 		{
 			$percentage	= 100;
 		}

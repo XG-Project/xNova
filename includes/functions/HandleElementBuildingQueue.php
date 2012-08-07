@@ -10,7 +10,7 @@
 
 if ( ! defined('INSIDE')) die(header("location:../../"));
 
-function HandleElementBuildingQueue ($CurrentUser, &$CurrentPlanet, $ProductionTime )
+function HandleElementBuildingQueue ($CurrentUser, &$CurrentPlanet, $ProductionTime)
 {
 	global $resource;
 
@@ -34,7 +34,7 @@ function HandleElementBuildingQueue ($CurrentUser, &$CurrentPlanet, $ProductionT
 		$CurrentPlanet['b_hangar_id'] 	= '';
 		$UnFinished 					= FALSE;
 
-		foreach ($BuildArray as $Node => $Item )
+		foreach ($BuildArray as $Node => $Item)
 		{
 			$Element   			= $Item[0];
 			$Count     			= $Item[1];
@@ -76,7 +76,7 @@ function HandleElementBuildingQueue ($CurrentUser, &$CurrentPlanet, $ProductionT
 				$CurrentPlanet[$resource[$Element]] += $Count;
 				$Count = 0;
 			}
-			if ($Count != 0 )
+			if ($Count != 0)
 			{
 				$CurrentPlanet['b_hangar_id'] .= $Element.",".$Count.";";
 			}

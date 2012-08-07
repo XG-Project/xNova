@@ -146,7 +146,7 @@ class ShowOverviewPage
 					$StartTime = $FleetRow['fleet_start_time'];
 					$StayTime = $FleetRow['fleet_end_stay'];
 					$EndTime = $FleetRow['fleet_end_time'];
-					/////// // ### LUCKY , CODES ARE BELOW
+					/////// // ### LUCKY, CODES ARE BELOW
 					$hedefgalaksi = $FleetRow['fleet_end_galaxy'];
 					$hedefsistem = $FleetRow['fleet_end_system'];
 					$hedefgezegen = $FleetRow['fleet_end_planet'];
@@ -188,7 +188,7 @@ class ShowOverviewPage
 				//iss ye katilan filo////////////////////////////////////
 
 
-				// ### LUCKY , CODES ARE BELOW
+				// ### LUCKY, CODES ARE BELOW
 				if ( ! empty($hedefgalaksi) && !empty($hedefsistem) && !empty($hedefgezegen) && !empty($filogrubu))
 				{
 					$dostfilo = doquery("SELECT * FROM {{table}} WHERE `fleet_end_galaxy` = '".intval($hedefgalaksi)."' AND `fleet_end_system` = '".intval($hedefsistem)."' AND `fleet_end_planet` = '".intval($hedefgezegen)."' AND `fleet_group` = '".intval($filogrubu)."';",'fleets');

@@ -10,7 +10,7 @@
 
 if ( ! defined('INSIDE')) die(header("location:../../"));
 
-	function SetNextQueueElementOnTop ( &$CurrentPlanet, $CurrentUser )
+	function SetNextQueueElementOnTop ( &$CurrentPlanet, $CurrentUser)
 	{
 		global $lang, $resource;
 
@@ -19,11 +19,11 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			$CurrentQueue  = $CurrentPlanet['b_building_id'];
 			if ($CurrentQueue != 0)
 			{
-				$QueueArray = explode ( ";", $CurrentQueue );
+				$QueueArray = explode(";", $CurrentQueue);
 				$Loop       = TRUE;
 				while ($Loop)
 				{
-					$ListIDArray         = explode ( ",", $QueueArray[0]);
+					$ListIDArray         = explode(",", $QueueArray[0]);
 					$Element             = $ListIDArray[0];
 					$Level               = $ListIDArray[1];
 					$BuildTime           = $ListIDArray[2];
@@ -46,15 +46,15 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 						}
 					}
 
-					if ($HaveRessources )
+					if ($HaveRessources)
 					{
-						$Needed                        = GetBuildingPrice ($CurrentUser, $CurrentPlanet, $Element, TRUE, $ForDestroy);
+						$Needed                        = GetBuildingPrice($CurrentUser, $CurrentPlanet, $Element, TRUE, $ForDestroy);
 						$CurrentPlanet['metal']       -= $Needed['metal'];
 						$CurrentPlanet['crystal']     -= $Needed['crystal'];
 						$CurrentPlanet['deuterium']   -= $Needed['deuterium'];
 						$CurrentTime                   = time();
 						$BuildEndTime                  = $BuildEndTime;
-						$NewQueue                      = implode ( ";", $QueueArray );
+						$NewQueue                      = implode(";", $QueueArray);
 
 						if ($NewQueue == "")
 							$NewQueue                  = '0';
@@ -66,10 +66,10 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 						$ElementName = $lang['tech'][$Element];
 
 						if ($HaveNoMoreLevel)
-							$Message     = sprintf ($lang['sys_nomore_level'], $ElementName );
+							$Message     = sprintf ($lang['sys_nomore_level'], $ElementName);
 						else
 						{
-							$Needed      = GetBuildingPrice ($CurrentUser, $CurrentPlanet, $Element, TRUE, $ForDestroy);
+							$Needed      = GetBuildingPrice($CurrentUser, $CurrentPlanet, $Element, TRUE, $ForDestroy);
 							$Message     = sprintf ($lang['sys_notenough_money'], $ElementName,
 							Format::pretty_number($CurrentPlanet['metal']), $lang['Metal'],
 							Format::pretty_number($CurrentPlanet['crystal']), $lang['Crystal'],
@@ -90,7 +90,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 							$QueueArray[$num]	= implode(",",$fixEle);
 						}
 
-						$ActualCount         = count ($QueueArray);
+						$ActualCount         = count($QueueArray);
 						if ($ActualCount === 0)
 						{
 							$BuildEndTime  = '0';
@@ -110,10 +110,10 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			$CurrentPlanet['b_building_id'] = $NewQueue;
 
 			$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-			$QryUpdatePlanet .= "`metal` = '".         $CurrentPlanet['metal']         ."' , ";
-			$QryUpdatePlanet .= "`crystal` = '".       $CurrentPlanet['crystal']       ."' , ";
-			$QryUpdatePlanet .= "`deuterium` = '".     $CurrentPlanet['deuterium']     ."' , ";
-			$QryUpdatePlanet .= "`b_building` = '".    $CurrentPlanet['b_building']    ."' , ";
+			$QryUpdatePlanet .= "`metal` = '".         $CurrentPlanet['metal']         ."', ";
+			$QryUpdatePlanet .= "`crystal` = '".       $CurrentPlanet['crystal']       ."', ";
+			$QryUpdatePlanet .= "`deuterium` = '".     $CurrentPlanet['deuterium']     ."', ";
+			$QryUpdatePlanet .= "`b_building` = '".    $CurrentPlanet['b_building']    ."', ";
 			$QryUpdatePlanet .= "`b_building_id` = '". $CurrentPlanet['b_building_id'] ."' ";
 			$QryUpdatePlanet .= "WHERE ";
 			$QryUpdatePlanet .= "`id` = '" .           $CurrentPlanet['id']            . "';";

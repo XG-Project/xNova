@@ -45,9 +45,9 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 					$shie 	= ($data2['user']['defence_tech'] * 10);
 					$armr 	= ($data2['user']['shield_tech'] * 10);
 
-					if ($coord4 == 0){$coord4 += $data2['fleet']['fleet_end_galaxy'];}
-					if ($coord5 == 0){$coord5 += $data2['fleet']['fleet_end_system'];}
-					if ($coord6 == 0){$coord6 += $data2['fleet']['fleet_end_planet'];}
+					if ($coord4 == 0) $coord4 += $data2['fleet']['fleet_end_galaxy'];
+					if ($coord5 == 0) $coord5 += $data2['fleet']['fleet_end_system'];
+					if ($coord6 == 0) $coord6 += $data2['fleet']['fleet_end_planet'];
 
 					$fl_info1  	= "<table><tr><th>";
 					$fl_info1 	.= $lang['sys_attack_attacker_pos']." ".$name." ([".$coord1.":".$coord2.":".$coord3."])<br>";

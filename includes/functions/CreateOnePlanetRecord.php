@@ -24,7 +24,7 @@ function PlanetSizeRandomiser($Position,$HomeWorld = FALSE)
 	}
 	else
 	{
-		$PlanetFields = read_config ( 'initial_fields' );
+		$PlanetFields = read_config ( 'initial_fields');
 	}
 	$PlanetSize = floor(sqrt($PlanetFields) * 1000);
 	$return['diameter'] = $PlanetSize;
@@ -51,9 +51,9 @@ function CreateOnePlanetRecord($Galaxy, $System, $Position, $PlanetOwnerID, $Pla
 		$planet['metal'] = BUILD_METAL;
 		$planet['crystal'] = BUILD_CRISTAL;
 		$planet['deuterium'] = BUILD_DEUTERIUM;
-		$planet['metal_perhour'] = read_config ( 'metal_basic_income' );
-		$planet['crystal_perhour'] = read_config ( 'crystal_basic_income' );
-		$planet['deuterium_perhour'] = read_config ( 'deuterium_basic_income' );
+		$planet['metal_perhour'] = read_config ( 'metal_basic_income');
+		$planet['crystal_perhour'] = read_config ( 'crystal_basic_income');
+		$planet['deuterium_perhour'] = read_config ( 'deuterium_basic_income');
 		$planet['metal_max'] = BASE_STORAGE_SIZE;
 		$planet['crystal_max'] = BASE_STORAGE_SIZE;
 		$planet['deuterium_max'] = BASE_STORAGE_SIZE;
@@ -69,7 +69,7 @@ function CreateOnePlanetRecord($Galaxy, $System, $Position, $PlanetOwnerID, $Pla
 		$planet['system'] = $System;
 		$planet['planet'] = $Position;
 
-		if ($Position == 1 || $Position == 2 || $Position == 3)
+		if ($Position == 1 OR $Position == 2 OR $Position == 3)
 		{
 			$PlanetType = array('trocken');
 			$PlanetClass = array('planet');
@@ -77,7 +77,7 @@ function CreateOnePlanetRecord($Galaxy, $System, $Position, $PlanetOwnerID, $Pla
 			$planet['temp_min'] = rand(0,100);
 			$planet['temp_max'] = $planet['temp_min'] + 40;
 		}
-		elseif ($Position == 4 || $Position == 5 || $Position == 6)
+		elseif ($Position == 4 OR $Position == 5 OR $Position == 6)
 		{
 			$PlanetType = array('dschjungel');
 			$PlanetClass = array('planet');
@@ -85,7 +85,7 @@ function CreateOnePlanetRecord($Galaxy, $System, $Position, $PlanetOwnerID, $Pla
 			$planet['temp_min'] = rand(-25,75);
 			$planet['temp_max'] = $planet['temp_min'] + 40;
 		}
-		elseif ($Position == 7 || $Position == 8 || $Position == 9)
+		elseif ($Position == 7 OR $Position == 8 OR $Position == 9)
 		{
 			$PlanetType = array('normaltemp');
 			$PlanetClass = array('planet');
@@ -93,7 +93,7 @@ function CreateOnePlanetRecord($Galaxy, $System, $Position, $PlanetOwnerID, $Pla
 			$planet['temp_min'] = rand(-50,50);
 			$planet['temp_max'] = $planet['temp_min'] + 40;
 		}
-		elseif ($Position == 10 || $Position == 11 || $Position == 12)
+		elseif ($Position == 10 OR $Position == 11 OR $Position == 12)
 		{
 			$PlanetType = array('wasser');
 			$PlanetClass = array('planet');
@@ -101,7 +101,7 @@ function CreateOnePlanetRecord($Galaxy, $System, $Position, $PlanetOwnerID, $Pla
 			$planet['temp_min'] = rand(-75,25);
 			$planet['temp_max'] = $planet['temp_min'] + 40;
 		}
-		elseif ($Position == 13 || $Position == 14 || $Position == 15)
+		elseif ($Position == 13 OR $Position == 14 OR $Position == 15)
 		{
 			$PlanetType = array('eis');
 			$PlanetClass = array('planet');

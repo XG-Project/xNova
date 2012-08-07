@@ -12,7 +12,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class ShowStatisticsPage
 {
-	function ShowStatisticsPage ($CurrentUser )
+	function ShowStatisticsPage ($CurrentUser)
 	{
 		global $lang;
 
@@ -117,10 +117,10 @@ class ShowStatisticsPage
 			while ($StatRow = $query->fetch_assoc())
 			{
 				$parse['ally_rank']       = $start;
-				if ($StatRow[ $OldRank ] == 0 || $StatRow[ $Rank ] == 0)
+				if ($StatRow[ $OldRank ] == 0 OR $StatRow[ $Rank ] == 0)
 				{
 					$rank_old				= $start;
-					$QryUpdRank				= doquery("UPDATE {{table}} SET `".$Rank."` = '".$start."', `".$OldRank."` = '".$start."' WHERE `stat_type` = '1' AND `stat_code` = '1' AND `id_owner` = '". intval($StatRow['id_owner']) ."';" , "statpoints");
+					$QryUpdRank				= doquery("UPDATE {{table}} SET `".$Rank."` = '".$start."', `".$OldRank."` = '".$start."' WHERE `stat_type` = '1' AND `stat_code` = '1' AND `id_owner` = '". intval($StatRow['id_owner']) ."';", "statpoints");
 					$StatRow[ $OldRank ]	= $start;
 					$StatRow[ $Rank ]		= $start;
 				}
@@ -193,10 +193,10 @@ class ShowStatisticsPage
 			while ($StatRow = $query->fetch_assoc())
 			{
 				$parse['player_rank']     = $start;
-				if ($StatRow[ $OldRank ] == 0 || $StatRow[ $Rank ] == 0)
+				if ($StatRow[ $OldRank ] == 0 OR $StatRow[ $Rank ] == 0)
 				{
 					$rank_old				= $start;
-					$QryUpdRank				= doquery("UPDATE {{table}} SET `".$Rank."` = '".$start."', `".$OldRank."` = '".$start."' WHERE `stat_type` = '1' AND `stat_code` = '1' AND `id_owner` = '". intval($StatRow['id_owner']) ."';" , "statpoints");
+					$QryUpdRank				= doquery("UPDATE {{table}} SET `".$Rank."` = '".$start."', `".$OldRank."` = '".$start."' WHERE `stat_type` = '1' AND `stat_code` = '1' AND `id_owner` = '". intval($StatRow['id_owner']) ."';", "statpoints");
 					$StatRow[ $OldRank ]	= $start;
 					$StatRow[ $Rank ]		= $start;
 				}

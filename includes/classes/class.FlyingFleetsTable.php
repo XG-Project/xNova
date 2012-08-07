@@ -126,9 +126,9 @@ class FlyingFleetsTable
 			$TargetOwner      = doquery("SELECT `username` FROM {{table}} WHERE `id` = '". intval($CurrentFleet['fleet_target_owner']) ."';", 'users', TRUE);
 
 			$Bloc['Id']       = $CurrentFleet['fleet_id'];
-			$Bloc['Mission']  = $this->CreateFleetPopupedMissionLink ($CurrentFleet, $lang['type_mission'][ $CurrentFleet['fleet_mission'] ], '' );
-			$Bloc['Mission'] .= "<br>". (($CurrentFleet['fleet_mess'] == 1) ? "R" : "A" );
-			$Bloc['Fleet']    = $this->CreateFleetPopupedFleetLink ($CurrentFleet, $lang['tech'][200], '' );
+			$Bloc['Mission']  = $this->CreateFleetPopupedMissionLink ($CurrentFleet, $lang['type_mission'][ $CurrentFleet['fleet_mission'] ], '');
+			$Bloc['Mission'] .= "<br>". (($CurrentFleet['fleet_mess'] == 1) ? "R" : "A");
+			$Bloc['Fleet']    = $this->CreateFleetPopupedFleetLink ($CurrentFleet, $lang['tech'][200], '');
 			$Bloc['St_Owner'] = "[". $CurrentFleet['fleet_owner'] ."]<br>". $FleetOwner['username'];
 			$Bloc['St_Posit'] = "[".$CurrentFleet['fleet_start_galaxy'] .":". $CurrentFleet['fleet_start_system'] .":". $CurrentFleet['fleet_start_planet'] ."]<br>". (($CurrentFleet['fleet_start_type'] == 1) ? "[P]": (($CurrentFleet['fleet_start_type'] == 2) ? "D" : "L" )) ."";
 			$Bloc['St_Time']  = date('G:i:s d/n/Y', $CurrentFleet['fleet_start_time']);
@@ -180,9 +180,9 @@ class FlyingFleetsTable
 		15 => 'transport',
 		);
 
-		$FleetStatus = array ( 0 => 'flight', 1 => 'holding', 2 => 'return' );
+		$FleetStatus = array ( 0 => 'flight', 1 => 'holding', 2 => 'return');
 
-		if ($Owner )
+		if ($Owner)
 			$FleetPrefix = 'own';
 		else
 			$FleetPrefix = '';
@@ -232,7 +232,7 @@ class FlyingFleetsTable
 			$StartID .= $StartPlanet['name'] ." ";
 			$StartID .= GetStartAdressLink ($FleetRow, $FleetPrefix . $FleetStyle[ $MissionType ]);
 
-			if ($MissionType != 15 )
+			if ($MissionType != 15)
 			{
 				if ($TargetType == 1)
 					$TargetID  = $lang['cff_from_planet'];
@@ -271,7 +271,7 @@ class FlyingFleetsTable
 				$EventString  = $lang['cff_a'];
 				$EventString .= $FleetContent;
 				$EventString .= $lang['cff_of'];
-				$EventString .= $this->BuildHostileFleetPlayerLink ($FleetRow );
+				$EventString .= $this->BuildHostileFleetPlayerLink ($FleetRow);
 			}
 
 			if ($Status == 0)
@@ -309,10 +309,10 @@ class FlyingFleetsTable
 		$bloc['fleet_status'] = $FleetStatus[ $Status ];
 		$bloc['fleet_prefix'] = $FleetPrefix;
 		$bloc['fleet_style']  = $FleetStyle[ $MissionType ];
-		$bloc['fleet_javai']  = InsertJavaScriptChronoApplet ($Label, $Record, $Rest, TRUE );
+		$bloc['fleet_javai']  = InsertJavaScriptChronoApplet ($Label, $Record, $Rest, TRUE);
 		$bloc['fleet_order']  = $Label . $Record;
 		$bloc['fleet_descr']  = $EventString;
-		$bloc['fleet_javas']  = InsertJavaScriptChronoApplet ($Label, $Record, $Rest, FALSE );
+		$bloc['fleet_javas']  = InsertJavaScriptChronoApplet ($Label, $Record, $Rest, FALSE);
 
 		return parsetemplate($RowsTPL, $bloc);
 	}

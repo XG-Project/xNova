@@ -16,21 +16,21 @@ class ShowChangelogPage
 	{
 		global $lang;
 
-		includeLang ( 'CHANGELOG' );
-		$template	=	gettemplate ( 'changelog/changelog_table' );
+		includeLang ( 'CHANGELOG');
+		$template	=	gettemplate ( 'changelog/changelog_table');
 
-		foreach ($lang['changelog'] as $version => $description )
+		foreach ($lang['changelog'] as $version => $description)
 		{
 			$parse['version_number']	= $version;
-			$parse['description'] 		= nl2br ($description );
+			$parse['description'] 		= nl2br ($description);
 
-			$body .= parsetemplate ($template , $parse );
+			$body .= parsetemplate ($template, $parse);
 		}
 
 		$parse 			= $lang;
 		$parse['body'] 	= $body;
 
-		display ( parsetemplate ( gettemplate ( 'changelog/changelog_body' ) , $parse));
+		display ( parsetemplate ( gettemplate ( 'changelog/changelog_body' ), $parse));
 	}
 }
 ?>

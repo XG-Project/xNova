@@ -12,7 +12,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class ShowNotesPage
 {
-	function __construct ($CurrentUser )
+	function __construct ($CurrentUser)
 	{
 		global $lang, $db;
 
@@ -20,7 +20,7 @@ class ShowNotesPage
 		$a 		= intval($_GET['a']);
 		$n 		= intval($_GET['n']);
 
-		if ($_POST["s"] == 1 || $_POST["s"] == 2)
+		if ($_POST["s"] == 1 OR $_POST["s"] == 2)
 		{
 			$time 		= time();
 			$priority 	= intval($_POST["u"]);

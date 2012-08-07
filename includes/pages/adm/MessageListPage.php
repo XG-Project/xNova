@@ -8,12 +8,12 @@
  * @author	Razican <admin@razican.com>
  */
 
-define('INSIDE'  , TRUE);
-define('INSTALL' , FALSE);
+define('INSIDE' , TRUE);
+define('INSTALL', FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 
 if ($Observation != 1) die(message ($lang['404_page']));
 
@@ -28,12 +28,12 @@ if ($Observation != 1) die(message ($lang['404_page']));
 	$SelPage    = $_POST['page'];
 
 	$ViewPage = 1;
-	if ($Selected != $SelType )
+	if ($Selected != $SelType)
 	{
 		$Selected = $SelType;
 		$ViewPage = 1;
 	}
-	elseif ($CurrPage != $SelPage )
+	elseif ($CurrPage != $SelPage)
 	{
 		$ViewPage = ( !empty($SelPage)) ? $SelPage : 1;
 	}
@@ -82,8 +82,8 @@ if ($Observation != 1) die(message ($lang['404_page']));
 			$SelDay    = $_POST['selday'];
 			$SelMonth  = $_POST['selmonth'];
 			$SelYear   = $_POST['selyear'];
-			$LimitDate = mktime (0,0,0, $SelMonth, $SelDay, $SelYear );
-			if ($LimitDate != FALSE)
+			$LimitDate = mktime (0, 0, 0, $SelMonth, $SelDay, $SelYear);
+			if ($LimitDate)
 			{
 				doquery ( "DELETE FROM {{table}} WHERE `message_time` <= '". $LimitDate ."';", 'messages');
 				doquery ( "DELETE FROM {{table}} WHERE `time` <= '". $LimitDate ."';", 'rw');
@@ -112,7 +112,7 @@ if ($Observation != 1) die(message ($lang['404_page']));
 	$parse['mlst_data_types']  .= "<option value=\"100\"". (($Selected == "100") ? " SELECTED" : "") .">".$lang['ml_see_all_messages']."</option>";
 	$parse['mlst_data_pages']   = "";
 
-	for ($cPage = 1; $cPage <= $MaxPage; $cPage++ )
+	for ($cPage = 1; $cPage <= $MaxPage; $cPage++)
 	{
 		$parse['mlst_data_pages'] .= "<option value=\"".$cPage."\"".  (($ViewPage == $cPage)  ? " SELECTED" : "") .">". $cPage ."/". $MaxPage ."</option>";
 	}

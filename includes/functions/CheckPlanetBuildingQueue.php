@@ -10,7 +10,7 @@
 
 if ( ! defined('INSIDE')) die(header("location:../../"));
 
-	function CheckPlanetBuildingQueue ( &$CurrentPlanet, &$CurrentUser )
+	function CheckPlanetBuildingQueue ( &$CurrentPlanet, &$CurrentUser)
 	{
 		global $resource;
 
@@ -20,24 +20,21 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			$CurrentQueue  = $CurrentPlanet['b_building_id'];
 			if ($CurrentQueue != 0)
 			{
-				$QueueArray    = explode ( ";", $CurrentQueue );
-				$ActualCount   = count ($QueueArray );
+				$QueueArray    = explode(";", $CurrentQueue);
+				$ActualCount   = count($QueueArray);
 			}
 
 			$BuildArray   = explode (",", $QueueArray[0]);
 			$BuildEndTime = floor($BuildArray[3]);
 			$BuildMode    = $BuildArray[4];
 			$Element      = $BuildArray[0];
-			array_shift ($QueueArray );
+			array_shift ($QueueArray);
 
-			if ($BuildMode == 'destroy')
-				$ForDestroy = TRUE;
-			else
-				$ForDestroy = FALSE;
+			$ForDestroy = $BuildMode === 'destroy';
 
 			if ($BuildEndTime <= time())
 			{
-				$Needed                        = GetBuildingPrice ($CurrentUser, $CurrentPlanet, $Element, TRUE, $ForDestroy);
+				$Needed                        = GetBuildingPrice($CurrentUser, $CurrentPlanet, $Element, TRUE, $ForDestroy);
 				$Units                         = $Needed['metal'] + $Needed['crystal'] + $Needed['deuterium'];
 
 				$current = intval($CurrentPlanet['field_current']);
@@ -53,7 +50,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 					}
 					elseif ($Element != 0)
 					{
-						if ($ForDestroy == FALSE)
+						if ( ! $ForDestroy)
 						{
 							$current += 1;
 							$CurrentPlanet[$resource[$Element]]++;
@@ -67,7 +64,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 				}
 				elseif ($CurrentPlanet['planet_type'] == 1)
 				{
-					if ($ForDestroy == FALSE)
+					if ( ! $ForDestroy)
 					{
 						$current += 1;
 						$CurrentPlanet[$resource[$Element]]++;
@@ -78,10 +75,10 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 						$CurrentPlanet[$resource[$Element]]--;
 					}
 				}
-				if (count ($QueueArray ) == 0)
+				if (count($QueueArray ) == 0)
 					$NewQueue = 0;
 				else
-					$NewQueue = implode (";", $QueueArray );
+					$NewQueue = implode (";", $QueueArray);
 
 				$CurrentPlanet['b_building']    = 0;
 				$CurrentPlanet['b_building_id'] = $NewQueue;
@@ -91,8 +88,8 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 				$QryUpdatePlanet  = "UPDATE {{table}} SET ";
 				$QryUpdatePlanet .= "`".$resource[$Element]."` = '".$CurrentPlanet[$resource[$Element]]."', ";
-				$QryUpdatePlanet .= "`b_building` = '". $CurrentPlanet['b_building'] ."' , ";
-				$QryUpdatePlanet .= "`b_building_id` = '". $CurrentPlanet['b_building_id'] ."' , ";
+				$QryUpdatePlanet .= "`b_building` = '". $CurrentPlanet['b_building'] ."', ";
+				$QryUpdatePlanet .= "`b_building_id` = '". $CurrentPlanet['b_building_id'] ."', ";
 				$QryUpdatePlanet .= "`field_current` = '" . $CurrentPlanet['field_current'] . "', ";
 				$QryUpdatePlanet .= "`field_max` = '" . $CurrentPlanet['field_max'] . "' ";
 				$QryUpdatePlanet .= "WHERE ";
@@ -110,7 +107,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			$CurrentPlanet['b_building_id'] = 0;
 
 			$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-			$QryUpdatePlanet .= "`b_building` = '". $CurrentPlanet['b_building'] ."' , ";
+			$QryUpdatePlanet .= "`b_building` = '". $CurrentPlanet['b_building'] ."', ";
 			$QryUpdatePlanet .= "`b_building_id` = '". $CurrentPlanet['b_building_id'] ."' ";
 			$QryUpdatePlanet .= "WHERE ";
 			$QryUpdatePlanet .= "`id` = '" . $CurrentPlanet['id'] . "';";

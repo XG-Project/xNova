@@ -22,7 +22,7 @@ class Fleets
 	{
 		global $pricelist;
 
-		if ($user['impulse_motor_tech'] >= 5 )
+		if ($user['impulse_motor_tech'] >= 5)
 		{
 			$consumption	= $pricelist[$ship]['consumption2'];
 		}
@@ -49,7 +49,7 @@ class Fleets
 	{
 		$distance = 0;
 
-		if (($orig_galaxy - $dest_galaxy ) != 0 )
+		if (($orig_galaxy - $dest_galaxy ) != 0)
 		{
 			$distance = abs ($orig_galaxy - $dest_galaxy ) * 20000;
 		}
@@ -95,57 +95,57 @@ class Fleets
 	{
 		global $reslist, $pricelist;
 
-		if ($fleet != 0 )
+		if ($fleet != 0)
 		{
 			$fleet_array[$fleet] =  1;
 		}
 
-		foreach ($fleet_array as $ship => $count )
+		foreach ($fleet_array as $ship => $count)
 		{
-			if ($ship == 202 )
+			if ($ship == 202)
 			{
-				if ($user['impulse_motor_tech'] >= 5 )
+				if ($user['impulse_motor_tech'] >= 5)
 				{
-					$speed_all[$ship]	= $pricelist[$ship]['speed2'] + (($pricelist[$ship]['speed'] * $user['impulse_motor_tech']) * 0.2 );
+					$speed_all[$ship]	= $pricelist[$ship]['speed2'] + (($pricelist[$ship]['speed'] * $user['impulse_motor_tech']) * 0.2);
 				}
 				else
 				{
-					$speed_all[$ship]	= $pricelist[$ship]['speed']  + (($pricelist[$ship]['speed'] * $user['combustion_tech']) * 0.1 );
+					$speed_all[$ship]	= $pricelist[$ship]['speed']  + (($pricelist[$ship]['speed'] * $user['combustion_tech']) * 0.1);
 				}
 
 			}
 
-			if ($ship == 203 or $ship == 204 or $ship == 209 or $ship == 210 )
+			if ($ship == 203 or $ship == 204 or $ship == 209 or $ship == 210)
 			{
-				$speed_all[$ship] 		= $pricelist[$ship]['speed'] + (($pricelist[$ship]['speed'] * $user['combustion_tech']) * 0.1 );
+				$speed_all[$ship] 		= $pricelist[$ship]['speed'] + (($pricelist[$ship]['speed'] * $user['combustion_tech']) * 0.1);
 			}
 
 
-			if ($ship == 205 or $ship == 206 or $ship == 208 )
+			if ($ship == 205 or $ship == 206 or $ship == 208)
 			{
-				$speed_all[$ship] 		= $pricelist[$ship]['speed'] + (($pricelist[$ship]['speed'] * $user['impulse_motor_tech']) * 0.2 );
+				$speed_all[$ship] 		= $pricelist[$ship]['speed'] + (($pricelist[$ship]['speed'] * $user['impulse_motor_tech']) * 0.2);
 			}
 
-			if ($ship == 211 )
+			if ($ship == 211)
 			{
-				if ($user['hyperspace_motor_tech'] >= 8 )
+				if ($user['hyperspace_motor_tech'] >= 8)
 				{
-					$speed_all[$ship] 	= $pricelist[$ship]['speed2'] + (($pricelist[$ship]['speed'] * $user['hyperspace_motor_tech']) * 0.3 );
+					$speed_all[$ship] 	= $pricelist[$ship]['speed2'] + (($pricelist[$ship]['speed'] * $user['hyperspace_motor_tech']) * 0.3);
 
 				}
 				else
 				{
-					$speed_all[$ship] 	= $pricelist[$ship]['speed2'] + (($pricelist[$ship]['speed'] * $user['hyperspace_motor_tech']) * 0.3 );
+					$speed_all[$ship] 	= $pricelist[$ship]['speed2'] + (($pricelist[$ship]['speed'] * $user['hyperspace_motor_tech']) * 0.3);
 				}
  			}
 
-			if ($ship == 207 or $ship == 213 or $ship == 214 or $ship == 215 )
+			if ($ship == 207 or $ship == 213 or $ship == 214 or $ship == 215)
 			{
-				$speed_all[$ship] 		= $pricelist[$ship]['speed'] + (($pricelist[$ship]['speed'] * $user['hyperspace_motor_tech']) * 0.3 );
+				$speed_all[$ship] 		= $pricelist[$ship]['speed'] + (($pricelist[$ship]['speed'] * $user['hyperspace_motor_tech']) * 0.3);
 			}
 		}
 
-		if ($fleet != 0 )
+		if ($fleet != 0)
 		{
 			$ship_speed	= $speed_all[$ship];
 			$speed_all	= $ship_speed;
@@ -173,11 +173,11 @@ class Fleets
 		{
 			if ($ship > 0)
 			{
-				$ship_speed         = self::fleet_max_speed ( "" , $ship , $user );
-				$ship_consumption   = self::ship_consumption ($ship , $user );
-				$spd              	= 35000 / ($mission_duration * $speed_factor - 10 ) * sqrt ($mission_distance * 10 / $ship_speed );
+				$ship_speed         = self::fleet_max_speed ( "", $ship, $user);
+				$ship_consumption   = self::ship_consumption ($ship, $user);
+				$spd              	= 35000 / ($mission_duration * $speed_factor - 10 ) * sqrt ($mission_distance * 10 / $ship_speed);
 				$basic_consumption	= $ship_consumption * $count;
-				$consumption       += $basic_consumption * $mission_distance / 35000 * (($spd / 10 ) + 1 ) * (($spd / 10 ) + 1 );
+				$consumption       += $basic_consumption * $mission_distance / 35000 * (($spd / 10 ) + 1 ) * (($spd / 10 ) + 1);
 			}
 		}
 

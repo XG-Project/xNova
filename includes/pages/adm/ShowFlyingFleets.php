@@ -8,13 +8,13 @@
  * @author	Razican <admin@razican.com>
  */
 
-define('INSIDE'  , TRUE);
-define('INSTALL' , FALSE);
+define('INSIDE' , TRUE);
+define('INSTALL', FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT . 'global.php');
-include(XN_ROOT . 'includes/classes/class.FlyingFleetsTable.php');
+include(XN_ROOT.'global.php');
+include(XN_ROOT.'includes/classes/class.FlyingFleetsTable.php');
 include('AdminFunctions/Autorization.php');
 
 if ($Observation != 1) die();

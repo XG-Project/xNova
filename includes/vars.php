@@ -172,20 +172,20 @@ if (defined('INSIDE'))
 		124 => array ( 'metal' =>    4000, 'crystal' =>    8000, 'deuterium' =>    4000, 'energy' =>    0, 'factor' =>   2),
 		199 => array ( 'metal' =>       0, 'crystal' =>       0, 'deuterium' =>       0, 'energy_max' => 300000, 'factor' =>   3),
 
-		202 => array ( 'metal' =>     2000, 'crystal' =>     2000, 'deuterium' =>       0, 'energy' => 0, 'factor' => 1, 'consumption' => 10  , 'consumption2' => 10  , 'speed' =>      5000, 'speed2' =>     10000, 'capacity' =>     5000 ),
-		203 => array ( 'metal' =>     6000, 'crystal' =>     6000, 'deuterium' =>       0, 'energy' => 0, 'factor' => 1, 'consumption' => 25  , 'consumption2' => 25  , 'speed' =>      7500, 'speed2' =>      7500, 'capacity' =>    25000 ),
-		204 => array ( 'metal' =>     3000, 'crystal' =>     1000, 'deuterium' =>       0, 'energy' => 0, 'factor' => 1, 'consumption' => 10  , 'consumption2' => 10  , 'speed' =>     12500, 'speed2' =>     12500, 'capacity' =>       50 ),
-		205 => array ( 'metal' =>     6000, 'crystal' =>     4000, 'deuterium' =>       0, 'energy' => 0, 'factor' => 1, 'consumption' => 30  , 'consumption2' => 30  , 'speed' =>     10000, 'speed2' =>     15000, 'capacity' =>      100 ),
-		206 => array ( 'metal' =>    20000, 'crystal' =>     7000, 'deuterium' =>    2000, 'energy' => 0, 'factor' => 1, 'consumption' => 150 , 'consumption2' => 150 , 'speed' =>     15000, 'speed2' =>     15000, 'capacity' =>      800 ),
-		207 => array ( 'metal' =>    45000, 'crystal' =>    15000, 'deuterium' =>       0, 'energy' => 0, 'factor' => 1, 'consumption' => 250 , 'consumption2' => 250 , 'speed' =>     10000, 'speed2' =>     10000, 'capacity' =>     1500 ),
-		208 => array ( 'metal' =>    10000, 'crystal' =>    20000, 'deuterium' =>   10000, 'energy' => 0, 'factor' => 1, 'consumption' => 500 , 'consumption2' => 500 , 'speed' =>      2500, 'speed2' =>      2500, 'capacity' =>     7500 ),
-		209 => array ( 'metal' =>    10000, 'crystal' =>     6000, 'deuterium' =>    2000, 'energy' => 0, 'factor' => 1, 'consumption' => 150 , 'consumption2' => 150 , 'speed' =>      2000, 'speed2' =>      2000, 'capacity' =>    20000 ),
-		210 => array ( 'metal' =>        0, 'crystal' =>     1000, 'deuterium' =>       0, 'energy' => 0, 'factor' => 1, 'consumption' => 1   , 'consumption2' => 1   , 'speed' => 100000000, 'speed2' => 100000000, 'capacity' =>        5 ),
-		211 => array ( 'metal' =>    50000, 'crystal' =>    25000, 'deuterium' =>   15000, 'energy' => 0, 'factor' => 1, 'consumption' => 500 , 'consumption2' => 500 , 'speed' =>      4000, 'speed2' =>      5000, 'capacity' =>      500 ),
-		212 => array ( 'metal' =>        0, 'crystal' =>     2000, 'deuterium' =>     500, 'energy' => 0, 'factor' => 1, 'consumption' => 0   , 'consumption2' => 0   , 'speed' =>         0, 'speed2' =>         0, 'capacity' =>        0 ),
-		213 => array ( 'metal' =>    60000, 'crystal' =>    50000, 'deuterium' =>   15000, 'energy' => 0, 'factor' => 1, 'consumption' => 500 , 'consumption2' => 500 , 'speed' =>      5000, 'speed2' =>      5000, 'capacity' =>     2000 ),
-		214 => array ( 'metal' =>  5000000, 'crystal' =>  4000000, 'deuterium' => 1000000, 'energy' => 0, 'factor' => 1, 'consumption' => 1   , 'consumption2' => 1   , 'speed' =>       100, 'speed2' =>       100, 'capacity' =>  1000000 ),
-		215 => array ( 'metal' =>    30000, 'crystal' =>    40000, 'deuterium' =>   15000, 'energy' => 0, 'factor' => 1, 'consumption' => 125 , 'consumption2' => 125 , 'speed' =>     10000, 'speed2' =>     10000, 'capacity' =>      750 ),
+		202 => array ( 'metal' =>     2000, 'crystal' =>     2000, 'deuterium' =>       0, 'energy' => 0, 'factor' => 1, 'consumption' => 10 , 'consumption2' => 10 , 'speed' =>      5000, 'speed2' =>     10000, 'capacity' =>     5000 ),
+		203 => array ( 'metal' =>     6000, 'crystal' =>     6000, 'deuterium' =>       0, 'energy' => 0, 'factor' => 1, 'consumption' => 25 , 'consumption2' => 25 , 'speed' =>      7500, 'speed2' =>      7500, 'capacity' =>    25000 ),
+		204 => array ( 'metal' =>     3000, 'crystal' =>     1000, 'deuterium' =>       0, 'energy' => 0, 'factor' => 1, 'consumption' => 10 , 'consumption2' => 10 , 'speed' =>     12500, 'speed2' =>     12500, 'capacity' =>       50 ),
+		205 => array ( 'metal' =>     6000, 'crystal' =>     4000, 'deuterium' =>       0, 'energy' => 0, 'factor' => 1, 'consumption' => 30 , 'consumption2' => 30 , 'speed' =>     10000, 'speed2' =>     15000, 'capacity' =>      100 ),
+		206 => array ( 'metal' =>    20000, 'crystal' =>     7000, 'deuterium' =>    2000, 'energy' => 0, 'factor' => 1, 'consumption' => 150, 'consumption2' => 150, 'speed' =>     15000, 'speed2' =>     15000, 'capacity' =>      800 ),
+		207 => array ( 'metal' =>    45000, 'crystal' =>    15000, 'deuterium' =>       0, 'energy' => 0, 'factor' => 1, 'consumption' => 250, 'consumption2' => 250, 'speed' =>     10000, 'speed2' =>     10000, 'capacity' =>     1500 ),
+		208 => array ( 'metal' =>    10000, 'crystal' =>    20000, 'deuterium' =>   10000, 'energy' => 0, 'factor' => 1, 'consumption' => 500, 'consumption2' => 500, 'speed' =>      2500, 'speed2' =>      2500, 'capacity' =>     7500 ),
+		209 => array ( 'metal' =>    10000, 'crystal' =>     6000, 'deuterium' =>    2000, 'energy' => 0, 'factor' => 1, 'consumption' => 150, 'consumption2' => 150, 'speed' =>      2000, 'speed2' =>      2000, 'capacity' =>    20000 ),
+		210 => array ( 'metal' =>        0, 'crystal' =>     1000, 'deuterium' =>       0, 'energy' => 0, 'factor' => 1, 'consumption' => 1  , 'consumption2' => 1  , 'speed' => 100000000, 'speed2' => 100000000, 'capacity' =>        5 ),
+		211 => array ( 'metal' =>    50000, 'crystal' =>    25000, 'deuterium' =>   15000, 'energy' => 0, 'factor' => 1, 'consumption' => 500, 'consumption2' => 500, 'speed' =>      4000, 'speed2' =>      5000, 'capacity' =>      500 ),
+		212 => array ( 'metal' =>        0, 'crystal' =>     2000, 'deuterium' =>     500, 'energy' => 0, 'factor' => 1, 'consumption' => 0  , 'consumption2' => 0  , 'speed' =>         0, 'speed2' =>         0, 'capacity' =>        0 ),
+		213 => array ( 'metal' =>    60000, 'crystal' =>    50000, 'deuterium' =>   15000, 'energy' => 0, 'factor' => 1, 'consumption' => 500, 'consumption2' => 500, 'speed' =>      5000, 'speed2' =>      5000, 'capacity' =>     2000 ),
+		214 => array ( 'metal' =>  5000000, 'crystal' =>  4000000, 'deuterium' => 1000000, 'energy' => 0, 'factor' => 1, 'consumption' => 1  , 'consumption2' => 1  , 'speed' =>       100, 'speed2' =>       100, 'capacity' =>  1000000 ),
+		215 => array ( 'metal' =>    30000, 'crystal' =>    40000, 'deuterium' =>   15000, 'energy' => 0, 'factor' => 1, 'consumption' => 125, 'consumption2' => 125, 'speed' =>     10000, 'speed2' =>     10000, 'capacity' =>      750 ),
 
 		401 => array ( 'metal' =>    2000, 'crystal' =>       0, 'deuterium' =>       0, 'energy' => 0, 'factor' => 1 ),
 		402 => array ( 'metal' =>    1500, 'crystal' =>     500, 'deuterium' =>       0, 'energy' => 0, 'factor' => 1 ),
@@ -231,7 +231,7 @@ if (defined('INSIDE'))
 		408 => array ( 'shield' =>   10000, 'attack' =>       1, 'sd' => array (202 =>   0, 203 =>   0, 204 =>   0, 205 =>   0, 206 =>   0, 207 =>   0, 208 =>   0, 209 =>   0, 210 =>    5, 211 =>   0, 212 =>    0, 213 =>   0, 214 =>   0, 215 =>   0)),
 
 		502 => array ( 'shield' =>     1, 'attack' =>      1 ),
-		503 => array ( 'shield' =>     1, 'attack' =>  12000 )
+		503 => array ( 'shield' =>     1, 'attack' =>  12000)
 	);
 
 	$ProdGrid = array(
@@ -273,7 +273,7 @@ if (defined('INSIDE'))
 				'metal'     => 'return   "0";',
 				'crystal'   => 'return   "0";',
 				'deuterium' => 'return - (05 * $BuildLevel * pow((1.1), $BuildLevel)) * (0.1 * $BuildLevelFactor);',
-				'energy'    => 'return   (30 * $BuildLevel * pow((1.05 + $EnergyLevel * 0.01) , $BuildLevel));')
+				'energy'    => 'return   (30 * $BuildLevel * pow((1.05 + $EnergyLevel * 0.01), $BuildLevel));')
 		),
 
 		212 => array( 'metal' =>    0, 'crystal' => 2000, 'deuterium' =>  500, 'energy' => 0, 'factor' => 0.5,
@@ -287,9 +287,9 @@ if (defined('INSIDE'))
 
 	$reslist['build']    = array (   1,   2,   3,   4,  12,  14,  15,  21,  22,  23,  24,  31,  33,  34,  41,  42,  43, 44);
 	$reslist['tech']     = array ( 106, 108, 109, 110, 111, 113, 114, 115, 117, 118, 120, 121, 122, 123, 124, 199);
-	$reslist['fleet']    = array ( 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215 );
-	$reslist['defense']  = array ( 401, 402, 403, 404, 405, 406, 407, 408, 502, 503 );
+	$reslist['fleet']    = array ( 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215);
+	$reslist['defense']  = array ( 401, 402, 403, 404, 405, 406, 407, 408, 502, 503);
 	$reslist['officier'] = array ( 601, 602, 603, 604);
-	$reslist['prod']     = array (   1,   2,   3,   4,  12, 212 );
+	$reslist['prod']     = array (   1,   2,   3,   4,  12, 212);
 }
 ?>

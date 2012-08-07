@@ -345,7 +345,7 @@ $QryTableUsers      .= "`rpg_amiral` int(11) NOT NULL default '0', ";
 $QryTableUsers      .= "`rpg_ingenieur` int(11) NOT NULL default '0', ";
 $QryTableUsers      .= "`rpg_technocrate` int(11) NOT NULL default '0', ";
 $QryTableUsers      .= "`darkmatter` int(11) NOT NULL default '0', ";
-$QryTableUsers      .= "`bana` int(11) default NULL , ";
+$QryTableUsers      .= "`bana` int(11) default NULL, ";
 $QryTableUsers      .= "`banaday` int(11) NOT NULL default '0' ";
 $QryTableUsers      .= ") ENGINE=MyISAM;";
 

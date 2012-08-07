@@ -8,12 +8,12 @@
  * @author	Razican <admin@razican.com>
  */
 
-define('INSIDE'  , TRUE);
-define('INSTALL' , FALSE);
+define('INSIDE' , TRUE);
+define('INSTALL', FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 include('AdminFunctions/Autorization.php');
 
 if ($EditUsers != 1) die();
@@ -101,14 +101,14 @@ if ($search->num_rows != 0)
 			$QryInsertMoonInPlanet .= "`deuterium` = '0', ";
 			$QryInsertMoonInPlanet .= "`deuterium_perhour` = '0', ";
 			$QryInsertMoonInPlanet .= "`deuterium_max` = '".BASE_STORAGE_SIZE."';";
-			doquery($QryInsertMoonInPlanet , 'planets');
+			doquery($QryInsertMoonInPlanet, 'planets');
 
 			$QryGetMoonIdFromLunas  = "SELECT * FROM {{table}} WHERE ";
 			$QryGetMoonIdFromLunas .= "`galaxy` = '".  $Galaxy ."' AND ";
 			$QryGetMoonIdFromLunas .= "`system` = '".  $System ."' AND ";
 			$QryGetMoonIdFromLunas .= "`planet` = '". $Planet ."' AND ";
 			$QryGetMoonIdFromLunas .= "`planet_type` = '3';";
-			$PlanetRow = doquery($QryGetMoonIdFromLunas , 'planets', TRUE);
+			$PlanetRow = doquery($QryGetMoonIdFromLunas, 'planets', TRUE);
 
 			$QryUpdateMoonInGalaxy  = "UPDATE {{table}} SET ";
 			$QryUpdateMoonInGalaxy .= "`id_luna` = '". $PlanetRow['id'] ."', ";
@@ -117,7 +117,7 @@ if ($search->num_rows != 0)
 			$QryUpdateMoonInGalaxy .= "`galaxy` = '". $Galaxy ."' AND ";
 			$QryUpdateMoonInGalaxy .= "`system` = '". $System ."' AND ";
 			$QryUpdateMoonInGalaxy .= "`planet` = '". $Planet ."';";
-			doquery($QryUpdateMoonInGalaxy , 'galaxy');
+			doquery($QryUpdateMoonInGalaxy, 'galaxy');
 
 			message ($lang['mo_moon_added'],"MoonOptionsPage.php",2);
 		}
@@ -155,7 +155,7 @@ elseif ($_POST && $_POST['del_moon'])
 			$QryUpdateGalaxy .= "`system` = '". $System ."' AND ";
 			$QryUpdateGalaxy .= "`planet` = '". $Planet ."' ";
 			$QryUpdateGalaxy .= "LIMIT 1;";
-			doquery($QryUpdateGalaxy , 'galaxy');
+			doquery($QryUpdateGalaxy, 'galaxy');
 
 			message ($lang['mo_moon_deleted'], "MoonOptionsPage.php", 2);
 		}

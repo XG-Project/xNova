@@ -12,7 +12,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class ShowImperiumPage
 {
-	function __construct ($CurrentUser )
+	function __construct ($CurrentUser)
 	{
 		global $lang, $resource, $reslist;
 
@@ -41,12 +41,12 @@ class ShowImperiumPage
 
 		$parse['mount'] = 	count($planet ) + 1;
 
-		$EmpireRowTPL	=	gettemplate ( 'empire/empire_row' );
+		$EmpireRowTPL	=	gettemplate ( 'empire/empire_row');
 
-		foreach ($planet as $p )
+		foreach ($planet as $p)
 		{
 			$datat	= array ( '<a href="game.php?page=overview&cp=' . $p['id'] . '&amp;re=0"><img src="' . DPATH . 'planeten/small/s_' . $p['image'] . '.jpg" border="0" height="80" width="80"></a>', $p['name'], "[<a href=\"game.php?page=galaxy&mode=3&galaxy={$p['galaxy']}&system={$p['system']}\">{$p['galaxy']}:{$p['system']}:{$p['planet']}</a>]", $p['field_current'] . '/' . $p['field_max'], '<a href="game.php?page=resources&cp=' . $p['id'] . '&amp;re=0&amp;planettype=' . $p['planet_type'] . '">' . Format::pretty_number($p['metal']) . '</a> / ' . Format::pretty_number($p['metal_perhour']), '<a href="game.php?page=resources&cp=' . $p['id'] . '&amp;re=0&amp;planettype=' . $p['planet_type'] . '">' . Format::pretty_number($p['crystal']) . '</a> / ' . Format::pretty_number($p['crystal_perhour']), '<a href="game.php?page=resources&cp=' . $p['id'] . '&amp;re=0&amp;planettype=' . $p['planet_type'] . '">' . Format::pretty_number($p['deuterium']) . '</a> / ' . Format::pretty_number($p['deuterium_perhour']), Format::pretty_number($p['energy_max'] - $p['energy_used']) . ' / ' . Format::pretty_number($p['energy_max']));
-			$f 		= array ( 'file_images' , 'file_names' , 'file_coordinates' , 'file_fields' , 'file_metal', 'file_crystal' , 'file_deuterium' , 'file_energy' );
+			$f 		= array ( 'file_images', 'file_names', 'file_coordinates', 'file_fields', 'file_metal', 'file_crystal', 'file_deuterium', 'file_energy');
 
 			for ($k = 0; $k < 8; $k++)
 			{
@@ -61,19 +61,19 @@ class ShowImperiumPage
 			}
 		}
 
-		$m = array ( 'build' , 'tech' , 'fleet' , 'defense' );
-		$n = array ( 'building_row' , 'technology_row' , 'fleet_row' , 'defense_row' );
+		$m = array ( 'build', 'tech', 'fleet', 'defense');
+		$n = array ( 'building_row', 'technology_row', 'fleet_row', 'defense_row');
 
-		for ($j = 0; $j < 4; $j++ )
+		for ($j = 0; $j < 4; $j++)
 		{
-			foreach ($reslist[$m[$j]] as $a => $i )
+			foreach ($reslist[$m[$j]] as $a => $i)
 			{
 				$data['text'] 	= $lang['tech'][$i];
-				$parse[$n[$j]] .= "<tr>" . parsetemplate ($EmpireRowTPL , $data ) . $r[$i] . "</tr>";
+				$parse[$n[$j]] .= "<tr>" . parsetemplate ($EmpireRowTPL, $data ) . $r[$i] . "</tr>";
 			}
 		}
 
-		return display ( parsetemplate ( gettemplate ( 'empire/empire_table' ) , $parse ) , FALSE );
+		return display ( parsetemplate ( gettemplate ( 'empire/empire_table' ), $parse ), FALSE);
 	}
 }
 ?>

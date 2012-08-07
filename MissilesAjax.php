@@ -12,7 +12,7 @@ define('INSIDE', TRUE);
 define('INSTALL', FALSE);
 define('XN_ROOT', realpath('./').'/');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 
 $g		= intval($_GET['galaxy']);
 $s		= intval($_GET['system']);
@@ -79,11 +79,11 @@ if ($anz==0)
 	$errors++;
 }
 if ($tempvar4['onlinetime'] >= (time()-60 * 60 * 24 * 7)){
-	if ( is_weak ($MyGameLevel , $HeGameLevel))
+	if ( is_weak ($MyGameLevel, $HeGameLevel))
 	{
 		$error .= $lang['fl_week_player'].'<br>';
 		$errors++;
-	}elseif ( is_strong ($MyGameLevel , $HeGameLevel)){
+	}elseif ( is_strong ($MyGameLevel, $HeGameLevel)){
 		$error .= $lang['fl_strong_player'].'<br>';
 		$errors++;
 	}

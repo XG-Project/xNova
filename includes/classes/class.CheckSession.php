@@ -95,7 +95,7 @@ class CheckSession
 		$Result        = $this->CheckCookies($IsUserChecked);
 		$IsUserChecked = $Result['state'];
 
-		if ($Result['record'] != FALSE)
+		if ($Result['record'])
 		{
 			$user = $Result['record'];
 

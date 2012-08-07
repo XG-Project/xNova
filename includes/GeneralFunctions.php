@@ -94,11 +94,11 @@ function message($mes, $dest = "", $time = "3", $topnav = FALSE, $menu = TRUE)
 
 	if ( !defined ( 'IN_ADMIN'))
 	{
-		display ($page , $topnav , (($dest != "" ) ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : "") , FALSE , $menu );
+		display ($page, $topnav, (($dest != "" ) ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : ""), FALSE, $menu);
 	}
 	else
 	{
-		display ($page , $topnav , (($dest != "" ) ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : "") , TRUE , FALSE );
+		display ($page, $topnav, (($dest != "" ) ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : ""), TRUE, FALSE);
 	}
 
 }
@@ -115,7 +115,7 @@ function display($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $men
 	if ($topnav  && !$AdminPage)
 	{
 		require_once(XN_ROOT.'includes/functions/ShowTopNavigationBar.php');
-		$DisplayPage .= ShowTopNavigationBar($user, $planetrow );
+		$DisplayPage .= ShowTopNavigationBar($user, $planetrow);
 	}
 	elseif ($topnav)
 	{
@@ -227,7 +227,7 @@ function parsetemplate($template, $array)
 {
 	$array['game_url']	= GAMEURL;
 	$array['skin_url']	= DPATH;
-	return preg_replace('#\{([a-z0-9\-_]*?)\}#Ssie', '(isset($array[\'\1\']) ? $array[\'\1\'] : \'\' );', $template);
+	return preg_replace('#\{([a-z0-9\-_]*?)\}#Ssie', '(isset($array[\'\1\']) ? $array[\'\1\'] : \'\');', $template);
 }
 
 function gettemplate($templatename)
@@ -239,7 +239,7 @@ function includeLang($filename)
 {
 	global $lang;
 
-	include ( XN_ROOT . "language/" . DEFAULT_LANG ."/". $filename . '.php' );
+	include ( XN_ROOT . "language/" . DEFAULT_LANG ."/". $filename . '.php');
 }
 
 function GetStartAdressLink($FleetRow, $FleetType)
@@ -278,7 +278,7 @@ function doquery($query, $table, $fetch = FALSE)
 		$db->set_charset('utf8');
 	}
 
-	$sql 		= str_replace ( "{{table}}" , $dbsettings["prefix"] . $table , $query );
+	$sql 		= str_replace ( "{{table}}", $dbsettings["prefix"] . $table, $query);
 	$sqlquery 	= $db->query($sql);
 	if ( ! $sqlquery) $debug->error($db->error."<section class=\"sql-query\">".$sql."</section>", "SQL Error");
 

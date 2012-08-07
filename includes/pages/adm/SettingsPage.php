@@ -18,13 +18,13 @@ include(XN_ROOT.'global.php');
 if ($ConfigGame != 1) die(message ($lang['404_page']));
 $AreLog	=	$LogCanWork;
 
-function DisplayGameSettingsPage ($CurrentUser )
+function DisplayGameSettingsPage ($CurrentUser)
 {
 	global $lang, $AreLog;
 
 	$game_config	= 	read_config('', TRUE);
 
-	if ($_POST['opt_save'] == "1" )
+	if ($_POST['opt_save'] == "1")
 	{
 		$Log	= "\n".$lang['log_the_user'].$CurrentUser['username'].$lang['log_sett_no1'].":\n";
 
@@ -257,7 +257,7 @@ function DisplayGameSettingsPage ($CurrentUser )
 		update_config ( 'log_bots'					, $game_config['log_bots']					);
 		update_config ( 'date_format'				, $game_config['date_format']				);
 
-		header ( 'location:SettingsPage.php' );
+		header ( 'location:SettingsPage.php');
 	}
 	else
 	{
@@ -293,7 +293,7 @@ function DisplayGameSettingsPage ($CurrentUser )
 
 		$LangFolder = opendir("./../" . 'language');
 
-		while (($LangSubFolder = readdir($LangFolder)) !== FALSE)
+		while ($LangSubFolder = readdir($LangFolder))
 		{
 			if ($LangSubFolder != '.' && $LangSubFolder != '..' && $LangSubFolder != '.htaccess' && $LangSubFolder != '.svn' && $LangSubFolder != 'index.html')
 			{

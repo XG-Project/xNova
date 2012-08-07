@@ -26,16 +26,16 @@ class ShowBannedPage
 		{
 			$parse['player']	= $u[1];
 			$parse['reason']	= $u[2];
-			$parse['since']		= date ( "d/m/Y G:i:s" , $u[4] );
-			$parse['until']		= date ( "d/m/Y G:i:s" , $u[5] );
+			$parse['since']		= date ( "d/m/Y G:i:s" , $u[4]);
+			$parse['until']		= date ( "d/m/Y G:i:s" , $u[5]);
 			$parse['by']		= $u[6];
 
 			$i++;
 
-			$body .= parsetemplate ( $subTemplate , $parse );
+			$body .= parsetemplate ($subTemplate , $parse );
 		}
 
-		if ( $i == 0 )
+		if ($i == 0 )
 		{
 			$parse['banned_msg']	.= $lang['bn_no_players_banned'];
 		}
@@ -46,7 +46,7 @@ class ShowBannedPage
 
 		$parse['banned_players']	= $body;
 
-		display ( parsetemplate ( gettemplate ( 'banned/banned_body' ) , $parse ) );
+		display ( parsetemplate ( gettemplate ( 'banned/banned_body' ) , $parse ));
 	}
 }
 ?>

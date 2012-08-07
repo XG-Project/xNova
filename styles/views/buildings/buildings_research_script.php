@@ -5,7 +5,7 @@ var brp = document.getElementById('brp');
 function t(){
 	n  = new Date();
 	ss = {tech_time};
-	s  = ss - Math.round( (n.getTime() - v.getTime()) / 1000.);
+	s  = ss - Math.round((n.getTime() - v.getTime()) / 1000.);
 	m  = 0;
 	h  = 0;
 	if ( s < 0 ) {

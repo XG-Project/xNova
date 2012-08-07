@@ -10,8 +10,8 @@
 
 if ( ! defined('INSIDE')) die(header("location:../../"));
 
-class ShowPhalanxPage
-{
+class ShowPhalanxPage {
+
 	public function __construct($CurrentUser, $CurrentPlanet)
 	{
 		global $lang;
@@ -51,7 +51,7 @@ class ShowPhalanxPage
 			$QryTargetInfo .= "`system` = '" . $System . "' AND ";
 			$QryTargetInfo .= "`planet` = '" . $Planet . "' AND ";
 			$QryTargetInfo .= "`planet_type` = 1 ";
-			$TargetInfo = doquery($QryTargetInfo, 'planets', true);
+			$TargetInfo = doquery($QryTargetInfo, 'planets', TRUE);
 			$TargetID = $TargetInfo['id_owner'];
 			$TargetName = $TargetInfo['name'];
 
@@ -62,11 +62,11 @@ class ShowPhalanxPage
 			$QryTargetInfo .= "`system` = '" . $System . "' AND ";
 			$QryTargetInfo .= "`planet` = '" . $Planet . "' AND ";
 			$QryTargetInfo .= "`planet_type` = 3 ";
-			$TargetInfo = doquery($QryTargetInfo, 'planets', true);
+			$TargetInfo = doquery($QryTargetInfo, 'planets', TRUE);
 			//if there isn't a moon,
-			if ($TargetInfo === false)
+			if ($TargetInfo === FALSE)
 			{
-				$TargetMoonIsDestroyed = true;
+				$TargetMoonIsDestroyed = TRUE;
 			}
 			else
 			{
@@ -75,7 +75,7 @@ class ShowPhalanxPage
 
 			$QryLookFleets = "SELECT * ";
 			$QryLookFleets .= "FROM {{table}} ";
-			$QryLookFleets .= "WHERE ( ( ";
+			$QryLookFleets .= "WHERE (( ";
 			$QryLookFleets .= "`fleet_start_galaxy` = '" . $Galaxy . "' AND ";
 			$QryLookFleets .= "`fleet_start_system` = '" . $System . "' AND ";
 			$QryLookFleets .= "`fleet_start_planet` = '" . $Planet . "'  ";
@@ -83,7 +83,7 @@ class ShowPhalanxPage
 			$QryLookFleets .= "`fleet_end_galaxy` = '" . $Galaxy . "' AND ";
 			$QryLookFleets .= "`fleet_end_system` = '" . $System . "' AND ";
 			$QryLookFleets .= "`fleet_end_planet` = '" . $Planet . "'  ";
-			$QryLookFleets .= ") ) ;";
+			$QryLookFleets .= ")) ;";
 
 			$FleetToTarget = doquery($QryLookFleets, 'fleets');
 
@@ -97,7 +97,7 @@ class ShowPhalanxPage
 				$EndStayTime = $FleetRow['fleet_end_stay'];
 				$ReturnTime = $FleetRow['fleet_end_time'];
 				$Mission = $FleetRow['fleet_mission'];
-				$myFleet = ($FleetRow['fleet_owner'] == $TargetID) ? true : false;
+				$myFleet = ($FleetRow['fleet_owner'] == $TargetID) ? TRUE : FALSE;
 				$FleetRow['fleet_resource_metal'] = 0;
 				$FleetRow['fleet_resource_crystal'] = 0;
 				$FleetRow['fleet_resource_deuterium'] = 0;
@@ -122,7 +122,7 @@ class ShowPhalanxPage
 						}
 					}
 					//scanning of destination fleet planet
-					elseif (!$isStartedfromThis && ($FleetRow['fleet_end_type'] == 1 || ($FleetRow['fleet_end_type'] == 3 && $TargetMoonIsDestroyed)))
+					elseif ( ! $isStartedfromThis && ($FleetRow['fleet_end_type'] == 1 || ($FleetRow['fleet_end_type'] == 3 && $TargetMoonIsDestroyed)))
 					{
 						$Label = "fs";
 						$fpage[$ArrivetoTargetTime] .= "\n". $FlyingFleetsTable->BuildFleetEventTable($FleetRow, 0, $myFleet, $Label, $Record);
@@ -161,8 +161,10 @@ class ShowPhalanxPage
 		$parse['phl_pl_place'] = $Planet;
 		$parse['phl_pl_name'] = $TargetName;
 
-		return display(parsetemplate(gettemplate('galaxy/phalanx_body'), $parse), false, '', false, false);
+		return display(parsetemplate(gettemplate('galaxy/phalanx_body'), $parse), FALSE, '', FALSE, FALSE);
 	}
 }
 
-?>
+
+/* End of file class.ShowPhalanxPage.php */
+/* Location: ./includes/pages/class.ShowPhalanxPage.php */

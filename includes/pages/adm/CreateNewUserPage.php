@@ -29,7 +29,7 @@ $planet		=	$_POST['planet'];
 $auth		=	$_POST['authlevel'];
 $time		=	time();
 $i			=	0;
-if ($_POST)
+if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
 	$CheckUser = doquery("SELECT `username` FROM {{table}} WHERE `username` = '".$db->real_escape_string($_POST['name'])."' LIMIT 1", "users", TRUE);
 	$CheckMail = doquery("SELECT `email` FROM {{table}} WHERE `email` = '".$db->real_escape_string($_POST['email'])."' LIMIT 1", "users", TRUE);
@@ -43,7 +43,7 @@ if ($_POST)
 		$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_error_coord'].'</tr></th>';
 		$i++;}
 
-	if (!$name || !$pass || !$email || !$galaxy || !$system || !$planet){
+	if ( ! $name || !$pass || !$email || !$galaxy || !$system || !$planet){
 		$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_complete_all'].'</tr></th>';
 		$i++;}
 

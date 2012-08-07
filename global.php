@@ -19,7 +19,7 @@ $lang			= array();
 $IsUserChecked	= FALSE;
 
 // CONEXIÓN CON LA BASE DE DATOS \\
-require(XN_ROOT.'config.php');
+require_once(XN_ROOT.'config.php');
 if (isset($dbsettings))
 {
 	$db			= new mysqli($dbsettings["server"], $dbsettings["user"], $dbsettings["pass"], $dbsettings["name"]);
@@ -33,6 +33,12 @@ else
 	$db			= NULL;
 }
 // CONEXIÓN CON LA BASE DE DATOS \\
+
+if ( ! is_null($db))
+{
+	require_once('includes/classes/class.SecurePage.php');
+	SecurePage::run();
+}
 
 include_once(XN_ROOT.'includes/constants.php');
 include_once(XN_ROOT.'includes/GeneralFunctions.php');
@@ -114,6 +120,7 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 	if ( ! empty($user))
 	{
 		include_once(XN_ROOT.'includes/classes/class.FlyingFleetHandler.php');
+
 		$_fleets = doquery("SELECT fleet_start_galaxy,fleet_start_system,fleet_start_planet,fleet_start_type FROM {{table}} WHERE `fleet_start_time` <= '".time()."' and `fleet_mess` ='0' order by fleet_id asc;", 'fleets'); // OR fleet_end_time <= ".time()
 
 		while ($row = $_fleets->fetch_array())
@@ -162,9 +169,6 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 		include(XN_ROOT.'includes/plugins.php');
 	}
 }
-
-require_once('includes/classes/class.SecurePage.php');
-SecurePage::run();
 
 
 /* End of file global.php */

@@ -20,10 +20,10 @@ class ShowSearchPage
 		$type 	= $_POST['type'];
 
 		$searchtext = $db->real_escape_string($_POST["searchtext"]);
-		//queries fixed by Jstar
-		if ( $_POST )
+
+		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
-			switch($type)
+			switch ($type)
 			{
 				case "playername":
 					$table 	= gettemplate('search/search_user_table');
@@ -112,4 +112,7 @@ class ShowSearchPage
 		display(parsetemplate(gettemplate('search/search_body'), $parse));
 	}
 }
-?>
+
+
+/* End of file class.ShowSearchPage.php */
+/* Location: ./includes/pages/class.ShowSearchPage.php */

@@ -141,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$LastSettedSystemPos = read_config ( 'lastsettedsystempos' );
 		$LastSettedPlanetPos = read_config ( 'lastsettedplanetpos' );
 
-		while (!isset($newpos_checked))
+		while ( ! isset($newpos_checked))
 		{
 			for ($Galaxy = $LastSettedGalaxyPos; $Galaxy <= MAX_GALAXY_IN_WORLD; $Galaxy++)
 			{
@@ -194,7 +194,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 			if ($GalaxyRow["id_planet"] == "0")
 				$newpos_checked = TRUE;
 
-			if (!$GalaxyRow)
+			if ( ! $GalaxyRow)
 			{
 				CreateOnePlanetRecord ($Galaxy, $System, $Planet, $NewUser['id'], $UserPlanet, TRUE);
 				$newpos_checked = TRUE;

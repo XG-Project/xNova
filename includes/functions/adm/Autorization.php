@@ -10,7 +10,7 @@
 
 require_once(XN_ROOT.'includes/functions/adm/LogFunction.php');
 
-if ( $user['authlevel'] < 1 )
+if ($user['authlevel'] < 1 )
 {
 	die();
 }

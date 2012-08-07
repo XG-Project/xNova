@@ -19,23 +19,30 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 		else
 			doquery("UPDATE {{table}} SET `deuterium_sintetizer_porcent` = 0, `metal_mine_porcent` = 0, `crystal_mine_porcent` = 0 WHERE id_owner = ".intval($CurrentUser['id']),"planets");
 
-		$parse				 			= $lang;
-		$parse['dpath']      			= DPATH;
-		$parse['image']      			= $CurrentPlanet['image'];
-
+		$parse								= $lang;
+		$parse['dpath']						= DPATH;
+		$parse['image']						= $CurrentPlanet['image'];
 
 		if ($CurrentUser['urlaubs_modus'] && $CurrentUser['db_deaktjava'])
 		{
-		$parse['show_umod_notice']      	.= $CurrentUser['db_deaktjava'] ? '<table width="100%" style="border: 2px solid red; text-align:center;background:transparent;"><tr style="background:transparent;"><td style="background:transparent;">' . $lang['tn_delete_mode'] . date('d.m.Y h:i:s',$CurrentUser['db_deaktjava'] + (60 * 60 * 24 * 7)).'</td></tr></table>' : '';
-	}
+			$parse['show_umod_notice']		.= $CurrentUser['db_deaktjava'] ? '<table width="100%" style="border: 2px solid red; text-align:center;background:transparent;"><tr style="background:transparent;"><td style="background:transparent;">' . $lang['tn_delete_mode'] . date('d.m.Y h:i:s',$CurrentUser['db_deaktjava'] + (60 * 60 * 24 * 7)).'</td></tr></table>' : '';
+		}
 		else
 		{
-			$parse['show_umod_notice']       = $CurrentUser['urlaubs_modus'] ? '<table width="100%" style="border: 2px solid #1DF0F0; text-align:center;background:transparent;"><tr style="background:transparent;"><td style="background:transparent;">' . $lang['tn_vacation_mode'] . date('d.m.Y h:i:s',$CurrentUser['urlaubs_until']).'</td></tr></table><br>' : '';
-			$parse['show_umod_notice']      .= $CurrentUser['db_deaktjava'] ? '<table width="100%" style="border: 2px solid red; text-align:center;background:transparent;"><tr style="background:transparent;"><td style="background:transparent;">' . $lang['tn_delete_mode'] . date('d.m.Y h:i:s',$CurrentUser['db_deaktjava'] + (60 * 60 * 24 * 7)).'</td></tr></table>' : '';
+			if ($CurrentUser['urlaubs_modus'] < time())
+			{
+				$parse['show_umod_notice']	= $CurrentUser['urlaubs_modus'] ? '<table width="100%" style="border: 2px solid #1DF0F0; text-align:center;background:transparent;"><tr style="background:transparent;"><td style="background:transparent;">' . $lang['tn_vacation_mode_active'] .'</td></tr></table><br>' : '';
+			}
+			else
+			{
+				$parse['show_umod_notice']	= $CurrentUser['urlaubs_modus'] ? '<table width="100%" style="border: 2px solid #1DF0F0; text-align:center;background:transparent;"><tr style="background:transparent;"><td style="background:transparent;">' . $lang['tn_vacation_mode'] . date('d.m.Y h:i:s',$CurrentUser['urlaubs_until']).'</td></tr></table><br>' : '';
+			}
+
+			$parse['show_umod_notice']		.= $CurrentUser['db_deaktjava'] ? '<table width="100%" style="border: 2px solid red; text-align:center;background:transparent;"><tr style="background:transparent;"><td style="background:transparent;">' . $lang['tn_delete_mode'] . date('d.m.Y h:i:s',$CurrentUser['db_deaktjava'] + (60 * 60 * 24 * 7)).'</td></tr></table>' : '';
 		}
 
-		$parse['planetlist'] 			= '';
-		$ThisUsersPlanets    			= SortUserPlanets ( $CurrentUser );
+		$parse['planetlist']			= '';
+		$ThisUsersPlanets				= SortUserPlanets($CurrentUser);
 
 		while ($CurPlanet = $ThisUsersPlanets->fetch_array())
 		{
@@ -43,7 +50,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			{
 				$parse['planetlist'] .= "\n<option ";
 				if ($CurPlanet['id'] == $CurrentUser['current_planet'])
-					$parse['planetlist'] .= "selected=\"selected\" ";
+					$parse['planetlist'] .= "selected ";
 				$gid	= isset($_GET['gid']) ? $_GET['gid'] : '';
 				$mode	= isset($_GET['mode']) ? $_GET['mode'] : '';
 				$parse['planetlist'] .= "value=\"game.php?page=".$_GET['page']."&gid=".$gid."&cp=".$CurPlanet['id']."";

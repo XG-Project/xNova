@@ -53,8 +53,8 @@ while ($TheUser = $Last15Mins->fetch_array())
 	$Bloc['adm_ov_data_clip']   = $Color;
 	$Bloc['adm_ov_data_adip']   = $TheUser['user_lastip'];
 	$Bloc['adm_ov_data_ally']   = $TheUser['ally_name'];
-	$Bloc['adm_ov_data_point']  = Format::pretty_number ( $TheUser['total_points'] );
-	$Bloc['adm_ov_data_activ']  = Format::pretty_time ( time() - $TheUser['onlinetime'] );
+	$Bloc['adm_ov_data_point']  = Format::pretty_number($TheUser['total_points']);
+	$Bloc['adm_ov_data_activ']  = Format::pretty_time ( time() - $TheUser['onlinetime']);
 	$PrevIP                     = $TheUser['user_lastip'];
 	$Bloc['usr_email']    		= $TheUser['email'];
 

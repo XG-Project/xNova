@@ -21,9 +21,9 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			{
 				$QueueArray = explode ( ";", $CurrentQueue );
 				$Loop       = TRUE;
-				while ($Loop == TRUE)
+				while ($Loop)
 				{
-					$ListIDArray         = explode ( ",", $QueueArray[0] );
+					$ListIDArray         = explode ( ",", $QueueArray[0]);
 					$Element             = $ListIDArray[0];
 					$Level               = $ListIDArray[1];
 					$BuildTime           = $ListIDArray[2];
@@ -46,7 +46,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 						}
 					}
 
-					if ( $HaveRessources == TRUE )
+					if ($HaveRessources )
 					{
 						$Needed                        = GetBuildingPrice ($CurrentUser, $CurrentPlanet, $Element, TRUE, $ForDestroy);
 						$CurrentPlanet['metal']       -= $Needed['metal'];
@@ -65,32 +65,33 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 					{
 						$ElementName = $lang['tech'][$Element];
 
-						if ($HaveNoMoreLevel == TRUE)
+						if ($HaveNoMoreLevel)
 							$Message     = sprintf ($lang['sys_nomore_level'], $ElementName );
 						else
 						{
 							$Needed      = GetBuildingPrice ($CurrentUser, $CurrentPlanet, $Element, TRUE, $ForDestroy);
 							$Message     = sprintf ($lang['sys_notenough_money'], $ElementName,
-							Format::pretty_number ($CurrentPlanet['metal']), $lang['Metal'],
-							Format::pretty_number ($CurrentPlanet['crystal']), $lang['Crystal'],
-							Format::pretty_number ($CurrentPlanet['deuterium']), $lang['Deuterium'],
-							Format::pretty_number ($Needed['metal']), $lang['Metal'],
-							Format::pretty_number ($Needed['crystal']), $lang['Crystal'],
-							Format::pretty_number ($Needed['deuterium']), $lang['Deuterium']);
+							Format::pretty_number($CurrentPlanet['metal']), $lang['Metal'],
+							Format::pretty_number($CurrentPlanet['crystal']), $lang['Crystal'],
+							Format::pretty_number($CurrentPlanet['deuterium']), $lang['Deuterium'],
+							Format::pretty_number($Needed['metal']), $lang['Metal'],
+							Format::pretty_number($Needed['crystal']), $lang['Crystal'],
+							Format::pretty_number($Needed['deuterium']), $lang['Deuterium']);
 						}
 
-						SendSimpleMessage ( $CurrentUser['id'], '', '', 99, $lang['sys_buildlist'], $lang['sys_buildlist_fail'], $Message);
+						SendSimpleMessage($CurrentUser['id'], '', '', 99, $lang['sys_buildlist'], $lang['sys_buildlist_fail'], $Message);
 
-						array_shift( $QueueArray );
-						foreach($QueueArray as $num => $info)
-                        {
-                            $fixEle                = explode(",",$info);
-                            $fixEle[3]            = $fixEle[3] - $BuildTime;
-                            $QueueArray[$num]     = implode(",",$fixEle);
-                        }
+						array_shift($QueueArray);
+
+						foreach ($QueueArray as $num => $info)
+						{
+							$fixEle				= explode(",",$info);
+							$fixEle[3]			= $fixEle[3] - $BuildTime;
+							$QueueArray[$num]	= implode(",",$fixEle);
+						}
 
 						$ActualCount         = count ($QueueArray);
-						if ( $ActualCount == 0 )
+						if ($ActualCount === 0)
 						{
 							$BuildEndTime  = '0';
 							$NewQueue      = '0';
@@ -116,8 +117,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			$QryUpdatePlanet .= "`b_building_id` = '". $CurrentPlanet['b_building_id'] ."' ";
 			$QryUpdatePlanet .= "WHERE ";
 			$QryUpdatePlanet .= "`id` = '" .           $CurrentPlanet['id']            . "';";
-			doquery( $QryUpdatePlanet, 'planets');
-
+			doquery($QryUpdatePlanet, 'planets');
 		}
 		return;
 	}

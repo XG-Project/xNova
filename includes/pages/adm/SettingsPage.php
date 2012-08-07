@@ -8,35 +8,35 @@
  * @author	Razican <admin@razican.com>
  */
 
-define('INSIDE'  , TRUE);
-define('INSTALL' , FALSE);
+define('INSIDE', TRUE);
+define('INSTALL', FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 
 if ($ConfigGame != 1) die(message ($lang['404_page']));
 $AreLog	=	$LogCanWork;
 
-function DisplayGameSettingsPage ( $CurrentUser )
+function DisplayGameSettingsPage ($CurrentUser )
 {
 	global $lang, $AreLog;
 
-	$game_config	= 	read_config ( '' , TRUE );
+	$game_config	= 	read_config('', TRUE);
 
-	if ( $_POST['opt_save'] == "1" )
+	if ($_POST['opt_save'] == "1" )
 	{
 		$Log	= "\n".$lang['log_the_user'].$CurrentUser['username'].$lang['log_sett_no1'].":\n";
 
 
 		if (isset($_POST['closed']) && $_POST['closed'] == 'on') {
 		$game_config['game_disable']         = 1;
-		$game_config['close_reason']         = addslashes( $_POST['close_reason'] );
-		$Log	.=	$lang['log_sett_close'].": ".$lang['log_viewmod2'][1]."\n";
+		$game_config['close_reason']         = addslashes($_POST['close_reason']);
+		$Log	.=	$lang['log_sett_close'].": ".$lang['log_viewmod'][1]."\n";
 		} else {
 		$game_config['game_disable']         = 0;
-		$game_config['close_reason']         = addslashes( $_POST['close_reason'] );
-		$Log	.=	$lang['log_sett_close'].": ".$lang['log_viewmod2'][0]."\n";
+		$game_config['close_reason']         = addslashes($_POST['close_reason']);
+		$Log	.=	$lang['log_sett_close'].": ".$lang['log_viewmod'][0]."\n";
 		$Log	.=	$lang['log_sett_close_rea'].": ".$_POST['close_reason']."\n";
 		}
 
@@ -300,7 +300,7 @@ function DisplayGameSettingsPage ( $CurrentUser )
 				$parse['language_settings'] .= "<option ";
 
 				if ($game_config['lang'] == $LangSubFolder)
-					$parse['language_settings'] .= "selected = selected";
+					$parse['language_settings'] .= "selected";
 
 				$parse['language_settings'] .= " value=\"".$LangSubFolder."\">".ucfirst($LangSubFolder)."</option>";
 			}

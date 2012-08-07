@@ -41,7 +41,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 				if ($cost > $planet[$ResType])
 				{
-					$text .= "<b style=\"color:red;\"> <t title=\"-" . Format::pretty_number ($cost - $planet[$ResType]) . "\">";
+					$text .= "<b style=\"color:red;\"> <t title=\"-" . Format::pretty_number($cost - $planet[$ResType]) . "\">";
 					$text .= "<span class=\"noresources\">" . Format::pretty_number($cost) . "</span></t></b> ";
 					$is_buyeable = FALSE;
 				}

@@ -20,25 +20,25 @@ if ($Observation != 1) die(message ($lang['404_page']));
 	$parse		= $lang;
 	$Prev       = ( !empty($_POST['prev'])   ) ? TRUE : FALSE;
 	$Next       = ( !empty($_POST['next'])   ) ? TRUE : FALSE;
-	$DelSel     = ( !empty($_POST['delsel']) ) ? TRUE : FALSE;
-	$DelDat     = ( !empty($_POST['deldat']) ) ? TRUE : FALSE;
+	$DelSel     = ( !empty($_POST['delsel'])) ? TRUE : FALSE;
+	$DelDat     = ( !empty($_POST['deldat'])) ? TRUE : FALSE;
 	$CurrPage   = ( !empty($_POST['curr'])   ) ? $_POST['curr'] : 1;
 	$Selected   = ( !empty($_POST['sele'])   ) ? $_POST['sele'] : 0;
 	$SelType    = $_POST['type'];
 	$SelPage    = $_POST['page'];
 
 	$ViewPage = 1;
-	if ( $Selected != $SelType )
+	if ($Selected != $SelType )
 	{
 		$Selected = $SelType;
 		$ViewPage = 1;
 	}
-	elseif ( $CurrPage != $SelPage )
+	elseif ($CurrPage != $SelPage )
 	{
-		$ViewPage = ( !empty($SelPage) ) ? $SelPage : 1;
+		$ViewPage = ( !empty($SelPage)) ? $SelPage : 1;
 	}
 
-	if ($Prev   == TRUE)
+	if ($Prev)
 	{
 		$CurrPage -= 1;
 		if ($CurrPage >= 1)
@@ -47,14 +47,14 @@ if ($Observation != 1) die(message ($lang['404_page']));
 			$ViewPage = 1;
 
 	}
-	elseif ($Next   == TRUE && $_POST['page'])
+	elseif ($Next   && $_POST['page'])
 	{
 		if ($Selected < 100)
 			$Mess      = doquery("SELECT COUNT(*) AS `max` FROM {{table}} WHERE `message_type` = '". $Selected ."';", 'messages', TRUE);
 		elseif ($Selected == 100)
 			$Mess      = doquery("SELECT COUNT(*) AS `max` FROM {{table}}", 'messages', TRUE);
 
-		$MaxPage   = ceil ( ($Mess['max'] / 25) );
+		$MaxPage   = ceil (($Mess['max'] / 25));
 		$CurrPage += 1;
 		if ($CurrPage <= $MaxPage)
 			$ViewPage = $CurrPage;
@@ -64,9 +64,9 @@ if ($Observation != 1) die(message ($lang['404_page']));
 
 	if ($_POST['delsel'] && $_POST['sele'] >= 1 && $_POST['page'])
 	{
-		if ($DelSel == TRUE)
+		if ($DelSel)
 		{
-			foreach($_POST['sele'] as $MessId => $Value)
+			foreach ($_POST['sele'] as $MessId => $Value)
 			{
 				if ($Value = "on")
 					doquery ( "DELETE FROM {{table}} WHERE `message_id` = '". $MessId ."';", 'messages');
@@ -77,7 +77,7 @@ if ($Observation != 1) die(message ($lang['404_page']));
 	if ($_POST['deldat'] && $_POST['sele'] >= 1 && is_numeric($_POST['selday']) && is_numeric($_POST['selmonth']) && is_numeric($_POST['selyear'])
 		&& $_POST['page'])
 	{
-		if ($DelDat == TRUE)
+		if ($DelDat)
 		{
 			$SelDay    = $_POST['selday'];
 			$SelMonth  = $_POST['selmonth'];
@@ -96,7 +96,7 @@ if ($Observation != 1) die(message ($lang['404_page']));
 	elseif ($Selected == 100)
 		$Mess      = doquery("SELECT COUNT(*) AS `max` FROM {{table}}", 'messages', TRUE);
 
-	$MaxPage  = ceil ( ($Mess['max'] / 25) );
+	$MaxPage  = ceil (($Mess['max'] / 25));
 
 	$parse['mlst_data_page']    = $ViewPage;
 	$parse['mlst_data_pagemax'] = $MaxPage;
@@ -112,7 +112,7 @@ if ($Observation != 1) die(message ($lang['404_page']));
 	$parse['mlst_data_types']  .= "<option value=\"100\"". (($Selected == "100") ? " SELECTED" : "") .">".$lang['ml_see_all_messages']."</option>";
 	$parse['mlst_data_pages']   = "";
 
-	for ( $cPage = 1; $cPage <= $MaxPage; $cPage++ )
+	for ($cPage = 1; $cPage <= $MaxPage; $cPage++ )
 	{
 		$parse['mlst_data_pages'] .= "<option value=\"".$cPage."\"".  (($ViewPage == $cPage)  ? " SELECTED" : "") .">". $cPage ."/". $MaxPage ."</option>";
 	}
@@ -132,7 +132,7 @@ if ($Observation != 1) die(message ($lang['404_page']));
 			$bloc['mlst_to']      = $OwnerData['username'] ." ".$lang['input_id'].":". $row['message_owner'];
 			$bloc['mlst_subject'] = $row['message_subject'];
 			$bloc['mlst_text']    = $row['message_text'];
-			$bloc['mlst_time']    = date ("d/M/y H:i:s", $row['message_time'] );
+			$bloc['mlst_time']    = date ("d/M/y H:i:s", $row['message_time']);
 
 			$parse['mlst_data_rows'] .= parsetemplate(gettemplate('adm/MessageListRows'), $bloc);
 		}

@@ -35,7 +35,7 @@ function is_phpself($name)
  * insecured and lazy.
  *
  * Now the code must be populated with:
- * ($hook = get_hook('NameOfHook')) ? eval($hook) : null;
+ * ($hook = get_hook('NameOfHook')) ? eval($hook) : NULL;
  */
 
 // this function store code into an array
@@ -64,8 +64,8 @@ function get_hook($name)
  */
 function PluginAct($name)
 {
-    $Exists = doquery("SELECT status FROM {{table}} WHERE `plugin` = '" . $name . "' LIMIT 1;", "plugins", TRUE);
-	if (!$Exists) doquery("INSERT INTO {{table}} SET `plugin` = '" . $name . "';", "plugins");
+	$Exists = doquery("SELECT status FROM {{table}} WHERE `plugin` = '" . $name . "' LIMIT 1;", "plugins", TRUE);
+	if ( ! $Exists) doquery("INSERT INTO {{table}} SET `plugin` = '" . $name . "';", "plugins");
 
 	return ($Exists[0]);
 }
@@ -81,22 +81,22 @@ function AdmPlugin($name, $desc)
 	$page   =   $_GET['mode'];
 	if (is_phpself('adm/SettingsPage') && $page=='plugins')
 	{
-	    $activado		= PluginAct($name);
-	    $config_line	.= "<tr>";
+		$activado		= PluginAct($name);
+		$config_line	.= "<tr>";
 
-	    if ($activado == "1")
-	    { //if the plugin is on
-	    	$config_line .= "<td class=\"c\" style=\"color:#FFFFFF\">".$name."</td>";
-	    	$config_line .= "<td align=\"left\" class=\"c\" style=\"color:green\"><b>On</b></td>";
-	    	$config_line .= "<td align=\"center\" class=\"c\" width=\"20px\" style=\"color:#FFFFFF\"><a href=\"SettingsPage.php?mode=plugins&desactivate=".$name."\">Desactivar</a></td>";
-	    }
+		if ($activado == "1")
+		{ //if the plugin is on
+			$config_line .= "<td class=\"c\" style=\"color:#FFFFFF\">".$name."</td>";
+			$config_line .= "<td align=\"left\" class=\"c\" style=\"color:green\"><b>On</b></td>";
+			$config_line .= "<td align=\"center\" class=\"c\" width=\"20px\" style=\"color:#FFFFFF\"><a href=\"SettingsPage.php?mode=plugins&desactivate=".$name."\">Desactivar</a></td>";
+		}
 		else
 		{ //if the plugin is off
-	    	$config_line .= "<td class=\"c\" style=\"color:#FFFFFF\"><a href=\"#\" onMouseOver='return overlib(\"".$desc."\", CENTER, OFFSETX, 120, OFFSETY, -40, WIDTH, 250);' onMouseOut='return nd();' class=\"big\">".$name."</a></td>";
-	    	$config_line .= "<td align=\"left\" class=\"c\" style=\"color:red\"><b>Off</b></td>";
-	    	$config_line .= "<td align=\"center\" class=\"c\" width=\"20px\" style=\"color:#FFFFFF\"><a href=\"SettingsPage.php?mode=plugins&activate=".$name."\">Activar</a></td>";
-	    }
-	    $config_line .= "</tr>";
+			$config_line .= "<td class=\"c\" style=\"color:#FFFFFF\"><a href=\"#\" onMouseOver='return overlib(\"".$desc."\", CENTER, OFFSETX, 120, OFFSETY, -40, WIDTH, 250);' onMouseOut='return nd();' class=\"big\">".$name."</a></td>";
+			$config_line .= "<td align=\"left\" class=\"c\" style=\"color:red\"><b>Off</b></td>";
+			$config_line .= "<td align=\"center\" class=\"c\" width=\"20px\" style=\"color:#FFFFFF\"><a href=\"SettingsPage.php?mode=plugins&activate=".$name."\">Activar</a></td>";
+		}
+		$config_line .= "</tr>";
 	}
 	return ($config_line);
 }
@@ -107,7 +107,6 @@ $plugins_version	= '0.3';
 $plugins_hooks		= array();
 
 // open all files inside plugins folder
-
 if (is_dir($plugins_path))
 {
 	$dir = opendir($plugins_path);
@@ -138,6 +137,7 @@ if (is_dir($plugins_path))
 if (defined('IN_ADMIN'))
 {
 	if ( ! defined('DPATH')) define('DPATH', XN_ROOT.DEFAULT_SKINPATH);
+
 	$page	=   isset($_GET['mode']) ? $_GET['mode'] : NULL;
 
 	if (is_phpself('adm/SettingsPage') && $page=='plugins')
@@ -160,7 +160,7 @@ if (defined('IN_ADMIN'))
 		{
 			$plugin = $_GET['desactivate'];
 			$ex 	= doquery("SELECT status FROM {{table}} WHERE `plugin`='". $plugin ."' LIMIT 1", 'plugins', TRUE);
-			if ( $ex )
+			if ($ex )
 			{
 				doquery("UPDATE {{table}} SET `status` = 0 WHERE `plugin`='". $plugin ."' LIMIT 1", "plugins");
 				$info = "<h1>Plugin Desactivado</h1>";

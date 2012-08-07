@@ -49,7 +49,7 @@ if ($ToolsCanUse != 1) die(message ($lang['404_page']));
 
 			while ($u = $sq->fetch_array())
 			{
-				SendSimpleMessage ( $u['id'], $user['id'], $Time, 1, $From, $Subject, $Message);
+				SendSimpleMessage ($u['id'], $user['id'], $Time, 1, $From, $Subject, $Message);
 				$_POST['tresc'] = str_replace(":name:",$u['username'],$_POST['tresc']);
 			}
 

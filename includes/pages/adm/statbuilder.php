@@ -27,7 +27,7 @@ if ($user['authlevel'] < 2) die(message ($lang['not_enough_permissions']));
 
 	update_config( 'stat_last_update', $result['stats_time']);
 
-	$using_flying 	= ( ( read_config ( 'stat_flying' ) == 1 ) ? $lang['sb_using_fleet_array'] : $lang['sb_using_fleet_query']);
+	$using_flying 	= (( read_config ( 'stat_flying' ) == 1 ) ? $lang['sb_using_fleet_array'] : $lang['sb_using_fleet_query']);
 
 	message($lang['sb_stats_updated'].$stats_end_time.$memory_i.$memory_e.$memory_p.$stats_block.$using_flying);
 

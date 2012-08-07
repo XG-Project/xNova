@@ -18,12 +18,12 @@ function target() {
 }
 
 function setACS(id) {
-    document.getElementsByName('fleet_group')[0].value = id;
+	document.getElementsByName('fleet_group')[0].value = id;
 	return;
 }
 
 function setACS_target(tacs) {
-    document.getElementsByName('acs_target_mr')[0].value = tacs;
+	document.getElementsByName('acs_target_mr')[0].value = tacs;
 	return;
 }
 
@@ -314,12 +314,12 @@ function maxResource(id) {
 	}
 
 var storCap = storage();
-    if (id==3){
-        if ((thisresource - consumption()) < 0)
-            thisresource = 0;
-        else
-            thisresource -= consumption();
-    }
+	if (id==3){
+		if ((thisresource - consumption()) < 0)
+			thisresource = 0;
+		else
+			thisresource -= consumption();
+	}
 
 	var metalToTransport = document.getElementsByName("resource1")[0].value;
 	var crystalToTransport = document.getElementsByName("resource2")[0].value;
@@ -348,8 +348,8 @@ function maxResources() {
 	var id;
 	var storCap = storage();
 	var metalToTransport = Math.round(document.getElementsByName("thisresource1")[0].value);
-    var crystalToTransport = Math.round(document.getElementsByName("thisresource2")[0].value);
-    var deuteriumToTransport = Math.round(document.getElementsByName("thisresource3")[0].value - consumption());
+	var crystalToTransport = Math.round(document.getElementsByName("thisresource2")[0].value);
+	var deuteriumToTransport = Math.round(document.getElementsByName("thisresource3")[0].value - consumption());
 
 
 	var freeCapacity = storCap - metalToTransport - crystalToTransport - deuteriumToTransport;
@@ -396,8 +396,8 @@ function noShips (){
 
 function calculateTransportCapacity() {
 	var metal = Math.round(Math.abs(document.getElementsByName("resource1")[0].value));
-    var crystal = Math.round(Math.abs(document.getElementsByName("resource2")[0].value));
-    var deuterium = Math.round(Math.abs(document.getElementsByName("resource3")[0].value));
+	var crystal = Math.round(Math.abs(document.getElementsByName("resource2")[0].value));
+	var deuterium = Math.round(Math.abs(document.getElementsByName("resource3")[0].value));
 
 	transportCapacity =  storage() - metal - crystal - deuterium;
 
@@ -435,10 +435,10 @@ function getLayerRef(id, document) {
 function setVisibility(objLayer, visible) {
 	if (document.layers) {
 		objLayer.visibility =
-		(visible == true) ? 'show' : 'hide';
+		(visible) ? 'show' : 'hide';
 	} else {
 		objLayer.style.visibility =
-		(visible == true) ? 'visible' : 'hidden';
+		(visible) ? 'visible' : 'hidden';
 	}
 }
 
@@ -634,12 +634,12 @@ function tsdpkt(f) {
   f = abs(f);
   r = f % 1000;
   while (f >= 1000){
-    k1 = "";
-    if ((f % 1000) < 100) { k1 = "0"; }
-    if ((f % 1000) < 10) { k1 = "00"; }
-    if ((f % 1000) == 0) { k1 = "00"; }
-    f = abs((f-(f % 1000)) / 1000);
-    r = f % 1000 + "." + k1 + r;
+	k1 = "";
+	if ((f % 1000) < 100) { k1 = "0"; }
+	if ((f % 1000) < 10) { k1 = "00"; }
+	if ((f % 1000) == 0) { k1 = "00"; }
+	f = abs((f-(f % 1000)) / 1000);
+	r = f % 1000 + "." + k1 + r;
   }
   r = vz + r;
   return r;

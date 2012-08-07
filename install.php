@@ -67,7 +67,7 @@ switch ($Mode)
 			$parse['first']	= "Conexión establecida con éxito...";
 
 			fwrite($dz, "<?php\n");
-			fwrite($dz, "if (!defined(\"INSIDE\")){ header(\"location: ".XN_ROOT."\"); }\n");
+			fwrite($dz, "if ( ! defined(\"INSIDE\")) header(\"location: ".XN_ROOT."\"); \n");
 			fwrite($dz, "\$dbsettings = Array(\n");
 			fwrite($dz, "\"server\"     => \"".$host."\", // MySQL server name.\n");
 			fwrite($dz, "\"user\"       => \"".$user."\", // MySQL username.\n");
@@ -114,17 +114,17 @@ switch ($Mode)
 			$adm_email  = $_POST['adm_email'];
 			$sha1pass    = sha1($adm_pass);
 
-			if (!$_POST['adm_user'])
+			if ( ! $_POST['adm_user'])
 			{
 				header("Location: install.php?mode=ins&page=3&error=3");
 				exit();
 			}
-			if (!$_POST['adm_pass'])
+			if ( ! $_POST['adm_pass'])
 			{
 				header("Location: install.php?mode=ins&page=3&error=3");
 				exit();
 			}
-			if (!$_POST['adm_email'])
+			if ( ! $_POST['adm_email'])
 			{
 				header("Location: install.php?mode=ins&page=3&error=3");
 				exit();
@@ -177,7 +177,7 @@ switch ($Mode)
 			$QryAddAdmGlx .= "`id_planet`         = '1'; ";
 			doquery($QryAddAdmGlx, 'galaxy');
 
-			update_config ( 'stat_last_update' , time() );
+			update_config ( 'stat_last_update' , time());
 
 			$frame  = parsetemplate(gettemplate('install/ins_acc_done'), $parse);
 		}
@@ -196,20 +196,20 @@ switch ($Mode)
 			die(message("¡Error! - No hay actualizaciones disponibles","", "", FALSE, FALSE));
 		}
 
-		if ($_POST)
+		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
 			$administrator	=	doquery("SELECT id
 											FROM {{table}}
-											WHERE password = '" . sha1( $_POST['adm_pass'] ) . "' AND
-													email = '" . $db->real_escape_string ( $_POST['adm_email'] ) . "' AND
-													authlevel = 3" , 'users' , TRUE );
+											WHERE password = '".sha1($_POST['adm_pass'])."' AND
+													email = '".$db->real_escape_string($_POST['adm_email'])."' AND
+													authlevel = 3", 'users', TRUE);
 
-			if ( !$administrator )
+			if ( ! $administrator)
 			{
 				die(message("¡Error! - ¡El administrador ingresado no existe o el usuario no tiene permisos administrativos!","index.php?mode=upgrade", "3", FALSE, FALSE));
 			}
 
-			if (filesize(XN_ROOT.'config.php') == 0)
+			if (filesize(XN_ROOT.'config.php') === 0)
 			{
 				die(message("¡Error! - Tu archivo config.php se encuentra vacío o no configurado. En caso de no ser así verifica que su chmod sea de 777","", "", FALSE, FALSE));
 			}
@@ -217,7 +217,7 @@ switch ($Mode)
 			{
 				include(XN_ROOT."config.php");
 
-				$system_version	=	str_replace ( 'v' , '' , VERSION );
+				$system_version	=	str_replace('v', '', VERSION);
 
 				// ALL QUERYS NEEDED
 				$Qry1	= "DELETE FROM `".$dbsettings['prefix']."config` WHERE `config_name` = 'VERSION'";
@@ -283,7 +283,7 @@ switch ($Mode)
 						}
 					}
 
-					switch($system_version)
+					switch ($system_version)
 					{
 						case '2.9.0':
 						case '2.9.1':
@@ -320,6 +320,7 @@ switch ($Mode)
 						case '2.10.1':
 						case '2.10.2':
 						case '2.10.3':
+						case '2.10.4':
 							$QrysArray	= array($Qry12, $Qry13, $Qry14);
 							update_config ( 'version' , SYSTEM_VERSION );
 							upgrade_xml();
@@ -354,4 +355,7 @@ $parse['ins_state']    = $Page;
 $parse['ins_page']     = $frame;
 $parse['dis_ins_btn']  = "?mode=$Mode&page=$nextpage";
 display (parsetemplate (gettemplate('install/ins_body'), $parse), FALSE, '', TRUE, FALSE);
-?>
+
+
+/* End of file index.php */
+/* Location: ./install/index.php */

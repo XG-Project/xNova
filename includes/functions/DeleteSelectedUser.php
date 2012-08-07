@@ -14,7 +14,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 	{
 		$TheUser = doquery ( "SELECT * FROM {{table}} WHERE `id` = '" . $UserID . "';", 'users', TRUE );
 
-		if ( $TheUser['ally_id'] != 0 )
+		if ($TheUser['ally_id'] != 0 )
 		{
 			$TheAlly = doquery ( "SELECT * FROM {{table}} WHERE `id` = '" . $TheUser['ally_id'] . "';", 'alliance', TRUE );
 			$TheAlly['ally_members'] -= 1;
@@ -34,11 +34,11 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 		$ThePlanets = doquery ( "SELECT * FROM {{table}} WHERE `id_owner` = '" . $UserID . "';", 'planets' );
 
-		while ( $OnePlanet = $ThePlanets->fetch_assoc())
+		while ($OnePlanet = $ThePlanets->fetch_assoc())
 		{
-			if ( $OnePlanet['planet_type'] == 1 )
+			if ($OnePlanet['planet_type'] == 1 )
 				doquery ( "DELETE FROM {{table}} WHERE `galaxy` = '" . $OnePlanet['galaxy'] . "' AND `system` = '" . $OnePlanet['system'] . "' AND `planet` = '" . $OnePlanet['planet'] . "';", 'galaxy' );
-			elseif ( $OnePlanet['planet_type'] == 3 )
+			elseif ($OnePlanet['planet_type'] == 3 )
 			doquery ( "DELETE FROM {{table}} WHERE `id` = '" . $OnePlanet['id'] . "';", 'planets' );
 		}
 

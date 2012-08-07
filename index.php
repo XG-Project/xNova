@@ -51,14 +51,14 @@ switch ($page)
 				$QryPassChange = "UPDATE {{table}} SET ";
 				$QryPassChange .= "`password` ='". $NewPassSql ."' ";
 				$QryPassChange .= "WHERE `email`='". $mail ."' LIMIT 1;";
-				doquery( $QryPassChange, 'users');
+				doquery($QryPassChange, 'users');
 			}
 		}
 
-		if ( $_POST )
+		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
-			sendnewpassword ( $_POST['email'] );
-			message ( $lang['mail_sended'] , GAMEURL , 2 , FALSE , FALSE );
+			sendnewpassword ($_POST['email']);
+			message ($lang['mail_sended'] , GAMEURL , 2 , FALSE , FALSE );
 		}
 		else
 		{
@@ -69,7 +69,7 @@ switch ($page)
 		}
 	break;
 	default:
-		if ($_POST)
+		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
 			$login = doquery("SELECT `id`,`username`,`password`,`banaday` FROM {{table}} WHERE `username` = '" . $db->real_escape_string($_POST['username']) . "' AND `password` = '" . sha1($_POST['password']) . "' LIMIT 1", "users", TRUE);
 
@@ -98,13 +98,13 @@ switch ($page)
 
 				doquery("UPDATE `{{table}}` SET `current_planet` = `id_planet` WHERE `id` ='".$login["id"]."'", 'users');
 
-				unset ( $dbsettings );
+				unset ($dbsettings );
 				header ( 'location:game.php?page=overview' );
 				exit;
 			}
 			else
 			{
-				message ( $lang['login_error'] , GAMEURL , 2 , FALSE , FALSE );
+				message ($lang['login_error'] , GAMEURL , 2 , FALSE , FALSE );
 			}
 		}
 		else

@@ -63,7 +63,7 @@ class ShowResetPage {
 					$QryInsertUser .= "`register_time` = '". $TheUser['register_time'] ."', ";
 					$QryInsertUser .= "`onlinetime` = '". 	 $Time ."', ";
 					$QryInsertUser .= "`password` = '".      $TheUser['password']      ."';";
-					doquery( $QryInsertUser, 'users');
+					doquery($QryInsertUser, 'users');
 					doquery("UPDATE {{table}} SET `bana` = '0' WHERE `id` > '1'", "users");
 
 					$NewUser        = doquery("SELECT `id` FROM {{table}} WHERE `username` = '". $TheUser['username'] ."' LIMIT 1;", 'users', TRUE);

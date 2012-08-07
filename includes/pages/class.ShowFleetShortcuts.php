@@ -19,7 +19,7 @@ class ShowFleetShortcuts
 		global $db;
 		$this->CurrentUser=$CurrentUser;
 
-		if (!empty($_GET['mode']))
+		if ( ! empty($_GET['mode']))
 		{
 			$mode=$_GET['mode'];
 
@@ -27,7 +27,7 @@ class ShowFleetShortcuts
 			{
 				$this->addFleetShortcuts($db->real_escape_string(strip_tags($_POST["name"])),intval($_POST["galaxy"]),intval($_POST["system"]),intval($_POST["planet"]),intval($_POST["moon"]));
 			}
-			elseif ($mode=="edit" && isset($_GET['a']) && !empty($_POST['galaxy'])&&!empty($_POST['system'])&&!empty($_POST['planet']) )
+			elseif ($mode=="edit" && isset($_GET['a']) && !empty($_POST['galaxy'])&&!empty($_POST['system'])&&!empty($_POST['planet']))
 			{
 				$this->saveFleetShortcuts(intval($_GET['a']),$db->real_escape_string(strip_tags($_POST["name"])),intval($_POST["galaxy"]),intval($_POST["system"]),intval($_POST["planet"]),intval($_POST["moon"]));
 			}
@@ -80,8 +80,8 @@ class ShowFleetShortcuts
 		$parse['galaxy']		=$c[1];
 		$parse['system']		=$c[2];
 		$parse['planet']		=$c[3];
-		$parse['moon'.$c[4]]	='selected="selected"';
-      	$parse['visibility'] 	="button";
+		$parse['moon'.$c[4]]	='selected';
+		$parse['visibility'] 	="button";
 
 		display(parsetemplate(gettemplate("shortcuts/shortcuts_editPanel"),$parse));
 	}
@@ -98,7 +98,7 @@ class ShowFleetShortcuts
 		header("location: ".GAMEURL."game.php?page=shortcuts");
 	}
 
-    private function addFleetShortcuts($name,$galaxy,$system,$planet,$moon)
+	private function addFleetShortcuts($name,$galaxy,$system,$planet,$moon)
 	{
 		$this->CurrentUser['fleet_shortcut'] .= "{$name},{$galaxy},{$system},{$planet},{$moon};";
 
@@ -126,16 +126,16 @@ class ShowFleetShortcuts
 
 		$parse = $lang;
 
-		if ( $this->CurrentUser['fleet_shortcut'] )
+		if ($this->CurrentUser['fleet_shortcut'])
 		{
 			$scarray 	= explode(";", $this->CurrentUser['fleet_shortcut']);
 			$sx 		= TRUE;
 			$e 			= 0;
 			$ShortcutsRowTPL=gettemplate("shortcuts/shortcuts_row");
 
-			foreach ( $scarray as $a => $b )
+			foreach ($scarray as $a => $b )
 			{
-				if (!empty($b))
+				if ( ! empty($b))
 				{
 					$c = explode(',', $b);
 
@@ -165,7 +165,7 @@ class ShowFleetShortcuts
 
 					$parse['block_rows'] .= parsetemplate($ShortcutsRowTPL,$block);
 
-					if (!$sx)
+					if ( ! $sx)
 					{
 						$parse['block_rows'] .= "</tr>";
 					}
@@ -173,7 +173,7 @@ class ShowFleetShortcuts
 					$sx=!$sx;
 				}
 			}
-			if (!$sx)
+			if ( ! $sx)
 			{
 				$parse['block_rows'] .= "<td>&nbsp;</td></tr>";
 			}

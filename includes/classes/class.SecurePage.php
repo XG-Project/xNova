@@ -11,15 +11,15 @@
 
 class SecurePage
 {
-	private static $instance = null;
+	private static $instance = NULL;
 
 	public function __construct()
 	{
-		$_GET = array_map(array($this, 'validate'), $_GET);
-		$_POST = array_map(array($this, 'validate'), $_POST);
-		$_REQUEST = array_map(array($this, 'validate'), $_REQUEST);
-		$_SERVER = array_map(array($this, 'validate'), $_SERVER);
-		$_COOKIE = array_map(array($this, 'validate'), $_COOKIE);
+		$_GET		= array_map(array($this,'validate'), $_GET);
+		$_POST		= array_map(array($this,'validate'), $_POST);
+		$_REQUEST	= array_map(array($this,'validate'), $_REQUEST);
+		$_SERVER	= array_map(array($this,'validate'), $_SERVER);
+		$_COOKIE	= array_map(array($this,'validate'), $_COOKIE);
 	}
 
 	private function validate($value)
@@ -46,7 +46,7 @@ class SecurePage
 
 	public static function run()
 	{
-		if (self::$instance == null)
+		if (is_null(self::$instance))
 		{
 			$c = __CLASS__;
 			self::$instance = new $c();

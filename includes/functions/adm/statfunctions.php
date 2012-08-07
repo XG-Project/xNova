@@ -8,17 +8,17 @@
  * @author	Razican <admin@razican.com>
  */
 
-function GetTechnoPoints ( $CurrentUser ) {
+function GetTechnoPoints ($CurrentUser ) {
 	global $resource, $pricelist, $reslist;
 
 	$TechCounts = 0;
 	$TechPoints = 0;
-	foreach ( $reslist['tech'] as $n => $Techno )
+	foreach ($reslist['tech'] as $n => $Techno )
 	{
-		if ( $CurrentUser[ $resource[ $Techno ] ] > 0 ) {
-			for ( $Level = 0; $Level < $CurrentUser[ $resource[ $Techno ] ]; $Level++ ) {
+		if ($CurrentUser[ $resource[ $Techno ] ] > 0 ) {
+			for ($Level = 0; $Level < $CurrentUser[ $resource[ $Techno ] ]; $Level++ ) {
 				$Units       = $pricelist[ $Techno ]['metal'] + $pricelist[ $Techno ]['crystal'] + $pricelist[ $Techno ]['deuterium'];
-				$LevelMul    = pow( $pricelist[ $Techno ]['factor'], $Level );
+				$LevelMul    = pow($pricelist[ $Techno ]['factor'], $Level );
 				$TechPoints += ($Units * $LevelMul);
 				$TechCounts += 1;
 			}
@@ -30,17 +30,17 @@ function GetTechnoPoints ( $CurrentUser ) {
 	return $RetValue;
 }
 
-function GetBuildPoints ( $CurrentPlanet ) {
+function GetBuildPoints ($CurrentPlanet ) {
 	global $resource, $pricelist, $reslist;
 
 	$BuildCounts = 0;
 	$BuildPoints = 0;
-	foreach($reslist['build'] as $n => $Building) {
-		if ( $CurrentPlanet[ $resource[ $Building ] ] > 0 )
+	foreach ($reslist['build'] as $n => $Building) {
+		if ($CurrentPlanet[ $resource[ $Building ] ] > 0 )
 		{
-			for ( $Level = 0; $Level < $CurrentPlanet[ $resource[ $Building ] ]; $Level++ ) {
+			for ($Level = 0; $Level < $CurrentPlanet[ $resource[ $Building ] ]; $Level++ ) {
 				$Units        = $pricelist[ $Building ]['metal'] + $pricelist[ $Building ]['crystal'] + $pricelist[ $Building ]['deuterium'];
-				$LevelMul     = pow( $pricelist[ $Building ]['factor'], $Level );
+				$LevelMul     = pow($pricelist[ $Building ]['factor'], $Level );
 				$BuildPoints += ($Units * $LevelMul);
 				$BuildCounts += 1;
 			}
@@ -52,12 +52,12 @@ function GetBuildPoints ( $CurrentPlanet ) {
 	return $RetValue;
 }
 
-function GetDefensePoints ( $CurrentPlanet ) {
+function GetDefensePoints ($CurrentPlanet ) {
 	global $resource, $pricelist, $reslist;
 
 	$DefenseCounts = 0;
 	$DefensePoints = 0;
-	foreach($reslist['defense'] as $n => $Defense) {
+	foreach ($reslist['defense'] as $n => $Defense) {
 		if (isset($CurrentPlanet[ $resource[ $Defense ] ]) && $CurrentPlanet[ $resource[ $Defense ] ] > 0) {
 			$Units          = $pricelist[ $Defense ]['metal'] + $pricelist[ $Defense ]['crystal'] + $pricelist[ $Defense ]['deuterium'];
 			$DefensePoints += ($Units * $CurrentPlanet[ $resource[ $Defense ] ]);
@@ -70,12 +70,12 @@ function GetDefensePoints ( $CurrentPlanet ) {
 	return $RetValue;
 }
 
-function GetFleetPoints ( $CurrentPlanet ) {
+function GetFleetPoints ($CurrentPlanet ) {
 	global $resource, $pricelist, $reslist;
 
 	$FleetCounts = 0;
 	$FleetPoints = 0;
-	foreach($reslist['fleet'] as $n => $Fleet) {
+	foreach ($reslist['fleet'] as $n => $Fleet) {
 		if ($CurrentPlanet[ $resource[ $Fleet ] ] > 0) {
 			$Units          = $pricelist[ $Fleet ]['metal'] + $pricelist[ $Fleet ]['crystal'] + $pricelist[ $Fleet ]['deuterium'];
 			$FleetPoints   += ($Units * $CurrentPlanet[ $resource[ $Fleet ] ]);
@@ -95,7 +95,7 @@ function GetFlyingFleetPoints($fleet_array)
 	$FleetRec     = explode(";", $fleet_array);
 	if (is_array($FleetRec))
 	{
-		foreach($FleetRec as $Item => $Group)
+		foreach ($FleetRec as $Item => $Group)
 		{
 			if ($Group  != '')
 			{
@@ -138,7 +138,7 @@ function MakeStats()
 	{
 		include_once(XN_ROOT . 'includes/functions/DeleteSelectedUser.php');
 
-		while($delete = $ChooseToDelete->fetch_array())
+		while ($delete = $ChooseToDelete->fetch_array())
 		{
 			DeleteSelectedUser($delete[id]);
 		}
@@ -149,7 +149,7 @@ function MakeStats()
 	//STATS FOR USERS....
 	//Here we make the select query, with this all the custom stuff with be included
 	$select_defenses	=	'';
-	foreach($reslist['defense'] as $n => $Defense)
+	foreach ($reslist['defense'] as $n => $Defense)
 	{
 		if ($resource[ $Defense ] != 'small_protection_shield' && $resource[ $Defense ] != 'big_protection_shield')
 		{
@@ -157,17 +157,17 @@ function MakeStats()
 		}
 	}
 	$select_buildings	=	'';
-	foreach($reslist['build'] as $n => $Building)
+	foreach ($reslist['build'] as $n => $Building)
 	{
 		$select_buildings	.= " p.`".$resource[ $Building ]."`,";
 	}
 	$selected_tech	=	'';
-	foreach($reslist['tech'] as $n => $Techno)
+	foreach ($reslist['tech'] as $n => $Techno)
 	{
 			$selected_tech	.= " u.`".$resource[ $Techno ]."`,";
 	}
 	$select_fleets	=	'';
-	foreach($reslist['fleet'] as $n => $Fleet)
+	foreach ($reslist['fleet'] as $n => $Fleet)
 	{
 			$select_fleets	.= " SUM(p.`".$resource[ $Fleet ]."`) AS `".$resource[ $Fleet ]."`,";
 	}
@@ -275,15 +275,15 @@ function MakeStats()
 			unset($old_stats_array[$CurUser['id']]);
 			//1 point=  'stat_settings' ressources
 			//Make the tech points XD
-			$u_points			= GetTechnoPoints ( $CurUser );
+			$u_points			= GetTechnoPoints ($CurUser );
 			$u_TTechCount		= $u_points['TechCount'];
 			$u_TTechPoints	= ($u_points['TechPoint'] / $game_stat_settings);
 			//Make the defense points
-			$u_points			= GetDefensePoints ( $CurUser );
+			$u_points			= GetDefensePoints ($CurUser );
 			$u_TDefsCount		= $u_points['DefenseCount'];
 			$u_TDefsPoints	= ($u_points['DefensePoint'] / $game_stat_settings);
 			//Make the fleets points (without the flying fleets...
-			$u_points			= GetFleetPoints ( $CurUser );
+			$u_points			= GetFleetPoints ($CurUser );
 			$u_TFleetCount	= $u_points['FleetCount'];
 			$u_TFleetPoints	= ($u_points['FleetPoint'] / $game_stat_settings);
 			//Now we add the flying fleets points
@@ -292,9 +292,9 @@ function MakeStats()
 			{
 				if (isset($flying_fleets_array[$CurUser['id']]) && $flying_fleets_array[$CurUser['id']])
 				{
-					foreach($flying_fleets_array[$CurUser['id']] as $fleet_id => $fleet_array)
+					foreach ($flying_fleets_array[$CurUser['id']] as $fleet_id => $fleet_array)
 					{
-						$u_points			= GetFlyingFleetPoints ( $fleet_array );
+						$u_points			= GetFlyingFleetPoints ($fleet_array );
 						$u_TFleetCount  	+= $u_points['FleetCount'];
 						$u_TFleetPoints 	+= ($u_points['FleetPoint'] / $game_stat_settings);
 					}
@@ -307,7 +307,7 @@ function MakeStats()
 				$OwnFleets = doquery("SELECT fleet_array, fleet_id FROM {{table}} WHERE `fleet_owner` = '". $CurUser['id'] ."';", 'fleets');
 				while ($FleetRow = $OwnFleets->fetch_array())
 				{
-						$u_points			= GetFlyingFleetPoints ( $FleetRow['fleet_array'] );
+						$u_points			= GetFlyingFleetPoints ($FleetRow['fleet_array']);
 						$u_TFleetCount  	+= $u_points['FleetCount'];
 						$u_TFleetPoints 	+= ($u_points['FleetPoint'] / $game_stat_settings);
 				}
@@ -318,13 +318,13 @@ function MakeStats()
 			$u_TBuildPoints   = 0;
 			if ($Buildings_array[$CurUser['id']])
 			{
-				foreach($Buildings_array[$CurUser['id']] as $planet_id => $building)
+				foreach ($Buildings_array[$CurUser['id']] as $planet_id => $building)
 				{
-					$u_points				= GetBuildPoints ( $building );
+					$u_points				= GetBuildPoints ($building );
 					$u_TBuildCount		+= $u_points['BuildCount'];
 					$u_TBuildPoints		+= ($u_points['BuildPoint'] / $game_stat_settings);
 					//We add the shields points (this way is a temporary way...)
-					$u_points				= GetDefensePoints ( $building );
+					$u_points				= GetDefensePoints ($building );
 					$u_TDefsCount			+= $u_points['DefenseCount'];
 					$u_TDefsPoints		+= ($u_points['DefensePoint'] / $game_stat_settings);
 				}
@@ -358,13 +358,11 @@ function MakeStats()
 		//TODO, make a end string check in case that insert_user_query end in VALUE...
 		//Here we change the end of the query for ;
 
-		if ($CheckUserQuery == TRUE)
+		if ($CheckUserQuery)
 		{
 			$insert_user_query	=	substr_replace($insert_user_query, ';', -1);
-			doquery ( $insert_user_query , 'statpoints');
+			doquery ($insert_user_query , 'statpoints');
 		}
-
-
 
 		unset($insert_user_query, $total_data, $CurUser, $old_stats_array, $Buildings_array, $flying_fleets_array);
 	}
@@ -376,8 +374,8 @@ function MakeStats()
 	$total_ally		=0;
 	while ($CurAlly = $ally_check->fetch_assoc())
 	{
-		++$total_ally;
-	$ally_check_value[$CurAlly['id']]=1;
+		$total_ally++;
+		$ally_check_value[$CurAlly['id']] = 1;
 	}
 	unset($ally_check);
 	unset($start,$QueryValue,$Query,$LastQuery);
@@ -482,10 +480,10 @@ function MakeStats()
 			}
 			//Here we change the end of the query for ;
 
-			if ($CheckAllyQuery == TRUE)
+			if ($CheckAllyQuery)
 			{
 				$insert_ally_query	=	substr_replace($insert_ally_query, ';', -1);
-				doquery ( $insert_ally_query , 'statpoints');
+				doquery ($insert_ally_query , 'statpoints');
 			}
 
 			unset($insert_ally_query, $ally_old_data, $CurAlly, $ally_points);

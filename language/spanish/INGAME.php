@@ -63,6 +63,7 @@ $lang['tech_rc'] = array (
 //----------------------------------------------------------------------------//
 //TOPNAV
 $lang['tn_vacation_mode']					= 'Modo vacaciones activo hasta el ';
+$lang['tn_vacation_mode_active'] 			= "Modo vacaciones activo";
 $lang['tn_delete_mode']						= 'Tu cuenta se encuentra en modo borrar. La misma será borrada el ';
 
 //----------------------------------------------------------------------------//
@@ -133,6 +134,7 @@ $lang['ov_actions']							= 'Acciones';
 $lang['ov_planet_rename']					= 'Nombrar';
 $lang['ov_planet_rename_action']			= 'Nombrar';
 $lang['ov_abandon_planet_not_possible']		= 'No es posible abandonar un planeta cuando hay flotas moviendose';
+$lang['colonies']							= 'Colonias';
 
 //----------------------------------------------------------------------------//
 //GALAXY
@@ -1058,7 +1060,7 @@ $lang['sys_spy_defenses'] 					= "Defensas";
 $lang['sys_mess_qg'] 						= "Cuartel General";
 $lang['sys_mess_spy_report_moon']			= "(Luna)";
 $lang['sys_mess_spy_report'] 				= "Reporte de espionaje";
-$lang['sys_mess_spy_lostproba'] 			= "Probabilidad de detección de la flota de espionaje : %d %% ";
+$lang['sys_mess_spy_lostproba'] 			= "La probabilidad de contra-espionaje es del: %d %% ";
 $lang['sys_mess_spy_control'] 				= "Control Espacial";
 $lang['sys_mess_spy_activity'] 				= "Actividad de espionaje";
 $lang['sys_mess_spy_ennemyfleet'] 			= "Una flota enemiga del planeta";
@@ -1111,7 +1113,7 @@ $lang['sys_destruc_mess1'] 					= "Las estrellas de la muerte disparan el gravit
 $lang['sys_destruc_mess'] 					= "Una flota del planeta %s [%d:%d:%d] se dirige a la luna del planeta [%d:%d:%d]";
 $lang['sys_destruc_echec'] 					= ". Los temblores empiezan a sacudir la superficie de la luna, pero algo sale mal, el graviton en las estrellas de la muerte tambien provoca temblores y las estrellas de la muerte vuelan en mil pedazos.";
 $lang['sys_destruc_reussi'] 				= ", Los temblores empiezan a sacudir la superficie de la luna, despues de unos instantes la luna no soporta mas y vuela en mil pedazos, mision cumplida, la flota vuelve al planeta de origen.";
-$lang['sys_destruc_null'] 					= ", Las estrellas de la muerten no generan el poder necesario, la mision falla y las naves vuelven de regreso.";
+$lang['sys_destruc_NULL'] 					= ", Las estrellas de la muerten no generan el poder necesario, la mision falla y las naves vuelven de regreso.";
 $lang['sys_the']							= " el ";
 $lang['sys_stay_mess_back']        			= "Una de sus flotas vuelve de ";
 $lang['sys_stay_mess_bend']        			= " y entrega su mercancía ";
@@ -1230,7 +1232,7 @@ $lang['ma_missile_string']					='Un ataque con misiles (%1%) de %2% llega al pla
 // DATE
 $lang['days']								= array('Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado');
 $lang['dayshort']							= array('Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb');
-$lang['months']								= array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Augosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+$lang['months']								= array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
 $lang['monthshort']							= array('Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic');
 $lang['of']									= 'de';
 

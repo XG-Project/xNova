@@ -11,7 +11,7 @@
 					<input type="text" name="system" value="{system}" size=3  maxlength=3  title="{fl_shortcut_solar_system}" \>
 					<input type="text" name="planet" value="{planet}" size=3  maxlength=3  title="{fl_planet}" \>
 					<select name="moon">
-		 				<option {moon1} value="1" >{fl_planet}</option>
+						<option {moon1} value="1" >{fl_planet}</option>
 						<option {moon2} value="2" >{fl_debris}</option>
 						<option {moon3} value="3" >{fl_moon}</option>
 					</select>
@@ -20,7 +20,7 @@
 			<tr>
 				<th>
 					 <input type="button" value="{fl_register_shorcut}" onclick="document.short_panel.action += '&mode={mode}';submit(); " >
-                <input type="{visibility}" value="{fl_dlte_shortcut}" onclick="document.short_panel.action += '&mode=delete';submit();">
+				<input type="{visibility}" value="{fl_dlte_shortcut}" onclick="document.short_panel.action += '&mode=delete';submit();">
 				</th>
 			</tr>
 			<tr>

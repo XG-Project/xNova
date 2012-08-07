@@ -63,6 +63,7 @@ $lang['tech_rc'] = array (
 //----------------------------------------------------------------------------//
 //TOPNAV
 $lang['tn_vacation_mode']					= 'Vacation mode active until ';
+$lang['tn_vacation_mode_active'] 			= "Vacation mode active";
 $lang['tn_delete_mode']						= 'Your account is in erase mode. The same will be deleted the ';
 
 //----------------------------------------------------------------------------//
@@ -133,6 +134,7 @@ $lang['ov_actions']							= 'Functions';
 $lang['ov_planet_rename']					= 'rename';
 $lang['ov_planet_rename_action']			= 'rename';
 $lang['ov_abandon_planet_not_possible']		= 'It\'s not possible abandon a planet where are fleets moving';
+$lang['colonies']							= 'Colonies';
 
 //----------------------------------------------------------------------------//
 //GALAXY
@@ -1111,7 +1113,7 @@ $lang['sys_destruc_mess1'] 					= "The shooting death stars the graviton to the 
 $lang['sys_destruc_mess'] 					= "A fleet of the planet %s [%d:%d:%d] goes to the moon of the planet [%d:%d:%d]";
 $lang['sys_destruc_echec'] 					= ". The tremors began to shake off the surface of the moon, but something goes wrong, the graviton in the stars of death also causes tremors and death stars fly to pieces.";
 $lang['sys_destruc_reussi'] 				= ", The tremors began to shake off the surface of the moon, after a while the moon does not support more and fly to pieces, mission accomplished, the fleet returns to home planet.";
-$lang['sys_destruc_null'] 					= ", The stars of death did not generate the power, the mission fails and the ships returned home.";
+$lang['sys_destruc_NULL'] 					= ", The stars of death did not generate the power, the mission fails and the ships returned home.";
 $lang['sys_the']							= " the ";
 $lang['sys_stay_mess_back']         		= "One of your fleet return from ";
 $lang['sys_stay_mess_bend']         		= " and offers ";

@@ -17,21 +17,21 @@ class Format
 	 * param $seconds
 	 * return the time with format
 	 */
-	public static function pretty_time ( $seconds )
+	public static function pretty_time ($seconds )
 	{
-		$day	= floor ( $seconds / (24 * 3600 ) );
-		$hs 	= floor ( $seconds / 3600 % 24 );
-		$ms 	= floor ( $seconds / 60 % 60 );
-		$sr 	= floor ( $seconds / 1 % 60 );
+		$day	= floor ($seconds / (24 * 3600 ));
+		$hs 	= floor ($seconds / 3600 % 24 );
+		$ms 	= floor ($seconds / 60 % 60 );
+		$sr 	= floor ($seconds / 1 % 60 );
 
-		if ( $hs < 10 ) { $hh = "0" . $hs; } else { $hh = $hs; }
-		if ( $ms < 10 ) { $mm = "0" . $ms; } else { $mm = $ms; }
-		if ( $sr < 10 ) { $ss = "0" . $sr; } else { $ss = $sr; }
+		if ($hs < 10 ) { $hh = "0" . $hs; } else { $hh = $hs; }
+		if ($ms < 10 ) { $mm = "0" . $ms; } else { $mm = $ms; }
+		if ($sr < 10 ) { $ss = "0" . $sr; } else { $ss = $sr; }
 
 		$time = '';
-		if ( $day != 0 ) { $time .= $day . 'd '; }
-		if ( $hs  != 0 ) { $time .= $hh . 'h ';  } else { $time .= '00h '; }
-		if ( $ms  != 0 ) { $time .= $mm . 'm ';  } else { $time .= '00m '; }
+		if ($day != 0 ) { $time .= $day . 'd '; }
+		if ($hs  != 0 ) { $time .= $hh . 'h ';  } else { $time .= '00h '; }
+		if ($ms  != 0 ) { $time .= $mm . 'm ';  } else { $time .= '00m '; }
 		$time .= $ss . 's';
 
 		return $time;
@@ -42,12 +42,12 @@ class Format
 	 * param $seconds
 	 * return the hour in minutes
 	 */
-	public static function pretty_time_hour ( $seconds )
+	public static function pretty_time_hour ($seconds )
 	{
-		$min 	= floor ( $seconds / 60 % 60 );
+		$min 	= floor ($seconds / 60 % 60 );
 		$time 	= '';
 
-		if ( $min != 0 )
+		if ($min != 0 )
 		{
 			$time .= $min . 'min ';
 		}
@@ -61,34 +61,34 @@ class Format
 	 * param2 $s
 	 * return the color determined by: if the number is positive -> green else negative -> red
 	 */
-	public static function color_number ( $n , $s = '' )
+	public static function color_number ($n , $s = '' )
 	{
-		if ( $n > 0 )
+		if ($n > 0 )
 		{
-			if ( $s != '' )
+			if ($s != '' )
 			{
-				$s = self::color_green ( $s );
+				$s = self::color_green ($s );
 			}
 			else
 			{
-				$s = self::color_green ( $n );
+				$s = self::color_green ($n );
 			}
 
 		}
-		elseif ( $n < 0 )
+		elseif ($n < 0 )
 		{
 			if ($s != '')
 			{
-				$s = self::color_red ( $s );
+				$s = self::color_red ($s );
 			}
 			else
 			{
-				$s = self::color_red ( $n );
+				$s = self::color_red ($n );
 			}
 		}
 		else
 		{
-			if ( $s != '' )
+			if ($s != '' )
 			{
 				$s = $s;
 			}
@@ -106,7 +106,7 @@ class Format
 	 * param $n
 	 * return a value in red color
 	 */
-	public static function color_red ( $n )
+	public static function color_red ($n )
 	{
 		return '<font color="#ff0000">' . $n . '</font>';
 	}
@@ -116,7 +116,7 @@ class Format
 	 * param $n
 	 * return a value in green color
 	 */
-	public static function color_green ( $n )
+	public static function color_green ($n )
 	{
 		return '<font color="#00ff00">' . $n . '</font>';
 	}
@@ -127,14 +127,14 @@ class Format
 	 * param2 $floor
 	 * return a number with format
 	 */
-	public static function pretty_number ( $n , $floor = TRUE )
+	public static function pretty_number ($n , $floor = TRUE )
 	{
-		if ( $floor )
+		if ($floor )
 		{
-			$n = floor ( $n );
+			$n = floor ($n );
 		}
 
-		return number_format ( $n , 0 , "," , "." );
+		return number_format ($n , 0 , "," , "." );
 	}
 
 	/**
@@ -142,37 +142,37 @@ class Format
 	 * param $number
 	 * return a shortly number
 	 */
-	public static function shortly_number ( $number )
+	public static function shortly_number ($number )
 	{
 		// MAS DEL TRILLON
-		if ( $number >= 1000000000000000000000000 )
+		if ($number >= 1000000000000000000000000 )
 		{
-			return self::pretty_number ( ( $number / 1000000000000000000 ) ) . "&nbsp;<font color=lime>T+</font>";
+			return self::pretty_number (($number / 1000000000000000000 )) . "&nbsp;<font color=lime>T+</font>";
 		}
 		// TRILLON
-		elseif ( $number >= 1000000000000000000 && $number < 1000000000000000000000000 )
+		elseif ($number >= 1000000000000000000 && $number < 1000000000000000000000000 )
 		{
-			return self::pretty_number ( ( $number / 1000000000000000000 ) ) . "&nbsp;<font color=lime>T</font>";
+			return self::pretty_number (($number / 1000000000000000000 )) . "&nbsp;<font color=lime>T</font>";
 		}
 		// BILLON
-		elseif ( $number >= 1000000000000 && $number < 1000000000000000000 )
+		elseif ($number >= 1000000000000 && $number < 1000000000000000000 )
 		{
-			return self::pretty_number ( ( $number / 1000000000000 ) ) . "&nbsp;<font color=lime>B</font>";
+			return self::pretty_number (($number / 1000000000000 )) . "&nbsp;<font color=lime>B</font>";
 		}
 		// MILLON
-		elseif ( $number >= 1000000 && $number < 1000000000000 )
+		elseif ($number >= 1000000 && $number < 1000000000000 )
 		{
-			return self::pretty_number ( ( $number / 1000000 ) ) . "&nbsp;<font color=lime>M</font>";
+			return self::pretty_number (($number / 1000000 )) . "&nbsp;<font color=lime>M</font>";
 		}
 		// MIL
-		elseif ( $number >= 1000 && $number < 1000000 )
+		elseif ($number >= 1000 && $number < 1000000 )
 		{
-			return self::pretty_number ( ( $number / 1000 ) ) . "&nbsp;<font color=lime>K</font>";
+			return self::pretty_number (($number / 1000 )) . "&nbsp;<font color=lime>K</font>";
 		}
 		// NUMERO SIN DEFINIR
 		else
 		{
-			return self::pretty_number ( $number );
+			return self::pretty_number ($number );
 		}
 	}
 
@@ -183,9 +183,9 @@ class Format
 	 * param3 $output
 	 * return a string
 	 */
-	public static function float_to_string ( $numeric , $pro = 0 , $output = FALSE )
+	public static function float_to_string ($numeric , $pro = 0 , $output = FALSE )
 	{
-		return ( $output ) ? str_replace ( "," , "." , sprintf ( "%." . $pro . "f" , $numeric ) ) : sprintf ( "%." . $pro . "f" , $numeric );
+		return ($output ) ? str_replace ( "," , "." , sprintf ( "%." . $pro . "f" , $numeric )) : sprintf ( "%." . $pro . "f" , $numeric );
 	}
 
 	/**
@@ -194,9 +194,9 @@ class Format
 	 * param2 $precision
 	 * return a rounded up number
 	 */
-	public static function round_up ( $value , $precision = 0 )
+	public static function round_up ($value , $precision = 0 )
 	{
-		if ( $precision == 0 )
+		if ($precision == 0 )
 		{
 			$precisionFactor = 1;
 		}
@@ -205,7 +205,7 @@ class Format
 			$precisionFactor = pow ( 10, $precision );
 		}
 
-		return ceil ( $value * $precisionFactor ) / $precisionFactor;
+		return ceil ($value * $precisionFactor ) / $precisionFactor;
 	}
 }
 

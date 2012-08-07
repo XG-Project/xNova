@@ -28,17 +28,17 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 
 	$parse	=	$lang;
 
-	if (!$Page)
+	if ( ! $Page)
 	{
 		$INI = 0;
-    	$Page = 1;
+		$Page = 1;
 	}
 	else
 		$INI = ($Page - 1) * $Limit;
 
 	$ArrayEx	=	explode(",", $SpecifyItems);
 
-	if (!$Order || !in_array($Order, $ArrayOSec))
+	if ( ! $Order || !in_array($Order, $ArrayOSec))
 		$Order	=	$ArrayEx[0];
 
 	$CountArray	=	count($ArrayEx);
@@ -133,9 +133,9 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 			$Search['LIST']	 .=	"<tr>";
 			if ($Table == "users"){
 				if ($_GET['search'] == "online")
-					$WhileResult[3]	=	Format::pretty_time( time() - $WhileResult[3] );
+					$WhileResult[3]	=	Format::pretty_time( time() - $WhileResult[3]);
 				else
-					$WhileResult[3]	=	date("d-m-Y H:i:s", $WhileResult[3] );
+					$WhileResult[3]	=	date("d-m-Y H:i:s", $WhileResult[3]);
 
 				$WhileResult[4]	=	date("d-m-Y H:i:s", $WhileResult[4]);
 
@@ -237,7 +237,7 @@ $SpecifyWhere	=	$parse['Key']	=	$_GET['key_user'];
 $Page 			= 	$_GET['Page'];
 $Order			=	$_GET['key_order'];
 $OrderBY		=	$_GET['key_acc'];
-((!$_GET['Limit']) ? $Limit	=	'25' : $Limit	=	$_GET['Limit']);
+(( ! $_GET['Limit']) ? $Limit	=	'25' : $Limit	=	$_GET['Limit']);
 
 
 // TABLA DE BÚSQUEDA
@@ -253,7 +253,7 @@ $parse['OPT_LIST']	.=	'<option value="online"'.(($SearchFile == "online") ? " se
 $parse['OPT_LIST']	.=	'<option value="p_connect"'.(($SearchFile == "p_connect") ? " selected": "").'>'.$lang['se_planets_act'].'</option>';
 
 // BÚSQUEDA POR ID O NOMBRE
-$parse['OPT_SEARCH']	 =	'<option value="name"'.(($SearchFor == "name") ? " selected": "").((!$SearchFor) ? " selected": "").'>'.$lang['se_input_name'].'</option>';
+$parse['OPT_SEARCH']	 =	'<option value="name"'.(($SearchFor == "name") ? " selected": "").(( ! $SearchFor) ? " selected": "").'>'.$lang['se_input_name'].'</option>';
 $parse['OPT_SEARCH']	.=	'<option value="id"'.(($SearchFor == "id") ? " selected": "").'>'.$lang['input_id'].'</option>';
 
 // TIPO DE FILTRO: BÚSQUEDA EXACTA, NORMAL, ETC
@@ -272,7 +272,7 @@ $parse['LIMIT']	 .=	'<option value="5"'.(($Limit == '5') ? " selected": "").'>5<
 $parse['LIMIT']	 .=	'<option value="10"'.(($Limit == '10') ? " selected": "").'>10</option>';
 $parse['LIMIT']	 .=	'<option value="15"'.(($Limit == '15') ? " selected": "").'>15</option>';
 $parse['LIMIT']	 .=	'<option value="20"'.(($Limit == '20') ? " selected": "").'>20</option>';
-$parse['LIMIT']	 .=	'<option value="25"'.(($Limit == '25') ? " selected": "").((!$Limit) ? " selected": "").'>25</option>';
+$parse['LIMIT']	 .=	'<option value="25"'.(($Limit == '25') ? " selected": "").(( ! $Limit) ? " selected": "").'>25</option>';
 $parse['LIMIT']	 .=	'<option value="50"'.(($Limit == '50') ? " selected": "").'>50</option>';
 $parse['LIMIT']	 .=	'<option value="100"'.(($Limit == '100') ? " selected": "").'>100</option>';
 $parse['LIMIT']	 .=	'<option value="200"'.(($Limit == '200') ? " selected": "").'>200</option>';
@@ -292,7 +292,7 @@ else
 if ($_GET['minimize'] == 'on')
 {
 	$Minimize				=	"&minimize=on";
-	$parse['minimize']		=	'checked = "checked"';
+	$parse['minimize']		=	'checked';
 	$parse['diisplaay']		=	"none";
 }
 

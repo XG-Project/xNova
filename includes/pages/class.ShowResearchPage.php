@@ -22,7 +22,7 @@ class ShowResearchPage
 				// FIX BY LUCKY - IF THE LAB IS IN QUEUE THE USER CANT RESEARCH ANYTHING...
 				$QueueArray		= explode (";", $CurrentQueue);
 
-				for($i = 0; $i < MAX_BUILDING_QUEUE_SIZE; $i++)
+				for ($i = 0; $i < MAX_BUILDING_QUEUE_SIZE; $i++)
 				{
 					$ListIDArray	= explode (",", $QueueArray[$i]);
 					$Element		= $ListIDArray[0];
@@ -88,20 +88,20 @@ class ShowResearchPage
 			$TheCommand 	= $_GET['cmd'];
 			$Techno     	= intval($_GET['tech']);
 
-			if ( isset ($Techno) )
+			if ( isset ($Techno))
 			{
-				if (!strstr ( $Techno, ",") && !strchr ( $Techno, " ") &&
-					!strchr ( $Techno, "+") && !strchr ( $Techno, "*") &&
-					!strchr ( $Techno, "~") && !strchr ( $Techno, "=") &&
-					!strchr ( $Techno, ";") && !strchr ( $Techno, "'") &&
-					!strchr ( $Techno, "#") && !strchr ( $Techno, "-") &&
-					!strchr ( $Techno, "_") && !strchr ( $Techno, "[") &&
-					!strchr ( $Techno, "]") && !strchr ( $Techno, ".") &&
-					!strchr ( $Techno, ":"))
+				if (!strstr ($Techno, ",") && !strchr ($Techno, " ") &&
+					!strchr ($Techno, "+") && !strchr ($Techno, "*") &&
+					!strchr ($Techno, "~") && !strchr ($Techno, "=") &&
+					!strchr ($Techno, ";") && !strchr ($Techno, "'") &&
+					!strchr ($Techno, "#") && !strchr ($Techno, "-") &&
+					!strchr ($Techno, "_") && !strchr ($Techno, "[") &&
+					!strchr ($Techno, "]") && !strchr ($Techno, ".") &&
+					!strchr ($Techno, ":"))
 				{
-					if ( in_array($Techno, $reslist['tech']) )
+					if ( in_array($Techno, $reslist['tech']))
 					{
-						if ( is_array ($ThePlanet) )
+						if ( is_array ($ThePlanet))
 						{
 							$WorkingPlanet = $ThePlanet;
 						}
@@ -110,7 +110,7 @@ class ShowResearchPage
 							$WorkingPlanet = $CurrentPlanet;
 						}
 
-						switch($TheCommand)
+						switch ($TheCommand)
 						{
 							case 'cancel':
 								if ($ThePlanet['b_tech_id'] == $Techno)
@@ -141,7 +141,7 @@ class ShowResearchPage
 								}
 								break;
 						}
-						if ($UpdateData == TRUE)
+						if ($UpdateData)
 						{
 							$QryUpdatePlanet  = "UPDATE {{table}} SET ";
 							$QryUpdatePlanet .= "`b_tech_id` = '".   $WorkingPlanet['b_tech_id']   ."', ";
@@ -151,13 +151,13 @@ class ShowResearchPage
 							$QryUpdatePlanet .= "`deuterium` = '".   $WorkingPlanet['deuterium']   ."' ";
 							$QryUpdatePlanet .= "WHERE ";
 							$QryUpdatePlanet .= "`id` = '".          $WorkingPlanet['id']          ."';";
-							doquery( $QryUpdatePlanet, 'planets');
+							doquery($QryUpdatePlanet, 'planets');
 
 							$QryUpdateUser  = "UPDATE {{table}} SET ";
 							$QryUpdateUser .= "`b_tech_planet` = '". $CurrentUser['b_tech_planet'] ."' ";
 							$QryUpdateUser .= "WHERE ";
 							$QryUpdateUser .= "`id` = '".            $CurrentUser['id']            ."';";
-							doquery( $QryUpdateUser, 'users');
+							doquery($QryUpdateUser, 'users');
 						}
 
 						$CurrentPlanet = $WorkingPlanet;
@@ -191,7 +191,7 @@ class ShowResearchPage
 		$TechRowTPL 	= gettemplate('buildings/buildings_research_row');
 		$TechScrTPL 	= gettemplate('buildings/buildings_research_script');
 
-		foreach($lang['tech'] as $Tech => $TechName)
+		foreach ($lang['tech'] as $Tech => $TechName)
 		{
 			if ($Tech > 105 && $Tech <= 199)
 			{
@@ -221,12 +221,12 @@ class ShowResearchPage
 					$RowParse['search_time'] = ShowBuildTime($SearchTime);
 					$CanBeDone               = IsElementBuyable($CurrentUser, $CurrentPlanet, $Tech);
 
-					if (!$InResearch)
+					if ( ! $InResearch)
 					{
 						$LevelToDo = 1 + $CurrentUser[$resource[$Tech]];
 						if ($CanBeDone)
 						{
-							if (!$this->CheckLabSettingsInQueue ( $CurrentPlanet ))
+							if ( ! $this->CheckLabSettingsInQueue ($CurrentPlanet ))
 							{
 								if ($LevelToDo == 1)
 									$TechnoLink  = "<font color=#FF0000>".$lang['bd_research']."</font>";

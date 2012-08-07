@@ -18,7 +18,7 @@ class ShowGalaxyPage extends GalaxyRows
 	{
 		global $resource, $lang;
 
-		$fleetmax      	= Fleets::get_max_fleets ( $CurrentUser['computer_tech'] , $CurrentUser['rpg_amiral'] );
+		$fleetmax      	= Fleets::get_max_fleets ($CurrentUser['computer_tech'] , $CurrentUser['rpg_amiral']);
 		$CurrentPlID   	= $CurrentPlanet['id'];
 		$CurrentMIP    	= $CurrentPlanet['interplanetary_misil'];
 		$CurrentRC     	= $CurrentPlanet['recycler'];
@@ -177,11 +177,11 @@ class ShowGalaxyPage extends GalaxyRows
 		// START FIX BY alivan
 		if ($mode != 2)
 		{
-			if ( ( $CurrentPlanet['system'] != ( $_POST["system"] - 1 ) ) && ( $CurrentPlanet['system'] != $_GET['system'] or $CurrentPlanet['galaxy'] != $_GET['galaxy'] ) && ( $mode != 0 ) && ( $CurrentPlanet['deuterium'] < 10 ) )
+			if (($CurrentPlanet['system'] != ($_POST["system"] - 1 )) && ($CurrentPlanet['system'] != $_GET['system'] or $CurrentPlanet['galaxy'] != $_GET['galaxy']) && ($mode != 0 ) && ($CurrentPlanet['deuterium'] < 10 ))
 			{
 				die (message($lang['gl_no_deuterium_to_view_galaxy'], "game.php?page=galaxy&mode=0", 2));
 			}
-			elseif ( ( $CurrentPlanet['system'] != ( $_POST["system"] - 1 ) ) && ( $CurrentPlanet['system'] != $_GET['system'] or $CurrentPlanet['galaxy'] != $_GET['galaxy'] ) && ( $mode != 0 ) )
+			elseif (($CurrentPlanet['system'] != ($_POST["system"] - 1 )) && ($CurrentPlanet['system'] != $_GET['system'] or $CurrentPlanet['galaxy'] != $_GET['galaxy']) && ($mode != 0 ))
 			{
 				$QryGalaxyDeuterium   = "UPDATE {{table}} SET ";
 				$QryGalaxyDeuterium  .= "`deuterium` = `deuterium` -  10 ";
@@ -244,7 +244,7 @@ class ShowGalaxyPage extends GalaxyRows
 			{
 				$parcialCount++;
 
-				if ( $GalaxyInfo['galaxy'] == $Galaxy && $GalaxyInfo['system'] == $System && $GalaxyInfo['planet'] == $Planet )
+				if ($GalaxyInfo['galaxy'] == $Galaxy && $GalaxyInfo['system'] == $System && $GalaxyInfo['planet'] == $Planet )
 				{
 					if ($GalaxyInfo["id_planet"] != 0)
 					{
@@ -264,13 +264,25 @@ class ShowGalaxyPage extends GalaxyRows
 					}
 
 					$parse['pos']  	   		= $Planet;
-					$parse['planet'] 		= $this->GalaxyRowPlanet     ( $GalaxyInfo, $Galaxy, $System, $Planet, 1, $HavePhalanx, $CurrentGalaxy, $CurrentSystem);
-					$parse['planetname'] 	= $this->GalaxyRowPlanetName ( $GalaxyInfo, $Galaxy, $System, $Planet, 1, $HavePhalanx, $CurrentGalaxy, $CurrentSystem);
-					$parse['moon'] 			= $this->GalaxyRowMoon       ( $GalaxyInfo, $Galaxy, $System, $Planet, 3 );
-					$parse['debris'] 		= $this->GalaxyRowDebris     ( $GalaxyInfo, $Galaxy, $System, $Planet, 2, $CurrentRC);
-					$parse['username'] 		= $this->GalaxyRowUser       ( $GalaxyInfo, $Galaxy, $System, $Planet );
-					$parse['alliance'] 		= $this->GalaxyRowAlly       ( $GalaxyInfo, $Galaxy, $System, $Planet );
-					$parse['actions'] 		= $this->GalaxyRowActions    ( $GalaxyInfo, $Galaxy, $System, $Planet, $CurrentGalaxy, $CurrentSystem, $CurrentMIP);
+					$parse['planetname']	= $this->GalaxyRowPlanetName ($GalaxyInfo, $Galaxy, $System, $Planet, 1, $HavePhalanx, $CurrentGalaxy, $CurrentSystem);
+					$parse['debris']		= $this->GalaxyRowDebris     ($GalaxyInfo, $Galaxy, $System, $Planet, 2, $CurrentRC);
+
+					if ($GalaxyInfo['destruyed'] == 0 )
+					{
+						$parse['planet']	= $this->GalaxyRowPlanet     ($GalaxyInfo, $Galaxy, $System, $Planet, 1, $HavePhalanx, $CurrentGalaxy, $CurrentSystem);
+						$parse['moon']      = $this->GalaxyRowMoon       ($GalaxyInfo, $Galaxy, $System, $Planet, 3 );
+						$parse['username']  = $this->GalaxyRowUser       ($GalaxyInfo, $Galaxy, $System, $Planet );
+						$parse['alliance']  = $this->GalaxyRowAlly       ($GalaxyInfo, $Galaxy, $System, $Planet );
+						$parse['actions']   = $this->GalaxyRowActions    ($GalaxyInfo, $Galaxy, $System, $Planet, $CurrentGalaxy, $CurrentSystem, $CurrentMIP);
+					}
+					else
+					{
+						$parse['planet']	= '';
+						$parse['moon']      = '';
+						$parse['username']  = '';
+						$parse['alliance']  = '';
+						$parse['actions']   = '';
+					}
 
 					$rows	.= parsetemplate($template, $parse);
 
@@ -294,7 +306,7 @@ class ShowGalaxyPage extends GalaxyRows
 			}
 		}
 
-		for ( $i = $start; $i <= MAX_PLANET_IN_SYSTEM; $i++ )
+		for ($i = $start; $i <= MAX_PLANET_IN_SYSTEM; $i++ )
 		{
 			$parse['pos']			= $i;
 			$parse['planet'] 		= '';

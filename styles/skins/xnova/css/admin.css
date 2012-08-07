@@ -45,8 +45,8 @@ section.debug div.query:last-of-type section:first-of-type{border-radius:0px 0px
 section.debug div.query:last-of-type section:last-of-type{border-radius:0px 0px 0.75em 0px;}
 .content-table.table.thin{width:auto;}.content-table.table.thin.divided .row div.content{width:100%;}
 figure{margin:0.5em;display:inline-block;}
-.true{width:16px;height:16px;background:0 0 url('./../img/spirites.png');}
-.false{width:16px;height:16px;background:0 -16px url('./../img/spirites.png');}
+.TRUE{width:16px;height:16px;background:0 0 url('./../img/spirites.png');}
+.FALSE{width:16px;height:16px;background:0 -16px url('./../img/spirites.png');}
 .arrow{width:11px;height:7px;background:-50px -37px url('./../img/spirites.png');}
 .r2{width:15px;height:15px;background:-16px -15px url('./../img/spirites.png');}
 .r3{width:15px;height:16px;background:-73px -32px url('./../img/spirites.png');}

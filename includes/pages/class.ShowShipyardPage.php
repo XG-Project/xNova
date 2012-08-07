@@ -14,24 +14,24 @@ class ShowShipyardPage
 {
 	//optimized by alivan & jstar
 	private function GetMaxConstructibleElements ($Element, $Ressources)
-    {
-        global $pricelist;
+	{
+		global $pricelist;
 
-        $Buildable=array();
-        if ($pricelist[$Element]['metal'] != 0)
-            $Buildable['metal']     = floor($Ressources["metal"] / $pricelist[$Element]['metal']);
+		$Buildable=array();
+		if ($pricelist[$Element]['metal'] != 0)
+			$Buildable['metal']     = floor($Ressources["metal"] / $pricelist[$Element]['metal']);
 
-        if ($pricelist[$Element]['crystal'] != 0)
-            $Buildable['crystal']   = floor($Ressources["crystal"] / $pricelist[$Element]['crystal']);
+		if ($pricelist[$Element]['crystal'] != 0)
+			$Buildable['crystal']   = floor($Ressources["crystal"] / $pricelist[$Element]['crystal']);
 
-        if ($pricelist[$Element]['deuterium'] != 0)
-            $Buildable['deuterium'] = floor($Ressources["deuterium"] / $pricelist[$Element]['deuterium']);
+		if ($pricelist[$Element]['deuterium'] != 0)
+			$Buildable['deuterium'] = floor($Ressources["deuterium"] / $pricelist[$Element]['deuterium']);
 
-        if ($pricelist[$Element]['energy'] != 0)
-            $Buildable['energy']    = floor($Ressources["energy_max"] / $pricelist[$Element]['energy']);
+		if ($pricelist[$Element]['energy'] != 0)
+			$Buildable['energy']    = floor($Ressources["energy_max"] / $pricelist[$Element]['energy']);
 
-        return max(min($Buildable),0);
-    }
+		return max(min($Buildable),0);
+	}
 
 	private function GetElementRessources($Element, $Count)
 	{
@@ -44,7 +44,7 @@ class ShowShipyardPage
 		return $ResType;
 	}
 
-	private function ElementBuildListBox ( $CurrentUser, $CurrentPlanet )
+	private function ElementBuildListBox ($CurrentUser, $CurrentPlanet )
 	{
 		global $lang, $pricelist;
 
@@ -53,15 +53,15 @@ class ShowShipyardPage
 		$NamePerType  = "";
 		$TimePerType  = "";
 
-		foreach($ElementQueue as $ElementLine => $Element)
+		foreach ($ElementQueue as $ElementLine => $Element)
 		{
 			if ($Element != '')
 			{
 				$Element 		= explode(',', $Element);
-				$ElementTime  	= GetBuildingTime( $CurrentUser, $CurrentPlanet, $Element[0] );
+				$ElementTime  	= GetBuildingTime($CurrentUser, $CurrentPlanet, $Element[0]);
 				$QueueTime   	+= $ElementTime * $Element[1];
 				$TimePerType 	.= "".$ElementTime.",";
-				$NamePerType 	.= "'". html_entity_decode ( $lang['tech'][$Element[0]], ENT_COMPAT , "utf-8" ) ."',";
+				$NamePerType 	.= "'". html_entity_decode ($lang['tech'][$Element[0]], ENT_COMPAT , "utf-8" ) ."',";
 				$NbrePerType 	.= "".$Element[1].",";
 			}
 		}
@@ -90,7 +90,7 @@ class ShowShipyardPage
 		{
 			$AddedInQueue = FALSE;
 
-			foreach($_POST['fmenge'] as $Element => $Count)
+			foreach ($_POST['fmenge'] as $Element => $Count)
 			{
 				if ($Element < 200 OR $Element > 300)
 				{
@@ -107,14 +107,14 @@ class ShowShipyardPage
 
 				if ($Count != 0)
 				{
-					if ( IsTechnologieAccessible ($CurrentUser, $CurrentPlanet, $Element) )
+					if ( IsTechnologieAccessible ($CurrentUser, $CurrentPlanet, $Element))
 					{
-						$MaxElements   = $this->GetMaxConstructibleElements ( $Element, $CurrentPlanet );
+						$MaxElements   = $this->GetMaxConstructibleElements ($Element, $CurrentPlanet );
 
 						if ($Count > $MaxElements)
 							$Count = $MaxElements;
 
-						$Ressource = $this->GetElementRessources ( $Element, $Count );
+						$Ressource = $this->GetElementRessources ($Element, $Count );
 
 						if ($Count >= 1)
 						{
@@ -144,12 +144,12 @@ class ShowShipyardPage
 				// FIX BY LUCKY - IF THE SHIPYARD IS IN QUEUE THE USER CANT RESEARCH ANYTHING...
 				$QueueArray		= explode (";", $CurrentQueue);
 
-				for($i = 0; $i < MAX_BUILDING_QUEUE_SIZE; $i++)
+				for ($i = 0; $i < MAX_BUILDING_QUEUE_SIZE; $i++)
 				{
 					$ListIDArray	= explode (",", $QueueArray[$i]);
 					$Element		= $ListIDArray[0];
 
-					if ( ($Element == 21 ) or ( $Element == 14 ) or ( $Element == 15 ) )
+					if (($Element == 21 ) or ($Element == 14 ) or ($Element == 15 ))
 					{
 						break;
 					}
@@ -161,7 +161,7 @@ class ShowShipyardPage
 				$CurrentBuilding = $CurrentQueue;
 			}
 
-			if ( ( ( $CurrentBuilding == 21 ) or ( $CurrentBuilding == 14 ) or ( $CurrentBuilding == 15 ) ) or  (($Element == 21 ) or ( $Element == 14 ) or ( $Element == 15 )) ) // ADDED (or $Element == 21) BY LUCKY
+			if (( ($CurrentBuilding == 21 ) or ($CurrentBuilding == 14 ) or ($CurrentBuilding == 15 )) or  (($Element == 21 ) or ($Element == 14 ) or ($Element == 15 ))) // ADDED (or $Element == 21) BY LUCKY
 			{
 				$parse[message] = "<font color=\"red\">".$lang['bd_building_shipyard']."</font>";
 				$NotBuilding = FALSE;
@@ -169,7 +169,7 @@ class ShowShipyardPage
 		}
 
 		$TabIndex = 0;
-		foreach($lang['tech'] as $Element => $ElementName)
+		foreach ($lang['tech'] as $Element => $ElementName)
 		{
 			if ($Element > 201 && $Element <= 399)
 			{
@@ -206,7 +206,7 @@ class ShowShipyardPage
 		}
 
 		if ($CurrentPlanet['b_hangar_id'] != '')
-			$BuildQueue .= $this->ElementBuildListBox( $CurrentUser, $CurrentPlanet );
+			$BuildQueue .= $this->ElementBuildListBox($CurrentUser, $CurrentPlanet );
 
 		$parse['buildlist']    	= $PageTable;
 		$parse['buildinglist'] 	= $BuildQueue;
@@ -233,7 +233,7 @@ class ShowShipyardPage
 
 			for ($QElement = 0; $QElement < count($BuildArray); $QElement++)
 			{
-				$ElmentArray = explode (",", $BuildArray[$QElement] );
+				$ElmentArray = explode (",", $BuildArray[$QElement]);
 				if ($ElmentArray[0] == 502)
 				{
 					$Missiles[502] += $ElmentArray[1];
@@ -244,7 +244,7 @@ class ShowShipyardPage
 				}
 			}
 
-			foreach($_POST['fmenge'] as $Element => $Count)
+			foreach ($_POST['fmenge'] as $Element => $Count)
 			{
 				if ($Element < 300 OR $Element > 550)
 				{
@@ -261,31 +261,31 @@ class ShowShipyardPage
 
 				if ($Count != 0)
 				{
-					$InQueue = strpos ( $CurrentPlanet['b_hangar_id'], $Element.",");
+					$InQueue = strpos ($CurrentPlanet['b_hangar_id'], $Element.",");
 					$IsBuildp = ($CurrentPlanet[$resource[407]] >= 1) ? TRUE : FALSE;
 					$IsBuildg = ($CurrentPlanet[$resource[408]] >= 1) ? TRUE : FALSE;
 
-					if ( $Element == 407 && !$IsBuildp && $InQueue === FALSE )
+					if ($Element == 407 && !$IsBuildp && $InQueue === FALSE )
 					{
 						$Count = 1;
 					}
 
-					if ( $Element == 408 && !$IsBuildg && $InQueue === FALSE )
+					if ($Element == 408 && !$IsBuildg && $InQueue === FALSE )
 					{
 						$Count = 1;
 					}
 
 					if (IsTechnologieAccessible($CurrentUser, $CurrentPlanet, $Element))
 					{
-						$MaxElements = $this->GetMaxConstructibleElements ( $Element, $CurrentPlanet );
+						$MaxElements = $this->GetMaxConstructibleElements ($Element, $CurrentPlanet );
 
 						if ($Element == 502 || $Element == 503)
 						{
-							$ActuMissiles  = $Missiles[502] + ( 2 * $Missiles[503] );
+							$ActuMissiles  = $Missiles[502] + ( 2 * $Missiles[503]);
 							$MissilesSpace = $MaxMissiles - $ActuMissiles;
 							if ($Element == 502)
 							{
-								if ( $Count > $MissilesSpace )
+								if ($Count > $MissilesSpace )
 								{
 									$Count = $MissilesSpace;
 								}
@@ -293,9 +293,9 @@ class ShowShipyardPage
 							}
 							else
 							{
-								if ( $Count > floor( $MissilesSpace / 2 ) )
+								if ($Count > floor($MissilesSpace / 2 ))
 								{
-									$Count = floor( $MissilesSpace / 2 );
+									$Count = floor($MissilesSpace / 2 );
 								}
 							}
 
@@ -316,7 +316,7 @@ class ShowShipyardPage
 
 						}
 
-						$Ressource = $this->GetElementRessources ( $Element, $Count );
+						$Ressource = $this->GetElementRessources ($Element, $Count );
 
 						if ($Count >= 1)
 						{
@@ -346,12 +346,12 @@ class ShowShipyardPage
 				// FIX BY LUCKY - IF THE SHIPYARD IS IN QUEUE THE USER CANT RESEARCH ANYTHING...
 				$QueueArray		= explode (";", $CurrentQueue);
 
-				for($i = 0; $i < MAX_BUILDING_QUEUE_SIZE; $i++)
+				for ($i = 0; $i < MAX_BUILDING_QUEUE_SIZE; $i++)
 				{
 					$ListIDArray	= explode (",", $QueueArray[$i]);
 					$Element		= $ListIDArray[0];
 
-					if ( ($Element == 21 ) or ( $Element == 14 ) or ( $Element == 15 ) )
+					if (($Element == 21 ) or ($Element == 14 ) or ($Element == 15 ))
 					{
 						break;
 					}
@@ -363,7 +363,7 @@ class ShowShipyardPage
 				$CurrentBuilding = $CurrentQueue;
 			}
 
-			if ( ( ( $CurrentBuilding == 21 ) or ( $CurrentBuilding == 14 ) or ( $CurrentBuilding == 15 ) ) or  (($Element == 21 ) or ( $Element == 14 ) or ( $Element == 15 )) ) // ADDED (or $Element == 21) BY LUCKY
+			if (( ($CurrentBuilding == 21 ) or ($CurrentBuilding == 14 ) or ($CurrentBuilding == 15 )) or  (($Element == 21 ) or ($Element == 14 ) or ($Element == 15 ))) // ADDED (or $Element == 21) BY LUCKY
 			{
 				$parse[message] = "<font color=\"red\">".$lang['bd_building_shipyard']."</font>";
 				$NotBuilding = FALSE;
@@ -374,7 +374,7 @@ class ShowShipyardPage
 
 		$TabIndex  = 0;
 		$PageTable = "";
-		foreach($lang['tech'] as $Element => $ElementName)
+		foreach ($lang['tech'] as $Element => $ElementName)
 		{
 			if ($Element > 400 && $Element <= 599)
 			{
@@ -396,7 +396,7 @@ class ShowShipyardPage
 
 					if ($CanBuildOne)
 					{
-						$InQueue = strpos ( $CurrentPlanet['b_hangar_id'], $Element.",");
+						$InQueue = strpos ($CurrentPlanet['b_hangar_id'], $Element.",");
 						$IsBuildp = ($CurrentPlanet[$resource[407]] >= 1) ? TRUE : FALSE;
 						$IsBuildg = ($CurrentPlanet[$resource[408]] >= 1) ? TRUE : FALSE;
 						$BuildIt = TRUE;
@@ -405,15 +405,15 @@ class ShowShipyardPage
 						{
 							$BuildIt = FALSE;
 
-							if ( $Element == 407 && !$IsBuildp && $InQueue === FALSE )
+							if ($Element == 407 && !$IsBuildp && $InQueue === FALSE )
 								$BuildIt = TRUE;
 
-							if ( $Element == 408 && !$IsBuildg && $InQueue === FALSE )
+							if ($Element == 408 && !$IsBuildg && $InQueue === FALSE )
 								$BuildIt = TRUE;
 
 						}
 
-						if (!$BuildIt)
+						if ( ! $BuildIt)
 						{
 							$parse['add_element'] = "<font color=\"red\">".$lang['bd_protection_shield_only_one']."</font>";
 						}
@@ -435,7 +435,7 @@ class ShowShipyardPage
 		}
 
 		if ($CurrentPlanet['b_hangar_id'] != '')
-			$BuildQueue .= $this->ElementBuildListBox( $CurrentUser, $CurrentPlanet );
+			$BuildQueue .= $this->ElementBuildListBox($CurrentUser, $CurrentPlanet );
 
 		$parse['buildlist']    	= $PageTable;
 		$parse['buildinglist'] 	= $BuildQueue;

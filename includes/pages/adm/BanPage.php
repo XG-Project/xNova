@@ -77,7 +77,7 @@ if ($_GET['panel'])
 	$QueryUserBan			=	doquery("SELECT * FROM {{table}} WHERE `who` = '".$_GET['ban_name']."'", "banned", TRUE);
 	$QueryUserBanVacation	=	doquery("SELECT urlaubs_modus FROM {{table}} WHERE `username` = '".$_GET['ban_name']."'", "users", TRUE);
 
-	if (!$QueryUserBan)
+	if ( ! $QueryUserBan)
 	{
 		$parse['title']			=	$lang['bo_bbb_title_1'];
 		$parse['changedate']	=	$lang['bo_bbb_title_2'];
@@ -145,7 +145,7 @@ if ($_GET['panel'])
 			$QryInsertBan     .= "`author` = '". $admin ."', ";
 			$QryInsertBan     .= "`email` = '". $mail ."' ";
 			$QryInsertBan     .= "WHERE `who2` = '".$name."';";
-			doquery( $QryInsertBan, 'banned');
+			doquery($QryInsertBan, 'banned');
 		}
 		else
 		{
@@ -157,7 +157,7 @@ if ($_GET['panel'])
 			$QryInsertBan     .= "`longer` = '". $BannedUntil ."', ";
 			$QryInsertBan     .= "`author` = '". $admin ."', ";
 			$QryInsertBan     .= "`email` = '". $mail ."';";
-			doquery( $QryInsertBan, 'banned');
+			doquery($QryInsertBan, 'banned');
 		}
 
 		$QryUpdateUser     = "UPDATE {{table}} SET ";
@@ -177,7 +177,7 @@ if ($_GET['panel'])
 
 		$QryUpdateUser    .= "WHERE ";
 		$QryUpdateUser    .= "`username` = '". $name ."';";
-		doquery( $QryUpdateUser, 'users');
+		doquery($QryUpdateUser, 'users');
 
 		$PunishThePlanets     = "UPDATE {{table}} SET ";
 		$PunishThePlanets    .= "`metal_mine_porcent` = '0', ";
@@ -185,7 +185,7 @@ if ($_GET['panel'])
 		$PunishThePlanets    .= "`deuterium_sintetizer_porcent` = '0'";
 		$PunishThePlanets    .= "WHERE ";
 		$PunishThePlanets    .= "`id_owner` = '". $GetUserData['id'] ."';";
-		doquery( $PunishThePlanets, 'planets');
+		doquery($PunishThePlanets, 'planets');
 
 
 

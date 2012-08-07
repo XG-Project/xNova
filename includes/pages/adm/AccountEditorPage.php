@@ -19,7 +19,7 @@ if ($EditUsers != 1) die(message ($lang['404_page']));
 
 $parse = $lang;
 
-switch($_GET[page])
+switch ($_GET[page])
 {
 	case'resources':
 
@@ -30,7 +30,7 @@ switch($_GET[page])
 		$deut       = $_POST['deut'];
 		$dark		= $_POST['dark'];
 
-		if ($_POST){
+		if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 		if (is_numeric($id) && is_numeric($metal) && is_numeric($cristal) && is_numeric($deut) && is_numeric($dark) && is_numeric($id_dark))
 		{
 			if ($_POST['add'])
@@ -41,7 +41,7 @@ switch($_GET[page])
 				$QryUpdatePlanet .= "`deuterium` = `deuterium` + '". $deut ."' ";
 				$QryUpdatePlanet .= "WHERE ";
 				$QryUpdatePlanet .= "`id` = '". $id ."' ";
-				doquery( $QryUpdatePlanet, "planets");
+				doquery($QryUpdatePlanet, "planets");
 
 
 				if ($id_dark != NULL)
@@ -50,7 +50,7 @@ switch($_GET[page])
 					$QryUpdateUser .= "`darkmatter` = `darkmatter` + '". $dark ."' ";
 					$QryUpdateUser .= "WHERE ";
 					$QryUpdateUser .= "`id` = '". $id_dark ."' ";
-					doquery( $QryUpdateUser, "users");
+					doquery($QryUpdateUser, "users");
 				}
 				$Name	=	$lang['log_moree'];
 				$parse['display']	=	'<tr><th colspan="2"><font color=lime>'.$lang['ad_add_sucess'].'</font></th></tr>';
@@ -63,7 +63,7 @@ switch($_GET[page])
 				$QryUpdatePlanet .= "`deuterium` = `deuterium` - '". $deut ."' ";
 				$QryUpdatePlanet .= "WHERE ";
 				$QryUpdatePlanet .= "`id` = '". $id ."' ";
-				doquery( $QryUpdatePlanet, "planets");
+				doquery($QryUpdatePlanet, "planets");
 
 
 				if ($id_dark != NULL)
@@ -72,7 +72,7 @@ switch($_GET[page])
 					$QryUpdateUser .= "`darkmatter` = `darkmatter` - '". $dark ."' ";
 					$QryUpdateUser .= "WHERE ";
 					$QryUpdateUser .= "`id` = '". $id_dark ."' ";
-					doquery( $QryUpdateUser, "users");
+					doquery($QryUpdateUser, "users");
 				}
 				$Name	=	$lang['log_nomoree'];
 				$parse['display']	=	'<tr><th colspan="2"><font color=lime>'.$lang['ad_delete_sucess'].'</font></th></tr>';
@@ -102,7 +102,7 @@ switch($_GET[page])
 	break;
 
 	case'ships':
-		if ($_POST)
+		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
 			$id          		= $_POST['id'];
 			$light_hunter       = $_POST['light_hunter'];
@@ -145,7 +145,7 @@ switch($_GET[page])
 					$QryUpdatePlanet .= "`light_hunter` = `light_hunter` + '". $light_hunter ."' ";
 					$QryUpdatePlanet .= "WHERE ";
 					$QryUpdatePlanet .= "`id` = '". $id ."' ";
-					doquery( $QryUpdatePlanet, "planets");
+					doquery($QryUpdatePlanet, "planets");
 
 					$Name	=	$lang['log_moree'];
 					$parse['display']	=	'<tr><th colspan="3"><font color=lime>'.$lang['ad_add_sucess_ships'].'</font></th></tr>';
@@ -169,7 +169,7 @@ switch($_GET[page])
 					$QryUpdatePlanet .= "`light_hunter` = `light_hunter` - '". $light_hunter ."' ";
 					$QryUpdatePlanet .= "WHERE ";
 					$QryUpdatePlanet .= "`id` = '". $id ."' ";
-					doquery( $QryUpdatePlanet, "planets");
+					doquery($QryUpdatePlanet, "planets");
 
 					$Name	=	$lang['log_nomoree'];
 					$parse['display']	=	'<tr><th colspan="3"><font color=lime>'.$lang['ad_delete_sucess_ships'].'</font></th></tr>';
@@ -207,7 +207,7 @@ switch($_GET[page])
 	break;
 
 	case'defenses':
-		if ($_POST)
+		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
 			$id          				= $_POST['id'];
 			$misil_launcher       		= $_POST['misil_launcher'];
@@ -240,7 +240,7 @@ switch($_GET[page])
 					$QryUpdatePlanet .= "`interplanetary_misil` = `interplanetary_misil` + '". $interplanetary_misil ."' ";
 					$QryUpdatePlanet .= "WHERE ";
 					$QryUpdatePlanet .= "`id` = '". $id ."' ";
-					doquery( $QryUpdatePlanet, "planets");
+					doquery($QryUpdatePlanet, "planets");
 
 					$Name	=	$lang['log_moree'];
 					$parse['display']	=	'<tr><th colspan="3"><font color=lime>'.$lang['ad_add_defenses_succes'].'</font></th></tr>';
@@ -260,7 +260,7 @@ switch($_GET[page])
 					$QryUpdatePlanet .= "`interplanetary_misil` = `interplanetary_misil` - '". $interplanetary_misil ."' ";
 					$QryUpdatePlanet .= "WHERE ";
 					$QryUpdatePlanet .= "`id` = '". $id ."' ";
-					doquery( $QryUpdatePlanet, "planets");
+					doquery($QryUpdatePlanet, "planets");
 
 					$Name	=	$lang['log_nomoree'];
 					$parse['display']	=	'<tr><th colspan="3"><font color=lime>'.$lang['ad_delete_defenses_succes'].'</font></th></tr>';
@@ -294,7 +294,7 @@ switch($_GET[page])
 	break;
 
 	case'buildings':
-		if ($_POST)
+		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
 			$id          			= $_POST['id'];
 			$metal_mine       		= $_POST['metal_mine'];
@@ -344,7 +344,7 @@ switch($_GET[page])
 					$QryUpdatePlanet .= "`silo` = `silo` + '". $silo ."' ";
 					$QryUpdatePlanet .= "WHERE ";
 					$QryUpdatePlanet .= "`id` = '". $id ."' ";
-					doquery( $QryUpdatePlanet, "planets");
+					doquery($QryUpdatePlanet, "planets");
 
 					if ($mondbasis or $phalanx or $sprungtor)
 					{
@@ -356,7 +356,7 @@ switch($_GET[page])
 							$QryUpdatePlanet .= "`sprungtor` = `sprungtor` + '". $sprungtor ."' ";
 							$QryUpdatePlanet .= "WHERE ";
 							$QryUpdatePlanet .= "`id` = '". $id ."' ";
-							doquery( $QryUpdatePlanet, "planets");
+							doquery($QryUpdatePlanet, "planets");
 
 							if ($mondbasis > 0)
 							{
@@ -398,7 +398,7 @@ switch($_GET[page])
 					$QryUpdatePlanet .= "`silo` = `silo` - '". $silo ."' ";
 					$QryUpdatePlanet .= "WHERE ";
 					$QryUpdatePlanet .= "`id` = '". $id ."' ";
-					doquery( $QryUpdatePlanet, "planets");
+					doquery($QryUpdatePlanet, "planets");
 
 
 					if ($mondbasis or $phalanx or $sprungtor)
@@ -413,7 +413,7 @@ switch($_GET[page])
 							$QryUpdatePlanet .= "`sprungtor` = `sprungtor` - '". $sprungtor ."' ";
 							$QryUpdatePlanet .= "WHERE ";
 							$QryUpdatePlanet .= "`id` = '". $id ."' ";
-							doquery( $QryUpdatePlanet, "planets");
+							doquery($QryUpdatePlanet, "planets");
 
 							if ($mondbasis > 0)
 							{
@@ -473,7 +473,7 @@ switch($_GET[page])
 	break;
 
 	case'researchs':
-		if ($_POST)
+		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
 			$id          			= $_POST['id'];
 			$spy_tech       		= $_POST['spy_tech'];
@@ -520,7 +520,7 @@ switch($_GET[page])
 					$QryUpdatePlanet .= "`graviton_tech` = `graviton_tech` + '". $graviton_tech ."' ";
 					$QryUpdatePlanet .= "WHERE ";
 					$QryUpdatePlanet .= "`id` = '". $id ."' ";
-					doquery( $QryUpdatePlanet, "users");
+					doquery($QryUpdatePlanet, "users");
 
 					$Name	=	$lang['log_moree'];
 					$parse['display']	=	'<tr><th colspan="3"><font color=lime>'.$lang['ad_add_succes'].'</font></th></tr>';
@@ -546,7 +546,7 @@ switch($_GET[page])
 					$QryUpdatePlanet .= "`graviton_tech` = `graviton_tech` - '". $graviton_tech ."' ";
 					$QryUpdatePlanet .= "WHERE ";
 					$QryUpdatePlanet .= "`id` = '". $id ."' ";
-					doquery( $QryUpdatePlanet, "users");
+					doquery($QryUpdatePlanet, "users");
 
 					$Name	=	$lang['log_nomoree'];
 					$parse['display']	=	'<tr><th colspan="3"><font color=lime>'.$lang['ad_delete_succes'].'</font></th></tr>';
@@ -589,12 +589,12 @@ switch($_GET[page])
 		$parse['yes']    =    $lang['one_is_yes'][1];
 		$parse['no']    =    $lang['one_is_yes'][0];
 		if ($user['authlevel'] != 3) $parse['Block']    =    "disabled='disabled'";
-		if ($_POST)
+		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
 			if ($user['authlevel'] != 3 && $_POST['username'] != NULL && $_POST['password'] != NULL && $_POST['email_2'] != NULL &&
 				$_POST['email'] != NULL ) die();
 
-			if (!$_POST['id'])
+			if ( ! $_POST['id'])
 			{
 				$parse['display']    =    '<tr><th colspan="3"><font color=red>'.$lang['ad_forgiven_id'].'</font></th></tr>';
 			}
@@ -659,7 +659,7 @@ switch($_GET[page])
 	break;
 
 	case'officiers':
-		if ($_POST)
+		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
 			$id          		= $_POST['id'];
 			$rpg_geologue       = $_POST['rpg_geologue'];
@@ -679,7 +679,7 @@ switch($_GET[page])
 					$QryUpdatePlanet .= "`rpg_technocrate` = `rpg_technocrate` + '". $rpg_technocrate ."' ";
 					$QryUpdatePlanet .= "WHERE ";
 					$QryUpdatePlanet .= "`id` = '". $id ."' ";
-					doquery( $QryUpdatePlanet, "users");
+					doquery($QryUpdatePlanet, "users");
 
 					$Name	=	$lang['log_moree'];
 					$parse['display']	=	'<tr><th colspan="3"><font color=lime>'.$lang['ad_offi_succes_add'].'</font></th></tr>';
@@ -693,7 +693,7 @@ switch($_GET[page])
 					$QryUpdatePlanet .= "`rpg_technocrate` = `rpg_technocrate` - '". $rpg_technocrate ."' ";
 					$QryUpdatePlanet .= "WHERE ";
 					$QryUpdatePlanet .= "`id` = '". $id ."' ";
-					doquery( $QryUpdatePlanet, "users");
+					doquery($QryUpdatePlanet, "users");
 
 					$Name	=	$lang['log_nomoree'];
 					$parse['display']	=	'<tr><th colspan="3"><font color=lime>'.$lang['ad_offi_succes_delete'].'</font></th></tr>';
@@ -721,7 +721,7 @@ switch($_GET[page])
 	break;
 
 	case 'planets':
-		if ($_POST)
+		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
 			$id				=	$_POST['id'];
 			$name			=	$_POST['name'];
@@ -806,7 +806,7 @@ switch($_GET[page])
 
 							if ($P['planet_type'] == '1')
 							{
-								if (!$Queryyy)
+								if ( ! $Queryyy)
 								{
 									if ($Queryyy['id_luna'] != '0')
 									{
@@ -905,7 +905,7 @@ switch($_GET[page])
 	break;
 
 	case 'alliances':
-		if ($_POST)
+		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
 			$id				=	$_POST['id'];
 			$name			=	$_POST['name'];
@@ -941,7 +941,7 @@ switch($_GET[page])
 						doquery("UPDATE {{table}} SET `ally_owner` = '".$changeleader."' WHERE `id` = '".$id."'", "alliance");
 						doquery("UPDATE {{table}} SET `ally_rank_id` = '0' WHERE `id` = '".$changeleader."'", "users");
 						$Log	.=	$lang['log_idnewleader'].": ".$changeleader."\n";}
-					elseif (!$QueryF2 && $changeleader != NULL){
+					elseif ( ! $QueryF2 && $changeleader != NULL){
 						$Error	.=	'<tr><th colspan="3"><font color=red>'.$lang['ad_ally_not_exist3'].'</font></th></tr>';
 						$i++;}
 
@@ -971,7 +971,7 @@ switch($_GET[page])
 						doquery("UPDATE {{table}} SET `ally_id` = '0', `ally_name` = '', `ally_request` = '0', `ally_rank_id` = '0', `ally_register_time` = '0',
 							`ally_request` = '0' WHERE `id` = '".$delete_u."' AND `ally_id` = '".$id."'", "users");
 						$Log	.=	$lang['log_id_user_expu'].": ".$delete_u."\n";}
-					elseif (!$QueryF3 && $delete_u != NULL){
+					elseif ( ! $QueryF3 && $delete_u != NULL){
 						$Error	.=	'<tr><th colspan="3"><font color=red>'.$lang['ad_ally_not_exist2'].'</font></th></tr>';
 						$i++;}
 

@@ -19,7 +19,7 @@
 <th><input type="text" name="bot_time" maxlength="5" style="text-align: center;"></th></tr>
 <tr><th colspan="2"><input type="submit" value="{new_add_user}"></th></tr>
 <tr>
-   <th colspan="2" style="text-align:left;"><a href="MakerPage.php">{new_creator_go_back}</a>&nbsp;<a href="MakerPage.php?page=new_user">{new_creator_refresh}</a></th>
+<th colspan="2" style="text-align:left;"><a href="MakerPage.php">{new_creator_go_back}</a>&nbsp;<a href="MakerPage.php?page=new_user">{new_creator_refresh}</a></th>
 </tr>
 </table>
 </form>

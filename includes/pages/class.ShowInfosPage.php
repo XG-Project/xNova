@@ -48,36 +48,36 @@ class ShowInfosPage
 	{
 		global $resource, $lang;
 
-		if ($_POST)
+		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
 			$RestString   = $this->GetNextJumpWaitTime ($CurrentPlanet);
 			$NextJumpTime = $RestString['value'];
 			$JumpTime     = time();
 
-			if ( $NextJumpTime == 0 )
+			if ($NextJumpTime == 0 )
 			{
 				$TargetPlanet = $_POST['jmpto'];
-				$TargetGate   = doquery ( "SELECT `id`, `sprungtor`, `last_jump_time` FROM {{table}} WHERE `id` = '". $TargetPlanet ."';", 'planets', true);
+				$TargetGate   = doquery ( "SELECT `id`, `sprungtor`, `last_jump_time` FROM {{table}} WHERE `id` = '". $TargetPlanet ."';", 'planets', TRUE);
 
 				if ($TargetGate['sprungtor'] > 0)
 				{
-					$RestString   = $this->GetNextJumpWaitTime ( $TargetGate );
+					$RestString   = $this->GetNextJumpWaitTime ($TargetGate );
 					$NextDestTime = $RestString['value'];
 
-					if ( $NextDestTime == 0 )
+					if ($NextDestTime == 0 )
 					{
 						$ShipArray   = array();
 						$SubQueryOri = "";
 						$SubQueryDes = "";
 
-						for ( $Ship = 200; $Ship < 300; $Ship++ )
+						for ($Ship = 200; $Ship < 300; $Ship++ )
 						{
 							$ShipLabel = "c". $Ship;
 							$gemi_kontrol    =    $_POST[ $ShipLabel ];
 
 							if (is_numeric($gemi_kontrol))
 							{
-								if ( $gemi_kontrol > $CurrentPlanet[ $resource[ $Ship ] ])
+								if ($gemi_kontrol > $CurrentPlanet[ $resource[ $Ship ] ])
 								{
 									$ShipArray[ $Ship ] = $CurrentPlanet[ $resource[ $Ship ] ];
 								}
@@ -101,23 +101,23 @@ class ShowInfosPage
 							$QryUpdateOri .= "`last_jump_time` = '". $JumpTime ."' ";
 							$QryUpdateOri .= "WHERE ";
 							$QryUpdateOri .= "`id` = '". $CurrentPlanet['id'] ."';";
-							doquery ( $QryUpdateOri, 'planets');
+							doquery ($QryUpdateOri, 'planets');
 
 							$QryUpdateDes  = "UPDATE {{table}} SET ";
 							$QryUpdateDes .= $SubQueryDes;
 							$QryUpdateDes .= "`last_jump_time` = '". $JumpTime ."' ";
 							$QryUpdateDes .= "WHERE ";
 							$QryUpdateDes .= "`id` = '". $TargetGate['id'] ."';";
-							doquery ( $QryUpdateDes, 'planets');
+							doquery ($QryUpdateDes, 'planets');
 
 							$QryUpdateUsr  = "UPDATE {{table}} SET ";
 							$QryUpdateUsr .= "`current_planet` = '". $TargetGate['id'] ."' ";
 							$QryUpdateUsr .= "WHERE ";
 							$QryUpdateUsr .= "`id` = '". $CurrentUser['id'] ."';";
-							doquery ( $QryUpdateUsr, 'users');
+							doquery ($QryUpdateUsr, 'users');
 
 							$CurrentPlanet['last_jump_time'] = $JumpTime;
-							$RestString    = $this->GetNextJumpWaitTime ( $CurrentPlanet );
+							$RestString    = $this->GetNextJumpWaitTime ($CurrentPlanet );
 							$RetMessage    = $lang['in_jump_gate_done'] . $RestString['string'];
 						}
 						else
@@ -164,9 +164,9 @@ class ShowInfosPage
 					$bloc['idx']             = $CurrIdx;
 					$bloc['fleet_id']        = $Ship;
 					$bloc['fleet_name']      = $lang['tech'][$Ship];
-					$bloc['fleet_max']       = Format::pretty_number ( $CurrentPlanet[$resource[$Ship]] );
+					$bloc['fleet_max']       = Format::pretty_number($CurrentPlanet[$resource[$Ship]]);
 					$bloc['gate_ship_dispo'] = $lang['in_jump_gate_available'];
-					$Result                 .= parsetemplate ( $RowsTPL, $bloc );
+					$Result                 .= parsetemplate ($RowsTPL, $bloc );
 					$CurrIdx++;
 				}
 			}
@@ -174,17 +174,17 @@ class ShowInfosPage
 		return $Result;
 	}
 
-	private function BuildJumpableMoonCombo ( $CurrentUser, $CurrentPlanet )
+	private function BuildJumpableMoonCombo ($CurrentUser, $CurrentPlanet )
 	{
 		global $resource;
 		$QrySelectMoons	= "SELECT * FROM {{table}} WHERE `planet_type` = '3' AND `id_owner` = '". intval($CurrentUser['id']) ."';";
-		$MoonList		= doquery ( $QrySelectMoons, 'planets');
+		$MoonList		= doquery ($QrySelectMoons, 'planets');
 		$Combo			= "";
 		while ($CurMoon	= $MoonList->fetch_assoc())
 		{
-			if ( $CurMoon['id'] != $CurrentPlanet['id'] )
+			if ($CurMoon['id'] != $CurrentPlanet['id'])
 			{
-				$RestString = $this->GetNextJumpWaitTime ( $CurMoon );
+				$RestString = $this->GetNextJumpWaitTime ($CurMoon );
 				if ($CurMoon[$resource[43]] >= 1)
 					$Combo .= "<option value=\"". $CurMoon['id'] ."\">[". $CurMoon['galaxy'] .":". $CurMoon['system'] .":". $CurMoon['planet'] ."] ". $CurMoon['name'] . $RestString['string'] ."</option>\n";
 			}
@@ -200,40 +200,41 @@ class ShowInfosPage
 		$BuildTemp        	= $CurrentPlanet[ 'temp_max' ];
 		$CurrentBuildtLvl 	= $CurrentPlanet[ $resource[$BuildID] ];
 		$BuildLevel       	= ($CurrentBuildtLvl > 0) ? $CurrentBuildtLvl : 1;
+		$EnergyLevel        = $CurrentUser["energy_tech"];
 
 		// BOOST
-		$geologe_boost		= 1 + ( $CurrentUser['rpg_geologue']  * GEOLOGUE );
-		$engineer_boost		= 1 + ( $CurrentUser['rpg_ingenieur'] * ENGINEER_ENERGY );
+		$geologe_boost		= 1 + ($CurrentUser['rpg_geologue']  * GEOLOGUE );
+		$engineer_boost		= 1 + ($CurrentUser['rpg_ingenieur'] * ENGINEER_ENERGY );
 
 		// PRODUCTION FORMULAS
-		$metal_prod			= eval ( $ProdGrid[$BuildID]['formule']['metal'] );
-		$crystal_prod		= eval ( $ProdGrid[$BuildID]['formule']['crystal'] );
-		$deuterium_prod		= eval ( $ProdGrid[$BuildID]['formule']['deuterium'] );
-		$energy_prod		= eval ( $ProdGrid[$BuildID]['formule']['energy'] );
+		$metal_prod			= eval ($ProdGrid[$BuildID]['formule']['metal']);
+		$crystal_prod		= eval ($ProdGrid[$BuildID]['formule']['crystal']);
+		$deuterium_prod		= eval ($ProdGrid[$BuildID]['formule']['deuterium']);
+		$energy_prod		= eval ($ProdGrid[$BuildID]['formule']['energy']);
 
 		// PRODUCTION
-		$Prod[1]			= Production::production_amount ( $metal_prod , $geologe_boost );
-		$Prod[2]			= Production::production_amount ( $crystal_prod , $geologe_boost );
-		$Prod[3]			= Production::production_amount ( $deuterium_prod , $geologe_boost );
+		$Prod[1]			= Production::production_amount ($metal_prod , $geologe_boost );
+		$Prod[2]			= Production::production_amount ($crystal_prod , $geologe_boost );
+		$Prod[3]			= Production::production_amount ($deuterium_prod , $geologe_boost );
 
-		if ( $BuildID >= 4 )
+		if ($BuildID >= 4 )
 		{
-			$Prod[4]		= Production::production_amount ( $energy_prod , $engineer_boost );
-			$ActualProd    	= floor ( $Prod[4] );
+			$Prod[4]		= Production::production_amount ($energy_prod , $engineer_boost );
+			$ActualProd    	= floor ($Prod[4]);
 		}
 		else
 		{
-			$Prod[4]		= Production::production_amount ( $energy_prod , 1 );
-			$ActualProd    	= floor ( $Prod[$BuildID] );
+			$Prod[4]		= Production::production_amount ($energy_prod , 1 );
+			$ActualProd    	= floor ($Prod[$BuildID]);
 		}
 
-		if ( $BuildID != 12 )
+		if ($BuildID != 12 )
 		{
-			$ActualNeed     = floor ( $Prod[4] );
+			$ActualNeed     = floor ($Prod[4]);
 		}
 		else
 		{
-			$ActualNeed		= floor ( $Prod[3] );
+			$ActualNeed		= floor ($Prod[3]);
 		}
 
 		$BuildStartLvl    = $CurrentBuildtLvl - 2;
@@ -243,28 +244,28 @@ class ShowInfosPage
 		$Table     = "";
 		$ProdFirst = 0;
 
-		for ( $BuildLevel = $BuildStartLvl; $BuildLevel < $BuildStartLvl + 15; $BuildLevel++ )
+		for ($BuildLevel = $BuildStartLvl; $BuildLevel < $BuildStartLvl + 15; $BuildLevel++ )
 		{
-			if ( $BuildID != 42 )
+			if ($BuildID != 42 )
 			{
 				// PRODUCTION FORMULAS
-				$metal_prod			= eval ( $ProdGrid[$BuildID]['formule']['metal'] );
-				$crystal_prod		= eval ( $ProdGrid[$BuildID]['formule']['crystal'] );
-				$deuterium_prod		= eval ( $ProdGrid[$BuildID]['formule']['deuterium'] );
-				$energy_prod		= eval ( $ProdGrid[$BuildID]['formule']['energy'] );
+				$metal_prod			= eval ($ProdGrid[$BuildID]['formule']['metal']);
+				$crystal_prod		= eval ($ProdGrid[$BuildID]['formule']['crystal']);
+				$deuterium_prod		= eval ($ProdGrid[$BuildID]['formule']['deuterium']);
+				$energy_prod		= eval ($ProdGrid[$BuildID]['formule']['energy']);
 
 				// PRODUCTION
-				$Prod[1]			= Production::production_amount ( $metal_prod , $geologe_boost );
-				$Prod[2]			= Production::production_amount ( $crystal_prod , $geologe_boost );
-				$Prod[3]			= Production::production_amount ( $deuterium_prod , $geologe_boost );
+				$Prod[1]			= Production::production_amount ($metal_prod , $geologe_boost );
+				$Prod[2]			= Production::production_amount ($crystal_prod , $geologe_boost );
+				$Prod[3]			= Production::production_amount ($deuterium_prod , $geologe_boost );
 
-				if ( $BuildID >= 4 )
+				if ($BuildID >= 4 )
 				{
-					$Prod[4]		= Production::production_amount ( $energy_prod , $engineer_boost );
+					$Prod[4]		= Production::production_amount ($energy_prod , $engineer_boost );
 				}
 				else
 				{
-					$Prod[4]		= Production::production_amount ( $energy_prod , 1 );
+					$Prod[4]		= Production::production_amount ($energy_prod , 1 );
 				}
 
 				$bloc['build_lvl']       = ($CurrentBuildtLvl == $BuildLevel) ? "<font color=\"#ff0000\">".$BuildLevel."</font>" : $BuildLevel;
@@ -280,16 +281,16 @@ class ShowInfosPage
 				if ($BuildID != 12)
 				{
 					$bloc['build_prod']      = Format::pretty_number(floor($Prod[$BuildID]));
-					$bloc['build_prod_diff'] = Format::color_number( Format::pretty_number(floor($Prod[$BuildID] - $ActualProd)) );
-					$bloc['build_need']      = Format::color_number( Format::pretty_number(floor($Prod[4])) );
-					$bloc['build_need_diff'] = Format::color_number( Format::pretty_number(floor($Prod[4] - $ActualNeed)) );
+					$bloc['build_prod_diff'] = Format::color_number( Format::pretty_number(floor($Prod[$BuildID] - $ActualProd)));
+					$bloc['build_need']      = Format::color_number( Format::pretty_number(floor($Prod[4])));
+					$bloc['build_need_diff'] = Format::color_number( Format::pretty_number(floor($Prod[4] - $ActualNeed)));
 				}
 				else
 				{
 					$bloc['build_prod']      = Format::pretty_number(floor($Prod[4]));
-					$bloc['build_prod_diff'] = Format::color_number( Format::pretty_number(floor($Prod[4] - $ActualProd)) );
-					$bloc['build_need']      = Format::color_number( Format::pretty_number(floor($Prod[3])) );
-					$bloc['build_need_diff'] = Format::color_number( Format::pretty_number(floor($Prod[3] - $ActualNeed)) );
+					$bloc['build_prod_diff'] = Format::color_number( Format::pretty_number(floor($Prod[4] - $ActualProd)));
+					$bloc['build_need']      = Format::color_number( Format::pretty_number(floor($Prod[3])));
+					$bloc['build_need_diff'] = Format::color_number( Format::pretty_number(floor($Prod[3] - $ActualNeed)));
 				}
 				if ($ProdFirst == 0)
 				{
@@ -405,7 +406,7 @@ class ShowInfosPage
 		{
 			$GateTPL              = gettemplate('infos/info_gate_table');
 
-			if ($_POST)
+			if ($_SERVER['REQUEST_METHOD'] === 'POST')
 				message($this->DoFleetJump($CurrentUser, $CurrentPlanet), "game.php?page=infos&gid=43", 2);
 		}
 		/*elseif ($BuildID >= 106 && $BuildID <= 199)
@@ -418,38 +419,34 @@ class ShowInfosPage
 			$parse['element_typ'] = $lang['tech'][200];
 			$parse['rf_info_to']  = $this->ShowRapidFireTo($BuildID);
 			$parse['rf_info_fr']  = $this->ShowRapidFireFrom($BuildID);
-			$parse['hull_pt']     = Format::pretty_number ($pricelist[$BuildID]['metal'] + $pricelist[$BuildID]['crystal']);
-			$parse['shield_pt']   = Format::pretty_number ($CombatCaps[$BuildID]['shield']);
-			$parse['attack_pt']   = Format::pretty_number ($CombatCaps[$BuildID]['attack']);
-			$parse['capacity_pt'] = Format::pretty_number ($pricelist[$BuildID]['capacity']);
-			$parse['base_speed']  = Format::pretty_number ($pricelist[$BuildID]['speed']);
-			$parse['base_conso']  = Format::pretty_number ($pricelist[$BuildID]['consumption']);
+			$parse['hull_pt']     = Format::pretty_number($pricelist[$BuildID]['metal'] + $pricelist[$BuildID]['crystal']);
+			$parse['shield_pt']   = Format::pretty_number($CombatCaps[$BuildID]['shield']);
+			$parse['attack_pt']   = Format::pretty_number($CombatCaps[$BuildID]['attack']);
+			$parse['capacity_pt'] = Format::pretty_number($pricelist[$BuildID]['capacity']);
+			$parse['base_speed']  = Format::pretty_number($pricelist[$BuildID]['speed']);
+			$parse['base_conso']  = Format::pretty_number($pricelist[$BuildID]['consumption']);
 			if ($BuildID == 202)
 			{
-				$parse['upd_speed']   = "<font color=\"yellow\">(". Format::pretty_number ($pricelist[$BuildID]['speed2']) .")</font>";
-				$parse['upd_conso']   = "<font color=\"yellow\">(". Format::pretty_number ($pricelist[$BuildID]['consumption2']) .")</font>";
+				$parse['upd_speed']   = "<font color=\"yellow\">(". Format::pretty_number($pricelist[$BuildID]['speed2']) .")</font>";
+				$parse['upd_conso']   = "<font color=\"yellow\">(". Format::pretty_number($pricelist[$BuildID]['consumption2']) .")</font>";
 			}
 			elseif ($BuildID == 211)
-				$parse['upd_speed']   = "<font color=\"yellow\">(". Format::pretty_number ($pricelist[$BuildID]['speed2']) .")</font>";
+				$parse['upd_speed']   = "<font color=\"yellow\">(". Format::pretty_number($pricelist[$BuildID]['speed2']) .")</font>";
 		}
-		elseif ($BuildID >= 401 && $BuildID <= 450)
+		elseif ($BuildID >= 401 OR $BuildID <= 550)
 		{
 			$PageTPL              = gettemplate('infos/info_buildings_defense');
 			$parse['element_typ'] = $lang['tech'][400];
 
-			$parse['rf_info_to']  = $this->ShowRapidFireTo ($BuildID);
-			$parse['rf_info_fr']  = $this->ShowRapidFireFrom ($BuildID);
-			$parse['hull_pt']     = Format::pretty_number ($pricelist[$BuildID]['metal'] + $pricelist[$BuildID]['crystal']);
-			$parse['shield_pt']   = Format::pretty_number ($CombatCaps[$BuildID]['shield']);
-			$parse['attack_pt']   = Format::pretty_number ($CombatCaps[$BuildID]['attack']);
-		}
-		elseif ($BuildID === 502 OR $BuildID === 503)
-		{
-			$PageTPL              = gettemplate('infos/info_buildings_defense');
-			$parse['element_typ'] = $lang['tech'][400];
-			$parse['hull_pt']     = Format::pretty_number ($pricelist[$BuildID]['metal'] + $pricelist[$BuildID]['crystal']);
-			$parse['shield_pt']   = Format::pretty_number ($CombatCaps[$BuildID]['shield']);
-			$parse['attack_pt']   = Format::pretty_number ($CombatCaps[$BuildID]['attack']);
+			if ($BuildID < 500)
+			{
+				$parse['rf_info_to']  = $this->ShowRapidFireTo ($BuildID);
+				$parse['rf_info_fr']  = $this->ShowRapidFireFrom ($BuildID);
+			}
+
+			$parse['hull_pt']     = Format::pretty_number($pricelist[$BuildID]['metal'] + $pricelist[$BuildID]['crystal']);
+			$parse['shield_pt']   = Format::pretty_number($CombatCaps[$BuildID]['shield']);
+			$parse['attack_pt']   = Format::pretty_number($CombatCaps[$BuildID]['attack']);
 		}
 
 		if ( ! empty($TableHeadTPL))
@@ -463,8 +460,8 @@ class ShowInfosPage
 		{
 			if ($CurrentPlanet[$resource[$BuildID]] > 0)
 			{
-				$RestString               = $this->GetNextJumpWaitTime ( $CurrentPlanet );
-				$parse['gate_start_link'] = BuildPlanetAdressLink ( $CurrentPlanet );
+				$RestString               = $this->GetNextJumpWaitTime ($CurrentPlanet );
+				$parse['gate_start_link'] = BuildPlanetAdressLink ($CurrentPlanet );
 				if ($RestString['value'] != 0)
 				{
 					include(XN_ROOT . 'includes/functions/InsertJavaScriptChronoApplet.php');
@@ -496,9 +493,9 @@ class ShowInfosPage
 				$parse['nfo_metal']   = $lang['Metal'];
 				$parse['nfo_crysta']  = $lang['Crystal'];
 				$parse['nfo_deuter']  = $lang['Deuterium'];
-				$parse['metal']       = Format::pretty_number ($NeededRessources['metal']);
-				$parse['crystal']     = Format::pretty_number ($NeededRessources['crystal']);
-				$parse['deuterium']   = Format::pretty_number ($NeededRessources['deuterium']);
+				$parse['metal']       = Format::pretty_number($NeededRessources['metal']);
+				$parse['crystal']     = Format::pretty_number($NeededRessources['crystal']);
+				$parse['deuterium']   = Format::pretty_number($NeededRessources['deuterium']);
 				$parse['destroytime'] = Format::pretty_time   ($DestroyTime);
 				$page .= parsetemplate($DestroyTPL, $parse);
 			}
@@ -506,3 +503,7 @@ class ShowInfosPage
 		display($page);
 	}
 }
+
+
+/* End of file class.ShowInfosPage.php */
+/* Location: ./includes/pages/class.ShowInfosPage.php */

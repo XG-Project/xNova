@@ -50,18 +50,18 @@ class GalaxyRows
 			$QryUpdateGalaxy  = "UPDATE {{table}} SET `id_luna` = '0' WHERE `galaxy` = '". intval($lunarow['galaxy']) ."' AND `system` = '". intval($lunarow['system']) ."' AND `planet` = '". intval($lunarow['planet']) ."' LIMIT 1;";
 		}
 
-		doquery( $QryUpdateGalaxy , 'galaxy');
+		doquery($QryUpdateGalaxy , 'galaxy');
 		doquery("DELETE FROM {{table}} WHERE `id` = ".intval($lunarow['id'])."", 'planets');
 	}
 
 	public function CheckAbandonPlanetState(&$planet)
-    {
-        if ($planet['destruyed'] <= time())
-        {
-            doquery("DELETE FROM {{table}} WHERE `id_planet` = '".$planet['id_planet']."' LIMIT 1;" , 'galaxy');
-            doquery("DELETE FROM {{table}} WHERE `id` = '".$planet['id_planet']."'", 'planets');
-        }
-    }
+	{
+		if ($planet['destruyed'] <= time())
+		{
+			doquery("DELETE FROM {{table}} WHERE `id_planet` = '".$planet['id_planet']."' LIMIT 1;" , 'galaxy');
+			doquery("DELETE FROM {{table}} WHERE `id` = '".$planet['id_planet']."'", 'planets');
+		}
+	}
 
 	public function GalaxyRowActions($GalaxyInfo, $Galaxy, $System, $Planet, $CurrentGalaxy, $CurrentSystem, $CurrentMIP)
 	{
@@ -134,7 +134,7 @@ class GalaxyRows
 					$links .= "<img height=\"14\" width=\"14\" src=\"". DPATH ."img/b.png\" title=\"".$lang['gl_buddy_request']."\" border=0></a>";
 					$links .= "&nbsp;";
 				}
-				if ($user["settings_mis"] == "1" && $MissileBtn == TRUE && $GalaxyInfo['id'])
+				if ($user["settings_mis"] == "1" && $MissileBtn && $GalaxyInfo['id'])
 				{
 					$links .= "<a href=game.php?page=galaxy&mode=2&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&current=".$user['current_planet']." >";
 					$links .= "<img height=\"16\" width=\"13\" src=\"". DPATH ."img/r.png\" title=\"".$lang['gl_missile_attack']."\" border=0></a>";
@@ -217,8 +217,8 @@ class GalaxyRows
 				$parse['planet']			=	$Planet;
 				$parse['planettype']		=	$PlanetType;
 				$parse['recsended']			=	$RecSended;
-				$parse['debris_metal']		=	number_format( $GalaxyInfo['metal'], 0, '', '.');
-				$parse['debris_crystal']	=	number_format( $GalaxyInfo['crystal'], 0, '', '.');
+				$parse['debris_metal']		=	number_format($GalaxyInfo['metal'], 0, '', '.');
+				$parse['debris_crystal']	=	number_format($GalaxyInfo['crystal'], 0, '', '.');
 
 				return parsetemplate(gettemplate('galaxy/galaxy_debris_block'), $parse);
 			}
@@ -295,7 +295,7 @@ class GalaxyRows
 				{
 					if ($GalaxyInfo["galaxy"] == $CurrentGalaxy)
 					{
-						$PhRange = $this->GetPhalanxRange ( $HavePhalanx );
+						$PhRange = $this->GetPhalanxRange ($HavePhalanx );
 						$SystemLimitMin = $CurrentSystem - $PhRange;
 						if ($SystemLimitMin < 1)
 							$SystemLimitMin = 1;
@@ -390,6 +390,7 @@ class GalaxyRows
 
 			if ($user["settings_mis"] == "1" AND $MissileBtn == TRUE && $GalaxyInfo['id'])
 				$MissionType10Link = "<a href=game.php?page=galaxy&mode=2&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&current=".$user['current_planet']." >".$lang['gl_missile_attack']."</a><br>";
+
 			elseif ($GalaxyInfo['id'] != $user['id'])
 				$MissionType10Link = "";
 
@@ -429,7 +430,7 @@ class GalaxyRows
 			{
 				if ($GalaxyInfo["galaxy"] == $CurrentGalaxy)
 				{
-					$Range = $this->GetPhalanxRange ( $HavePhalanx );
+					$Range = $this->GetPhalanxRange ($HavePhalanx );
 					if ($CurrentGalaxy + $Range <= $CurrentSystem && $CurrentSystem >= $CurrentGalaxy - $Range)
 						$PhalanxTypeLink = "<a href=# onclick=fenster('game.php?page=phalanx&galaxy=".$Galaxy."&amp;system=".$System."&amp;planet=".$Planet."&amp;planettype=".$PlanetType."')  title=\"Phalanx\">".$GalaxyInfo['name']."</a><br>";
 					else
@@ -501,12 +502,12 @@ class GalaxyRows
 				$Systemtatus2 	= "<span class=\"inactive\">".$lang['gl_i']."</span><span class=\"longinactive\">".$lang['gl_I']."</span>";
 				$Systemtatus 	= "<span class=\"longinactive\">";
 			}
-			elseif ( is_weak ( $MyGameLevel , $HeGameLevel ) )
+			elseif ( is_weak ($MyGameLevel , $HeGameLevel ))
 			{
 				$Systemtatus2 	= "<span class=\"noob\">".$lang['gl_w']."</span>";
 				$Systemtatus 	= "<span class=\"noob\">";
 			}
-			elseif ( is_strong ( $MyGameLevel , $HeGameLevel ) )
+			elseif ( is_strong ($MyGameLevel , $HeGameLevel ))
 			{
 				$Systemtatus2 	= $lang['gl_s'];
 				$Systemtatus 	= "<span class=\"strong\">";
@@ -534,7 +535,7 @@ class GalaxyRows
 			if (strlen($Systemtart) < 3)
 				$Systemtart = 1;
 			else
-				$Systemtart = (floor( $GalaxyInfo['total_rank'] / 100 ) * 100) + 1;
+				$Systemtart = (floor($GalaxyInfo['total_rank'] / 100 ) * 100) + 1;
 
 			$parse					=	$lang;
 			$parse['username']		=	$GalaxyInfo['username'];

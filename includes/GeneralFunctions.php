@@ -14,7 +14,7 @@ function unset_vars($prefix)
 {
 	$vars = array_keys($GLOBALS);
 
-	for($n = 0, $i = 0; $i < count($vars); $i ++)
+	for ($n = 0, $i = 0; $i < count($vars); $i ++)
 	{
 		if (strpos($vars[$i], $prefix) === 0)
 		{
@@ -92,13 +92,13 @@ function message($mes, $dest = "", $time = "3", $topnav = FALSE, $menu = TRUE)
 
 	$page = parsetemplate(gettemplate('general/message_body'), $parse);
 
-	if ( !defined ( 'IN_ADMIN' ) )
+	if ( !defined ( 'IN_ADMIN' ))
 	{
-		display ( $page , $topnav , ( ( $dest != "" ) ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : "") , FALSE , $menu );
+		display ($page , $topnav , (($dest != "" ) ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : "") , FALSE , $menu );
 	}
 	else
 	{
-		display ( $page , $topnav , ( ( $dest != "" ) ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : "") , TRUE , FALSE );
+		display ($page , $topnav , (($dest != "" ) ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : "") , TRUE , FALSE );
 	}
 
 }
@@ -115,7 +115,7 @@ function display($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $men
 	if ($topnav  && !$AdminPage)
 	{
 		require_once(XN_ROOT.'includes/functions/ShowTopNavigationBar.php');
-		$DisplayPage .= ShowTopNavigationBar( $user, $planetrow );
+		$DisplayPage .= ShowTopNavigationBar($user, $planetrow );
 	}
 	elseif ($topnav)
 	{
@@ -151,7 +151,6 @@ function display($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $men
 	echo $DisplayPage;
 
 	if ($db) $db->close();
-
 	die();
 }
 
@@ -189,7 +188,7 @@ function AdminUserHeader($metatags = '')
 	global $lang;
 	$parse	= $lang;
 
-	if (!defined('IN_ADMIN'))
+	if ( ! defined('IN_ADMIN'))
 		$parse['-title-'] 	= 	'xNova - Instalación';
 	else
 		$parse['-title-'] 	= 	read_config('game_name').' - Admin CP';
@@ -286,7 +285,7 @@ function doquery($query, $table, $fetch = FALSE)
 	unset($dbsettings);
 	$numqueries++;
 
-	$debug->add("<div class=\"query\"><section class=\"query-counter\">Query ".$numqueries.":</section><section class=\"query-text\">".htmlentities($query, ENT_COMPAT, 'UTF-8')."</section><section class=\"query-table\">".$table."</section><section class=\"query-fetch\"><figure class=\" ".($fetch ? 'true' : 'false')."\"></figure></section></div>");
+	$debug->add("<div class=\"query\"><section class=\"query-counter\">Query ".$numqueries.":</section><section class=\"query-text\">".htmlentities($query, ENT_COMPAT, 'UTF-8')."</section><section class=\"query-table\">".$table."</section><section class=\"query-fetch\"><figure class=\" ".($fetch ? 'TRUE' : 'FALSE')."\"></figure></section></div>");
 
 	if ($fetch)
 		return $sqlquery->fetch_array();

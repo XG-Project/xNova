@@ -27,7 +27,7 @@ switch ($page)
 		$minutes_per_day	=	isset($_POST['minutes_per_day']) ? $_POST['minutes_per_day'] : NULL;
 
 		$i		=	1;
-		if ($_POST)
+		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
 			$CheckBots = doquery("SELECT `user` FROM {{table}} WHERE `user` = '".$db->real_escape_string($_POST['user'])."' ", "bots");
 			$CheckUser = doquery("SELECT `id` FROM {{table}} WHERE `id` = '".$db->real_escape_string($_POST['user'])."' ", "users");
@@ -74,13 +74,13 @@ switch ($page)
 			}
 		}
 
-		display(parsetemplate(gettemplate('adm/CreateBotBody'), $parse), false, '', true, false);
+		display(parsetemplate(gettemplate('adm/CreateBotBody'), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case 'delete_log':
 			$file = fopen(XN_ROOT."adm/Log/BotLog.php", "w");
 			fclose($file);
-			display(parsetemplate(gettemplate('adm/DeleteBotBody'), $parse), false, '', true, false);
+			display(parsetemplate(gettemplate('adm/DeleteBotBody'), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	default:
@@ -120,14 +120,15 @@ switch ($page)
 	{
 		doquery("TRUNCATE TABLE {{table}}", 'bots');
 		update_config('bots', 0);
-		foreach(scandir(XN_ROOT.'includes/bots/') as $file)
+
+		foreach (scandir(XN_ROOT.'includes/bots/') as $file)
 			if (is_file(XN_ROOT.'includes/bots/'.$file)) unlink(XN_ROOT.'includes/bots/'.$file);
 
 		header ("Location: BotSettingsPage.php");
 	}
 	$parse['log'] = file_get_contents(XN_ROOT.'adm/Log/BotLog.php');
 
-	display(parsetemplate(gettemplate('adm/BotSettingsBody'), $parse), false, '', true, false);
+	display(parsetemplate(gettemplate('adm/BotSettingsBody'), $parse), FALSE, '', TRUE, FALSE);
 }
 
 

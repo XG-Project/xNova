@@ -10,7 +10,7 @@
 
 if ( ! defined('INSIDE')) die(header("location:../../"));
 
-	function SendSimpleMessage ( $Owner, $Sender, $Time, $Type, $From, $Subject, $Message)
+	function SendSimpleMessage ($Owner, $Sender, $Time, $Type, $From, $Subject, $Message)
 	{
 
 		if ($Time == '')
@@ -29,7 +29,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 		$QryInsertMessage .= "`message_subject` = '".  $Subject ."', ";
 		$QryInsertMessage .= "`message_text` 	= '". $Message 	."';";
 
-		doquery( $QryInsertMessage, 'messages');
+		doquery($QryInsertMessage, 'messages');
 
 		$QryUpdateUser  = "UPDATE `{{table}}` SET ";
 		$QryUpdateUser .= "`new_message` = `new_message` + 1 ";

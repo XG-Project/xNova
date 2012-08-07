@@ -34,9 +34,9 @@ switch ($_GET['options'])
 		if ($user['authlevel']	!=	3) die();
 		$Fopen		=	fopen($Archive, "r+");
 
-		while(!feof($Fopen))
+		while (!feof($Fopen))
 		{
-    		$parse['display']	.= fgets($Fopen);
+			$parse['display']	.= fgets($Fopen);
 		}
 		fclose($Fopen);
 
@@ -91,9 +91,9 @@ switch ($_GET['options'])
 		else
 		{
 			$parse['display']	.=	"<tr><th align=\"left\" colspan=2><font color=#E6E6E6>";
-			while(!feof($Log))
+			while (!feof($Log))
 			{
-    			$parse['display']	.= fgets($Log)."<br>";
+				$parse['display']	.= fgets($Log)."<br>";
 			}
 			$parse['display']	.=	"</font></th></tr>";
 			$parse['display']	.=	$EditAndDelete;

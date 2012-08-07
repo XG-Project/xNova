@@ -12,7 +12,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 function SortUserPlanets ($CurrentUser)
 {
-	$Order = ( $CurrentUser['planet_sort_order'] == 1 ) ? "DESC" : "ASC" ;
+	$Order = ($CurrentUser['planet_sort_order'] == 1 ) ? "DESC" : "ASC" ;
 	$Sort  = $CurrentUser['planet_sort'];
 
 	$QryPlanets  = "SELECT `id`, `name`, `galaxy`, `system`, `planet`, `planet_type` FROM {{table}} WHERE `id_owner` = '". intval($CurrentUser['id']) ."' AND `destruyed` = 0 ORDER BY ";

@@ -44,21 +44,21 @@ function t() {
 	}
 	if ( s < 10 ) {
 		s = "0" + s;
-    }
-    if (m < 10) {
-      m = "0" + m;
+	}
+	if (m < 10) {
+	  m = "0" + m;
 	}
 	if ( p > b.length - 2 ) {
 		document.getElementById("bx").innerHTML=aa ;
-    } else {
+	} else {
 		document.getElementById("bx").innerHTML=b[p]+" "+h+":"+m+":"+s;
-    }
+	}
 	window.setTimeout("t();", 200);
 }
 
 function xd() {
 	while (document.Atr.auftr.length > 0) {
-		document.Atr.auftr.options[document.Atr.auftr.length-1] = null;
+		document.Atr.auftr.options[document.Atr.auftr.length-1] = NULL;
 	}
 	if ( p > b.length - 2 ) {
 		document.Atr.auftr.options[document.Atr.auftr.length] = new Option(aa);

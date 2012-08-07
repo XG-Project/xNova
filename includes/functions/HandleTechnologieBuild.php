@@ -33,14 +33,14 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 				$QryUpdatePlanet .= "`b_tech_id` = '0' ";
 				$QryUpdatePlanet .= "WHERE ";
 				$QryUpdatePlanet .= "`id` = '". intval($ThePlanet['id']) ."';";
-				doquery( $QryUpdatePlanet, 'planets');
+				doquery($QryUpdatePlanet, 'planets');
 
 				$QryUpdateUser    = "UPDATE {{table}} SET ";
 				$QryUpdateUser   .= "`".$resource[$ThePlanet['b_tech_id']]."` = '". $CurrentUser[$resource[$ThePlanet['b_tech_id']]] ."', ";
 				$QryUpdateUser   .= "`b_tech_planet` = '0' ";
 				$QryUpdateUser   .= "WHERE ";
 				$QryUpdateUser   .= "`id` = '". intval($CurrentUser['id']) ."';";
-				doquery( $QryUpdateUser, 'users');
+				doquery($QryUpdateUser, 'users');
 
 				$ThePlanet["b_tech_id"] = 0;
 

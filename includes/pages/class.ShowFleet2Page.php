@@ -12,7 +12,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class ShowFleet2Page
 {
-	function __construct ( $CurrentUser , $CurrentPlanet )
+	function __construct($CurrentUser, $CurrentPlanet)
 	{
 		global $resource, $pricelist, $reslist, $lang;
 
@@ -20,17 +20,17 @@ class ShowFleet2Page
 		// SOME DEFAULT VALUES
 		#####################################################################################################
 		// ARRAYS
-		$exp_values		= array ( 1,2,3,4,5 );
-		$hold_values	= array ( 0,1,2,4,8,16,32 );
+		$exp_values				= array(1,2,3,4,5);
+		$hold_values			= array(0,1,2,4,8,16,32);
 
 		// LANG
 		$parse					= $lang;
 
 		// LOAD TEMPLATES REQUIRED
-		$mission_row_template	= gettemplate ( 'fleet/fleet2_mission_row' );
-		$input_template			= gettemplate ( 'fleet/fleet2_inputs' );
-		$stay_template			= gettemplate ( 'fleet/fleet2_stay_row' );
-		$options_template		= gettemplate ( 'fleet/fleet_options' );
+		$mission_row_template	= gettemplate('fleet/fleet2_mission_row');
+		$input_template			= gettemplate('fleet/fleet2_inputs');
+		$stay_template			= gettemplate('fleet/fleet2_stay_row');
+		$options_template		= gettemplate('fleet/fleet_options');
 
 		// OTHER VALUES
 		$galaxy     			= intval($_POST['galaxy']);
@@ -50,9 +50,9 @@ class ShowFleet2Page
 														planet = '$planet' AND
 														planet_type = '$planettype'" , "planets" , TRUE );
 
-		if ( $select )
+		if ($select )
 		{
-			if ( $select['id_owner'] == $CurrentUser['id'] )
+			if ($select['id_owner'] == $CurrentUser['id'])
 			{
 				$YourPlanet = TRUE;
 				$UsedPlanet = TRUE;
@@ -63,11 +63,11 @@ class ShowFleet2Page
 			}
 		}
 
-		if ( $_POST['planettype'] == 2 )
+		if ($_POST['planettype'] == 2 )
 		{
 			if ($_POST['ship209'] >= 1)
 			{
-				$missiontype = array ( 8 => $lang['type_mission'][8] );
+				$missiontype = array ( 8 => $lang['type_mission'][8]);
 			}
 			else
 			{
@@ -78,16 +78,16 @@ class ShowFleet2Page
 		{
 			if ($_POST['ship208'] >= 1 && !$UsedPlanet)
 			{
-				$missiontype = array ( 7 => $lang['type_mission'][7] );
+				$missiontype = array ( 7 => $lang['type_mission'][7]);
 			}
 
 			elseif ($_POST['ship210'] >= 1 && !$YourPlanet)
 			{
-				$missiontype = array ( 6 => $lang['type_mission'][6] );
+				$missiontype = array ( 6 => $lang['type_mission'][6]);
 			}
 
 
-			if ( $_POST['ship202'] >= 1 or
+			if ($_POST['ship202'] >= 1 or
 				 $_POST['ship203'] >= 1 or
 				 $_POST['ship204'] >= 1 or
 				 $_POST['ship205'] >= 1 or
@@ -109,7 +109,7 @@ class ShowFleet2Page
 				$missiontype[5] 	= $lang['type_mission'][5];
 			}
 		}
-		elseif ( $_POST['ship209'] >= 1 or $_POST['ship208'] )
+		elseif ($_POST['ship209'] >= 1 or $_POST['ship208'])
 		{
 			$missiontype[3] 		= $lang['type_mission'][3];
 		}
@@ -176,26 +176,26 @@ class ShowFleet2Page
 		#####################################################################################################
 		// EXTRA INPUTS
 		#####################################################################################################
-		foreach ( $fleetarray as $Ship => $Count )
+		foreach ($fleetarray as $Ship => $Count )
 		{
 			$input_parse['ship']		=	$Ship;
 			$input_parse['amount']		=	$Count;
 			$input_parse['capacity']	=	$pricelist[$Ship]['capacity'];
-			$input_parse['consumption']	=	Fleets::ship_consumption ( $Ship , $CurrentUser );
+			$input_parse['consumption']	=	Fleets::ship_consumption ($Ship , $CurrentUser );
 			$input_parse['speed']		=	Fleets::fleet_max_speed( "" , $Ship , $CurrentUser );
 
-			$input_extra .= parsetemplate ( $input_template , array_merge($input_parse, $lang) );
+			$input_extra .= parsetemplate ($input_template , array_merge($input_parse, $lang));
 		}
 
 		#####################################################################################################
 		// TOP TABLE TITLE
 		#####################################################################################################
-		if ( $_POST['thisplanettype'] == 1 )
+		if ($_POST['thisplanettype'] == 1 )
 		{
 			$parse['title'] = "". $_POST['thisgalaxy'] .":". $_POST['thissystem'] .":". $_POST['thisplanet'] ." - ".$lang['fl_planet']."";
 
 		}
-		elseif ( $_POST['thisplanettype'] == 3 )
+		elseif ($_POST['thisplanettype'] == 3 )
 		{
 			$parse['title'] = "". $_POST['thisgalaxy'] .":". $_POST['thissystem'] .":". $_POST['thisplanet'] ." - ".$lang['fl_moon']."";
 		}
@@ -203,33 +203,33 @@ class ShowFleet2Page
 		#####################################################################################################
 		// MISSION TYPES
 		#####################################################################################################
-		if ( count ( $missiontype ) > 0 )
+		if ( count ($missiontype ) > 0 )
 		{
-			if ( $planet == 16 )
+			if ($planet == 16 )
 			{
 				$parse_mission['value']					= 15;
 				$parse_mission['mission']				= $lang['type_mission'][15];
 				$parse_mission['expedition_message']	= $lang['fl_expedition_alert_message'];
 				$parse_mission['id']					= ' ';
-				$parse_mission['checked']				= ' checked="checked"';
+				$parse_mission['checked']				= ' checked';
 
-				$MissionSelector	.=	parsetemplate ( $mission_row_template , array_merge($parse_mission, $lang) );
+				$MissionSelector	.=	parsetemplate ($mission_row_template , array_merge($parse_mission, $lang));
 			}
 			else
 			{
 				$i = 0;
 
-				foreach ( $missiontype as $a => $b )
+				foreach ($missiontype as $a => $b )
 				{
 					$parse_mission['value']					= $a;
 					$parse_mission['mission']				= $b;
 					$parse_mission['expedition_message']	= '';
 					$parse_mission['id']					= ' id="inpuT_' . $i . '" ';
-					$parse_mission['checked']				= ( ( $mission == $a ) ? ' checked="checked"' : '' );
+					$parse_mission['checked']				= (($mission == $a ) ? ' checked' : '' );
 
 					$i++;
 
-					$MissionSelector	.=	parsetemplate ( $mission_row_template , array_merge($parse_mission, $lang) );
+					$MissionSelector	.=	parsetemplate ($mission_row_template , array_merge($parse_mission, $lang));
 				}
 			}
 		}
@@ -241,43 +241,43 @@ class ShowFleet2Page
 		#####################################################################################################
 		// STAY / EXPEDITION BLOCKS
 		#####################################################################################################
-		if ( $planet == 16 )
+		if ($planet == 16 )
 		{
 			$stay_row['stay_type']			= 'expeditiontime';
 
-			foreach ( $exp_values as $value )
+			foreach ($exp_values as $value )
 			{
 				$stay['value']			= $value;
 				$stay['selected']		= '';
 				$stay['title']			= $value;
 
-				$stay_row['options']  .= parsetemplate ( $options_template , array_merge($stay, $lang) );
+				$stay_row['options']  .= parsetemplate($options_template, array_merge($stay, $lang));
 			}
 
-			$StayBlock = parsetemplate ( $stay_template , array_merge($stay_row, $lang) );
+			$StayBlock = parsetemplate($stay_template, array_merge($stay_row, $lang));
 		}
-		elseif ( $missiontype[5] != '' )
+		elseif ($missiontype[5] != '' )
 		{
 			$stay_row['stay_type']				= 'holdingtime';
 
-			foreach ( $hold_values as $value )
+			foreach ($hold_values as $value)
 			{
 
 				$stay['value']			= $value;
-				$stay['selected']		= ( ( $value == 1 ) ? ' selected' : '' );
+				$stay['selected']		= (($value == 1 ) ? ' selected' : '' );
 				$stay['title']			= $value;
 
-				$stay_row['options']  .= parsetemplate ( $options_template , array_merge($stay, $lang) );
+				$stay_row['options']  .= parsetemplate($options_template, array_merge($stay, $lang));
 			}
 
-			$StayBlock = parsetemplate ( $stay_template , array_merge($stay_row, $lang) );
+			$StayBlock = parsetemplate($stay_template, array_merge($stay_row, $lang));
 		}
 
 		$parse['input_extra'] 			= $input_extra;
 		$parse['missionselector'] 		= $MissionSelector;
 		$parse['stayblock'] 			= $StayBlock;
 
-		display ( parsetemplate ( gettemplate ( 'fleet/fleet2_table' ) , $parse ) );
+		display(parsetemplate(gettemplate('fleet/fleet2_table'), $parse));
 	}
 }
 ?>

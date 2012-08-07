@@ -1,10 +1,10 @@
 {galaxyscripts}
 <body onUnload="">
-    {galaxyselector}
-    {mip}
+	{galaxyselector}
+	{mip}
 	<table width="569">
-    	{galaxytitles}
-        {galaxyrows}
-        {galaxyfooter}
+		{galaxytitles}
+		{galaxyrows}
+		{galaxyfooter}
 	</table>
-</body>        
+</body>

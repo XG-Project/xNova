@@ -12,7 +12,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 class ShowNotesPage
 {
-	function __construct ( $CurrentUser )
+	function __construct ($CurrentUser )
 	{
 		global $lang, $db;
 
@@ -24,8 +24,8 @@ class ShowNotesPage
 		{
 			$time 		= time();
 			$priority 	= intval($_POST["u"]);
-			$title 		= ($_POST["title"]) ? $db->real_escape_string(strip_tags($_POST["title"])) : "Sin título";
-			$text 		= ($_POST["text"]) ? $db->real_escape_string(strip_tags($_POST["text"])) : "Sin texto";
+			$title 		= isset($_POST["title"]) ? $db->real_escape_string(strip_tags($_POST["title"])) : "Sin título";
+			$text 		= isset($_POST["text"]) ? str_replace("&lt;br /&gt;", "", stripslashes(strip_tags($db->real_escape_string($_POST["text"])))) : "Sin texto";
 
 			if ($_POST["s"] ==1)
 			{
@@ -37,16 +37,16 @@ class ShowNotesPage
 				$id = intval($_POST["n"]);
 				$note_query = doquery("SELECT * FROM {{table}} WHERE id=".intval($id)." AND owner=".intval($CurrentUser[id])."","notes");
 
-				if (!$note_query)
+				if ( ! $note_query)
 					header("location: ".GAMEURL."game.php?page=notes");
 
 				doquery("UPDATE {{table}} SET time=$time, priority=$priority, title='$title', text='$text' WHERE id=".intval($id)."","notes");
 				header("location: ".GAMEURL."game.php?page=notes");
 			}
 		}
-		elseif ($_POST)
+		elseif ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
-			foreach($_POST as $a => $b)
+			foreach ($_POST as $a => $b)
 			{
 				if (preg_match("/delmes/i",$a) && $b == "y")
 				{
@@ -61,10 +61,8 @@ class ShowNotesPage
 				}
 			}
 
-			if ($deleted)
-				header("location: ".GAMEURL."game.php?page=notes");
-			else
-				header("location: ".GAMEURL."game.php?page=notes");
+			header("location: ".GAMEURL."game.php?page=notes");
+
 		}
 		else
 		{
@@ -83,10 +81,10 @@ class ShowNotesPage
 			{
 				$note = doquery("SELECT * FROM {{table}} WHERE owner=".intval($CurrentUser[id])." AND id=".intval($n)."",'notes',TRUE);
 
-				if (!$note)
+				if ( ! $note)
 					header("location: ".GAMEURL."game.php?page=notes");
 
-				$SELECTED[$note['priority']] = ' selected="selected"';
+				$SELECTED[$note['priority']] = ' selected';
 
 				$parse['c_Options'] = "<option value=2{$SELECTED[2]}>".$lang['nt_important']."</option>
 				<option value=1{$SELECTED[1]}>".$lang['nt_normal']."</option>
@@ -94,8 +92,8 @@ class ShowNotesPage
 
 				$parse['TITLE'] 	= $lang['nt_edit_note'];
 				$parse['inputs'] 	= '<input type=hidden name=s value=2><input type=hidden name=n value='.$note['id'].'>';
-				$parse[asunto]		= $note[title];
-				$parse[texto]		= $note[text];
+				$parse['asunto']	= $note['title'];
+				$parse['texto']		= $note['text'];
 
 				display(parsetemplate(gettemplate('notes/notes_form'), $parse), FALSE, '', FALSE, FALSE);
 
@@ -107,7 +105,7 @@ class ShowNotesPage
 				$count = 0;
 
 				$NotesBodyEntryTPL=gettemplate('notes/notes_body_entry');
-				while($note = $notes_query->fetch_array())
+				while ($note = $notes_query->fetch_array())
 				{
 					$count++;
 
@@ -136,4 +134,7 @@ class ShowNotesPage
 		}
 	}
 }
-?>
+
+
+/* End of file class.ShowNotesPage.php */
+/* Location: ./includes/pages/class.ShowNotesPage.php */

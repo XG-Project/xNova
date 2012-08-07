@@ -1,5 +1,7 @@
 <section class="page">
-	<script type="text/javascript">var UserList = new filterlist(authlevel.id_1);</script>
+	<script type="text/javascript"><!--
+		var UserList = new filterlist(authlevel.id_1);
+	--></script>
 	<section class="content-table">
 		{display}
 		<form name="authlevel" action="admin.php?page=moderate&amp;moderation=2" method="post" accept-charset="UTF-8">

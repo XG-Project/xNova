@@ -1,16 +1,14 @@
 <section class="page">
-	<script type="text/javascript"><!--
-		var UserList = new filterlist(authlevel.id_1);
-	--></script>
 	<section class="content-table">
 		{display}
-		<form name="authlevel" action="admin.php?page=moderate&amp;moderation=2" method="post" accept-charset="UTF-8">
+		<form id="form" action="admin.php?page=moderate&amp;moderation=2" method="post" accept-charset="UTF-8">
 			<h3>{ad_authlevel_title}</h3>
 			<div class="content">
 				<select name="id_1" size="20">
 					{list}
 				</select>
 			</div>
+			<script type="text/javascript">var UserList=new filterlist(document.getElementById("form").id_1);</script>
 			<div class="content">
 				<nav class="auth_selector">
 					<a href="admin.php?page=moderate&amp;moderation=2&amp;get=adm">{ad_authlevel_aa}</a>

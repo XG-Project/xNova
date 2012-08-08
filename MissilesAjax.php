@@ -10,7 +10,7 @@ define('INSIDE'  , TRUE);
 define('INSTALL' , FALSE);
 define('XN_ROOT',	'./');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 
 $g		= intval($_GET['galaxy']);
 $s		= intval($_GET['system']);
@@ -98,7 +98,7 @@ if ($errors != 0)
 
 $ziel_id = $tempvar3["id_owner"];
 
-$flugzeit = round(((30 + (60 * $tempvar1)) * 2500) / read_config ( 'fleet_speed' ) );
+$flugzeit = round(((30 + (60 * $tempvar1)) * 2500) / read_config ( 'fleet_speed' ));
 
 $DefenseLabel =
 array(

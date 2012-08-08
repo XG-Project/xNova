@@ -11,18 +11,18 @@ define('INSTALL' , FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 include('AdminFunctions/Autorization.php');
 
 if ($ConfigGame != 1) die(message ($lang['404_page']));
 
-	$game_stat				=	read_config ( 'stat' );
-	$game_stat_level		=	read_config ( 'stat_level' );
-	$game_stat_flying		=	read_config ( 'stat_flying' );
-	$game_stat_settings		=	read_config ( 'stat_settings' );
-	$game_stat_amount		=	read_config ( 'stat_amount' );
-	$game_stat_update_time	=	read_config ( 'stat_update_time' );
-	$game_stat_last_update	=	read_config ( 'stat_last_update' );
+	$game_stat				=	read_config ( 'stat');
+	$game_stat_level		=	read_config ( 'stat_level');
+	$game_stat_flying		=	read_config ( 'stat_flying');
+	$game_stat_settings		=	read_config ( 'stat_settings');
+	$game_stat_amount		=	read_config ( 'stat_amount');
+	$game_stat_update_time	=	read_config ( 'stat_update_time');
+	$game_stat_last_update	=	read_config ( 'stat_last_update');
 
 	if ($_POST['save'] == $lang['cs_save_changes'])
 	{

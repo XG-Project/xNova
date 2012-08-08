@@ -18,20 +18,17 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			$CurrentQueue  = $CurrentPlanet['b_building_id'];
 			if ($CurrentQueue != 0)
 			{
-				$QueueArray    = explode ( ";", $CurrentQueue );
-				$ActualCount   = count ( $QueueArray );
+				$QueueArray    = explode(";", $CurrentQueue);
+				$ActualCount   = count($QueueArray);
 			}
 
-			$BuildArray   = explode (",", $QueueArray[0]);
+			$BuildArray   = explode(",", $QueueArray[0]);
 			$BuildEndTime = floor($BuildArray[3]);
 			$BuildMode    = $BuildArray[4];
 			$Element      = $BuildArray[0];
-			array_shift ( $QueueArray );
+			array_shift($QueueArray);
 
-			if ($BuildMode == 'destroy')
-				$ForDestroy = TRUE;
-			else
-				$ForDestroy = FALSE;
+			$ForDestroy = $BuildMode == 'destroy';
 
 			if ($BuildEndTime <= time())
 			{
@@ -76,10 +73,10 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 						$CurrentPlanet[$resource[$Element]]--;
 					}
 				}
-				if (count ( $QueueArray ) == 0)
+				if (count($QueueArray ) == 0)
 					$NewQueue = 0;
 				else
-					$NewQueue = implode (";", $QueueArray );
+					$NewQueue = implode(";", $QueueArray);
 
 				$CurrentPlanet['b_building']    = 0;
 				$CurrentPlanet['b_building_id'] = $NewQueue;

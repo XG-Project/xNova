@@ -13,10 +13,10 @@ function GetTechnoPoints ( $CurrentUser ) {
 	$TechPoints = 0;
 	foreach ( $reslist['tech'] as $n => $Techno )
 	{
-		if ( $CurrentUser[ $resource[ $Techno ] ] > 0 ) {
+		if ($CurrentUser[ $resource[ $Techno ] ] > 0 ) {
 			for ( $Level = 0; $Level < $CurrentUser[ $resource[ $Techno ] ]; $Level++ ) {
 				$Units       = $pricelist[ $Techno ]['metal'] + $pricelist[ $Techno ]['crystal'] + $pricelist[ $Techno ]['deuterium'];
-				$LevelMul    = pow( $pricelist[ $Techno ]['factor'], $Level );
+				$LevelMul    = pow( $pricelist[ $Techno ]['factor'], $Level);
 				$TechPoints += ($Units * $LevelMul);
 				$TechCounts += 1;
 			}
@@ -34,11 +34,11 @@ function GetBuildPoints ( $CurrentPlanet ) {
 	$BuildCounts = 0;
 	$BuildPoints = 0;
 	foreach ($reslist['build'] as $n => $Building) {
-		if ( $CurrentPlanet[ $resource[ $Building ] ] > 0 )
+		if ($CurrentPlanet[ $resource[ $Building ] ] > 0 )
 		{
 			for ( $Level = 0; $Level < $CurrentPlanet[ $resource[ $Building ] ]; $Level++ ) {
 				$Units        = $pricelist[ $Building ]['metal'] + $pricelist[ $Building ]['crystal'] + $pricelist[ $Building ]['deuterium'];
-				$LevelMul     = pow( $pricelist[ $Building ]['factor'], $Level );
+				$LevelMul     = pow( $pricelist[ $Building ]['factor'], $Level);
 				$BuildPoints += ($Units * $LevelMul);
 				$BuildCounts += 1;
 			}
@@ -134,7 +134,7 @@ function MakeStats()
 
 	if ($ChooseToDelete)
 	{
-		include_once(XN_ROOT . 'includes/functions/DeleteSelectedUser.php');
+		include_once(XN_ROOT.'includes/functions/DeleteSelectedUser.php');
 
 		while ($delete = $ChooseToDelete->fetch_array())
 		{
@@ -181,12 +181,12 @@ function MakeStats()
 	//We will make query every 'stat_amount' users
 	//Min amount = 10, if it is less than 10, it is not a good system
 
-	$game_stat_amount	=	read_config ( 'stat_amount' );
-	$game_users_amount	=	read_config ( 'users_amount' );
-	$game_stat_flying	=	read_config ( 'stat_flying' );
-	$game_stat_settings	=	read_config ( 'stat_settings' );
-	$game_stat_level	=	read_config ( 'stat_level' );
-	$game_stat			=	read_config ( 'stat' );
+	$game_stat_amount	=	read_config ( 'stat_amount');
+	$game_users_amount	=	read_config ( 'users_amount');
+	$game_stat_flying	=	read_config ( 'stat_flying');
+	$game_stat_settings	=	read_config ( 'stat_settings');
+	$game_stat_level	=	read_config ( 'stat_level');
+	$game_stat			=	read_config ( 'stat');
 
 	$game_stat_amount	= (($game_stat_amount>=10)?$game_stat_amount:10);
 	$amount_per_block	= (($game_stat_amount<$game_users_amount)?$game_users_amount:$game_stat_amount);
@@ -273,15 +273,15 @@ function MakeStats()
 			unset($old_stats_array[$CurUser['id']]);
 			//1 point=  'stat_settings' ressources
 			//Make the tech points XD
-			$u_points			= GetTechnoPoints ( $CurUser );
+			$u_points			= GetTechnoPoints ( $CurUser);
 			$u_TTechCount		= $u_points['TechCount'];
 			$u_TTechPoints	= ($u_points['TechPoint'] / $game_stat_settings);
 			//Make the defense points
-			$u_points			= GetDefensePoints ( $CurUser );
+			$u_points			= GetDefensePoints ( $CurUser);
 			$u_TDefsCount		= $u_points['DefenseCount'];
 			$u_TDefsPoints	= ($u_points['DefensePoint'] / $game_stat_settings);
 			//Make the fleets points (without the flying fleets...
-			$u_points			= GetFleetPoints ( $CurUser );
+			$u_points			= GetFleetPoints ( $CurUser);
 			$u_TFleetCount	= $u_points['FleetCount'];
 			$u_TFleetPoints	= ($u_points['FleetPoint'] / $game_stat_settings);
 			//Now we add the flying fleets points
@@ -292,7 +292,7 @@ function MakeStats()
 				{
 					foreach ($flying_fleets_array[$CurUser['id']] as $fleet_id => $fleet_array)
 					{
-						$u_points			= GetFlyingFleetPoints ( $fleet_array );
+						$u_points			= GetFlyingFleetPoints ( $fleet_array);
 						$u_TFleetCount  	+= $u_points['FleetCount'];
 						$u_TFleetPoints 	+= ($u_points['FleetPoint'] / $game_stat_settings);
 					}
@@ -305,7 +305,7 @@ function MakeStats()
 				$OwnFleets = doquery("SELECT fleet_array, fleet_id FROM {{table}} WHERE `fleet_owner` = '". $CurUser['id'] ."';", 'fleets');
 				while ($FleetRow = $OwnFleets->fetch_array())
 				{
-						$u_points			= GetFlyingFleetPoints ( $FleetRow['fleet_array'] );
+						$u_points			= GetFlyingFleetPoints ( $FleetRow['fleet_array']);
 						$u_TFleetCount  	+= $u_points['FleetCount'];
 						$u_TFleetPoints 	+= ($u_points['FleetPoint'] / $game_stat_settings);
 				}
@@ -318,11 +318,11 @@ function MakeStats()
 			{
 				foreach ($Buildings_array[$CurUser['id']] as $planet_id => $building)
 				{
-					$u_points				= GetBuildPoints ( $building );
+					$u_points				= GetBuildPoints ( $building);
 					$u_TBuildCount		+= $u_points['BuildCount'];
 					$u_TBuildPoints		+= ($u_points['BuildPoint'] / $game_stat_settings);
 					//We add the shields points (this way is a temporary way...)
-					$u_points				= GetDefensePoints ( $building );
+					$u_points				= GetDefensePoints ( $building);
 					$u_TDefsCount			+= $u_points['DefenseCount'];
 					$u_TDefsPoints		+= ($u_points['DefensePoint'] / $game_stat_settings);
 				}
@@ -349,7 +349,7 @@ function MakeStats()
 										'.$u_OldFleetRank.','.$u_TFleetPoints.','.$u_TFleetCount.','.$u_OldTotalRank.',
 										'.$u_GPoints.','.$u_GCount.','.$stats_time.'),' ;
 			}
-			unset_vars( 'u_' );
+			unset_vars( 'u_');
 
 			$CheckUserQuery = TRUE;
 		}
@@ -469,7 +469,7 @@ function MakeStats()
 											'.$u_OldFleetRank.','.$u_TFleetPoints.','.$u_TFleetCount.','.$u_OldTotalRank.',
 											'.$u_GPoints.','.$u_GCount.','.$stats_time.'),' ;
 				unset($CurAlly);
-				unset_vars( 'u_' );
+				unset_vars( 'u_');
 				}
 				else
 				{

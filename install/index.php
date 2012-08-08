@@ -10,7 +10,7 @@ define('INSIDE'  		,   	 TRUE);
 define('INSTALL'  		,   	 TRUE);
 define('XN_ROOT'		, 	  './../');
 
-include_once(XN_ROOT . 'global.php');
+include_once(XN_ROOT.'global.php');
 include_once('databaseinfos.php');
 include_once('migration.php');
 
@@ -79,17 +79,17 @@ switch ($Mode)
 			$parse['second']	= "Archivo config.php creado conéxito...";
 
 			doquery ($QryTableAks			, 'aks'    	);
-			doquery ($QryTableAlliance		, 'alliance'   );
-			doquery ($QryTableBanned		, 'banned'     );
-			doquery ($QryTableBuddy			, 'buddy'      );
-			doquery ($QryTableErrors		, 'errors'     );
-			doquery ($QryTableFleets		, 'fleets'     );
-			doquery ($QryTableGalaxy		, 'galaxy'     );
-			doquery ($QryTableMessages		, 'messages'   );
-			doquery ($QryTableNotes			, 'notes'      );
-			doquery ($QryTablePlanets		, 'planets'    );
-			doquery ($QryTablePlugins		, 'plugins'    );
-			doquery ($QryTableRw			, 'rw'         );
+			doquery ($QryTableAlliance		, 'alliance'  );
+			doquery ($QryTableBanned		, 'banned'    );
+			doquery ($QryTableBuddy			, 'buddy'     );
+			doquery ($QryTableErrors		, 'errors'    );
+			doquery ($QryTableFleets		, 'fleets'    );
+			doquery ($QryTableGalaxy		, 'galaxy'    );
+			doquery ($QryTableMessages		, 'messages'  );
+			doquery ($QryTableNotes			, 'notes'     );
+			doquery ($QryTablePlanets		, 'planets'   );
+			doquery ($QryTablePlugins		, 'plugins'   );
+			doquery ($QryTableRw			, 'rw'        );
 			doquery ($QryTableStatPoints	, 'statpoints'	);
 			doquery ($QryTableUsers			, 'users'  	);
 			doquery ($QryTableBots			, 'bots'  	);
@@ -175,14 +175,14 @@ switch ($Mode)
 			$QryAddAdmGlx .= "`id_planet`         = '1'; ";
 			doquery($QryAddAdmGlx, 'galaxy');
 
-			update_config ( 'stat_last_update' , time() );
+			update_config ( 'stat_last_update' , time());
 
 			$frame  = parsetemplate(gettemplate('install/ins_acc_done'), $parse);
 		}
 		break;
 	case'upgrade':
 
-		$system_version	=	str_replace ( 'v' , '' , VERSION );
+		$system_version	=	str_replace ( 'v' , '' , VERSION);
 
 		if ( filesize ( '../config.php' ) == 0 )
 		{
@@ -320,7 +320,7 @@ switch ($Mode)
 						case '2.10.3':
 						case '2.10.4':
 							$QrysArray	= array($Qry12, $Qry13, $Qry14);
-							update_config ( 'version' , SYSTEM_VERSION );
+							update_config ( 'version' , SYSTEM_VERSION);
 							upgrade_xml();
 							migrate_to_sha1();
 						break;

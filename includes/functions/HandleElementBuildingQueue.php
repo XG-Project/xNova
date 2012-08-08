@@ -74,7 +74,7 @@ function HandleElementBuildingQueue ( $CurrentUser, &$CurrentPlanet, $Production
 				$CurrentPlanet[$resource[$Element]] += $Count;
 				$Count = 0;
 			}
-			if ( $Count != 0 )
+			if ($Count != 0 )
 			{
 				$CurrentPlanet['b_hangar_id'] .= $Element.",".$Count.";";
 			}

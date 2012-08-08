@@ -11,7 +11,7 @@ define('INSTALL' , FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 
 if ($ConfigGame != 1) die(message ($lang['404_page']));
 
@@ -52,7 +52,7 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 				$Log	=	"\n".$lang['log_errores_title']."\n";
 				$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_errors']."\n";
 				LogFunction($Log, "GeneralLog", $LogCanWork);
-				header ( 'location:ErrorPage.php?page=sql' );
+				header ( 'location:ErrorPage.php?page=sql');
 			}
 			elseif (isset($deleteall) && $deleteall == 'yes')
 			{
@@ -60,7 +60,7 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 				$Log	=	"\n".$lang['log_errores_title']."\n";
 				$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_all_sql_errors']."\n";
 				LogFunction($Log, "GeneralLog", $LogCanWork);
-				header ( 'location:ErrorPage.php?page=sql' );
+				header ( 'location:ErrorPage.php?page=sql');
 			}
 
 			display(parsetemplate(gettemplate('adm/SQLErrorMessagesBody'), $parse), FALSE, '', TRUE, FALSE);
@@ -131,7 +131,7 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 				$Log	=	"\n".$lang['log_errores_title']."\n";
 				$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_errors']."\n";
 				LogFunction($Log, "GeneralLog", $LogCanWork);
-				header ( 'location:ErrorPage.php?page=php' );
+				header ( 'location:ErrorPage.php?page=php');
 			}
 			elseif (isset($deleteall) && $deleteall === 'yes')
 			{
@@ -139,7 +139,7 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 				$Log	=	"\n".$lang['log_errores_title']."\n";
 				$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_all_php_errors']."\n";
 				LogFunction($Log, "GeneralLog", $LogCanWork);
-				header ( 'location:ErrorPage.php?page=php' );
+				header ( 'location:ErrorPage.php?page=php');
 			}
 
 			display(parsetemplate(gettemplate('adm/PHPErrorMessagesBody'), $parse), FALSE, '', TRUE, FALSE);

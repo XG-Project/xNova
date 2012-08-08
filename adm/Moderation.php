@@ -12,7 +12,7 @@ define('INSTALL' , FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 
 if ($user['authlevel'] < 3) die(message ($lang['404_page']));
 
@@ -21,7 +21,7 @@ $parse	=	$lang;
 
 if ($_GET['moderation'] == '1')
 {
-	$QueryModeration	=	read_config ( 'moderation' );
+	$QueryModeration	=	read_config ( 'moderation');
 	$QueryModerationEx	=	explode(";", $QueryModeration);
 	$Moderator			=	explode(",", $QueryModerationEx[0]);
 	$Operator			=	explode(",", $QueryModerationEx[1]);
@@ -90,8 +90,8 @@ if ($_GET['moderation'] == '1')
 
 		LogFunction($Log, "ModerationLog", $LogCanWork);
 
-		update_config ( 'moderation' , $QueryEdit );
-		header ( 'location:Moderation.php?moderation=1' );
+		update_config ( 'moderation' , $QueryEdit);
+		header ( 'location:Moderation.php?moderation=1');
 	}
 
 	display(parsetemplate(gettemplate('adm/ModerationBody'), $parse), FALSE, '' , TRUE, FALSE);
@@ -164,7 +164,7 @@ elseif ($_GET['moderation'] == '2')
 
 					LogFunction($Log, "ModerationLog", $LogCanWork);
 
-					header ( 'location:Moderation.php?moderation=2&succes=yes' );
+					header ( 'location:Moderation.php?moderation=2&succes=yes');
 				}
 				else
 				{

@@ -18,11 +18,11 @@ class ShowResearchPage
 			if (strpos ($CurrentQueue, ";"))
 			{
 				// FIX BY LUCKY - IF THE LAB IS IN QUEUE THE USER CANT RESEARCH ANYTHING...
-				$QueueArray		= explode (";", $CurrentQueue);
+				$QueueArray		= explode(";", $CurrentQueue);
 
 				for ($i = 0; $i < MAX_BUILDING_QUEUE_SIZE; $i++)
 				{
-					$ListIDArray	= explode (",", $QueueArray[$i]);
+					$ListIDArray	= explode(",", $QueueArray[$i]);
 					$Element		= $ListIDArray[0];
 
 					if ($Element == 31)
@@ -56,8 +56,8 @@ class ShowResearchPage
 	{
 		global $lang, $resource, $reslist, $_GET;
 
-		include_once(XN_ROOT . 'includes/functions/IsTechnologieAccessible.php');
-		include_once(XN_ROOT . 'includes/functions/GetElementPrice.php');
+		include_once(XN_ROOT.'includes/functions/IsTechnologieAccessible.php');
+		include_once(XN_ROOT.'includes/functions/GetElementPrice.php');
 
 		$PageParse			= $lang;
 		$NoResearchMessage 	= "";

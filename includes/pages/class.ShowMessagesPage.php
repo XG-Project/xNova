@@ -14,9 +14,9 @@ class ShowMessagesPage
 	{
 		global $lang, $db;
 
-		$OwnerID		= intval ( $_GET['id'] );
-		$MessCategory  	= intval ( $_GET['messcat'] );
-		$MessPageMode  	= addslashes ( $db->real_escape_string ( $_GET["mode"] ) );
+		$OwnerID		= intval ( $_GET['id']);
+		$MessCategory  	= intval ( $_GET['messcat']);
+		$MessPageMode  	= addslashes ( $db->real_escape_string ( $_GET["mode"] ));
 		$DeleteWhat    	= $_POST['deletemessages'];
 
 		if ( isset ( $DeleteWhat ) )
@@ -24,10 +24,10 @@ class ShowMessagesPage
 			$MessPageMode = "delete";
 		}
 
-		$UsrMess       = doquery("SELECT * FROM {{table}} WHERE `message_owner` = '" . intval ( $CurrentUser['id'] ) . "' ORDER BY `message_time` DESC;" , 'messages' );
-		$UnRead        = doquery("SELECT * FROM {{table}} WHERE `id` = '" . intval ( $CurrentUser['id'] ) . "';" , 'users' , TRUE );
+		$UsrMess       = doquery("SELECT * FROM {{table}} WHERE `message_owner` = '" . intval ( $CurrentUser['id'] ) . "' ORDER BY `message_time` DESC;" , 'messages');
+		$UnRead        = doquery("SELECT * FROM {{table}} WHERE `id` = '" . intval ( $CurrentUser['id'] ) . "';" , 'users' , TRUE);
 
-		$MessageType   = array ( 0, 1, 2, 3, 4, 5, 15, 99, 100 );
+		$MessageType   = array ( 0, 1, 2, 3, 4, 5, 15, 99, 100);
 		$TitleColor    = array (
 									0 => '#FFFF00',
 									1 => '#FF6699',
@@ -66,18 +66,18 @@ class ShowMessagesPage
 				}
 				else
 				{
-					$OwnerRecord	=	doquery ( "SELECT `id_planet`,`username` FROM {{table}} WHERE `id` = '" . intval ( $OwnerID ) . "';" , 'users' , TRUE );
-					$OwnerHome		= 	doquery ( "SELECT `galaxy`,`system`,`planet` FROM {{table}} WHERE `id_planet` = '" . intval ( $OwnerRecord["id_planet"] ) . "';" , 'galaxy' , TRUE );
+					$OwnerRecord	=	doquery ( "SELECT `id_planet`,`username` FROM {{table}} WHERE `id` = '" . intval ( $OwnerID ) . "';" , 'users' , TRUE);
+					$OwnerHome		= 	doquery ( "SELECT `galaxy`,`system`,`planet` FROM {{table}} WHERE `id_planet` = '" . intval ( $OwnerRecord["id_planet"] ) . "';" , 'galaxy' , TRUE);
 
 					if ( ! $OwnerRecord or ! $OwnerHome )
 					{
-						header ( "location:game.php?page=messages" );
+						header ( "location:game.php?page=messages");
 					}
 				}
 
 				$parse	=	$lang;
 
-				if ( $_POST )
+				if ($_POST )
 				{
 					$error 	= 	0;
 
@@ -86,7 +86,7 @@ class ShowMessagesPage
 						$error++;
 						$parse['error_text']	=	$lang['mg_no_subject'];
 						$parse['error_color']	=	'#FF0000';
-						$error_page				=	parsetemplate ( gettemplate ( 'messages/messages_error_table' ) , $parse );
+						$error_page				=	parsetemplate ( gettemplate ( 'messages/messages_error_table' ) , $parse);
 					}
 
 					if ( !$_POST["text"] )
@@ -94,23 +94,23 @@ class ShowMessagesPage
 						$error++;
 						$parse['error_text']	=	$lang['mg_no_text'];
 						$parse['error_color']	=	'#FF0000';
-						$error_page				=	parsetemplate ( gettemplate ( 'messages/messages_error_table' ) , $parse );
+						$error_page				=	parsetemplate ( gettemplate ( 'messages/messages_error_table' ) , $parse);
 					}
 
-					if ( $error == 0 )
+					if ($error == 0 )
 					{
 						$parse['error_text']	=	$lang['mg_msg_sended'];
 						$parse['error_color']	=	'#00FF00';
-						$error_page				=	parsetemplate ( gettemplate ( 'messages/messages_error_table' ) , $parse );
+						$error_page				=	parsetemplate ( gettemplate ( 'messages/messages_error_table' ) , $parse);
 
-						$_POST['text'] 			= str_replace ( "'" , '&#39;' , $_POST['text'] );
+						$_POST['text'] 			= str_replace ( "'" , '&#39;' , $_POST['text']);
 						$Owner   				= $OwnerID;
-						$Sender  				= intval ( $CurrentUser['id'] );
+						$Sender  				= intval ( $CurrentUser['id']);
 						$From    				= $CurrentUser['username'] . " [" .$CurrentUser['galaxy'] . ":" . $CurrentUser['system'] . ":" . $CurrentUser['planet'] . "]";
 						$Subject 				= $_POST['subject'];
-						$Message				= preg_replace ( "/([^\s]{80}?)/" , "\\1<br />" , trim ( nl2br ( strip_tags ( $_POST['text'] , '<br>' ) ) ) );
+						$Message				= preg_replace ( "/([^\s]{80}?)/" , "\\1<br />" , trim ( nl2br ( strip_tags ( $_POST['text'] , '<br>' ) ) ));
 
-						SendSimpleMessage ( $Owner , $Sender , '' , 1 , $From , $Subject , $Message );
+						SendSimpleMessage ( $Owner , $Sender , '' , 1 , $From , $Subject , $Message);
 
 						$subject 				= "";
 						$text    				= "";
@@ -123,7 +123,7 @@ class ShowMessagesPage
 				$parse['text']         		= $text;
 				$parse['status_message']	= $error_page;
 
-				display ( parsetemplate ( gettemplate ( 'messages/messages_pm_form' ) , $parse ) );
+				display ( parsetemplate ( gettemplate ( 'messages/messages_pm_form' ) , $parse ));
 
 				break;
 
@@ -135,7 +135,7 @@ class ShowMessagesPage
 				{
 					doquery("DELETE FROM {{table}} WHERE `message_owner` = '". intval($CurrentUser['id']) ."';", 'messages');
 				}
-				elseif ( $DeleteWhat == 'deletemarked' )
+				elseif ($DeleteWhat == 'deletemarked' )
 				{
 					foreach ( $_POST as $Message => $Answer )
 					{
@@ -144,29 +144,29 @@ class ShowMessagesPage
 							$MessId   = str_replace("delmes", "", $Message);
 							$MessHere = doquery("SELECT * FROM {{table}} WHERE `message_id` = '". intval($MessId) ."' AND `message_owner` = '". intval($CurrentUser['id']) ."';", 'messages');
 
-							if ( $MessHere )
+							if ($MessHere )
 							{
-								doquery ( "DELETE FROM {{table}} WHERE `message_id` = '" . intval ( $MessId ) . "';" , 'messages' );
+								doquery ( "DELETE FROM {{table}} WHERE `message_id` = '" . intval ( $MessId ) . "';" , 'messages');
 							}
 						}
 					}
 				}
-				elseif ( $DeleteWhat == 'deleteunmarked' )
+				elseif ($DeleteWhat == 'deleteunmarked' )
 				{
 					foreach ( $_POST as $Message => $Answer )
 					{
-						$CurMess    	= preg_match ( "/showmes/i" , $Message );
-						$MessId     	= str_replace ( "showmes" , "" , $Message );
+						$CurMess    	= preg_match ( "/showmes/i" , $Message);
+						$MessId     	= str_replace ( "showmes" , "" , $Message);
 						$Selected   	= "delmes" . $MessId;
 						$IsSelected		= $_POST[$Selected];
 
 						if ( preg_match ( "/showmes/i" , $Message ) && !isset ( $IsSelected ) )
 						{
-							$MessHere = doquery("SELECT * FROM {{table}} WHERE `message_id` = '" . intval ( $MessId ) . "' AND `message_owner` = '" . intval ( $CurrentUser['id'] ) . "';" , 'messages' );
+							$MessHere = doquery("SELECT * FROM {{table}} WHERE `message_id` = '" . intval ( $MessId ) . "' AND `message_owner` = '" . intval ( $CurrentUser['id'] ) . "';" , 'messages');
 
-							if ( $MessHere )
+							if ($MessHere )
 							{
-								doquery("DELETE FROM {{table}} WHERE `message_id` = '" . intval ( $MessId ) . "';" , 'messages' );
+								doquery("DELETE FROM {{table}} WHERE `message_id` = '" . intval ( $MessId ) . "';" , 'messages');
 							}
 						}
 					}
@@ -184,16 +184,16 @@ class ShowMessagesPage
 				###############################################################################################
 
 				$parse					=	$lang;
-				$subTemplateMessages	= 	gettemplate ( 'messages/messages_row' );
-				$subTemplateOperators	=   gettemplate ( 'messages/messages_adm_row' );
+				$subTemplateMessages	= 	gettemplate ( 'messages/messages_row');
+				$subTemplateOperators	=   gettemplate ( 'messages/messages_adm_row');
 
-				if ( $MessCategory == 100 )
+				if ($MessCategory == 100 )
 				{
-					$UsrMess	= doquery ( "SELECT * FROM {{table}} WHERE `message_owner` = '" . intval ( $CurrentUser['id'] ) . "' ORDER BY `message_time` DESC;" , 'messages' );
+					$UsrMess	= doquery ( "SELECT * FROM {{table}} WHERE `message_owner` = '" . intval ( $CurrentUser['id'] ) . "' ORDER BY `message_time` DESC;" , 'messages');
 				}
 				else
 				{
-					$UsrMess	= doquery ( "SELECT * FROM {{table}} WHERE `message_owner` = '" . intval ( $CurrentUser['id'] ) . "' AND `message_type` = '" . $MessCategory . "' ORDER BY `message_time` DESC;" , 'messages' );
+					$UsrMess	= doquery ( "SELECT * FROM {{table}} WHERE `message_owner` = '" . intval ( $CurrentUser['id'] ) . "' AND `message_type` = '" . $MessCategory . "' ORDER BY `message_time` DESC;" , 'messages');
 				}
 
 				$QryUpdateUser  = "UPDATE {{table}} SET ";
@@ -205,12 +205,12 @@ class ShowMessagesPage
 				while ($CurMess = $UsrMess->fetch_array())
 				{
 					$parse['message_id']		=	$CurMess['message_id'];
-					$parse['message_date']		=	date ( "m-d H:i:s" , $CurMess['message_time'] );
-					$parse['message_from']		=   stripslashes( $CurMess['message_from'] );
-					$parse['message_subject']	=	stripslashes( $CurMess['message_subject'] );
+					$parse['message_date']		=	date ( "m-d H:i:s" , $CurMess['message_time']);
+					$parse['message_from']		=   stripslashes( $CurMess['message_from']);
+					$parse['message_subject']	=	stripslashes( $CurMess['message_subject']);
 
 
-					if ( $CurMess['message_type'] == 1 )
+					if ($CurMess['message_type'] == 1 )
 					{
 						$parse['message_subject'] .= "<a href=\"game.php?page=messages&mode=write&amp;id=". $CurMess['message_sender'] ."&amp;subject=Re: " . htmlspecialchars( $CurMess['message_subject']) ."\">";
 						$parse['message_subject'] .= " <img height=\"14\" width=\"12\" src=\"". DPATH ."img/m.png\" border=\"0\"></a>\n";
@@ -220,9 +220,9 @@ class ShowMessagesPage
 						$parse['message_subject'] .= "";
 					}
 
-					$parse['message_text']		= stripslashes( nl2br( $CurMess['message_text'] ) );
+					$parse['message_text']		= stripslashes( nl2br( $CurMess['message_text'] ));
 
-					$messagesBody				.= parsetemplate ( $subTemplateMessages , $parse );
+					$messagesBody				.= parsetemplate ( $subTemplateMessages , $parse);
 				}
 
 				###############################################################################################
@@ -241,14 +241,14 @@ class ShowMessagesPage
 					$parse['dpath']		= DPATH;
 					$parse['username'] 	= $Ops['username'];
 					$parse['mail']		= $Ops['email'];
-					$operatorsBody		.= parsetemplate ( $subTemplateOperators , $parse );
+					$operatorsBody		.= parsetemplate ( $subTemplateOperators , $parse);
 				}
 
 				// SUBTEMPLATES
 				$parse['show_messages']			= $messagesBody;
 				$parse['show_operators']		= $operatorsBody;
 
-				display ( parsetemplate ( gettemplate ( 'messages/messages_body' ) , $parse ) );
+				display ( parsetemplate ( gettemplate ( 'messages/messages_body' ) , $parse ));
 
 				break;
 			default:
@@ -258,7 +258,7 @@ class ShowMessagesPage
 				$parse['all_total']	=  	$TotalMess[100];
 				$parse['all_lang']	= 	$lang['mg_type'][100];
 
-				$subTemplate 	= gettemplate ( 'messages/messages_menu_row' );
+				$subTemplate 	= gettemplate ( 'messages/messages_menu_row');
 
 				for ( $MessType = 0 ; $MessType < 100 ; $MessType++ )
 				{
@@ -270,13 +270,13 @@ class ShowMessagesPage
 						$parse['lang']	= $lang['mg_type'][$MessType];
 						$parse['type']	= $MessType;
 
-						$body .= parsetemplate ( $subTemplate , $parse );
+						$body .= parsetemplate ( $subTemplate , $parse);
 					}
 				}
 
 				$parse['messages_menu_row']	= $body;
 
-				display ( parsetemplate ( gettemplate ( 'messages/messages_menu_body' ) , $parse ) );
+				display ( parsetemplate ( gettemplate ( 'messages/messages_menu_body' ) , $parse ));
 
 				break;
 		}

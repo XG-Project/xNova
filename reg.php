@@ -24,7 +24,7 @@ function sendpassemail($emailaddress, $password)
 	global $lang, $parse;
 
 	$email 				= parsetemplate($lang['reg_mail_text_part1'].$password.$lang['reg_mail_text_part2'].GAMEURL, $parse);
-	$status 			= mymail($emailaddress, $lang['register_at'].read_config('game_name'), $email );
+	$status 			= mymail($emailaddress, $lang['register_at'].read_config('game_name'), $email);
 
 	return $status;
 }
@@ -135,9 +135,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
 		$NewUser = doquery("SELECT `id` FROM {{table}} WHERE `username` = '" . $db->real_escape_string($_POST['character']) . "' LIMIT 1;", 'users', TRUE);
 
-		$LastSettedGalaxyPos = read_config ( 'lastsettedgalaxypos' );
-		$LastSettedSystemPos = read_config ( 'lastsettedsystempos' );
-		$LastSettedPlanetPos = read_config ( 'lastsettedplanetpos' );
+		$LastSettedGalaxyPos = read_config ( 'lastsettedgalaxypos');
+		$LastSettedSystemPos = read_config ( 'lastsettedsystempos');
+		$LastSettedPlanetPos = read_config ( 'lastsettedplanetpos');
 
 		while (!isset($newpos_checked))
 		{
@@ -199,9 +199,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 			}
 			if ($newpos_checked)
 			{
-				update_config ( 'lastsettedgalaxypos' , $LastSettedGalaxyPos );
-				update_config ( 'lastsettedsystempos' , $LastSettedSystemPos );
-				update_config ( 'lastsettedplanetpos' , $LastSettedPlanetPos );
+				update_config ( 'lastsettedgalaxypos' , $LastSettedGalaxyPos);
+				update_config ( 'lastsettedsystempos' , $LastSettedSystemPos);
+				update_config ( 'lastsettedplanetpos' , $LastSettedPlanetPos);
 			}
 		}
 		$PlanetID = doquery("SELECT `id` FROM {{table}} WHERE `id_owner` = '". $NewUser['id'] ."' LIMIT 1;" , 'planets', TRUE);
@@ -223,7 +223,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$message 	= $lang['welcome_message_content'];
 		SendSimpleMessage($NewUser['id'], $sender, $Time, 1, $from, $Subject, $message);
 
-		update_config ( 'users_amount' , read_config ( 'users_amount' ) + 1 );
+		update_config ( 'users_amount' , read_config ( 'users_amount' ) + 1);
 
 		@include('config.php');
 		$cookie = $NewUser['id'] . "/%/" . $UserName . "/%/" . md5($sha1newpass . "--" . $dbsettings["secretword"]) . "/%/" . 0;
@@ -236,10 +236,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 }
 else
 {
-	$parse['year']		   = date ( "Y" );
+	$parse['year']		   = date ( "Y");
 	$parse['version']	   = VERSION;
-	$parse['servername']   = read_config ( 'game_name' );
-	$parse['forum_url']    = read_config ( 'forum_url' );
+	$parse['servername']   = read_config ( 'game_name');
+	$parse['forum_url']    = read_config ( 'forum_url');
 	display (parsetemplate(gettemplate('public/registry_form'), $parse), FALSE, '',FALSE, FALSE);
 }
 ?>

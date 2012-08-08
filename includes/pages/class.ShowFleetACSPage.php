@@ -20,10 +20,10 @@ class ShowFleetACSPage
 		// ARRAYS
 		$missiontype		= Fleets::get_missions();
 
-		$speed				= array (10 => 100,9 => 90,8 => 80,7 => 70,6 => 60,5 => 50,4 => 40,3 => 30,2 => 20,1 => 10 );
+		$speed				= array (10 => 100,9 => 90,8 => 80,7 => 70,6 => 60,5 => 50,4 => 40,3 => 30,2 => 20,1 => 10);
 
 		// TEMPLATES
-		$options_template	= gettemplate ( 'fleet/fleet_options' );
+		$options_template	= gettemplate ( 'fleet/fleet_options');
 
 		// QUERY
 		$count				= doquery("SELECT
@@ -31,16 +31,16 @@ class ShowFleetACSPage
 										(SELECT COUNT(fleet_owner) AS `expedi` FROM {{table}}fleets WHERE `fleet_owner` = '".intval($CurrentUser['id'])."' AND `fleet_mission` = '15') AS max_expeditions" , '' , TRUE);
 
 		// LOAD TEMPLATES REQUIRED
-		$options_template	= gettemplate ( 'fleet/fleet_options' );
+		$options_template	= gettemplate ( 'fleet/fleet_options');
 
 		// LANGUAGE
 		$parse 				= $lang;
 
 		// COORDS
-		$galaxy 			= ( ( $_GET['galaxy'] == '' ) ? $CurrentPlanet['galaxy'] : $_GET['galaxy'] );
-		$system 			= ( ( $_GET['system'] == '' ) ? $CurrentPlanet['system'] : $_GET['system'] );
-		$planet 			= ( ( $_GET['planet'] == '' ) ? $CurrentPlanet['planet'] : $_GET['planet'] );
-		$planettype 		= ( ( $_GET['planet_type'] == '' ) ? $CurrentPlanet['planet_type'] : $_GET['planet_type'] );
+		$galaxy 			= ( ( $_GET['galaxy'] == '' ) ? $CurrentPlanet['galaxy'] : $_GET['galaxy']);
+		$system 			= ( ( $_GET['system'] == '' ) ? $CurrentPlanet['system'] : $_GET['system']);
+		$planet 			= ( ( $_GET['planet'] == '' ) ? $CurrentPlanet['planet'] : $_GET['planet']);
+		$planettype 		= ( ( $_GET['planet_type'] == '' ) ? $CurrentPlanet['planet_type'] : $_GET['planet_type']);
 
 
 		// OTHER VALUES
@@ -51,7 +51,7 @@ class ShowFleetACSPage
 		if ($MaxExpedition >= 1)
 		{
 			$ExpeditionEnCours  = $count['max_expeditions'];
-			$EnvoiMaxExpedition = 1 + floor( $MaxExpedition / 3 );
+			$EnvoiMaxExpedition = 1 + floor( $MaxExpedition / 3);
 		}
 		else
 		{
@@ -59,11 +59,11 @@ class ShowFleetACSPage
 			$EnvoiMaxExpedition = 0;
 		}
 
-		$MaxFlottes 		= Fleets::get_max_fleets ( $CurrentUser[$resource[108]] , $CurrentUser['rpg_amiral'] );
+		$MaxFlottes 		= Fleets::get_max_fleets ( $CurrentUser[$resource[108]] , $CurrentUser['rpg_amiral']);
 
 		if ( !is_numeric ( $fleetid ) or empty ( $fleetid ) )
 		{
-			exit ( header ( "Location: game.php?page=fleet" ) );
+			exit ( header ( "Location: game.php?page=fleet" ));
 		}
 
 		if ( isset ( $_POST['add_member_to_acs'] ) && !empty ( $_POST['add_member_to_acs'] ) )
@@ -76,7 +76,7 @@ class ShowFleetACSPage
 				$added_user_id .= $row['id'];
 			}
 
-			if ( $added_user_id > 0 )
+			if ($added_user_id > 0 )
 			{
 				$new_eingeladen_mr = $db->real_escape_string($_POST['acs_invited']).','.$added_user_id;
 				doquery("UPDATE {{table}} SET `eingeladen` = '".$new_eingeladen_mr."' ;",'aks');
@@ -100,7 +100,7 @@ class ShowFleetACSPage
 
 		$daten = $query->fetch_array();
 
-		if ( $daten['fleet_start_time'] <= time() or
+		if ($daten['fleet_start_time'] <= time() or
 			 $daten['fleet_end_time'] < time() or
 			 $daten['fleet_mess'] == 1 )
 		{
@@ -113,9 +113,9 @@ class ShowFleetACSPage
 
 			if (empty($fleet['fleet_group']))
 			{
-				$rand 			= mt_rand ( 100000 , 999999999 );
+				$rand 			= mt_rand ( 100000 , 999999999);
 				$acs_code 		= "AG" . $rand;
-				$acs_invited 	= intval ( $CurrentUser['id'] );
+				$acs_invited 	= intval ( $CurrentUser['id']);
 
 				doquery ( "INSERT INTO {{table}}
 							SET
@@ -127,7 +127,7 @@ class ShowFleetACSPage
 								`system` = '" . $fleet['fleet_end_system'] . "',
 								`planet` = '" . $fleet['fleet_end_planet'] . "',
 								`planet_type` = '" . $fleet['fleet_end_type'] . "',
-								`eingeladen` = '" . $acs_invited . "'" , 'aks' );
+								`eingeladen` = '" . $acs_invited . "'" , 'aks');
 
 				$acs = doquery ( "SELECT `id`
 									FROM {{table}}
@@ -151,7 +151,7 @@ class ShowFleetACSPage
 														`system` = '" . $fleet['fleet_end_system'] . "' AND
 														`planet` = '" . $fleet['fleet_end_planet'] . "' AND
 														`eingeladen` = '" . intval($CurrentUser['id']) . "'
-														" , 'aks' );
+														" , 'aks');
 
 				doquery("UPDATE {{table}}
 							SET fleet_group = '" . intval ( $acs['id'] ) . "'
@@ -159,23 +159,23 @@ class ShowFleetACSPage
 			}
 			else
 			{
-				if ( $_POST['txt_name_acs'] != "" )
+				if ($_POST['txt_name_acs'] != "" )
 				{
 					doquery ( "UPDATE {{table}}
 								SET name = '" . $db->real_escape_string($_POST['txt_name_acs']) . "'
 								WHERE teilnehmer = '" . intval($CurrentUser['id']) . "'", 'aks');
 				}
 
-				$acs 			= doquery("SELECT COUNT(`id`) FROM {{table}} WHERE id = '" . intval($fleet['fleet_group']) . "'" , 'aks' , TRUE );
+				$acs 			= doquery("SELECT COUNT(`id`) FROM {{table}} WHERE id = '" . intval($fleet['fleet_group']) . "'" , 'aks' , TRUE);
 				$acs_madnessred = doquery("SELECT * FROM {{table}} WHERE id = '" . intval($fleet['fleet_group']) . "'", 'aks');
 
-				if ( $acs[0] != 1 )
+				if ($acs[0] != 1 )
 				{
-					exit ( header ( "Location: game.php?page=fleet" ) );
+					exit ( header ( "Location: game.php?page=fleet" ));
 				}
 			}
 
-			if ( $count['max_fleet'] <> 0 or $MaxExpedition <> 0 )
+			if ($count['max_fleet'] <> 0 or $MaxExpedition <> 0 )
 			{
 
 				$fq = doquery("SELECT * FROM {{table}} WHERE fleet_owner='".intval($CurrentUser[id])."'", "fleets");
@@ -199,12 +199,12 @@ class ShowFleetACSPage
 						$parse['title']			=	$lang['fl_a'];
 					}
 
-					$fleet 						= 	explode ( ";" , $f['fleet_array'] );
+					$fleet 						= 	explode(";" , $f['fleet_array']);
 					$e 							= 	0;
 
 					foreach ( $fleet as $a => $b )
 					{
-						if ( $b != '' )
+						if ($b != '' )
 						{
 							$e++;
 							$a 					= explode(",", $b);
@@ -217,12 +217,12 @@ class ShowFleetACSPage
 						}
 					}
 
-					$parse['fleet_amount']		=	Format::pretty_number ( $f[fleet_amount] );
+					$parse['fleet_amount']		=	Format::pretty_number ( $f[fleet_amount]);
 					$parse['fleet_start']		=	"[".$f[fleet_start_galaxy].":".$f[fleet_start_system].":".$f[fleet_start_planet]."]";
-					$parse['fleet_start_time']	=	date ( "d M Y H:i:s" , $f['fleet_start_time'] );
+					$parse['fleet_start_time']	=	date ( "d M Y H:i:s" , $f['fleet_start_time']);
 					$parse['fleet_end']			=	"[".$f[fleet_end_galaxy].":".$f[fleet_end_system].":".$f[fleet_end_planet]."]";
-					$parse['fleet_end_time']	=	date ( "d M Y H:i:s" , $f['fleet_end_time'] );
-					$parse['fleet_arrival']		=	Format::pretty_time ( floor ( $f['fleet_end_time'] + 1 - time() ) );
+					$parse['fleet_end_time']	=	date ( "d M Y H:i:s" , $f['fleet_end_time']);
+					$parse['fleet_arrival']		=	Format::pretty_time ( floor ( $f['fleet_end_time'] + 1 - time() ));
 
 					if ($f['fleet_mess'] == 0 or $f['fleet_mess'] == 2)
 					{
@@ -244,11 +244,11 @@ class ShowFleetACSPage
 						$parse['inputs'] = "&nbsp;-&nbsp;";
 					}
 
-					$flying_fleets	.= parsetemplate ( gettemplate ( 'fleet/fleet_row_fleets' ) , $parse );
+					$flying_fleets	.= parsetemplate ( gettemplate ( 'fleet/fleet_row_fleets' ) , $parse);
 				}
 			}
 
-			if ( $i == 0 )
+			if ($i == 0 )
 			{
 				$parse['num']				=	'-';
 				$parse['fleet_mission']		=	'-';
@@ -261,7 +261,7 @@ class ShowFleetACSPage
 				$parse['fleet_arrival']		=	'-';
 				$parse['inputs']			=	'-';
 
-				$flying_fleets	.= parsetemplate ( gettemplate ( 'fleet/fleet_row_fleets' ) , $parse );
+				$flying_fleets	.= parsetemplate ( gettemplate ( 'fleet/fleet_row_fleets' ) , $parse);
 			}
 
 			$parse['fleetpagerow']	=	$flying_fleets;
@@ -273,11 +273,11 @@ class ShowFleetACSPage
 			}
 
 			$parse['acs_code']		= $acs_code;
-			$members 				= explode ( "," , $acs_invited );
+			$members 				= explode("," , $acs_invited);
 
 			foreach ( $members as $a => $b )
 			{
-				if ( $b != '' )
+				if ($b != '' )
 				{
 					$member_qry 	= doquery("SELECT `username` FROM {{table}} WHERE `id` ='".intval($b)."' ;",'users');
 
@@ -286,7 +286,7 @@ class ShowFleetACSPage
 						$members_option['value']	= '';
 						$members_option['selected']	= '';
 						$members_option['title']	= $row['username'];
-						$members_row    			.= parsetemplate ( $options_template , $members_option );
+						$members_row    			.= parsetemplate ( $options_template , $members_option);
 					}
 				}
 			}
@@ -298,7 +298,7 @@ class ShowFleetACSPage
 
 			if ($MaxFlottes == $MaxFlyingFleets)
 			{
-				$parse['message_nofreeslot'] .= parsetemplate ( gettemplate ( 'fleet/fleet_noslots_row' ) , $parse );
+				$parse['message_nofreeslot'] .= parsetemplate ( gettemplate ( 'fleet/fleet_noslots_row' ) , $parse);
 			}
 
 			if ( ! $CurrentPlanet)
@@ -312,21 +312,21 @@ class ShowFleetACSPage
 			{
 				if ($CurrentPlanet[$resource[$i]] > 0)
 				{
-					if ( $i == 212 )
+					if ($i == 212 )
 					{
 						$ships['fleet_max_speed'] 	= 	'-';
 					}
 					else
 					{
-						$ships['fleet_max_speed']	=  	Fleets::fleet_max_speed( "" , $i , $CurrentUser );
+						$ships['fleet_max_speed']	=  	Fleets::fleet_max_speed( "" , $i , $CurrentUser);
 					}
 
 					$ships['ship']					= 	$lang['tech'][$i];
-					$ships['amount']				= 	Format::pretty_number ( $CurrentPlanet[$resource[$i]] );
+					$ships['amount']				= 	Format::pretty_number ( $CurrentPlanet[$resource[$i]]);
 					$inputs['i']					=	$i;
 					$inputs['maxship']				=	$CurrentPlanet[$resource[$i]];
-					$inputs['consumption']			=	Fleets::ship_consumption ( $i, $CurrentUser );
-					$inputs['speed']				=	Fleets::fleet_max_speed("", $i, $CurrentUser );
+					$inputs['consumption']			=	Fleets::ship_consumption ( $i, $CurrentUser);
+					$inputs['speed']				=	Fleets::fleet_max_speed("", $i, $CurrentUser);
 					$inputs['capacity']				=	$pricelist[$i]['capacity'];
 
 					if ($i == 212)
@@ -340,27 +340,27 @@ class ShowFleetACSPage
 						$ships['set_ships'] 		= "<input name=\"ship". $i ."\" size=\"10\" value=\"0\" onfocus=\"javascript:if (this.value == '0') this.value='';\" onblur=\"javascript:if (this.value == '') this.value='0';\" alt=\"". $lang['tech'][$i] . $CurrentPlanet[$resource[$i]] ."\" onChange=\"shortInfo()\" onKeyUp=\"shortInfo()\" />";
 					}
 
-					$ship_inputs	.=	parsetemplate ( gettemplate ( 'fleet/fleet_inputs' ) , $inputs );
-					$ships_row		.= 	parsetemplate ( gettemplate ( 'fleet/fleet_row_ships' ) , $ships );
+					$ship_inputs	.=	parsetemplate ( gettemplate ( 'fleet/fleet_inputs' ) , $inputs);
+					$ships_row		.= 	parsetemplate ( gettemplate ( 'fleet/fleet_row_ships' ) , $ships);
 				}
 
 				$have_ships = TRUE;
 
 				if ( ! $have_ships)
 				{
-					$parse['noships_row']	=	parsetemplate ( gettemplate ( 'fleet/fleet_noships_row' ) , $lang );
+					$parse['noships_row']	=	parsetemplate ( gettemplate ( 'fleet/fleet_noships_row' ) , $lang);
 				}
 				else
 				{
-					if ( $MaxFlottes > $MaxFlyingFleets )
+					if ($MaxFlottes > $MaxFlyingFleets )
 					{
-						$parse['none_max_selector']	=	parsetemplate ( gettemplate ( 'fleet/fleet_selectors' ) , $lang );
-						$parse['continue_button']	=	parsetemplate ( gettemplate ( 'fleet/fleet_button' ) , $lang );
+						$parse['none_max_selector']	=	parsetemplate ( gettemplate ( 'fleet/fleet_selectors' ) , $lang);
+						$parse['continue_button']	=	parsetemplate ( gettemplate ( 'fleet/fleet_button' ) , $lang);
 					}
 				}
 			}
 
-			$parse['acs_members']			= parsetemplate ( gettemplate ( 'fleet/fleetACS_table' ) , $parse );
+			$parse['acs_members']			= parsetemplate ( gettemplate ( 'fleet/fleetACS_table' ) , $parse);
 			$parse['body']					= $ships_row;
 			$parse['shipdata'] 				= $ship_inputs;
 			$parse['galaxy']				= $galaxy;
@@ -373,7 +373,7 @@ class ShowFleetACSPage
 			$parse['currentexpeditions']	= $ExpeditionEnCours;
 			$parse['maxexpeditions']		= $EnvoiMaxExpedition;
 		}
-		display ( parsetemplate ( gettemplate ( 'fleet/fleet_table' ) , $parse ) );
+		display ( parsetemplate ( gettemplate ( 'fleet/fleet_table' ) , $parse ));
 	}
 }
 ?>

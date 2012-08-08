@@ -74,7 +74,7 @@ function xd() {
 		} else {
 			act = "";
 		}
-		document.Atr.auftr.options[document.Atr.auftr.length] = new Option( a[iv] + ae + " \"" + b[iv] + "\"" + act, iv + of );
+		document.Atr.auftr.options[document.Atr.auftr.length] = new Option( a[iv] + ae + " \"" + b[iv] + "\"" + act, iv + of);
 	}
 }
 

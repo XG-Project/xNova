@@ -20,7 +20,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 		$BuildListScript .= "	var timeout = 1;\n";
 		$BuildListScript .= "	n           = new Date();\n";
 		$BuildListScript .= "	ss          = pp;\n";
-		$BuildListScript .= "	aa          = Math.round( (n.getTime() - v.getTime() ) / 1000. );\n";
+		$BuildListScript .= "	aa          = Math.round( (n.getTime() - v.getTime() ) / 1000.);\n";
 		$BuildListScript .= "	s           = ss - aa;\n";
 		$BuildListScript .= "	m           = 0;\n";
 		$BuildListScript .= "	h           = 0;\n\n";

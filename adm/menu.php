@@ -12,7 +12,7 @@ define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 define('NO_DEBUG',TRUE);
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 
 if ($user['authlevel'] < 1) die(message ($lang['404_page']));
 

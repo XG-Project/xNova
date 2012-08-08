@@ -22,7 +22,7 @@ function PlanetSizeRandomiser($Position,$HomeWorld = FALSE)
 	}
 	else
 	{
-		$PlanetFields = read_config ( 'initial_fields' );
+		$PlanetFields = read_config ( 'initial_fields');
 	}
 	$PlanetSize = floor(sqrt($PlanetFields) * 1000);
 	$return['diameter'] = $PlanetSize;
@@ -49,9 +49,9 @@ function CreateOnePlanetRecord($Galaxy, $System, $Position, $PlanetOwnerID, $Pla
 		$planet['metal'] = BUILD_METAL;
 		$planet['crystal'] = BUILD_CRISTAL;
 		$planet['deuterium'] = BUILD_DEUTERIUM;
-		$planet['metal_perhour'] = read_config ( 'metal_basic_income' );
-		$planet['crystal_perhour'] = read_config ( 'crystal_basic_income' );
-		$planet['deuterium_perhour'] = read_config ( 'deuterium_basic_income' );
+		$planet['metal_perhour'] = read_config ( 'metal_basic_income');
+		$planet['crystal_perhour'] = read_config ( 'crystal_basic_income');
+		$planet['deuterium_perhour'] = read_config ( 'deuterium_basic_income');
 		$planet['metal_max'] = BASE_STORAGE_SIZE;
 		$planet['crystal_max'] = BASE_STORAGE_SIZE;
 		$planet['deuterium_max'] = BASE_STORAGE_SIZE;

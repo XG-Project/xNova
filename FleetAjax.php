@@ -47,7 +47,7 @@ foreach ($reslist['fleet'] as $Node => $ShipID)
 
 if ($PartialFleet)
 {
-	if ( $PartialCount < 1 )
+	if ($PartialCount < 1 )
 	{
 		$ResultMessage = "610; ".$lang['fa_not_enough_probes']." |".$CurrentFlyingFleets." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
 		die ($ResultMessage);
@@ -58,7 +58,7 @@ $galaxy = intval($_POST['galaxy']);
 if ($galaxy > MAX_GALAXY_IN_WORLD || $galaxy < 1)
 {
 	$ResultMessage = "602; ".$lang['fa_galaxy_not_exist']." |".$CurrentFlyingFleets." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
-	die ( $ResultMessage );
+	die ( $ResultMessage);
 }
 
 $system = intval($_POST['system']);
@@ -66,7 +66,7 @@ $system = intval($_POST['system']);
 if ($system > MAX_SYSTEM_IN_GALAXY || $system < 1)
 {
 	$ResultMessage = "602; ".$lang['fa_system_not_exist']." |".$CurrentFlyingFleets." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
-	die ( $ResultMessage );
+	die ( $ResultMessage);
 }
 
 $planet = intval($_POST['planet']);
@@ -74,7 +74,7 @@ $planet = intval($_POST['planet']);
 if ($planet > MAX_PLANET_IN_SYSTEM || $planet < 1)
 {
 	$ResultMessage = "602; ".$lang['fa_planet_not_exist']." |".$CurrentFlyingFleets." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
-	die ( $ResultMessage );
+	die ( $ResultMessage);
 }
 
 $FleetArray = $fleet['fleetarray'];
@@ -140,7 +140,7 @@ foreach ($FleetArray as $Ships => $Count)
 	if ($Count > $planetrow[$resource[$Ships]])
 	{
 		$ResultMessage = "611; ".$lang['fa_no_ships']." |".$CurrentFlyingFleets." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
-		die ( $ResultMessage );
+		die ( $ResultMessage);
 	}
 }
 
@@ -161,13 +161,13 @@ if ($TargetUser['onlinetime'] >= (time()-60 * 60 * 24 * 7))
 	if ( is_weak ( $CurrentPoints , $TargetPoints ) && $TargetRow['id_owner'] != '' && $_POST['mission'] == 6 )
 	{
 		$ResultMessage = "603; ".$lang['fa_week_player']." |".$CurrentFlyingFleets." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
-		die ( $ResultMessage );
+		die ( $ResultMessage);
 	}
 
 	if ( is_strong ( $CurrentPoints , $TargetPoints ) && $TargetRow['id_owner'] != '' && $_POST['mission'] == 6 )
 	{
 		$ResultMessage = "604; ".$lang['fa_strong_player']." |".$CurrentFlyingFleets." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
-		die ( $ResultMessage );
+		die ( $ResultMessage);
 	}
 }
 
@@ -180,7 +180,7 @@ if ($TargetRow['id_owner'] == '' && $_POST['mission'] != 8 )
 if (($TargetRow["id_owner"] == $planetrow["id_owner"]) && ($_POST["mission"] == 6))
 {
 	$ResultMessage = "618; ".$lang['fa_not_spy_yourself']." |".$CurrentFlyingFleets." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
-	die ( $ResultMessage );
+	die ( $ResultMessage);
 }
 
 if ($_POST['thisgalaxy'] != $planetrow['galaxy'] |
@@ -221,7 +221,7 @@ $consumption = round($consumption) + 1;
 if ($UserDeuterium < $consumption)
 {
 	$ResultMessage = "613; ".$lang['fa_not_enough_fuel']." |".$CurrentFlyingFleets." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
-	die ( $ResultMessage );
+	die ( $ResultMessage);
 }
 
 if ($TargetRow['id_level'] > $user['authlevel'])
@@ -247,7 +247,7 @@ if ($TargetRow['id_level'] > $user['authlevel'])
 	if ($Allowed == FALSE)
 	{
 		$ResultMessage = "619; ".$lang['fa_action_not_allowed']." |".$CurrentFlyingFleets." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
-		die ( $ResultMessage );
+		die ( $ResultMessage);
 	}
 }
 

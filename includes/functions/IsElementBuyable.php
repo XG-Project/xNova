@@ -8,11 +8,11 @@
 
 if ( ! defined('INSIDE')) die(header("location:../../"));
 
-	function IsElementBuyable ($CurrentUser, $CurrentPlanet, $Element, $Incremental = TRUE, $ForDestroy = FALSE)
+	function IsElementBuyable($CurrentUser, $CurrentPlanet, $Element, $Incremental = TRUE, $ForDestroy = FALSE)
 	{
 		global $pricelist, $resource;
 
-		include_once(XN_ROOT . 'includes/functions/IsVacationMode.php');
+		include_once(XN_ROOT.'includes/functions/IsVacationMode.php');
 
 		if (IsVacationMode($CurrentUser))
 		   return FALSE;

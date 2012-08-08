@@ -18,11 +18,11 @@ class ShowFleet1Page
 		// SOME DEFAULT VALUES
 		#####################################################################################################
 		// QUERYS
-		$getCurrentAcs		= doquery ( 'SELECT * FROM {{table}};' , 'aks' );
+		$getCurrentAcs		= doquery ( 'SELECT * FROM {{table}};' , 'aks');
 
 		// ARRAYS
 		$speed_values		= array(10 => 100,9 => 90,8 => 80,7 => 70,6 => 60,5 => 50,4 => 40,3 => 30,2 => 20,1 => 10);
-		$planet_type		= array ( 'fl_planet' , 'fl_debris' , 'fl_moon' );
+		$planet_type		= array ( 'fl_planet' , 'fl_debris' , 'fl_moon');
 
 		// LOAD TEMPLATES REQUIRED
 		$inputs_template			= gettemplate('fleet/fleet1_inputs');
@@ -35,10 +35,10 @@ class ShowFleet1Page
 		$parse 						= $lang;
 
 		// COORDS
-		$g 					= ( ( $_POST['galaxy'] == '' ) ? $CurrentPlanet['galaxy'] : $_POST['galaxy'] );
-		$s 					= ( ( $_POST['system'] == '' ) ? $CurrentPlanet['system'] : $_POST['system'] );
-		$p 					= ( ( $_POST['planet'] == '' ) ? $CurrentPlanet['planet'] : $_POST['planet'] );
-		$t 					= ( ( $_POST['planet_type'] == '' ) ? $CurrentPlanet['planet_type'] : $_POST['planet_type'] );
+		$g 					= ( ( $_POST['galaxy'] == '' ) ? $CurrentPlanet['galaxy'] : $_POST['galaxy']);
+		$s 					= ( ( $_POST['system'] == '' ) ? $CurrentPlanet['system'] : $_POST['system']);
+		$p 					= ( ( $_POST['planet'] == '' ) ? $CurrentPlanet['planet'] : $_POST['planet']);
+		$t 					= ( ( $_POST['planet_type'] == '' ) ? $CurrentPlanet['planet_type'] : $_POST['planet_type']);
 
 		// OTHER VALUES
 		$value				= 0;
@@ -52,11 +52,11 @@ class ShowFleet1Page
 		#####################################################################################################
 		foreach ( $reslist['fleet'] as $n => $i )
 		{
-			if ( $i >= 201 && $i <= 215 && $_POST["ship$i"] > "0" )
+			if ($i >= 201 && $i <= 215 && $_POST["ship$i"] > "0" )
 			{
 				if ( ( $_POST["ship$i"] > $CurrentPlanet[$resource[$i]]) OR (!ctype_digit( $_POST["ship$i"] )))
 				{
-					header ( 'location:game.php?page=fleet' );
+					header ( 'location:game.php?page=fleet');
 				}
 				else
 				{
@@ -77,12 +77,12 @@ class ShowFleet1Page
 
 		if ( !$fleet['fleetlist'] )
 		{
-			header ( 'location:game.php?page=fleet' );
+			header ( 'location:game.php?page=fleet');
 		}
 
 		else
 		{
-			$speedallsmin = min ( $speedalls );
+			$speedallsmin = min ( $speedalls);
 		}
 
 		#####################################################################################################
@@ -94,7 +94,7 @@ class ShowFleet1Page
 
 			$options['value']			=	$value;
 
-			if ( $value == $t )
+			if ($value == $t )
 			{
 				$options['selected']	=	'SELECTED';
 			}
@@ -106,7 +106,7 @@ class ShowFleet1Page
 			$options['title']			=	$lang[$type];
 
 
-			$parse['options_planettype'] .= parsetemplate ( $options_template , $options );
+			$parse['options_planettype'] .= parsetemplate ( $options_template , $options);
 		}
 
 		#####################################################################################################
@@ -118,7 +118,7 @@ class ShowFleet1Page
 			$speed_porcentage['selected']	=	'';
 			$speed_porcentage['title']		=	$porcentage;
 
-			$parse['options'] .= parsetemplate ( $options_template , $speed_porcentage );
+			$parse['options'] .= parsetemplate ( $options_template , $speed_porcentage);
 		}
 
 		#####################################################################################################
@@ -145,15 +145,15 @@ class ShowFleet1Page
 		#####################################################################################################
 		// LOAD FLEET SHORTCUTS
 		#####################################################################################################
-		if ( $CurrentUser['fleet_shortcut'] )
+		if ($CurrentUser['fleet_shortcut'] )
 		{
-			$scarray 	= explode ( ";" , $CurrentUser['fleet_shortcut'] );
+			$scarray 	= explode(";" , $CurrentUser['fleet_shortcut']);
 
 			foreach ( $scarray as $a => $b )
 			{
-				if ( $b != "" )
+				if ($b != "" )
 				{
-					$c 	= explode ( ',' , $b );
+					$c 	= explode(',' , $b);
 
 					$shortcut['description']   		= $c[0] ." ". $c[1] .":". $c[2] .":". $c[3] . " ";
 
@@ -176,33 +176,33 @@ class ShowFleet1Page
 					$shortcut['selected']			= '';
 					$shortcut['value']			   	= $c['1'].';'.$c['2'].';'.$c['3'].';'.$c['4'];
 					$shortcut['title']			   	= $shortcut['description'];
-					$shortcut['shortcut_options']  .= parsetemplate( $options_template , $shortcut );
+					$shortcut['shortcut_options']  .= parsetemplate( $options_template , $shortcut);
 				}
 			}
 
-			$parse['shortcut'] 				= parsetemplate ( $shortcut_row_template , $shortcut );
+			$parse['shortcut'] 				= parsetemplate ( $shortcut_row_template , $shortcut);
 		}
 		else
 		{
 			$parse['fl_shorcut_message']	= $lang['fl_no_shortcuts'];
-			$parse['shortcut'] 				= parsetemplate ( $shortcut_noshortcuts , $parse );
+			$parse['shortcut'] 				= parsetemplate ( $shortcut_noshortcuts , $parse);
 		}
 
 		#####################################################################################################
 		// LOAD COLONY SHORTCUTS
 		#####################################################################################################
-		$colonies	= SortUserPlanets ( $CurrentUser );
+		$colonies	= SortUserPlanets ( $CurrentUser);
 
 		if ($colonies->num_rows > 1 )
 		{
 			while ($row = $colonies->fetch_array())
 			{
-				if ( $CurrentPlanet['galaxy'] <> $row['galaxy'] or
+				if ($CurrentPlanet['galaxy'] <> $row['galaxy'] or
 					 $CurrentPlanet['system'] <> $row['system'] or
 					 $CurrentPlanet['planet'] <> $row['planet'] or
 					 $CurrentPlanet['planet_type'] <> $row['planet_type'] )
 				{
-					if ( $row['planet_type'] == 3 )
+					if ($row['planet_type'] == 3 )
 					{
 						$row['name'] .= " " . $lang['fl_moon_shortcut'];
 					}
@@ -210,16 +210,16 @@ class ShowFleet1Page
 					$colony['selected']				= '';
 					$colony['value']			   	= $row['galaxy'].';'.$row['system'].';'.$row['planet'].';'.$row['planet_type'];
 					$colony['title']			   	= $row['name'] ." ". $row['galaxy'] .":". $row['system'] .":". $row['planet'];
-					$colony['shortcut_options']    .= parsetemplate( $options_template , $colony );
+					$colony['shortcut_options']    .= parsetemplate( $options_template , $colony);
 				}
 
-				$parse['colonylist']				= parsetemplate ( $shortcut_row_template , $colony );
+				$parse['colonylist']				= parsetemplate ( $shortcut_row_template , $colony);
 			}
 		}
 		else
 		{
 			$parse['fl_shorcut_message']			= $lang['fl_no_colony'];
-			$parse['colonylist']					= parsetemplate ( $shortcut_noshortcuts , $parse );
+			$parse['colonylist']					= parsetemplate ( $shortcut_noshortcuts , $parse);
 		}
 
 		#####################################################################################################
@@ -227,11 +227,11 @@ class ShowFleet1Page
 		#####################################################################################################
 		while ( $row = $getCurrentAcs->fetch_array())
 		{
-			$members = explode ( "," , $row['eingeladen'] );
+			$members = explode("," , $row['eingeladen']);
 
 			foreach ( $members as $a => $b )
 			{
-				if ( $b == $CurrentUser['id'] )
+				if ($b == $CurrentUser['id'] )
 				{
 					$acs['galaxy']		=	$row['galaxy'];
 					$acs['system']		=	$row['system'];
@@ -240,7 +240,7 @@ class ShowFleet1Page
 					$acs['id']			=	$row['id'];
 					$acs['name']		=	$row['name'];
 
-					$acs_fleets 	   .= parsetemplate ( $shortcut_acs_row , $acs );
+					$acs_fleets 	   .= parsetemplate ( $shortcut_acs_row , $acs);
 				}
 			}
 		}
@@ -250,7 +250,7 @@ class ShowFleet1Page
 		$parse['curepedition'] 		= $_POST['curepedition'];
 		$parse['target_mission'] 	= $_POST['target_mission'];
 
-		display ( parsetemplate ( gettemplate ( 'fleet/fleet1_table' ) , $parse ) );
+		display ( parsetemplate ( gettemplate ( 'fleet/fleet1_table' ) , $parse ));
 	}
 }
 ?>

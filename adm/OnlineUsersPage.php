@@ -11,7 +11,7 @@ define('INSTALL' , FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 include('AdminFunctions/Autorization.php');
 
 if ($Observation != 1) die();
@@ -51,8 +51,8 @@ while ($TheUser = $Last15Mins->fetch_array())
 	$Bloc['adm_ov_data_clip']   = $Color;
 	$Bloc['adm_ov_data_adip']   = $TheUser['user_lastip'];
 	$Bloc['adm_ov_data_ally']   = $TheUser['ally_name'];
-	$Bloc['adm_ov_data_point']  = Format::pretty_number ( $TheUser['total_points'] );
-	$Bloc['adm_ov_data_activ']  = Format::pretty_time ( time() - $TheUser['onlinetime'] );
+	$Bloc['adm_ov_data_point']  = Format::pretty_number ( $TheUser['total_points']);
+	$Bloc['adm_ov_data_activ']  = Format::pretty_time ( time() - $TheUser['onlinetime']);
 	$PrevIP                     = $TheUser['user_lastip'];
 	$Bloc['usr_email']    		= $TheUser['email'];
 
@@ -69,7 +69,7 @@ while ($TheUser = $Last15Mins->fetch_array())
 	$Bloc['usr_planet_gal']    	= $TheUser['galaxy'];
 	$Bloc['usr_planet_sys']    	= $TheUser['system'];
 	$Bloc['usr_planet_pos']    	= $TheUser['planet'];
-	$parse['adm_ov_data_table'] .= parsetemplate( gettemplate('adm/OnlineUsersRow'), $Bloc );
+	$parse['adm_ov_data_table'] .= parsetemplate( gettemplate('adm/OnlineUsersRow'), $Bloc);
 	$Count++;
 }
 

@@ -22,18 +22,18 @@ function DisplayGameSettingsPage ( $CurrentUser )
 
 	$game_config	= 	read_config('', TRUE);
 
-	if ( $_POST['opt_save'] == "1" )
+	if ($_POST['opt_save'] == "1" )
 	{
 		$Log	= "\n".$lang['log_the_user'].$CurrentUser['username'].$lang['log_sett_no1'].":\n";
 
 
 		if (isset($_POST['closed']) && $_POST['closed'] == 'on') {
 		$game_config['game_disable']         = 1;
-		$game_config['close_reason']         = addslashes( $_POST['close_reason'] );
+		$game_config['close_reason']         = addslashes( $_POST['close_reason']);
 		$Log	.=	$lang['log_sett_close'].": ".$lang['log_viewmod'][1]."\n";
 		} else {
 		$game_config['game_disable']         = 0;
-		$game_config['close_reason']         = addslashes( $_POST['close_reason'] );
+		$game_config['close_reason']         = addslashes( $_POST['close_reason']);
 		$Log	.=	$lang['log_sett_close'].": ".$lang['log_viewmod'][0]."\n";
 		$Log	.=	$lang['log_sett_close_rea'].": ".$_POST['close_reason']."\n";
 		}
@@ -255,7 +255,7 @@ function DisplayGameSettingsPage ( $CurrentUser )
 		update_config ( 'log_bots'					, $game_config['log_bots']					);
 		update_config ( 'date_format'				, $game_config['date_format']				);
 
-		header ( 'location:SettingsPage.php' );
+		header ( 'location:SettingsPage.php');
 	}
 	else
 	{

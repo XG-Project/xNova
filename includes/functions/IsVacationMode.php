@@ -10,7 +10,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 function IsVacationMode ( $CurrentUser )
 {
-	if ( $CurrentUser['urlaubs_modus'] == 1 )
+	if ($CurrentUser['urlaubs_modus'] == 1 )
 	{
 		doquery("UPDATE {{table}} SET
 		metal_perhour = '".intval(read_config ( 'metal_basic_income' ))."',

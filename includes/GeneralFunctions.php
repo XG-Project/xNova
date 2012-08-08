@@ -92,11 +92,11 @@ function message ($mes, $dest = "", $time = "3", $topnav = FALSE, $menu = TRUE)
 
 	if ( !defined ( 'IN_ADMIN' ) )
 	{
-		display ( $page , $topnav , ( ( $dest != "" ) ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : "") , FALSE , $menu );
+		display ( $page , $topnav , ( ( $dest != "" ) ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : "") , FALSE , $menu);
 	}
 	else
 	{
-		display ( $page , $topnav , ( ( $dest != "" ) ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : "") , TRUE , FALSE );
+		display ( $page , $topnav , ( ( $dest != "" ) ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : "") , TRUE , FALSE);
 	}
 
 }
@@ -112,13 +112,13 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 
 	if ($topnav)
 	{
-		include_once(XN_ROOT . 'includes/functions/ShowTopNavigationBar.php');
-		$DisplayPage .= ShowTopNavigationBar( $user, $planetrow );
+		include_once(XN_ROOT.'includes/functions/ShowTopNavigationBar.php');
+		$DisplayPage .= ShowTopNavigationBar( $user, $planetrow);
 	}
 
 	if ($menu && !$AdminPage)
 	{
-		include_once(XN_ROOT . 'includes/functions/ShowLeftMenu.php');
+		include_once(XN_ROOT.'includes/functions/ShowLeftMenu.php');
 		$DisplayPage .= ShowLeftMenu ($user);
 	}
 
@@ -156,7 +156,7 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 
 function StdUserHeader ($metatags = '', $onload = '')
 {
-	$parse['-title-'] 	 = read_config ( 'game_name' );
+	$parse['-title-'] 	 = read_config ( 'game_name');
 	$parse['-favi-']	 = "<link rel=\"shortcut icon\" href=\"./favicon.ico\">\n";
 	$parse['-meta-']	 = "<meta charset=\"UTF-8\">\n";
 	$parse['-meta-']	.= "<meta name=\"generator\" content=\"xNova " . VERSION . "\" />\n";
@@ -176,7 +176,7 @@ function StdUserHeader ($metatags = '', $onload = '')
 	$parse['-meta-']	.= ($metatags) ? $metatags : "";
 	$parse['onload']	= ' onload="'.$onload.'"';
 
-	return parsetemplate ( gettemplate ( 'general/simple_header' ) , $parse );
+	return parsetemplate ( gettemplate ( 'general/simple_header' ) , $parse);
 }
 
 function AdminUserHeader ($metatags = '')
@@ -194,7 +194,7 @@ function AdminUserHeader ($metatags = '')
 	$parse['-meta-']	.= 	"<script type=\"application/javascript\" src=\"./../js/overlib.min.js\"></script>\n";
 	$parse['-meta-'] 	.= ($metatags) ? $metatags : "";
 
-	return parsetemplate ( gettemplate ( 'adm/simple_header' ) , $parse );
+	return parsetemplate ( gettemplate ( 'adm/simple_header' ) , $parse);
 }
 
 function CalculateMaxPlanetFields (&$planet)
@@ -216,19 +216,19 @@ function ShowBuildTime($time)
 
 function parsetemplate ( $template , $array )
 {
-	return preg_replace ( '#\{([a-z0-9\-_]*?)\}#Ssie' , '( ( isset($array[\'\1\']) ) ? $array[\'\1\'] : \'\' );' , $template );
+	return preg_replace ( '#\{([a-z0-9\-_]*?)\}#Ssie' , '( ( isset($array[\'\1\']) ) ? $array[\'\1\'] : \'\');' , $template);
 }
 
 function gettemplate ( $templatename )
 {
-	return @file_get_contents ( XN_ROOT . TEMPLATE_DIR . '/' . $templatename . '.php' );
+	return @file_get_contents ( XN_ROOT . TEMPLATE_DIR . '/' . $templatename . '.php');
 }
 
-function includeLang ( $filename )
+function includeLang($filename )
 {
 	global $lang;
 
-	include ( XN_ROOT . "language/" . DEFAULT_LANG ."/". $filename . '.php' );
+	include ( XN_ROOT . "language/" . DEFAULT_LANG ."/". $filename . '.php');
 }
 
 function GetStartAdressLink ( $FleetRow, $FleetType )
@@ -265,7 +265,7 @@ function doquery($query, $table, $fetch = FALSE)
 		if ( ! is_NULL($db->connect_error)) $debug->error($db->connect_error, "SQL Error");
 	}
 
-	$sql 		= str_replace ( "{{table}}" , $dbsettings["prefix"] . $table , $query );
+	$sql 		= str_replace ( "{{table}}" , $dbsettings["prefix"] . $table , $query);
 	$sqlquery 	= $db->query($sql);
 	if ( ! $sqlquery) $debug->error($db->error."<br />$sql<br />", "SQL Error");
 

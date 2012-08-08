@@ -359,7 +359,7 @@ class ShowOverviewPage
 
 				if ($CurrentPlanet['b_building'] != 0)
 				{
-					include (XN_ROOT . 'includes/functions/InsertBuildListScript.php');
+					include (XN_ROOT.'includes/functions/InsertBuildListScript.php');
 
 					UpdatePlanetBatimentQueueList($planetrow,$CurrentUser);
 					if ($CurrentPlanet['b_building'] != 0)

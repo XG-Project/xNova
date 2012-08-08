@@ -11,7 +11,7 @@ define('INSTALL' , FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 
 if ($EditUsers != 1) die(message ($lang['404_page']));
 
@@ -98,7 +98,7 @@ switch ($_GET['page'])
 			$Query1 .= "`password`='".sha1($pass)."';";
 			doquery($Query1, "users");
 
-			update_config ( 'users_amount' , read_config ( 'users_amount' ) + 1 );
+			update_config ( 'users_amount' , read_config ( 'users_amount' ) + 1);
 
 			$ID_USER 	= doquery("SELECT `id` FROM {{table}} WHERE `username` = '" . $db->real_escape_string($name) . "' LIMIT 1", "users", TRUE);
 

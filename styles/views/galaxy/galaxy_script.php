@@ -26,10 +26,10 @@ function whenResponse () {
 	CmdCode   = retVals[0];
 	strInfo   = retVals[1];
 	addToTable("{done}", "success");
-	changeSlots( UsedSlots );
-	setShips("probes", SpyProbes );
-	setShips("recyclers", Recyclers );
-	setShips("missiles", Missiles );
+	changeSlots( UsedSlots);
+	setShips("probes", SpyProbes);
+	setShips("recyclers", Recyclers);
+	setShips("missiles", Missiles);
 }
 function doit (order, galaxy, system, planet, planettype, shipcount) {
 	ajax.requestFile = "FleetAjax.php?action=send";

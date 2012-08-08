@@ -11,8 +11,8 @@ function t(){
 	if ( s < 0 ) {
 		brp.innerHTML = '{bd_ready}<br><a href=game.php?page=buildings&mode=research&cp={tech_home}>{bd_continue}</a>';
 	} else {
-		if ( s > 59 ) { m = Math.floor( s / 60 ); s = s - m * 60; }
-		if ( m > 59 ) { h = Math.floor( m / 60 ); m = m - h * 60; }
+		if ( s > 59 ) { m = Math.floor( s / 60); s = s - m * 60; }
+		if ( m > 59 ) { h = Math.floor( m / 60); m = m - h * 60; }
 		if ( s < 10 ) { s = "0" + s }
 		if ( m < 10 ) { m = "0" + m }
 		brp.innerHTML = h + ':' + m + ':' + s + '<br><a href=game.php?page=buildings&mode=research&cmd=cancel&tech={tech_id}>{bd_cancel}<br>{tech_name}</a>';

@@ -40,11 +40,11 @@ class ShowTraderPage
 												'deuterium' => $_POST['deut']
 											);
 
-						$storage	= $this->check_storage ( $CurrentPlanet , $amout );
+						$storage	= $this->check_storage ( $CurrentPlanet , $amout);
 
 						if ( is_string ( $storage ) )
 						{
-							die ( message ( $storage , 'game.php?page=trader' , '2' ) );
+							die ( message ( $storage , 'game.php?page=trader' , '2' ));
 						}
 
 						if ($CurrentPlanet['metal'] > $necessaire)
@@ -84,11 +84,11 @@ class ShowTraderPage
 												'deuterium' => $_POST['deut']
 											);
 
-						$storage	= $this->check_storage ( $CurrentPlanet , $amout );
+						$storage	= $this->check_storage ( $CurrentPlanet , $amout);
 
 						if ( is_string ( $storage ) )
 						{
-							die ( message ( $storage , 'game.php?page=trader' , '2' ) );
+							die ( message ( $storage , 'game.php?page=trader' , '2' ));
 						}
 
 						if ($CurrentPlanet['crystal'] > $necessaire)
@@ -128,11 +128,11 @@ class ShowTraderPage
 												'deuterium' => 0
 											);
 
-						$storage	= $this->check_storage ( $CurrentPlanet , $amout );
+						$storage	= $this->check_storage ( $CurrentPlanet , $amout);
 
 						if ( is_string ( $storage ) )
 						{
-							die ( message ( $storage , 'game.php?page=trader' , '2' ) );
+							die ( message ( $storage , 'game.php?page=trader' , '2' ));
 						}
 
 						if ($CurrentPlanet['deuterium'] > $necessaire)
@@ -209,24 +209,24 @@ class ShowTraderPage
 
 		if ( !is_array ( $amount ) )
 		{
-			throw new Exception ( "Must be array" , 1 );
+			throw new Exception ( "Must be array" , 1);
 		}
 
 
-		$hangar	= array ( 'metal' => 22 , 'crystal' => 23 , 'deuterium' => 24 );
+		$hangar	= array ( 'metal' => 22 , 'crystal' => 23 , 'deuterium' => 24);
 		$check 	= array();
 
 
 		foreach ( $hangar as $k => $v )
 		{
-			if ( $amount[$k] == 0 )
+			if ($amount[$k] == 0 )
 			{
-				unset ( $amount[$k] );
+				unset ( $amount[$k]);
 			}
 
 			if ( array_key_exists ( $k , $amount ) )
 			{
-				if ( $current_planet[$k] + $amount[$k] >= Production::max_storable ( $current_planet[$resource[$v]] ) )
+				if ($current_planet[$k] + $amount[$k] >= Production::max_storable ( $current_planet[$resource[$v]] ) )
 				{
 					$check[$k] = FALSE;
 				}
@@ -242,7 +242,7 @@ class ShowTraderPage
 		}
 
 
-		if ( $check['metal'] && $check['crystal'] && $check['deuterium'] )
+		if ($check['metal'] && $check['crystal'] && $check['deuterium'] )
 		{
 			return FALSE;
 		}
@@ -252,9 +252,9 @@ class ShowTraderPage
 			{
 				foreach ( $hangar as $k => $v )
 				{
-					if ( $check[$k] === FALSE )
+					if ($check[$k] === FALSE )
 					{
-						return sprintf ( $lang['tr_full_storage'] , strtolower ( $lang['info'][$v]['name'] ) );
+						return sprintf ( $lang['tr_full_storage'] , strtolower ( $lang['info'][$v]['name'] ));
 					}
 					else
 					{

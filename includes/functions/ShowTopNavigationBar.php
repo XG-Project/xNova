@@ -27,7 +27,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 		}
 		else
 		{
-			if ( $CurrentUser['urlaubs_modus'] < time() )
+			if ($CurrentUser['urlaubs_modus'] < time() )
 			{
 				$parse['show_umod_notice']	= $CurrentUser['urlaubs_modus'] ? '<table width="100%" style="border: 2px solid #1DF0F0; text-align:center;background:transparent;"><tr style="background:transparent;"><td style="background:transparent;">' . $lang['tn_vacation_mode_active'] .'</td></tr></table><br>' : '';
 			}

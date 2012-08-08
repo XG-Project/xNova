@@ -10,20 +10,20 @@ if ( ! defined('INSIDE')) define('INSIDE'  , TRUE);
 if ( ! defined('INSTALL')) define('INSTALL' , FALSE);
 if ( ! defined('IN_ADMIN')) define('IN_ADMIN', TRUE);
 
-include_once ( 'LogFunction.php' );
+include_once ( 'LogFunction.php');
 
-if ( $user['authlevel'] < 1 )
+if ($user['authlevel'] < 1 )
 {
 	die();
 }
 
-$QueryModeration	=	read_config ( 'moderation' );
-$QueryModerationEx  =   explode ( ";" , $QueryModeration );
-$Moderator			=	explode ( "," , $QueryModerationEx[0] );
-$Operator			=	explode ( "," , $QueryModerationEx[1] );
-$Administrator		=	explode ( "," , $QueryModerationEx[2] );
+$QueryModeration	=	read_config ( 'moderation');
+$QueryModerationEx  =   explode(";" , $QueryModeration);
+$Moderator			=	explode("," , $QueryModerationEx[0]);
+$Operator			=	explode("," , $QueryModerationEx[1]);
+$Administrator		=	explode("," , $QueryModerationEx[2]);
 
-if ( $user['authlevel'] == 1 )
+if ($user['authlevel'] == 1 )
 {
 	$Observation	=	$Moderator[0];
 	$EditUsers		=	$Moderator[1];
@@ -32,7 +32,7 @@ if ( $user['authlevel'] == 1 )
 	$LogCanWork		=	$Moderator[4];
 }
 
-if ( $user['authlevel'] == 2 )
+if ($user['authlevel'] == 2 )
 {
 	$Observation	=	$Operator[0];
 	$EditUsers		=	$Operator[1];
@@ -41,7 +41,7 @@ if ( $user['authlevel'] == 2 )
 	$LogCanWork		=	$Operator[4];
 }
 
-if ( $user['authlevel'] == 3 )
+if ($user['authlevel'] == 3 )
 {
 	$Observation	=	1;
 	$EditUsers		=	1;

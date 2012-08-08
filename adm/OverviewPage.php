@@ -28,7 +28,7 @@ function check_updates()
 
 $parse	=	$lang;
 
-if (file_exists(XN_ROOT . 'install/') && defined('IN_ADMIN'))
+if (file_exists(XN_ROOT.'install/') && defined('IN_ADMIN'))
 {
 	$Message	.= "<font color=\"red\">".$lang['ow_install_file_detected']."</font><br/><br/>";
 	$error++;

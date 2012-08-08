@@ -11,7 +11,7 @@ define('INSTALL' , FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 
 if ($Observation != 1) die(message ($lang['404_page']));
 
@@ -131,9 +131,9 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 			$Search['LIST']	 .=	"<tr>";
 			if ($Table == "users"){
 				if ($_GET['search'] == "online")
-					$WhileResult[3]	=	Format::pretty_time( time() - $WhileResult[3] );
+					$WhileResult[3]	=	Format::pretty_time( time() - $WhileResult[3]);
 				else
-					$WhileResult[3]	=	date("d-m-Y H:i:s", $WhileResult[3] );
+					$WhileResult[3]	=	date("d-m-Y H:i:s", $WhileResult[3]);
 
 				$WhileResult[4]	=	date("d-m-Y H:i:s", $WhileResult[4]);
 
@@ -213,7 +213,7 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 }
 
 // BORRADO
-include_once(XN_ROOT . 'includes/functions/DeleteSelectedUser.php');
+include_once(XN_ROOT.'includes/functions/DeleteSelectedUser.php');
 if ($_GET['delete'] == 'user'){
 	DeleteSelectedUser ($_GET['user']);
 	$Log	.=	"\n".$lang['log_searchindb_del1'].$_GET['user'].$lang['log_searchindb_del2'].$user['username']."\n";

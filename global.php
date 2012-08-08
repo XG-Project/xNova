@@ -58,7 +58,7 @@ if (filesize(XN_ROOT.'config.php') != 0)
 {
 	$game_version	=	read_config('version');
 
-	define('VERSION', ($game_version == '') ? "" : "v" . $game_version );
+	define('VERSION', ($game_version == '') ? "" : "v" . $game_version);
 }
 
 if ( ! defined('INSTALL') OR ( ! INSTALL))
@@ -79,8 +79,11 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 
 	includeLang('INGAME');
 
-	include_once(XN_ROOT.'includes/classes/class.Bot.php');
-	UpdateBots();
+	if (read_config('bots') > 0 && read_config('bots_last_update') < time()-60)
+	{
+		include_once(XN_ROOT.'includes/classes/class.Bot.php');
+		UpdateBots();
+	}
 
 	include_once(XN_ROOT.'includes/classes/class.CheckSession.php');
 

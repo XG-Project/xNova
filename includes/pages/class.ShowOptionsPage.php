@@ -23,9 +23,9 @@ class ShowOptionsPage
 														WHERE id_owner = '" . intval ( $CurrentUser['id'] ) . "' AND
 														(b_building <> 0 OR b_tech <> 0 OR b_hangar <> 0)
 											)
-										) as total" , '' , TRUE );
+										) as total" , '' , TRUE);
 
-		if ( $activity['total'] > 0 )
+		if ($activity['total'] > 0 )
 		{
 			return TRUE;
 		}
@@ -91,21 +91,21 @@ class ShowOptionsPage
 			// < ------------------------------------------------- NOMBRE DE USUARIO --------------------------------------------------- >
 			if (isset($_POST["db_character"]) && $_POST["db_character"] != '')
 			{
-				$username = $db->real_escape_string ( $_POST['db_character'] );
+				$username = $db->real_escape_string ( $_POST['db_character']);
 			}
 			else
 			{
-				$username = $db->real_escape_string ( $CurrentUser['username'] );
+				$username = $db->real_escape_string ( $CurrentUser['username']);
 			}
 			// < ------------------------------------------------- DIRECCION DE EMAIL -------------------------------------------------- >
 
 			if (isset($_POST["db_email"]) && $_POST["db_email"] != '')
 			{
-				$db_email = $db->real_escape_string ( $_POST['db_email'] );
+				$db_email = $db->real_escape_string ( $_POST['db_email']);
 			}
 			else
 			{
-				$db_email = $db->real_escape_string ( $CurrentUser['email'] );
+				$db_email = $db->real_escape_string ( $CurrentUser['email']);
 			}
 			// < ------------------------------------------------- CANTIDAD DE SONDAS -------------------------------------------------- >
 			if (isset($_POST["spio_anz"]) && is_numeric($_POST["spio_anz"]))
@@ -307,7 +307,7 @@ class ShowOptionsPage
 				$parse['opt_lst_cla_data']   = "<option value =\"0\"". (($CurrentUser['planet_sort_order'] == 0) ? " selected": "") .">" . $lang['op_sort_asc'] . "</option>";
 				$parse['opt_lst_cla_data']  .= "<option value =\"1\"". (($CurrentUser['planet_sort_order'] == 1) ? " selected": "") .">" . $lang['op_sort_desc'] . "</option>";
 
-				$SkinsFolder = opendir(XN_ROOT . 'styles/skins');
+				$SkinsFolder = opendir(XN_ROOT.'styles/skins');
 
 				$parse['opt_skin_data']	= '';
 				while (($SkinsSubFolder = readdir($SkinsFolder)) !== FALSE)

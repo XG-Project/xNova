@@ -13,9 +13,9 @@ define('XN_ROOT',	'./');
 
 $InLogin = TRUE;
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 
-includeLang ( 'PUBLIC' );
+includeLang('PUBLIC');
 $parse = $lang;
 $page	= isset($_GET['page']) ? $_GET['page'] : NULL;
 
@@ -53,17 +53,17 @@ switch ($page)
 			}
 		}
 
-		if ( $_POST )
+		if ($_POST )
 		{
-			sendnewpassword ( $_POST['email'] );
-			message ( $lang['mail_sended'] , "./" , 2 , FALSE , FALSE );
+			sendnewpassword ( $_POST['email']);
+			message ( $lang['mail_sended'] , "./" , 2 , FALSE , FALSE);
 		}
 		else
 		{
-			$parse['year']		   = date ( "Y" );
+			$parse['year']		   = date ( "Y");
 			$parse['version']	   = VERSION;
-			$parse['forum_url']    = read_config ( 'forum_url' );
-			display ( parsetemplate ( gettemplate ( 'public/lostpassword' ) , $parse ) , FALSE , '' , FALSE , FALSE );
+			$parse['forum_url']    = read_config ( 'forum_url');
+			display ( parsetemplate ( gettemplate ( 'public/lostpassword' ) , $parse ) , FALSE , '' , FALSE , FALSE);
 		}
 	break;
 	default:
@@ -96,23 +96,23 @@ switch ($page)
 
 				doquery("UPDATE `{{table}}` SET `current_planet` = `id_planet` WHERE `id` ='".$login["id"]."'", 'users');
 
-				unset ( $dbsettings );
-				header ( 'location:game.php?page=overview' );
+				unset ( $dbsettings);
+				header ( 'location:game.php?page=overview');
 				exit;
 			}
 			else
 			{
-				message ( $lang['login_error'] , "./" , 2 , FALSE , FALSE );
+				message ( $lang['login_error'] , "./" , 2 , FALSE , FALSE);
 			}
 		}
 		else
 		{
-			$parse['year']		   = date ( "Y" );
+			$parse['year']		   = date ( "Y");
 			$parse['version']	   = VERSION;
-			$parse['servername']   = read_config ( 'game_name' );
-			$parse['forum_url']    = read_config ( 'forum_url' );
+			$parse['servername']   = read_config ( 'game_name');
+			$parse['forum_url']    = read_config ( 'forum_url');
 
-			display ( parsetemplate ( gettemplate ( 'public/index_body' ) , $parse ) , FALSE , '' , FALSE , FALSE );
+			display ( parsetemplate ( gettemplate ( 'public/index_body' ) , $parse ) , FALSE , '' , FALSE , FALSE);
 		}
 }
 ?>

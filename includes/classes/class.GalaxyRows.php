@@ -293,7 +293,7 @@ class GalaxyRows
 				{
 					if ($GalaxyInfo["galaxy"] == $CurrentGalaxy)
 					{
-						$PhRange = $this->GetPhalanxRange ( $HavePhalanx );
+						$PhRange = $this->GetPhalanxRange ( $HavePhalanx);
 						$SystemLimitMin = $CurrentSystem - $PhRange;
 						if ($SystemLimitMin < 1)
 							$SystemLimitMin = 1;
@@ -427,7 +427,7 @@ class GalaxyRows
 			{
 				if ($GalaxyInfo["galaxy"] == $CurrentGalaxy)
 				{
-					$Range = $this->GetPhalanxRange ( $HavePhalanx );
+					$Range = $this->GetPhalanxRange ( $HavePhalanx);
 					if ($CurrentGalaxy + $Range <= $CurrentSystem && $CurrentSystem >= $CurrentGalaxy - $Range)
 						$PhalanxTypeLink = "<a href=# onclick=fenster('game.php?page=phalanx&galaxy=".$Galaxy."&amp;system=".$System."&amp;planet=".$Planet."&amp;planettype=".$PlanetType."')  title=\"Phalanx\">".$GalaxyInfo['name']."</a><br />";
 					else

@@ -108,14 +108,14 @@ class ShowStatisticsPage
 			ORDER BY `'. $Order .'` DESC LIMIT '. $start .',100;';
 
 			$start++;
-			$parse['stat_date']   = date("Y-m-d, H:i:s",read_config ( 'stat_last_update' ) );
+			$parse['stat_date']   = date("Y-m-d, H:i:s",read_config ( 'stat_last_update' ));
 			$parse['stat_values'] = "";
 			$query = doquery($stats_sql, '');
 			$StatAllianceTableTPL=gettemplate('stat/stat_alliancetable');
 			while ($StatRow = $query->fetch_assoc())
 			{
 				$parse['ally_rank']       = $start;
-				if ( $StatRow[ $OldRank ] == 0 || $StatRow[ $Rank ] == 0)
+				if ($StatRow[ $OldRank ] == 0 || $StatRow[ $Rank ] == 0)
 				{
 					$rank_old				= $start;
 					$QryUpdRank				= doquery("UPDATE {{table}} SET `".$Rank."` = '".$start."', `".$OldRank."` = '".$start."' WHERE `stat_type` = '1' AND `stat_code` = '1' AND `id_owner` = '". intval($StatRow['id_owner']) ."';" , "statpoints");
@@ -144,8 +144,8 @@ class ShowStatisticsPage
 				$parse['ally_name']       	  = $StatRow['ally_name'];
 				$parse['ally_mes']        	  = '';
 				$parse['ally_members']    	  = $StatRow['ally_members'];
-				$parse['ally_points']     	  = Format::pretty_number( $StatRow[ $Order ] );
-				$parse['ally_members_points'] =  Format::pretty_number( floor($StatRow[ $Order ] / $StatRow['ally_members']) );
+				$parse['ally_points']     	  = Format::pretty_number( $StatRow[ $Order ]);
+				$parse['ally_members_points'] =  Format::pretty_number( floor($StatRow[ $Order ] / $StatRow['ally_members']));
 				$parse['stat_values']    	 .= parsetemplate($StatAllianceTableTPL, $parse);
 				$start++;
 			}
@@ -183,7 +183,7 @@ class ShowStatisticsPage
 
 			$start++;
 
-			$parse['stat_date']   = date("Y-m-d, H:i:s",read_config ( 'stat_last_update' ) );
+			$parse['stat_date']   = date("Y-m-d, H:i:s",read_config ( 'stat_last_update' ));
 			$parse['stat_values'] = "";
 
 			$previusId = 0;
@@ -191,7 +191,7 @@ class ShowStatisticsPage
 			while ($StatRow = $query->fetch_assoc())
 			{
 				$parse['player_rank']     = $start;
-				if ( $StatRow[ $OldRank ] == 0 || $StatRow[ $Rank ] == 0)
+				if ($StatRow[ $OldRank ] == 0 || $StatRow[ $Rank ] == 0)
 				{
 					$rank_old				= $start;
 					$QryUpdRank				= doquery("UPDATE {{table}} SET `".$Rank."` = '".$start."', `".$OldRank."` = '".$start."' WHERE `stat_type` = '1' AND `stat_code` = '1' AND `id_owner` = '". intval($StatRow['id_owner']) ."';" , "statpoints");
@@ -234,7 +234,7 @@ class ShowStatisticsPage
 					{
 						$parse['player_alliance'] = "<a href=\"game.php?page=alliance&mode=ainfo&a=".$StatRow['ally_id']."\">".$StatRow['ally_name']."</a>";
 					}
-					$parse['player_points']   = Format::pretty_number( $StatRow[ $Order ] );
+					$parse['player_points']   = Format::pretty_number( $StatRow[ $Order ]);
 					$parse['stat_values']    .= parsetemplate($StatPlayerTableTPL, $parse);
 
 

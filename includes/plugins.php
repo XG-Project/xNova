@@ -105,7 +105,7 @@ function AdmPlugin($name, $desc)
 }
 
 $config_line  		= "";
-$plugins_path 		= XN_ROOT . 'includes/plugins/';
+$plugins_path 		= XN_ROOT.'includes/plugins/';
 $plugins_version 	= '0.3';
 $plugins_hooks 		= array();
 
@@ -137,7 +137,7 @@ closedir($dir);
 */
 if ( defined('IN_ADMIN') )
 {
-	if ( ! defined('DPATH')) define('DPATH' , "../". DEFAULT_SKINPATH );
+	if ( ! defined('DPATH')) define('DPATH' , "../". DEFAULT_SKINPATH);
 	$page	=   isset($_GET['mode']) ? $_GET['mode'] : NULL;
 
 	if (is_phpself('adm/SettingsPage') && $page=='plugins')
@@ -148,7 +148,7 @@ if ( defined('IN_ADMIN') )
 			$plugin = $_GET['activate'];
 			$ex 	= doquery("SELECT status FROM {{table}} WHERE `plugin`='". $plugin ."' LIMIT 1", 'plugins', TRUE);
 
-			if ( $ex )
+			if ($ex )
 			{
 				doquery("UPDATE {{table}} SET `status` = 1 WHERE `plugin`='".$plugin."' LIMIT 1", "plugins");
 				$info = "<big>Plugin Activado</big>";
@@ -159,7 +159,7 @@ if ( defined('IN_ADMIN') )
 		{
 			$plugin = $_GET['desactivate'];
 			$ex 	= doquery("SELECT status FROM {{table}} WHERE `plugin`='". $plugin ."' LIMIT 1", 'plugins', TRUE);
-			if ( $ex )
+			if ($ex )
 			{
 				doquery("UPDATE {{table}} SET `status` = 0 WHERE `plugin`='". $plugin ."' LIMIT 1", "plugins");
 				$info = "<h1>Plugin Desactivado</h1>";
@@ -176,7 +176,7 @@ if ( defined('IN_ADMIN') )
 		$settingsplug 	.= $config_line;
 		$settingsplug 	.=' </table>';
 
-		display ( $settingsplug , FALSE , '' , TRUE , FALSE );
+		display ( $settingsplug , FALSE , '' , TRUE , FALSE);
 	}
 }
 ?>

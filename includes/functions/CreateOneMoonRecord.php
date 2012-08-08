@@ -32,9 +32,9 @@ function CreateOneMoonRecord ( $Galaxy, $System, $Planet, $Owner, $MoonID, $Moon
 	{
 		if ($MoonPlanet['id'] != 0)
 		{
-			$SizeMin                = 2000 + ( $Chance * 100 );
+			$SizeMin                = 2000 + ( $Chance * 100);
 
-			$SizeMax                = 6000 + ( $Chance * 200 );
+			$SizeMax                = 6000 + ( $Chance * 200);
 
 			$PlanetName             = $MoonPlanet['name'];
 

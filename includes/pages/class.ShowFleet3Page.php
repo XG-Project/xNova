@@ -14,33 +14,33 @@ class ShowFleet3Page
 	{
 		global $resource, $pricelist, $reslist, $lang;
 
-		include_once ( XN_ROOT . 'includes/functions/IsVacationMode.php' );
+		include_once ( XN_ROOT.'includes/functions/IsVacationMode.php');
 
 		$parse	=	$lang;
 
 		if ( IsVacationMode ( $CurrentUser ) )
 		{
-			exit ( message ( $lang['fl_vacation_mode_active'] , "game.php?page=overview" , 2 ) );
+			exit ( message ( $lang['fl_vacation_mode_active'] , "game.php?page=overview" , 2 ));
 		}
 
 		$fleet_group_mr = 0;
 
-		if ( $_POST['fleet_group'] > 0 )
+		if ($_POST['fleet_group'] > 0 )
 		{
-			if ( $_POST['mission'] == 2 )
+			if ($_POST['mission'] == 2 )
 			{
 				$target = 	"g" .
 							intval ( $_POST["galaxy"] ) .
 							"s" .
 							intval ( $_POST["system"] ) .
 							"p" . intval ( $_POST["planet"] ) .
-							"t" . intval ( $_POST["planettype"] );
+							"t" . intval ( $_POST["planettype"]);
 
-				if ( $_POST['acs_target_mr'] == $target )
+				if ($_POST['acs_target_mr'] == $target )
 				{
 					$aks_count_mr = doquery ( "SELECT COUNT(*)
 												FROM {{table}}
-												WHERE id = '" . intval ( $_POST['fleet_group'] ) . "'" , 'aks' );
+												WHERE id = '" . intval ( $_POST['fleet_group'] ) . "'" , 'aks');
 
 					if ($aks_count_mr > 0)
 					{
@@ -58,27 +58,27 @@ class ShowFleet3Page
 		$TargetPlanet  		= doquery("SELECT `id_owner`,`id_level`,`destruyed`,`ally_deposit` FROM {{table}} WHERE `galaxy` = '". intval($_POST['galaxy']) ."' AND `system` = '". intval($_POST['system']) ."' AND `planet` = '". intval($_POST['planet']) ."' AND `planet_type` = '". intval($_POST['planettype']) ."';", 'planets', TRUE);
 		$MyDBRec       		= doquery("SELECT `id`,`onlinetime`,`ally_id`,`urlaubs_modus` FROM {{table}} WHERE `id` = '". intval($CurrentUser['id'])."';", 'users', TRUE);
 
-		$fleetarray  = unserialize ( base64_decode ( str_rot13 ( $_POST["usedfleet"] ) ) );
+		$fleetarray  = unserialize ( base64_decode ( str_rot13 ( $_POST["usedfleet"] ) ));
 
-		if ( $TargetPlanet["destruyed"] != 0 )
+		if ($TargetPlanet["destruyed"] != 0 )
 		{
-			exit ( header ( "Location: game.php?page=fleet" ) );
+			exit ( header ( "Location: game.php?page=fleet" ));
 		}
 
 
 		if ( !is_array ( $fleetarray ) )
 		{
-			exit ( header ( "Location: game.php?page=fleet" ) );
+			exit ( header ( "Location: game.php?page=fleet" ));
 		}
 
 
 		foreach ( $fleetarray as $Ship => $Count )
 		{
-			$Count = intval ( $Count );
+			$Count = intval ( $Count);
 
 			if ($Count > $CurrentPlanet[$resource[$Ship]])
 			{
-				exit ( header ( "location:game.php?page=fleet" ) );
+				exit ( header ( "location:game.php?page=fleet" ));
 			}
 		}
 
@@ -90,14 +90,14 @@ class ShowFleet3Page
 		$fleetmission       = intval($_POST['mission']);
 
 		//fix by jstar
-		if ( $fleetmission == 7 && !isset($fleetarray[208]) )
+		if ($fleetmission == 7 && !isset($fleetarray[208]) )
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location:game.php?page=fleet" ));
 		}
 
 		if ($planettype != 1 && $planettype != 2 && $planettype != 3)
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location:game.php?page=fleet" ));
 		}
 
 		//fix invisible debris like ogame by jstar
@@ -109,7 +109,7 @@ class ShowFleet3Page
 			$select2    = doquery("SELECT invisible_start_time, metal, crystal FROM {{table}} WHERE galaxy = '". $galaxy ."' AND system = '". $system ."' AND planet = '". $planet ."'", "galaxy",TRUE);
 			if ($select2['metal'] == 0 && $select2['crystal'] == 0 && time() > ($select2['invisible_start_time']+DEBRIS_LIFE_TIME))
 			{
-				exit ( header ( "location:game.php?page=fleet" ) );
+				exit ( header ( "location:game.php?page=fleet" ));
 			}
 		}
 		else
@@ -122,7 +122,7 @@ class ShowFleet3Page
 		if ($CurrentPlanet['galaxy'] == $galaxy && $CurrentPlanet['system'] == $system &&
 			$CurrentPlanet['planet'] == $planet && $CurrentPlanet['planet_type'] == $planettype)
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location:game.php?page=fleet" ));
 		}
 
 		if ($_POST['mission'] != 15)
@@ -144,7 +144,7 @@ class ShowFleet3Page
 			{
 				$maxexpde  			= doquery("SELECT COUNT(fleet_owner) AS `expedi` FROM {{table}} WHERE `fleet_owner` = '".intval($CurrentUser['id'])."' AND `fleet_mission` = '15';", 'fleets', TRUE);
 				$ExpeditionEnCours  = $maxexpde['expedi'];
-				$EnvoiMaxExpedition = Fleets::get_max_expeditions ( $MaxExpedition );
+				$EnvoiMaxExpedition = Fleets::get_max_expeditions ( $MaxExpedition);
 			}
 			else
 			{
@@ -184,29 +184,29 @@ class ShowFleet3Page
 		//fix by jstar
 		if ($fleetmission == 9)
 		{
-			$countfleettype = count ( $fleetarray );
+			$countfleettype = count($fleetarray);
 
 			if ($YourPlanet or !$UsedPlanet or $planettype != 3)
 			{
-				exit ( header ( "location:game.php?page=fleet" ) );
+				exit ( header ( "location:game.php?page=fleet" ));
 			}
 			elseif ($countfleettype==1 && !(isset($fleetarray[214])))
 			{
-				exit ( header ( "location:game.php?page=fleet" ) );
+				exit ( header ( "location:game.php?page=fleet" ));
 			}
 			elseif ($countfleettype==2 && !(isset($fleetarray[214])))
 			{
-				exit ( header ( "location:game.php?page=fleet" ) );
+				exit ( header ( "location:game.php?page=fleet" ));
 			}
 			elseif ($countfleettype>2)
 			{
-				exit ( header ( "location:game.php?page=fleet" ) );
+				exit ( header ( "location:game.php?page=fleet" ));
 			}
 		}
 
 		if (empty($fleetmission))
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location:game.php?page=fleet" ));
 		}
 
 		if ($TargetPlanet['id_owner'] == '')
@@ -263,7 +263,7 @@ class ShowFleet3Page
 		{
 			if ($TargetPlanet['id_owner'] == '' && $_POST['mission'] < 7)
 			{
-				exit ( header ( "location:game.php?page=fleet" ) );
+				exit ( header ( "location:game.php?page=fleet" ));
 			}
 
 			if ($TargetPlanet['id_owner'] != '' && $_POST['mission'] == 7)
@@ -278,7 +278,7 @@ class ShowFleet3Page
 
 			if (($TargetPlanet["id_owner"] == $CurrentPlanet["id_owner"]) && (($_POST["mission"] == 1) or ($_POST["mission"] == 6)))
 			{
-				exit ( header ( "location:game.php?page=fleet" ) );
+				exit ( header ( "location:game.php?page=fleet" ));
 			}
 
 			if (($TargetPlanet["id_owner"] != $CurrentPlanet["id_owner"]) && ($_POST["mission"] == 4))
@@ -300,7 +300,7 @@ class ShowFleet3Page
 													AND owner ='" . intval($CurrentPlanet['id_owner']) . "'
 												)
 											)
-											AND active =1" , 'buddy' , TRUE );
+											AND active =1" , 'buddy' , TRUE);
 
 /*
 				if ($_POST['planettype']==3)
@@ -315,7 +315,7 @@ class ShowFleet3Page
 			//	if (($HeDBRec['ally_id'] != $MyDBRec['ally_id'] && $buddy<1) ||  $x['ally_deposit'] < 1)
 
 
-				if ( $HeDBRec['ally_id'] != $MyDBRec['ally_id'] && $buddy['buddys'] < 1 )
+				if ($HeDBRec['ally_id'] != $MyDBRec['ally_id'] && $buddy['buddys'] < 1 )
 				{
 					message ("<font color=\"red\"><b>".$lang['fl_stay_not_on_enemy']."</b></font>", "game.php?page=fleet", 2);
 				}
@@ -331,32 +331,32 @@ class ShowFleet3Page
 
 		if (!in_array($GenFleetSpeed, $speed_possible))
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location:game.php?page=fleet" ));
 		}
 
 		if ($MaxFleetSpeed != $_POST['speedallsmin'])
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location:game.php?page=fleet" ));
 		}
 
 		if ( ! $_POST['planettype'])
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location:game.php?page=fleet" ));
 		}
 
 		if ( ! $_POST['galaxy'] || !is_numeric($_POST['galaxy']) || $_POST['galaxy'] > MAX_GALAXY_IN_WORLD || $_POST['galaxy'] < 1)
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location:game.php?page=fleet" ));
 		}
 
 		if ( ! $_POST['system'] || !is_numeric($_POST['system']) || $_POST['system'] > MAX_SYSTEM_IN_GALAXY || $_POST['system'] < 1)
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location:game.php?page=fleet" ));
 		}
 
 		if ( ! $_POST['planet'] || !is_numeric($_POST['planet']) || $_POST['planet'] > (MAX_PLANET_IN_SYSTEM + 1) || $_POST['planet'] < 1)
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location:game.php?page=fleet" ));
 		}
 
 		if ($_POST['thisgalaxy'] != $CurrentPlanet['galaxy'] |
@@ -364,12 +364,12 @@ class ShowFleet3Page
 			$_POST['thisplanet'] != $CurrentPlanet['planet'] |
 			$_POST['thisplanettype'] != $CurrentPlanet['planet_type'])
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location:game.php?page=fleet" ));
 		}
 
 		if (!isset($fleetarray))
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location:game.php?page=fleet" ));
 		}
 
 		$distance      = Fleets::target_distance($_POST['thisgalaxy'], $_POST['galaxy'], $_POST['thissystem'], $_POST['system'], $_POST['thisplanet'], $_POST['planet']);
@@ -390,7 +390,7 @@ class ShowFleet3Page
 			}
 			else
 			{
-				exit ( header ( "location:game.php?page=fleet" ) );
+				exit ( header ( "location:game.php?page=fleet" ));
 			}
 		} // END CODE BY JSTAR
 		elseif ($_POST['mission'] == 5)
@@ -430,7 +430,7 @@ class ShowFleet3Page
 
 		if ( ! $haveSpyProbos AND $_POST['mission'] == 6)
 		{
-			exit ( header ( "location:game.php?page=fleet" ) );
+			exit ( header ( "location:game.php?page=fleet" ));
 		}
 
 		$FleetStorage        -= $consumption;
@@ -492,7 +492,7 @@ class ShowFleet3Page
 			message ("<font color=\"red\"><b>". $lang['fl_no_enought_deuterium'] . Format::pretty_number($consumption) ."</b></font>", "game.php?page=fleet", 2);
 		}
 
-		if ( $StorageNeeded > $FleetStorage)
+		if ($StorageNeeded > $FleetStorage)
 		{
 			message ("<font color=\"red\"><b>". $lang['fl_no_enought_cargo_capacity'] . Format::pretty_number($StorageNeeded - $FleetStorage) ."</b></font>", "game.php?page=fleet", 2);
 		}
@@ -565,19 +565,19 @@ class ShowFleet3Page
 		$parse['start_time'] 	= date("M D d H:i:s", $fleet['start_time']);
 		$parse['end_time'] 		= date("M D d H:i:s", $fleet['end_time']);
 
-		$ships_row_template		= gettemplate ( 'fleet/fleet3_ships_row' );
+		$ships_row_template		= gettemplate ( 'fleet/fleet3_ships_row');
 
 		foreach ( $fleetarray as $Ship => $Count )
 		{
 			$fleet_list['ship']		=	$lang['tech'][$Ship];
-			$fleet_list['amount']	=	Format::pretty_number ( $Count );
+			$fleet_list['amount']	=	Format::pretty_number ( $Count);
 
-			$ships_list			   .=	parsetemplate ( $ships_row_template , $fleet_list );
+			$ships_list			   .=	parsetemplate ( $ships_row_template , $fleet_list);
 		}
 
 		$parse['fleet_list'] 	= $ships_list;
 
-		display ( parsetemplate ( gettemplate ( 'fleet/fleet3_table' ) , $parse ) , FALSE );
+		display ( parsetemplate ( gettemplate ( 'fleet/fleet3_table' ) , $parse ) , FALSE);
 	}
 }
 ?>

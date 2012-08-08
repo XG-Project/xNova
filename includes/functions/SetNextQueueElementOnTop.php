@@ -17,11 +17,11 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			$CurrentQueue  = $CurrentPlanet['b_building_id'];
 			if ($CurrentQueue != 0)
 			{
-				$QueueArray = explode ( ";", $CurrentQueue );
+				$QueueArray = explode(";", $CurrentQueue);
 				$Loop       = TRUE;
 				while ($Loop)
 				{
-					$ListIDArray         = explode ( ",", $QueueArray[0] );
+					$ListIDArray         = explode(",", $QueueArray[0]);
 					$Element             = $ListIDArray[0];
 					$Level               = $ListIDArray[1];
 					$BuildTime           = $ListIDArray[2];
@@ -34,7 +34,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 					else
 						$ForDestroy = FALSE;
 
-					$HaveRessources = IsElementBuyable ($CurrentUser, $CurrentPlanet, $Element, TRUE, $ForDestroy);
+					$HaveRessources = IsElementBuyable($CurrentUser, $CurrentPlanet, $Element, TRUE, $ForDestroy);
 					if ($ForDestroy)
 					{
 						if ($CurrentPlanet[$resource[$Element]] == 0)
@@ -44,7 +44,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 						}
 					}
 
-					if ( $HaveRessources )
+					if ($HaveRessources )
 					{
 						$Needed                        = GetBuildingPrice ($CurrentUser, $CurrentPlanet, $Element, TRUE, $ForDestroy);
 						$CurrentPlanet['metal']       -= $Needed['metal'];
@@ -52,7 +52,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 						$CurrentPlanet['deuterium']   -= $Needed['deuterium'];
 						$CurrentTime                   = time();
 						$BuildEndTime                  = $BuildEndTime;
-						$NewQueue                      = implode ( ";", $QueueArray );
+						$NewQueue                      = implode(";", $QueueArray);
 
 						if ($NewQueue == "")
 							$NewQueue                  = '0';
@@ -64,7 +64,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 						$ElementName = $lang['tech'][$Element];
 
 						if ($HaveNoMoreLevel)
-							$Message     = sprintf ($lang['sys_nomore_level'], $ElementName );
+							$Message     = sprintf ($lang['sys_nomore_level'], $ElementName);
 						else
 						{
 							$Needed      = GetBuildingPrice ($CurrentUser, $CurrentPlanet, $Element, TRUE, $ForDestroy);
@@ -88,7 +88,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 							$QueueArray[$num]	= implode(",",$fixEle);
 						}
 
-						$ActualCount         = count ($QueueArray);
+						$ActualCount         = count($QueueArray);
 						if ($ActualCount === 0)
 						{
 							$BuildEndTime  = '0';

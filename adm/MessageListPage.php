@@ -11,7 +11,7 @@ define('INSTALL' , FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT . 'global.php');
+include(XN_ROOT.'global.php');
 
 if ($Observation != 1) die(message ($lang['404_page']));
 
@@ -26,12 +26,12 @@ if ($Observation != 1) die(message ($lang['404_page']));
 	$SelPage    = $_POST['page'];
 
 	$ViewPage = 1;
-	if ( $Selected != $SelType )
+	if ($Selected != $SelType )
 	{
 		$Selected = $SelType;
 		$ViewPage = 1;
 	}
-	elseif ( $CurrPage != $SelPage )
+	elseif ($CurrPage != $SelPage )
 	{
 		$ViewPage = ( !empty($SelPage) ) ? $SelPage : 1;
 	}
@@ -52,7 +52,7 @@ if ($Observation != 1) die(message ($lang['404_page']));
 		elseif ($Selected == 100)
 			$Mess      = doquery("SELECT COUNT(*) AS `max` FROM {{table}}", 'messages', TRUE);
 
-		$MaxPage   = ceil ( ($Mess['max'] / 25) );
+		$MaxPage   = ceil ( ($Mess['max'] / 25));
 		$CurrPage += 1;
 		if ($CurrPage <= $MaxPage)
 			$ViewPage = $CurrPage;
@@ -80,7 +80,7 @@ if ($Observation != 1) die(message ($lang['404_page']));
 			$SelDay    = $_POST['selday'];
 			$SelMonth  = $_POST['selmonth'];
 			$SelYear   = $_POST['selyear'];
-			$LimitDate = mktime (0,0,0, $SelMonth, $SelDay, $SelYear );
+			$LimitDate = mktime (0,0,0, $SelMonth, $SelDay, $SelYear);
 			if ($LimitDate != FALSE)
 			{
 				doquery ( "DELETE FROM {{table}} WHERE `message_time` <= '". $LimitDate ."';", 'messages');
@@ -94,7 +94,7 @@ if ($Observation != 1) die(message ($lang['404_page']));
 	elseif ($Selected == 100)
 		$Mess      = doquery("SELECT COUNT(*) AS `max` FROM {{table}}", 'messages', TRUE);
 
-	$MaxPage  = ceil ( ($Mess['max'] / 25) );
+	$MaxPage  = ceil ( ($Mess['max'] / 25));
 
 	$parse['mlst_data_page']    = $ViewPage;
 	$parse['mlst_data_pagemax'] = $MaxPage;
@@ -130,7 +130,7 @@ if ($Observation != 1) die(message ($lang['404_page']));
 			$bloc['mlst_to']      = $OwnerData['username'] ." ".$lang['input_id'].":". $row['message_owner'];
 			$bloc['mlst_subject'] = $row['message_subject'];
 			$bloc['mlst_text']    = $row['message_text'];
-			$bloc['mlst_time']    = date ("d/M/y H:i:s", $row['message_time'] );
+			$bloc['mlst_time']    = date ("d/M/y H:i:s", $row['message_time']);
 
 			$parse['mlst_data_rows'] .= parsetemplate(gettemplate('adm/MessageListRows'), $bloc);
 		}

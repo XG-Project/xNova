@@ -92,21 +92,13 @@ function message($mes, $dest = "", $time = "3", $topnav = FALSE, $menu = TRUE)
 
 	$page = parsetemplate(gettemplate('general/message_body'), $parse);
 
-	if ( !defined('IN_ADMIN'))
+	if ( ! defined('IN_ADMIN'))
 	{
-<<<<<<< HEAD
 		display($page, $topnav, (($dest != "") ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : ""), FALSE, $menu);
 	}
 	else
 	{
 		display($page, $topnav, (($dest != "") ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : ""), TRUE, FALSE);
-=======
-		display($page , $topnav , (($dest != "") ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : "") , FALSE , $menu);
-	}
-	else
-	{
-		display($page , $topnav , (($dest != "") ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : "") , TRUE , FALSE);
->>>>>>> develop
 	}
 
 }
@@ -122,7 +114,6 @@ function display($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $men
 
 	if ($topnav  && !$AdminPage)
 	{
-<<<<<<< HEAD
 		require_once(XN_ROOT.'includes/functions/ShowTopNavigationBar.php');
 		$DisplayPage .= ShowTopNavigationBar($user, $planetrow);
 	}
@@ -130,10 +121,6 @@ function display($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $men
 	{
 		require_once(XN_ROOT.'includes/functions/adm/ShowTopNavigationBar.php');
 		$DisplayPage .= ShowTopNavigationBar();
-=======
-		include_once(XN_ROOT.'includes/functions/ShowTopNavigationBar.php');
-		$DisplayPage .= ShowTopNavigationBar($user, $planetrow);
->>>>>>> develop
 	}
 
 	if ($menu && ! $AdminPage)
@@ -143,13 +130,8 @@ function display($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $men
 	}
 	elseif ($menu)
 	{
-<<<<<<< HEAD
 		require_once(XN_ROOT.'includes/functions/adm/ShowMenu.php');
 		$DisplayPage .= ShowMenu();
-=======
-		include_once(XN_ROOT.'includes/functions/ShowLeftMenu.php');
-		$DisplayPage .= ShowLeftMenu ($user);
->>>>>>> develop
 	}
 
 	$DisplayPage .= $page;
@@ -174,7 +156,6 @@ function display($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $men
 
 function StdUserHeader($metatags = '', $onload = '')
 {
-<<<<<<< HEAD
 	$parse = array();
 	$parse['-title-']	= read_config('game_name');
 	$parse['-favi-']	= '<link rel="icon" href="'.GAMEURL.'favicon.png">';
@@ -185,14 +166,6 @@ function StdUserHeader($metatags = '', $onload = '')
 	//TODO description, keywords, link author, link license
 
 	if ( ! defined('LOGIN'))
-=======
-	$parse['-title-'] 	 = read_config('game_name');
-	$parse['-favi-']	 = "<link rel=\"shortcut icon\" href=\"./favicon.ico\">\n";
-	$parse['-meta-']	 = "<meta charset=\"UTF-8\">\n";
-	$parse['-meta-']	.= "<meta name=\"generator\" content=\"xNova ". VERSION."\" />\n";
-
-	if ( ! defined('LOGIN'))
->>>>>>> develop
 	{
 		$parse['-style-']	= '<link rel="stylesheet" type="text/css" href="'.GAMEURL.'styles/css/default.css">';
 		$parse['-style-']	.= '<link rel="stylesheet" type="text/css" href="'.GAMEURL.'styles/css/formate.css">';
@@ -207,11 +180,7 @@ function StdUserHeader($metatags = '', $onload = '')
 	$parse['-meta-']		.= ($metatags) ? $metatags : '';
 	$parse['onload']		= ! empty($onload) ? ' onload="'.$onload.'"' : '';
 
-<<<<<<< HEAD
 	return parsetemplate(gettemplate('general/simple_header'), $parse);
-=======
-	return parsetemplate(gettemplate('general/simple_header') , $parse);
->>>>>>> develop
 }
 
 function AdminUserHeader($metatags = '')
@@ -234,11 +203,7 @@ function AdminUserHeader($metatags = '')
 
 	$parse['-meta-'] 	.= ($metatags) ? $metatags : '';
 
-<<<<<<< HEAD
 	return parsetemplate(gettemplate('adm/simple_header'), $parse);
-=======
-	return parsetemplate(gettemplate('adm/simple_header') , $parse);
->>>>>>> develop
 }
 
 function CalculateMaxPlanetFields(&$planet)
@@ -260,32 +225,21 @@ function ShowBuildTime($time)
 
 function parsetemplate($template, $array)
 {
-<<<<<<< HEAD
 	$array['game_url']	= GAMEURL;
 	$array['skin_url']	= DPATH;
 	return preg_replace('#\{([a-z0-9\-_]*?)\}#Ssie', '(isset($array[\'\1\']) ? $array[\'\1\'] : \'\');', $template);
-=======
-	return preg_replace('#\{([a-z0-9\-_]*?)\}#Ssie' , '((isset($array[\'\1\'])) ? $array[\'\1\'] : \'\');' , $template);
->>>>>>> develop
 }
 
 function gettemplate($templatename)
 {
-<<<<<<< HEAD
 	return file_get_contents(XN_ROOT.TEMPLATE_DIR.'/'.$templatename.'.php');
 }
 
 function includeLang($filename)
-=======
-	return @file_get_contents (XN_ROOT . TEMPLATE_DIR.'/'.$templatename.'.php');
-}
-
-function includeLang($filename)
->>>>>>> develop
 {
 	global $lang;
 
-	include (XN_ROOT."language/". DEFAULT_LANG."/".$filename.'.php');
+	include_once(XN_ROOT."language/". DEFAULT_LANG."/".$filename.'.php');
 }
 
 function GetStartAdressLink($FleetRow, $FleetType)
@@ -324,11 +278,7 @@ function doquery($query, $table, $fetch = FALSE)
 		$db->set_charset('utf8');
 	}
 
-<<<<<<< HEAD
 	$sql 		= str_replace("{{table}}", $dbsettings["prefix"].$table, $query);
-=======
-	$sql 		= str_replace("{{table}}" , $dbsettings["prefix"].$table , $query);
->>>>>>> develop
 	$sqlquery 	= $db->query($sql);
 	if ( ! $sqlquery) $debug->error($db->error."<section class=\"sql-query\">".$sql."</section>", "SQL Error");
 

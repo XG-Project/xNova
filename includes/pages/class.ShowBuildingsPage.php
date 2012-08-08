@@ -341,7 +341,7 @@ class ShowBuildingsPage
 		include_once(XN_ROOT.'includes/functions/GetElementPrice.php');
 		include_once(XN_ROOT.'includes/functions/CheckPlanetUsedFields.php');
 
-		CheckPlanetUsedFields ($CurrentPlanet);
+		CheckPlanetUsedFields($CurrentPlanet);
 
 		$parse			= $lang;
 		$Allowed['1'] 	= array( 1,  2,  3,  4, 12, 14, 15, 21, 22, 23, 24, 31, 33, 34, 44);
@@ -407,10 +407,10 @@ class ShowBuildingsPage
 						$this->RemoveBuildingFromQueue ($CurrentPlanet, $CurrentUser, $ListID);
 					break;
 					case 'insert':
-						$this->AddBuildingToQueue ($CurrentPlanet, $CurrentUser, $Element, TRUE);
+						$this->AddBuildingToQueue($CurrentPlanet, $CurrentUser, $Element, TRUE);
 					break;
 					case 'destroy':
-						$this->AddBuildingToQueue ($CurrentPlanet, $CurrentUser, $Element, FALSE);
+						$this->AddBuildingToQueue($CurrentPlanet, $CurrentUser, $Element, FALSE);
 					break;
 				}
 			}

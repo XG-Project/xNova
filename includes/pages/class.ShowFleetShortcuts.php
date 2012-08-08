@@ -126,11 +126,7 @@ class ShowFleetShortcuts
 
 		$parse = $lang;
 
-<<<<<<< HEAD
 		if ($this->CurrentUser['fleet_shortcut'])
-=======
-		if ($this->CurrentUser['fleet_shortcut'])
->>>>>>> develop
 		{
 			$scarray 	= explode(";", $this->CurrentUser['fleet_shortcut']);
 			$sx 		= TRUE;

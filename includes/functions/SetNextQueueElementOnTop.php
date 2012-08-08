@@ -10,7 +10,7 @@
 
 if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-	function SetNextQueueElementOnTop (&$CurrentPlanet, $CurrentUser)
+	function SetNextQueueElementOnTop(&$CurrentPlanet, $CurrentUser)
 	{
 		global $lang, $resource;
 

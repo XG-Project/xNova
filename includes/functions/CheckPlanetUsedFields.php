@@ -10,7 +10,7 @@
 
 if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-	function CheckPlanetUsedFields (&$planet)
+	function CheckPlanetUsedFields(&$planet)
 	{
 		global $resource;
 

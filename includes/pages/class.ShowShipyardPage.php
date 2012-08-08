@@ -13,7 +13,7 @@ if ( ! defined('INSIDE')) die(header("Location:../../"));
 class ShowShipyardPage
 {
 	//optimized by alivan & jstar
-	private function GetMaxConstructibleElements ($Element, $Ressources)
+	private function GetMaxConstructibleElements($Element, $Ressources)
 	{
 		global $pricelist;
 
@@ -109,12 +109,12 @@ class ShowShipyardPage
 				{
 					if (IsTechnologieAccessible ($CurrentUser, $CurrentPlanet, $Element))
 					{
-						$MaxElements   = $this->GetMaxConstructibleElements ($Element, $CurrentPlanet);
+						$MaxElements   = $this->GetMaxConstructibleElements($Element, $CurrentPlanet);
 
 						if ($Count > $MaxElements)
 							$Count = $MaxElements;
 
-						$Ressource = $this->GetElementRessources ($Element, $Count);
+						$Ressource = $this->GetElementRessources($Element, $Count);
 
 						if ($Count >= 1)
 						{
@@ -277,7 +277,7 @@ class ShowShipyardPage
 
 					if (IsTechnologieAccessible($CurrentUser, $CurrentPlanet, $Element))
 					{
-						$MaxElements = $this->GetMaxConstructibleElements ($Element, $CurrentPlanet);
+						$MaxElements = $this->GetMaxConstructibleElements($Element, $CurrentPlanet);
 
 						if ($Element == 502 OR $Element == 503)
 						{
@@ -316,7 +316,7 @@ class ShowShipyardPage
 
 						}
 
-						$Ressource = $this->GetElementRessources ($Element, $Count);
+						$Ressource = $this->GetElementRessources($Element, $Count);
 
 						if ($Count >= 1)
 						{

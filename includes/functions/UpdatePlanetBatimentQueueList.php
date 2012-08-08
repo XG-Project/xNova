@@ -22,7 +22,7 @@ function UpdatePlanetBatimentQueueList (&$CurrentPlanet, &$CurrentUser) {
 				PlanetResourceUpdate($CurrentUser, $CurrentPlanet, $CurrentPlanet['b_building'], FALSE);
 				$IsDone = CheckPlanetBuildingQueue($CurrentPlanet, $CurrentUser);
 				if ($IsDone)
-					SetNextQueueElementOnTop ($CurrentPlanet, $CurrentUser);
+					SetNextQueueElementOnTop($CurrentPlanet, $CurrentUser);
 			}
 			else
 			{

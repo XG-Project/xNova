@@ -49,7 +49,7 @@ include_once(XN_ROOT.'includes/classes/class.Fleets.php');
 
 $debug			= new debug();
 
-if (filesize(XN_ROOT.'config.php') == 0 && (( ! defined('INSTALL')) OR ( ! INSTALL)))
+if (filesize(XN_ROOT.'config.php') === 0 && (( ! defined('INSTALL')) OR ( ! INSTALL)))
 {
 	exit(header('location:'.XN_ROOT.'install/'));
 }

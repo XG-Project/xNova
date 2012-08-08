@@ -8,7 +8,7 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location: ./../../"));
+if ( ! defined('INSIDE')) die(header("Location: ./../../"));
 if ($user['authlevel'] < 3) die(message($lang['404_page']));
 
 class ShowResetPage {
@@ -45,34 +45,34 @@ class ShowResetPage {
 		{
 			if ($TheUser['onlinetime'] > $LimitTime)
 			{
-				$UserPlanet     = doquery ("SELECT `name` FROM {{table}} WHERE `id` = '". $TheUser['id_planet']."';", 'planets_s', TRUE);
+				$UserPlanet     = doquery("SELECT `name` FROM {{table}} WHERE `id` = '".$TheUser['id_planet']."';", 'planets_s', TRUE);
 				if ( ! empty($UserPlanet['name']))
 				{
 					$Time	=	time();
 
 					$QryInsertUser  = "INSERT INTO {{table}} SET ";
-					$QryInsertUser .= "`username` = '".      $TheUser['username']      ."', ";
-					$QryInsertUser .= "`email` = '".         $TheUser['email']         ."', ";
-					$QryInsertUser .= "`email_2` = '".       $TheUser['email_2']       ."', ";
+					$QryInsertUser .= "`username` = '".     $TheUser['username']     ."', ";
+					$QryInsertUser .= "`email` = '".        $TheUser['email']        ."', ";
+					$QryInsertUser .= "`email_2` = '".      $TheUser['email_2']      ."', ";
 					$QryInsertUser .= "`id_planet` = '0', ";
-					$QryInsertUser .= "`authlevel` = '".     $TheUser['authlevel']     ."', ";
-					$QryInsertUser .= "`dpath` = '".         $TheUser['dpath']         ."', ";
-					$QryInsertUser .= "`galaxy` = '".        $TheUser['galaxy']        ."', ";
-					$QryInsertUser .= "`system` = '".        $TheUser['system']        ."', ";
-					$QryInsertUser .= "`planet` = '".        $TheUser['planet']        ."', ";
-					$QryInsertUser .= "`register_time` = '". $TheUser['register_time'] ."', ";
-					$QryInsertUser .= "`onlinetime` = '". 	 $Time ."', ";
-					$QryInsertUser .= "`password` = '".      $TheUser['password']      ."';";
+					$QryInsertUser .= "`authlevel` = '".    $TheUser['authlevel']    ."', ";
+					$QryInsertUser .= "`dpath` = '".        $TheUser['dpath']        ."', ";
+					$QryInsertUser .= "`galaxy` = '".       $TheUser['galaxy']       ."', ";
+					$QryInsertUser .= "`system` = '".       $TheUser['system']       ."', ";
+					$QryInsertUser .= "`planet` = '".       $TheUser['planet']       ."', ";
+					$QryInsertUser .= "`register_time` = '".$TheUser['register_time']."', ";
+					$QryInsertUser .= "`onlinetime` = '".	 $Time."', ";
+					$QryInsertUser .= "`password` = '".     $TheUser['password']     ."';";
 					doquery($QryInsertUser, 'users');
 					doquery("UPDATE {{table}} SET `bana` = '0' WHERE `id` > '1'", "users");
 
-					$NewUser        = doquery("SELECT `id` FROM {{table}} WHERE `username` = '". $TheUser['username'] ."' LIMIT 1;", 'users', TRUE);
+					$NewUser        = doquery("SELECT `id` FROM {{table}} WHERE `username` = '".$TheUser['username']."' LIMIT 1;", 'users', TRUE);
 
 					CreateOnePlanetRecord ($TheUser['galaxy'], $TheUser['system'], $TheUser['planet'], $NewUser['id'], $UserPlanet['name'], TRUE);
 
 
 					doquery("UPDATE {{table}} SET `id_level` = '".$TheUser['authlevel']."' WHERE `id_owner` = '".$NewUser['id']."'", "planets");
-					$PlanetID       = doquery("SELECT `id` FROM {{table}} WHERE `id_owner` = '". $NewUser['id'] ."' LIMIT 1;", 'planets', TRUE);
+					$PlanetID       = doquery("SELECT `id` FROM {{table}} WHERE `id_owner` = '".$NewUser['id']."' LIMIT 1;", 'planets', TRUE);
 
 					$QryUpdateUser  = "UPDATE {{table}} SET ";
 					$QryUpdateUser .= "`id_planet` = '".		$PlanetID['id']."', ";

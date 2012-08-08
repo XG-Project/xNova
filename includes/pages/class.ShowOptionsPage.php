@@ -12,29 +12,22 @@ class ShowOptionsPage
 {
 	private function CheckIfIsBuilding($CurrentUser)
 	{
-		$activity	= doquery ( "SELECT (
+		$activity	= doquery("SELECT (
 											(
-												SELECT COUNT( fleet_id ) AS quantity
+												SELECT COUNT(fleet_id) AS quantity
 													FROM {{table}}fleets
-														WHERE fleet_owner = '" . intval ($CurrentUser['id']) . "'
+														WHERE fleet_owner = '". intval($CurrentUser['id'])."'
 											)
 										+
 											(
 												SELECT COUNT(id) AS quantity
 													FROM {{table}}planets
-														WHERE id_owner = '" . intval ($CurrentUser['id']) . "' AND
+														WHERE id_owner = '". intval($CurrentUser['id'])."' &&
 														(b_building <> 0 OR b_tech <> 0 OR b_hangar <> 0)
 											)
 										) as total", '', TRUE);
 
-		if ($activity['total'] > 0)
-		{
-			return TRUE;
-		}
-		else
-		{
-			return FALSE;
-		}
+			return $activity['total'] > 0;
 	}
 
 	public function __construct($CurrentUser)
@@ -54,12 +47,12 @@ class ShowOptionsPage
 				`urlaubs_until` = '0'
 				WHERE `id` = '".intval($CurrentUser['id'])."' LIMIT 1", "users");
 
-				die(header("location: ".GAMEURL."game.php?page=options"));
+				die(header("Location: ".GAMEURL."game.php?page=options"));
 			}
 			else
 			{
 				$urlaubs_modus = "1";
-				die(header("location: ".GAMEURL."game.php?page=options"));
+				die(header("Location: ".GAMEURL."game.php?page=options"));
 			}
 		}
 
@@ -68,9 +61,9 @@ class ShowOptionsPage
 			if ($CurrentUser['authlevel'] > 0)
 			{
 				if (isset($_POST['adm_pl_prot']) && $_POST['adm_pl_prot'] == 'on')
-					doquery ("UPDATE {{table}} SET `id_level` = '".intval($CurrentUser['authlevel'])."' WHERE `id_owner` = '".intval($CurrentUser['id'])."';", 'planets');
+					doquery("UPDATE {{table}} SET `id_level` = '".intval($CurrentUser['authlevel'])."' WHERE `id_owner` = '".intval($CurrentUser['id'])."';", 'planets');
 				else
-					doquery ("UPDATE {{table}} SET `id_level` = '0' WHERE `id_owner` = '".intval($CurrentUser['id'])."';", 'planets');
+					doquery("UPDATE {{table}} SET `id_level` = '0' WHERE `id_owner` = '".intval($CurrentUser['id'])."';", 'planets');
 			}
 			// < ------------------------------------------------------- EL SKIN ------------------------------------------------------- >
 			if (isset($_POST["design"]) && $_POST["design"] == 'on')
@@ -211,9 +204,9 @@ class ShowOptionsPage
 				while ($id =$query->fetch_array())
 				{
 					doquery("UPDATE {{table}} SET
-					metal_perhour = '".read_config ( 'metal_basic_income' )."',
-					crystal_perhour = '".read_config ( 'crystal_basic_income' )."',
-					deuterium_perhour = '".read_config ( 'deuterium_basic_income' )."',
+					metal_perhour = '".read_config('metal_basic_income')."',
+					crystal_perhour = '".read_config('crystal_basic_income')."',
+					deuterium_perhour = '".read_config('deuterium_basic_income')."',
 					energy_used = '0',
 					energy_max = '0',
 					metal_mine_porcent = '0',
@@ -222,7 +215,7 @@ class ShowOptionsPage
 					solar_plant_porcent = '0',
 					fusion_plant_porcent = '0',
 					solar_satelit_porcent = '0'
-					WHERE id = '{$id['id']}' AND `planet_type` = 1 ", 'planets');
+					WHERE id = '{$id['id']}' && `planet_type` = 1 ", 'planets');
 				}
 			}
 			else
@@ -297,17 +290,17 @@ class ShowOptionsPage
 			{
 				$parse['opt_modev_data'] 	= ($CurrentUser['urlaubs_modus'] == 1)?" checked":'';
 				$parse['opt_modev_exit'] 	= ($CurrentUser['urlaubs_modus'] == 0)?" checked":'';
-				$parse['vacation_until'] 	= date("d.m.Y G:i:s",$CurrentUser['urlaubs_until']);
+				$parse['vacation_until'] 	= date("d.m.Y G:i:s", $CurrentUser['urlaubs_until']);
 
 				display(parsetemplate(gettemplate('options/options_body_vmode'), $parse), FALSE);
 			}
 			else
 			{
-				$parse['opt_lst_ord_data']   = "<option value =\"0\"". (($CurrentUser['planet_sort'] == 0) ? " selected": "") .">" . $lang['op_sort_colonization'] . "</option>";
-				$parse['opt_lst_ord_data']  .= "<option value =\"1\"". (($CurrentUser['planet_sort'] == 1) ? " selected": "") .">" . $lang['op_sort_coords'] . "</option>";
-				$parse['opt_lst_ord_data']  .= "<option value =\"2\"". (($CurrentUser['planet_sort'] == 2) ? " selected": "") .">" . $lang['op_sort_alpha'] . "</option>";
-				$parse['opt_lst_cla_data']   = "<option value =\"0\"". (($CurrentUser['planet_sort_order'] == 0) ? " selected": "") .">" . $lang['op_sort_asc'] . "</option>";
-				$parse['opt_lst_cla_data']  .= "<option value =\"1\"". (($CurrentUser['planet_sort_order'] == 1) ? " selected": "") .">" . $lang['op_sort_desc'] . "</option>";
+				$parse['opt_lst_ord_data']   = "<option value =\"0\"".(($CurrentUser['planet_sort'] == 0) ? " selected": "").">".$lang['op_sort_colonization']."</option>";
+				$parse['opt_lst_ord_data']  .= "<option value =\"1\"".(($CurrentUser['planet_sort'] == 1) ? " selected": "").">".$lang['op_sort_coords']."</option>";
+				$parse['opt_lst_ord_data']  .= "<option value =\"2\"".(($CurrentUser['planet_sort'] == 2) ? " selected": "").">".$lang['op_sort_alpha']."</option>";
+				$parse['opt_lst_cla_data']   = "<option value =\"0\"".(($CurrentUser['planet_sort_order'] == 0) ? " selected": "").">".$lang['op_sort_asc']."</option>";
+				$parse['opt_lst_cla_data']  .= "<option value =\"1\"".(($CurrentUser['planet_sort_order'] == 1) ? " selected": "").">".$lang['op_sort_desc']."</option>";
 
 				$SkinsFolder = opendir(XN_ROOT.'styles/skins');
 
@@ -327,7 +320,7 @@ class ShowOptionsPage
 
 				if ($CurrentUser['authlevel'] > 0)
 				{
-					$IsProtOn 					= doquery ("SELECT `id_level` FROM {{table}} WHERE `id_owner` = '".intval($CurrentUser['id'])."' LIMIT 1;", 'planets', TRUE);
+					$IsProtOn 					= doquery("SELECT `id_level` FROM {{table}} WHERE `id_owner` = '".intval($CurrentUser['id'])."' LIMIT 1;", 'planets', TRUE);
 					$parse['adm_pl_prot_data']	= ($IsProtOn['id_level'] > 0) ? " checked":'';
 					$parse['opt_adm_frame']  	= parsetemplate(gettemplate('options/options_admadd'), $parse);
 				}

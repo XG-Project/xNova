@@ -8,11 +8,11 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 class ShowFleetPage
 {
-	function __construct ($CurrentUser, $CurrentPlanet)
+	function __construct($CurrentUser, $CurrentPlanet)
 	{
 		global $lang, $reslist, $resource;
 
@@ -20,20 +20,20 @@ class ShowFleetPage
 		// SOME DEFAULT VALUES
 		#####################################################################################################
 		// QUERYS
-		$count				= doquery ( "SELECT
+		$count				= doquery("SELECT
 											(SELECT COUNT(fleet_owner) AS `actcnt`
 												FROM {{table}}fleets
-												WHERE `fleet_owner` = '" . intval ($CurrentUser['id']) . "') AS max_fleet,
+												WHERE `fleet_owner` = '". intval($CurrentUser['id'])."') AS max_fleet,
 											(SELECT COUNT(fleet_owner) AS `expedi`
 												FROM {{table}}fleets
-													WHERE `fleet_owner` = '" . intval ($CurrentUser['id']) . "'
-														AND `fleet_mission` = '15') AS max_expeditions", '', TRUE);
+													WHERE `fleet_owner` = '". intval($CurrentUser['id'])."'
+														&& `fleet_mission` = '15') AS max_expeditions", '', TRUE);
 
 
 
 		// LOAD TEMPLATES REQUIRED
-		$inputs_template			= gettemplate ( 'fleet/fleet_inputs');
-		$ships_row_template			= gettemplate ( 'fleet/fleet_row_ships');
+		$inputs_template			= gettemplate('fleet/fleet_inputs');
+		$ships_row_template			= gettemplate('fleet/fleet_row_ships');
 
 		// LANGUAGE
 		$parse 						= $lang;
@@ -44,7 +44,7 @@ class ShowFleetPage
 		if ($MaxExpedition >= 1)
 		{
 			$ExpeditionEnCours  = $count['max_expeditions'];
-			$EnvoiMaxExpedition = Fleets::get_max_expeditions ($MaxExpedition);
+			$EnvoiMaxExpedition = Fleets::get_max_expeditions($MaxExpedition);
 		}
 		else
 		{
@@ -52,7 +52,7 @@ class ShowFleetPage
 			$EnvoiMaxExpedition = 0;
 		}
 
-		$MaxFlottes		= Fleets::get_max_fleets ($CurrentUser[$resource[108]], $CurrentUser['rpg_amiral']);
+		$MaxFlottes		= Fleets::get_max_fleets($CurrentUser[$resource[108]], $CurrentUser['rpg_amiral']);
 		$missiontype	= Fleets::get_missions();
 		$galaxy         = intval($_GET['galaxy']);
 		$system         = intval($_GET['system']);
@@ -86,7 +86,7 @@ class ShowFleetPage
 				$i++;
 
 				$parse['num']				=	$i;
-				$parse['fleet_mission']		=	$missiontype[$f[fleet_mission]];
+				$parse['fleet_mission']		=	$missiontype[$f['fleet_mission']];
 
 				if (($f['fleet_start_time'] + 1) == $f['fleet_end_time'])
 				{
@@ -104,11 +104,11 @@ class ShowFleetPage
 
 				foreach ($fleet as $a => $b)
 				{
-					if ($b != '')
+					if ( ! empty($b))
 					{
 						$e++;
 						$a 					= explode(",", $b);
-						$parse['fleet']    .= $lang['tech'][$a[0]]. ":". $a[1] ."\n";
+						$parse['fleet']    .= $lang['tech'][$a[0]].":".$a[1]."\n";
 
 						if ($e > 1)
 						{
@@ -117,25 +117,25 @@ class ShowFleetPage
 					}
 				}
 
-				$parse['fleet_amount']		=	Format::pretty_number($f[fleet_amount]);
-				$parse['fleet_start']		=	"[".$f[fleet_start_galaxy].":".$f[fleet_start_system].":".$f[fleet_start_planet]."]";
-				$parse['fleet_start_time']	=	date ( "d M Y H:i:s", $f['fleet_start_time']);
-				$parse['fleet_end']			=	"[".$f[fleet_end_galaxy].":".$f[fleet_end_system].":".$f[fleet_end_planet]."]";
-				$parse['fleet_end_time']	=	date ( "d M Y H:i:s", $f['fleet_end_time']);
-				$parse['fleet_arrival']		=	Format::pretty_time ( floor ($f['fleet_end_time'] + 1 - time()));
+				$parse['fleet_amount']		=	Format::pretty_number($f['fleet_amount']);
+				$parse['fleet_start']		=	"[".$f['fleet_start_galaxy'].":".$f['fleet_start_system'].":".$f['fleet_start_planet']."]";
+				$parse['fleet_start_time']	=	date("d M Y H:i:s", $f['fleet_start_time']);
+				$parse['fleet_end']			=	"[".$f['fleet_end_galaxy'].":".$f['fleet_end_system'].":".$f['fleet_end_planet']."]";
+				$parse['fleet_end_time']	=	date("d M Y H:i:s", $f['fleet_end_time']);
+				$parse['fleet_arrival']		=	Format::pretty_time(floor($f['fleet_end_time'] + 1 - time()));
 
 				//now we can view the call back button for ships in maintaing position (2)
 				if ($f['fleet_mess'] == 0 or $f['fleet_mess'] == 2)
 				{
 					$parse['inputs']  = "<form action=\"SendFleetBack.php\" method=\"post\">";
-					$parse['inputs'] .= "<input name=\"fleetid\" value=\"". $f['fleet_id'] ."\" type=\"hidden\">";
+					$parse['inputs'] .= "<input name=\"fleetid\" value=\"".$f['fleet_id']."\" type=\"hidden\">";
 					$parse['inputs'] .= "<input value=\"".$lang['fl_send_back']."\" type=\"submit\" name=\"send\">";
 					$parse['inputs'] .= "</form>";
 
-					if ($f[fleet_mission] == 1)
+					if ($f['fleet_mission'] == 1)
 					{
 						$parse['inputs'] .= "<form action=\"game.php?page=fleetACS\" method=\"post\">";
-						$parse['inputs'] .= "<input name=\"fleetid\" value=\"". $f['fleet_id'] ."\" type=\"hidden\">";
+						$parse['inputs'] .= "<input name=\"fleetid\" value=\"".$f['fleet_id']."\" type=\"hidden\">";
 						$parse['inputs'] .= "<input value=\"".$lang['fl_acs']."\" type=\"submit\">";
 						$parse['inputs'] .= "</form>";
 					}
@@ -145,7 +145,7 @@ class ShowFleetPage
 					$parse['inputs'] = "&nbsp;-&nbsp;";
 				}
 
-				$flying_fleets	.= parsetemplate ( gettemplate ( 'fleet/fleet_row_fleets' ), $parse);
+				$flying_fleets	.= parsetemplate(gettemplate('fleet/fleet_row_fleets'), $parse);
 			}
 		}
 
@@ -162,19 +162,19 @@ class ShowFleetPage
 			$parse['fleet_arrival']		=	'-';
 			$parse['inputs']			=	'-';
 
-			$flying_fleets	.= parsetemplate ( gettemplate ( 'fleet/fleet_row_fleets' ), $parse);
+			$flying_fleets	.= parsetemplate(gettemplate('fleet/fleet_row_fleets'), $parse);
 		}
 
 		$parse['fleetpagerow'] = $flying_fleets;
 
 		if ($MaxFlottes == $MaxFlyingFleets)
 		{
-			$parse['message_nofreeslot'] .= parsetemplate ( gettemplate ( 'fleet/fleet_noslots_row' ), $parse);
+			$parse['message_nofreeslot'] .= parsetemplate(gettemplate('fleet/fleet_noslots_row'), $parse);
 		}
 
 		if ( ! $CurrentPlanet)
 		{
-			header("location: ".GAMEURL."game.php?page=fleet");
+			header("Location: ".GAMEURL."game.php?page=fleet");
 		}
 
 		$ships							=	$lang;
@@ -189,14 +189,14 @@ class ShowFleetPage
 				}
 				else
 				{
-					$ships['fleet_max_speed']	= 	Fleets::fleet_max_speed( "", $i, $CurrentUser);
+					$ships['fleet_max_speed']	= 	Fleets::fleet_max_speed("", $i, $CurrentUser);
 				}
 
 				$ships['ship']					= 	$lang['tech'][$i];
 				$ships['amount']				= 	Format::pretty_number($CurrentPlanet[$resource[$i]]);
 				$inputs['i']					=	$i;
 				$inputs['maxship']				=	$CurrentPlanet[$resource[$i]];
-				$inputs['consumption']			=	Fleets::ship_consumption ($i, $CurrentUser);
+				$inputs['consumption']			=	Fleets::ship_consumption($i, $CurrentUser);
 				$inputs['speed']				=	Fleets::fleet_max_speed("", $i, $CurrentUser);
 				$inputs['capacity']				=	$pricelist[$i]['capacity'];
 
@@ -207,26 +207,26 @@ class ShowFleetPage
 				}
 				else
 				{
-					$ships['max_ships'] 	   	= "<a href=\"javascript:maxShip('ship". $i ."'); shortInfo();\">".$lang['fl_max']."</a>";
-					$ships['set_ships'] 		= "<input name=\"ship". $i ."\" size=\"10\" value=\"0\" onfocus=\"javascript:if (this.value == '0') this.value='';\" onblur=\"javascript:if (this.value == '') this.value='0';\" alt=\"". $lang['tech'][$i] . $CurrentPlanet[$resource[$i]] ."\" onChange=\"shortInfo()\" onKeyUp=\"shortInfo()\" />";
+					$ships['max_ships'] 	   	= "<a href=\"javascript:maxShip('ship".$i."'); shortInfo();\">".$lang['fl_max']."</a>";
+					$ships['set_ships'] 		= "<input name=\"ship".$i."\" size=\"10\" value=\"0\" onfocus=\"javascript:if (this.value == '0') this.value='';\" onblur=\"javascript:if (this.value == '') this.value='0';\" alt=\"".$lang['tech'][$i].$CurrentPlanet[$resource[$i]]."\" onChange=\"shortInfo()\" onKeyUp=\"shortInfo()\" />";
 				}
 
-				$ship_inputs	.=	parsetemplate ($inputs_template, $inputs);
-				$ships_row		.= 	parsetemplate ($ships_row_template, $ships);
+				$ship_inputs	.=	parsetemplate($inputs_template, $inputs);
+				$ships_row		.= 	parsetemplate($ships_row_template, $ships);
 			}
 			$have_ships = TRUE;
 		}
 
 		if ( ! $have_ships)
 		{
-			$parse['noships_row']	=	parsetemplate ( gettemplate ( 'fleet/fleet_noships_row' ), $lang);
+			$parse['noships_row']	=	parsetemplate(gettemplate('fleet/fleet_noships_row'), $lang);
 		}
 		else
 		{
 			if ($MaxFlottes > $MaxFlyingFleets)
 			{
-				$parse['none_max_selector']	=	parsetemplate ( gettemplate ( 'fleet/fleet_selectors' ), $lang);
-				$parse['continue_button']	=	parsetemplate ( gettemplate ( 'fleet/fleet_button' ), $lang);
+				$parse['none_max_selector']	=	parsetemplate(gettemplate('fleet/fleet_selectors'), $lang);
+				$parse['continue_button']	=	parsetemplate(gettemplate('fleet/fleet_button'), $lang);
 			}
 		}
 

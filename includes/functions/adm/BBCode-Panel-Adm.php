@@ -15,7 +15,7 @@ if ($user['authlevel'] < 1)
 
 class bbcode
 {
-	function reemplazo ($string)
+	function reemplazo($string)
 	{
 		$pattern = array(
 			'/\\n/',
@@ -59,93 +59,91 @@ class bbcode
 			'$this->sizefix(\'\\1\',\'\\2\')'
 		);
 
-		return preg_replace ($pattern, $replace, nl2br ( htmlspecialchars ( stripslashes ($string))));
+		return preg_replace($pattern, $replace, nl2br(htmlspecialchars(stripslashes($string))));
 	}
 
-	function sCode ($string)
+	function sCode($string)
 	{
 		$pattern 	=  '/\<img src=\\\"(.*?)img\/smilies\/(.*?).png\\\" alt=\\\"(.*?)\\\" \/>/s';
-		$string 	= preg_replace ($pattern, '\3', $string);
+		$string 	= preg_replace($pattern, '\3', $string);
 
-		return '<pre style="color: #DDDD00; background-color:gray ">' . trim ($string ) . '</pre>';
+		return '<pre style="color: #DDDD00; background-color:gray ">'. trim ($string).'</pre>';
 	}
 
-	function sQuote ($string)
+	function sQuote($string)
 	{
 		$pattern 	=  '/\<img src=\\\"(.*?)img\/smilies\/(.*?).png\\\" alt=\\\"(.*?)\\\" \/>/s';
-		$string 	= preg_replace ($pattern, '\3', $string);
+		$string 	= preg_replace($pattern, '\3', $string);
 
-		return '<blockquote><p style="color: #000000; font-size: 10pt; background-color:55AACC; font-family: Arial">' . trim($string) . '</p></blockquote>';
+		return '<blockquote><p style="color: #000000; font-size: 10pt; background-color:55AACC; font-family: Arial">'. trim($string).'</p></blockquote>';
 	}
 
-	function sList ($string)
+	function sList($string)
 	{
-		$tmp 	= explode('[*]', stripslashes ($string));
+		$tmp 	= explode('[*]', stripslashes($string));
 		$out 	= NULL;
 
 		foreach ($tmp as $list)
 		{
-			if ( strlen ( str_replace ( '', '', $list)) > 0)
+			if (strlen (str_replace ('', '', $list)) > 0)
 			{
-				$out .= '<li>' . trim ($list ) . '</li>';
+				$out .= '<li>'. trim ($list).'</li>';
 			}
 		}
 
-		return '<ul>' . $out . '</ul>';
+		return '<ul>'.$out.'</ul>';
 	}
 
 	function imagefix($img)
 	{
 		if (substr($img, 0, 7) != 'http://')
 		{
-			$img = 'images/' . $img;
+			$img = 'images/'.$img;
 		}
 		return '<img src="'.GAMEURL.$img.'" alt="'.$img.'" title="'.$img.'">';
 	}
 
 	function urlfix ($url, $title)
 	{
-		$title = stripslashes ($title);
-
-		return '<a href="' . $url . '" title="' . $title . '">' . $title . '</a>';
+		$title = stripslashes($title);
+		return '<a href="'.$url.'" title="'.$title.'">'.$title.'</a>';
 	}
 
 	function fontfix ($font, $title)
 	{
-		$title = stripslashes ($title);
-
-		return '<span style="font-family:' . $font . '">' . $title . '</span>';
+		$title = stripslashes($title);
+		return '<span style="font-family:'.$font.'">'.$title.'</span>';
 	}
 
-	function bgfix ($bg, $title)
+	function bgfix($bg, $title)
 	{
-		$title = stripslashes ($title);
-		return '<span style="background-color:' . $bg . '">' . $title . '</span>';
+		$title = stripslashes($title);
+		return '<span style="background-color:'.$bg.'">'.$title.'</span>';
 	}
 
-	function sizefix ($size, $text)
+	function sizefix($size, $text)
 	{
-		$title = stripslashes ($text);
-		return '<span style="font-size:' . $size . 'px">' . $title . '</span>';
+		$title = stripslashes($text);
+		return '<span style="font-size:'.$size.'px">'.$title.'</span>';
 	}
 
 	function MessageForm ($Title, $Message, $Goto = '', $Button = ' ok ', $TwoLines = FALSE)
 	{
-		$Form .= "<div id=\"content\"><form action=\"" . $Goto . "\" method=\"post\">";
+		$Form .= "<div id=\"content\"><form action=\"".$Goto."\" method=\"post\">";
 		$Form .= "<table width=\"519\">";
 		$Form .= "<tr>";
-		$Form .= "<td class=\"c\" colspan=\"2\">" . $Title . "</td>";
+		$Form .= "<td class=\"c\" colspan=\"2\">".$Title."</td>";
 		$Form .= "</tr><tr>";
 
 		if ($TwoLines)
 		{
-			$Form .= "<th colspan=\"2\">" . $Message . "</th>";
+			$Form .= "<th colspan=\"2\">".$Message."</th>";
 			$Form .= "</tr><tr>";
-			$Form .= "<th colspan=\"2\" align=\"center\"><input type=\"submit\" value=\"" . $Button . "\"></th>";
+			$Form .= "<th colspan=\"2\" align=\"center\"><input type=\"submit\" value=\"".$Button."\"></th>";
 		}
 		else
 		{
-			$Form .= "<th colspan=\"2\">" . $Message . "<input type=\"submit\" value=\"" . $Button . "\"></th>";
+			$Form .= "<th colspan=\"2\">".$Message."<input type=\"submit\" value=\"".$Button."\"></th>";
 		}
 
 		$Form .= "</tr>";

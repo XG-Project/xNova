@@ -255,7 +255,7 @@ $lang['ad_ally_not_exist3']	= '¡El usuario no existe o no es miembro de esa ali
 $lang['ad_ally_not_exist']	= '¡La alianza no existe!';
 $lang['ad_ally_not_exist2']	= '¡El usuario no existe!';
 
-//	PLANETAS Y LUNAS - PLANETS AND MOONS
+//	PLANETAS Y LUNAS - PLANETS && MOONS
 $lang['ad_pla_title']			= 'Editar planetas y/o lunas';
 $lang['ad_pla_edit_name']		= 'Editar nombre';
 $lang['ad_pla_change_id']		= 'Cambiarle el dueño (Ingresar ID del usuario)';
@@ -298,12 +298,12 @@ $lang['bo_user_doesnt_exist']	= '¡El jugador no existe!';
 $lang['bo_user_select']			= 'Seleccionar...';
 $lang['bo_select_title']		= 'Mostrar nombres que empiezen con';
 $lang['bo_suspended_panel']		= 'Panel de suspensión';
-$lang['bo_bbb_go_back']			= '[ Volver ]';
-$lang['bo_bbb_go_act']			= '[ Recargar ]';
+$lang['bo_bbb_go_back']			= '[ Volver]';
+$lang['bo_bbb_go_act']			= '[ Recargar]';
 $lang['bo_bbb_title_1']			= 'Sistema de suspensión';
 $lang['bo_bbb_title_2']			= 'Establecer fecha en la que perdera la suspensión';
 $lang['bo_bbb_title_3']			= 'Sistema de suspensión<br><font color=red>Atención, este usuario ya esta suspendido';
-$lang['bo_bbb_title_4']			= 'Para restar dias, horas, etc agrega un signo menos ( - ) delante del número, Ejemplo: -5';
+$lang['bo_bbb_title_4']			= 'Para restar dias, horas, etc agrega un signo menos (-) delante del número, Ejemplo: -5';
 $lang['bo_bbb_title_5']			= 'Suspendido hasta el';
 $lang['bo_bbb_title_6']			= 'Cambiar fecha';
 $lang['bo_characters_1']		= 'Caracteres disponibles: ';
@@ -688,7 +688,7 @@ $lang['ac_note_k']							.= '<tr><th width=10%><font color=lime>T</font></th><th
 $lang['ac_note_k']							.= '<tr><th width=10%><font color=lime>B</font></th><th>Supera o iguala el billon</th></tr>';
 $lang['ac_note_k']							.= '<tr><th width=10%><font color=lime>M</font></th><th>Supera o iguala el millon</th></tr>';
 $lang['ac_note_k']							.= '<tr><th width=10%><font color=lime>K</font></th><th>Supera o iguala los mil</th></tr></table>';
-$lang['ac_leyend']							= '[ Leyenda ]';
+$lang['ac_leyend']							= '[ Leyenda]';
 $lang['ac_no_rank_level']					= '¡No tenés permiso suficiente para ver información sobre ese usuario!';
 //###########################################################//
 
@@ -826,8 +826,8 @@ $lang['new_creator_title_u']	= 'Crear/Borrar de usuarios';
 $lang['new_creator_title_p']	= 'Crear/Borrar planetas';
 $lang['new_creator_title_l']	= 'Crear/Borrar lunas';
 $lang['new_creator_coor']		= 'Coordenadas';
-$lang['new_creator_go_back']	= '[ Volver al menú ]';
-$lang['new_creator_refresh']	= '[ Recargar ]';
+$lang['new_creator_go_back']	= '[ Volver al menú]';
+$lang['new_creator_refresh']	= '[ Recargar]';
 
 //	CREADOR DE USUARIOS - USERS MAKER
 $lang['new_title']				= 'Crear nuevo usuario';
@@ -962,8 +962,8 @@ $lang['log_bots']					= 'BOTS';
 $lang['log_all_uni']				= 'TODO EL UNIVERSO';
 $lang['log_change_auth_1']			= 'cambio el rango al usuario con la ID ';
 $lang['log_change_auth_2']			= 'el rango actual ahora es: ';
-$lang['log_can_view_mod']			= 'Los moderadores podran ver... ';
-$lang['log_can_view_ope']			= 'Los operadores podran ver... ';
+$lang['log_can_view_mod']			= 'Los moderadores podran ver...';
+$lang['log_can_view_ope']			= 'Los operadores podran ver...';
 $lang['log_tools']					= '¿Herramientas?';
 $lang['log_edit']					= '¿Editar?';
 $lang['log_view']					= '¿Ver menu de Observación?';

@@ -8,15 +8,15 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 function HandleElementBuildingQueue ($CurrentUser, &$CurrentPlanet, $ProductionTime)
 {
 	global $resource;
 
-	if ($CurrentPlanet['b_hangar_id'] != 0)
+	if ($CurrentPlanet['b_hangar_id'])
 	{
-		$Builded                    = array ();
+		$Builded                    = array();
 		$CurrentPlanet['b_hangar'] += $ProductionTime;
 		$BuildQueue                 = explode(';', $CurrentPlanet['b_hangar_id']);
 		$BuildArray					= array();
@@ -26,7 +26,7 @@ function HandleElementBuildingQueue ($CurrentUser, &$CurrentPlanet, $ProductionT
 			if ($Array != '')
 			{
 				$Item              = explode(',', $Array);
-				$AcumTime		   = GetBuildingTime ($CurrentUser, $CurrentPlanet, $Item[0]);
+				$AcumTime		   = GetBuildingtime($CurrentUser, $CurrentPlanet, $Item[0]);
 				$BuildArray[$Node] = array($Item[0], $Item[1], $AcumTime);
 			}
 		}
@@ -76,7 +76,8 @@ function HandleElementBuildingQueue ($CurrentUser, &$CurrentPlanet, $ProductionT
 				$CurrentPlanet[$resource[$Element]] += $Count;
 				$Count = 0;
 			}
-			if ($Count != 0)
+
+			if ($Count)
 			{
 				$CurrentPlanet['b_hangar_id'] .= $Element.",".$Count.";";
 			}

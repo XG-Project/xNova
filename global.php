@@ -51,7 +51,7 @@ include_once(XN_ROOT.'includes/classes/class.Fleets.php');
 
 $debug			= new debug();
 
-if (filesize(XN_ROOT.'config.php') === 0 && (( ! defined('INSTALL')) OR ( ! INSTALL)))
+if (filesize(XN_ROOT.'config.php') === 0 && (( !  defined('INSTALL')) OR ( ! INSTALL)))
 {
 	exit(header('location: '.GAMEURL.'install.php'));
 }
@@ -59,8 +59,7 @@ if (filesize(XN_ROOT.'config.php') === 0 && (( ! defined('INSTALL')) OR ( ! INST
 if (filesize(XN_ROOT.'config.php') !== 0)
 {
 	$game_version	=	read_config('version');
-
-	define('VERSION', empty($game_version) ? "" : "v" . $game_version);
+	define('VERSION', empty($game_version) ? '' : 'v'.$game_version);
 }
 
 if ( ! defined('INSTALL') OR ( ! INSTALL))
@@ -81,8 +80,11 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 
 	includeLang('INGAME');
 
-	include_once(XN_ROOT.'includes/classes/class.Bot.php');
-	UpdateBots();
+	if (read_config('bots') > 0 && read_config('bots_last_update') < time()-60)
+	{
+		include_once(XN_ROOT.'includes/classes/class.Bot.php');
+		UpdateBots();
+	}
 
 	include_once(XN_ROOT.'includes/classes/class.CheckSession.php');
 
@@ -94,7 +96,7 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 	{
 		header('Location: '.GAMEURL.'game.php?page=overview');
 	}
-	elseif (( ! isset($InLogin) OR ( ! $InLogin)) && ( ! $IsUserChecked))
+	elseif (( !  isset($InLogin) OR ( ! $InLogin)) && ( ! $IsUserChecked))
 	{
 		header('Location: '.GAMEURL);
 	}
@@ -103,14 +105,14 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 	if (defined('IN_ADMIN'))
 		define('DPATH', GAMEURL.DEFAULT_SKINPATH);
 	else
-		define('DPATH', (( ! isset($user["dpath"]) OR (empty($user["dpath"]))) ? GAMEURL.DEFAULT_SKINPATH : GAMEURL.SKIN_PATH . $user["dpath"] . '/'));
+		define('DPATH', (( !  isset($user["dpath"]) OR (empty($user["dpath"]))) ? GAMEURL.DEFAULT_SKINPATH : GAMEURL.SKIN_PATH.$user["dpath"].'/'));
 
 	if (read_config('game_disable') == 0 && $user['authlevel'] == 0)
 	{
 		message(stripslashes(read_config('close_reason')), '', '', FALSE, FALSE);
 	}
 
-	if ((time() >= (read_config('stat_last_update') + (60 * read_config ( 'stat_update_time')))))
+	if ((time() >= (read_config('stat_last_update') + (60 * read_config('stat_update_time')))))
 	{
 		require_once(XN_ROOT.'includes/functions/adm/statfunctions.php');
 		$result	= MakeStats();
@@ -136,7 +138,7 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 
 		$_fleets->free_result();
 
-		$_fleets = doquery("SELECT fleet_end_galaxy,fleet_end_system,fleet_end_planet ,fleet_end_type FROM {{table}} WHERE `fleet_end_time` <= '" . time() . " order by fleet_id asc';", 'fleets'); // OR fleet_end_time <= ".time()
+		$_fleets = doquery("SELECT fleet_end_galaxy,fleet_end_system,fleet_end_planet ,fleet_end_type FROM {{table}} WHERE `fleet_end_time` <= '". time()." order by fleet_id asc';", 'fleets'); // OR fleet_end_time <= ".time()
 
 		while ($row = $_fleets->fetch_array())
 		{

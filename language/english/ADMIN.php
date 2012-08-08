@@ -255,7 +255,7 @@ $lang['ad_ally_not_exist3']	= 'The user does not exist or is not a member of tha
 $lang['ad_ally_not_exist']	= 'The alliance does not exist!';
 $lang['ad_ally_not_exist2']	= 'The user does not exist!';
 
-//	PLANETAS Y LUNAS - PLANETS AND MOONS
+//	PLANETAS Y LUNAS - PLANETS && MOONS
 $lang['ad_pla_title']			= 'Edit planets and/or moons';
 $lang['ad_pla_edit_name']		= 'Edit name';
 $lang['ad_pla_change_id']		= 'Change the owner (Enter User ID)';
@@ -299,12 +299,12 @@ $lang['bo_user_doesnt_exist']	= 'The player does not exist!';
 $lang['bo_user_select']			= 'Select...';
 $lang['bo_select_title']		= 'Show the names beginnin with';
 $lang['bo_suspended_panel']		= 'Suspension Panel';
-$lang['bo_bbb_go_back']			= '[ Back ]';
-$lang['bo_bbb_go_act']			= '[ Refresh ]';
+$lang['bo_bbb_go_back']			= '[ Back]';
+$lang['bo_bbb_go_act']			= '[ Refresh]';
 $lang['bo_bbb_title_1']			= 'Suspension system';
 $lang['bo_bbb_title_2']			= 'Set date on which the suspension will lose';
 $lang['bo_bbb_title_3']			= 'Suspension System<br><font color=red>Note: this user is already suspended';
-$lang['bo_bbb_title_4']			= 'To subtract days, hours, etc. adds a minus ( - )before the number, Example: -5 ';
+$lang['bo_bbb_title_4']			= 'To subtract days, hours, etc. adds a minus (-)before the number, Example: -5 ';
 $lang['bo_bbb_title_5']			= 'Suspended until';
 $lang['bo_bbb_title_6']			= 'Change date';
 $lang['bo_characters_1']		= 'Avaible characters: ';
@@ -689,7 +689,7 @@ $lang['ac_note_k']							.= '<tr><th width=10%><font color=lime>T</font></th><th
 $lang['ac_note_k']							.= '<tr><th width=10%><font color=lime>B</font></th><th>Overcome or the same as the billion</th></tr>';
 $lang['ac_note_k']							.= '<tr><th width=10%><font color=lime>M</font></th><th>Overcome or the same as the million</th></tr>';
 $lang['ac_note_k']							.= '<tr><th width=10%><font color=lime>K</font></th><th>Overcome or the same as the thousand</th></tr></table>';
-$lang['ac_leyend']							= '[ Leyend ]';
+$lang['ac_leyend']							= '[ Leyend]';
 $lang['ac_no_rank_level']					= 'You do not have sufficient permissions to view information about this user!';
 //###########################################################//
 
@@ -827,8 +827,8 @@ $lang['new_creator_title_u']	= 'Create/delete users';
 $lang['new_creator_title_p']	= 'Create/Delete planets';
 $lang['new_creator_title_l']	= 'Create/delete moons';
 $lang['new_creator_coor']		= 'Coordinates';
-$lang['new_creator_go_back']	= '[ Return to menu ]';
-$lang['new_creator_refresh']	= '[ Refresh ]';
+$lang['new_creator_go_back']	= '[ Return to menu]';
+$lang['new_creator_refresh']	= '[ Refresh]';
 
 //	CREADOR DE USUARIOS - USERS MAKER
 $lang['new_title']				= 'Add new user';
@@ -963,8 +963,8 @@ $lang['log_bots']					= 'BOTS';
 $lang['log_all_uni']				= 'ALL THE UNIVERSE';
 $lang['log_change_auth_1']			= 'Change the range of the user with the ID ';
 $lang['log_change_auth_2']			= 'The correct range now is: ';
-$lang['log_can_view_mod']			= 'The moderators may see... ';
-$lang['log_can_view_ope']			= 'The operators may see... ';
+$lang['log_can_view_mod']			= 'The moderators may see...';
+$lang['log_can_view_ope']			= 'The operators may see...';
 $lang['log_tools']					= 'Tools?';
 $lang['log_edit']					= 'Edit?';
 $lang['log_view']					= 'View observation menu?';
@@ -1007,7 +1007,7 @@ $lang['log_data_repair']			= 'REPAIR';
 $lang['log_data_check']				= 'CHECK';
 $lang['log_change_stats']			= ' has changed the parameters of statistics';
 $lang['log_stats_value']			= 'Value of statistical 1 point';
-$lang['log_stats_value_2']			= 'Time of statistics update (minutes)';
+$lang['log_stats_value_2']			= 'Time of statistics update(minutes)';
 $lang['log_stats_value_3']			= 'Block User';
 $lang['log_stats_value_4']			= 'Fleet update block?';
 $lang['log_stats_value_5']			= 'The administration may be in the ranking?';

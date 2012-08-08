@@ -25,20 +25,20 @@ if ($Observation != 1) die();
 	while ($u = $query->fetch_array())
 	{
 		$parse['moon'] .= "<tr>"
-		. "<th>" . $u[0] . "</th>"
-		. "<th>" . $u[1] . "</th>"
-		. "<th>" . $u[2] . "</th>"
-		. "<th>" . $u[4] . "</th>"
-		. "<th>" . $u[5] . "</th>"
-		. "<th>" . $u[6] . "</th>"
-		. "</tr>";
+		."<th>".$u[0]."</th>"
+		."<th>".$u[1]."</th>"
+		."<th>".$u[2]."</th>"
+		."<th>".$u[4]."</th>"
+		."<th>".$u[5]."</th>"
+		."<th>".$u[6]."</th>"
+		."</tr>";
 		$i++;
 	}
 
 	if ($i == "1")
 		$parse['moon'] .= "<tr><th class=b colspan=6>".$lang['mt_only_one_moon']."</th></tr>";
 	else
-		$parse['moon'] .= "<tr><th class=b colspan=6>". $lang['mt_there_are'] . $i . $lang['mt_moons'] ."</th></tr>";
+		$parse['moon'] .= "<tr><th class=b colspan=6>".$lang['mt_there_are'].$i.$lang['mt_moons']."</th></tr>";
 
 	display(parsetemplate(gettemplate('adm/MoonListBody'), $parse), FALSE, '', TRUE, FALSE);
 ?>

@@ -31,11 +31,11 @@ if ($mode == 'agregar')
 	$planet        = $_POST['planet'];
 
 	$i	=	0;
-	$QueryS	=	doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' AND `system` = '".$system."' AND `planet` = '".$planet."'", "galaxy", TRUE);
+	$QueryS	=	doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' && `system` = '".$system."' && `planet` = '".$planet."'", "galaxy", TRUE);
 	$QueryS2	=	doquery("SELECT * FROM {{table}} WHERE `id` = '".$id."'", "users", TRUE);
 	if (is_numeric($_POST['id']) && isset($_POST['id']) && !$QueryS && $QueryS2)
 	{
-		if ($galaxy < 1 or $system < 1 or $planet < 1 or !is_numeric($galaxy) or !is_numeric($system) or !is_numeric($planet)){
+		if ($galaxy < 1 or $system < 1 or $planet < 1 or ! is_numeric($galaxy) or ! is_numeric($system) or ! is_numeric($planet)){
 			$Error	.=	'<tr><th colspan="2"><font color=red>'.$lang['po_complete_all'].'</font></th></tr>';
 			$i++;}
 
@@ -49,7 +49,7 @@ if ($mode == 'agregar')
 			CreateOnePlanetRecord ($galaxy, $system, $planet, $id, '', '', FALSE) ;
 			$QueryS3	=	doquery("SELECT * FROM {{table}} WHERE `id_owner` = '".$id."'", "planets", TRUE);
 			doquery("UPDATE {{table}} SET `id_level` = '".$QueryS3['id_level']."' WHERE
-			`galaxy` = '".$galaxy."' AND `system` = '".$system."' AND `planet` = '".$planet."' AND `planet_type` = '1'", "planets");
+			`galaxy` = '".$galaxy."' && `system` = '".$system."' && `planet` = '".$planet."' && `planet_type` = '1'", "planets");
 			$parse['display']	=	'<tr><th colspan="2"><font color=lime>'.$lang['po_complete_succes'].'</font></th></tr>';
 		}
 		else
@@ -76,8 +76,8 @@ elseif ($mode == 'borrar')
 				$QueryS2	=	doquery("SELECT * FROM {{table}} WHERE `id_planet` = '".$id."'", "galaxy", TRUE);
 				if ($QueryS2['id_luna'] > 0)
 				{
-					doquery("DELETE FROM {{table}} WHERE `galaxy` = '".$QueryS['galaxy']."' AND `system` = '".$QueryS['system']."' AND
-						`planet` = '".$QueryS['planet']."' AND `planet_type` = '3'", "planets");
+					doquery("DELETE FROM {{table}} WHERE `galaxy` = '".$QueryS['galaxy']."' && `system` = '".$QueryS['system']."' &&
+						`planet` = '".$QueryS['planet']."' && `planet_type` = '3'", "planets");
 				}
 				doquery("DELETE FROM {{table}} WHERE `id` = '".$id."'", 'planets');
 				doquery("DELETE FROM {{table}} WHERE `id_planet` ='".$id."'", 'galaxy');
@@ -102,5 +102,5 @@ elseif ($mode == 'borrar')
 }
 
 
-display (parsetemplate(gettemplate('adm/PlanetOptionsBody'),  $parse), FALSE, '', TRUE, FALSE);
+display(parsetemplate(gettemplate('adm/PlanetOptionsBody'),  $parse), FALSE, '', TRUE, FALSE);
 ?>

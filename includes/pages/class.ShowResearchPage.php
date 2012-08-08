@@ -8,23 +8,23 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 class ShowResearchPage
 {
-	private function CheckLabSettingsInQueue ($CurrentPlanet)
+	private function CheckLabSettingsInQueue($CurrentPlanet)
 	{
-		if ($CurrentPlanet['b_building_id'] != 0)
+		if ($CurrentPlanet['b_building_id'])
 		{
 			$CurrentQueue = $CurrentPlanet['b_building_id'];
 			if (strpos ($CurrentQueue, ";"))
 			{
 				// FIX BY LUCKY - IF THE LAB IS IN QUEUE THE USER CANT RESEARCH ANYTHING...
-				$QueueArray		= explode (";", $CurrentQueue);
+				$QueueArray		= explode(";", $CurrentQueue);
 
 				for ($i = 0; $i < MAX_BUILDING_QUEUE_SIZE; $i++)
 				{
-					$ListIDArray	= explode (",", $QueueArray[$i]);
+					$ListIDArray	= explode(",", $QueueArray[$i]);
 					$Element		= $ListIDArray[0];
 
 					if ($Element == 31)
@@ -54,7 +54,7 @@ class ShowResearchPage
 		return $return;
 	}
 
-	public function __construct (&$CurrentPlanet, $CurrentUser, $InResearch, $ThePlanet)
+	public function __construct(&$CurrentPlanet, $CurrentUser, $InResearch, $ThePlanet)
 	{
 		global $lang, $resource, $reslist, $_GET;
 
@@ -88,20 +88,20 @@ class ShowResearchPage
 			$TheCommand 	= $_GET['cmd'];
 			$Techno     	= intval($_GET['tech']);
 
-			if ( isset ($Techno))
+			if (isset($Techno))
 			{
-				if (!strstr ($Techno, ",") && !strchr ($Techno, " ") &&
-					!strchr ($Techno, "+") && !strchr ($Techno, "*") &&
-					!strchr ($Techno, "~") && !strchr ($Techno, "=") &&
-					!strchr ($Techno, ";") && !strchr ($Techno, "'") &&
-					!strchr ($Techno, "#") && !strchr ($Techno, "-") &&
-					!strchr ($Techno, "_") && !strchr ($Techno, "[") &&
-					!strchr ($Techno, "]") && !strchr ($Techno, ".") &&
-					!strchr ($Techno, ":"))
+				if ( ! strstr ($Techno, ",") && ! strchr($Techno, " ") &&
+					!strchr($Techno, "+") && ! strchr($Techno, "*") &&
+					!strchr($Techno, "~") && ! strchr($Techno, "=") &&
+					!strchr($Techno, ";") && ! strchr($Techno, "'") &&
+					!strchr($Techno, "#") && ! strchr($Techno, "-") &&
+					!strchr($Techno, "_") && ! strchr($Techno, "[") &&
+					!strchr($Techno, "]") && ! strchr($Techno, ".") &&
+					!strchr($Techno, ":"))
 				{
-					if ( in_array($Techno, $reslist['tech']))
+					if (in_array($Techno, $reslist['tech']))
 					{
-						if ( is_array ($ThePlanet))
+						if (is_array($ThePlanet))
 						{
 							$WorkingPlanet = $ThePlanet;
 						}
@@ -144,24 +144,24 @@ class ShowResearchPage
 						if ($UpdateData)
 						{
 							$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-							$QryUpdatePlanet .= "`b_tech_id` = '".   $WorkingPlanet['b_tech_id']   ."', ";
-							$QryUpdatePlanet .= "`b_tech` = '".      $WorkingPlanet['b_tech']      ."', ";
-							$QryUpdatePlanet .= "`metal` = '".       $WorkingPlanet['metal']       ."', ";
-							$QryUpdatePlanet .= "`crystal` = '".     $WorkingPlanet['crystal']     ."', ";
-							$QryUpdatePlanet .= "`deuterium` = '".   $WorkingPlanet['deuterium']   ."' ";
+							$QryUpdatePlanet .= "`b_tech_id` = '".  $WorkingPlanet['b_tech_id']  ."', ";
+							$QryUpdatePlanet .= "`b_tech` = '".     $WorkingPlanet['b_tech']     ."', ";
+							$QryUpdatePlanet .= "`metal` = '".      $WorkingPlanet['metal']      ."', ";
+							$QryUpdatePlanet .= "`crystal` = '".    $WorkingPlanet['crystal']    ."', ";
+							$QryUpdatePlanet .= "`deuterium` = '".  $WorkingPlanet['deuterium']  ."' ";
 							$QryUpdatePlanet .= "WHERE ";
-							$QryUpdatePlanet .= "`id` = '".          $WorkingPlanet['id']          ."';";
+							$QryUpdatePlanet .= "`id` = '".         $WorkingPlanet['id']         ."';";
 							doquery($QryUpdatePlanet, 'planets');
 
 							$QryUpdateUser  = "UPDATE {{table}} SET ";
-							$QryUpdateUser .= "`b_tech_planet` = '". $CurrentUser['b_tech_planet'] ."' ";
+							$QryUpdateUser .= "`b_tech_planet` = '".$CurrentUser['b_tech_planet']."' ";
 							$QryUpdateUser .= "WHERE ";
-							$QryUpdateUser .= "`id` = '".            $CurrentUser['id']            ."';";
+							$QryUpdateUser .= "`id` = '".           $CurrentUser['id']           ."';";
 							doquery($QryUpdateUser, 'users');
 						}
 
 						$CurrentPlanet = $WorkingPlanet;
-						if (is_array ($ThePlanet))
+						if (is_array($ThePlanet))
 						{
 							$ThePlanet     = $WorkingPlanet;
 						}
@@ -177,14 +177,14 @@ class ShowResearchPage
 					}
 				}
 				else
-					die(header("location: ".GAMEURL."game.php?page=buildings&mode=research"));
+					die(header("Location: ".GAMEURL."game.php?page=buildings&mode=research"));
 			}
 			else
 			{
 				$bContinue = FALSE;
 			}
 
-			header ("Location: ".GAMEURL."game.php?page=buildings&mode=research");
+			header("Location: ".GAMEURL."game.php?page=buildings&mode=research");
 
 		}
 
@@ -195,7 +195,7 @@ class ShowResearchPage
 		{
 			if ($Tech > 105 && $Tech <= 199)
 			{
-				if ( IsTechnologieAccessible($CurrentUser, $CurrentPlanet, $Tech))
+				if (IsTechnologieAccessible($CurrentUser, $CurrentPlanet, $Tech))
 				{
 					$RowParse['dpath']       = DPATH;
 					$RowParse['tech_id']     = $Tech;
@@ -203,16 +203,16 @@ class ShowResearchPage
 
 					if ($Tech == 106)
 					{
-						$RowParse['tech_level']  = ($building_level == 0 ) ? "" : "(". $lang['bd_lvl'] . " ".$building_level .")" ;
-						$RowParse['tech_level']  .= ($CurrentUser['rpg_technocrate'] == 0) ? "" : "<strong><font color=\"lime\"> +" . ($CurrentUser['rpg_technocrate'] * TECHNOCRATE_SPY) . $lang['bd_spy']	. "</font></strong>";
+						$RowParse['tech_level']  = ($building_level == 0) ? "" : "(".$lang['bd_lvl']." ".$building_level.")" ;
+						$RowParse['tech_level']  .= ($CurrentUser['rpg_technocrate'] == 0) ? "" : "<strong><font color=\"lime\"> +". ($CurrentUser['rpg_technocrate'] * TECHNOCRATE_SPY).$lang['bd_spy']	."</font></strong>";
 					}
 					elseif ($Tech == 108)
 					{
-						$RowParse['tech_level']  = ($building_level == 0) ? "" : "(". $lang['bd_lvl'] . " ".$building_level .")";
-						$RowParse['tech_level']  .= ($CurrentUser['rpg_amiral'] == 0) ? "" : "<strong><font color=\"lime\"> +" . ($CurrentUser['rpg_amiral'] * AMIRAL) . $lang['bd_commander'] . "</font></strong>";
+						$RowParse['tech_level']  = ($building_level == 0) ? "" : "(".$lang['bd_lvl']." ".$building_level.")";
+						$RowParse['tech_level']  .= ($CurrentUser['rpg_amiral'] == 0) ? "" : "<strong><font color=\"lime\"> +". ($CurrentUser['rpg_amiral'] * AMIRAL).$lang['bd_commander']."</font></strong>";
 					}
 					else
-						$RowParse['tech_level']  = ($building_level == 0) ? "" : "(". $lang['bd_lvl'] . " ".$building_level.")";
+						$RowParse['tech_level']  = ($building_level == 0) ? "" : "(".$lang['bd_lvl']." ".$building_level.")";
 
 					$RowParse['tech_name']   = $TechName;
 					$RowParse['tech_descr']  = $lang['res']['descriptions'][$Tech];
@@ -261,7 +261,7 @@ class ShowResearchPage
 							if ($ThePlanet['id'] != $CurrentPlanet['id'])
 							{
 								$bloc['tech_time']  = $ThePlanet["b_tech"] - time();
-								$bloc['tech_name']  = "de<br>". $ThePlanet["name"];
+								$bloc['tech_name']  = "de<br>".$ThePlanet["name"];
 								$bloc['tech_home']  = $ThePlanet["id"];
 								$bloc['tech_id']    = $ThePlanet["b_tech_id"];
 							}

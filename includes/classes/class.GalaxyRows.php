@@ -8,7 +8,7 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 class GalaxyRows
 {
@@ -47,7 +47,7 @@ class GalaxyRows
 	{
 		if (($lunarow['destruyed_moon'] + 172800) <= time() && $lunarow['destruyed_moon'] != 0)
 		{
-			$QryUpdateGalaxy  = "UPDATE {{table}} SET `id_luna` = '0' WHERE `galaxy` = '". intval($lunarow['galaxy']) ."' AND `system` = '". intval($lunarow['system']) ."' AND `planet` = '". intval($lunarow['planet']) ."' LIMIT 1;";
+			$QryUpdateGalaxy  = "UPDATE {{table}} SET `id_luna` = '0' WHERE `galaxy` = '".intval($lunarow['galaxy'])."' && `system` = '".intval($lunarow['system'])."' && `planet` = '".intval($lunarow['planet'])."' LIMIT 1;";
 		}
 
 		doquery($QryUpdateGalaxy, 'galaxy');
@@ -119,25 +119,25 @@ class GalaxyRows
 				if ($user["settings_esp"] == "1" && $GalaxyInfo['id'])
 				{
 					$links .= "<a href=# onclick=\"javascript:doit(6, ".$Galaxy.", ".$System.", ".$Planet.", 1, ".$user["spio_anz"].");\" >";
-					$links .= "<img height=\"16\" width=\"13\" src=\"". DPATH ."img/e.png\" title=\"".$lang['gl_spy']."\" border=0></a>";
+					$links .= "<img height=\"16\" width=\"13\" src=\"".DPATH."img/e.png\" title=\"".$lang['gl_spy']."\" border=0></a>";
 					$links .= "&nbsp;";
 				}
 				if ($user["settings_wri"] == "1" && $GalaxyInfo['id'])
 				{
 					$links .= "<a href=game.php?page=messages&mode=write&id=".$GalaxyInfo["id"].">";
-					$links .= "<img height=\"14\" width=\"12\" src=\"". DPATH ."img/m.png\" title=\"".$lang['write_message']."\" border=0></a>";
+					$links .= "<img height=\"14\" width=\"12\" src=\"".DPATH."img/m.png\" title=\"".$lang['write_message']."\" border=0></a>";
 					$links .= "&nbsp;";
 				}
 				if ($user["settings_bud"] == "1" && $GalaxyInfo['id'])
 				{
 					$links .= "<a href=game.php?page=buddy&mode=2&u=".$GalaxyInfo['id']." >";
-					$links .= "<img height=\"14\" width=\"14\" src=\"". DPATH ."img/b.png\" title=\"".$lang['gl_buddy_request']."\" border=0></a>";
+					$links .= "<img height=\"14\" width=\"14\" src=\"".DPATH."img/b.png\" title=\"".$lang['gl_buddy_request']."\" border=0></a>";
 					$links .= "&nbsp;";
 				}
 				if ($user["settings_mis"] == "1" && $MissileBtn && $GalaxyInfo['id'])
 				{
 					$links .= "<a href=game.php?page=galaxy&mode=2&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&current=".$user['current_planet']." >";
-					$links .= "<img height=\"16\" width=\"13\" src=\"". DPATH ."img/r.png\" title=\"".$lang['gl_missile_attack']."\" border=0></a>";
+					$links .= "<img height=\"16\" width=\"13\" src=\"".DPATH."img/r.png\" title=\"".$lang['gl_missile_attack']."\" border=0></a>";
 				}
 			}
 		}
@@ -168,16 +168,16 @@ class GalaxyRows
 			if ($GalaxyInfo["ally_web"] != "")
 			{
 				$parse['web'] 	   = "</tr><tr>";
-				$parse['web']     .= "<td><a href=". $GalaxyInfo["ally_web"] ." target=_new>".$lang['gl_alliance_web_page']."</td>";
+				$parse['web']     .= "<td><a href=".$GalaxyInfo["ally_web"]." target=_new>".$lang['gl_alliance_web_page']."</td>";
 			}
 
 			if ($user['ally_id'] == $GalaxyInfo['ally_id'])
 			{
-				$parse['tag']		= "<span class=\"allymember\">". $GalaxyInfo['ally_tag'] ."</span>";
+				$parse['tag']		= "<span class=\"allymember\">".$GalaxyInfo['ally_tag']."</span>";
 			}
 			elseif ($GalaxyInfo['ally_id'] == $user['ally_id'])
 			{
-				$parse['tag']  		= "<font color=lime>".$GalaxyInfo['ally_tag'] ."</font>";
+				$parse['tag']  		= "<font color=lime>".$GalaxyInfo['ally_tag']."</font>";
 			}
 			else
 			{
@@ -295,7 +295,7 @@ class GalaxyRows
 				{
 					if ($GalaxyInfo["galaxy"] == $CurrentGalaxy)
 					{
-						$PhRange = $this->GetPhalanxRange ($HavePhalanx);
+						$PhRange = $this->GetPhalanxRange($HavePhalanx);
 						$SystemLimitMin = $CurrentSystem - $PhRange;
 						if ($SystemLimitMin < 1)
 							$SystemLimitMin = 1;
@@ -388,7 +388,7 @@ class GalaxyRows
 			elseif ($GalaxyInfo['id'] != $user['id'])
 				$MissionType4Link = "";
 
-			if ($user["settings_mis"] == "1" AND $MissileBtn == TRUE && $GalaxyInfo['id'])
+			if ($user["settings_mis"] == "1" && $MissileBtn && $GalaxyInfo['id'])
 				$MissionType10Link = "<a href=game.php?page=galaxy&mode=2&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&current=".$user['current_planet']." >".$lang['gl_missile_attack']."</a><br>";
 
 			elseif ($GalaxyInfo['id'] != $user['id'])
@@ -430,7 +430,7 @@ class GalaxyRows
 			{
 				if ($GalaxyInfo["galaxy"] == $CurrentGalaxy)
 				{
-					$Range = $this->GetPhalanxRange ($HavePhalanx);
+					$Range = $this->GetPhalanxRange($HavePhalanx);
 					if ($CurrentGalaxy + $Range <= $CurrentSystem && $CurrentSystem >= $CurrentGalaxy - $Range)
 						$PhalanxTypeLink = "<a href=# onclick=fenster('game.php?page=phalanx&galaxy=".$Galaxy."&amp;system=".$System."&amp;planet=".$Planet."&amp;planettype=".$PlanetType."')  title=\"Phalanx\">".$GalaxyInfo['name']."</a><br>";
 					else
@@ -446,7 +446,7 @@ class GalaxyRows
 				$PhalanxTypeLink = stripslashes($GalaxyInfo['name']);
 			}
 
-			$planetname .= $TextColor . $PhalanxTypeLink . $EndColor;
+			$planetname .= $TextColor.$PhalanxTypeLink.$EndColor;
 
 			if ($GalaxyInfo['last_update']  > (time()-59 * 60) && $GalaxyInfo['id'] != $user['id'])
 			{
@@ -502,12 +502,12 @@ class GalaxyRows
 				$Systemtatus2 	= "<span class=\"inactive\">".$lang['gl_i']."</span><span class=\"longinactive\">".$lang['gl_I']."</span>";
 				$Systemtatus 	= "<span class=\"longinactive\">";
 			}
-			elseif ( is_weak ($MyGameLevel, $HeGameLevel))
+			elseif (is_weak ($MyGameLevel, $HeGameLevel))
 			{
 				$Systemtatus2 	= "<span class=\"noob\">".$lang['gl_w']."</span>";
 				$Systemtatus 	= "<span class=\"noob\">";
 			}
-			elseif ( is_strong ($MyGameLevel, $HeGameLevel))
+			elseif (is_strong ($MyGameLevel, $HeGameLevel))
 			{
 				$Systemtatus2 	= $lang['gl_s'];
 				$Systemtatus 	= "<span class=\"strong\">";
@@ -535,7 +535,7 @@ class GalaxyRows
 			if (strlen($Systemtart) < 3)
 				$Systemtart = 1;
 			else
-				$Systemtart = (floor($GalaxyInfo['total_rank'] / 100 ) * 100) + 1;
+				$Systemtart = (floor($GalaxyInfo['total_rank'] / 100) * 100) + 1;
 
 			$parse					=	$lang;
 			$parse['username']		=	$GalaxyInfo['username'];

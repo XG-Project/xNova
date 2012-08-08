@@ -8,11 +8,11 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 class ShowTraderPage
 {
-	function __construct ($CurrentUser, $CurrentPlanet)
+	function __construct($CurrentUser, $CurrentPlanet)
 	{
 		global $lang;
 
@@ -20,7 +20,7 @@ class ShowTraderPage
 
 		if ($CurrentUser['darkmatter'] < TR_DARK_MATTER)
 		{
-			message(str_replace('%s',TR_DARK_MATTER,$lang['tr_darkmatter_needed']), '', '', TRUE);
+			message(str_replace('%s',TR_DARK_MATTER, $lang['tr_darkmatter_needed']), '', '', TRUE);
 			die();
 		}
 
@@ -37,16 +37,16 @@ class ShowTraderPage
 					else
 					{
 						$necessaire	= (($_POST['cristal'] * 2) + ($_POST['deut'] * 4));
-						$amout 		= array ( 'metal' => 0,
+						$amout 		= array('metal' => 0,
 												'crystal' => $_POST['cristal'],
 												'deuterium' => $_POST['deut']
 											);
 
-						$storage	= $this->check_storage ($CurrentPlanet, $amout);
+						$storage	= $this->check_storage($CurrentPlanet, $amout);
 
-						if ( is_string ($storage))
+						if (is_string($storage))
 						{
-							die ( message ($storage, 'game.php?page=trader', '2'));
+							die(message($storage, 'game.php?page=trader', '2'));
 						}
 
 						if ($CurrentPlanet['metal'] > $necessaire)
@@ -81,16 +81,16 @@ class ShowTraderPage
 					else
 					{
 						$necessaire   = ((abs($_POST['metal']) * 0.5) + (abs($_POST['deut']) * 2));
-						$amout 		= array ( 'metal' => $_POST['metal'],
+						$amout 		= array('metal' => $_POST['metal'],
 												'crystal' => 0,
 												'deuterium' => $_POST['deut']
 											);
 
-						$storage	= $this->check_storage ($CurrentPlanet, $amout);
+						$storage	= $this->check_storage($CurrentPlanet, $amout);
 
-						if ( is_string ($storage))
+						if (is_string($storage))
 						{
-							die ( message ($storage, 'game.php?page=trader', '2'));
+							die(message($storage, 'game.php?page=trader', '2'));
 						}
 
 						if ($CurrentPlanet['crystal'] > $necessaire)
@@ -125,16 +125,16 @@ class ShowTraderPage
 					else
 					{
 						$necessaire   = ((abs($_POST['metal']) * 0.25) + (abs($_POST['cristal']) * 0.5));
-						$amout 		= array ( 'metal' => $_POST['metal'],
+						$amout 		= array('metal' => $_POST['metal'],
 												'crystal' => $_POST['cristal'],
 												'deuterium' => 0
 											);
 
-						$storage	= $this->check_storage ($CurrentPlanet, $amout);
+						$storage	= $this->check_storage($CurrentPlanet, $amout);
 
-						if ( is_string ($storage))
+						if (is_string($storage))
 						{
-							die ( message ($storage, 'game.php?page=trader', '2'));
+							die(message($storage, 'game.php?page=trader', '2'));
 						}
 
 						if ($CurrentPlanet['deuterium'] > $necessaire)
@@ -194,7 +194,7 @@ class ShowTraderPage
 				}
 			}
 		}
-		display(parsetemplate($template,$parse));
+		display(parsetemplate($template, $parse));
 	}
 
 	/**
@@ -204,18 +204,18 @@ class ShowTraderPage
 	 * param $force
 	 * return amount of resource production
 	 */
-	public static function check_storage ($current_planet, $amount, $force = NULL)
+	public static function check_storage($current_planet, $amount, $force = NULL)
 	{
 		global $resource, $lang;
 
 
-		if ( !is_array ($amount))
+		if ( ! is_array($amount))
 		{
-			throw new Exception ( "Must be array", 1);
+			throw new Exception("Must be array", 1);
 		}
 
 
-		$hangar	= array ( 'metal' => 22, 'crystal' => 23, 'deuterium' => 24);
+		$hangar	= array('metal' => 22, 'crystal' => 23, 'deuterium' => 24);
 		$check 	= array();
 
 
@@ -223,12 +223,12 @@ class ShowTraderPage
 		{
 			if ($amount[$k] == 0)
 			{
-				unset ($amount[$k]);
+				unset($amount[$k]);
 			}
 
-			if ( array_key_exists ($k, $amount))
+			if (array_key_exists($k, $amount))
 			{
-				if ($current_planet[$k] + $amount[$k] >= Production::max_storable ($current_planet[$resource[$v]]))
+				if ($current_planet[$k] + $amount[$k] >= Production::max_storable($current_planet[$resource[$v]]))
 				{
 					$check[$k] = FALSE;
 				}
@@ -249,13 +249,13 @@ class ShowTraderPage
 		}
 		else
 		{
-			if ( is_null ($force))
+			if (is_null($force))
 			{
 				foreach ($hangar as $k => $v)
 				{
 					if ( ! $check[$k])
 					{
-						return sprintf ($lang['tr_full_storage'], strtolower ($lang['info'][$v]['name']));
+						return sprintf($lang['tr_full_storage'], strtolower ($lang['info'][$v]['name']));
 					}
 					else
 					{

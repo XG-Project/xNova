@@ -9,7 +9,7 @@
  */
 
 
-if ( ! defined('INSIDE')) die(header("location: ./../../"));
+if ( ! defined('INSIDE')) die(header("Location: ./../../"));
 if ($user['authlevel'] < 3) die(message($lang['404_page']));
 
 class ShowModerationPage {
@@ -21,7 +21,7 @@ class ShowModerationPage {
 
 		if ($moderation === 1)
 		{
-			$QueryModeration	=	read_config ('moderation');
+			$QueryModeration	=	read_config('moderation');
 			$QueryModerationEx	=	explode(";", $QueryModeration);
 			$Moderator			=	explode(",", $QueryModerationEx[0]);
 			$Operator			=	explode(",", $QueryModerationEx[1]);
@@ -125,7 +125,7 @@ class ShowModerationPage {
 				{
 					$parse['display']	=	'<div class="content some_errors">'.$lang['ad_authlevel_error_2'].'</div>';
 				}
-				elseif (( ! isset($_POST['id_1']) && ! isset($_POST['id_2'])) OR (empty($_POST['id_1']) && empty($_POST['id_2'])))
+				elseif (( !  isset($_POST['id_1']) && ! isset($_POST['id_2'])) OR (empty($_POST['id_1']) && empty($_POST['id_2'])))
 				{
 					$parse['display']	=	'<div class="content some_errors">'.$lang['ad_forgiven_id'].'</div>';
 				}
@@ -176,7 +176,7 @@ class ShowModerationPage {
 
 			$script	= '<script charset="UTF-8" src="'.GAMEURL.'js/filterlist.min.js"></script>';
 
-			display (parsetemplate(gettemplate("adm/AuthlevelBody"), $parse), TRUE, $script, TRUE, TRUE);
+			display(parsetemplate(gettemplate("adm/AuthlevelBody"), $parse), TRUE, $script, TRUE, TRUE);
 		}
 		else
 		{

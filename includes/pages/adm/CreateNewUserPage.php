@@ -33,10 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
 	$CheckUser = doquery("SELECT `username` FROM {{table}} WHERE `username` = '".$db->real_escape_string($_POST['name'])."' LIMIT 1", "users", TRUE);
 	$CheckMail = doquery("SELECT `email` FROM {{table}} WHERE `email` = '".$db->real_escape_string($_POST['email'])."' LIMIT 1", "users", TRUE);
-	$CheckRows = doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' AND `system` = '".$system."' AND `planet` = '".$planet."' LIMIT 1", "galaxy", TRUE);
+	$CheckRows = doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' && `system` = '".$system."' && `planet` = '".$planet."' LIMIT 1", "galaxy", TRUE);
 
 
-	if (!is_numeric($galaxy) &&  !is_numeric($system) && !is_numeric($planet)){
+	if ( ! is_numeric($galaxy) &&  ! is_numeric($system) && ! is_numeric($planet)){
 		$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_only_numbers'].'</tr></th>';
 		$i++;}
 	elseif ($galaxy > MAX_GALAXY_IN_WORLD OR $system > MAX_SYSTEM_IN_GALAXY OR $planet > MAX_PLANET_IN_SYSTEM OR $galaxy < 1 OR $system < 1 OR $planet < 1){
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_complete_all'].'</tr></th>';
 		$i++;}
 
-	if (!valid_email(strip_tags($email))){
+	if ( ! valid_email(strip_tags($email))){
 		$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_error_email2'].'</tr></th>';
 		$i++;}
 
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$Query1 .= "`password`='".$pass."';";
 		doquery($Query1, "users");
 
-		update_config ( 'users_amount', read_config ( 'users_amount' ) + 1);
+		update_config('users_amount', read_config('users_amount') + 1);
 
 		$ID_USER 	= doquery("SELECT `id` FROM {{table}} WHERE `username` = '".$db->real_escape_string($name)."' LIMIT 1", "users", TRUE);
 

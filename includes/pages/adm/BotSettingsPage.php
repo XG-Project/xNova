@@ -15,7 +15,7 @@ define('XN_ROOT', './../');
 
 include(XN_ROOT.'global.php');
 
-if ($ConfigGame != 1) die(message ($lang['404_page']));
+if ($ConfigGame != 1) die(message($lang['404_page']));
 
 $parse	= $lang;
 $page	= isset($_GET['page']) ? $_GET['page'] : NULL;
@@ -64,8 +64,8 @@ switch ($page)
 			if ($i	===	1)
 			{
 				$Query1  = "INSERT INTO {{table}} SET ";
-				$Query1 .= "`user` = '" . $user . "', ";
-				$Query1 .= "`minutes_per_day` = '" . $minutes_per_day . "'; ";
+				$Query1 .= "`user` = '".$user."', ";
+				$Query1 .= "`minutes_per_day` = '".$minutes_per_day."'; ";
 
 				doquery($Query1, "bots");
 				update_config('bots', read_config('bots') + 1);
@@ -92,14 +92,14 @@ switch ($page)
 	while ($u = $query->fetch_array())
 	{
 		$parse['bots_list'] .= '
-		<tr><td width="25">'. $u['id'] .'</td>
-		<td width="25">'. $u['user'] .'</td>
-		<td width="250">'. date('H:i:s - j/n/Y', $u['last_time']) .'</td>
-		<td width="250">'. date('H:i:s - j/n/Y', $u['next_time']) .'</td>
-		<td width="100">'. $u['minutes_per_day'] .'</td>
-		<td width="230">'. $u['last_planet'] .'</td>
-		<td width="100"><a href="BotSettingsPage.php?delete='. $u['id'] .'" onclick="return confirm(\''.$lang['bot_delete_confirm'].'\');" border="0"><img src="../styles/images/r1.png" border=\"0\"></a></td>
-		<td width="95"><a href="AccountDataPage.php?id_u='. $u['user'] .'" border="0"><img src="../styles/images/Adm/GO.png" border="0"></a></td></tr>';
+		<tr><td width="25">'.$u['id'].'</td>
+		<td width="25">'.$u['user'].'</td>
+		<td width="250">'.date('H:i:s - j/n/Y', $u['last_time']).'</td>
+		<td width="250">'.date('H:i:s - j/n/Y', $u['next_time']).'</td>
+		<td width="100">'.$u['minutes_per_day'].'</td>
+		<td width="230">'.$u['last_planet'].'</td>
+		<td width="100"><a href="BotSettingsPage.php?delete='.$u['id'].'" onclick="return confirm(\''.$lang['bot_delete_confirm'].'\');" border="0"><img src="../styles/images/r1.png" border=\"0\"></a></td>
+		<td width="95"><a href="AccountDataPage.php?id_u='.$u['user'].'" border="0"><img src="../styles/images/Adm/GO.png" border="0"></a></td></tr>';
 		if (isset($u['error_text']))
 			$parse['bots_list'] .= '<tr><th colspan="8" class="b">'.nl2br($u['error_text']).'</td></tr>';
 	}
@@ -114,7 +114,7 @@ switch ($page)
 		update_config('bots', read_config('bots') - 1);
 		unlink(XN_ROOT.'includes/bots/'.md5($bot['user']).'.botdb');
 
-		header ("Location: BotSettingsPage.php");
+		header("Location: BotSettingsPage.php");
 	}
 	elseif (isset($deleteall))
 	{
@@ -124,7 +124,7 @@ switch ($page)
 		foreach (scandir(XN_ROOT.'includes/bots/') as $file)
 			if (is_file(XN_ROOT.'includes/bots/'.$file)) unlink(XN_ROOT.'includes/bots/'.$file);
 
-		header ("Location: BotSettingsPage.php");
+		header("Location: BotSettingsPage.php");
 	}
 	$parse['log'] = file_get_contents(XN_ROOT.'adm/Log/BotLog.php');
 

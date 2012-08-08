@@ -128,7 +128,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 
 			$parse['table2']	.=
 			"<tr><th>".$id."</th><th>".$name."</th><th>".$email."</th><th>".$authlevel."</th><th>".$suspended."</th><th>".$vacations."</th>
-			<th>".gmdate("d/M/y H:i:s",$onlinetime)."</th><th>".gmdate("d/M/y H:i:s",$reg_time)."</th><th>".$user_ip."</th></tr>";
+			<th>".gmdate("d/M/y H:i:s", $onlinetime)."</th><th>".gmdate("d/M/y H:i:s", $reg_time)."</th><th>".$user_ip."</th></tr>";
 
 			$parse['table3']	 =	"<tr><th colspan=\"20\">".$lang['se_input_hay'].$cnt.$lang['se_input_userss']."</th></tr></table>";
 		}
@@ -204,7 +204,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	}
 	else
 	{
-		$search	=	doquery("SELECT * FROM {{table}} WHERE `name` LIKE '%{$key_user}%' AND `planet_type` = '1' ORDER BY `".$ORDER."` ".$ORDERBY2."", "planets");
+		$search	=	doquery("SELECT * FROM {{table}} WHERE `name` LIKE '%{$key_user}%' && `planet_type` = '1' ORDER BY `".$ORDER."` ".$ORDERBY2."", "planets");
 	}
 
 	$cnt	=	$search->num_rows;
@@ -223,7 +223,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 			$s			=	$planet['system'];
 			$p			=	$planet['planet'];
 
-			$QueryFiind	=	doquery("SELECT `id_luna` FROM {{table}} WHERE `galaxy` = '".$g."' AND `system` = '".$s."' AND `planet` = '".$p."'", "galaxy", TRUE);
+			$QueryFiind	=	doquery("SELECT `id_luna` FROM {{table}} WHERE `galaxy` = '".$g."' && `system` = '".$s."' && `planet` = '".$p."'", "galaxy", TRUE);
 
 			if ($QueryFiind['id_luna']	!=	'0')
 				$moons	=	"<font color=lime>".$lang['se_yes']."</font>";
@@ -308,7 +308,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	}
 	else
 	{
-		$search	=	doquery("SELECT * FROM {{table}} WHERE `name` LIKE '%{$key_user}%' AND `planet_type` = '3' ORDER BY `".$ORDER."` ".$ORDERBY2."", "planets");
+		$search	=	doquery("SELECT * FROM {{table}} WHERE `name` LIKE '%{$key_user}%' && `planet_type` = '3' ORDER BY `".$ORDER."` ".$ORDERBY2."", "planets");
 	}
 
 	$cnt	=	$search->num_rows;
@@ -430,7 +430,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 			<td class=\"c\">".$lang['se_id_owner']."</th><td class=\"c\">".$lang['se_input_register']."</th><td class=\"c\">".$lang['se_input_members']."</th></tr>";
 
 			$parse['table2']	.=
-			"<tr><th>".$id."</th><th>".$ally_name."</th><th>".$ally_tag."</th><th>".$ally_owner."</th><th>".gmdate("d/M/y H:i:s",$reg_time_a)."</th>
+			"<tr><th>".$id."</th><th>".$ally_name."</th><th>".$ally_tag."</th><th>".$ally_owner."</th><th>".gmdate("d/M/y H:i:s", $reg_time_a)."</th>
 			<th>".$ally_members."</th></tr>";
 
 			$parse['table3']	 =	"<tr><th colspan=\"20\">".$lang['se_input_hay'].$cnt.$lang['se_input_allyy']."</th></tr></table>";
@@ -494,7 +494,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	}
 	else
 	{
-		$search	=	doquery("SELECT * FROM {{table}} WHERE `username` LIKE '%{$key_user}%' AND `urlaubs_modus` = '1'  ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
+		$search	=	doquery("SELECT * FROM {{table}} WHERE `username` LIKE '%{$key_user}%' && `urlaubs_modus` = '1'  ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
 	}
 
 	$cnt	=	$search->num_rows;
@@ -682,7 +682,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	}
 	else
 	{
-		$search	=	doquery("SELECT * FROM {{table}} WHERE `username` LIKE '%{$key_user}%' AND `authlevel` > '0'  ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
+		$search	=	doquery("SELECT * FROM {{table}} WHERE `username` LIKE '%{$key_user}%' && `authlevel` > '0'  ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
 	}
 
 	$cnt	=	$search->num_rows;
@@ -777,7 +777,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	}
 	else
 	{
-		$search	=	doquery("SELECT * FROM {{table}} WHERE `username` LIKE '%{$key_user}%' AND `onlinetime` < '".$Time."' ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
+		$search	=	doquery("SELECT * FROM {{table}} WHERE `username` LIKE '%{$key_user}%' && `onlinetime` < '".$Time."' ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
 	}
 
 	$cnt	=	$search->num_rows;

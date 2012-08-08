@@ -15,7 +15,7 @@ define('XN_ROOT', './../');
 
 include(XN_ROOT.'global.php');
 
-if ($Observation != 1) die(message ($lang['404_page']));
+if ($Observation != 1) die(message($lang['404_page']));
 
 $Micro = explode(" ", microtime());
 $Time_One = ($Micro[1] + $Micro[0]);
@@ -133,7 +133,7 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 			$Search['LIST']	 .=	"<tr>";
 			if ($Table == "users"){
 				if ($_GET['search'] == "online")
-					$WhileResult[3]	=	Format::pretty_time( time() - $WhileResult[3]);
+					$WhileResult[3]	=	Format::pretty_time(time() - $WhileResult[3]);
 				else
 					$WhileResult[3]	=	date("d-m-Y H:i:s", $WhileResult[3]);
 
@@ -237,7 +237,7 @@ $SpecifyWhere	=	$parse['Key']	=	$_GET['key_user'];
 $Page 			= 	$_GET['Page'];
 $Order			=	$_GET['key_order'];
 $OrderBY		=	$_GET['key_acc'];
-(( ! $_GET['Limit']) ? $Limit	=	'25' : $Limit	=	$_GET['Limit']);
+(( !  $_GET['Limit']) ? $Limit	=	'25' : $Limit	=	$_GET['Limit']);
 
 
 // TABLA DE BÚSQUEDA
@@ -253,7 +253,7 @@ $parse['OPT_LIST']	.=	'<option value="online"'.(($SearchFile == "online") ? " se
 $parse['OPT_LIST']	.=	'<option value="p_connect"'.(($SearchFile == "p_connect") ? " selected": "").'>'.$lang['se_planets_act'].'</option>';
 
 // BÚSQUEDA POR ID O NOMBRE
-$parse['OPT_SEARCH']	 =	'<option value="name"'.(($SearchFor == "name") ? " selected": "").(( ! $SearchFor) ? " selected": "").'>'.$lang['se_input_name'].'</option>';
+$parse['OPT_SEARCH']	 =	'<option value="name"'.(($SearchFor == "name") ? " selected": "").(( !  $SearchFor) ? " selected": "").'>'.$lang['se_input_name'].'</option>';
 $parse['OPT_SEARCH']	.=	'<option value="id"'.(($SearchFor == "id") ? " selected": "").'>'.$lang['input_id'].'</option>';
 
 // TIPO DE FILTRO: BÚSQUEDA EXACTA, NORMAL, ETC
@@ -272,7 +272,7 @@ $parse['LIMIT']	 .=	'<option value="5"'.(($Limit == '5') ? " selected": "").'>5<
 $parse['LIMIT']	 .=	'<option value="10"'.(($Limit == '10') ? " selected": "").'>10</option>';
 $parse['LIMIT']	 .=	'<option value="15"'.(($Limit == '15') ? " selected": "").'>15</option>';
 $parse['LIMIT']	 .=	'<option value="20"'.(($Limit == '20') ? " selected": "").'>20</option>';
-$parse['LIMIT']	 .=	'<option value="25"'.(($Limit == '25') ? " selected": "").(( ! $Limit) ? " selected": "").'>25</option>';
+$parse['LIMIT']	 .=	'<option value="25"'.(($Limit == '25') ? " selected": "").(( !  $Limit) ? " selected": "").'>25</option>';
 $parse['LIMIT']	 .=	'<option value="50"'.(($Limit == '50') ? " selected": "").'>50</option>';
 $parse['LIMIT']	 .=	'<option value="100"'.(($Limit == '100') ? " selected": "").'>100</option>';
 $parse['LIMIT']	 .=	'<option value="200"'.(($Limit == '200') ? " selected": "").'>200</option>';
@@ -311,19 +311,19 @@ if ($_GET)
 		$SName			=	$lang['se_input_userss'];
 
 		if ($SearchFile == "vacation"){
-			$SpecialSpecify	=	"AND urlaubs_modus = '1'";
+			$SpecialSpecify	=	"&& urlaubs_modus = '1'";
 			$SName			=	$lang['se_input_vacatii'];}
 
 		if ($SearchFile == "online"){
-			$SpecialSpecify	=	"AND onlinetime >= '".(time() - 15 * 60)."'";
+			$SpecialSpecify	=	"&& onlinetime >= '".(time() - 15 * 60)."'";
 			$SName			=	$lang['se_input_connect'];}
 
 		if ($SearchFile == "inactives"){
-			$SpecialSpecify	=	"AND onlinetime < '".(time() - 60 * 60 * 24 * 7)."'";
+			$SpecialSpecify	=	"&& onlinetime < '".(time() - 60 * 60 * 24 * 7)."'";
 			$SName			=	$lang['se_input_inact'];}
 
 		if ($SearchFile == "admin"){
-			$SpecialSpecify	=	"AND authlevel <= '".$user['authlevel']."' AND authlevel > '0'";
+			$SpecialSpecify	=	"&& authlevel <= '".$user['authlevel']."' && authlevel > '0'";
 			$SName			=	$lang['se_input_admm'];}
 
 
@@ -344,15 +344,15 @@ if ($_GET)
 		$SpecifyItems	=	"id,name,id_owner,last_update,galaxy,system,planet";
 
 		if ($SearchFile == "planet"){
-			$SpecialSpecify	=	"AND planet_type = '1'";
+			$SpecialSpecify	=	"&& planet_type = '1'";
 			$SName			=	$lang['se_input_planett'];}
 
 		if ($SearchFile == "moon"){
-			$SpecialSpecify	=	"AND planet_type = '3'";
+			$SpecialSpecify	=	"&& planet_type = '3'";
 			$SName			=	$lang['se_input_moonn'];}
 
 		if ($SearchFile == "p_connect"){
-			$SpecialSpecify	=	"AND last_update >= '".(time() - 60 * 60)."'";
+			$SpecialSpecify	=	"&& last_update >= '".(time() - 60 * 60)."'";
 			$SName			=	$lang['se_input_act_pla'];}
 
 

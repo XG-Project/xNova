@@ -16,7 +16,7 @@ define('XN_ROOT', './../');
 include(XN_ROOT.'global.php');
 include('AdminFunctions/Autorization.php');
 
-if ($ToolsCanUse != 1) die(message ($lang['404_page']));
+if ($ToolsCanUse != 1) die(message($lang['404_page']));
 
 	$parse = $lang;
 	if (isset($_POST['pass']) && $_POST['pass'] != "")

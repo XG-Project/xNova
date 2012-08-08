@@ -8,9 +8,9 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-	function IsElementBuyable ($CurrentUser, $CurrentPlanet, $Element, $Incremental = TRUE, $ForDestroy = FALSE)
+	function IsElementBuyable($CurrentUser, $CurrentPlanet, $Element, $Incremental = TRUE, $ForDestroy = FALSE)
 	{
 		global $pricelist, $resource;
 
@@ -27,7 +27,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 		foreach ($array as $ResType)
 		{
-			if ($pricelist[$Element][$ResType] != 0)
+			if ($pricelist[$Element][$ResType])
 			{
 				if ($Incremental)
 					$cost[$ResType]  = floor($pricelist[$Element][$ResType] * pow($pricelist[$Element]['factor'], $level));

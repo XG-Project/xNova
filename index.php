@@ -17,7 +17,8 @@ $InLogin = TRUE;
 
 include(XN_ROOT.'global.php');
 
-includeLang ( 'PUBLIC');
+includeLang('PUBLIC');
+
 $parse = $lang;
 $page	= isset($_GET['page']) ? $_GET['page'] : NULL;
 
@@ -28,7 +29,7 @@ switch ($page)
 		{
 			global $lang;
 
-			$ExistMail = doquery("SELECT `email` FROM {{table}} WHERE `email` = '". $mail ."' LIMIT 1;", 'users', TRUE);
+			$ExistMail = doquery("SELECT `email` FROM {{table}} WHERE `email` = '".$mail."' LIMIT 1;", 'users', TRUE);
 
 			if (empty($ExistMail['email']))
 			{
@@ -46,11 +47,11 @@ switch ($page)
 				$Title 	= $lang['mail_title'];
 				$Body 	= $lang['mail_text'];
 				$Body  .= $NewPass;
-				mail($mail,$Title,$Body);
+				mail($mail, $Title, $Body);
 				$NewPassSql = sha1($NewPass);
 				$QryPassChange = "UPDATE {{table}} SET ";
-				$QryPassChange .= "`password` ='". $NewPassSql ."' ";
-				$QryPassChange .= "WHERE `email`='". $mail ."' LIMIT 1;";
+				$QryPassChange .= "`password` ='".$NewPassSql."' ";
+				$QryPassChange .= "WHERE `email`='".$mail."' LIMIT 1;";
 				doquery($QryPassChange, 'users');
 			}
 		}
@@ -58,20 +59,21 @@ switch ($page)
 		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
 			sendnewpassword ($_POST['email']);
-			message ($lang['mail_sended'], GAMEURL, 2, FALSE, FALSE);
+			message($lang['mail_sended'], GAMEURL, 2, FALSE, FALSE);
 		}
 		else
 		{
-			$parse['year']		   = date ( "Y");
+			$parse['year']		   = date("Y");
 			$parse['version']	   = VERSION;
-			$parse['forum_url']    = read_config ( 'forum_url');
-			display ( parsetemplate ( gettemplate ( 'public/lostpassword' ), $parse ), FALSE, '', FALSE, FALSE);
+			$parse['forum_url']    = read_config('forum_url');
+
+			display(parsetemplate(gettemplate('public/lostpassword'), $parse), FALSE, '', FALSE, FALSE);
 		}
 	break;
 	default:
 		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
-			$login = doquery("SELECT `id`,`username`,`password`,`banaday` FROM {{table}} WHERE `username` = '" . $db->real_escape_string($_POST['username']) . "' AND `password` = '" . sha1($_POST['password']) . "' LIMIT 1", "users", TRUE);
+			$login = doquery("SELECT `id`,`username`,`password`,`banaday` FROM {{table}} WHERE `username` = '".$db->real_escape_string($_POST['username'])."' && `password` = '". sha1($_POST['password'])."' LIMIT 1", "users", TRUE);
 
 			if ($login['banaday'] <= time() && $login['banaday'] != '0')
 			{
@@ -93,28 +95,28 @@ switch ($page)
 				}
 
 				@include('config.php');
-				$cookie = $login["id"] . "/%/" . $login["username"] . "/%/" . md5($login["password"] . "--" . $dbsettings["secretword"]) . "/%/" . $rememberme;
-				setcookie(read_config ( 'cookie_name' ), $cookie, $expiretime, "/", "", 0);
+				$cookie = $login["id"]."/%/".$login["username"]."/%/". md5($login["password"]."--".$dbsettings["secretword"])."/%/".$rememberme;
+				setcookie(read_config('cookie_name'), $cookie, $expiretime, "/", "", 0);
 
 				doquery("UPDATE `{{table}}` SET `current_planet` = `id_planet` WHERE `id` ='".$login["id"]."'", 'users');
 
-				unset ($dbsettings);
-				header ( 'location:game.php?page=overview');
+				unset($dbsettings);
+				header('location:game.php?page=overview');
 				exit;
 			}
 			else
 			{
-				message ($lang['login_error'], GAMEURL, 2, FALSE, FALSE);
+				message($lang['login_error'], GAMEURL, 2, FALSE, FALSE);
 			}
 		}
 		else
 		{
-			$parse['year']		   = date ( "Y");
+			$parse['year']		   = date("Y");
 			$parse['version']	   = VERSION;
-			$parse['servername']   = read_config ( 'game_name');
-			$parse['forum_url']    = read_config ( 'forum_url');
+			$parse['servername']   = read_config('game_name');
+			$parse['forum_url']    = read_config('forum_url');
 
-			display ( parsetemplate ( gettemplate ( 'public/index_body' ), $parse ), FALSE, '', FALSE, FALSE);
+			display(parsetemplate(gettemplate('public/index_body'), $parse), FALSE, '', FALSE, FALSE);
 		}
 }
 ?>

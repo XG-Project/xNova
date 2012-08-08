@@ -8,7 +8,7 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 	function IsTechnologieAccessible($user, $planet, $Element)
 	{

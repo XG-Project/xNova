@@ -25,19 +25,19 @@ if ($Observation != 1) die();
 	while ($u = $query->fetch_array())
 	{
 		$parse['lista_planetas'] .= "<tr>"
-		. "<th>" . $u[0] . "</th>"
-		. "<th>" . $u[1] . "</th>"
-		. "<th>" . $u[4] . "</th>"
-		. "<th>" . $u[5] . "</th>"
-		. "<th>" . $u[6] . "</th>"
-		. "</tr>";
+		."<th>".$u[0]."</th>"
+		."<th>".$u[1]."</th>"
+		."<th>".$u[4]."</th>"
+		."<th>".$u[5]."</th>"
+		."<th>".$u[6]."</th>"
+		."</tr>";
 		$i++;
 	}
 
 	if ($i == 1)
 		$parse['lista_planetas'] .= "<tr><th class=b colspan=5>".$lang['pl_only_one_planet']."</th></tr>";
 	else
-		$parse['lista_planetas'] .= "<tr><th class=b colspan=5>". $lang['pl_there_are'] . $i . $lang['pl_planets'] ."</th></tr>";
+		$parse['lista_planetas'] .= "<tr><th class=b colspan=5>".$lang['pl_there_are'].$i.$lang['pl_planets']."</th></tr>";
 
 	display(parsetemplate(gettemplate('adm/PlanetListBody'), $parse), FALSE, '', TRUE, FALSE);
 

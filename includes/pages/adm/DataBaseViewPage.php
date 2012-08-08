@@ -15,7 +15,7 @@ define('XN_ROOT', './../');
 
 include(XN_ROOT.'global.php');
 
-if ($ConfigGame != 1) die(message ($lang['404_page']));
+if ($ConfigGame != 1) die(message($lang['404_page']));
 
 $parse = $lang;
 

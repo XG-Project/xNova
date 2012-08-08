@@ -8,7 +8,7 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../"));
+if ( ! defined('INSIDE')) die(header("Location:../"));
 
 // VERSION
 define('SYSTEM_VERSION' 			, '1.0.0-dev');
@@ -19,7 +19,7 @@ define('SKIN_PATH'					, 'styles/skins/');
 define('TEMPLATE_DIR'     		 	, 'styles/views/');
 define('DEFAULT_SKINPATH' 		 	, 'styles/skins/xnova/');
 
-// ADMINISTRATOR EMAIL AND GAME URL - THIS DATA IS REQUESTED BY REG.PHP
+// ADMINISTRATOR EMAIL && GAME URL - THIS DATA IS REQUESTED BY REG.PHP
 define('ADMINEMAIL'					, "admin@razican.com");
 if (isset($_SERVER['HTTP_HOST']))
 {
@@ -33,7 +33,7 @@ else
 }
 define('GAMEURL'					, $base_url);
 
-// UNIVERSE DATA, GALAXY, SYSTEMS AND PLANETS OR DEFAULT 9-499-15 RESPECTIVELY
+// UNIVERSE DATA, GALAXY, SYSTEMS && PLANETS OR DEFAULT 9-499-15 RESPECTIVELY
 define('MAX_GALAXY_IN_WORLD'		,       9);
 define('MAX_SYSTEM_IN_GALAXY'     	,     499);
 define('MAX_PLANET_IN_SYSTEM'     	,      15);

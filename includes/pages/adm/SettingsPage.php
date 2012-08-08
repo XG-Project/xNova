@@ -15,7 +15,7 @@ define('XN_ROOT', './../');
 
 include(XN_ROOT.'global.php');
 
-if ($ConfigGame != 1) die(message ($lang['404_page']));
+if ($ConfigGame != 1) die(message($lang['404_page']));
 $AreLog	=	$LogCanWork;
 
 function DisplayGameSettingsPage ($CurrentUser)
@@ -224,40 +224,40 @@ function DisplayGameSettingsPage ($CurrentUser)
 
 		if (read_config('lang') != $game_config['lang'])
 		{
-			update_config ( 'lang' 					, $game_config['lang'] 						);
-			doquery('ALTER TABLE  `{{table}}` CHANGE  `name`  `name` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT  \''.$lang['homeworld'].'\'', 'planets');
+			update_config('lang' 					, $game_config['lang'] 						);
+			doquery('ALTER TABLE  `{{table}}` CHANGE  `name`  `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT  \''.$lang['homeworld'].'\'', 'planets');
 		}
 
-		update_config ( 'game_disable'				, $game_config['game_disable']				);
-		update_config ( 'close_reason'				, $game_config['close_reason']				);
-		update_config ( 'game_name'					, $game_config['game_name']					);
-		update_config ( 'forum_url'					, $game_config['forum_url']					);
-		update_config ( 'game_speed'				, $game_config['game_speed']				);
-		update_config ( 'fleet_speed'				, $game_config['fleet_speed']				);
-		update_config ( 'resource_multiplier'		, $game_config['resource_multiplier']		);
-		update_config ( 'initial_fields'			, $game_config['initial_fields']			);
-		update_config ( 'metal_basic_income'		, $game_config['metal_basic_income']		);
-		update_config ( 'crystal_basic_income'		, $game_config['crystal_basic_income']		);
-		update_config ( 'deuterium_basic_income'	, $game_config['deuterium_basic_income']	);
-		update_config ( 'debug'						, $game_config['debug']						);
-		update_config ( 'adm_attack'				, $game_config['adm_attack']				);
-		update_config ( 'cookie_name'				, $game_config['cookie_name']				);
-		update_config ( 'noobprotection'			, $game_config['noobprotection']			);
-		update_config ( 'defs_cdr'					, $game_config['defs_cdr']					);
-		update_config ( 'fleet_cdr'					, $game_config['fleet_cdr']					);
-		update_config ( 'noobprotectiontime'		, $game_config['noobprotectiontime']		);
-		update_config ( 'noobprotectionmulti'		, $game_config['noobprotectionmulti']		);
-		update_config ( 'errors_2'					, $game_config['errors_2']					);
-		update_config ( 'errors_8'					, $game_config['errors_8']					);
-		update_config ( 'errors_2048'				, $game_config['errors_2048']				);
-		update_config ( 'errors_4096'				, $game_config['errors_4096']				);
-		update_config ( 'errors_8192'				, $game_config['errors_8192']				);
-		update_config ( 'errors_32767'				, $game_config['errors_32767']				);
-		update_config ( 'max_users'					, $game_config['max_users']					);
-		update_config ( 'log_bots'					, $game_config['log_bots']					);
-		update_config ( 'date_format'				, $game_config['date_format']				);
+		update_config('game_disable'				, $game_config['game_disable']				);
+		update_config('close_reason'				, $game_config['close_reason']				);
+		update_config('game_name'					, $game_config['game_name']					);
+		update_config('forum_url'					, $game_config['forum_url']					);
+		update_config('game_speed'				, $game_config['game_speed']				);
+		update_config('fleet_speed'				, $game_config['fleet_speed']				);
+		update_config('resource_multiplier'		, $game_config['resource_multiplier']		);
+		update_config('initial_fields'			, $game_config['initial_fields']			);
+		update_config('metal_basic_income'		, $game_config['metal_basic_income']		);
+		update_config('crystal_basic_income'		, $game_config['crystal_basic_income']		);
+		update_config('deuterium_basic_income'	, $game_config['deuterium_basic_income']	);
+		update_config('debug'						, $game_config['debug']						);
+		update_config('adm_attack'				, $game_config['adm_attack']				);
+		update_config('cookie_name'				, $game_config['cookie_name']				);
+		update_config('noobprotection'			, $game_config['noobprotection']			);
+		update_config('defs_cdr'					, $game_config['defs_cdr']					);
+		update_config('fleet_cdr'					, $game_config['fleet_cdr']					);
+		update_config('noobprotectiontime'		, $game_config['noobprotectiontime']		);
+		update_config('noobprotectionmulti'		, $game_config['noobprotectionmulti']		);
+		update_config('errors_2'					, $game_config['errors_2']					);
+		update_config('errors_8'					, $game_config['errors_8']					);
+		update_config('errors_2048'				, $game_config['errors_2048']				);
+		update_config('errors_4096'				, $game_config['errors_4096']				);
+		update_config('errors_8192'				, $game_config['errors_8192']				);
+		update_config('errors_32767'				, $game_config['errors_32767']				);
+		update_config('max_users'					, $game_config['max_users']					);
+		update_config('log_bots'					, $game_config['log_bots']					);
+		update_config('date_format'				, $game_config['date_format']				);
 
-		header ( 'location:SettingsPage.php');
+		header('location:SettingsPage.php');
 	}
 	else
 	{
@@ -291,7 +291,7 @@ function DisplayGameSettingsPage ($CurrentUser)
 		$parse['log_bots'] 					= $game_config['log_bots'] ? 'checked' : '';
 		$parse['date_format'] 				= $game_config['date_format'];
 
-		$LangFolder = opendir("./../" . 'language');
+		$LangFolder = opendir("./../".'language');
 
 		while ($LangSubFolder = readdir($LangFolder))
 		{
@@ -306,7 +306,7 @@ function DisplayGameSettingsPage ($CurrentUser)
 			}
 		}
 
-		return display (parsetemplate(gettemplate('adm/SettingsBody'),  $parse), FALSE, '', TRUE, FALSE);
+		return display(parsetemplate(gettemplate('adm/SettingsBody'),  $parse), FALSE, '', TRUE, FALSE);
 	}
 }
 

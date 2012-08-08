@@ -15,11 +15,11 @@ define('XN_ROOT', './../');
 
 include(XN_ROOT.'global.php');
 
-if ($EditUsers != 1) die(message ($lang['404_page']));
+if ($EditUsers != 1) die(message($lang['404_page']));
 
 $parse = $lang;
 
-switch ($_GET[page])
+switch ($_GET['page'])
 {
 	case'resources':
 
@@ -36,20 +36,20 @@ switch ($_GET[page])
 			if ($_POST['add'])
 			{
 				$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-				$QryUpdatePlanet .= "`metal` = `metal` + '". $metal ."', ";
-				$QryUpdatePlanet .= "`crystal` = `crystal` + '". $cristal ."', ";
-				$QryUpdatePlanet .= "`deuterium` = `deuterium` + '". $deut ."' ";
+				$QryUpdatePlanet .= "`metal` = `metal` + '".$metal."', ";
+				$QryUpdatePlanet .= "`crystal` = `crystal` + '".$cristal."', ";
+				$QryUpdatePlanet .= "`deuterium` = `deuterium` + '".$deut."' ";
 				$QryUpdatePlanet .= "WHERE ";
-				$QryUpdatePlanet .= "`id` = '". $id ."' ";
+				$QryUpdatePlanet .= "`id` = '".$id."' ";
 				doquery($QryUpdatePlanet, "planets");
 
 
 				if ($id_dark != NULL)
 				{
 					$QryUpdateUser  = "UPDATE {{table}} SET ";
-					$QryUpdateUser .= "`darkmatter` = `darkmatter` + '". $dark ."' ";
+					$QryUpdateUser .= "`darkmatter` = `darkmatter` + '".$dark."' ";
 					$QryUpdateUser .= "WHERE ";
-					$QryUpdateUser .= "`id` = '". $id_dark ."' ";
+					$QryUpdateUser .= "`id` = '".$id_dark."' ";
 					doquery($QryUpdateUser, "users");
 				}
 				$Name	=	$lang['log_moree'];
@@ -58,20 +58,20 @@ switch ($_GET[page])
 			elseif ($_POST['delete'])
 			{
 				$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-				$QryUpdatePlanet .= "`metal` = `metal` - '". $metal ."', ";
-				$QryUpdatePlanet .= "`crystal` = `crystal` - '". $cristal ."', ";
-				$QryUpdatePlanet .= "`deuterium` = `deuterium` - '". $deut ."' ";
+				$QryUpdatePlanet .= "`metal` = `metal` - '".$metal."', ";
+				$QryUpdatePlanet .= "`crystal` = `crystal` - '".$cristal."', ";
+				$QryUpdatePlanet .= "`deuterium` = `deuterium` - '".$deut."' ";
 				$QryUpdatePlanet .= "WHERE ";
-				$QryUpdatePlanet .= "`id` = '". $id ."' ";
+				$QryUpdatePlanet .= "`id` = '".$id."' ";
 				doquery($QryUpdatePlanet, "planets");
 
 
 				if ($id_dark != NULL)
 				{
 					$QryUpdateUser  = "UPDATE {{table}} SET ";
-					$QryUpdateUser .= "`darkmatter` = `darkmatter` - '". $dark ."' ";
+					$QryUpdateUser .= "`darkmatter` = `darkmatter` - '".$dark."' ";
 					$QryUpdateUser .= "WHERE ";
-					$QryUpdateUser .= "`id` = '". $id_dark ."' ";
+					$QryUpdateUser .= "`id` = '".$id_dark."' ";
 					doquery($QryUpdateUser, "users");
 				}
 				$Name	=	$lang['log_nomoree'];
@@ -98,7 +98,7 @@ switch ($_GET[page])
 
 	}
 
-			display (parsetemplate(gettemplate("adm/EditorTPL/ResourcesBody"), $parse), FALSE, '', TRUE, FALSE);
+			display(parsetemplate(gettemplate("adm/EditorTPL/ResourcesBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case'ships':
@@ -129,22 +129,22 @@ switch ($_GET[page])
 				if ($_POST['add'])
 				{
 					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-					$QryUpdatePlanet .= "`small_ship_cargo` = `small_ship_cargo` + '". $small_ship_cargo ."', ";
-					$QryUpdatePlanet .= "`battleship` = `battleship` + '". $battleship ."', ";
-					$QryUpdatePlanet .= "`dearth_star` = `dearth_star` + '". $dearth_star ."', ";
-					$QryUpdatePlanet .= "`destructor` = `destructor` + '". $destructor ."', ";
-					$QryUpdatePlanet .= "`solar_satelit` = `solar_satelit` + '". $solar_satelit ."', ";
-					$QryUpdatePlanet .= "`bomber_ship` = `bomber_ship` + '". $bomber_ship ."', ";
-					$QryUpdatePlanet .= "`spy_sonde` = `spy_sonde` + '". $spy_sonde ."', ";
-					$QryUpdatePlanet .= "`recycler` = `recycler` + '". $recycler ."', ";
-					$QryUpdatePlanet .= "`colonizer` = `colonizer` + '". $colonizer ."', ";
-					$QryUpdatePlanet .= "`battle_ship` = `battle_ship` + '". $battle_ship ."', ";
-					$QryUpdatePlanet .= "`crusher` = `crusher` + '". $crusher ."', ";
-					$QryUpdatePlanet .= "`heavy_hunter` = `heavy_hunter` + '". $heavy_hunter ."', ";
-					$QryUpdatePlanet .= "`big_ship_cargo` = `big_ship_cargo` + '". $big_ship_cargo ."', ";
-					$QryUpdatePlanet .= "`light_hunter` = `light_hunter` + '". $light_hunter ."' ";
+					$QryUpdatePlanet .= "`small_ship_cargo` = `small_ship_cargo` + '".$small_ship_cargo."', ";
+					$QryUpdatePlanet .= "`battleship` = `battleship` + '".$battleship."', ";
+					$QryUpdatePlanet .= "`dearth_star` = `dearth_star` + '".$dearth_star."', ";
+					$QryUpdatePlanet .= "`destructor` = `destructor` + '".$destructor."', ";
+					$QryUpdatePlanet .= "`solar_satelit` = `solar_satelit` + '".$solar_satelit."', ";
+					$QryUpdatePlanet .= "`bomber_ship` = `bomber_ship` + '".$bomber_ship."', ";
+					$QryUpdatePlanet .= "`spy_sonde` = `spy_sonde` + '".$spy_sonde."', ";
+					$QryUpdatePlanet .= "`recycler` = `recycler` + '".$recycler."', ";
+					$QryUpdatePlanet .= "`colonizer` = `colonizer` + '".$colonizer."', ";
+					$QryUpdatePlanet .= "`battle_ship` = `battle_ship` + '".$battle_ship."', ";
+					$QryUpdatePlanet .= "`crusher` = `crusher` + '".$crusher."', ";
+					$QryUpdatePlanet .= "`heavy_hunter` = `heavy_hunter` + '".$heavy_hunter."', ";
+					$QryUpdatePlanet .= "`big_ship_cargo` = `big_ship_cargo` + '".$big_ship_cargo."', ";
+					$QryUpdatePlanet .= "`light_hunter` = `light_hunter` + '".$light_hunter."' ";
 					$QryUpdatePlanet .= "WHERE ";
-					$QryUpdatePlanet .= "`id` = '". $id ."' ";
+					$QryUpdatePlanet .= "`id` = '".$id."' ";
 					doquery($QryUpdatePlanet, "planets");
 
 					$Name	=	$lang['log_moree'];
@@ -153,22 +153,22 @@ switch ($_GET[page])
 				elseif ($_POST['delete'])
 				{
 					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-					$QryUpdatePlanet .= "`small_ship_cargo` = `small_ship_cargo` - '". $small_ship_cargo ."', ";
-					$QryUpdatePlanet .= "`battleship` = `battleship` - '". $battleship ."', ";
-					$QryUpdatePlanet .= "`dearth_star` = `dearth_star` - '". $dearth_star ."', ";
-					$QryUpdatePlanet .= "`destructor` = `destructor` - '". $destructor ."', ";
-					$QryUpdatePlanet .= "`solar_satelit` = `solar_satelit` - '". $solar_satelit ."', ";
-					$QryUpdatePlanet .= "`bomber_ship` = `bomber_ship` - '". $bomber_ship ."', ";
-					$QryUpdatePlanet .= "`spy_sonde` = `spy_sonde` - '". $spy_sonde ."', ";
-					$QryUpdatePlanet .= "`recycler` = `recycler` - '". $recycler ."', ";
-					$QryUpdatePlanet .= "`colonizer` = `colonizer` - '". $colonizer ."', ";
-					$QryUpdatePlanet .= "`battle_ship` = `battle_ship` - '". $battle_ship ."', ";
-					$QryUpdatePlanet .= "`crusher` = `crusher` - '". $crusher ."', ";
-					$QryUpdatePlanet .= "`heavy_hunter` = `heavy_hunter` - '". $heavy_hunter ."', ";
-					$QryUpdatePlanet .= "`big_ship_cargo` = `big_ship_cargo` - '". $big_ship_cargo ."', ";
-					$QryUpdatePlanet .= "`light_hunter` = `light_hunter` - '". $light_hunter ."' ";
+					$QryUpdatePlanet .= "`small_ship_cargo` = `small_ship_cargo` - '".$small_ship_cargo."', ";
+					$QryUpdatePlanet .= "`battleship` = `battleship` - '".$battleship."', ";
+					$QryUpdatePlanet .= "`dearth_star` = `dearth_star` - '".$dearth_star."', ";
+					$QryUpdatePlanet .= "`destructor` = `destructor` - '".$destructor."', ";
+					$QryUpdatePlanet .= "`solar_satelit` = `solar_satelit` - '".$solar_satelit."', ";
+					$QryUpdatePlanet .= "`bomber_ship` = `bomber_ship` - '".$bomber_ship."', ";
+					$QryUpdatePlanet .= "`spy_sonde` = `spy_sonde` - '".$spy_sonde."', ";
+					$QryUpdatePlanet .= "`recycler` = `recycler` - '".$recycler."', ";
+					$QryUpdatePlanet .= "`colonizer` = `colonizer` - '".$colonizer."', ";
+					$QryUpdatePlanet .= "`battle_ship` = `battle_ship` - '".$battle_ship."', ";
+					$QryUpdatePlanet .= "`crusher` = `crusher` - '".$crusher."', ";
+					$QryUpdatePlanet .= "`heavy_hunter` = `heavy_hunter` - '".$heavy_hunter."', ";
+					$QryUpdatePlanet .= "`big_ship_cargo` = `big_ship_cargo` - '".$big_ship_cargo."', ";
+					$QryUpdatePlanet .= "`light_hunter` = `light_hunter` - '".$light_hunter."' ";
 					$QryUpdatePlanet .= "WHERE ";
-					$QryUpdatePlanet .= "`id` = '". $id ."' ";
+					$QryUpdatePlanet .= "`id` = '".$id."' ";
 					doquery($QryUpdatePlanet, "planets");
 
 					$Name	=	$lang['log_nomoree'];
@@ -203,7 +203,7 @@ switch ($_GET[page])
 			}
 		}
 
-		display (parsetemplate(gettemplate("adm/EditorTPL/ShipsBody"), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate("adm/EditorTPL/ShipsBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case'defenses':
@@ -228,18 +228,18 @@ switch ($_GET[page])
 				if ($_POST['add'])
 				{
 					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-					$QryUpdatePlanet .= "`misil_launcher` = `misil_launcher` + '". $misil_launcher ."', ";
-					$QryUpdatePlanet .= "`small_laser` = `small_laser` + '". $small_laser ."', ";
-					$QryUpdatePlanet .= "`big_laser` = `big_laser` + '". $big_laser ."', ";
-					$QryUpdatePlanet .= "`gauss_canyon` = `gauss_canyon` + '". $gauss_canyon ."', ";
-					$QryUpdatePlanet .= "`ionic_canyon` = `ionic_canyon` + '". $ionic_canyon ."', ";
-					$QryUpdatePlanet .= "`buster_canyon` = `buster_canyon` + '". $buster_canyon ."', ";
-					$QryUpdatePlanet .= "`small_protection_shield` = `small_protection_shield` + '". $small_protection_shield ."', ";
-					$QryUpdatePlanet .= "`big_protection_shield` = `big_protection_shield` + '". $big_protection_shield ."', ";
-					$QryUpdatePlanet .= "`interceptor_misil` = `interceptor_misil` + '". $interceptor_misil ."', ";
-					$QryUpdatePlanet .= "`interplanetary_misil` = `interplanetary_misil` + '". $interplanetary_misil ."' ";
+					$QryUpdatePlanet .= "`misil_launcher` = `misil_launcher` + '".$misil_launcher."', ";
+					$QryUpdatePlanet .= "`small_laser` = `small_laser` + '".$small_laser."', ";
+					$QryUpdatePlanet .= "`big_laser` = `big_laser` + '".$big_laser."', ";
+					$QryUpdatePlanet .= "`gauss_canyon` = `gauss_canyon` + '".$gauss_canyon."', ";
+					$QryUpdatePlanet .= "`ionic_canyon` = `ionic_canyon` + '".$ionic_canyon."', ";
+					$QryUpdatePlanet .= "`buster_canyon` = `buster_canyon` + '".$buster_canyon."', ";
+					$QryUpdatePlanet .= "`small_protection_shield` = `small_protection_shield` + '".$small_protection_shield."', ";
+					$QryUpdatePlanet .= "`big_protection_shield` = `big_protection_shield` + '".$big_protection_shield."', ";
+					$QryUpdatePlanet .= "`interceptor_misil` = `interceptor_misil` + '".$interceptor_misil."', ";
+					$QryUpdatePlanet .= "`interplanetary_misil` = `interplanetary_misil` + '".$interplanetary_misil."' ";
 					$QryUpdatePlanet .= "WHERE ";
-					$QryUpdatePlanet .= "`id` = '". $id ."' ";
+					$QryUpdatePlanet .= "`id` = '".$id."' ";
 					doquery($QryUpdatePlanet, "planets");
 
 					$Name	=	$lang['log_moree'];
@@ -248,18 +248,18 @@ switch ($_GET[page])
 				elseif ($_POST['delete'])
 				{
 					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-					$QryUpdatePlanet .= "`misil_launcher` = `misil_launcher` - '". $misil_launcher ."', ";
-					$QryUpdatePlanet .= "`small_laser` = `small_laser` - '". $small_laser ."', ";
-					$QryUpdatePlanet .= "`big_laser` = `big_laser` - '". $big_laser ."', ";
-					$QryUpdatePlanet .= "`gauss_canyon` = `gauss_canyon` - '". $gauss_canyon ."', ";
-					$QryUpdatePlanet .= "`ionic_canyon` = `ionic_canyon` - '". $ionic_canyon ."', ";
-					$QryUpdatePlanet .= "`buster_canyon` = `buster_canyon` - '". $buster_canyon ."', ";
-					$QryUpdatePlanet .= "`small_protection_shield` = `small_protection_shield` - '". $small_protection_shield ."', ";
-					$QryUpdatePlanet .= "`big_protection_shield` = `big_protection_shield` - '". $big_protection_shield ."', ";
-					$QryUpdatePlanet .= "`interceptor_misil` = `interceptor_misil` - '". $interceptor_misil ."', ";
-					$QryUpdatePlanet .= "`interplanetary_misil` = `interplanetary_misil` - '". $interplanetary_misil ."' ";
+					$QryUpdatePlanet .= "`misil_launcher` = `misil_launcher` - '".$misil_launcher."', ";
+					$QryUpdatePlanet .= "`small_laser` = `small_laser` - '".$small_laser."', ";
+					$QryUpdatePlanet .= "`big_laser` = `big_laser` - '".$big_laser."', ";
+					$QryUpdatePlanet .= "`gauss_canyon` = `gauss_canyon` - '".$gauss_canyon."', ";
+					$QryUpdatePlanet .= "`ionic_canyon` = `ionic_canyon` - '".$ionic_canyon."', ";
+					$QryUpdatePlanet .= "`buster_canyon` = `buster_canyon` - '".$buster_canyon."', ";
+					$QryUpdatePlanet .= "`small_protection_shield` = `small_protection_shield` - '".$small_protection_shield."', ";
+					$QryUpdatePlanet .= "`big_protection_shield` = `big_protection_shield` - '".$big_protection_shield."', ";
+					$QryUpdatePlanet .= "`interceptor_misil` = `interceptor_misil` - '".$interceptor_misil."', ";
+					$QryUpdatePlanet .= "`interplanetary_misil` = `interplanetary_misil` - '".$interplanetary_misil."' ";
 					$QryUpdatePlanet .= "WHERE ";
-					$QryUpdatePlanet .= "`id` = '". $id ."' ";
+					$QryUpdatePlanet .= "`id` = '".$id."' ";
 					doquery($QryUpdatePlanet, "planets");
 
 					$Name	=	$lang['log_nomoree'];
@@ -290,7 +290,7 @@ switch ($_GET[page])
 			}
 		}
 
-		display (parsetemplate(gettemplate("adm/EditorTPL/DefensesBody"), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate("adm/EditorTPL/DefensesBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case'buildings':
@@ -327,23 +327,23 @@ switch ($_GET[page])
 				if ($_POST['add'])
 				{
 					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-					$QryUpdatePlanet .= "`metal_mine` = `metal_mine` + '". $metal_mine ."', ";
-					$QryUpdatePlanet .= "`crystal_mine` = `crystal_mine` + '". $crystal_mine ."', ";
-					$QryUpdatePlanet .= "`deuterium_sintetizer` = `deuterium_sintetizer` + '". $deuterium_sintetizer ."', ";
-					$QryUpdatePlanet .= "`solar_plant` = `solar_plant` + '". $solar_plant ."', ";
-					$QryUpdatePlanet .= "`fusion_plant` = `fusion_plant` + '". $fusion_plant ."', ";
-					$QryUpdatePlanet .= "`robot_factory` = `robot_factory` + '". $robot_factory ."', ";
-					$QryUpdatePlanet .= "`nano_factory` = `nano_factory` + '". $nano_factory ."', ";
-					$QryUpdatePlanet .= "`hangar` = `hangar` + '". $hangar ."', ";
-					$QryUpdatePlanet .= "`metal_store` = `metal_store` + '". $metal_store ."', ";
-					$QryUpdatePlanet .= "`crystal_store` = `crystal_store` + '". $crystal_store ."', ";
-					$QryUpdatePlanet .= "`deuterium_store` = `deuterium_store` + '". $deuterium_store ."', ";
-					$QryUpdatePlanet .= "`laboratory` = `laboratory` + '". $laboratory ."', ";
-					$QryUpdatePlanet .= "`terraformer` = `terraformer` + '". $terraformer ."', ";
-					$QryUpdatePlanet .= "`ally_deposit` = `ally_deposit` + '". $ally_deposit ."', ";
-					$QryUpdatePlanet .= "`silo` = `silo` + '". $silo ."' ";
+					$QryUpdatePlanet .= "`metal_mine` = `metal_mine` + '".$metal_mine."', ";
+					$QryUpdatePlanet .= "`crystal_mine` = `crystal_mine` + '".$crystal_mine."', ";
+					$QryUpdatePlanet .= "`deuterium_sintetizer` = `deuterium_sintetizer` + '".$deuterium_sintetizer."', ";
+					$QryUpdatePlanet .= "`solar_plant` = `solar_plant` + '".$solar_plant."', ";
+					$QryUpdatePlanet .= "`fusion_plant` = `fusion_plant` + '".$fusion_plant."', ";
+					$QryUpdatePlanet .= "`robot_factory` = `robot_factory` + '".$robot_factory."', ";
+					$QryUpdatePlanet .= "`nano_factory` = `nano_factory` + '".$nano_factory."', ";
+					$QryUpdatePlanet .= "`hangar` = `hangar` + '".$hangar."', ";
+					$QryUpdatePlanet .= "`metal_store` = `metal_store` + '".$metal_store."', ";
+					$QryUpdatePlanet .= "`crystal_store` = `crystal_store` + '".$crystal_store."', ";
+					$QryUpdatePlanet .= "`deuterium_store` = `deuterium_store` + '".$deuterium_store."', ";
+					$QryUpdatePlanet .= "`laboratory` = `laboratory` + '".$laboratory."', ";
+					$QryUpdatePlanet .= "`terraformer` = `terraformer` + '".$terraformer."', ";
+					$QryUpdatePlanet .= "`ally_deposit` = `ally_deposit` + '".$ally_deposit."', ";
+					$QryUpdatePlanet .= "`silo` = `silo` + '".$silo."' ";
 					$QryUpdatePlanet .= "WHERE ";
-					$QryUpdatePlanet .= "`id` = '". $id ."' ";
+					$QryUpdatePlanet .= "`id` = '".$id."' ";
 					doquery($QryUpdatePlanet, "planets");
 
 					if ($mondbasis or $phalanx or $sprungtor)
@@ -351,11 +351,11 @@ switch ($_GET[page])
 						if ($QueryFind['planet_type']	==	'3')
 						{
 							$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-							$QryUpdatePlanet .= "`mondbasis` = `mondbasis` + '". $mondbasis ."', ";
-							$QryUpdatePlanet .= "`phalanx` = `phalanx` + '". $phalanx ."', ";
-							$QryUpdatePlanet .= "`sprungtor` = `sprungtor` + '". $sprungtor ."' ";
+							$QryUpdatePlanet .= "`mondbasis` = `mondbasis` + '".$mondbasis."', ";
+							$QryUpdatePlanet .= "`phalanx` = `phalanx` + '".$phalanx."', ";
+							$QryUpdatePlanet .= "`sprungtor` = `sprungtor` + '".$sprungtor."' ";
 							$QryUpdatePlanet .= "WHERE ";
-							$QryUpdatePlanet .= "`id` = '". $id ."' ";
+							$QryUpdatePlanet .= "`id` = '".$id."' ";
 							doquery($QryUpdatePlanet, "planets");
 
 							if ($mondbasis > 0)
@@ -363,10 +363,10 @@ switch ($_GET[page])
 								$Sum	=	$mondbasis * FIELDS_BY_MOONBASIS_LEVEL;
 								//doquery("UPDATE {{table}} SET `field_max` = field_max + '".$Sum."', `field_current` = field_current + '".$mondbasis."'", "planets");
 								// FIX START BY alivan
-								//doquery("UPDATE {{table}} SET `field_max` = field_max '".$Sum."', `field_current` = field_current '".$mondbasis."' WHERE `id` = '". $id ."'", "planets");
+								//doquery("UPDATE {{table}} SET `field_max` = field_max '".$Sum."', `field_current` = field_current '".$mondbasis."' WHERE `id` = '".$id."'", "planets");
 								// FIX END BY alivan
 								//fix by jstar lol
-								doquery("UPDATE {{table}} SET `field_max` = field_max + '".$Sum."', `field_current` = field_current + '".$mondbasis."' WHERE `id` = '". $id ."'", "planets");
+								doquery("UPDATE {{table}} SET `field_max` = field_max + '".$Sum."', `field_current` = field_current + '".$mondbasis."' WHERE `id` = '".$id."'", "planets");
 							}
 						}
 						else
@@ -381,23 +381,23 @@ switch ($_GET[page])
 				elseif ($_POST['delete'])
 				{
 					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-					$QryUpdatePlanet .= "`metal_mine` = `metal_mine` - '". $metal_mine ."', ";
-					$QryUpdatePlanet .= "`crystal_mine` = `crystal_mine` - '". $crystal_mine ."', ";
-					$QryUpdatePlanet .= "`deuterium_sintetizer` = `deuterium_sintetizer` - '". $deuterium_sintetizer ."', ";
-					$QryUpdatePlanet .= "`solar_plant` = `solar_plant` - '". $solar_plant ."', ";
-					$QryUpdatePlanet .= "`fusion_plant` = `fusion_plant` - '". $fusion_plant ."', ";
-					$QryUpdatePlanet .= "`robot_factory` = `robot_factory` - '". $robot_factory ."', ";
-					$QryUpdatePlanet .= "`nano_factory` = `nano_factory` - '". $nano_factory ."', ";
-					$QryUpdatePlanet .= "`hangar` = `hangar` - '". $hangar ."', ";
-					$QryUpdatePlanet .= "`metal_store` = `metal_store` - '". $metal_store ."', ";
-					$QryUpdatePlanet .= "`crystal_store` = `crystal_store` - '". $crystal_store ."', ";
-					$QryUpdatePlanet .= "`deuterium_store` = `deuterium_store` - '". $deuterium_store ."', ";
-					$QryUpdatePlanet .= "`laboratory` = `laboratory` - '". $laboratory ."', ";
-					$QryUpdatePlanet .= "`terraformer` = `terraformer` - '". $terraformer ."', ";
-					$QryUpdatePlanet .= "`ally_deposit` = `ally_deposit` - '". $ally_deposit ."', ";
-					$QryUpdatePlanet .= "`silo` = `silo` - '". $silo ."' ";
+					$QryUpdatePlanet .= "`metal_mine` = `metal_mine` - '".$metal_mine."', ";
+					$QryUpdatePlanet .= "`crystal_mine` = `crystal_mine` - '".$crystal_mine."', ";
+					$QryUpdatePlanet .= "`deuterium_sintetizer` = `deuterium_sintetizer` - '".$deuterium_sintetizer."', ";
+					$QryUpdatePlanet .= "`solar_plant` = `solar_plant` - '".$solar_plant."', ";
+					$QryUpdatePlanet .= "`fusion_plant` = `fusion_plant` - '".$fusion_plant."', ";
+					$QryUpdatePlanet .= "`robot_factory` = `robot_factory` - '".$robot_factory."', ";
+					$QryUpdatePlanet .= "`nano_factory` = `nano_factory` - '".$nano_factory."', ";
+					$QryUpdatePlanet .= "`hangar` = `hangar` - '".$hangar."', ";
+					$QryUpdatePlanet .= "`metal_store` = `metal_store` - '".$metal_store."', ";
+					$QryUpdatePlanet .= "`crystal_store` = `crystal_store` - '".$crystal_store."', ";
+					$QryUpdatePlanet .= "`deuterium_store` = `deuterium_store` - '".$deuterium_store."', ";
+					$QryUpdatePlanet .= "`laboratory` = `laboratory` - '".$laboratory."', ";
+					$QryUpdatePlanet .= "`terraformer` = `terraformer` - '".$terraformer."', ";
+					$QryUpdatePlanet .= "`ally_deposit` = `ally_deposit` - '".$ally_deposit."', ";
+					$QryUpdatePlanet .= "`silo` = `silo` - '".$silo."' ";
 					$QryUpdatePlanet .= "WHERE ";
-					$QryUpdatePlanet .= "`id` = '". $id ."' ";
+					$QryUpdatePlanet .= "`id` = '".$id."' ";
 					doquery($QryUpdatePlanet, "planets");
 
 
@@ -408,11 +408,11 @@ switch ($_GET[page])
 							$QryUpdatePlanet  = "UPDATE {{table}} SET ";
 
 
-							$QryUpdatePlanet .= "`mondbasis` = `mondbasis` - '". $mondbasis ."', ";
-							$QryUpdatePlanet .= "`phalanx` = `phalanx` - '". $phalanx ."', ";
-							$QryUpdatePlanet .= "`sprungtor` = `sprungtor` - '". $sprungtor ."' ";
+							$QryUpdatePlanet .= "`mondbasis` = `mondbasis` - '".$mondbasis."', ";
+							$QryUpdatePlanet .= "`phalanx` = `phalanx` - '".$phalanx."', ";
+							$QryUpdatePlanet .= "`sprungtor` = `sprungtor` - '".$sprungtor."' ";
 							$QryUpdatePlanet .= "WHERE ";
-							$QryUpdatePlanet .= "`id` = '". $id ."' ";
+							$QryUpdatePlanet .= "`id` = '".$id."' ";
 							doquery($QryUpdatePlanet, "planets");
 
 							if ($mondbasis > 0)
@@ -420,10 +420,10 @@ switch ($_GET[page])
 								$Sum	=	$mondbasis * FIELDS_BY_MOONBASIS_LEVEL;
 								//doquery("UPDATE {{table}} SET `field_max` = field_max - '".$Sum."', `field_current` = field_current - '".$mondbasis."'", "planets");
 								// FIX START BY alivan
-								//doquery("UPDATE {{table}} SET `field_max` = field_max - '".$Sum."', `field_current` = field_current - '".$mondbasis."' WHERE `id` = '". $id ."'", "planets");
+								//doquery("UPDATE {{table}} SET `field_max` = field_max - '".$Sum."', `field_current` = field_current - '".$mondbasis."' WHERE `id` = '".$id."'", "planets");
 								// FIX END BY alivan
 								//fix by jstar
-								doquery("UPDATE {{table}} SET `field_max` = field_max - '".$Sum."', `field_current` = field_current - '".$mondbasis."' WHERE `id` = '". $id ."'", "planets");
+								doquery("UPDATE {{table}} SET `field_max` = field_max - '".$Sum."', `field_current` = field_current - '".$mondbasis."' WHERE `id` = '".$id."'", "planets");
 							}
 						}
 						else
@@ -469,7 +469,7 @@ switch ($_GET[page])
 			}
 		}
 
-		display (parsetemplate(gettemplate("adm/EditorTPL/BuildingsBody"), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate("adm/EditorTPL/BuildingsBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case'researchs':
@@ -502,24 +502,24 @@ switch ($_GET[page])
 				if ($_POST['add'])
 				{
 					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-					$QryUpdatePlanet .= "`spy_tech` = `spy_tech` + '". $spy_tech ."', ";
-					$QryUpdatePlanet .= "`computer_tech` = `computer_tech` + '". $computer_tech ."', ";
-					$QryUpdatePlanet .= "`military_tech` = `military_tech` + '". $military_tech ."', ";
-					$QryUpdatePlanet .= "`defence_tech` = `defence_tech` + '". $defence_tech ."', ";
-					$QryUpdatePlanet .= "`shield_tech` = `shield_tech` + '". $shield_tech ."', ";
-					$QryUpdatePlanet .= "`energy_tech` = `energy_tech` + '". $energy_tech ."', ";
-					$QryUpdatePlanet .= "`hyperspace_tech` = `hyperspace_tech` + '". $hyperspace_tech ."', ";
-					$QryUpdatePlanet .= "`combustion_tech` = `combustion_tech` + '". $combustion_tech ."', ";
-					$QryUpdatePlanet .= "`impulse_motor_tech` = `impulse_motor_tech` + '". $impulse_motor_tech ."', ";
-					$QryUpdatePlanet .= "`hyperspace_motor_tech` = `hyperspace_motor_tech` + '". $hyperspace_motor_tech ."', ";
-					$QryUpdatePlanet .= "`laser_tech` = `laser_tech` + '". $laser_tech ."', ";
-					$QryUpdatePlanet .= "`ionic_tech` = `ionic_tech` + '". $ionic_tech ."', ";
-					$QryUpdatePlanet .= "`buster_tech` = `buster_tech` + '". $buster_tech ."', ";
-					$QryUpdatePlanet .= "`intergalactic_tech` = `intergalactic_tech` + '". $intergalactic_tech ."', ";
-					$QryUpdatePlanet .= "`expedition_tech` = `expedition_tech` + '". $expedition_tech ."', ";
-					$QryUpdatePlanet .= "`graviton_tech` = `graviton_tech` + '". $graviton_tech ."' ";
+					$QryUpdatePlanet .= "`spy_tech` = `spy_tech` + '".$spy_tech."', ";
+					$QryUpdatePlanet .= "`computer_tech` = `computer_tech` + '".$computer_tech."', ";
+					$QryUpdatePlanet .= "`military_tech` = `military_tech` + '".$military_tech."', ";
+					$QryUpdatePlanet .= "`defence_tech` = `defence_tech` + '".$defence_tech."', ";
+					$QryUpdatePlanet .= "`shield_tech` = `shield_tech` + '".$shield_tech."', ";
+					$QryUpdatePlanet .= "`energy_tech` = `energy_tech` + '".$energy_tech."', ";
+					$QryUpdatePlanet .= "`hyperspace_tech` = `hyperspace_tech` + '".$hyperspace_tech."', ";
+					$QryUpdatePlanet .= "`combustion_tech` = `combustion_tech` + '".$combustion_tech."', ";
+					$QryUpdatePlanet .= "`impulse_motor_tech` = `impulse_motor_tech` + '".$impulse_motor_tech."', ";
+					$QryUpdatePlanet .= "`hyperspace_motor_tech` = `hyperspace_motor_tech` + '".$hyperspace_motor_tech."', ";
+					$QryUpdatePlanet .= "`laser_tech` = `laser_tech` + '".$laser_tech."', ";
+					$QryUpdatePlanet .= "`ionic_tech` = `ionic_tech` + '".$ionic_tech."', ";
+					$QryUpdatePlanet .= "`buster_tech` = `buster_tech` + '".$buster_tech."', ";
+					$QryUpdatePlanet .= "`intergalactic_tech` = `intergalactic_tech` + '".$intergalactic_tech."', ";
+					$QryUpdatePlanet .= "`expedition_tech` = `expedition_tech` + '".$expedition_tech."', ";
+					$QryUpdatePlanet .= "`graviton_tech` = `graviton_tech` + '".$graviton_tech."' ";
 					$QryUpdatePlanet .= "WHERE ";
-					$QryUpdatePlanet .= "`id` = '". $id ."' ";
+					$QryUpdatePlanet .= "`id` = '".$id."' ";
 					doquery($QryUpdatePlanet, "users");
 
 					$Name	=	$lang['log_moree'];
@@ -528,24 +528,24 @@ switch ($_GET[page])
 				elseif ($_POST['delete'])
 				{
 					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-					$QryUpdatePlanet .= "`spy_tech` = `spy_tech` - '". $spy_tech ."', ";
-					$QryUpdatePlanet .= "`computer_tech` = `computer_tech` - '". $computer_tech ."', ";
-					$QryUpdatePlanet .= "`military_tech` = `military_tech` - '". $military_tech ."', ";
-					$QryUpdatePlanet .= "`defence_tech` = `defence_tech` - '". $defence_tech ."', ";
-					$QryUpdatePlanet .= "`shield_tech` = `shield_tech` - '". $shield_tech ."', ";
-					$QryUpdatePlanet .= "`energy_tech` = `energy_tech` - '". $energy_tech ."', ";
-					$QryUpdatePlanet .= "`hyperspace_tech` = `hyperspace_tech` - '". $hyperspace_tech ."', ";
-					$QryUpdatePlanet .= "`combustion_tech` = `combustion_tech` - '". $combustion_tech ."', ";
-					$QryUpdatePlanet .= "`impulse_motor_tech` = `impulse_motor_tech` - '". $impulse_motor_tech ."', ";
-					$QryUpdatePlanet .= "`hyperspace_motor_tech` = `hyperspace_motor_tech` - '". $hyperspace_motor_tech ."', ";
-					$QryUpdatePlanet .= "`laser_tech` = `laser_tech` - '". $laser_tech ."', ";
-					$QryUpdatePlanet .= "`ionic_tech` = `ionic_tech` - '". $ionic_tech ."', ";
-					$QryUpdatePlanet .= "`buster_tech` = `buster_tech` - '". $buster_tech ."', ";
-					$QryUpdatePlanet .= "`intergalactic_tech` = `intergalactic_tech` - '". $intergalactic_tech ."', ";
-					$QryUpdatePlanet .= "`expedition_tech` = `expedition_tech` - '". $expedition_tech ."', ";
-					$QryUpdatePlanet .= "`graviton_tech` = `graviton_tech` - '". $graviton_tech ."' ";
+					$QryUpdatePlanet .= "`spy_tech` = `spy_tech` - '".$spy_tech."', ";
+					$QryUpdatePlanet .= "`computer_tech` = `computer_tech` - '".$computer_tech."', ";
+					$QryUpdatePlanet .= "`military_tech` = `military_tech` - '".$military_tech."', ";
+					$QryUpdatePlanet .= "`defence_tech` = `defence_tech` - '".$defence_tech."', ";
+					$QryUpdatePlanet .= "`shield_tech` = `shield_tech` - '".$shield_tech."', ";
+					$QryUpdatePlanet .= "`energy_tech` = `energy_tech` - '".$energy_tech."', ";
+					$QryUpdatePlanet .= "`hyperspace_tech` = `hyperspace_tech` - '".$hyperspace_tech."', ";
+					$QryUpdatePlanet .= "`combustion_tech` = `combustion_tech` - '".$combustion_tech."', ";
+					$QryUpdatePlanet .= "`impulse_motor_tech` = `impulse_motor_tech` - '".$impulse_motor_tech."', ";
+					$QryUpdatePlanet .= "`hyperspace_motor_tech` = `hyperspace_motor_tech` - '".$hyperspace_motor_tech."', ";
+					$QryUpdatePlanet .= "`laser_tech` = `laser_tech` - '".$laser_tech."', ";
+					$QryUpdatePlanet .= "`ionic_tech` = `ionic_tech` - '".$ionic_tech."', ";
+					$QryUpdatePlanet .= "`buster_tech` = `buster_tech` - '".$buster_tech."', ";
+					$QryUpdatePlanet .= "`intergalactic_tech` = `intergalactic_tech` - '".$intergalactic_tech."', ";
+					$QryUpdatePlanet .= "`expedition_tech` = `expedition_tech` - '".$expedition_tech."', ";
+					$QryUpdatePlanet .= "`graviton_tech` = `graviton_tech` - '".$graviton_tech."' ";
 					$QryUpdatePlanet .= "WHERE ";
-					$QryUpdatePlanet .= "`id` = '". $id ."' ";
+					$QryUpdatePlanet .= "`id` = '".$id."' ";
 					doquery($QryUpdatePlanet, "users");
 
 					$Name	=	$lang['log_nomoree'];
@@ -582,7 +582,7 @@ switch ($_GET[page])
 			}
 		}
 
-		display (parsetemplate(gettemplate("adm/EditorTPL/ResearchBody"), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate("adm/EditorTPL/ResearchBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case 'personal':
@@ -592,7 +592,7 @@ switch ($_GET[page])
 		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
 			if ($user['authlevel'] != 3 && $_POST['username'] != NULL && $_POST['password'] != NULL && $_POST['email_2'] != NULL &&
-				$_POST['email'] != NULL ) die();
+				$_POST['email'] != NULL) die();
 
 			if ( ! $_POST['id'])
 			{
@@ -655,7 +655,7 @@ switch ($_GET[page])
 				$parse['display']    =    '<tr><th colspan="3"><font color=lime>'.$lang['ad_personal_succes'].'</font></th></tr>';
 			}
 		}
-		display (parsetemplate(gettemplate("adm/EditorTPL/PersonalBody"), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate("adm/EditorTPL/PersonalBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case'officiers':
@@ -673,12 +673,12 @@ switch ($_GET[page])
 				if ($_POST['add'])
 				{
 					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-					$QryUpdatePlanet .= "`rpg_geologue` = `rpg_geologue` + '". $rpg_geologue ."', ";
-					$QryUpdatePlanet .= "`rpg_amiral` = `rpg_amiral` + '". $rpg_amiral ."', ";
-					$QryUpdatePlanet .= "`rpg_ingenieur` = `rpg_ingenieur` + '". $rpg_ingenieur ."', ";
-					$QryUpdatePlanet .= "`rpg_technocrate` = `rpg_technocrate` + '". $rpg_technocrate ."' ";
+					$QryUpdatePlanet .= "`rpg_geologue` = `rpg_geologue` + '".$rpg_geologue."', ";
+					$QryUpdatePlanet .= "`rpg_amiral` = `rpg_amiral` + '".$rpg_amiral."', ";
+					$QryUpdatePlanet .= "`rpg_ingenieur` = `rpg_ingenieur` + '".$rpg_ingenieur."', ";
+					$QryUpdatePlanet .= "`rpg_technocrate` = `rpg_technocrate` + '".$rpg_technocrate."' ";
 					$QryUpdatePlanet .= "WHERE ";
-					$QryUpdatePlanet .= "`id` = '". $id ."' ";
+					$QryUpdatePlanet .= "`id` = '".$id."' ";
 					doquery($QryUpdatePlanet, "users");
 
 					$Name	=	$lang['log_moree'];
@@ -687,12 +687,12 @@ switch ($_GET[page])
 				elseif ($_POST['delete'])
 				{
 					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-					$QryUpdatePlanet .= "`rpg_geologue` = `rpg_geologue` - '". $rpg_geologue ."', ";
-					$QryUpdatePlanet .= "`rpg_amiral` = `rpg_amiral` - '". $rpg_amiral ."', ";
-					$QryUpdatePlanet .= "`rpg_ingenieur` = `rpg_ingenieur` - '". $rpg_ingenieur ."', ";
-					$QryUpdatePlanet .= "`rpg_technocrate` = `rpg_technocrate` - '". $rpg_technocrate ."' ";
+					$QryUpdatePlanet .= "`rpg_geologue` = `rpg_geologue` - '".$rpg_geologue."', ";
+					$QryUpdatePlanet .= "`rpg_amiral` = `rpg_amiral` - '".$rpg_amiral."', ";
+					$QryUpdatePlanet .= "`rpg_ingenieur` = `rpg_ingenieur` - '".$rpg_ingenieur."', ";
+					$QryUpdatePlanet .= "`rpg_technocrate` = `rpg_technocrate` - '".$rpg_technocrate."' ";
 					$QryUpdatePlanet .= "WHERE ";
-					$QryUpdatePlanet .= "`id` = '". $id ."' ";
+					$QryUpdatePlanet .= "`id` = '".$id."' ";
 					doquery($QryUpdatePlanet, "users");
 
 					$Name	=	$lang['log_nomoree'];
@@ -717,7 +717,7 @@ switch ($_GET[page])
 			}
 		}
 
-		display (parsetemplate(gettemplate("adm/EditorTPL/OfficiersBody"), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate("adm/EditorTPL/OfficiersBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case 'planets':
@@ -801,7 +801,7 @@ switch ($_GET[page])
 						if (is_numeric($galaxy) && is_numeric($system) && is_numeric($planet) && $galaxy > 0 && $system > 0 && $planet > 0 &&
 							$galaxy <= MAX_GALAXY_IN_WORLD && $system <= MAX_SYSTEM_IN_GALAXY && $planet <= MAX_PLANET_IN_SYSTEM)
 						{
-							$Queryyy	=	doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' AND `system` = '".$system."' AND
+							$Queryyy	=	doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' && `system` = '".$system."' &&
 											`planet` = '".$planet."'", "galaxy", TRUE);
 
 							if ($P['planet_type'] == '1')
@@ -810,14 +810,14 @@ switch ($_GET[page])
 								{
 									if ($Queryyy['id_luna'] != '0')
 									{
-										doquery ("UPDATE {{table}} SET `galaxy` = '".$galaxy."', `system` = '".$system."', `planet` = '".$planet."' WHERE
-										`galaxy` = '".$P['galaxy']."' AND `system` = '".$P['system']."' AND `planet` = '".$P['planet']."' AND `planet_type` = '3'", "planets");
+										doquery("UPDATE {{table}} SET `galaxy` = '".$galaxy."', `system` = '".$system."', `planet` = '".$planet."' WHERE
+										`galaxy` = '".$P['galaxy']."' && `system` = '".$P['system']."' && `planet` = '".$P['planet']."' && `planet_type` = '3'", "planets");
 									}
 
-									doquery ("UPDATE {{table}} SET `galaxy` = '".$galaxy."', `system` = '".$system."', `planet` = '".$planet."' WHERE
+									doquery("UPDATE {{table}} SET `galaxy` = '".$galaxy."', `system` = '".$system."', `planet` = '".$planet."' WHERE
 										`id` = '".$id."'", "planets");
 
-									doquery ("UPDATE {{table}} SET `galaxy` = '".$galaxy."', `system` = '".$system."', `planet` = '".$planet."' WHERE
+									doquery("UPDATE {{table}} SET `galaxy` = '".$galaxy."', `system` = '".$system."', `planet` = '".$planet."' WHERE
 										`id_planet` = '".$id."'", "galaxy");
 
 									$Name	=	$lang['log_planet_pos'];
@@ -833,17 +833,17 @@ switch ($_GET[page])
 								{
 									if ($Queryyy['id_luna'] == '0')
 									{
-										doquery ("UPDATE {{table}} SET `id_luna` = '0' WHERE `galaxy` = '".$P['galaxy']."' AND `system` = '".$P['system']."' AND
+										doquery("UPDATE {{table}} SET `id_luna` = '0' WHERE `galaxy` = '".$P['galaxy']."' && `system` = '".$P['system']."' &&
 											`planet` = '".$P['planet']."'", "galaxy");
 
-										doquery ("UPDATE {{table}} SET `galaxy` = '".$galaxy."', `system` = '".$system."', `planet` = '".$planet."',
+										doquery("UPDATE {{table}} SET `galaxy` = '".$galaxy."', `system` = '".$system."', `planet` = '".$planet."',
 										`id_luna` = '".$id."' WHERE `id_planet` = '".$Queryyy['id_planet']."'", "galaxy");
 
-										$QMOON2	=	doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' AND `system` = '".$system."' AND
+										$QMOON2	=	doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' && `system` = '".$system."' &&
 										`planet` = '".$planet."'", "planets", TRUE);
 
-										doquery ("UPDATE {{table}} SET `galaxy` = '".$galaxy."', `system` = '".$system."', `planet` = '".$planet."',
-										`id_owner` = '".$QMOON2['id_owner']."', `id_level` = '".$QMOON2['id_level']."' WHERE `id` = '".$id."' AND `planet_type` = '3'", "planets");
+										doquery("UPDATE {{table}} SET `galaxy` = '".$galaxy."', `system` = '".$system."', `planet` = '".$planet."',
+										`id_owner` = '".$QMOON2['id_owner']."', `id_level` = '".$QMOON2['id_level']."' WHERE `id` = '".$id."' && `planet_type` = '3'", "planets");
 										$Name	=	$lang['log_moon_pos'];
 									}
 									else
@@ -901,7 +901,7 @@ switch ($_GET[page])
 			}
 		}
 
-		display (parsetemplate(gettemplate("adm/EditorTPL/PlanetsMoonsBody"), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate("adm/EditorTPL/PlanetsMoonsBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case 'alliances':
@@ -969,7 +969,7 @@ switch ($_GET[page])
 					if ($QueryF3 && $delete_u != NULL){
 						doquery("UPDATE {{table}} SET `ally_members` = ally_members - 1 WHERE `id` = '".$id."'", "alliance");
 						doquery("UPDATE {{table}} SET `ally_id` = '0', `ally_name` = '', `ally_request` = '0', `ally_rank_id` = '0', `ally_register_time` = '0',
-							`ally_request` = '0' WHERE `id` = '".$delete_u."' AND `ally_id` = '".$id."'", "users");
+							`ally_request` = '0' WHERE `id` = '".$delete_u."' && `ally_id` = '".$id."'", "users");
 						$Log	.=	$lang['log_id_user_expu'].": ".$delete_u."\n";}
 					elseif ( ! $QueryF3 && $delete_u != NULL){
 						$Error	.=	'<tr><th colspan="3"><font color=red>'.$lang['ad_ally_not_exist2'].'</font></th></tr>';
@@ -996,7 +996,7 @@ switch ($_GET[page])
 			}
 		}
 
-		display (parsetemplate(gettemplate("adm/EditorTPL/AllianceBody"), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate("adm/EditorTPL/AllianceBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	default:

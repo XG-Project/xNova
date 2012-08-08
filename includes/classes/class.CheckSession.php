@@ -8,7 +8,7 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header ( 'location:../../'));
+if ( ! defined('INSIDE')) die(header('location:../../'));
 
 class CheckSession
 {
@@ -69,12 +69,12 @@ class CheckSession
 				setcookie ($game_cookie, $NextCookie, $ExpireTime, "/", "", 0);
 
 			$QryUpdateUser  = "UPDATE {{table}} SET ";
-			$QryUpdateUser .= "`onlinetime` = '". time() ."', ";
-			$QryUpdateUser .= "`current_page` = '". $db->real_escape_string(htmlspecialchars($_SERVER['REQUEST_URI'])) ."', ";
-			$QryUpdateUser .= "`user_lastip` = '". $db->real_escape_string(htmlspecialchars($_SERVER['REMOTE_ADDR'])) ."', ";
-			$QryUpdateUser .= "`user_agent` = '". $db->real_escape_string(htmlspecialchars($_SERVER['HTTP_USER_AGENT'])) ."' ";
+			$QryUpdateUser .= "`onlinetime` = '".time()."', ";
+			$QryUpdateUser .= "`current_page` = '".$db->real_escape_string(htmlspecialchars($_SERVER['REQUEST_URI']))."', ";
+			$QryUpdateUser .= "`user_lastip` = '".$db->real_escape_string(htmlspecialchars($_SERVER['REMOTE_ADDR']))."', ";
+			$QryUpdateUser .= "`user_agent` = '".$db->real_escape_string(htmlspecialchars($_SERVER['HTTP_USER_AGENT']))."' ";
 			$QryUpdateUser .= "WHERE ";
-			$QryUpdateUser .= "`id` = '". intval($TheCookie[0]) ."' LIMIT 1;";
+			$QryUpdateUser .= "`id` = '".intval($TheCookie[0])."' LIMIT 1;";
 			doquery($QryUpdateUser, 'users');
 
 			$IsUserChecked = TRUE;

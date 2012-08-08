@@ -15,7 +15,7 @@ define('XN_ROOT', './../');
 
 include(XN_ROOT.'global.php');
 
-if ($ToolsCanUse != 1) die(message ($lang['404_page']));
+if ($ToolsCanUse != 1) die(message($lang['404_page']));
 
 	$parse 	= $lang;
 
@@ -42,15 +42,15 @@ if ($ToolsCanUse != 1) die(message ($lang['404_page']));
 		{
 			$sq      	= doquery("SELECT `id`,`username` FROM {{table}}", "users");
 			$Time    	= time();
-			$From    	= "<font color=\"". $kolor ."\">". $ranga ." ".$user['username']."</font>";
-			$Subject 	= "<font color=\"". $kolor ."\">".$_POST['temat']."</font>";
-			$Message 	= "<font color=\"". $kolor ."\"><b>".$_POST['tresc']."</b></font>";
+			$From    	= "<font color=\"".$kolor."\">".$ranga." ".$user['username']."</font>";
+			$Subject 	= "<font color=\"".$kolor."\">".$_POST['temat']."</font>";
+			$Message 	= "<font color=\"".$kolor."\"><b>".$_POST['tresc']."</b></font>";
 			$summery	= 0;
 
 			while ($u = $sq->fetch_array())
 			{
-				SendSimpleMessage ($u['id'], $user['id'], $Time, 1, $From, $Subject, $Message);
-				$_POST['tresc'] = str_replace(":name:",$u['username'],$_POST['tresc']);
+				SendSimpleMessage($u['id'], $user['id'], $Time, 1, $From, $Subject, $Message);
+				$_POST['tresc'] = str_replace(":name:", $u['username'], $_POST['tresc']);
 			}
 
 

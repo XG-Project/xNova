@@ -8,7 +8,7 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location: ./../../"));
+if ( ! defined('INSIDE')) die(header("Location: ./../../"));
 
 class ShowOverviewPage
 {
@@ -22,7 +22,7 @@ class ShowOverviewPage
 
 		$FlyingFleetsTable = new FlyingFleetsTable();
 
-		$lunarow = doquery("SELECT * FROM {{table}} WHERE `id_owner` = '".intval($CurrentPlanet['id_owner'])."' AND `galaxy` = '".intval($CurrentPlanet['galaxy'])."' AND `system` = '".intval($CurrentPlanet['system'])."' AND  `planet` = '".intval($CurrentPlanet['planet'])."' AND `planet_type`='3'",'planets',TRUE);
+		$lunarow = doquery("SELECT * FROM {{table}} WHERE `id_owner` = '".intval($CurrentPlanet['id_owner'])."' && `galaxy` = '".intval($CurrentPlanet['galaxy'])."' && `system` = '".intval($CurrentPlanet['system'])."' &&  `planet` = '".intval($CurrentPlanet['planet'])."' && `planet_type`='3'",'planets',TRUE);
 
 		if (empty($lunarow))
 		{
@@ -49,7 +49,7 @@ class ShowOverviewPage
 				{
 					$newname = $db->real_escape_string(strip_tags(trim($_POST['newname'])));
 
-					if (preg_match("/[^A-z0-9_\- ]/",$newname) == 1)
+					if (preg_match("/[^A-z0-9_\-]/", $newname) == 1)
 					{
 						message($lang['ov_newname_error'],"game.php?page=overview&mode=renameplanet",2);
 					}
@@ -60,11 +60,11 @@ class ShowOverviewPage
 				}
 				elseif (isset($_POST['action']) && $_POST['action'] == $lang['ov_abandon_planet'])
 				{
-					return display(parsetemplate(gettemplate('overview/overview_deleteplanet'),$parse));
+					return display(parsetemplate(gettemplate('overview/overview_deleteplanet'), $parse));
 				}
 				elseif (isset($_POST['kolonieloeschen']) && isset($_POST['deleteid']) && intval($_POST['kolonieloeschen']) == 1 && intval($_POST['deleteid']) == $CurrentUser['current_planet'])
 				{
-					$filokontrol = doquery("SELECT * FROM {{table}} WHERE fleet_owner = '".intval($CurrentUser['id'])."' AND fleet_start_galaxy='".intval($CurrentPlanet['galaxy'])."' AND fleet_start_system='".intval($CurrentPlanet['system'])."' AND fleet_start_planet='".intval($CurrentPlanet['planet'])."'",'fleets');
+					$filokontrol = doquery("SELECT * FROM {{table}} WHERE fleet_owner = '".intval($CurrentUser['id'])."' && fleet_start_galaxy='".intval($CurrentPlanet['galaxy'])."' && fleet_start_system='".intval($CurrentPlanet['system'])."' && fleet_start_planet='".intval($CurrentPlanet['planet'])."'",'fleets');
 
 					while ($satir = $filokontrol->fetch_array())
 					{
@@ -74,7 +74,7 @@ class ShowOverviewPage
 						$mess = $satir['fleet_mess'];
 					}
 
-					$filokontrol = doquery("SELECT * FROM {{table}} WHERE fleet_target_owner = '".intval($CurrentUser['id'])."' AND fleet_end_galaxy='".intval($CurrentPlanet['galaxy'])."' AND fleet_end_system='".intval($CurrentPlanet['system'])."' AND fleet_end_planet='".intval($CurrentPlanet['planet'])."'",'fleets');
+					$filokontrol = doquery("SELECT * FROM {{table}} WHERE fleet_target_owner = '".intval($CurrentUser['id'])."' && fleet_end_galaxy='".intval($CurrentPlanet['galaxy'])."' && fleet_end_system='".intval($CurrentPlanet['system'])."' && fleet_end_planet='".intval($CurrentPlanet['planet'])."'",'fleets');
 
 					while ($satir = $filokontrol->fetch_array())
 					{
@@ -99,7 +99,7 @@ class ShowOverviewPage
 
 							doquery("UPDATE {{table}} SET `destruyed` = '".(time() + 86400)."' WHERE `id` = '".intval($CurrentUser['current_planet'])."' LIMIT 1;",'planets');
 							doquery("UPDATE {{table}} SET `current_planet` = `id_planet` WHERE `id` = '".intval($CurrentUser['id'])."' LIMIT 1","users");
-							doquery("DELETE FROM {{table}} WHERE `galaxy` = '".intval($CurrentPlanet['galaxy'])."' AND `system` = '".intval($CurrentPlanet['system'])."' AND `planet` = '".intval($CurrentPlanet['planet'])."' AND `planet_type` = 3;",'planets');
+							doquery("DELETE FROM {{table}} WHERE `galaxy` = '".intval($CurrentPlanet['galaxy'])."' && `system` = '".intval($CurrentPlanet['system'])."' && `planet` = '".intval($CurrentPlanet['planet'])."' && `planet_type` = 3;",'planets');
 
 							message($lang['ov_planet_abandoned'],'game.php?page=overview&mode=renameplanet');
 						}
@@ -114,11 +114,11 @@ class ShowOverviewPage
 					}
 				}
 
-				return display(parsetemplate(gettemplate('overview/overview_renameplanet'),$parse));
+				return display(parsetemplate(gettemplate('overview/overview_renameplanet'), $parse));
 				break;
 
 			default:
-				if ($CurrentUser['new_message'] != 0)
+				if ($CurrentUser['new_message'])
 				{
 					$Have_new_message .= "<tr>";
 					if ($CurrentUser['new_message'] == 1)
@@ -128,7 +128,7 @@ class ShowOverviewPage
 					elseif ($CurrentUser['new_message'] > 1)
 					{
 						$Have_new_message .= "<th colspan=4><a href=game.php?page=messages>";
-						$Have_new_message .= str_replace('%m',Format::pretty_number($CurrentUser['new_message']),$lang['ov_have_new_messages']);
+						$Have_new_message .= str_replace('%m',Format::pretty_number($CurrentUser['new_message']), $lang['ov_have_new_messages']);
 						$Have_new_message .= "</a></th>";
 					}
 					$Have_new_message .= "</tr>";
@@ -157,7 +157,7 @@ class ShowOverviewPage
 					$Label	= "fs";
 					if ($StartTime > time())
 					{
-						$fpage[$StartTime.$id] = $FlyingFleetsTable->BuildFleetEventTable($FleetRow,0,TRUE,$Label,$Record);
+						$fpage[$StartTime.$id] = $FlyingFleetsTable->BuildFleetEventTable($FleetRow,0,TRUE, $Label, $Record);
 					}
 
 					if (($FleetRow['fleet_mission'] != 4) && ($FleetRow['fleet_mission'] != 10))
@@ -166,20 +166,20 @@ class ShowOverviewPage
 
 						if ($StayTime > time())
 						{
-							$fpage[$StayTime.$id] = $FlyingFleetsTable->BuildFleetEventTable($FleetRow,1,TRUE,$Label,$Record);
+							$fpage[$StayTime.$id] = $FlyingFleetsTable->BuildFleetEventTable($FleetRow,1,TRUE, $Label, $Record);
 						}
 						$Label = "fe";
 
 						if ($EndTime > time())
 						{
-							$fpage[$EndTime.$id] = $FlyingFleetsTable->BuildFleetEventTable($FleetRow,2,TRUE,$Label,$Record);
+							$fpage[$EndTime.$id] = $FlyingFleetsTable->BuildFleetEventTable($FleetRow,2,TRUE, $Label, $Record);
 						}
 					}
 
 					/**fix fleet table return by jstar**/
 					if ($FleetRow['fleet_mission'] == 4 && $StartTime < time() && $EndTime > time())
 					{
-						$fpage[$EndTime.$id] = $FlyingFleetsTable->BuildFleetEventTable($FleetRow,2,TRUE,"fjstar",$Record);
+						$fpage[$EndTime.$id] = $FlyingFleetsTable->BuildFleetEventTable($FleetRow,2,TRUE,"fjstar", $Record);
 					}
 					/**end fix**/
 
@@ -189,9 +189,9 @@ class ShowOverviewPage
 
 
 				// ### LUCKY, CODES ARE BELOW
-				if ( ! empty($hedefgalaksi) && !empty($hedefsistem) && !empty($hedefgezegen) && !empty($filogrubu))
+				if ( ! empty($hedefgalaksi) && ! empty($hedefsistem) && ! empty($hedefgezegen) && ! empty($filogrubu))
 				{
-					$dostfilo = doquery("SELECT * FROM {{table}} WHERE `fleet_end_galaxy` = '".intval($hedefgalaksi)."' AND `fleet_end_system` = '".intval($hedefsistem)."' AND `fleet_end_planet` = '".intval($hedefgezegen)."' AND `fleet_group` = '".intval($filogrubu)."';",'fleets');
+					$dostfilo = doquery("SELECT * FROM {{table}} WHERE `fleet_end_galaxy` = '".intval($hedefgalaksi)."' && `fleet_end_system` = '".intval($hedefsistem)."' && `fleet_end_planet` = '".intval($hedefgezegen)."' && `fleet_group` = '".intval($filogrubu)."';",'fleets');
 					$Record1 = 0;
 					while ($FleetRow = $dostfilo->fetch_array())
 					{
@@ -214,7 +214,7 @@ class ShowOverviewPage
 							if ($StartTime > time())
 							{
 								$Label = "ofs";
-								$fpage[$StartTime.$id] = $FlyingFleetsTable->BuildFleetEventTable($FleetRow,0,FALSE,$Label,$Record1);
+								$fpage[$StartTime.$id] = $FlyingFleetsTable->BuildFleetEventTable($FleetRow,0,FALSE, $Label, $Record1);
 							}
 
 						}
@@ -233,7 +233,7 @@ class ShowOverviewPage
 							if ($StartTime > time())
 							{
 								$Label = "ofs";
-								$fpage[$StartTime.$id] = $FlyingFleetsTable->BuildFleetEventTable($FleetRow,0,FALSE,$Label,$Record);
+								$fpage[$StartTime.$id] = $FlyingFleetsTable->BuildFleetEventTable($FleetRow,0,FALSE, $Label, $Record);
 							}
 
 						}
@@ -262,14 +262,14 @@ class ShowOverviewPage
 							if ($StartTime > time())
 							{
 								$Label = "ofs";
-								$fpage[$StartTime.$id] = $FlyingFleetsTable->BuildFleetEventTable($FleetRow,0,FALSE,$Label,$Record);
+								$fpage[$StartTime.$id] = $FlyingFleetsTable->BuildFleetEventTable($FleetRow,0,FALSE, $Label, $Record);
 							}
 							if ($FleetRow['fleet_mission'] == 5)
 							{
 								$Label = "oft";
 								if ($StayTime > time())
 								{
-									$fpage[$StayTime.$id] = $FlyingFleetsTable->BuildFleetEventTable($FleetRow,1,FALSE,$Label,$Record);
+									$fpage[$StayTime.$id] = $FlyingFleetsTable->BuildFleetEventTable($FleetRow,1,FALSE, $Label, $Record);
 								}
 							}
 						}
@@ -277,7 +277,7 @@ class ShowOverviewPage
 				}
 				$OtherFleets->free_result();
 
-				$planets_query	= doquery("SELECT * FROM `{{table}}` WHERE id_owner='" . intval($CurrentUser['id']) . "' AND `destruyed` = 0","planets");
+				$planets_query	= doquery("SELECT * FROM `{{table}}` WHERE id_owner='". intval($CurrentUser['id'])."' && `destruyed` = 0","planets");
 				$Colonies		= $planets_query->num_rows;
 				$Colony			= 0;
 				$AllPlanets		= '';
@@ -288,18 +288,18 @@ class ShowOverviewPage
 					{
 						$Colony++;
 						if ($Colony%(((MAX_PLAYER_PLANETS-1)/2)>5 ? 5 : ((MAX_PLAYER_PLANETS-1)/2)) === 1 && $Colony != 1) $AllPlanets .= '</tr><tr>';
-						$AllPlanets .= "<th>" . $CurrentUserPlanet['name'] . "<br>";
-						$AllPlanets .= "<a href=\"game.php?page=overview&cp=" . $CurrentUserPlanet['id'] . "&re=0\" title=\"" . $CurrentUserPlanet['name'] . "\"><img src=\"" . DPATH . "planeten/small/s_" . $CurrentUserPlanet['image'] . ".jpg\" height=\"88\" width=\"88\"></a><br>";
+						$AllPlanets .= "<th>".$CurrentUserPlanet['name']."<br>";
+						$AllPlanets .= "<a href=\"game.php?page=overview&cp=".$CurrentUserPlanet['id']."&re=0\" title=\"".$CurrentUserPlanet['name']."\"><img src=\"". DPATH."planeten/small/s_".$CurrentUserPlanet['image'].".jpg\" height=\"88\" width=\"88\"></a><br>";
 						$AllPlanets .= "<center>";
 
-						if ($CurrentUserPlanet['b_building'] != 0)
+						if ($CurrentUserPlanet['b_building'])
 						{
-							UpdatePlanetBatimentQueueList($CurrentUserPlanet,$CurrentUser);
-							if ($CurrentUserPlanet['b_building'] != 0)
+							UpdatePlanetBatimentQueueList($CurrentUserPlanet, $CurrentUser);
+							if ($CurrentUserPlanet['b_building'])
 							{
 								$BuildQueue = $CurrentUserPlanet['b_building_id'];
-								$QueueArray = explode(";",$BuildQueue);
-								$CurrentBuild = explode(",",$QueueArray[0]);
+								$QueueArray = explode(";", $BuildQueue);
+								$CurrentBuild = explode(",", $QueueArray[0]);
 								$BuildElement = $CurrentBuild[0];
 								$BuildLevel = $CurrentBuild[1];
 								$BuildRestTime = Format::pretty_time($CurrentBuild[3] - time());
@@ -322,11 +322,11 @@ class ShowOverviewPage
 				}
 				$planets_query->free_result();
 
-				if ($lunarow['id'] != 0 && $lunarow['destruyed'] != 1 && $CurrentPlanet['planet_type'] != 3)
+				if ($lunarow['id']&& $lunarow['destruyed'] != 1 && $CurrentPlanet['planet_type'] != 3)
 				{
-					if ($CurrentPlanet['planet_type'] == 1 or $lunarow['id'] != 0)
+					if ($CurrentPlanet['planet_type'] == 1 or $lunarow['id'])
 					{
-						$moon = doquery("SELECT `id`,`name`,`image` FROM {{table}} WHERE `galaxy` = '".intval($CurrentPlanet['galaxy'])."' AND `system` = '".intval($CurrentPlanet['system'])."' AND `planet` = '".intval($CurrentPlanet['planet'])."' AND `planet_type` = '3'",'planets',TRUE);
+						$moon = doquery("SELECT `id`,`name`,`image` FROM {{table}} WHERE `galaxy` = '".intval($CurrentPlanet['galaxy'])."' && `system` = '".intval($CurrentPlanet['system'])."' && `planet` = '".intval($CurrentPlanet['planet'])."' && `planet_type` = '3'",'planets',TRUE);
 						$parse['moon'] = '<th><a href="game.php?page=overview&cp='.$moon['id'].'&re=0" title="'.$moon['name'].'"><img src="'.DPATH.'planeten/'.$moon['image'].'.jpg" height="50" width="50"></a><br>'.$moon['name'].' ('.$lang['fcm_moon'].')</th>';
 					}
 					else
@@ -346,7 +346,7 @@ class ShowOverviewPage
 				$parse['planet_temp_min'] = $CurrentPlanet['temp_min'];
 				$parse['planet_temp_max'] = $CurrentPlanet['temp_max'];
 
-				$StatRecord = doquery("SELECT `total_rank`,`total_points` FROM `{{table}}` WHERE `stat_type` = '1' AND `stat_code` = '1' AND `id_owner` = '".intval($CurrentUser['id'])."';",'statpoints',TRUE);
+				$StatRecord = doquery("SELECT `total_rank`,`total_points` FROM `{{table}}` WHERE `stat_type` = '1' && `stat_code` = '1' && `id_owner` = '".intval($CurrentUser['id'])."';",'statpoints',TRUE);
 
 				$parse['user_username'] = $CurrentUser['username'];
 
@@ -360,15 +360,15 @@ class ShowOverviewPage
 					}
 				}
 
-				if ($CurrentPlanet['b_building'] != 0)
+				if ($CurrentPlanet['b_building'])
 				{
 					include (XN_ROOT.'includes/functions/InsertBuildListScript.php');
 
-					UpdatePlanetBatimentQueueList($planetrow,$CurrentUser);
-					if ($CurrentPlanet['b_building'] != 0)
+					UpdatePlanetBatimentQueueList($planetrow, $CurrentUser);
+					if ($CurrentPlanet['b_building'])
 					{
-						$BuildQueue = explode(";",$CurrentPlanet['b_building_id']);
-						$CurrBuild = explode(",",$BuildQueue[0]);
+						$BuildQueue = explode(";", $CurrentPlanet['b_building_id']);
+						$CurrBuild = explode(",", $BuildQueue[0]);
 						$RestTime = $CurrentPlanet['b_building'] - time();
 						$PlanetID = $CurrentPlanet['id'];
 						$Build = InsertBuildListScript("overview");
@@ -400,16 +400,16 @@ class ShowOverviewPage
 				$parse['colspan']			= empty($parse['moon']) ? ' colspan="2"' : '';
 				$parse["dpath"]				= DPATH;
 				if (read_config('stat') == 0)
-					$parse['user_rank'] = Format::pretty_number($StatRecord['total_points']) . " (" . $lang['ov_place'] . " <a href=\"game.php?page=statistics&range=" . $StatRecord['total_rank'] . "\">" . $StatRecord['total_rank'] . "</a> " . $lang['ov_of'] . " " . read_config ( 'users_amount' ) . ")";
-				elseif (read_config ( 'stat' ) == 1 && $CurrentUser['authlevel'] < read_config ( 'stat_level'))
-					$parse['user_rank'] = Format::pretty_number($StatRecord['total_points']) . " (" . $lang['ov_place'] . " <a href=\"game.php?page=statistics&range=" . $StatRecord['total_rank'] . "\">" . $StatRecord['total_rank'] . "</a> " . $lang['ov_of'] . " " . read_config ( 'users_amount' ) . ")";
+					$parse['user_rank'] = Format::pretty_number($StatRecord['total_points'])." (".$lang['ov_place']." <a href=\"game.php?page=statistics&range=".$StatRecord['total_rank']."\">".$StatRecord['total_rank']."</a> ".$lang['ov_of']." ". read_config('users_amount').")";
+				elseif (read_config('stat') == 1 && $CurrentUser['authlevel'] < read_config('stat_level'))
+					$parse['user_rank'] = Format::pretty_number($StatRecord['total_points'])." (".$lang['ov_place']." <a href=\"game.php?page=statistics&range=".$StatRecord['total_rank']."\">".$StatRecord['total_rank']."</a> ".$lang['ov_of']." ". read_config('users_amount').")";
 				else
 					$parse['user_rank'] = "-";
 
 				$parse['micronow']	= round(microtime(TRUE)*1000);
 				$parse['date']		= show_date();
 
-				return display(parsetemplate(gettemplate('overview/overview_body'),$parse), TRUE, '', FALSE, TRUE, 'time();');
+				return display(parsetemplate(gettemplate('overview/overview_body'), $parse), TRUE, '', FALSE, TRUE, 'time();');
 				break;
 		}
 	}

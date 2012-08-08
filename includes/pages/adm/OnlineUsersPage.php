@@ -27,9 +27,9 @@ else
 
 $queryuser 	= "u.id, u.username, u.user_agent, u.current_page, u.user_lastip, u.ally_name, u.onlinetime, u.email, u.galaxy, u.system, u.planet, u.urlaubs_modus, u.bana";
 $querystat 	= "s.total_points";
-$Last15Mins = doquery("SELECT ". $queryuser .", ". $querystat ." FROM  {{table}}users as u, {{table}}statpoints as s
-							WHERE u.onlinetime >= '". (time() - 15 * 60) ."' AND u.id=s.id_owner AND s.stat_type=1
-							ORDER BY `". $db->real_escape_string($TypeSort) ."` ASC;", '');
+$Last15Mins = doquery("SELECT ".$queryuser.", ".$querystat." FROM  {{table}}users as u, {{table}}statpoints as s
+							WHERE u.onlinetime >= '".(time() - 15 * 60)."' && u.id=s.id_owner && s.stat_type=1
+							ORDER BY `".$db->real_escape_string($TypeSort)."` ASC;", '');
 
 
 $Count      = 0;
@@ -54,7 +54,7 @@ while ($TheUser = $Last15Mins->fetch_array())
 	$Bloc['adm_ov_data_adip']   = $TheUser['user_lastip'];
 	$Bloc['adm_ov_data_ally']   = $TheUser['ally_name'];
 	$Bloc['adm_ov_data_point']  = Format::pretty_number($TheUser['total_points']);
-	$Bloc['adm_ov_data_activ']  = Format::pretty_time ( time() - $TheUser['onlinetime']);
+	$Bloc['adm_ov_data_activ']  = Format::pretty_time(time() - $TheUser['onlinetime']);
 	$PrevIP                     = $TheUser['user_lastip'];
 	$Bloc['usr_email']    		= $TheUser['email'];
 
@@ -71,12 +71,12 @@ while ($TheUser = $Last15Mins->fetch_array())
 	$Bloc['usr_planet_gal']    	= $TheUser['galaxy'];
 	$Bloc['usr_planet_sys']    	= $TheUser['system'];
 	$Bloc['usr_planet_pos']    	= $TheUser['planet'];
-	$parse['adm_ov_data_table'] .= parsetemplate( gettemplate('adm/OnlineUsersRow'), $Bloc);
+	$parse['adm_ov_data_table'] .= parsetemplate(gettemplate('adm/OnlineUsersRow'), $Bloc);
 	$Count++;
 }
 
 $parse['adm_ov_data_count']  	= $Count;
 
-display ( parsetemplate(gettemplate('adm/OnlineUsersBody'), $parse), FALSE, '', TRUE, FALSE);
+display(parsetemplate(gettemplate('adm/OnlineUsersBody'), $parse), FALSE, '', TRUE, FALSE);
 
 ?>

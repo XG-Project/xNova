@@ -8,11 +8,11 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 class ShowTechTreePage
 {
-	function __construct ($CurrentUser, $CurrentPlanet)
+	function __construct($CurrentUser, $CurrentPlanet)
 	{
 		global $resource, $requeriments, $lang;
 
@@ -40,14 +40,14 @@ class ShowTechTreePage
 						$parse['required_list'] = "";
 						foreach ($requeriments[$Element] as $ResClass => $Level)
 						{
-							if ( isset($CurrentUser[$resource[$ResClass]]) && $CurrentUser[$resource[$ResClass]] >= $Level)
+							if (isset($CurrentUser[$resource[$ResClass]]) && $CurrentUser[$resource[$ResClass]] >= $Level)
 								$parse['required_list'] .= "<font color=\"#00ff00\">";
-							elseif ( isset($CurrentPlanet[$resource[$ResClass]]) && $CurrentPlanet[$resource[$ResClass]] >= $Level)
+							elseif (isset($CurrentPlanet[$resource[$ResClass]]) && $CurrentPlanet[$resource[$ResClass]] >= $Level)
 								$parse['required_list'] .= "<font color=\"#00ff00\">";
 							else
 								$parse['required_list'] .= "<font color=\"#ff0000\">";
 
-							$parse['required_list'] .= $lang['tech'][$ResClass] ." (". $lang['tt_lvl'] . $Level .")";
+							$parse['required_list'] .= $lang['tech'][$ResClass]." (".$lang['tt_lvl'].$Level.")";
 							$parse['required_list'] .= "</font><br>";
 						};
 					}

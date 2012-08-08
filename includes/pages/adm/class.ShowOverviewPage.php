@@ -8,7 +8,7 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location: ./../../"));
+if ( ! defined('INSIDE')) die(header("Location: ./../../"));
 if ($user['authlevel'] < 1) die(message($lang['404_page']));
 
 class ShowOverviewPage {
@@ -68,7 +68,7 @@ class ShowOverviewPage {
 
 			$Errors = doquery("SELECT COUNT(*) AS `errors` FROM {{table}} WHERE 1;", 'errors', TRUE);
 
-			if ($Errors['errors'] != 0)
+			if ($Errors['errors'])
 			{
 				$Message	.= '<span>'.$lang['ow_database_errors'].'</span>';
 				$error++;
@@ -81,7 +81,7 @@ class ShowOverviewPage {
 			}
 		}
 
-		if ($error != 0)
+		if ($error)
 		{
 			$parse['error_message']		=	$Message;
 			$parse['error_class']		=	"some_errors";

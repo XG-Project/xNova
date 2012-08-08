@@ -8,7 +8,7 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 class ShowStatisticsPage
 {
@@ -29,14 +29,14 @@ class ShowStatisticsPage
 		if ( ! isset($range))
 			$range = 1;
 
-		$parse['who']    = "<option value=\"1\"". (($who == "1") ? " SELECTED" : "") .">".$lang['st_player']."</option>";
-		$parse['who']   .= "<option value=\"2\"". (($who == "2") ? " SELECTED" : "") .">".$lang['st_alliance']."</option>";
+		$parse['who']    = "<option value=\"1\"".(($who == "1") ? " SELECTED" : "").">".$lang['st_player']."</option>";
+		$parse['who']   .= "<option value=\"2\"".(($who == "2") ? " SELECTED" : "").">".$lang['st_alliance']."</option>";
 
-		$parse['type']   = "<option value=\"1\"". (($type == "1") ? " SELECTED" : "") .">".$lang['st_points']."</option>";
-		$parse['type']  .= "<option value=\"2\"". (($type == "2") ? " SELECTED" : "") .">".$lang['st_fleets']."</option>";
-		$parse['type']  .= "<option value=\"3\"". (($type == "3") ? " SELECTED" : "") .">".$lang['st_researh']."</option>";
-		$parse['type']  .= "<option value=\"4\"". (($type == "4") ? " SELECTED" : "") .">".$lang['st_buildings']."</option>";
-		$parse['type']  .= "<option value=\"5\"". (($type == "5") ? " SELECTED" : "") .">".$lang['st_defenses']."</option>";
+		$parse['type']   = "<option value=\"1\"".(($type == "1") ? " SELECTED" : "").">".$lang['st_points']."</option>";
+		$parse['type']  .= "<option value=\"2\"".(($type == "2") ? " SELECTED" : "").">".$lang['st_fleets']."</option>";
+		$parse['type']  .= "<option value=\"3\"".(($type == "3") ? " SELECTED" : "").">".$lang['st_researh']."</option>";
+		$parse['type']  .= "<option value=\"4\"".(($type == "4") ? " SELECTED" : "").">".$lang['st_buildings']."</option>";
+		$parse['type']  .= "<option value=\"5\"".(($type == "5") ? " SELECTED" : "").">".$lang['st_defenses']."</option>";
 
 		switch ($type)
 		{
@@ -86,7 +86,7 @@ class ShowStatisticsPage
 
 		if ($who == 2)
 		{
-			$MaxAllys = doquery ("SELECT COUNT(*) AS `count` FROM {{table}};", 'alliance', TRUE);
+			$MaxAllys = doquery("SELECT COUNT(*) AS `count` FROM {{table}};", 'alliance', TRUE);
 
 			if ($MaxAllys['count'] > 100)
 			{
@@ -99,33 +99,33 @@ class ShowStatisticsPage
 			{
 				$PageValue      = ($Page * 100) + 1;
 				$PageRange      = $PageValue + 99;
-				$parse['range'] .= "<option value=\"". $PageValue ."\"". (($range >= $PageValue && $range <= $PageRange) ? " SELECTED" : "") .">". $PageValue ."-". $PageRange ."</option>";
+				$parse['range'] .= "<option value=\"".$PageValue."\"".(($range >= $PageValue && $range <= $PageRange) ? " SELECTED" : "").">".$PageValue."-".$PageRange."</option>";
 			}
 
 			$parse['stat_header'] = parsetemplate(gettemplate('stat/stat_alliancetable_header'), $parse);
 			$start = floor($range / 100 % 100) * 100;
 			$stats_sql	=	'SELECT s.*, a.id, a.ally_members, a.ally_tag, a.ally_name FROM {{table}}statpoints as s
 			INNER JOIN {{table}}alliance as a ON a.id = s.id_owner
-			WHERE `stat_type` = 2 AND `stat_code` = 1
-			ORDER BY `'. $Order .'` DESC LIMIT '. $start .',100;';
+			WHERE `stat_type` = 2 && `stat_code` = 1
+			ORDER BY `'.$Order.'` DESC LIMIT '.$start.',100;';
 
 			$start++;
-			$parse['stat_date']   = date("Y-m-d, H:i:s",read_config ( 'stat_last_update'));
+			$parse['stat_date']   = date("Y-m-d, H:i:s",read_config('stat_last_update'));
 			$parse['stat_values'] = "";
 			$query = doquery($stats_sql, '');
 			$StatAllianceTableTPL=gettemplate('stat/stat_alliancetable');
 			while ($StatRow = $query->fetch_assoc())
 			{
 				$parse['ally_rank']       = $start;
-				if ($StatRow[ $OldRank ] == 0 OR $StatRow[ $Rank ] == 0)
+				if ($StatRow[$OldRank] == 0 OR $StatRow[$Rank] == 0)
 				{
 					$rank_old				= $start;
-					$QryUpdRank				= doquery("UPDATE {{table}} SET `".$Rank."` = '".$start."', `".$OldRank."` = '".$start."' WHERE `stat_type` = '1' AND `stat_code` = '1' AND `id_owner` = '". intval($StatRow['id_owner']) ."';", "statpoints");
-					$StatRow[ $OldRank ]	= $start;
-					$StatRow[ $Rank ]		= $start;
+					$QryUpdRank				= doquery("UPDATE {{table}} SET `".$Rank."` = '".$start."', `".$OldRank."` = '".$start."' WHERE `stat_type` = '1' && `stat_code` = '1' && `id_owner` = '".intval($StatRow['id_owner'])."';", "statpoints");
+					$StatRow[$OldRank]	= $start;
+					$StatRow[$Rank]		= $start;
 				}
 
-				$ranking                  = $StatRow[ $OldRank ] - $StatRow[ $Rank ];
+				$ranking                  = $StatRow[$OldRank] - $StatRow[$Rank];
 
 				if ($ranking == 0)
 				{
@@ -146,15 +146,15 @@ class ShowStatisticsPage
 				$parse['ally_name']       	  = $StatRow['ally_name'];
 				$parse['ally_mes']        	  = '';
 				$parse['ally_members']    	  = $StatRow['ally_members'];
-				$parse['ally_points']     	  = Format::pretty_number($StatRow[ $Order ]);
-				$parse['ally_members_points'] =  Format::pretty_number( floor($StatRow[ $Order ] / $StatRow['ally_members']));
+				$parse['ally_points']     	  = Format::pretty_number($StatRow[$Order]);
+				$parse['ally_members_points'] = Format::pretty_number(floor($StatRow[$Order] / $StatRow['ally_members']));
 				$parse['stat_values']    	 .= parsetemplate($StatAllianceTableTPL, $parse);
 				$start++;
 			}
 		}
 		else
 		{
-			$MaxUsers = doquery ("SELECT COUNT(*) AS `count` FROM {{table}} WHERE `db_deaktjava` = '0';", 'users', TRUE);
+			$MaxUsers = doquery("SELECT COUNT(*) AS `count` FROM {{table}} WHERE `db_deaktjava` = '0';", 'users', TRUE);
 
 			if ($MaxUsers['count'] > 100)
 			{
@@ -168,7 +168,7 @@ class ShowStatisticsPage
 				$PageValue      = ($Page * 100) + 1;
 				$PageRange      = $PageValue + 99;
 
-				$parse['range'] .= "<option value=\"". $PageValue ."\"". (($range >= $PageValue && $range <= $PageRange) ? " SELECTED" : "") .">". $PageValue ."-". $PageRange ."</option>";
+				$parse['range'] .= "<option value=\"".$PageValue."\"".(($range >= $PageValue && $range <= $PageRange) ? " SELECTED" : "").">".$PageValue."-".$PageRange."</option>";
 			}
 
 
@@ -178,14 +178,14 @@ class ShowStatisticsPage
 
 			$stats_sql	=	'SELECT s.*, u.id, u.username, u.ally_id, u.ally_name FROM {{table}}statpoints as s
 			INNER JOIN {{table}}users as u ON u.id = s.id_owner
-			WHERE `stat_type` = 1 AND `stat_code` = 1
-			ORDER BY `'. $Order .'` DESC LIMIT '. $start .',100;';
+			WHERE `stat_type` = 1 && `stat_code` = 1
+			ORDER BY `'.$Order.'` DESC LIMIT '.$start.',100;';
 
 			$query = doquery($stats_sql, '');
 
 			$start++;
 
-			$parse['stat_date']   = date("Y-m-d, H:i:s",read_config ( 'stat_last_update'));
+			$parse['stat_date']   = date("Y-m-d, H:i:s",read_config('stat_last_update'));
 			$parse['stat_values'] = "";
 
 			$previusId = 0;
@@ -193,15 +193,15 @@ class ShowStatisticsPage
 			while ($StatRow = $query->fetch_assoc())
 			{
 				$parse['player_rank']     = $start;
-				if ($StatRow[ $OldRank ] == 0 OR $StatRow[ $Rank ] == 0)
+				if ($StatRow[$OldRank] == 0 OR $StatRow[$Rank] == 0)
 				{
 					$rank_old				= $start;
-					$QryUpdRank				= doquery("UPDATE {{table}} SET `".$Rank."` = '".$start."', `".$OldRank."` = '".$start."' WHERE `stat_type` = '1' AND `stat_code` = '1' AND `id_owner` = '". intval($StatRow['id_owner']) ."';", "statpoints");
-					$StatRow[ $OldRank ]	= $start;
-					$StatRow[ $Rank ]		= $start;
+					$QryUpdRank				= doquery("UPDATE {{table}} SET `".$Rank."` = '".$start."', `".$OldRank."` = '".$start."' WHERE `stat_type` = '1' && `stat_code` = '1' && `id_owner` = '".intval($StatRow['id_owner'])."';", "statpoints");
+					$StatRow[$OldRank]	= $start;
+					$StatRow[$Rank]		= $start;
 				}
 
-				$ranking                  = $StatRow[ $OldRank ] - $StatRow[ $Rank ];
+				$ranking                  = $StatRow[$OldRank] - $StatRow[$Rank];
 
 				if ($StatRow['id'] != $previusId)
 				{
@@ -224,7 +224,7 @@ class ShowStatisticsPage
 						$parse['player_name']     = $StatRow['username'];
 
 					if ($StatRow['id'] != $CurrentUser['id'])
-						$parse['player_mes']      = "<a href=\"game.php?page=messages&mode=write&id=" . $StatRow['id'] . "\"><img height=\"14\" width=\"12\" src=\"" . DPATH . "img/m.png\" border=\"0\" title=\"".$lang['write_message']."\" /></a>";
+						$parse['player_mes']      = "<a href=\"game.php?page=messages&mode=write&id=".$StatRow['id']."\"><img height=\"14\" width=\"12\" src=\"". DPATH."img/m.png\" border=\"0\" title=\"".$lang['write_message']."\" /></a>";
 					else
 						$parse['player_mes']      = "";
 
@@ -236,7 +236,7 @@ class ShowStatisticsPage
 					{
 						$parse['player_alliance'] = "<a href=\"game.php?page=alliance&mode=ainfo&a=".$StatRow['ally_id']."\">".$StatRow['ally_name']."</a>";
 					}
-					$parse['player_points']   = Format::pretty_number($StatRow[ $Order ]);
+					$parse['player_points']   = Format::pretty_number($StatRow[$Order]);
 					$parse['stat_values']    .= parsetemplate($StatPlayerTableTPL, $parse);
 
 
@@ -245,7 +245,7 @@ class ShowStatisticsPage
 			}
 		}
 
-		display(parsetemplate( gettemplate('stat/stat_body'), $parse));
+		display(parsetemplate(gettemplate('stat/stat_body'), $parse));
 	}
 }
 

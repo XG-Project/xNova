@@ -8,11 +8,11 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 class ShowNotesPage
 {
-	function __construct ($CurrentUser)
+	function __construct($CurrentUser)
 	{
 		global $lang, $db;
 
@@ -30,28 +30,28 @@ class ShowNotesPage
 			if ($_POST["s"] ==1)
 			{
 				doquery("INSERT INTO {{table}} SET owner=".intval($CurrentUser[id]).", time=$time, priority=$priority, title='$title', text='$text'","notes");
-				header("location: ".GAMEURL."game.php?page=notes");
+				header("Location: ".GAMEURL."game.php?page=notes");
 			}
 			elseif ($_POST["s"] == 2)
 			{
 				$id = intval($_POST["n"]);
-				$note_query = doquery("SELECT * FROM {{table}} WHERE id=".intval($id)." AND owner=".intval($CurrentUser[id])."","notes");
+				$note_query = doquery("SELECT * FROM {{table}} WHERE id=".intval($id)." && owner=".intval($CurrentUser[id])."","notes");
 
 				if ( ! $note_query)
-					header("location: ".GAMEURL."game.php?page=notes");
+					header("Location: ".GAMEURL."game.php?page=notes");
 
 				doquery("UPDATE {{table}} SET time=$time, priority=$priority, title='$title', text='$text' WHERE id=".intval($id)."","notes");
-				header("location: ".GAMEURL."game.php?page=notes");
+				header("Location: ".GAMEURL."game.php?page=notes");
 			}
 		}
 		elseif ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
 			foreach ($_POST as $a => $b)
 			{
-				if (preg_match("/delmes/i",$a) && $b == "y")
+				if (preg_match("/delmes/i", $a) && $b == "y")
 				{
-					$id = str_replace("delmes","",$a);
-					$note_query = doquery("SELECT * FROM {{table}} WHERE id=".intval($id)." AND owner=".intval($CurrentUser[id])."","notes");
+					$id = str_replace("delmes","", $a);
+					$note_query = doquery("SELECT * FROM {{table}} WHERE id=".intval($id)." && owner=".intval($CurrentUser[id])."","notes");
 
 					if ($note_query)
 					{
@@ -61,7 +61,7 @@ class ShowNotesPage
 				}
 			}
 
-			header("location: ".GAMEURL."game.php?page=notes");
+			header("Location: ".GAMEURL."game.php?page=notes");
 
 		}
 		else
@@ -79,10 +79,10 @@ class ShowNotesPage
 			}
 			elseif ($_GET["a"] == 2)
 			{
-				$note = doquery("SELECT * FROM {{table}} WHERE owner=".intval($CurrentUser[id])." AND id=".intval($n)."",'notes',TRUE);
+				$note = doquery("SELECT * FROM {{table}} WHERE owner=".intval($CurrentUser[id])." && id=".intval($n)."",'notes',TRUE);
 
 				if ( ! $note)
-					header("location: ".GAMEURL."game.php?page=notes");
+					header("Location: ".GAMEURL."game.php?page=notes");
 
 				$SELECTED[$note['priority']] = ' selected';
 
@@ -114,7 +114,7 @@ class ShowNotesPage
 					elseif ($note["priority"] == 2) $parse['NOTE_COLOR'] = "red";
 
 					$parse['NOTE_ID'] 		= $note['id'];
-					$parse['NOTE_TIME'] 	= date("Y-m-d h:i:s",$note["time"]);
+					$parse['NOTE_TIME'] 	= date("Y-m-d h:i:s", $note["time"]);
 					$parse['NOTE_TITLE'] 	= $note['title'];
 					$parse['NOTE_TEXT'] 	= strlen($note['text']);
 

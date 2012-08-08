@@ -15,7 +15,7 @@ define('XN_ROOT', './../');
 
 include(XN_ROOT.'global.php');
 
-if ($user['authlevel'] < 1) die(message ($lang['404_page']));
+if ($user['authlevel'] < 1) die(message($lang['404_page']));
 
 $parse		=	$lang;
 $Archive	=	"Log/".$_GET['file'].".php";
@@ -34,7 +34,7 @@ switch ($_GET['options'])
 		if ($user['authlevel']	!=	3) die();
 		$Fopen		=	fopen($Archive, "r+");
 
-		while (!feof($Fopen))
+		while ( ! feof($Fopen))
 		{
 			$parse['display']	.= fgets($Fopen);
 		}
@@ -54,12 +54,12 @@ switch ($_GET['options'])
 		$parse['setsize']		=	"&nbsp;&nbsp;(".$FinalSize." KB)";
 		$parse['setarchive']	=	$_GET['file'];
 
-		display (parsetemplate(gettemplate('adm/LogEditBody'), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate('adm/LogEditBody'), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case 'links':
 		$Archive	=	"Log/".$_GET['file'].".php";
-		if (!file_exists($Archive))
+		if ( ! file_exists($Archive))
 		{
 			fopen($Archive, "w+");
 			fclose(fopen($Archive, "w+"));
@@ -91,7 +91,7 @@ switch ($_GET['options'])
 		else
 		{
 			$parse['display']	.=	"<tr><th align=\"left\" colspan=2><font color=#E6E6E6>";
-			while (!feof($Log))
+			while ( ! feof($Log))
 			{
 				$parse['display']	.= fgets($Log)."<br>";
 			}
@@ -105,10 +105,10 @@ switch ($_GET['options'])
 		$FinalSize				=	$FileSize / 1000;
 		$parse['setsize']		=	"&nbsp;&nbsp;(".$FinalSize." KB)";
 		$parse['setarchive']	=	$_GET['file'];
-		display (parsetemplate(gettemplate('adm/LogBody'), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate('adm/LogBody'), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	default:
-		display (parsetemplate(gettemplate('adm/LogBody'), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate('adm/LogBody'), $parse), FALSE, '', TRUE, FALSE);
 }
 ?>

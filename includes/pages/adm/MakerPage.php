@@ -15,7 +15,7 @@ define('XN_ROOT', './../');
 
 include(XN_ROOT.'global.php');
 
-if ($EditUsers != 1) die(message ($lang['404_page']));
+if ($EditUsers != 1) die(message($lang['404_page']));
 
 $parse	=	$lang;
 
@@ -49,7 +49,7 @@ switch ($_GET['page'])
 
 		$CheckUser = doquery("SELECT `username` FROM {{table}} WHERE `username` = '".$db->real_escape_string($_POST['name'])."' LIMIT 1", "users", TRUE);
 		$CheckMail = doquery("SELECT `email` FROM {{table}} WHERE `email` = '".$db->real_escape_string($_POST['email'])."' LIMIT 1", "users", TRUE);
-		$CheckRows = doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' AND `system` = '".$system."' AND `planet` = '".$planet."' LIMIT 1", "galaxy", TRUE);
+		$CheckRows = doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' && `system` = '".$system."' && `planet` = '".$planet."' LIMIT 1", "galaxy", TRUE);
 
 
 		if ( ! ctype_digit($galaxy) &&  ! ctype_digit($system) && ! ctype_digit($planet)){
@@ -100,24 +100,24 @@ switch ($_GET['page'])
 			$Query1 .= "`password`='".sha1($pass)."';";
 			doquery($Query1, "users");
 
-			update_config ( 'users_amount', read_config ( 'users_amount' ) + 1);
+			update_config('users_amount', read_config('users_amount') + 1);
 
-			$ID_USER 	= doquery("SELECT `id` FROM {{table}} WHERE `username` = '" . $db->real_escape_string($name) . "' LIMIT 1", "users", TRUE);
+			$ID_USER 	= doquery("SELECT `id` FROM {{table}} WHERE `username` = '".$db->real_escape_string($name)."' LIMIT 1", "users", TRUE);
 
 			CreateOnePlanetRecord ($galaxy, $system, $planet, $ID_USER['id'], $UserPlanet, TRUE);
 
-			$ID_PLANET 	= doquery("SELECT `id` FROM {{table}} WHERE `id_owner` = '". $ID_USER['id'] ."' LIMIT 1", "planets", TRUE);
+			$ID_PLANET 	= doquery("SELECT `id` FROM {{table}} WHERE `id_owner` = '".$ID_USER['id']."' LIMIT 1", "planets", TRUE);
 
 			doquery("UPDATE {{table}} SET `id_level` = '".$auth."' WHERE `id` = '".$ID_PLANET['id']."'", "planets");
 
 			$QryUpdateUser = "UPDATE {{table}} SET ";
-			$QryUpdateUser .= "`id_planet` = '" . $ID_PLANET['id'] . "', ";
-			$QryUpdateUser .= "`current_planet` = '" . $ID_PLANET['id'] . "', ";
-			$QryUpdateUser .= "`galaxy` = '" . $galaxy . "', ";
-			$QryUpdateUser .= "`system` = '" . $system . "', ";
-			$QryUpdateUser .= "`planet` = '" . $planet . "' ";
+			$QryUpdateUser .= "`id_planet` = '".$ID_PLANET['id']."', ";
+			$QryUpdateUser .= "`current_planet` = '".$ID_PLANET['id']."', ";
+			$QryUpdateUser .= "`galaxy` = '".$galaxy."', ";
+			$QryUpdateUser .= "`system` = '".$system."', ";
+			$QryUpdateUser .= "`planet` = '".$planet."' ";
 			$QryUpdateUser .= "WHERE ";
-			$QryUpdateUser .= "`id` = '" . $ID_USER['id'] . "' ";
+			$QryUpdateUser .= "`id` = '".$ID_USER['id']."' ";
 			$QryUpdateUser .= "LIMIT 1;";
 			doquery($QryUpdateUser, "users");
 
@@ -157,7 +157,7 @@ switch ($_GET['page'])
 		$TempMax	= $_POST['temp_max'];
 		$FieldMax	= $_POST['field_max'];
 
-		$MoonPlanet		= 	doquery("SELECT * FROM {{table}} WHERE `id` = '".$PlanetID."' AND `planet_type` = '1'", 'planets', TRUE);
+		$MoonPlanet		= 	doquery("SELECT * FROM {{table}} WHERE `id` = '".$PlanetID."' && `planet_type` = '1'", 'planets', TRUE);
 		$MoonGalaxy		= 	doquery("SELECT * FROM {{table}} WHERE `id_planet` = '".$PlanetID."'", 'galaxy', TRUE);
 
 
@@ -176,7 +176,7 @@ switch ($_GET['page'])
 			{
 				$SizeMin	= 4500;
 				$SizeMax    = 9999;
-				$size       = rand ($SizeMin, $SizeMax);
+				$size       = rand($SizeMin, $SizeMax);
 			}
 			elseif ($_POST['diameter_check'] != 'on' && is_numeric($Diameter))
 			{
@@ -207,18 +207,18 @@ switch ($_GET['page'])
 
 				$QryInsertMoonInPlanet  = "INSERT INTO {{table}} SET ";
 				$QryInsertMoonInPlanet .= "`name` = '".$MoonName."', ";
-				$QryInsertMoonInPlanet .= "`id_owner` = '". $Owner ."', ";
-				$QryInsertMoonInPlanet .= "`id_level` = '". $QueryFind['id_level'] ."', ";
-				$QryInsertMoonInPlanet .= "`galaxy` = '". $Galaxy ."', ";
-				$QryInsertMoonInPlanet .= "`system` = '". $System ."', ";
-				$QryInsertMoonInPlanet .= "`planet` = '". $Planet ."', ";
-				$QryInsertMoonInPlanet .= "`last_update` = '". time() ."', ";
+				$QryInsertMoonInPlanet .= "`id_owner` = '".$Owner."', ";
+				$QryInsertMoonInPlanet .= "`id_level` = '".$QueryFind['id_level']."', ";
+				$QryInsertMoonInPlanet .= "`galaxy` = '".$Galaxy."', ";
+				$QryInsertMoonInPlanet .= "`system` = '".$System."', ";
+				$QryInsertMoonInPlanet .= "`planet` = '".$Planet."', ";
+				$QryInsertMoonInPlanet .= "`last_update` = '".time()."', ";
 				$QryInsertMoonInPlanet .= "`planet_type` = '3', ";
 				$QryInsertMoonInPlanet .= "`image` = 'mond', ";
-				$QryInsertMoonInPlanet .= "`diameter` = '". $size ."', ";
+				$QryInsertMoonInPlanet .= "`diameter` = '".$size."', ";
 				$QryInsertMoonInPlanet .= "`field_max` = '".$FieldMax."', ";
-				$QryInsertMoonInPlanet .= "`temp_min` = '". $mintemp ."', ";
-				$QryInsertMoonInPlanet .= "`temp_max` = '". $maxtemp ."', ";
+				$QryInsertMoonInPlanet .= "`temp_min` = '".$mintemp."', ";
+				$QryInsertMoonInPlanet .= "`temp_max` = '".$maxtemp."', ";
 				$QryInsertMoonInPlanet .= "`metal` = '0', ";
 				$QryInsertMoonInPlanet .= "`metal_perhour` = '0', ";
 				$QryInsertMoonInPlanet .= "`metal_max` = '".BASE_STORAGE_SIZE."', ";
@@ -231,19 +231,19 @@ switch ($_GET['page'])
 				doquery($QryInsertMoonInPlanet, 'planets');
 
 				$QryGetMoonIdFromLunas  = "SELECT * FROM {{table}} WHERE ";
-				$QryGetMoonIdFromLunas .= "`galaxy` = '".  $Galaxy ."' AND ";
-				$QryGetMoonIdFromLunas .= "`system` = '".  $System ."' AND ";
-				$QryGetMoonIdFromLunas .= "`planet` = '". $Planet ."' AND ";
+				$QryGetMoonIdFromLunas .= "`galaxy` = '". $Galaxy."' && ";
+				$QryGetMoonIdFromLunas .= "`system` = '". $System."' && ";
+				$QryGetMoonIdFromLunas .= "`planet` = '".$Planet."' && ";
 				$QryGetMoonIdFromLunas .= "`planet_type` = '3';";
 				$PlanetRow = doquery($QryGetMoonIdFromLunas, 'planets', TRUE);
 
 				$QryUpdateMoonInGalaxy  = "UPDATE {{table}} SET ";
-				$QryUpdateMoonInGalaxy .= "`id_luna` = '". $PlanetRow['id'] ."', ";
+				$QryUpdateMoonInGalaxy .= "`id_luna` = '".$PlanetRow['id']."', ";
 				$QryUpdateMoonInGalaxy .= "`luna` = '0' ";
 				$QryUpdateMoonInGalaxy .= "WHERE ";
-				$QryUpdateMoonInGalaxy .= "`galaxy` = '". $Galaxy ."' AND ";
-				$QryUpdateMoonInGalaxy .= "`system` = '". $System ."' AND ";
-				$QryUpdateMoonInGalaxy .= "`planet` = '". $Planet ."';";
+				$QryUpdateMoonInGalaxy .= "`galaxy` = '".$Galaxy."' && ";
+				$QryUpdateMoonInGalaxy .= "`system` = '".$System."' && ";
+				$QryUpdateMoonInGalaxy .= "`planet` = '".$Planet."';";
 				doquery($QryUpdateMoonInGalaxy, 'galaxy');
 
 				$parse['display']	=	"<tr><th colspan=3><font color=lime>".$lang['mo_moon_added']."</font></th></tr>";
@@ -262,7 +262,7 @@ switch ($_GET['page'])
 	{
 		$MoonID	= $_POST['del_moon'];
 
-		$MoonSelected  			= doquery("SELECT * FROM {{table}} WHERE `id` = '". $MoonID ."'", 'planets', TRUE);
+		$MoonSelected  			= doquery("SELECT * FROM {{table}} WHERE `id` = '".$MoonID."'", 'planets', TRUE);
 		if ($MoonSelected && is_numeric($MoonID))
 		{
 			if ($MoonSelected['planet_type'] == 3)
@@ -271,14 +271,14 @@ switch ($_GET['page'])
 				$System    = $MoonSelected['system'];
 				$Planet    = $MoonSelected['planet'];
 
-				doquery("DELETE FROM {{table}} WHERE `galaxy` ='".$Galaxy."' AND `system` ='".$System."' AND `planet` ='".$Planet."' AND `planet_type` = '3'",'planets');
+				doquery("DELETE FROM {{table}} WHERE `galaxy` ='".$Galaxy."' && `system` ='".$System."' && `planet` ='".$Planet."' && `planet_type` = '3'",'planets');
 
 				$QryUpdateGalaxy  = "UPDATE {{table}} SET ";
 				$QryUpdateGalaxy .= "`id_luna` = '0' ";
 				$QryUpdateGalaxy .= "WHERE ";
-				$QryUpdateGalaxy .= "`galaxy` = '". $Galaxy ."' AND ";
-				$QryUpdateGalaxy .= "`system` = '". $System ."' AND ";
-				$QryUpdateGalaxy .= "`planet` = '". $Planet ."' ";
+				$QryUpdateGalaxy .= "`galaxy` = '".$Galaxy."' && ";
+				$QryUpdateGalaxy .= "`system` = '".$System."' && ";
+				$QryUpdateGalaxy .= "`planet` = '".$Planet."' ";
 				$QryUpdateGalaxy .= "LIMIT 1;";
 				doquery($QryUpdateGalaxy, 'galaxy');
 
@@ -295,7 +295,7 @@ switch ($_GET['page'])
 		}
 	}
 
-	display (parsetemplate(gettemplate("adm/MoonOptionsBody"), $parse), FALSE, '', TRUE, FALSE);
+	display(parsetemplate(gettemplate("adm/MoonOptionsBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case 'new_planet':
@@ -314,11 +314,11 @@ switch ($_GET['page'])
 		$field_max   = $_POST['field_max'];
 
 		$i	=	0;
-		$QueryS	=	doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' AND `system` = '".$system."' AND `planet` = '".$planet."'", "galaxy", TRUE);
+		$QueryS	=	doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' && `system` = '".$system."' && `planet` = '".$planet."'", "galaxy", TRUE);
 		$QueryS2	=	doquery("SELECT * FROM {{table}} WHERE `id` = '".$id."'", "users", TRUE);
 		if (is_numeric($_POST['id']) && isset($_POST['id']) && !$QueryS && $QueryS2)
 		{
-			if ($galaxy < 1 or $system < 1 or $planet < 1 or !is_numeric($galaxy) or !is_numeric($system) or !is_numeric($planet)){
+			if ($galaxy < 1 or $system < 1 or $planet < 1 or ! is_numeric($galaxy) or ! is_numeric($system) or ! is_numeric($planet)){
 				$Error	.=	'<tr><th colspan="2"><font color=red>'.$lang['po_complete_all'].'</font></th></tr>';
 				$i++;}
 
@@ -338,9 +338,9 @@ switch ($_GET['page'])
 					$QryUpdatePlanet .= "`name` = '".$name."', ";
 				$QryUpdatePlanet .= "`id_level` = '".$QueryS3['id_level']."' ";
 				$QryUpdatePlanet .= "WHERE ";
-				$QryUpdatePlanet .= "`galaxy` = '". $galaxy ."' AND ";
-				$QryUpdatePlanet .= "`system` = '". $system ."' AND ";
-				$QryUpdatePlanet .= "`planet` = '". $planet ."' AND ";
+				$QryUpdatePlanet .= "`galaxy` = '".$galaxy."' && ";
+				$QryUpdatePlanet .= "`system` = '".$system."' && ";
+				$QryUpdatePlanet .= "`planet` = '".$planet."' && ";
 				$QryUpdatePlanet .= "`planet_type` = '1'";
 				doquery($QryUpdatePlanet, 'planets');
 
@@ -370,8 +370,8 @@ switch ($_GET['page'])
 					$QueryS2	=	doquery("SELECT * FROM {{table}} WHERE `id_planet` = '".$id."'", "galaxy", TRUE);
 					if ($QueryS2['id_luna'] > 0)
 					{
-						doquery("DELETE FROM {{table}} WHERE `galaxy` = '".$QueryS['galaxy']."' AND `system` = '".$QueryS['system']."' AND
-							`planet` = '".$QueryS['planet']."' AND `planet_type` = '3'", "planets");
+						doquery("DELETE FROM {{table}} WHERE `galaxy` = '".$QueryS['galaxy']."' && `system` = '".$QueryS['system']."' &&
+							`planet` = '".$QueryS['planet']."' && `planet_type` = '3'", "planets");
 					}
 					doquery("DELETE FROM {{table}} WHERE `id` = '".$id."'", 'planets');
 					doquery("DELETE FROM {{table}} WHERE `id_planet` ='".$id."'", 'galaxy');
@@ -394,12 +394,12 @@ switch ($_GET['page'])
 		$parse['display2']	=	$Error;
 	}
 
-	display (parsetemplate(gettemplate('adm/PlanetOptionsBody'),  $parse), FALSE, '', TRUE, FALSE);
+	display(parsetemplate(gettemplate('adm/PlanetOptionsBody'),  $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	default:
 
-	display( parsetemplate(gettemplate('adm/CreatorBody'), $parse), FALSE, '', TRUE, FALSE);
+	display(parsetemplate(gettemplate('adm/CreatorBody'), $parse), FALSE, '', TRUE, FALSE);
 	break;
 }
 ?>

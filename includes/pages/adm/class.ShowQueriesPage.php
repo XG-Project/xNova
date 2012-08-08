@@ -8,7 +8,7 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location: ./../../"));
+if ( ! defined('INSIDE')) die(header("Location: ./../../"));
 if ($user['authlevel'] < 3) die(message($lang['404_page']));
 
 class ShowQueriesPage {

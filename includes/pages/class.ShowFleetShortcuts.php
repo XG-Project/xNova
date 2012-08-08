@@ -8,7 +8,7 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 class ShowFleetShortcuts
 {
@@ -23,13 +23,13 @@ class ShowFleetShortcuts
 		{
 			$mode=$_GET['mode'];
 
-			if ($mode == "add" && !empty($_POST['galaxy'])&&!empty($_POST['system'])&&!empty($_POST['planet']))
+			if ($mode == "add" && ! empty($_POST['galaxy'])&&! empty($_POST['system'])&&! empty($_POST['planet']))
 			{
 				$this->addFleetShortcuts($db->real_escape_string(strip_tags($_POST["name"])),intval($_POST["galaxy"]),intval($_POST["system"]),intval($_POST["planet"]),intval($_POST["moon"]));
 			}
-			elseif ($mode=="edit" && isset($_GET['a']) && !empty($_POST['galaxy'])&&!empty($_POST['system'])&&!empty($_POST['planet']))
+			elseif ($mode=="edit" && isset($_GET['a']) && ! empty($_POST['galaxy'])&&! empty($_POST['system'])&&! empty($_POST['planet']))
 			{
-				$this->saveFleetShortcuts(intval($_GET['a']),$db->real_escape_string(strip_tags($_POST["name"])),intval($_POST["galaxy"]),intval($_POST["system"]),intval($_POST["planet"]),intval($_POST["moon"]));
+				$this->saveFleetShortcuts(intval($_GET['a']), $db->real_escape_string(strip_tags($_POST["name"])),intval($_POST["galaxy"]),intval($_POST["system"]),intval($_POST["planet"]),intval($_POST["moon"]));
 			}
 			elseif ($mode=="delete" && isset($_GET['a']))
 			{
@@ -58,7 +58,7 @@ class ShowFleetShortcuts
 		$parse['mode']			="add";
 		$parse['visibility'] 	="hidden";
 
-		display(parsetemplate(gettemplate("shortcuts/shortcuts_editPanel"),$parse));
+		display(parsetemplate(gettemplate("shortcuts/shortcuts_editPanel"), $parse));
 	}
 
 	private function showEditPanelWithID($id)
@@ -83,10 +83,10 @@ class ShowFleetShortcuts
 		$parse['moon'.$c[4]]	='selected';
 		$parse['visibility'] 	="button";
 
-		display(parsetemplate(gettemplate("shortcuts/shortcuts_editPanel"),$parse));
+		display(parsetemplate(gettemplate("shortcuts/shortcuts_editPanel"), $parse));
 	}
 
-	private function saveFleetShortcuts($id,$name,$galaxy,$system,$planet,$moon)
+	private function saveFleetShortcuts($id, $name, $galaxy, $system, $planet, $moon)
 	{
 		$scarray 		= explode(";", $this->CurrentUser['fleet_shortcut']);
 		$scarray[$id]	="{$name},{$galaxy},{$system},{$planet},{$moon};";
@@ -95,16 +95,16 @@ class ShowFleetShortcuts
 
 		doquery("UPDATE {{table}} SET fleet_shortcut='".($this->CurrentUser['fleet_shortcut'])."' WHERE id=".($this->CurrentUser['id']), "users");
 
-		header("location: ".GAMEURL."game.php?page=shortcuts");
+		header("Location: ".GAMEURL."game.php?page=shortcuts");
 	}
 
-	private function addFleetShortcuts($name,$galaxy,$system,$planet,$moon)
+	private function addFleetShortcuts($name, $galaxy, $system, $planet, $moon)
 	{
 		$this->CurrentUser['fleet_shortcut'] .= "{$name},{$galaxy},{$system},{$planet},{$moon};";
 
 		doquery("UPDATE {{table}} SET fleet_shortcut='".($this->CurrentUser['fleet_shortcut'])."' WHERE id=".($this->CurrentUser['id']), "users");
 
-		header("location: ".GAMEURL."game.php?page=shortcuts");
+		header("Location: ".GAMEURL."game.php?page=shortcuts");
 	}
 
 	private function deleteFleetShortcuts($id)
@@ -117,7 +117,7 @@ class ShowFleetShortcuts
 
 		doquery("UPDATE {{table}} SET fleet_shortcut='".($this->CurrentUser['fleet_shortcut'])."' WHERE id=".($this->CurrentUser['id']), "users");
 
-		header("location: ".GAMEURL."game.php?page=shortcuts");
+		header("Location: ".GAMEURL."game.php?page=shortcuts");
 	}
 
 	private function showAll()
@@ -126,7 +126,11 @@ class ShowFleetShortcuts
 
 		$parse = $lang;
 
+<<<<<<< HEAD
 		if ($this->CurrentUser['fleet_shortcut'])
+=======
+		if ($this->CurrentUser['fleet_shortcut'])
+>>>>>>> develop
 		{
 			$scarray 	= explode(";", $this->CurrentUser['fleet_shortcut']);
 			$sx 		= TRUE;
@@ -163,7 +167,7 @@ class ShowFleetShortcuts
 						$block['shortcut_moon'] = "";
 					}
 
-					$parse['block_rows'] .= parsetemplate($ShortcutsRowTPL,$block);
+					$parse['block_rows'] .= parsetemplate($ShortcutsRowTPL, $block);
 
 					if ( ! $sx)
 					{
@@ -183,7 +187,7 @@ class ShowFleetShortcuts
 			$parse['block_rows'] = "<th colspan=\"2\">".$lang['fl_no_shortcuts']."</th>";
 		}
 
-		display(parsetemplate(gettemplate("shortcuts/shortcuts_table"),$parse));
+		display(parsetemplate(gettemplate("shortcuts/shortcuts_table"), $parse));
 	}
 }
 ?>

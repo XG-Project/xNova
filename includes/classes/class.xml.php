@@ -19,7 +19,7 @@
  *   echo $c->get_config('version');
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 class xml {
 	//an istance of this class: see singleton pattern
@@ -38,7 +38,7 @@ class xml {
 	 */
 	private function __construct($sheet)
 	{
-		$this->path = XN_ROOT.'includes' . DIRECTORY_SEPARATOR . 'xml' . DIRECTORY_SEPARATOR . $sheet;
+		$this->path = XN_ROOT.'includes'. DIRECTORY_SEPARATOR.'xml'. DIRECTORY_SEPARATOR.$sheet;
 		$this->config = simplexml_load_file($this->path);
 	}
 	/**
@@ -62,7 +62,7 @@ class xml {
 	private function get_xml_entity($config_name)
 	{
 		//searching inside <configurations> and where config name=$config_name
-		$result = $this->doXpathQuery('/configurations/config[name="' . $config_name . '"]');
+		$result = $this->doXpathQuery('/configurations/config[name="'.$config_name.'"]');
 		//if multiple result are returned so key is not unique
 		if ( ! $result OR count($result) !== 1)
 		{

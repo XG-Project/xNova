@@ -8,10 +8,10 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-class Fleets
-{
+class Fleets {
+
 	/**
 	 * method ship_consumption
 	 * param1 $ship
@@ -49,17 +49,17 @@ class Fleets
 	{
 		$distance = 0;
 
-		if (($orig_galaxy - $dest_galaxy ) != 0)
+		if (($orig_galaxy - $dest_galaxy))
 		{
-			$distance = abs ($orig_galaxy - $dest_galaxy ) * 20000;
+			$distance = abs ($orig_galaxy - $dest_galaxy) * 20000;
 		}
-		elseif (($orig_system - $dest_system ) != 0)
+		elseif (($orig_system - $dest_system))
 		{
-			$distance = abs ($orig_system - $dest_system ) * 5 * 19 + 2700;
+			$distance = abs ($orig_system - $dest_system) * 5 * 19 + 2700;
 		}
-		elseif (($orig_planet - $dest_planet ) != 0)
+		elseif (($orig_planet - $dest_planet))
 		{
-			$distance = abs ($orig_planet - $dest_planet ) * 5 + 1000;
+			$distance = abs ($orig_planet - $dest_planet) * 5 + 1000;
 		}
 		else
 		{
@@ -80,7 +80,7 @@ class Fleets
 	public static function mission_duration($game_speed, $max_fleet_speed, $distance, $speed_factor)
 	{
 		$duration = 0;
-		$duration = round (( ( 35000 / $game_speed * sqrt ($distance * 10 / $max_fleet_speed ) + 10 ) / $speed_factor));
+		$duration = round(((35000 / $game_speed * sqrt($distance * 10 / $max_fleet_speed) + 10) / $speed_factor));
 		return $duration;
 	}
 
@@ -95,7 +95,7 @@ class Fleets
 	{
 		global $reslist, $pricelist;
 
-		if ($fleet != 0)
+		if ($fleet)
 		{
 			$fleet_array[$fleet] =  1;
 		}
@@ -131,7 +131,6 @@ class Fleets
 				if ($user['hyperspace_motor_tech'] >= 8)
 				{
 					$speed_all[$ship] 	= $pricelist[$ship]['speed2'] + (($pricelist[$ship]['speed'] * $user['hyperspace_motor_tech']) * 0.3);
-
 				}
 				else
 				{
@@ -145,7 +144,7 @@ class Fleets
 			}
 		}
 
-		if ($fleet != 0)
+		if ($fleet)
 		{
 			$ship_speed	= $speed_all[$ship];
 			$speed_all	= $ship_speed;
@@ -173,11 +172,11 @@ class Fleets
 		{
 			if ($ship > 0)
 			{
-				$ship_speed         = self::fleet_max_speed ( "", $ship, $user);
-				$ship_consumption   = self::ship_consumption ($ship, $user);
-				$spd              	= 35000 / ($mission_duration * $speed_factor - 10 ) * sqrt ($mission_distance * 10 / $ship_speed);
+				$ship_speed         = self::fleet_max_speed("", $ship, $user);
+				$ship_consumption   = self::ship_consumption($ship, $user);
+				$spd              	= 35000 / ($mission_duration * $speed_factor - 10) * sqrt($mission_distance * 10 / $ship_speed);
 				$basic_consumption	= $ship_consumption * $count;
-				$consumption       += $basic_consumption * $mission_distance / 35000 * (($spd / 10 ) + 1 ) * (($spd / 10 ) + 1);
+				$consumption       += $basic_consumption * $mission_distance / 35000 * (($spd / 10) + 1) * (($spd / 10) + 1);
 			}
 		}
 

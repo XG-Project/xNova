@@ -8,7 +8,7 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 function ShowLeftMenu ()
 {
@@ -17,13 +17,13 @@ function ShowLeftMenu ()
 	$parse					= $lang;
 	$parse['dpath']			= DPATH;
 	$parse['version']   	= VERSION;
-	$parse['servername']	= read_config ( 'game_name');
-	$parse['forum_url']     = read_config ( 'forum_url');
+	$parse['servername']	= read_config('game_name');
+	$parse['forum_url']     = read_config('forum_url');
 	$parse['user_rank']     = $user['total_rank'];
 
 	if ($user['authlevel'] > 0)
 	{
-		$parse['admin_link']	="<tr><td><div align=\"center\"><a href=\"admin.php\" target=\"_top\"> <font color=\"lime\">" . $lang['lm_administration'] . "</font></a></div></td></tr>";
+		$parse['admin_link']	="<tr><td><div align=\"center\"><a href=\"admin.php\" target=\"_top\"> <font color=\"lime\">".$lang['lm_administration']."</font></a></div></td></tr>";
 	}
 	else
 	{

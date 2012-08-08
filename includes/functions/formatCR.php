@@ -8,7 +8,7 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 	function formatCR (&$result_array,&$steal_array,&$moon_int,&$moon_string,&$time_float)
 	{
@@ -58,7 +58,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 					{
 						if (number_format($data1['attack']['total']) == 0)
 						{
-							$ships1 = "<tr><br><br>". $lang['sys_destroyed']."<br></tr>";
+							$ships1 = "<tr><br><br>".$lang['sys_destroyed']."<br></tr>";
 							$count1 = "";
 							$destroyed = 1;
 						}
@@ -101,7 +101,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 					}
 					else
 					{
-						$ships1 = "<tr><br><br>". $lang['sys_destroyed']."<br></tr>";
+						$ships1 = "<tr><br><br>".$lang['sys_destroyed']."<br></tr>";
 						$count1 = "";
 					}
 
@@ -175,7 +175,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 					}
 					else
 					{
-						$ships1 = "<tr><br><br>". $lang['sys_destroyed']."<br></tr>";
+						$ships1 = "<tr><br><br>".$lang['sys_destroyed']."<br></tr>";
 						$count1 = "";
 					}
 

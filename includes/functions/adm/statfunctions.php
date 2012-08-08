@@ -8,17 +8,20 @@
  * @author	Razican <admin@razican.com>
  */
 
-function GetTechnoPoints ($CurrentUser ) {
+function GetTechnoPoints($CurrentUser)
+{
 	global $resource, $pricelist, $reslist;
 
 	$TechCounts = 0;
 	$TechPoints = 0;
 	foreach ($reslist['tech'] as $n => $Techno)
 	{
-		if ($CurrentUser[ $resource[ $Techno ] ] > 0 ) {
-			for ($Level = 0; $Level < $CurrentUser[ $resource[ $Techno ] ]; $Level++ ) {
-				$Units       = $pricelist[ $Techno ]['metal'] + $pricelist[ $Techno ]['crystal'] + $pricelist[ $Techno ]['deuterium'];
-				$LevelMul    = pow($pricelist[ $Techno ]['factor'], $Level);
+		if ($CurrentUser[$resource[$Techno]] > 0)
+		{
+			for ($Level = 0; $Level < $CurrentUser[$resource[$Techno]]; $Level++)
+			{
+				$Units       = $pricelist[$Techno]['metal'] + $pricelist[$Techno]['crystal'] + $pricelist[$Techno]['deuterium'];
+				$LevelMul    = pow($pricelist[$Techno]['factor'], $Level);
 				$TechPoints += ($Units * $LevelMul);
 				$TechCounts += 1;
 			}
@@ -30,17 +33,20 @@ function GetTechnoPoints ($CurrentUser ) {
 	return $RetValue;
 }
 
-function GetBuildPoints ($CurrentPlanet ) {
+function GetBuildPoints($CurrentPlanet)
+{
 	global $resource, $pricelist, $reslist;
 
 	$BuildCounts = 0;
 	$BuildPoints = 0;
-	foreach ($reslist['build'] as $n => $Building) {
-		if ($CurrentPlanet[ $resource[ $Building ] ] > 0)
+	foreach ($reslist['build'] as $n => $Building)
+	{
+		if ($CurrentPlanet[$resource[$Building]] > 0)
 		{
-			for ($Level = 0; $Level < $CurrentPlanet[ $resource[ $Building ] ]; $Level++ ) {
-				$Units        = $pricelist[ $Building ]['metal'] + $pricelist[ $Building ]['crystal'] + $pricelist[ $Building ]['deuterium'];
-				$LevelMul     = pow($pricelist[ $Building ]['factor'], $Level);
+			for ($Level = 0; $Level < $CurrentPlanet[$resource[$Building]]; $Level++)
+			{
+				$Units        = $pricelist[$Building]['metal'] + $pricelist[$Building]['crystal'] + $pricelist[$Building]['deuterium'];
+				$LevelMul     = pow($pricelist[$Building]['factor'], $Level);
 				$BuildPoints += ($Units * $LevelMul);
 				$BuildCounts += 1;
 			}
@@ -52,16 +58,19 @@ function GetBuildPoints ($CurrentPlanet ) {
 	return $RetValue;
 }
 
-function GetDefensePoints ($CurrentPlanet ) {
+function GetDefensePoints($CurrentPlanet)
+{
 	global $resource, $pricelist, $reslist;
 
 	$DefenseCounts = 0;
 	$DefensePoints = 0;
-	foreach ($reslist['defense'] as $n => $Defense) {
-		if (isset($CurrentPlanet[ $resource[ $Defense ] ]) && $CurrentPlanet[ $resource[ $Defense ] ] > 0) {
-			$Units          = $pricelist[ $Defense ]['metal'] + $pricelist[ $Defense ]['crystal'] + $pricelist[ $Defense ]['deuterium'];
-			$DefensePoints += ($Units * $CurrentPlanet[ $resource[ $Defense ] ]);
-			$DefenseCounts += $CurrentPlanet[ $resource[ $Defense ] ];
+	foreach ($reslist['defense'] as $n => $Defense)
+	{
+		if (isset($CurrentPlanet[$resource[$Defense]]) && $CurrentPlanet[$resource[$Defense]] > 0)
+		{
+			$Units          = $pricelist[$Defense]['metal'] + $pricelist[$Defense]['crystal'] + $pricelist[$Defense]['deuterium'];
+			$DefensePoints += ($Units * $CurrentPlanet[$resource[$Defense]]);
+			$DefenseCounts += $CurrentPlanet[$resource[$Defense]];
 		}
 	}
 	$RetValue['DefenseCount'] = $DefenseCounts;
@@ -70,16 +79,17 @@ function GetDefensePoints ($CurrentPlanet ) {
 	return $RetValue;
 }
 
-function GetFleetPoints ($CurrentPlanet ) {
+function GetFleetPoints($CurrentPlanet)
+{
 	global $resource, $pricelist, $reslist;
 
 	$FleetCounts = 0;
 	$FleetPoints = 0;
 	foreach ($reslist['fleet'] as $n => $Fleet) {
-		if ($CurrentPlanet[ $resource[ $Fleet ] ] > 0) {
-			$Units          = $pricelist[ $Fleet ]['metal'] + $pricelist[ $Fleet ]['crystal'] + $pricelist[ $Fleet ]['deuterium'];
-			$FleetPoints   += ($Units * $CurrentPlanet[ $resource[ $Fleet ] ]);
-			$FleetCounts   += $CurrentPlanet[ $resource[ $Fleet ] ];
+		if ($CurrentPlanet[$resource[$Fleet]] > 0) {
+			$Units          = $pricelist[$Fleet]['metal'] + $pricelist[$Fleet]['crystal'] + $pricelist[$Fleet]['deuterium'];
+			$FleetPoints   += ($Units * $CurrentPlanet[$resource[$Fleet]]);
+			$FleetCounts   += $CurrentPlanet[$resource[$Fleet]];
 		}
 	}
 	$RetValue['FleetCount'] = $FleetCounts;
@@ -87,9 +97,12 @@ function GetFleetPoints ($CurrentPlanet ) {
 
 	return $RetValue;
 }
-// INICIO FIX ACTUALIZACION PUNTOS CON FLOTA VOLANDO
+
+// INICIO FIX ACTUALIZACION PUNTOS CON FLOTA VOL&&O
 function GetFlyingFleetPoints($fleet_array)
-{global $resource, $pricelist, $reslist;
+{
+	global $resource, $pricelist, $reslist;
+
 	// PADA FUNCTION
 	// USE AT YOUR OWN RISK :3
 	$FleetRec     = explode(";", $fleet_array);
@@ -100,7 +113,7 @@ function GetFlyingFleetPoints($fleet_array)
 			if ($Group  != '')
 			{
 				$Ship    = explode(",", $Group);
-				$Units         = $pricelist[ $Ship[0] ]['metal'] + $pricelist[ $Ship[0] ]['crystal'] + $pricelist[ $Ship[0] ]['deuterium'];
+				$Units         = $pricelist[$Ship[0]]['metal'] + $pricelist[$Ship[0]]['crystal'] + $pricelist[$Ship[0]]['deuterium'];
 				$FleetPoints   += ($Units * $Ship[1]);
 				$FleetCounts   += $Ship[1];
 			}
@@ -110,7 +123,8 @@ $RetValue['FleetCount'] = $FleetCounts;
 $RetValue['FleetPoint'] = $FleetPoints;
 return $RetValue;
 }
-//FIN FIX ACTUALIZACION PUNTOS CON FLOTA VOLANDO
+
+//FIN FIX ACTUALIZACION PUNTOS CON FLOTA VOL&&O
 function MakeStats()
 {
 	global $resource, $pricelist, $reslist;
@@ -132,7 +146,7 @@ function MakeStats()
 	$del_inactive 	= time() - (60 * 60 * 24 * 30); // 1 MONTH
 	$del_deleted 	= time() - (60 * 60 * 24 * 7); // 1 WEEK
 
-	$ChooseToDelete = doquery("SELECT `id` FROM `{{table}}` WHERE (`db_deaktjava` < '".$del_deleted."' AND `db_deaktjava` <> 0) OR (`onlinetime` < '".$del_inactive."' AND `authlevel` <> 3)", 'users');
+	$ChooseToDelete = doquery("SELECT `id` FROM `{{table}}` WHERE (`db_deaktjava` < '".$del_deleted."' && `db_deaktjava` <> 0) OR (`onlinetime` < '".$del_inactive."' && `authlevel` <> 3)", 'users');
 
 	if ($ChooseToDelete)
 	{
@@ -144,32 +158,32 @@ function MakeStats()
 		}
 	}
 
-	doquery ("DELETE FROM {{table}} WHERE `message_time` < '". $del_before ."' ;", 'messages');
-	doquery ("DELETE FROM {{table}} WHERE `time` < '". $del_before ."' ;", 'rw');
+	doquery("DELETE FROM {{table}} WHERE `message_time` < '".$del_before."' ;", 'messages');
+	doquery("DELETE FROM {{table}} WHERE `time` < '".$del_before."' ;", 'rw');
 	//STATS FOR USERS....
 	//Here we make the select query, with this all the custom stuff with be included
 	$select_defenses	=	'';
 	foreach ($reslist['defense'] as $n => $Defense)
 	{
-		if ($resource[ $Defense ] != 'small_protection_shield' && $resource[ $Defense ] != 'big_protection_shield')
+		if ($resource[$Defense] != 'small_protection_shield' && $resource[$Defense] != 'big_protection_shield')
 		{
-			$select_defenses	.= " SUM(p.`".$resource[ $Defense ]."`) AS `".$resource[ $Defense ]."`,";
+			$select_defenses	.= " SUM(p.`".$resource[$Defense]."`) AS `".$resource[$Defense]."`,";
 		}
 	}
 	$select_buildings	=	'';
 	foreach ($reslist['build'] as $n => $Building)
 	{
-		$select_buildings	.= " p.`".$resource[ $Building ]."`,";
+		$select_buildings	.= " p.`".$resource[$Building]."`,";
 	}
 	$selected_tech	=	'';
 	foreach ($reslist['tech'] as $n => $Techno)
 	{
-			$selected_tech	.= " u.`".$resource[ $Techno ]."`,";
+			$selected_tech	.= " u.`".$resource[$Techno]."`,";
 	}
 	$select_fleets	=	'';
 	foreach ($reslist['fleet'] as $n => $Fleet)
 	{
-			$select_fleets	.= " SUM(p.`".$resource[ $Fleet ]."`) AS `".$resource[ $Fleet ]."`,";
+			$select_fleets	.= " SUM(p.`".$resource[$Fleet]."`) AS `".$resource[$Fleet]."`,";
 	}
 	//If you have some data type enmu is better if you put it here, because that data give a error in the SUM function.
 	$selected_enum	=	"p.small_protection_shield, p.big_protection_shield";//For now...
@@ -183,12 +197,12 @@ function MakeStats()
 	//We will make query every 'stat_amount' users
 	//Min amount = 10, if it is less than 10, it is not a good system
 
-	$game_stat_amount	=	read_config ( 'stat_amount');
-	$game_users_amount	=	read_config ( 'users_amount');
-	$game_stat_flying	=	read_config ( 'stat_flying');
-	$game_stat_settings	=	read_config ( 'stat_settings');
-	$game_stat_level	=	read_config ( 'stat_level');
-	$game_stat			=	read_config ( 'stat');
+	$game_stat_amount	=	read_config('stat_amount');
+	$game_users_amount	=	read_config('users_amount');
+	$game_stat_flying	=	read_config('stat_flying');
+	$game_stat_settings	=	read_config('stat_settings');
+	$game_stat_level	=	read_config('stat_level');
+	$game_stat			=	read_config('stat');
 
 	$game_stat_amount	= (($game_stat_amount>=10)?$game_stat_amount:10);
 	$amount_per_block	= (($game_stat_amount<$game_users_amount)?$game_users_amount:$game_stat_amount);
@@ -213,11 +227,11 @@ function MakeStats()
 		}
 		$minmax_sql	=	'SELECT Max(id) AS `max`, Min(id) AS `min` FROM
 						(SELECT id FROM {{table}}users ORDER BY id ASC LIMIT
-						'. $start.','. ($amount_per_block) .') AS A';
+						'.$start.','.($amount_per_block).') AS A';
 		$minmax	= doquery($minmax_sql, '',TRUE);
-		$sql_parcial = 	'SELECT '.$select_buildings .$select_planet . $selected_enum.', p.id FROM {{table}}planets as p WHERE p.id_owner <='.  $minmax['max'].' AND p.id_owner >= ' .$minmax['min'].';';
+		$sql_parcial = 	'SELECT '.$select_buildings.$select_planet.$selected_enum.', p.id FROM {{table}}planets as p WHERE p.id_owner <='. $minmax['max'].' && p.id_owner >= '.$minmax['min'].';';
 		//We delete now the old stats of the users
-		$sql_old_stats	=	'SELECT '.$select_old_ranks.' FROM {{table}} WHERE stat_type = 1 AND stat_code = 1 AND id_owner <= '.$minmax['max'].' AND id_owner >=  '.$minmax['min'].';';
+		$sql_old_stats	=	'SELECT '.$select_old_ranks.' FROM {{table}} WHERE stat_type = 1 && stat_code = 1 && id_owner <= '.$minmax['max'].' && id_owner >=  '.$minmax['min'].';';
 		//Here we make the array with the planets buildings array and the user id and planet id for use in the next step...
 		//Here we excecute all the querys
 		$parcial_data	= doquery($sql_parcial, '');//Here we obtained the stuff that can not be SUM
@@ -239,7 +253,7 @@ function MakeStats()
 		$flying_fleets_array	= array();
 		if ($game_stat_flying == 1)
 		{
-			$sql_flying_fleets	=	'SELECT fleet_array, fleet_owner, fleet_id FROM {{table}} WHERE fleet_owner <= '. $minmax['max'].' AND fleet_owner >= '. $minmax['min'].';';
+			$sql_flying_fleets	=	'SELECT fleet_array, fleet_owner, fleet_id FROM {{table}} WHERE fleet_owner <= '.$minmax['max'].' && fleet_owner >= '.$minmax['min'].';';
 			$flying_fleets		=	doquery($sql_flying_fleets, 'fleets');
 			while ($CurFleets = $flying_fleets->fetch_assoc())
 			{
@@ -248,14 +262,14 @@ function MakeStats()
 			unset($CurFleets, $flying_fleets);
 		}
 		//This query will have a LOT of data...
-		$sql	=	'SELECT  '.$select_planet .$select_defenses .$selected_tech .$select_fleets .$select_user.
+		$sql	=	'SELECT  '.$select_planet.$select_defenses.$selected_tech.$select_fleets.$select_user.
 					'FROM {{table}}planets as p
 					INNER JOIN {{table}}users as u ON u.id = p.id_owner
-					WHERE p.id_owner <= '.$minmax['max'].' AND p.id_owner >=  '.$minmax['min'].'
+					WHERE p.id_owner <= '.$minmax['max'].' && p.id_owner >=  '.$minmax['min'].'
 					GROUP BY p.id_owner, u.id, u.authlevel;';
-		$total_data	=	doquery ($sql,'');
-		unset($sql,$sql_old_stats,$sql_parcial);
-		doquery ("DELETE FROM {{table}} WHERE stat_type = 1 AND stat_code = 1 AND id_owner <= ". $minmax['max']." AND id_owner >= ". $minmax['min'].";",'statpoints');
+		$total_data	=	doquery($sql,'');
+		unset($sql, $sql_old_stats, $sql_parcial);
+		doquery("DELETE FROM {{table}} WHERE stat_type = 1 && stat_code = 1 && id_owner <= ".$minmax['max']." && id_owner >= ".$minmax['min'].";",'statpoints');
 		$insert_user_query	=	"INSERT INTO {{table}}
 								(`id_owner`, `id_ally`, `stat_type`, `stat_code`,
 								`tech_old_rank`, `tech_points`, `tech_count`,
@@ -275,15 +289,15 @@ function MakeStats()
 			unset($old_stats_array[$CurUser['id']]);
 			//1 point=  'stat_settings' ressources
 			//Make the tech points XD
-			$u_points			= GetTechnoPoints ($CurUser);
+			$u_points			= GetTechnoPoints($CurUser);
 			$u_TTechCount		= $u_points['TechCount'];
 			$u_TTechPoints	= ($u_points['TechPoint'] / $game_stat_settings);
 			//Make the defense points
-			$u_points			= GetDefensePoints ($CurUser);
+			$u_points			= GetDefensePoints($CurUser);
 			$u_TDefsCount		= $u_points['DefenseCount'];
 			$u_TDefsPoints	= ($u_points['DefensePoint'] / $game_stat_settings);
 			//Make the fleets points (without the flying fleets...
-			$u_points			= GetFleetPoints ($CurUser);
+			$u_points			= GetFleetPoints($CurUser);
 			$u_TFleetCount	= $u_points['FleetCount'];
 			$u_TFleetPoints	= ($u_points['FleetPoint'] / $game_stat_settings);
 			//Now we add the flying fleets points
@@ -300,16 +314,16 @@ function MakeStats()
 					}
 				}
 				//We dont need this anymore...
-				unset($flying_fleets_array[$CurUser['id']],$fleet_array,$fleet_id);
+				unset($flying_fleets_array[$CurUser['id']], $fleet_array, $fleet_id);
 			}
 			else
 			{//We take one query per fleet in flying, with this we increase the time and the querys, but we decrease the cpu load...
-				$OwnFleets = doquery("SELECT fleet_array, fleet_id FROM {{table}} WHERE `fleet_owner` = '". $CurUser['id'] ."';", 'fleets');
+				$OwnFleets = doquery("SELECT fleet_array, fleet_id FROM {{table}} WHERE `fleet_owner` = '".$CurUser['id']."';", 'fleets');
 				while ($FleetRow = $OwnFleets->fetch_array())
 				{
-						$u_points			= GetFlyingFleetPoints ($FleetRow['fleet_array']);
-						$u_TFleetCount  	+= $u_points['FleetCount'];
-						$u_TFleetPoints 	+= ($u_points['FleetPoint'] / $game_stat_settings);
+					$u_points			= GetFlyingFleetPoints ($FleetRow['fleet_array']);
+					$u_TFleetCount  	+= $u_points['FleetCount'];
+					$u_TFleetPoints 	+= ($u_points['FleetPoint'] / $game_stat_settings);
 				}
 				//We dont need this anymore...
 				unset($OwnFleets, $FleetRow);
@@ -329,15 +343,15 @@ function MakeStats()
 					$u_TDefsPoints		+= ($u_points['DefensePoint'] / $game_stat_settings);
 				}
 				//We dont need this anymore...
-				unset($Buildings_array[$CurUser['id']],$planet_id,$building);
+				unset($Buildings_array[$CurUser['id']], $planet_id, $building);
 			}
 			else
 			{
-			//Here we will send a error message....print_r("<br>usuario sin planeta: ". $CurUser['id']);
+			//Here we will send a error message....print_r("<br>usuario sin planeta: ".$CurUser['id']);
 			}
 			$u_GCount			= $u_TDefsCount  + $u_TTechCount  + $u_TFleetCount  + $u_TBuildCount;
 			$u_GPoints		= $u_TTechPoints + $u_TDefsPoints + $u_TFleetPoints + $u_TBuildPoints;
-			if (($CurUser['authlevel'] >= $game_stat_level && $game_stat==1 ) OR (isset($CurUser['bana']) && $CurUser['bana']==1))
+			if (($CurUser['authlevel'] >= $game_stat_level && $game_stat==1) OR (isset($CurUser['bana']) && $CurUser['bana']==1))
 			{
 				$insert_user_query  .= '('.$CurUser['id'].','.$CurUser['ally_id'].',1,1,'.$u_OldTechRank.',
 										0,0,'.$u_OldBuildRank.',0,0,'.$u_OldDefsRank.',0,0,'.$u_OldFleetRank.',
@@ -351,7 +365,7 @@ function MakeStats()
 										'.$u_OldFleetRank.','.$u_TFleetPoints.','.$u_TFleetCount.','.$u_OldTotalRank.',
 										'.$u_GPoints.','.$u_GCount.','.$stats_time.'),' ;
 			}
-			unset_vars( 'u_');
+			unset_vars('u_');
 
 			$CheckUserQuery = TRUE;
 		}
@@ -361,7 +375,7 @@ function MakeStats()
 		if ($CheckUserQuery)
 		{
 			$insert_user_query	=	substr_replace($insert_user_query, ';', -1);
-			doquery ($insert_user_query, 'statpoints');
+			doquery($insert_user_query, 'statpoints');
 		}
 
 		unset($insert_user_query, $total_data, $CurUser, $old_stats_array, $Buildings_array, $flying_fleets_array);
@@ -378,7 +392,7 @@ function MakeStats()
 		$ally_check_value[$CurAlly['id']] = 1;
 	}
 	unset($ally_check);
-	unset($start,$QueryValue,$Query,$LastQuery);
+	unset($start, $QueryValue, $Query, $LastQuery);
 	if ($total_ally > 0)//We only update allys if at least 1 ally exist...
 	{
 		//Min amount = 10, if it is less than 10, it is not a good system
@@ -405,7 +419,7 @@ function MakeStats()
 			}
 			$minmax_sql	=	'SELECT Max(id) AS `max`, Min(id) AS `min` FROM
 						(SELECT id FROM {{table}}alliance ORDER BY id ASC LIMIT
-						'. $start.','. $amount_per_block.') AS A';
+						'.$start.','.$amount_per_block.') AS A';
 			$minmax	= doquery($minmax_sql, '',TRUE);
 			$select_old_a_ranks	=	"s.id_owner, s.stat_type,	s.tech_rank AS old_tech_rank,
 								s.build_rank AS old_build_rank, s.defs_rank AS old_defs_rank, s.fleet_rank AS old_fleet_rank,
@@ -413,10 +427,10 @@ function MakeStats()
 			$select_ally		= " a.id ";
 			$sql_ally	=	'SELECT  '.$select_ally.', '.$select_old_a_ranks.'
 							FROM {{table}}alliance AS a
-							INNER JOIN {{table}}statpoints AS s ON a.id = s.id_owner  AND s.stat_type = 2
-							WHERE a.id <= '.$minmax['max'].' AND a.id >=  '.$minmax['min'].'
+							INNER JOIN {{table}}statpoints AS s ON a.id = s.id_owner  && s.stat_type = 2
+							WHERE a.id <= '.$minmax['max'].' && a.id >=  '.$minmax['min'].'
 							ORDER BY a.id;';
-			$ally_data	=	doquery ($sql_ally,'');
+			$ally_data	=	doquery($sql_ally,'');
 			$ally_sql_points	='SELECT
 							s.stat_type, s.id_ally, Sum(s.tech_points) AS TechPoint,
 								Sum(s.tech_count) AS TechCount, Sum(s.build_points) AS BuildPoint,
@@ -426,12 +440,12 @@ function MakeStats()
 								Sum(s.total_count) AS TotalCount
 								FROM
 								{{table}}statpoints AS s
-								WHERE	s.stat_type =  1 AND s.id_ally > 0
-								AND s.id_ally <= '.$minmax['max'].' AND s.id_ally >=  '.$minmax['min'].'
+								WHERE	s.stat_type =  1 && s.id_ally > 0
+								&& s.id_ally <= '.$minmax['max'].' && s.id_ally >=  '.$minmax['min'].'
 								GROUP BY	s.id_ally;';
-			$ally_points	=	doquery ($ally_sql_points,'');
+			$ally_points	=	doquery($ally_sql_points,'');
 			//We delete now the old stats of the allys
-			doquery ('DELETE FROM {{table}} WHERE `stat_type` = 2 AND id_owner <= '.$minmax['max'].' AND id_owner >=  '.$minmax['min'].';','statpoints');
+			doquery('DELETE FROM {{table}} WHERE `stat_type` = 2 && id_owner <= '.$minmax['max'].' && id_owner >=  '.$minmax['min'].';','statpoints');
 			while ($CurAlly = $ally_data->fetch_assoc())
 			{
 				$ally_old_data[$CurAlly['id']]=$CurAlly;
@@ -469,11 +483,11 @@ function MakeStats()
 											'.$u_OldFleetRank.','.$u_TFleetPoints.','.$u_TFleetCount.','.$u_OldTotalRank.',
 											'.$u_GPoints.','.$u_GCount.','.$stats_time.'),' ;
 				unset($CurAlly);
-				unset_vars( 'u_');
+				unset_vars('u_');
 				}
 				else
 				{
-					doquery ( "UPDATE {{table}}	SET `ally_id`=0, `ally_name` = '', 	`ally_register_time`= 0, `ally_rank_id`= 0 	WHERE `ally_id`='{$CurAlly['id_ally']}'", "users");
+					doquery("UPDATE {{table}}	SET `ally_id`=0, `ally_name` = '', 	`ally_register_time`= 0, `ally_rank_id`= 0 	WHERE `ally_id`='{$CurAlly['id_ally']}'", "users");
 				}
 
 				$CheckAllyQuery	= TRUE;
@@ -483,7 +497,7 @@ function MakeStats()
 			if ($CheckAllyQuery)
 			{
 				$insert_ally_query	=	substr_replace($insert_ally_query, ';', -1);
-				doquery ($insert_ally_query, 'statpoints');
+				doquery($insert_ally_query, 'statpoints');
 			}
 
 			unset($insert_ally_query, $ally_old_data, $CurAlly, $ally_points);
@@ -510,54 +524,54 @@ function MakeStats()
 function MakeNewRanks($stat_type)
 {
 	$Rank           = 1;
-	$RankQry        = doquery("SELECT `id_owner` FROM {{table}} WHERE `stat_type` = '".$stat_type."' AND `stat_code` = '1' ORDER BY `tech_points` DESC;", 'statpoints');
+	$RankQry        = doquery("SELECT `id_owner` FROM {{table}} WHERE `stat_type` = '".$stat_type."' && `stat_code` = '1' ORDER BY `tech_points` DESC;", 'statpoints');
 	while ($CurUser = $RankQry->fetch_assoc())
 	{
 		$tech[$CurUser['id_owner']]	=	$Rank;
 		$Rank++;
 	}
-	unset($Rank,$RankQry,$QryUpdateStats,$CurUser);
+	unset($Rank, $RankQry, $QryUpdateStats, $CurUser);
 	$Rank           = 1;
-	$RankQry        = doquery("SELECT `id_owner` FROM {{table}} WHERE `stat_type` = '".$stat_type."' AND `stat_code` = '1' ORDER BY `build_points` DESC;", 'statpoints');
+	$RankQry        = doquery("SELECT `id_owner` FROM {{table}} WHERE `stat_type` = '".$stat_type."' && `stat_code` = '1' ORDER BY `build_points` DESC;", 'statpoints');
 	while ($CurUser = $RankQry->fetch_assoc())
 	{
 		$build[$CurUser['id_owner']]	=	$Rank;
 		$Rank++;
 	}
-	unset($Rank,$RankQry,$QryUpdateStats,$CurUser);
+	unset($Rank, $RankQry, $QryUpdateStats, $CurUser);
 	$Rank           = 1;
-	$RankQry        = doquery("SELECT `id_owner` FROM {{table}} WHERE `stat_type` = '".$stat_type."' AND `stat_code` = '1' ORDER BY `defs_points` DESC;", 'statpoints');
+	$RankQry        = doquery("SELECT `id_owner` FROM {{table}} WHERE `stat_type` = '".$stat_type."' && `stat_code` = '1' ORDER BY `defs_points` DESC;", 'statpoints');
 	while ($CurUser = $RankQry->fetch_assoc())
 	{
 		$defs[$CurUser['id_owner']]	=	$Rank;
 		$Rank++;
 	}
-	unset($Rank,$RankQry,$QryUpdateStats,$CurUser);
+	unset($Rank, $RankQry, $QryUpdateStats, $CurUser);
 	$Rank           = 1;
-	$RankQry        = doquery("SELECT `id_owner` FROM {{table}} WHERE `stat_type` = '".$stat_type."' AND `stat_code` = '1' ORDER BY `fleet_points` DESC;", 'statpoints');
+	$RankQry        = doquery("SELECT `id_owner` FROM {{table}} WHERE `stat_type` = '".$stat_type."' && `stat_code` = '1' ORDER BY `fleet_points` DESC;", 'statpoints');
 	while ($CurUser = $RankQry->fetch_assoc())
 	{
 		$fleet[$CurUser['id_owner']]	=	$Rank;
 		$Rank++;
 	}
-	unset($Rank,$RankQry,$QryUpdateStats,$CurUser);
+	unset($Rank, $RankQry, $QryUpdateStats, $CurUser);
 	$Rank           = 1;
-	$RankQry        = doquery("SELECT `id_owner` FROM {{table}} WHERE `stat_type` = '".$stat_type."' AND `stat_code` = '1' ORDER BY `total_points` DESC;", 'statpoints');
+	$RankQry        = doquery("SELECT `id_owner` FROM {{table}} WHERE `stat_type` = '".$stat_type."' && `stat_code` = '1' ORDER BY `total_points` DESC;", 'statpoints');
 	while ($CurUser = $RankQry->fetch_assoc())
 	{
 		$QryUpdateStats  = "UPDATE {{table}} SET ";
-		$QryUpdateStats .= "`tech_rank` = '". $tech[$CurUser['id_owner']] ."' ,";
-		$QryUpdateStats .= "`build_rank` = '". $build[$CurUser['id_owner']] ."' ,";
-		$QryUpdateStats .= "`defs_rank` = '". $defs[$CurUser['id_owner']] ."' ,";
-		$QryUpdateStats .= "`fleet_rank` = '". $fleet[$CurUser['id_owner']] ."' ,";
-		$QryUpdateStats .= "`total_rank` = '". $Rank ."' ";
+		$QryUpdateStats .= "`tech_rank` = '".$tech[$CurUser['id_owner']]."' ,";
+		$QryUpdateStats .= "`build_rank` = '".$build[$CurUser['id_owner']]."' ,";
+		$QryUpdateStats .= "`defs_rank` = '".$defs[$CurUser['id_owner']]."' ,";
+		$QryUpdateStats .= "`fleet_rank` = '".$fleet[$CurUser['id_owner']]."' ,";
+		$QryUpdateStats .= "`total_rank` = '".$Rank."' ";
 		$QryUpdateStats .= "WHERE ";
-		$QryUpdateStats .= " `stat_type` = '".$stat_type."' AND `stat_code` = '1' AND `id_owner` = '". $CurUser['id_owner'] ."';";
+		$QryUpdateStats .= " `stat_type` = '".$stat_type."' && `stat_code` = '1' && `id_owner` = '".$CurUser['id_owner']."';";
 		doquery($QryUpdateStats, 'statpoints');
-		unset($tech[$CurUser['id_owner']],$build[$CurUser['id_owner']],$defs[$CurUser['id_owner']],$fleet[$CurUser['id_owner']]);
+		unset($tech[$CurUser['id_owner']], $build[$CurUser['id_owner']], $defs[$CurUser['id_owner']], $fleet[$CurUser['id_owner']]);
 		$Rank++;
 	}
-	unset($Rank,$RankQry,$QryUpdateStats,$CurUser);
-	doquery ( "DELETE FROM {{table}} WHERE `stat_code` = '2';", 'statpoints');
+	unset($Rank, $RankQry, $QryUpdateStats, $CurUser);
+	doquery("DELETE FROM {{table}} WHERE `stat_code` = '2';", 'statpoints');
 }
 ?>

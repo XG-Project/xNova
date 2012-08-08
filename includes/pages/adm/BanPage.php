@@ -16,7 +16,7 @@ define('XN_ROOT', './../');
 include(XN_ROOT.'global.php');
 include('AdminFunctions/Autorization.php');
 
-if ($EditUsers != 1) die(message ($lang['404_page']));
+if ($EditUsers != 1) die(message($lang['404_page']));
 
 $parse = $lang;
 
@@ -33,7 +33,7 @@ if ($user['authlevel'] != 3)
 
 
 if ($_GET['view'] == 'bana' && $user['authlevel'] != 3)
-	$WHEREBANA	=	"AND `bana` = 1";
+	$WHEREBANA	=	"&& `bana` = 1";
 elseif ($_GET['view'] == 'bana' && $user['authlevel'] == 3)
 	$WHEREBANA	=	"WHERE `bana` = 1";
 
@@ -109,8 +109,8 @@ if ($_GET['panel'])
 
 	if ($_POST['bannow'])
 	{
-		if (!is_numeric($_POST['days']) OR !is_numeric($_POST['hour']) OR !is_numeric($_POST['mins']) OR !is_numeric($_POST['secs']))
-			return display( parsetemplate(gettemplate("adm/BanOptionsResultBody"), $parse), FALSE, '', TRUE, FALSE);
+		if ( ! is_numeric($_POST['days']) OR ! is_numeric($_POST['hour']) OR ! is_numeric($_POST['mins']) OR ! is_numeric($_POST['secs']))
+			return display(parsetemplate(gettemplate("adm/BanOptionsResultBody"), $parse), FALSE, '', TRUE, FALSE);
 
 		$name              = $_POST['ban_name'];
 		$reas              = $_POST['why'];
@@ -137,32 +137,32 @@ if ($_GET['panel'])
 		if ($QueryUserBan)
 		{
 			$QryInsertBan      = "UPDATE {{table}} SET ";
-			$QryInsertBan     .= "`who` = '". $name ."', ";
-			$QryInsertBan     .= "`theme` = '". $reas ."', ";
-			$QryInsertBan     .= "`who2` = '". $name ."', ";
-			$QryInsertBan     .= "`time` = '". $Now ."', ";
-			$QryInsertBan     .= "`longer` = '". $BannedUntil ."', ";
-			$QryInsertBan     .= "`author` = '". $admin ."', ";
-			$QryInsertBan     .= "`email` = '". $mail ."' ";
+			$QryInsertBan     .= "`who` = '".$name."', ";
+			$QryInsertBan     .= "`theme` = '".$reas."', ";
+			$QryInsertBan     .= "`who2` = '".$name."', ";
+			$QryInsertBan     .= "`time` = '".$Now."', ";
+			$QryInsertBan     .= "`longer` = '".$BannedUntil."', ";
+			$QryInsertBan     .= "`author` = '".$admin."', ";
+			$QryInsertBan     .= "`email` = '".$mail."' ";
 			$QryInsertBan     .= "WHERE `who2` = '".$name."';";
 			doquery($QryInsertBan, 'banned');
 		}
 		else
 		{
 			$QryInsertBan      = "INSERT INTO {{table}} SET ";
-			$QryInsertBan     .= "`who` = \"". $name ."\", ";
-			$QryInsertBan     .= "`theme` = '". $reas ."', ";
-			$QryInsertBan     .= "`who2` = '". $name ."', ";
-			$QryInsertBan     .= "`time` = '". $Now ."', ";
-			$QryInsertBan     .= "`longer` = '". $BannedUntil ."', ";
-			$QryInsertBan     .= "`author` = '". $admin ."', ";
-			$QryInsertBan     .= "`email` = '". $mail ."';";
+			$QryInsertBan     .= "`who` = \"".$name."\", ";
+			$QryInsertBan     .= "`theme` = '".$reas."', ";
+			$QryInsertBan     .= "`who2` = '".$name."', ";
+			$QryInsertBan     .= "`time` = '".$Now."', ";
+			$QryInsertBan     .= "`longer` = '".$BannedUntil."', ";
+			$QryInsertBan     .= "`author` = '".$admin."', ";
+			$QryInsertBan     .= "`email` = '".$mail."';";
 			doquery($QryInsertBan, 'banned');
 		}
 
 		$QryUpdateUser     = "UPDATE {{table}} SET ";
 		$QryUpdateUser    .= "`bana` = '1', ";
-		$QryUpdateUser    .= "`banaday` = '". $BannedUntil ."', ";
+		$QryUpdateUser    .= "`banaday` = '".$BannedUntil."', ";
 
 		if (isset($_POST['vacat']))
 		{
@@ -176,7 +176,7 @@ if ($_GET['panel'])
 		}
 
 		$QryUpdateUser    .= "WHERE ";
-		$QryUpdateUser    .= "`username` = '". $name ."';";
+		$QryUpdateUser    .= "`username` = '".$name."';";
 		doquery($QryUpdateUser, 'users');
 
 		$PunishThePlanets     = "UPDATE {{table}} SET ";
@@ -184,7 +184,7 @@ if ($_GET['panel'])
 		$PunishThePlanets    .= "`crystal_mine_porcent` = '0', ";
 		$PunishThePlanets    .= "`deuterium_sintetizer_porcent` = '0'";
 		$PunishThePlanets    .= "WHERE ";
-		$PunishThePlanets    .= "`id_owner` = '". $GetUserData['id'] ."';";
+		$PunishThePlanets    .= "`id_owner` = '".$GetUserData['id']."';";
 		doquery($PunishThePlanets, 'planets');
 
 
@@ -201,8 +201,8 @@ if ($_GET['panel'])
 		header('location: BanPage.php?panel=ban_name&ban_name='.$_GET['ban_name'].'&succes=yes');
 	}
 	if ($_GET['succes']	==	'yes')
-		$parse['display']	=	"<tr><th colspan=\"2\"><font color=lime>". $lang['bo_the_player'] . $name . $lang['bo_banned'] ."</font></th></tr>";
-	display( parsetemplate(gettemplate("adm/BanOptionsResultBody"), $parse), FALSE, '', TRUE, FALSE);
+		$parse['display']	=	"<tr><th colspan=\"2\"><font color=lime>".$lang['bo_the_player'].$name.$lang['bo_banned']."</font></th></tr>";
+	display(parsetemplate(gettemplate("adm/BanOptionsResultBody"), $parse), FALSE, '', TRUE, FALSE);
 }
 elseif ($_POST && $_POST['unban_name'])
 {
@@ -220,9 +220,9 @@ elseif ($_POST && $_POST['unban_name'])
 	header('location: BanPage.php?succes2=yes');
 }
 	if ($_GET['succes2'] == 'yes')
-		$parse['display2']	=	"<tr><th colspan=\"2\"><font color=lime>". $lang['bo_the_player2'] . $name . $lang['bo_unbanned'] ."</font></th></tr>";
+		$parse['display2']	=	"<tr><th colspan=\"2\"><font color=lime>".$lang['bo_the_player2'].$name.$lang['bo_unbanned']."</font></th></tr>";
 
 
 
-display( parsetemplate(gettemplate("adm/BanOptions"), $parse), FALSE, '', TRUE, FALSE);
+display(parsetemplate(gettemplate("adm/BanOptions"), $parse), FALSE, '', TRUE, FALSE);
 ?>

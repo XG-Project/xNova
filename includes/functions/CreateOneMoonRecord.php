@@ -8,9 +8,9 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-function CreateOneMoonRecord ($Galaxy, $System, $Planet, $Owner, $MoonID, $MoonName, $Chance)
+function CreateOneMoonRecord($Galaxy, $System, $Planet, $Owner, $MoonID, $MoonName, $Chance)
 {
 	global $lang, $user;
 
@@ -18,21 +18,21 @@ function CreateOneMoonRecord ($Galaxy, $System, $Planet, $Owner, $MoonID, $MoonN
 
 	$QryGetMoonPlanetData  = "SELECT * FROM {{table}} ";
 	$QryGetMoonPlanetData .= "WHERE ";
-	$QryGetMoonPlanetData .= "`galaxy` = '". $Galaxy ."' AND ";
-	$QryGetMoonPlanetData .= "`system` = '". $System ."' AND ";
-	$QryGetMoonPlanetData .= "`planet` = '". $Planet ."';";
-	$MoonPlanet = doquery ($QryGetMoonPlanetData, 'planets', TRUE);
+	$QryGetMoonPlanetData .= "`galaxy` = '".$Galaxy."' && ";
+	$QryGetMoonPlanetData .= "`system` = '".$System."' && ";
+	$QryGetMoonPlanetData .= "`planet` = '".$Planet."';";
+	$MoonPlanet = doquery($QryGetMoonPlanetData, 'planets', TRUE);
 
 	$QryGetMoonGalaxyData  = "SELECT * FROM {{table}} ";
 	$QryGetMoonGalaxyData .= "WHERE ";
-	$QryGetMoonGalaxyData .= "`galaxy` = '". $Galaxy ."' AND ";
-	$QryGetMoonGalaxyData .= "`system` = '". $System ."' AND ";
-	$QryGetMoonGalaxyData .= "`planet` = '". $Planet ."';";
-	$MoonGalaxy = doquery ($QryGetMoonGalaxyData, 'galaxy', TRUE);
+	$QryGetMoonGalaxyData .= "`galaxy` = '".$Galaxy."' && ";
+	$QryGetMoonGalaxyData .= "`system` = '".$System."' && ";
+	$QryGetMoonGalaxyData .= "`planet` = '".$Planet."';";
+	$MoonGalaxy = doquery($QryGetMoonGalaxyData, 'galaxy', TRUE);
 
 	if ($MoonGalaxy['id_luna'] == 0)
 	{
-		if ($MoonPlanet['id'] != 0)
+		if ($MoonPlanet['id'])
 		{
 			$SizeMin                = 2000 + ($Chance * 100);
 
@@ -42,21 +42,21 @@ function CreateOneMoonRecord ($Galaxy, $System, $Planet, $Owner, $MoonID, $MoonN
 
 			$maxtemp                = $MoonPlanet['temp_max'] - rand(10, 45);
 			$mintemp                = $MoonPlanet['temp_min'] - rand(10, 45);
-			$size                   = rand ($SizeMin, $SizeMax);
+			$size                   = rand($SizeMin, $SizeMax);
 
 			$QryInsertMoonInPlanet  = "INSERT INTO {{table}} SET ";
-			$QryInsertMoonInPlanet .= "`name` = '". (($MoonName == '') ? $lang['fcm_moon'] : $MoonName ) ."', ";
-			$QryInsertMoonInPlanet .= "`id_owner` = '". $Owner ."', ";
-			$QryInsertMoonInPlanet .= "`galaxy` = '". $Galaxy ."', ";
-			$QryInsertMoonInPlanet .= "`system` = '". $System ."', ";
-			$QryInsertMoonInPlanet .= "`planet` = '". $Planet ."', ";
-			$QryInsertMoonInPlanet .= "`last_update` = '". time() ."', ";
+			$QryInsertMoonInPlanet .= "`name` = '".(($MoonName == '') ? $lang['fcm_moon'] : $MoonName)."', ";
+			$QryInsertMoonInPlanet .= "`id_owner` = '".$Owner."', ";
+			$QryInsertMoonInPlanet .= "`galaxy` = '".$Galaxy."', ";
+			$QryInsertMoonInPlanet .= "`system` = '".$System."', ";
+			$QryInsertMoonInPlanet .= "`planet` = '".$Planet."', ";
+			$QryInsertMoonInPlanet .= "`last_update` = '".time()."', ";
 			$QryInsertMoonInPlanet .= "`planet_type` = '3', ";
 			$QryInsertMoonInPlanet .= "`image` = 'mond', ";
-			$QryInsertMoonInPlanet .= "`diameter` = '". $size ."', ";
+			$QryInsertMoonInPlanet .= "`diameter` = '".$size."', ";
 			$QryInsertMoonInPlanet .= "`field_max` = '1', ";
-			$QryInsertMoonInPlanet .= "`temp_min` = '". $mintemp ."', ";
-			$QryInsertMoonInPlanet .= "`temp_max` = '". $maxtemp ."', ";
+			$QryInsertMoonInPlanet .= "`temp_min` = '".$mintemp."', ";
+			$QryInsertMoonInPlanet .= "`temp_max` = '".$maxtemp."', ";
 			$QryInsertMoonInPlanet .= "`metal` = '0', ";
 			$QryInsertMoonInPlanet .= "`metal_perhour` = '0', ";
 			$QryInsertMoonInPlanet .= "`metal_max` = '".BASE_STORAGE_SIZE."', ";
@@ -70,19 +70,19 @@ function CreateOneMoonRecord ($Galaxy, $System, $Planet, $Owner, $MoonID, $MoonN
 
 			$QryGetMoonIdFromPlanet  = "SELECT * FROM {{table}} ";
 			$QryGetMoonIdFromPlanet .= "WHERE ";
-			$QryGetMoonIdFromPlanet .= "`galaxy` = '".  $Galaxy ."' AND ";
-			$QryGetMoonIdFromPlanet .= "`system` = '".  $System ."' AND ";
-			$QryGetMoonIdFromPlanet .= "`planet` = '".  $Planet ."' AND ";
+			$QryGetMoonIdFromPlanet .= "`galaxy` = '". $Galaxy."' && ";
+			$QryGetMoonIdFromPlanet .= "`system` = '". $System."' && ";
+			$QryGetMoonIdFromPlanet .= "`planet` = '". $Planet."' && ";
 			$QryGetMoonIdFromPlanet .= "`planet_type` = '3';";
 			$lunarow = doquery($QryGetMoonIdFromPlanet, 'planets', TRUE);
 
 			$QryUpdateMoonInGalaxy  = "UPDATE {{table}} SET ";
-			$QryUpdateMoonInGalaxy .= "`id_luna` = '". $lunarow['id'] ."', ";
+			$QryUpdateMoonInGalaxy .= "`id_luna` = '".$lunarow['id']."', ";
 			$QryUpdateMoonInGalaxy .= "`luna` = '0' ";
 			$QryUpdateMoonInGalaxy .= "WHERE ";
-			$QryUpdateMoonInGalaxy .= "`galaxy` = '". $Galaxy ."' AND ";
-			$QryUpdateMoonInGalaxy .= "`system` = '". $System ."' AND ";
-			$QryUpdateMoonInGalaxy .= "`planet` = '". $Planet ."';";
+			$QryUpdateMoonInGalaxy .= "`galaxy` = '".$Galaxy."' && ";
+			$QryUpdateMoonInGalaxy .= "`system` = '".$System."' && ";
+			$QryUpdateMoonInGalaxy .= "`planet` = '".$Planet."';";
 			doquery($QryUpdateMoonInGalaxy, 'galaxy');
 
 		}

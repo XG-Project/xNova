@@ -8,7 +8,7 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 class ShowPhalanxPage {
 
@@ -40,16 +40,16 @@ class ShowPhalanxPage {
 		/* main page */
 		if ($CurrentPlanet['deuterium'] > 10000)
 		{
-			doquery("UPDATE {{table}} SET `deuterium` = `deuterium` - '10000' WHERE `id` = '" . $CurrentUser['current_planet'] . "';", 'planets');
+			doquery("UPDATE {{table}} SET `deuterium` = `deuterium` - '10000' WHERE `id` = '".$CurrentUser['current_planet']."';", 'planets');
 
 			$QryTargetInfo = "SELECT ";
 
 			$QryTargetInfo .= "`name`, ";
 			$QryTargetInfo .= "`id_owner` ";
 			$QryTargetInfo .= "FROM {{table}} WHERE ";
-			$QryTargetInfo .= "`galaxy` = '" . $Galaxy . "' AND ";
-			$QryTargetInfo .= "`system` = '" . $System . "' AND ";
-			$QryTargetInfo .= "`planet` = '" . $Planet . "' AND ";
+			$QryTargetInfo .= "`galaxy` = '".$Galaxy."' && ";
+			$QryTargetInfo .= "`system` = '".$System."' && ";
+			$QryTargetInfo .= "`planet` = '".$Planet."' && ";
 			$QryTargetInfo .= "`planet_type` = 1 ";
 			$TargetInfo = doquery($QryTargetInfo, 'planets', TRUE);
 			$TargetID = $TargetInfo['id_owner'];
@@ -58,9 +58,9 @@ class ShowPhalanxPage {
 			$QryTargetInfo = "SELECT ";
 			$QryTargetInfo .= "`destruyed` ";
 			$QryTargetInfo .= "FROM {{table}} WHERE ";
-			$QryTargetInfo .= "`galaxy` = '" . $Galaxy . "' AND ";
-			$QryTargetInfo .= "`system` = '" . $System . "' AND ";
-			$QryTargetInfo .= "`planet` = '" . $Planet . "' AND ";
+			$QryTargetInfo .= "`galaxy` = '".$Galaxy."' && ";
+			$QryTargetInfo .= "`system` = '".$System."' && ";
+			$QryTargetInfo .= "`planet` = '".$Planet."' && ";
 			$QryTargetInfo .= "`planet_type` = 3 ";
 			$TargetInfo = doquery($QryTargetInfo, 'planets', TRUE);
 			//if there isn't a moon,
@@ -75,14 +75,14 @@ class ShowPhalanxPage {
 
 			$QryLookFleets = "SELECT * ";
 			$QryLookFleets .= "FROM {{table}} ";
-			$QryLookFleets .= "WHERE (( ";
-			$QryLookFleets .= "`fleet_start_galaxy` = '" . $Galaxy . "' AND ";
-			$QryLookFleets .= "`fleet_start_system` = '" . $System . "' AND ";
-			$QryLookFleets .= "`fleet_start_planet` = '" . $Planet . "'  ";
-			$QryLookFleets .= ") OR ( ";
-			$QryLookFleets .= "`fleet_end_galaxy` = '" . $Galaxy . "' AND ";
-			$QryLookFleets .= "`fleet_end_system` = '" . $System . "' AND ";
-			$QryLookFleets .= "`fleet_end_planet` = '" . $Planet . "'  ";
+			$QryLookFleets .= "WHERE ((";
+			$QryLookFleets .= "`fleet_start_galaxy` = '".$Galaxy."' && ";
+			$QryLookFleets .= "`fleet_start_system` = '".$System."' && ";
+			$QryLookFleets .= "`fleet_start_planet` = '".$Planet."'  ";
+			$QryLookFleets .= ") OR (";
+			$QryLookFleets .= "`fleet_end_galaxy` = '".$Galaxy."' && ";
+			$QryLookFleets .= "`fleet_end_system` = '".$System."' && ";
+			$QryLookFleets .= "`fleet_end_planet` = '".$Planet."'  ";
 			$QryLookFleets .= ")) ;";
 
 			$FleetToTarget = doquery($QryLookFleets, 'fleets');
@@ -118,14 +118,14 @@ class ShowPhalanxPage {
 						if ($Mission != 4)
 						{
 							$Label = "fs";
-							$fpage[$ArrivetoTargetTime] .= "\n". $FlyingFleetsTable->BuildFleetEventTable($FleetRow, 0, $myFleet, $Label, $Record);
+							$fpage[$ArrivetoTargetTime] .= "\n".$FlyingFleetsTable->BuildFleetEventTable($FleetRow, 0, $myFleet, $Label, $Record);
 						}
 					}
 					//scanning of destination fleet planet
 					elseif ( ! $isStartedfromThis && ($FleetRow['fleet_end_type'] == 1 OR ($FleetRow['fleet_end_type'] == 3 && $TargetMoonIsDestroyed)))
 					{
 						$Label = "fs";
-						$fpage[$ArrivetoTargetTime] .= "\n". $FlyingFleetsTable->BuildFleetEventTable($FleetRow, 0, $myFleet, $Label, $Record);
+						$fpage[$ArrivetoTargetTime] .= "\n".$FlyingFleetsTable->BuildFleetEventTable($FleetRow, 0, $myFleet, $Label, $Record);
 					}
 				}
 				/* 2)the stay fleet table event
@@ -134,7 +134,7 @@ class ShowPhalanxPage {
 				if ($EndStayTime > time() && $Mission == 5 && ($FleetRow['fleet_end_type'] == 1 OR ($FleetRow['fleet_end_type'] == 3 && $TargetMoonIsDestroyed)) && $isTheTarget)
 				{
 					$Label = "ft";
-					$fpage[$EndStayTime] .= "\n". $FlyingFleetsTable->BuildFleetEventTable($FleetRow, 1, $myFleet, $Label, $Record);
+					$fpage[$EndStayTime] .= "\n".$FlyingFleetsTable->BuildFleetEventTable($FleetRow, 1, $myFleet, $Label, $Record);
 				}
 				/* 3)the return fleet table event
 				* you can see the return fleet if this is the started planet(or destroyed moon)
@@ -143,12 +143,12 @@ class ShowPhalanxPage {
 				if ($ReturnTime > time() && $Mission != 4 && $Mission != 10 && $isStartedfromThis && ($FleetRow['fleet_start_type'] == 1 OR ($FleetRow['fleet_start_type'] == 3 && $TargetMoonIsDestroyed)))
 				{
 					$Label = "fe";
-					$fpage[$ReturnTime] .= "\n". $FlyingFleetsTable->BuildFleetEventTable($FleetRow, 2, $myFleet, $Label, $Record);
+					$fpage[$ReturnTime] .= "\n".$FlyingFleetsTable->BuildFleetEventTable($FleetRow, 2, $myFleet, $Label, $Record);
 				}
 			}
 			ksort($fpage);
 			foreach ($fpage as $FleetTime => $FleetContent)
-				$Fleets .= $FleetContent . "\n";
+				$Fleets .= $FleetContent."\n";
 
 			$parse['phl_fleets_table'] = $Fleets;
 			$parse['phl_er_deuter'] = "";

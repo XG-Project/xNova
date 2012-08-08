@@ -8,7 +8,7 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 	function GetElementPrice ($user, $planet, $Element, $userfactor = TRUE, $level = FALSE)
 	//function GetElementPrice ($user, $planet, $Element, $userfactor = TRUE)
@@ -31,9 +31,9 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 		$text = $lang['fgp_require'];
 		foreach ($array as $ResType => $ResTitle)
 		{
-			if ($pricelist[$Element][$ResType] != 0)
+			if ($pricelist[$Element][$ResType])
 			{
-				$text .= $ResTitle . ": ";
+				$text .= $ResTitle.": ";
 				if ($userfactor)
 					$cost = floor($pricelist[$Element][$ResType] * pow($pricelist[$Element]['factor'], $level));
 				else
@@ -41,12 +41,12 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 				if ($cost > $planet[$ResType])
 				{
-					$text .= "<b style=\"color:red;\"> <t title=\"-" . Format::pretty_number($cost - $planet[$ResType]) . "\">";
-					$text .= "<span class=\"noresources\">" . Format::pretty_number($cost) . "</span></t></b> ";
+					$text .= "<b style=\"color:red;\"> <t title=\"-". Format::pretty_number($cost - $planet[$ResType])."\">";
+					$text .= "<span class=\"noresources\">". Format::pretty_number($cost)."</span></t></b> ";
 					$is_buyeable = FALSE;
 				}
 				else
-					$text .= "<b style=\"color:lime;\">" . Format::pretty_number($cost) . "</b> ";
+					$text .= "<b style=\"color:lime;\">". Format::pretty_number($cost)."</b> ";
 			}
 		}
 		return $text;

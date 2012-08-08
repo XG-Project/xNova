@@ -6,7 +6,7 @@
  * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA\n * @link	http://www.razican.com Author's Website\n * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 include_once(XN_ROOT.'includes/classes/class.GalaxyRows.php');
 
@@ -18,7 +18,7 @@ class ShowGalaxyPage extends GalaxyRows
 	{
 		global $resource, $lang;
 
-		$fleetmax      	= Fleets::get_max_fleets ($CurrentUser['computer_tech'], $CurrentUser['rpg_amiral']);
+		$fleetmax      	= Fleets::get_max_fleets($CurrentUser['computer_tech'], $CurrentUser['rpg_amiral']);
 		$CurrentPlID   	= $CurrentPlanet['id'];
 		$CurrentMIP    	= $CurrentPlanet['interplanetary_misil'];
 		$CurrentRC     	= $CurrentPlanet['recycler'];
@@ -28,7 +28,7 @@ class ShowGalaxyPage extends GalaxyRows
 		$CurrentGalaxy 	= $CurrentPlanet['galaxy'];
 		$CanDestroy    	= $CurrentPlanet[$resource[213]] + $CurrentPlanet[$resource[214]];
 
-		$maxfleet       = doquery("SELECT * FROM {{table}} WHERE `fleet_owner` = '". intval($CurrentUser['id']) ."';", 'fleets');
+		$maxfleet       = doquery("SELECT * FROM {{table}} WHERE `fleet_owner` = '".intval($CurrentUser['id'])."';", 'fleets');
 		$maxfleet_count = $maxfleet->num_rows;
 
 		if ( ! isset($mode))
@@ -54,7 +54,7 @@ class ShowGalaxyPage extends GalaxyRows
 			if (intval($_POST["galaxy"]))
 			{
 				// ereg_replace REEMPLAZADO POR preg_replace PARA PHP MAYORES A 5.3.0
-				$_POST["galaxy"] = preg_replace("[^0-9]","",$_POST["galaxy"]);
+				$_POST["galaxy"] = preg_replace("[^0-9]","", $_POST["galaxy"]);
 			}
 			else
 			{
@@ -64,7 +64,7 @@ class ShowGalaxyPage extends GalaxyRows
 			if (intval($_POST["system"]))
 			{
 				// ereg_replace REEMPLAZADO POR preg_replace PARA PHP MAYORES A 5.3.0
-				$_POST["system"] = preg_replace("[^0-9]","",$_POST["system"]);
+				$_POST["system"] = preg_replace("[^0-9]","", $_POST["system"]);
 			}
 			else
 			{
@@ -177,29 +177,29 @@ class ShowGalaxyPage extends GalaxyRows
 		// START FIX BY alivan
 		if ($mode != 2)
 		{
-			if (($CurrentPlanet['system'] != ($_POST["system"] - 1)) && ($CurrentPlanet['system'] != $_GET['system'] or $CurrentPlanet['galaxy'] != $_GET['galaxy']) && ($mode != 0 ) && ($CurrentPlanet['deuterium'] < 10))
+			if (($CurrentPlanet['system'] != ($_POST["system"] - 1)) && ($CurrentPlanet['system'] != $_GET['system'] or $CurrentPlanet['galaxy'] != $_GET['galaxy']) && ($mode) && ($CurrentPlanet['deuterium'] < 10))
 			{
-				die (message($lang['gl_no_deuterium_to_view_galaxy'], "game.php?page=galaxy&mode=0", 2));
+				die(message($lang['gl_no_deuterium_to_view_galaxy'], "game.php?page=galaxy&mode=0", 2));
 			}
-			elseif (($CurrentPlanet['system'] != ($_POST["system"] - 1)) && ($CurrentPlanet['system'] != $_GET['system'] or $CurrentPlanet['galaxy'] != $_GET['galaxy']) && ($mode != 0))
+			elseif (($CurrentPlanet['system'] != ($_POST["system"] - 1)) && ($CurrentPlanet['system'] != $_GET['system'] or $CurrentPlanet['galaxy'] != $_GET['galaxy']) && ($mode))
 			{
 				$QryGalaxyDeuterium   = "UPDATE {{table}} SET ";
 				$QryGalaxyDeuterium  .= "`deuterium` = `deuterium` -  10 ";
 				$QryGalaxyDeuterium  .= "WHERE ";
-				$QryGalaxyDeuterium  .= "`id` = '". $CurrentPlanet['id'] ."' ";
+				$QryGalaxyDeuterium  .= "`id` = '".$CurrentPlanet['id']."' ";
 				$QryGalaxyDeuterium  .= "LIMIT 1;";
 				doquery($QryGalaxyDeuterium, 'planets');
 			}
 		}
 		elseif ($mode == 2 && $CurrentPlanet['interplanetary_misil'] < 1)
 		{
-			die (message($lang['ma_no_missiles'], "game.php?page=galaxy&mode=0", 2));
+			die(message($lang['ma_no_missiles'], "game.php?page=galaxy&mode=0", 2));
 		}
 		// END FIX BY alivan
 
-		$GalaxyInfo = doquery( "SELECT {{table}}galaxy.metal, {{table}}galaxy.crystal, {{table}}galaxy.id_luna, {{table}}galaxy.id_planet, {{table}}planets.galaxy, {{table}}planets.system, {{table}}planets.planet, {{table}}planets.destruyed, {{table}}planets.name, {{table}}planets.image, {{table}}planets.last_update,{{table}}planets.id_owner,{{table}}users.id, {{table}}users.ally_id, {{table}}users.bana, {{table}}users.urlaubs_modus, {{table}}users.onlinetime, {{table}}users.username,{{table}}statpoints.stat_type, {{table}}statpoints.stat_code, {{table}}statpoints.total_rank, {{table}}statpoints.total_points, {{table}}moons.diameter, {{table}}moons.temp_min, {{table}}moons.destruyed AS destruyed_moon, {{table}}moons.name AS name_moon, {{table}}alliance.ally_name, {{table}}alliance.ally_tag, {{table}}alliance.ally_web, {{table}}alliance.ally_members,{{table}}buddy.owner AS friends_owner,{{table}}buddy.sender AS friends_sender
-			FROM {{table}}alliance RIGHT JOIN ({{table}}planets AS {{table}}moons RIGHT JOIN ({{table}}statpoints RIGHT JOIN ((({{table}}planets INNER JOIN {{table}}users ON {{table}}planets.id_owner = {{table}}users.id ) INNER JOIN {{table}}galaxy ON {{table}}planets.id = {{table}}galaxy.id_planet ) LEFT JOIN {{table}}buddy ON ({{table}}buddy.owner = {{table}}planets.id_owner OR {{table}}buddy.sender = {{table}}planets.id_owner))  ON {{table}}statpoints.id_owner={{table}}users.id AND {{table}}statpoints.stat_code=1 AND {{table}}statpoints.stat_type=1 ) ON {{table}}moons.id = {{table}}galaxy.id_luna) ON {{table}}alliance.id = {{table}}users.ally_id
-			WHERE ({{table}}galaxy.galaxy='".$galaxy."' AND {{table}}galaxy.system='".$system."' AND ({{table}}galaxy.planet>'0' AND {{table}}galaxy.planet<='".MAX_PLANET_IN_SYSTEM."'))
+		$GalaxyInfo = doquery("SELECT {{table}}galaxy.metal, {{table}}galaxy.crystal, {{table}}galaxy.id_luna, {{table}}galaxy.id_planet, {{table}}planets.galaxy, {{table}}planets.system, {{table}}planets.planet, {{table}}planets.destruyed, {{table}}planets.name, {{table}}planets.image, {{table}}planets.last_update,{{table}}planets.id_owner,{{table}}users.id, {{table}}users.ally_id, {{table}}users.bana, {{table}}users.urlaubs_modus, {{table}}users.onlinetime, {{table}}users.username,{{table}}statpoints.stat_type, {{table}}statpoints.stat_code, {{table}}statpoints.total_rank, {{table}}statpoints.total_points, {{table}}moons.diameter, {{table}}moons.temp_min, {{table}}moons.destruyed AS destruyed_moon, {{table}}moons.name AS name_moon, {{table}}alliance.ally_name, {{table}}alliance.ally_tag, {{table}}alliance.ally_web, {{table}}alliance.ally_members,{{table}}buddy.owner AS friends_owner,{{table}}buddy.sender AS friends_sender
+			FROM {{table}}alliance RIGHT JOIN ({{table}}planets AS {{table}}moons RIGHT JOIN ({{table}}statpoints RIGHT JOIN ((({{table}}planets INNER JOIN {{table}}users ON {{table}}planets.id_owner = {{table}}users.id) INNER JOIN {{table}}galaxy ON {{table}}planets.id = {{table}}galaxy.id_planet) LEFT JOIN {{table}}buddy ON ({{table}}buddy.owner = {{table}}planets.id_owner OR {{table}}buddy.sender = {{table}}planets.id_owner))  ON {{table}}statpoints.id_owner={{table}}users.id && {{table}}statpoints.stat_code=1 && {{table}}statpoints.stat_type=1) ON {{table}}moons.id = {{table}}galaxy.id_luna) ON {{table}}alliance.id = {{table}}users.ally_id
+			WHERE ({{table}}galaxy.galaxy='".$galaxy."' && {{table}}galaxy.system='".$system."' && ({{table}}galaxy.planet>'0' && {{table}}galaxy.planet<='".MAX_PLANET_IN_SYSTEM."'))
 			GROUP BY `id_planet`
 			ORDER BY {{table}}planets.planet; ", '');
 
@@ -225,7 +225,7 @@ class ShowGalaxyPage extends GalaxyRows
 		$page['galaxytitles'] 		= parsetemplate(gettemplate('galaxy/galaxy_titles'), $parse);
 		$page['galaxyrows'] 		= $this->ShowGalaxyRows   ($GalaxyInfo, $galaxy, $system, $HavePhalanx, $CurrentGalaxy, $CurrentSystem, $CurrentRC, $CurrentMIP);
 
-		$parse['planetcount'] 		= $this->planet_count ." ". $lang['gl_populed_planets'];
+		$parse['planetcount'] 		= $this->planet_count." ".$lang['gl_populed_planets'];
 
 		$page['galaxyfooter'] 		= parsetemplate(gettemplate('galaxy/galaxy_footer'), $parse);
 
@@ -246,9 +246,9 @@ class ShowGalaxyPage extends GalaxyRows
 
 				if ($GalaxyInfo['galaxy'] == $Galaxy && $GalaxyInfo['system'] == $System && $GalaxyInfo['planet'] == $Planet)
 				{
-					if ($GalaxyInfo["id_planet"] != 0)
+					if ($GalaxyInfo["id_planet"])
 					{
-						if ($GalaxyInfo['destruyed'] != 0 && $GalaxyInfo['id_owner'] != '' && $GalaxyInfo["id_planet"] != '')
+						if ($GalaxyInfo['destruyed']&& $GalaxyInfo['id_owner'] != '' && $GalaxyInfo["id_planet"] != '')
 						{
 							$this->CheckAbandonPlanetState ($GalaxyInfo);
 						}
@@ -257,7 +257,7 @@ class ShowGalaxyPage extends GalaxyRows
 							$this->planet_count++;
 						}
 
-						if ($GalaxyInfo["id_luna"] != 0 && $GalaxyInfo["destruyed_moon"] != 0)
+						if ($GalaxyInfo["id_luna"]&& $GalaxyInfo["destruyed_moon"])
 						{
 							$this->CheckAbandonMoonState ($GalaxyInfo);
 						}

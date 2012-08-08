@@ -8,9 +8,9 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-	function CheckPlanetUsedFields ( &$planet)
+	function CheckPlanetUsedFields (&$planet)
 	{
 		global $resource;
 

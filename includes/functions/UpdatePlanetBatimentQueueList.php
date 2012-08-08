@@ -8,18 +8,18 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-function UpdatePlanetBatimentQueueList ( &$CurrentPlanet, &$CurrentUser ) {
+function UpdatePlanetBatimentQueueList (&$CurrentPlanet, &$CurrentUser) {
 
 	$RetValue = FALSE;
-	if ($CurrentPlanet['b_building_id'] != 0)
+	if ($CurrentPlanet['b_building_id'])
 	{
-		while ($CurrentPlanet['b_building_id'] != 0)
+		while ($CurrentPlanet['b_building_id'])
 		{
 			if ($CurrentPlanet['b_building'] <= time())
 			{
-				PlanetResourceUpdate ($CurrentUser, $CurrentPlanet, $CurrentPlanet['b_building'], FALSE);
+				PlanetResourceUpdate($CurrentUser, $CurrentPlanet, $CurrentPlanet['b_building'], FALSE);
 				$IsDone = CheckPlanetBuildingQueue($CurrentPlanet, $CurrentUser);
 				if ($IsDone)
 					SetNextQueueElementOnTop ($CurrentPlanet, $CurrentUser);

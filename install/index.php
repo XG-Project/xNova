@@ -7,6 +7,7 @@
  */
 
 define('INSIDE'  		,   	 TRUE);
+define('INSTALL'        ,        TRUE);
 define('XGP_ROOT'		, 	  './../');
 
 include_once(XGP_ROOT . 'global.php');

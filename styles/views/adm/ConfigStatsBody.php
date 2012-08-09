@@ -1,6 +1,6 @@
 <body>
 <form method="post" action="">
-	<br />
+	<br>
 	<table width="80%" border="0" cellpadding="1">
 	<tr>
 	  <td colspan="2" class="c">{cs_title}</td>

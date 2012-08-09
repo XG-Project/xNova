@@ -28,6 +28,7 @@ Fixed errors:
 - Fixed a bug in the fleet page (Thanks to Think)
 - Fixed a bug in the building information page (Thanks to Think)
 - [#44] Fixed a bug that would make times to be added in the construction queue (Thanks to Think)
+- Fixed some errors in the planet resurce updates (Thanks to Think)
 '
 );
 

@@ -257,7 +257,7 @@ class ShowAlliancePage extends bbCode
 
 					$page 		= $this->message_box ( str_replace ( '%s' , $_POST['atag'] , $lang['al_created'] ),
 
-					str_replace ( '%s' , $_POST['atag'] , $lang['al_created'] ) . "<br/><br/>" , "" , $lang['al_continue']);
+					str_replace ( '%s' , $_POST['atag'] , $lang['al_created'] ) . "<br><br>" , "" , $lang['al_continue']);
 				}
 				else
 				{
@@ -546,7 +546,7 @@ class ShowAlliancePage extends bbCode
 				{
 					$list 			= '';
 					$_POST['r'] 	= intval ( $_POST['r']);
-					$_POST['text']	= preg_replace ( "/([^\s]{80}?)/" , "\\1<br />" , trim ( nl2br ( strip_tags ( $_POST['text'], '<br>' ) ) ));
+					$_POST['text']	= preg_replace ( "/([^\s]{80}?)/" , "\\1<br>" , trim ( nl2br ( strip_tags ( $_POST['text'], '<br>' ) ) ));
 
 					if ($_POST['r'] == 0 )
 					{

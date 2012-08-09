@@ -66,12 +66,12 @@ class ShowOfficierPage
 
 					if ($Result )
 					{
-						$bloc['off_link']  = "<font color=\"lime\"><strong>".Format::pretty_number ( $Price ) . '</strong><br />' . $lang['Darkmatter'] . "</font>";
-						$bloc['off_link'] .= "<br /><a href=\"game.php?page=officier&mode=2&offi=".$Element."\"><font color=\"#00ff00\">".$lang['of_recruit']."</font>";
+						$bloc['off_link']  = "<font color=\"lime\"><strong>".Format::pretty_number ( $Price ) . '</strong><br>' . $lang['Darkmatter'] . "</font>";
+						$bloc['off_link'] .= "<br><a href=\"game.php?page=officier&mode=2&offi=".$Element."\"><font color=\"#00ff00\">".$lang['of_recruit']."</font>";
 					}
 					else
 					{
-						$bloc['off_link'] = "<font color=\"red\"><strong>".Format::pretty_number ( $Price ) . '</strong><br />' . $lang['Darkmatter'] . "</font>";
+						$bloc['off_link'] = "<font color=\"red\"><strong>".Format::pretty_number ( $Price ) . '</strong><br>' . $lang['Darkmatter'] . "</font>";
 					}
 
 					$parse['disp_off_tbl'] .= parsetemplate( $OfficierRowTPL , $bloc);

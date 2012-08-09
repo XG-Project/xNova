@@ -29,7 +29,7 @@ var string = shortcuts.options[shortcuts.selectedIndex].value;
 	<input type="hidden" name="thisresource1"  value="{metal}" />
 	<input type="hidden" name="thisresource2"  value="{crystal}" />
 	<input type="hidden" name="thisresource3"  value="{deuterium}" />
-	<br />
+	<br>
 	<div id="content">
 		<table width="519" border="0" cellpadding="0" cellspacing="1">
 			<tr height="20">

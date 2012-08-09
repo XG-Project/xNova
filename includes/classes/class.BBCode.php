@@ -34,7 +34,7 @@ class bbCode
 		);
 
 		$replace = array(
-			'<br/>',
+			'<br>',
 			'',
 			'$this->sList(\'\\1\')',
 			'<b>\1</b>',

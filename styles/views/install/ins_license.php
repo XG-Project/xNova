@@ -3,9 +3,9 @@
 		<div align="center">
 			<div style="overflow-x:auto;overflow-y:visible;width:400px;height:225px;text-align:justify;">
 				<h2>xNova's License</h2>
-					<p>GNU GENERAL PUBLIC LICENSE<br />
-						Version 2, June 1991 Copyright (C) 1989, 1991 Free Software Foundation, Inc.<br />
-						Everyone is permitted to copy and distribute verbatim copies<br />
+					<p>GNU GENERAL PUBLIC LICENSE<br>
+						Version 2, June 1991 Copyright (C) 1989, 1991 Free Software Foundation, Inc.<br>
+						Everyone is permitted to copy and distribute verbatim copies<br>
 						of this license document, but changing it is not allowed.
 					</p>
 

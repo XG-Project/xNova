@@ -2,7 +2,7 @@
 	<th>
 		<input{id}type="radio" name="mission" value="{value}"{checked}/>
 		<label for="inpuT_{input}">{mission}</label>
-		<br />
+		<br>
 		{expedition_message}
 	</th>
 </tr>

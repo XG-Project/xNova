@@ -370,7 +370,7 @@ class ShowOverviewPage
 						$PlanetID = $CurrentPlanet['id'];
 						$Build = InsertBuildListScript("overview");
 						$Build .= $lang['tech'][$CurrBuild[0]] . ' (' . ($CurrBuild[1]) . ')';
-						$Build .= "<br /><div id=\"blc\" class=\"z\">" . Format::pretty_time($RestTime) . "</div>";
+						$Build .= "<br><div id=\"blc\" class=\"z\">" . Format::pretty_time($RestTime) . "</div>";
 						$Build .= "\n<script language=\"JavaScript\">";
 						$Build .= "\n	pp = \"" . $RestTime . "\";\n";
 						$Build .= "\n	pk = \"" . 1 . "\";\n";

@@ -172,7 +172,7 @@ class ShowBuddyPage
 							$parse['system']			= $sender['system'];
 							$parse['planet']			= $sender['planet'];
 							$parse['text']				= $buddy['text'];
-							$parse['action']			= '<a href="game.php?page=buddy&mode=1&sm=2&bid=' . $buddy[id] . '">' . $lang['bu_accept'] . '</a><br /><a href="game.php?page=buddy&mode=1&sm=1&bid=' . $buddy[id] . '">' . $lang['bu_decline'] . '</a>';
+							$parse['action']			= '<a href="game.php?page=buddy&mode=1&sm=2&bid=' . $buddy[id] . '">' . $lang['bu_accept'] . '</a><br><a href="game.php?page=buddy&mode=1&sm=1&bid=' . $buddy[id] . '">' . $lang['bu_decline'] . '</a>';
 
 							$requestsReceived .= parsetemplate ( $subTemplate , $parse);
 						}

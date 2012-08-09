@@ -108,7 +108,7 @@ class ShowMessagesPage
 						$Sender  				= intval ( $CurrentUser['id']);
 						$From    				= $CurrentUser['username'] . " [" .$CurrentUser['galaxy'] . ":" . $CurrentUser['system'] . ":" . $CurrentUser['planet'] . "]";
 						$Subject 				= $_POST['subject'];
-						$Message				= preg_replace ( "/([^\s]{80}?)/" , "\\1<br />" , trim ( nl2br ( strip_tags ( $_POST['text'] , '<br>' ) ) ));
+						$Message				= preg_replace ( "/([^\s]{80}?)/" , "\\1<br>" , trim ( nl2br ( strip_tags ( $_POST['text'] , '<br>' ) ) ));
 
 						SendSimpleMessage ( $Owner , $Sender , '' , 1 , $From , $Subject , $Message);
 

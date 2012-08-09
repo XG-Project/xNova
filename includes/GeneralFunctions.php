@@ -267,7 +267,7 @@ function doquery($query, $table, $fetch = FALSE)
 
 	$sql 		= str_replace ( "{{table}}" , $dbsettings["prefix"] . $table , $query);
 	$sqlquery 	= $db->query($sql);
-	if ( ! $sqlquery) $debug->error($db->error."<br />$sql<br />", "SQL Error");
+	if ( ! $sqlquery) $debug->error($db->error."<br>$sql<br>", "SQL Error");
 
 	unset($dbsettings);
 	$numqueries++;

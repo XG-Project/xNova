@@ -21,12 +21,12 @@ th.lic{border:0px;}</style>
 	</tr>
 	<tr>
 		<th>
-			<br />
+			<br>
 			<a href="https://github.com/Razican/xNova/issues" target="_blank">Reporte de bugs (Bug Report)</a>
-			<br />
+			<br>
 			<a href="http://www.razican.com/" target="_blank">El Blog de Razican</a>
-			<br />
-			<br />
+			<br>
+			<br>
 		</th>
 	</tr>
 	<tr>
@@ -37,7 +37,7 @@ th.lic{border:0px;}</style>
 		<table width="100%" border="0">
 		  <tr>
 			<td>
-				shoghicp (Sistema de bots)<br />
+				shoghicp (Sistema de bots)<br>
 				Think (Fix varios)
 			</td>
 		  </tr>
@@ -79,13 +79,13 @@ th.lic{border:0px;}</style>
 					<table width="100%" border="0">
 					  <tr>
 						<td>
-							angelus_ira (Estadísticas - optimización general)<br />
-							Calzon (Fix varios)<br />
-							cyberrichy (SAC's)<br />
-							jstar (Fix varios - optimización general)<br />
-							Neko (Panel administrativo - Fix varios)<br />
-							PowerMaster (Fix varios)<br />
-							Think (Fix varios)<br />
+							angelus_ira (Estadísticas - optimización general)<br>
+							Calzon (Fix varios)<br>
+							cyberrichy (SAC's)<br>
+							jstar (Fix varios - optimización general)<br>
+							Neko (Panel administrativo - Fix varios)<br>
+							PowerMaster (Fix varios)<br>
+							Think (Fix varios)<br>
 							zorro2666 (Fix varios)
 						</td>
 					  </tr>
@@ -106,7 +106,7 @@ th.lic{border:0px;}</style>
 				  <th class="lic"><h3>{ow_special_thanks}</h3></th>
 				</tr>
 				<tr>
-					<th class="lic">Raito<br />Chlorel<br />e-Zobar<br />Flousedid<br /><br /></th>
+					<th class="lic">Raito<br>Chlorel<br>e-Zobar<br>Flousedid<br><br></th>
 				</tr>
 			</table>
 		</th>

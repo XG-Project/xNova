@@ -1,6 +1,6 @@
 <script TYPE="text/javascript" SRC="../js/filterlist.min.js"></script>
 <body>
-<br />
+<br>
 </table>
 <form action="" method="post" name="users">
 <table width="55%">

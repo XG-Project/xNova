@@ -99,7 +99,7 @@ class CheckSession
 
 			if ($user['bana'] == 1)
 			{
-				die("<div align=\"center\"><h1>".$lang['css_account_banned_message']."</h1><br /> <strong>".$lang['css_account_banned_expire'].date("d-m-y H:i", $user['banaday'])."</strong></div>");
+				die("<div align=\"center\"><h1>".$lang['css_account_banned_message']."</h1><br> <strong>".$lang['css_account_banned_expire'].date("d-m-y H:i", $user['banaday'])."</strong></div>");
 			}
 
 			$RetValue['record'] = $user;

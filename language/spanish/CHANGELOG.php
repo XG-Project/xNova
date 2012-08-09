@@ -28,6 +28,7 @@ Errores Corregidos:
 - Solucionado un error en las flotas (Gracias a Think)
 - Solucionado un error en la página de información de edificios (Gracias a Think)
 - [#44] Solucionado el error que sumaba los tiempos en la cola de construcción (Gracias a Think)
+- Se solucionan varios errores en el sistema de actualización de recursos (Gracias a Think)
 '
 );
 

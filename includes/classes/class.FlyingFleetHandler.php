@@ -756,7 +756,7 @@ class FlyingFleetHandler
 			$StrAttackerUnits = sprintf ($lang['sys_attacker_lostunits'], $result['lost']['att']);
 			$StrDefenderUnits = sprintf ($lang['sys_defender_lostunits'], $result['lost']['def']);
 			$StrRuins         = sprintf ($lang['sys_gcdrunits'], $result['debree']['def'][0] + $result['debree']['att'][0], $lang['Metal'], $result['debree']['def'][1] + $result['debree']['att'][1], $lang['Crystal']);
-			$DebrisField      = $StrAttackerUnits ."<br />". $StrDefenderUnits ."<br />". $StrRuins;
+			$DebrisField      = $StrAttackerUnits ."<br>". $StrDefenderUnits ."<br>". $StrRuins;
 			$MoonChance       = $FleetDebris / 100000;
 
 			if ($FleetDebris > 2000000)
@@ -780,7 +780,7 @@ class FlyingFleetHandler
 			{
 				$TargetPlanetName = CreateOneMoonRecord ( $FleetRow['fleet_end_galaxy'], $FleetRow['fleet_end_system'], $FleetRow['fleet_end_planet'], $TargetUserID, $FleetRow['fleet_start_time'], '', $MoonChance);
 				$GottenMoon       = sprintf ($lang['sys_moonbuilt'], $TargetPlanetName, $FleetRow['fleet_end_galaxy'], $FleetRow['fleet_end_system'], $FleetRow['fleet_end_planet']);
-				$GottenMoon .= "<br />";
+				$GottenMoon .= "<br>";
 			}
 			elseif ($UserChance = 0 or $UserChance > $MoonChance)
 			{
@@ -809,7 +809,7 @@ class FlyingFleetHandler
 			$QryInsertRapport .= '`rid` = "'. $rid .'", ';
 			$QryInsertRapport .= '`a_zestrzelona` = "'.$formatted_cr['destroyed'].'", ';
 			$QryInsertRapport .= '`raport` = "'. $db->real_escape_string($raport) .'"';
-			doquery($QryInsertRapport,'rw') or die("Error inserting CR to database<br /><br />Trying to execute:".$db->error);
+			doquery($QryInsertRapport,'rw') or die("Error inserting CR to database<br><br>Trying to execute:".$db->error);
 
 			if ($result['won'] == "a")
 			{
@@ -973,7 +973,7 @@ class FlyingFleetHandler
 				$lang['Deuterium'], Format::pretty_number($FleetRow['fleet_resource_deuterium']));
 
 				$TargetMessage        = $lang['sys_stay_mess_start'] ."<a href=\"game.php?page=galaxy&mode=3&galaxy=". $FleetRow['fleet_end_galaxy'] ."&system=". $FleetRow['fleet_end_system'] ."\">";
-				$TargetMessage       .= $TargetAdress. "</a>". $lang['sys_stay_mess_end'] ."<br />". $TargetAddedGoods;
+				$TargetMessage       .= $TargetAdress. "</a>". $lang['sys_stay_mess_end'] ."<br>". $TargetAddedGoods;
 
 				SendSimpleMessage ( $TargetUserID, '', $FleetRow['fleet_start_time'], 5, $lang['sys_mess_qg'], $lang['sys_stay_mess_stay'], $TargetMessage);
 				$this->RestoreFleetToPlanet ( $FleetRow, FALSE);
@@ -991,7 +991,7 @@ class FlyingFleetHandler
 				$lang['Deuterium'], Format::pretty_number($FleetRow['fleet_resource_deuterium']));
 
 				$TargetMessage        = $lang['sys_stay_mess_back'] ."<a href=\"game.php?page=galaxy&mode=3&galaxy=". $FleetRow['fleet_start_galaxy'] ."&system=". $FleetRow['fleet_start_system'] ."\">";
-				$TargetMessage       .= $TargetAdress. "</a>". $lang['sys_stay_mess_bend'] ."<br />". $TargetAddedGoods;
+				$TargetMessage       .= $TargetAdress. "</a>". $lang['sys_stay_mess_bend'] ."<br>". $TargetAddedGoods;
 
 				SendSimpleMessage ( $FleetRow['fleet_owner'], '', $FleetRow['fleet_end_time'], 5, $lang['sys_mess_qg'], $lang['sys_mess_fleetback'], $TargetMessage);
 				$this->RestoreFleetToPlanet ( $FleetRow, TRUE);
@@ -1160,15 +1160,15 @@ class FlyingFleetHandler
 						if ($TargetSpyLvl == $CurrentSpyLvl)
 							$ST = $CurrentSpyLvl;
 						if ($ST <= "1")
-							$SpyMessage = $Materials."<br />".$AttackLink.$MessageEnd;
+							$SpyMessage = $Materials."<br>".$AttackLink.$MessageEnd;
 						if ($ST == "2")
-							$SpyMessage = $PlanetFleet."<br />".$AttackLink.$MessageEnd;
+							$SpyMessage = $PlanetFleet."<br>".$AttackLink.$MessageEnd;
 						if ($ST == "4" or $ST == "3")
-							$SpyMessage = $PlanetDefense."<br />".$AttackLink.$MessageEnd;
+							$SpyMessage = $PlanetDefense."<br>".$AttackLink.$MessageEnd;
 						if ($ST == "5" or $ST == "6")
-							$SpyMessage = $PlanetBuildings."<br />".$AttackLink.$MessageEnd;
+							$SpyMessage = $PlanetBuildings."<br>".$AttackLink.$MessageEnd;
 						if ($ST >= "7")
-							$SpyMessage = $TargetTechnos."<br />".$AttackLink.$MessageEnd;
+							$SpyMessage = $TargetTechnos."<br>".$AttackLink.$MessageEnd;
 
 						SendSimpleMessage ( $CurrentUserID, '', $FleetRow['fleet_start_time'], 0, $lang['sys_mess_qg'], $lang['sys_mess_spy_report'], $SpyMessage);
 
@@ -1614,7 +1614,7 @@ class FlyingFleetHandler
 				$StrAttackerUnits = sprintf ($lang['sys_attacker_lostunits'], $zlom["atakujacy"]);
 				$StrDefenderUnits = sprintf ($lang['sys_defender_lostunits'], $zlom["wrog"]);
 				$StrRuins         = sprintf ($lang['sys_gcdrunits'], $zlom["metal"], $lang['Metal'], $zlom['crystal'], $lang['Crystal']);
-				$DebrisField      = $StrAttackerUnits ."<br />". $StrDefenderUnits ."<br />". $StrRuins;
+				$DebrisField      = $StrAttackerUnits ."<br>". $StrDefenderUnits ."<br>". $StrRuins;
 				$MoonChance       = $FleetDebris / 100000;
 
 				if ($FleetDebris > 2000000)
@@ -1643,7 +1643,7 @@ class FlyingFleetHandler
 
 				$AttackDate        = date("r", $FleetRow["fleet_start_time"]);
 				$title             = sprintf ($lang['sys_destruc_title'], $AttackDate);
-				$raport            = "<center><table><tr><td>". $title ."<br />";
+				$raport            = "<center><table><tr><td>". $title ."<br>";
 				$zniszczony        = FALSE;
 				$a_zestrzelona     = 0;
 				$AttackTechon['A'] = $CurrentUser["military_tech"] * 10;
@@ -1659,7 +1659,7 @@ class FlyingFleetHandler
 
 				foreach ($dane_do_rw as $a => $b)
 				{
-					$raport .= "<table border=1 width=100%><tr><th><br /><center>".$AttackerData."<br />".$AttackerTech."<table border=1>";
+					$raport .= "<table border=1 width=100%><tr><th><br><center>".$AttackerData."<br>".$AttackerTech."<table border=1>";
 
 					if ($b["atakujacy"]['count'] > 0)
 					{
@@ -1698,11 +1698,11 @@ class FlyingFleetHandler
 							$a_zestrzelona = 1;
 
 						$zniszczony = TRUE;
-						$raport .= "<br />". $lang['sys_destroyed'];
+						$raport .= "<br>". $lang['sys_destroyed'];
 					}
 
 					$raport .= "</table></center></th></tr></table>";
-					$raport .= "<table border=1 width=100%><tr><th><br /><center>".$DefenderData."<br />".$DefenderTech."<table border=1>";
+					$raport .= "<table border=1 width=100%><tr><th><br><center>".$DefenderData."<br>".$DefenderTech."<table border=1>";
 
 					if ($b["wrog"]['count'] > 0)
 					{
@@ -1738,7 +1738,7 @@ class FlyingFleetHandler
 					else
 					{
 						$zniszczony = TRUE;
-						$raport .= "<br />". $lang['sys_destroyed'];
+						$raport .= "<br>". $lang['sys_destroyed'];
 					}
 
 					$raport .= "</table></center></th></tr></table>";
@@ -1749,34 +1749,34 @@ class FlyingFleetHandler
 					{
 						$AttackWaveStat    = sprintf ($lang['sys_attack_attack_wave'], floor($b["atakujacy"]["atak"]), floor($b["wrog"]["tarcza"]));
 						$DefendWavaStat    = sprintf ($lang['sys_attack_defend_wave'], floor($b["wrog"]["atak"]), floor($b["atakujacy"]["tarcza"]));
-						$raport           .= "<br /><center>".$AttackWaveStat."<br />".$DefendWavaStat."</center>";
+						$raport           .= "<br><center>".$AttackWaveStat."<br>".$DefendWavaStat."</center>";
 					}
 				}
 
 				switch ($FleetResult)
 				{
 					case "a":
-						$raport           .= $lang['sys_attacker_won'] ."<br />";
-						$raport           .= $DebrisField ."<br />";
-						$raport           .= $introdestruc ."<br />";
+						$raport           .= $lang['sys_attacker_won'] ."<br>";
+						$raport           .= $DebrisField ."<br>";
+						$raport           .= $introdestruc ."<br>";
 						$raport           .= $lang['sys_destruc_mess1'];
-						$raport           .= $finmess ."<br />";
-						$raport           .= $probalune ."<br />";
-						$raport           .= $probarip ."<br />";
+						$raport           .= $finmess ."<br>";
+						$raport           .= $probalune ."<br>";
+						$raport           .= $probarip ."<br>";
 						break;
 
 					case "r":
-						$raport           .= $lang['sys_both_won'] ."<br />";
-						$raport           .= $DebrisField ."<br />";
-						$raport           .= $introdestruc ."<br />";
-						$raport           .= $lang['sys_destruc_stop'] ."<br />";
+						$raport           .= $lang['sys_both_won'] ."<br>";
+						$raport           .= $DebrisField ."<br>";
+						$raport           .= $introdestruc ."<br>";
+						$raport           .= $lang['sys_destruc_stop'] ."<br>";
 						break;
 
 					case "w":
-						$raport           .= $lang['sys_defender_won'] ."<br />";
-						$raport           .= $DebrisField ."<br />";
-						$raport           .= $introdestruc ."<br />";
-						$raport           .= $lang['sys_destruc_stop'] ."<br />";
+						$raport           .= $lang['sys_defender_won'] ."<br>";
+						$raport           .= $DebrisField ."<br>";
+						$raport           .= $introdestruc ."<br>";
+						$raport           .= $lang['sys_destruc_stop'] ."<br>";
 						doquery("DELETE FROM {{table}} WHERE `fleet_id` = '". $FleetRow["fleet_id"] ."';", 'fleets');
 						break;
 				}
@@ -1803,10 +1803,10 @@ class FlyingFleetHandler
 				elseif ($FleetResult == "w")
 					$raport .= "<font color=\"red\">";
 
-				$raport .= $lang['sys_mess_destruc_report'] ." [". $FleetRow['fleet_end_galaxy'] .":". $FleetRow['fleet_end_system'] .":". $FleetRow['fleet_end_planet'] ."] </font></a><br /><br />";
+				$raport .= $lang['sys_mess_destruc_report'] ." [". $FleetRow['fleet_end_galaxy'] .":". $FleetRow['fleet_end_system'] .":". $FleetRow['fleet_end_planet'] ."] </font></a><br><br>";
 				$raport .= "<font color=\"red\">". $lang['sys_perte_attaquant'] .": ". $zlom["atakujacy"] ."</font>";
-				$raport .= "<font color=\"green\">   ". $lang['sys_perte_defenseur'] .":". $zlom["wrog"] ."</font><br />" ;
-				$raport .= $lang['sys_debris'] ." ". $lang['Metal'] .":<font color=\"#adaead\">". $zlom['metal'] ."</font>   ". $lang['Crystal'] .":<font color=\"#ef51ef\">". $zlom['crystal'] ."</font><br /></center>";
+				$raport .= "<font color=\"green\">   ". $lang['sys_perte_defenseur'] .":". $zlom["wrog"] ."</font><br>" ;
+				$raport .= $lang['sys_debris'] ." ". $lang['Metal'] .":<font color=\"#adaead\">". $zlom['metal'] ."</font>   ". $lang['Crystal'] .":<font color=\"#ef51ef\">". $zlom['crystal'] ."</font><br></center>";
 
 				$QryUpdateFleet  = "UPDATE {{table}} SET ";
 				$QryUpdateFleet .= "`fleet_amount` = '". $FleetAmount ."', ";
@@ -1828,7 +1828,7 @@ class FlyingFleetHandler
 				elseif ($FleetResult == "w")
 					$raport2 .= "<font color=\"green\">";
 
-				$raport2 .= $lang['sys_mess_destruc_report'] ." [". $FleetRow['fleet_end_galaxy'] .":". $FleetRow['fleet_end_system'] .":". $FleetRow['fleet_end_planet'] ."] </font></a><br /><br />";
+				$raport2 .= $lang['sys_mess_destruc_report'] ." [". $FleetRow['fleet_end_galaxy'] .":". $FleetRow['fleet_end_system'] .":". $FleetRow['fleet_end_planet'] ."] </font></a><br><br>";
 
 				SendSimpleMessage ( $TargetUserID, '', $FleetRow['fleet_start_time'], 3, $lang['sys_mess_tower'], $lang['sys_mess_destruc_report'], $raport2);
 			}

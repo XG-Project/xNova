@@ -525,8 +525,8 @@ $lang['res']['descriptions'] = array(
 
 601 => 'El geólogo es un experto en astrominerología y astrocristalografía. Apoyado por su equipo de metalúrgicos e ingenieros en química apoya a gobiernos interplanetarias a la explotación de fuentes de recursos y a la optimazación del refinamiento de estos recursos.<br><br><strong><font color="lime">+10% producción de minas</font></strong>',
 602 => 'El almirante de flota es un veterano de guerra experimentado y un habilidoso estratega. En las batallas más duras, es capaz de hacerse una idea de la situación y contactar a sus almirantes subordinados. Un emperador sabio puede confiar en su ayuda durante los combates y guiar más flotas al mismo tiempo.<br><br><strong><font color="lime">+2 huecos de flota máximos</font></strong>',
-603 => 'El Ingeniero es un especialista en gestión de energía. En tiempos de paz aumenta la energía de todas las colonias. En caso de ataque, garantiza el abastecimiento de energía a los cañones, evitando una posible sobrecarga, lo que conduce a una reducción de defensas perdidas en batalla.<br><br><strong><font color="lime">Minimiza las perdidas de las defensas a la mitad,<br />+10% de producción de energía</font></strong>',
-604 => 'El gremio de los Tecnócratas está compuesto de auténticos genios y siempre los encontrarás en un mundo donde la lógica humana sería descartada. Desde hace miles de años, ningún ser humano normal ha podido descifrar el código de un tecnócrata. El tecnócrata inspira a los investigadores del imperio con tan sólo su presencia.<br><br><strong><font color="lime">+2 al nivel de espionaje,<br />-25% menos tiempo de investigación</font></strong>',
+603 => 'El Ingeniero es un especialista en gestión de energía. En tiempos de paz aumenta la energía de todas las colonias. En caso de ataque, garantiza el abastecimiento de energía a los cañones, evitando una posible sobrecarga, lo que conduce a una reducción de defensas perdidas en batalla.<br><br><strong><font color="lime">Minimiza las perdidas de las defensas a la mitad,<br>+10% de producción de energía</font></strong>',
+604 => 'El gremio de los Tecnócratas está compuesto de auténticos genios y siempre los encontrarás en un mundo donde la lógica humana sería descartada. Desde hace miles de años, ningún ser humano normal ha podido descifrar el código de un tecnócrata. El tecnócrata inspira a los investigadores del imperio con tan sólo su presencia.<br><br><strong><font color="lime">+2 al nivel de espionaje,<br>-25% menos tiempo de investigación</font></strong>',
 );
 
 //----------------------------------------------------------------------------//
@@ -649,8 +649,8 @@ $lang['info'][199]['name']        			= "Tecnología de gravitón";
 $lang['info'][199]['description'] 			= "Un gravitón es una partícula elemental responsable de los efectos de la gravedad. Es su propia antipartícula, tiene masa cero y carece de carga, también posee un giro de 2. A través del disparo de partículas concentradas de gravitón se genera un campo gravitacional artificial con suficiente potencia y poder de atracción para destruir no solo naves, sino lunas enteras.";
 
 // -------------------------- SHIPS ----------------------------------------------------------------------------------------------------//
-$lang['info'][202]['name']        			= "Nave chica de carga";
-$lang['info'][202]['description'] 			= "Las naves chicas de carga son aproximadamente tan grandes como los cazadores, pero sin motores eficientes ni armamento para permitir más espacio de carga. La nave chica de carga tiene una capacidad de 5.000 unidades de recursos.";
+$lang['info'][202]['name']        			= "Nave pequeña de carga";
+$lang['info'][202]['description'] 			= "Las naves pequeñas de carga son aproximadamente tan grandes como los cazadores, pero sin motores eficientes ni armamento para permitir más espacio de carga. La nave pequeña de carga tiene una capacidad de 5.000 unidades de recursos.";
 $lang['info'][203]['name']        			= "Nave grande de carga";
 $lang['info'][203]['description'] 			= "Esta nave nunca debería ser enviada sola, puesto que apenas tiene armas u otras tecnologías, para permitir tanto espacio de carga como sea posible. La nave grande de carga sirve como un suministro rápido de recursos entre planetas gracias a su sofisticado motor de combustión.";
 $lang['info'][204]['name']        			= "Cazador ligero";
@@ -750,8 +750,8 @@ $lang['al_alliance_closed']					= 'Esta alianza no admite más miembros';
 $lang['al_request_confirmation_message']	= 'Solicitud registrada. Recibiras un mensaje cuando tu solicitud sea aceptada / rechazada. <br><a href="game.php?page=alliance">Volver</a>';
 $lang['al_default_request_text']			= 'Los líderes de la alianza no han creado un ejemplo de solicitud, o no tienen pretenciones.';
 $lang['al_write_request']					= 'Escribir solicitud a la alianza %s';
-$lang['al_request_deleted']					= 'Tu solicitud a la alianza %s ha sido borrada. <br/>Ahora puedes escribir una nueva solicitud o crear tu propia alianza.';
-$lang['al_request_wait_message']			= 'Ya has enviado una solicitud a la alianza %s. <br/>Por favor, espera hasta que recibas una respuesta o borra la solicitud.';
+$lang['al_request_deleted']					= 'Tu solicitud a la alianza %s ha sido borrada. <br>Ahora puedes escribir una nueva solicitud o crear tu propia alianza.';
+$lang['al_request_wait_message']			= 'Ya has enviado una solicitud a la alianza %s. <br>Por favor, espera hasta que recibas una respuesta o borra la solicitud.';
 $lang['al_delete_request']					= 'Borrar solicitud';
 $lang['al_founder_cant_leave_alliance']		= 'El fundador no puede abandonar la alianza.';
 $lang['al_leave_sucess']					= 'Abandonaste la alianza %s con éxito.';
@@ -962,9 +962,9 @@ $lang['sh_position']						= 'Posición';
 //----------------------------------------------------------------------------//
 //OPTIONS
 $lang['op_cant_activate_vacation_mode']		= 'Si estás construyendo o moviendo flotas no podrás entrar al modo vaciones.';
-$lang['op_password_changed']				= 'La contraseña ha sido cambiada.<br /><a href="index.php" target="_top">Volver</a>';
-$lang['op_username_changed']				= 'El nombre de usuario ha sido cambiado.<br /><a href="index.php" target="_top">Volver</a>';
-$lang['op_options_changed']					= 'Los cambios se han guardado.<br /><a href="game.php?page=options">Volver</a>';
+$lang['op_password_changed']				= 'La contraseña ha sido cambiada.<br><a href="index.php" target="_top">Volver</a>';
+$lang['op_username_changed']				= 'El nombre de usuario ha sido cambiado.<br><a href="index.php" target="_top">Volver</a>';
+$lang['op_options_changed']					= 'Los cambios se han guardado.<br><a href="game.php?page=options">Volver</a>';
 $lang['op_vacation_mode_active_message']	= 'El modo vacaciones se ha encendido. Tendra que estar de vacaciones como mínimo hasta el: ';
 $lang['op_end_vacation_mode']				= 'Finalizar modo vacaciones';
 $lang['op_save_changes']					= 'Guardar cambios';

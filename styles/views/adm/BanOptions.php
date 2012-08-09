@@ -72,7 +72,7 @@
 </form>
 </td>
 <td style="border:0px;">
-<br />
+<br>
 <form action="" method="POST" name="userban">
 <table align="center" width="90%">
 {display2}

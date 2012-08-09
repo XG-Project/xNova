@@ -8,4 +8,7 @@
 node_modules
 
 includes/bots/*
-!includes/bots/.htaccess
+!includes/bots/void
+
+includes/plugins/*
+!includes/plugins/void

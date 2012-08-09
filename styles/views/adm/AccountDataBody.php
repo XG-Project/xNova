@@ -208,7 +208,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 				<th colspan="5" height="30px">{darkmatter}: &nbsp;&nbsp;{mo}</th>
 			</tr>
 			</table>
-			<br />
+			<br>
 			</div>
 		</th>
 	</tr><tr>
@@ -239,7 +239,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 			</tr>
 				{buildings}
 			</table>
-			<br />
+			<br>
 			</div>
 		</th>
 	</tr><tr>
@@ -256,7 +256,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 			</tr>
 				{moon_buildings}
 			</table>
-			<br />
+			<br>
 			</div>
 		</th>
 	</tr><tr>
@@ -286,7 +286,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 			</tr>
 				{ships}
 			</table>
-			<br />
+			<br>
 			</div>
 		</th>
 	</tr><tr>
@@ -312,7 +312,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 			</tr>
 				{defenses}
 			</table>
-			<br />
+			<br>
 			</div>
 		</th>
 	</tr><tr>
@@ -343,7 +343,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 			<tr><th>{expedition_tech}: <font color=aqua>{tec_expedicion}</font></th><th>{emperor}: <font color=aqua>{ofi_emperador}</font></th></tr>
 			<tr><th>{graviton_tech}: <font color=aqua>{tec_graviton}</font></th></tr>
 			</table>
-			<br />
+			<br>
 			</div>
 		</th>
 	</tr><tr>
@@ -360,7 +360,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 			</tr>
 				{destroyed}
 			</table>
-			<br />
+			<br>
 			</div>
 		</th>
 	</tr>

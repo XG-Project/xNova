@@ -40,7 +40,7 @@
 <tr><th colspan="6"><input type="submit" value="{button_submit}" name="mode" /></th></tr>
 </table>
 
-<br />
+<br>
 <table width="30%">
 <tr><th><img src="../styles/images/r4.png" /></th><th>{mod_power_config}</th></tr>
 <tr><th><img src="../styles/images/r3.png" /></th><th>{mod_power_edit}</th></tr>

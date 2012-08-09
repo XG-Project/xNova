@@ -23,11 +23,6 @@ Errores Corregidos:
 - Muchos errores menores
 - Varios errores de lenguaje
 - [#13] Error en Notas en modo debug
-- Contaba más usuarios registrados de los que había
-- Error en la búsqueda
-- Solucionado un error en las flotas (Gracias a Think)
-- Solucionado un error en la página de información de edificios (Gracias a Think)
-- [#44] Solucionado el error que sumaba los tiempos en la cola de construcción (Gracias a Think)
 '
 );
 

@@ -176,7 +176,7 @@ class Bot {
 
 		$this->HandleOwnFleets();
 
-		$iPlanetCount		=  doquery("SELECT count(*) AS `total` FROM {{table}} WHERE `id_owner` = '".$this->user['id']."' && `planet_type` = '1'", 'planets',TRUE);
+		$iPlanetCount		= doquery("SELECT count(*) AS `total` FROM {{table}} WHERE `id_owner` = '".$this->user['id']."' && `planet_type` = '1'", 'planets',TRUE);
 		$maxfleet			= doquery("SELECT COUNT(fleet_owner) AS `actcnt` FROM {{table}} WHERE `fleet_owner` = '".$this->user['id']."';", 'fleets', TRUE);
 		$maxcolofleet		= doquery("SELECT COUNT(fleet_owner) AS `total` FROM {{table}} WHERE `fleet_owner` = '".$this->user['id']."' && `fleet_mission` = '7';", 'fleets', TRUE);
 		$MaxFlyingFleets	= $maxfleet['actcnt'];

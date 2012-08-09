@@ -257,25 +257,36 @@ switch ($Mode)
 					{
 						global $lang;
 
-						$emails	= doquery('SELECT `email` FROM {{table}}', 'users');
+						$emails				= doquery('SELECT `email`, `id` FROM {{table}}', 'users');
 
-						while ($u = $emails->fetch_array())
+						if ($emails)
 						{
-							$Caracters='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-							$pass = '';
+							$ids			= array();
+							$QryPassChange	= "UPDATE {{table}} SET `password` = CASE ";
+						}
+
+						while ($u = $emails->fetch_assoc())
+						{
+							$Caracters		='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+							$pass			= '';
 							for ($i=0; $i < 8; $i++)
 							{
-								$pass .= substr($pool, mt_rand(0, 61), 1);
+								$pass		.= substr($pool, mt_rand(0, 61), 1);
 							}
 
-							$Title 	= $lang['mail_title'];
-							$Body 	= $lang['mail_text'];
-							$Body  .= $pass;
+							$Title			= $lang['mail_title'];
+							$Body			= $lang['mail_text'];
+							$Body			.= $pass;
 							mail($u['email'], $Title, $Body);
-							$NewPassSql = sha1($pass);
-							$QryPassChange = "UPDATE {{table}} SET ";
-							$QryPassChange .= "`password` ='".$NewPassSql."' ";
-							$QryPassChange .= "WHERE `email`='".$mail."' LIMIT 1;";
+
+							$NewPassSql		= sha1($pass);
+							$QryPassChange	.= "WHEN `id` = '".$u['id']."' THEN '".$NewPassSql."' ";
+							$ids[]			= $u['id'];
+						}
+
+						if (isset($QryPassChange))
+						{
+							$QryPassChange	.= "ELSE `password` END WHERE `email` IN (".implode(',', $ids).");";
 							doquery($QryPassChange, 'users');
 						}
 					}

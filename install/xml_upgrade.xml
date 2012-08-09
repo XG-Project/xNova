@@ -36,7 +36,7 @@
 	</config>
 	<config>
 		<name>log_bots</name>
-		<value>1</value>
+		<value>0</value>
 	</config>
 	<config>
 		<name>date_format</name>

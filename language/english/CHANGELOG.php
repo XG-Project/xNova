@@ -23,11 +23,6 @@ Fixed errors:
 - Many minor issues
 - Some language issues
 - [#13] Error in Notes page in debug mode
-- It would count more registered users than the ones there were
-- Issue in search page
-- Fixed a bug in the fleet page (Thanks to Think)
-- Fixed a bug in the building information page (Thanks to Think)
-- [#44] Fixed a bug that would make times to be added in the construction queue (Thanks to Think)
 '
 );
 

@@ -1,7 +1,5 @@
 <section class="page">
-
 	<h2>{ow_title}</h2>
-
 	<section class="content errors {error_class}"><span>{error_message}</span></section>
 
 	<section class="content-table">

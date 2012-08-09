@@ -1749,36 +1749,34 @@ class FlyingFleetHandler
 
 					if ( ! $zniszczony && ! $a == 8)
 					{
-						$AttackWaveStat    = sprintf($lang['sys_attack_attack_wave'], floor($b["atakujacy"]["atak"]), floor($b["wrog"]["tarcza"]));
-						$DefendWavaStat    = sprintf($lang['sys_attack_defend_wave'], floor($b["wrog"]["atak"]), floor($b["atakujacy"]["tarcza"]));
-						$raport           .= "<br><center>".$AttackWaveStat."<br>".$DefendWavaStat."</center>";
+						$AttackWaveStat	= sprintf($lang['sys_attack_attack_wave'], floor($b["atakujacy"]["atak"]), floor($b["wrog"]["tarcza"]));
+						$DefendWavaStat	= sprintf($lang['sys_attack_defend_wave'], floor($b["wrog"]["atak"]), floor($b["atakujacy"]["tarcza"]));
+						$raport			.= "<br><center>".$AttackWaveStat."<br>".$DefendWavaStat."</center>";
 					}
 				}
 
 				switch ($FleetResult)
 				{
 					case "a":
-						$raport           .= $lang['sys_attacker_won']."<br>";
-						$raport           .= $DebrisField."<br>";
-						$raport           .= $introdestruc."<br>";
-						$raport           .= $lang['sys_destruc_mess1'];
-						$raport           .= $finmess."<br>";
-						$raport           .= $probalune."<br>";
-						$raport           .= $probarip."<br>";
-						break;
-
+						$raport	.= $lang['sys_attacker_won']."<br>";
+						$raport	.= $DebrisField."<br>";
+						$raport	.= $introdestruc."<br>";
+						$raport	.= $lang['sys_destruc_mess1'];
+						$raport	.= $finmess."<br>";
+						$raport	.= $probalune."<br>";
+						$raport	.= $probarip."<br>";
+					break;
 					case "r":
-						$raport           .= $lang['sys_both_won']."<br>";
-						$raport           .= $DebrisField."<br>";
-						$raport           .= $introdestruc."<br>";
-						$raport           .= $lang['sys_destruc_stop']."<br>";
-						break;
-
+						$raport	.= $lang['sys_both_won']."<br>";
+						$raport	.= $DebrisField."<br>";
+						$raport	.= $introdestruc."<br>";
+						$raport	.= $lang['sys_destruc_stop']."<br>";
+					break;
 					case "w":
-						$raport           .= $lang['sys_defender_won']."<br>";
-						$raport           .= $DebrisField."<br>";
-						$raport           .= $introdestruc."<br>";
-						$raport           .= $lang['sys_destruc_stop']."<br>";
+						$raport	.= $lang['sys_defender_won']."<br>";
+						$raport	.= $DebrisField."<br>";
+						$raport	.= $introdestruc."<br>";
+						$raport	.= $lang['sys_destruc_stop']."<br>";
 						doquery("DELETE FROM {{table}} WHERE `fleet_id` = '".$FleetRow["fleet_id"]."';", 'fleets');
 						break;
 				}

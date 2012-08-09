@@ -23,6 +23,7 @@ Fixed errors:
 - Many minor issues
 - Some language issues
 - [#13] Error in Notes page in debug mode
+- Fixed some errors in the planet resurce updates (Thanks to Think)
 '
 );
 

@@ -420,7 +420,8 @@ $lang['ow_old_version']				= 'There is a new version available. Click <a href="h
 $lang['ow_none']					= 'No warnings';
 $lang['ow_log_file_no_writable']	= 'At least one of the log files in /includes/logs/ can\'t be written. Please, change their permissions to CHMOD 0666';
 $lang['ow_config_file_no_writable']	= 'Configuration file at /includes/xml/config.xml can\'t be written, please, give it CHMOD 0666 permission';
-$lang['ow_bot_folder_no_writable']	= '/includes/bots folder is not writable, please, give it CHMOD 0777 permission';
+$lang['ow_bot_folder_error']		= '/includes/bots folder is not writable or it does not exist, please, create it if it does not exist and give it CHMOD 0777 permission';
+$lang['ow_plugins_dir_not_exists']	= '/includes/plugins folder does not exist. Even it is not necessary, if you want to install a plugin you must create it, and it is recommended that you do it as soon as possible.';
 //###########################################################//
 
 
@@ -560,7 +561,6 @@ $lang['mu_search_page']				= 'Advanced Search';
 $lang['mu_info_account_page']		= 'Account Information';
 $lang['mu_planets_options']			= 'Options Planets';
 $lang['mu_user_logs']				= 'Log';
-$lang['mu_user_faq']				= 'F.A.Q.';
 $lang['mu_bots_sett']				= 'Configure bots';
 //###########################################################//
 

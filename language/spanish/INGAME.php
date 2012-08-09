@@ -649,8 +649,8 @@ $lang['info'][199]['name']        			= "Tecnología de gravitón";
 $lang['info'][199]['description'] 			= "Un gravitón es una partícula elemental responsable de los efectos de la gravedad. Es su propia antipartícula, tiene masa cero y carece de carga, también posee un giro de 2. A través del disparo de partículas concentradas de gravitón se genera un campo gravitacional artificial con suficiente potencia y poder de atracción para destruir no solo naves, sino lunas enteras.";
 
 // -------------------------- SHIPS ----------------------------------------------------------------------------------------------------//
-$lang['info'][202]['name']        			= "Nave chica de carga";
-$lang['info'][202]['description'] 			= "Las naves chicas de carga son aproximadamente tan grandes como los cazadores, pero sin motores eficientes ni armamento para permitir más espacio de carga. La nave chica de carga tiene una capacidad de 5.000 unidades de recursos.";
+$lang['info'][202]['name']        			= "Nave pequeña de carga";
+$lang['info'][202]['description'] 			= "Las naves pequeñas de carga son aproximadamente tan grandes como los cazadores, pero sin motores eficientes ni armamento para permitir más espacio de carga. La nave pequeña de carga tiene una capacidad de 5.000 unidades de recursos.";
 $lang['info'][203]['name']        			= "Nave grande de carga";
 $lang['info'][203]['description'] 			= "Esta nave nunca debería ser enviada sola, puesto que apenas tiene armas u otras tecnologías, para permitir tanto espacio de carga como sea posible. La nave grande de carga sirve como un suministro rápido de recursos entre planetas gracias a su sofisticado motor de combustión.";
 $lang['info'][204]['name']        			= "Cazador ligero";

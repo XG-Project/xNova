@@ -390,7 +390,6 @@ class GalaxyRows
 
 			if ($user["settings_mis"] == "1" && $MissileBtn && $GalaxyInfo['id'])
 				$MissionType10Link = "<a href=game.php?page=galaxy&mode=2&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&current=".$user['current_planet']." >".$lang['gl_missile_attack']."</a><br>";
-
 			elseif ($GalaxyInfo['id'] != $user['id'])
 				$MissionType10Link = "";
 

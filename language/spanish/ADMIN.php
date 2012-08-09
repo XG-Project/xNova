@@ -420,7 +420,8 @@ $lang['ow_old_version']				= 'Hay una nueva versión disponible. Haz click <a hr
 $lang['ow_none']					= 'No hay actualizaciones ni advertencias';
 $lang['ow_log_file_no_writable']	= 'Al menos uno de los archivos de logs en /includes/logs/ no puede ser escrito, por favor, dales permisos CHMOD 0666';
 $lang['ow_config_file_no_writable']	= 'El archivo de configuración /includes/xml/config.xml no es escribible, por favor, dale los permisos CHMOD 0666';
-$lang['ow_bot_folder_no_writable']	= 'La carpeta /includes/bots no es escribible, por favor, dale los permisos CHMOD 0777';
+$lang['ow_bot_folder_error']		= 'La carpeta /includes/bots no es escribible o no existe, por favor, créala si no existe y dale los permisos CHMOD 0777';
+$lang['ow_plugins_dir_not_exists']	= 'No existe la carpeta /includes/plugins. Aunque no es necesaria, si se desea instalar plugins es necesario crearla, y por eso se recomienda hacerlo cuanto antes.';
 //###########################################################//
 
 

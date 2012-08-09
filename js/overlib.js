@@ -652,7 +652,7 @@ function olMouseCapture() {
 	}
 
 	capExtent.onmousemove = mseHandler;
-	if (olNs4) capExtent.captureEvents(Event.MOUSEMOVE);
+	if (olNs4) capExtent.captureEvents(Event.phpUSEMOVE);
 }
 
 ////////
@@ -817,7 +817,7 @@ function hideObject(obj) {
 	self.status = "";
 
 	if (obj.onmouseout||obj.onmouseover) {
-		if (olNs4) obj.releaseEvents(Event.MOUSEOUT || Event.MOUSEOVER);
+		if (olNs4) obj.releaseEvents(Event.phpUSEOUT || Event.phpUSEOVER);
 		obj.onmouseout = obj.onmouseover = null;
 	}
 
@@ -860,7 +860,7 @@ function opt_NOCLOSE(unused) {
 	if (!unused) o3_close = "";
 
 	if (olNs4) {
-		over.captureEvents(Event.MOUSEOUT || Event.MOUSEOVER);
+		over.captureEvents(Event.phpUSEOUT || Event.phpUSEOVER);
 		over.onmouseover = function () { if (o3_timerid > 0) { clearTimeout(o3_timerid); o3_timerid = 0; } }
 		over.onmouseout = function (e) { if (olHideDelay) hideDelay(olHideDelay); else cClick(e); }
 	} else {

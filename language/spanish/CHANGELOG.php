@@ -23,6 +23,7 @@ Errores Corregidos:
 - Muchos errores menores
 - Varios errores de lenguaje
 - [#13] Error en Notas en modo debug
+- Se solucionan varios errores en el sistema de actualización de recursos (Gracias a Think)
 '
 );
 

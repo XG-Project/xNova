@@ -1,0 +1,94 @@
+@table_title_bg:					repeat-x  url('./../img/table-title.png');
+@table-color:						#344566;
+@spirites:							url('./../img/spirites.png');
+
+.content-table
+{
+	background-color: 				@table-color;
+	font-size:						0.7em;
+	padding:						1px;
+	margin:							20px 0px;
+	border-radius:					1em;
+	width:							100%;
+
+	h3
+	{
+		font-size:					1.2em;
+		background:					@table_title_bg;
+		border-radius:				0px;
+		border:						1px solid #415680;
+		color:						#E6EBFB;
+		padding:					2px 0px;
+		margin:						0px;
+	}
+
+	h3:first-of-type
+	{
+		border-radius:				0.75em 0.75em 0px 0px;
+	}
+}
+
+section.debug
+{
+	width:							100%;
+	margin: 						auto;
+	display:						table;
+	color:							#E6EBFB;
+	text-align:						center;
+
+	div.query
+	{
+		display:					table-row;
+
+		section
+		{
+			display:				table-cell;
+			border:					1px solid #415680;
+			vertical-align:			middle;
+			padding:				0.3em;
+		}
+
+		&:last-of-type
+		{
+			section:first-of-type
+			{
+				border-radius:		0px 0px 0px 0.75em;
+			}
+
+			section:last-of-type
+			{
+				border-radius:		0px 0px 0.75em 0px;
+			}
+		}
+	}
+}
+
+figure
+{
+	margin:							0.5em;
+	display:						inline-block;
+}
+
+// IMAGES \\
+.true
+{
+	width:							16px;
+	height:							16px;
+	background:						0 0 @spirites;
+}
+
+.false
+{
+	width:							16px;
+	height:							16px;
+	background:						0 -16px @spirites;
+}
+// END IMAGES \\
+
+@media (max-width: 600px)
+{
+	#debug
+	{
+		display:					none;
+	}
+}

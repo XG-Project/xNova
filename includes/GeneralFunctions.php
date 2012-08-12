@@ -169,7 +169,8 @@ function StdUserHeader($metatags = '', $onload = '')
 
 	if ( ! defined('LOGIN'))
 	{
-		$parse['-style-']	= '<link rel="stylesheet" type="text/css" href="'.GAMEURL.'styles/css/default.css">';
+		$parse['-style-']	= '<link rel="stylesheet" type="text/css" href="'.DPATH.'css/ingame.css">';
+		$parse['-style-']	.= '<link rel="stylesheet" type="text/css" href="'.GAMEURL.'styles/css/default.css">';
 		$parse['-style-']	.= '<link rel="stylesheet" type="text/css" href="'.GAMEURL.'styles/css/formate.css">';
 		$parse['-style-']	.= '<link rel="stylesheet" type="text/css" href="'.DPATH.'formate.css">';
 		$parse['-meta-']	.= '<script charset="UTF-8" src="'.GAMEURL.'js/overlib.min.js"></script>';

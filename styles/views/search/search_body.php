@@ -13,10 +13,10 @@
 		 <option value="allyname"{type_allyname}>{sh_alliance_name}</option>
 		</select>
 		&nbsp;&nbsp;
-		<input type="text" name="searchtext" value="{searchtext}"/>
+		<input type="text" name="searchtext" value="{searchtext}">
 		&nbsp;&nbsp;
 
-		<input type="submit" value="{sh_search}" />
+		<input type="submit" value="{sh_search}" >
 	   </th>
 	  </tr>
 	</table>

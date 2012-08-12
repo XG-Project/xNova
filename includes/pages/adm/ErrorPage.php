@@ -53,7 +53,7 @@ if ($ConfigGame != 1) die(message($lang['404_page']));
 				doquery("DELETE FROM {{table}} WHERE `error_id`=$delete", 'errors');
 				$Log	=	"\n".$lang['log_errores_title']."\n";
 				$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_errors']."\n";
-				LogFunction($Log, "GeneralLog", $LogCanWork);
+				LogFunction($Log, "GeneralLog");
 				header('location:ErrorPage.php?page=sql');
 			}
 			elseif (isset($deleteall) && $deleteall == 'yes')
@@ -61,7 +61,7 @@ if ($ConfigGame != 1) die(message($lang['404_page']));
 				doquery("DELETE FROM {{table}} WHERE `error_type` != 'PHP'", 'errors');
 				$Log	=	"\n".$lang['log_errores_title']."\n";
 				$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_all_sql_errors']."\n";
-				LogFunction($Log, "GeneralLog", $LogCanWork);
+				LogFunction($Log, "GeneralLog");
 				header('location:ErrorPage.php?page=sql');
 			}
 
@@ -132,7 +132,7 @@ if ($ConfigGame != 1) die(message($lang['404_page']));
 				doquery("DELETE FROM {{table}} WHERE `error_id`=$delete", 'errors');
 				$Log	=	"\n".$lang['log_errores_title']."\n";
 				$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_errors']."\n";
-				LogFunction($Log, "GeneralLog", $LogCanWork);
+				LogFunction($Log, "GeneralLog");
 				header('location:ErrorPage.php?page=php');
 			}
 			elseif (isset($deleteall) && $deleteall === 'yes')
@@ -140,7 +140,7 @@ if ($ConfigGame != 1) die(message($lang['404_page']));
 				doquery("DELETE FROM {{table}} WHERE `error_type` = 'PHP'", 'errors');
 				$Log	=	"\n".$lang['log_errores_title']."\n";
 				$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_all_php_errors']."\n";
-				LogFunction($Log, "GeneralLog", $LogCanWork);
+				LogFunction($Log, "GeneralLog");
 				header('location:ErrorPage.php?page=php');
 			}
 

@@ -226,7 +226,7 @@ if ($UserDeuterium < $consumption)
 	die($ResultMessage);
 }
 
-if ($TargetRow['id_level'] > $user['authlevel'])
+if ($TargetRow['id_level'] > AUTHLEVEL)
 {
 	$Allowed = TRUE;
 	switch ($_POST['mission'])

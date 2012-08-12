@@ -9,7 +9,7 @@
  */
 
 if ( ! defined('INSIDE')) die(header("Location: ./../../"));
-if ($user['authlevel'] < 1) die(message($lang['404_page']));
+if (AUTHLEVEL < 1) die(message($lang['404_page']));
 
 class ShowOverviewPage {
 
@@ -27,7 +27,7 @@ class ShowOverviewPage {
 
 	public function __construct()
 	{
-		global $lang, $db, $user;
+		global $lang, $db;
 		$parse 		= $lang;
 
 		if (file_exists(XN_ROOT.'install/') OR file_exists(XN_ROOT.'install.php'))
@@ -36,7 +36,7 @@ class ShowOverviewPage {
 			$error++;
 		}
 
-		if ($user['authlevel'] >= 3)
+		if (AUTHLEVEL >= 3)
 		{
 			if (is_writable(XN_ROOT.'config.php'))
 			{

@@ -8,32 +8,25 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ($user['authlevel'] < 1)
-{
-	die();
-}
+if (AUTHLEVEL < 1)	die(message($lang['404_page']));
 
-function LogFunction($Text, $Estado, $LogCanWork)
+function LogFunction($text, $category)
 {
 	global $lang;
 
-	$Archive	=	XN_ROOT."includes/logs/".$Estado.".php";
+	$log_file	=	XN_ROOT."includes/logs/".$category.".php";
 
-	if ($LogCanWork == 1 && is_writable($Archive))
+	if ( ! file_exists($log_file) && is_writable(XN_ROOT."includes/logs/")) touch($log_file);
+
+	if (ADM_LOGS && file_exists($log_file) && is_writable($log_file))
 	{
-		if ( ! file_exists($Archive))
-		{
-			fopen($Archive, "w+");
-			fclose(fopen($Archive, "w+"));
-		}
+		$lf		 =	fopen ($log_file, "r+");
+		$data	 =	$text;
+		$data	.=	$lang['log_operation_succes'];
+		$data	.=	date("d-m-Y H:i:s", time())."\n";
 
-		$FP		 =	fopen ($Archive, "r+");
-		$Date	 =	$Text;
-		$Date	.=	$lang['log_operation_succes'];
-		$Date	.=	date("d-m-Y H:i:s", time())."\n";
-
-		fputs($FP, $Date);
-		fclose($FP);
+		fputs($lf, $data);
+		fclose($lf);
 	}
 }
 

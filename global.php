@@ -107,7 +107,9 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 	else
 		define('DPATH', (( !  isset($user["dpath"]) OR (empty($user["dpath"]))) ? GAMEURL.DEFAULT_SKINPATH : GAMEURL.SKIN_PATH.$user["dpath"].'/'));
 
-	if (read_config('game_disable') == 0 && $user['authlevel'] == 0)
+	define('AUTHLEVEL', (isset($user['authlevel']) ? (int) $user['authlevel'] : 0));
+
+	if (read_config('game_disable') === 0 && AUTHLEVEL === 0)
 	{
 		message(stripslashes(read_config('close_reason')), '', '', FALSE, FALSE);
 	}

@@ -29,7 +29,7 @@ switch ($_GET['page'])
 
 	for ($L = 0; $L < 4; $L++)
 	{
-		if ($user['authlevel'] == 3)
+		if (AUTHLEVEL == 3)
 			$parse['uplvels']	.= "<option value=\"".$L."\">".$lang['rank'][$L]."</option>";
 		else
 			$parse['uplvels']	 = '<option value="0">'.$lang['rank'][0].'</option>';
@@ -139,7 +139,7 @@ switch ($_GET['page'])
 				$Log		.=	$lang['log_new_user_bot']."\n";
 			}
 
-			LogFunction($Log, "GeneralLog", $LogCanWork);
+			LogFunction($Log, "GeneralLog");
 			$parse['display']	=	'<tr><th colspan="2"><font color=lime>'.$lang['new_user_success'].'</font></tr></th>';
 		}
 	}

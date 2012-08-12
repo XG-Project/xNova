@@ -45,14 +45,14 @@ function checkedAll (frm1) {
 			</select>
 			</th>
 			<th>
-			<input type="text" name="selday" onClick="if (this.value == 'dd') this.value = '';" onBlur="if (this.value == '') this.value= 'dd';" value="dd" size="3" maxlength="2" />
-			<input type="text" name="selmonth" onClick="if (this.value == 'mm') this.value = '';" onBlur="if (this.value == '') this.value= 'mm';" value="mm" size="3"  maxlength="2"/>
-			<input type="text" name="selyear" onClick="if (this.value == 'yyyy') this.value = '';" onBlur="if (this.value == '') this.value= 'yyyy';" value="yyyy" size="6"  maxlength="4"/></th>
+			<input type="text" name="selday" onClick="if (this.value == 'dd') this.value = '';" onBlur="if (this.value == '') this.value= 'dd';" value="dd" size="3" maxlength="2" >
+			<input type="text" name="selmonth" onClick="if (this.value == 'mm') this.value = '';" onBlur="if (this.value == '') this.value= 'mm';" value="mm" size="3"  maxlength="2">
+			<input type="text" name="selyear" onClick="if (this.value == 'yyyy') this.value = '';" onBlur="if (this.value == '') this.value= 'yyyy';" value="yyyy" size="6"  maxlength="4"></th>
 		</tr>
 		<tr>
-			<th><input type="submit" name="prev" value="[ &lt;-]" />&nbsp;<input type="submit" name="next" value="[ -&gt;]" /></th>
-			<th><input type="submit" name="delsel" value="{ml_dlte_selection}" /></th>
-			<th><input type="submit" name="deldat" value="{ml_dlte_since_button}" /></th>
+			<th><input type="submit" name="prev" value="[ &lt;-]" >&nbsp;<input type="submit" name="next" value="[ -&gt;]" ></th>
+			<th><input type="submit" name="delsel" value="{ml_dlte_selection}" ></th>
+			<th><input type="submit" name="deldat" value="{ml_dlte_since_button}" ></th>
 		</tr>
 		<tr>
 			<th colspan="3">

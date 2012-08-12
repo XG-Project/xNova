@@ -21,19 +21,19 @@ if ($ToolsCanUse != 1) die(message($lang['404_page']));
 
 	if ($_POST && $_GET['mode'] == "change")
 	{
-		if ($user['authlevel'] == 3)
+		if (AUTHLEVEL == 3)
 		{
 			$kolor = 'red';
 			$ranga = $lang['user_level'][3];
 		}
 
-		elseif ($user['authlevel'] == 2)
+		elseif (AUTHLEVEL == 2)
 		{
 			$kolor = 'skyblue';
 			$ranga = $lang['user_level'][2];
 		}
 
-		elseif ($user['authlevel'] == 1)
+		elseif (AUTHLEVEL == 1)
 		{
 			$kolor = 'yellow';
 			$ranga = $lang['user_level'][1];
@@ -59,7 +59,7 @@ if ($ToolsCanUse != 1) die(message($lang['404_page']));
 			$Log	.=	$lang['log_mes_subject'].": ".$_POST["temat"]."\n";
 			$Log	.=	$lang['log_mes_text'].": ".$_POST["tresc"]."\n";
 
-			LogFunction($Log, "GeneralLog", $LogCanWork);
+			LogFunction($Log, "GeneralLog");
 
 			$parse['display']	=	"<tr><th colspan=5><font color=lime>".$lang['ma_message_sended']."</font></th></tr>";
 		}

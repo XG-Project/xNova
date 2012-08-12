@@ -51,7 +51,7 @@ if ($Observation != 1) die();
 		$Bloc['adm_ul_data_regd']   		= gmdate("d/m/Y G:i:s", $u['register_time']);
 		$Bloc['adm_ul_data_lconn']  		= gmdate("d/m/Y G:i:s", $u['onlinetime']);
 		$Bloc['adm_ul_data_banna']  		= ($u['bana'] == 1) ? "<a href # title=\"".gmdate("d/m/Y G:i:s", $u['banaday'])."\">".$lang['ul_yes']."</a>" : $lang['ul_no'];
-		$Bloc['adm_ul_data_actio']  		= ($u['id'] != $user['id'] && $user['authlevel'] == 3) ? "<a href=\"UserListPage.php?cmd=dele&user=".$u['id']."\" border=\"0\" onclick=\"return confirm('".$lang['ul_sure_you_want_dlte']."  $u[username]?');\"><img border=\"0\" src=\"../styles/images/r1.png\"></a>" : "-";
+		$Bloc['adm_ul_data_actio']  		= ($u['id'] != $user['id'] && AUTHLEVEL == 3) ? "<a href=\"UserListPage.php?cmd=dele&user=".$u['id']."\" border=\"0\" onclick=\"return confirm('".$lang['ul_sure_you_want_dlte']."  $u[username]?');\"><img border=\"0\" src=\"../styles/images/r1.png\"></a>" : "-";
 		$PrevIP                     		= $u['user_lastip'];
 		$parse['adm_ul_table']     			.= parsetemplate(gettemplate('adm/UserListRows'), $Bloc);
 		$i++;

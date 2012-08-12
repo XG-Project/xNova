@@ -16,7 +16,7 @@ function f(target_url,win_name)
 <p style="width:110px;"><NOBR>{servername} (<a href="game.php?page=changelog">{version}</a>)</NOBR></p>
 <table width="110" cellspacing="0" cellpadding="0">
  <tr>
-  <td><img src="{dpath}gfx/production.png" width="110" height="40" /></td>
+  <td><img src="{dpath}gfx/production.png" width="110" height="40" ></td>
  </tr>
 
 

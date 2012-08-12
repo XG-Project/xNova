@@ -9,6 +9,7 @@
 @error_color:						#FF0000;
 @no_error:							#BFFF00;
 @table-color:						#344566;
+@content-border:					#415680;
 
 .page
 {
@@ -40,6 +41,11 @@ a
 h3
 {
 	text-align:						center;
+}
+
+form
+{
+	margin:							0px;
 }
 
 #debug
@@ -231,7 +237,7 @@ div.content
 	text-align:						center;
 	color:							#E6EBFB;
 	padding:						5px;
-	border:							1px solid #415680;
+	border:							1px solid @content-border;
 	margin:							1px;
 
 	a
@@ -297,6 +303,7 @@ div.content
 			display:				table-cell;
 			padding:				3px;
 			vertical-align:			middle;
+			clear:					both;
 
 			&.reset-universe
 			{
@@ -437,18 +444,19 @@ section.debug
 
 figure
 {
-	margin:				0.5em;
-	display:			inline-block;
+	margin:							0.5em;
+	display:						inline-block;
 }
 
-.TRUE
+// IMAGES \\
+.true
 {
 	width:							16px;
 	height:							16px;
 	background:						0 0 @spirites;
 }
 
-.FALSE
+.false
 {
 	width:							16px;
 	height:							16px;
@@ -497,11 +505,56 @@ figure
 	background:						-89px -14px @spirites;
 }
 
+.i
+{
+	width:							16px;
+	height:							16px;
+	background:						-73px -16px @spirites;
+}
+//END IMAGES \\
+
+figure.info + section
+{
+	display:						none;
+}
+
+figure.info:hover + section
+{
+	display:						block;
+	position:						absolute;
+	border:							2px solid @content-border;
+	background-color:				@table-color;
+	padding:						5px;
+	top:							0.2em;
+	right:							5em;
+	width:							20em;
+	font-weight:					bold;
+}
+
+div.content.info
+{
+	position:						relative;
+}
+
 @media screen and (min-width: 800px)
 {
 	body
 	{
 		background: 				right top no-repeat fixed @bg_img_big @background-color;
+	}
+
+	.content-table
+	{
+		&.table.thin.divided.settings .row div.content:first-of-type
+		{
+			min-width:				15em;
+		}
+
+		.content textarea.medium
+		{
+			width:					25em;
+			height:					4em;
+		}
 	}
 }
 

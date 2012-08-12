@@ -17,7 +17,7 @@
 	</th>
 </tr><tr>
 	<th>
-	<input type="submit" value="{log_input_value}" name="editnow" onclick="LogToolPage.php?options=edit&file={setarchive}"/>
+	<input type="submit" value="{log_input_value}" name="editnow" onclick="LogToolPage.php?options=edit&file={setarchive}">
 	</th>
 </tr>
 </form>

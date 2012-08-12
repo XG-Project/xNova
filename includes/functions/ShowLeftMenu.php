@@ -21,7 +21,7 @@ function ShowLeftMenu ()
 	$parse['forum_url']     = read_config('forum_url');
 	$parse['user_rank']     = $user['total_rank'];
 
-	if ($user['authlevel'] > 0)
+	if (AUTHLEVEL > 0)
 	{
 		$parse['admin_link']	="<tr><td><div align=\"center\"><a href=\"admin.php\" target=\"_top\"> <font color=\"lime\">".$lang['lm_administration']."</font></a></div></td></tr>";
 	}

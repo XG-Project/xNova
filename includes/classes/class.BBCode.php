@@ -61,14 +61,14 @@ class bbCode
 
 	private function sCode($string)
 	{
-		$pattern =  '/\<img src=\\\"(.*?)img\/smilies\/(.*?).png\\\" alt=\\\"(.*?)\\\" \/>/s';
+		$pattern =  '/\<img src=\\\"(.*?)img\/smilies\/(.*?).png\\\" alt=\\\"(.*?)\\\" \>/s';
 		$string = preg_replace($pattern, '\3', $string);
 		return '<pre style="color: #DDDD00; background-color:gray ">'. trim($string).'</pre>';
 	}
 
 	private function sQuote($string)
 	{
-		$pattern =  '/\<img src=\\\"(.*?)img\/smilies\/(.*?).png\\\" alt=\\\"(.*?)\\\" \/>/s';
+		$pattern =  '/\<img src=\\\"(.*?)img\/smilies\/(.*?).png\\\" alt=\\\"(.*?)\\\" \>/s';
 		$string = preg_replace($pattern, '\3', $string);
 		return '<blockquote><p style="color: #000000; font-size: 10pt; background-color:55AACC; font-family: Arial">'. trim($string).'</p></blockquote>';
 	}

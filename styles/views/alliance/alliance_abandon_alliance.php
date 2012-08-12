@@ -4,7 +4,7 @@
 	</tr>
 	<tr>
 		<th>
-			<input type="button" onclick="javascript:location.href='game.php?page=alliance&mode=exit';" value="{al_continue}"/>
+			<input type="button" onclick="javascript:location.href='game.php?page=alliance&mode=exit';" value="{al_continue}">
 		</th>
 	</tr>
 </table>

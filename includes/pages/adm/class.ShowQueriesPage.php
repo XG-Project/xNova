@@ -9,7 +9,7 @@
  */
 
 if ( ! defined('INSIDE')) die(header("Location: ./../../"));
-if ($user['authlevel'] < 3) die(message($lang['404_page']));
+if (AUTHLEVEL < 3) die(message($lang['404_page']));
 
 class ShowQueriesPage {
 
@@ -33,7 +33,7 @@ class ShowQueriesPage {
 				$Log	.=	"\n".$lang['log_queries_title']."\n";
 				$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_queries_succes']."\n";
 				$Log	.=	$Query."\n";
-				LogFunction($Log, "GeneralLog", $LogCanWork);
+				LogFunction($Log, "GeneralLog");
 
 				$parse['display']	= '<div class="content no_errors">'.$lang['qe_succes'].'</div>';
 			}

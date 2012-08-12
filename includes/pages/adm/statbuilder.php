@@ -16,7 +16,7 @@ define('XN_ROOT', './../');
 include(XN_ROOT.'global.php');
 include(XN_ROOT.'adm/statfunctions.php');
 
-if ($user['authlevel'] < 2) die(message($lang['not_enough_permissions']));
+if (AUTHLEVEL < 2) die(message($lang['not_enough_permissions']));
 
 	$result			= MakeStats();
 	$memory_p		= str_replace(array("%p", "%m"), $result['memory_peak'], $lang['sb_top_memory']);

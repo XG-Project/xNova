@@ -55,7 +55,7 @@
 </th>
 </tr>
 <tr><th height="45"><center>{ac_select_id_num}&nbsp;<input type="text" name="id_u2" size="4"></center></th></tr>
-<tr><th colspan="3"><center><input type="Submit" value="{button_submit}" /></center></td></tr>
+<tr><th colspan="3"><center><input type="Submit" value="{button_submit}" ></center></td></tr>
 </table>
 </form>
 </body>

@@ -8,10 +8,7 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ($user['authlevel'] < 1)
-{
-	die();
-}
+if (AUTHLEVEL < 1) die();
 
 class bbcode
 {
@@ -64,7 +61,7 @@ class bbcode
 
 	function sCode($string)
 	{
-		$pattern 	=  '/\<img src=\\\"(.*?)img\/smilies\/(.*?).png\\\" alt=\\\"(.*?)\\\" \/>/s';
+		$pattern 	=  '/\<img src=\\\"(.*?)img\/smilies\/(.*?).png\\\" alt=\\\"(.*?)\\\" \>/s';
 		$string 	= preg_replace($pattern, '\3', $string);
 
 		return '<pre style="color: #DDDD00; background-color:gray ">'. trim ($string).'</pre>';
@@ -72,7 +69,7 @@ class bbcode
 
 	function sQuote($string)
 	{
-		$pattern 	=  '/\<img src=\\\"(.*?)img\/smilies\/(.*?).png\\\" alt=\\\"(.*?)\\\" \/>/s';
+		$pattern 	=  '/\<img src=\\\"(.*?)img\/smilies\/(.*?).png\\\" alt=\\\"(.*?)\\\" \>/s';
 		$string 	= preg_replace($pattern, '\3', $string);
 
 		return '<blockquote><p style="color: #000000; font-size: 10pt; background-color:55AACC; font-family: Arial">'. trim($string).'</p></blockquote>';

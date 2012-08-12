@@ -105,7 +105,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 			$onlinetime	=	$user['onlinetime'];
 			$reg_time	=	$user['register_time'];
 			$user_ip	=	$user['user_lastip'];
-			$authlevel	=	$user['authlevel'];
+			$authlevel	=	AUTHLEVEL;
 			$suspended	=	$user['bana'];
 			$vacations	=	$user['urlaubs_modus'];
 

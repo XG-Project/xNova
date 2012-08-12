@@ -9,6 +9,7 @@
 				</select>
 			</div>
 			<script type="text/javascript">var UserList=new filterlist(document.getElementById("form").id_1);</script>
+
 			<div class="content">
 				<nav class="auth_selector">
 					<a href="admin.php?page=moderate&amp;moderation=2&amp;get=adm">{ad_authlevel_aa}</a>
@@ -18,20 +19,24 @@
 					<a href="admin.php?page=moderate&amp;moderation=2">{ad_authlevel_tt}</a>
 				</nav>
 			</div>
+
 			<div class="content">
 				<nav class="a_to_z">
 					{a_to_z}
 				</nav>
 			</div>
+
 			<div class="content">
 				<input name="regexp" onkeyup="UserList.set(this.value)">
 				<input type="button" onclick="UserList.set(this.form.regexp.value)" value="{button_filter}">
 				<input type="button" onclick="UserList.reset();this.form.regexp.value=''" value="{button_deselect}">
 			</div>
+
 			<div class="content">
 				<span>{ad_authlevel_insert_id}: <input name="id_2" type="text"></span>
 				<span>{ad_authlevel_auth}: <select name="authlevel">{authlevels}</select></span>
 			</div>
+
 			<div class="content">
 				<input type="submit" value="{button_submit}">
 			</div>

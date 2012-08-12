@@ -6,7 +6,7 @@
 			</tr>
 			<tr>
 
-				<td class="c">{missile_count} <input type="text" name="SendMI" size="2" maxlength="3" /></td>
+				<td class="c">{missile_count} <input type="text" name="SendMI" size="2" maxlength="3" ></td>
 				<td class="c">{gl_objective}:
 					<select name="Target">
 						<option value="all" selected>{gl_all_defenses}</option>

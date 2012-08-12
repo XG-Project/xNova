@@ -60,7 +60,7 @@
 </tr><tr>
 
 	<th colspan="2">
-	<input type="submit" value="{button_submit}" name="panel" style="width:20%;"/>&nbsp;
+	<input type="submit" value="{button_submit}" name="panel" style="width:20%;">&nbsp;
 	<INPUT TYPE="button" onclick="UserList.reset();this.form.regexp.value=''" value="{button_reset}">
 	</th>
 </tr><tr>

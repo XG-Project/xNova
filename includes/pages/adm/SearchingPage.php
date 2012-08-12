@@ -108,7 +108,7 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 			$Search['LIST']	.=	"<td class=c>".$lang['se_search_info']."</td>";
 
 
-			if ($user['authlevel']	==	'3')
+			if (AUTHLEVEL	==	'3')
 				$Search['LIST']	.=	"<td class=c>".$lang['button_delete']."</td>";
 		}
 
@@ -120,7 +120,7 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 			if ($EditUsers == '1')
 				$Search['LIST']	.=	"<td class=c>".$lang['se_search_edit']."</td>";
 
-			if ($user['authlevel'] == '3')
+			if (AUTHLEVEL == '3')
 				$Search['LIST']	.=	"<td class=c>".$lang['button_delete']."</td>";
 		}
 
@@ -165,7 +165,7 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 				$Search['LIST']	.=	"<th><a href=AccountDataPage.php?id_u=".$WhileResult[0]."><img title=".$WhileResult[1]." src=../styles/images/Adm/GO.png></a></th>";
 
 
-				if ($user['authlevel']	==	'3')
+				if (AUTHLEVEL	==	'3')
 				{
 					if ($WhileResult[0] != $user['id'])
 						$DELETEBUTTON	=	"<a href=\"SearchingPage.php?delete=user&user=".$WhileResult[0]."\" border=\"0\" onclick=\"return confirm('".$lang['ul_sure_you_want_dlte']." $WhileResult[1]?');\"><img src=\"../styles/images/r1.png\" title=".$WhileResult[1]."></a>";
@@ -187,7 +187,7 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 				if ($EditUsers == '1')
 					$Search['LIST']	.=	"<th><a href=\"AccountEditorPage.php\" border=\"0\"><img src=\"../styles/images/Adm/GO.png\" title=".$lang['se_search_edit']."></a></th>";
 
-				if ($user['authlevel'] == '3')
+				if (AUTHLEVEL == '3')
 					$Search['LIST']	.=	"<th><a href=\"SearchingPage.php?delete=planet&planet=".$WhileResult[0]."\" border=\"0\" onclick=\"return confirm('".$lang['se_confirm_planet']." $WhileResult[1]');\"><img src=\"../styles/images/r1.png\" title=".$lang['button_delete']."></a></th>";
 			}
 
@@ -219,12 +219,12 @@ include_once(XN_ROOT.'includes/functions/DeleteSelectedUser.php');
 if ($_GET['delete'] == 'user'){
 	DeleteSelectedUser ($_GET['user']);
 	$Log	.=	"\n".$lang['log_searchindb_del1'].$_GET['user'].$lang['log_searchindb_del2'].$user['username']."\n";
-	LogFunction($Log, "GeneralLog", $LogCanWork);
+	LogFunction($Log, "GeneralLog");
 	message($lang['se_delete_succes_p'], "SearchingPage.php?search=users&minimize=on", 2);}
 elseif ($_GET['delete'] == 'planet'){
 	DeleteSelectedPlanet ($_GET['planet']);
 	$Log	.=	"\n".$lang['log_searchindb_del3'].$_GET['planet'].$lang['log_searchindb_del2'].$user['username']."\n";
-	LogFunction($Log, "GeneralLog", $LogCanWork);
+	LogFunction($Log, "GeneralLog");
 	message($lang['se_delete_succes_p'], "SearchingPage.php?search=planet&minimize=on", 2);
 	}
 
@@ -323,7 +323,7 @@ if ($_GET)
 			$SName			=	$lang['se_input_inact'];}
 
 		if ($SearchFile == "admin"){
-			$SpecialSpecify	=	"&& authlevel <= '".$user['authlevel']."' && authlevel > '0'";
+			$SpecialSpecify	=	"&& authlevel <= '".AUTHLEVEL."' && authlevel > '0'";
 			$SName			=	$lang['se_input_admm'];}
 
 

@@ -13,7 +13,7 @@
 		</select>
 		<br>
 		{tr_exchange_quota}<br><br>
-		<input type="submit" value="{tr_call_trader_submit}" /></th>
+		<input type="submit" value="{tr_call_trader_submit}" ></th>
 	</tr>
 	</table>
 	</form>

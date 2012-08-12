@@ -124,7 +124,7 @@ td.blank{border:0px;background-color:transparent;text-align:right;padding-right:
 			<div id="imagen" style="display:none">
 			<table cellspacing="0" style="border-collapse: collapse" align="center" width="60%">
 			<tr><td class="c">{ac_ali_logo_11}</td></tr>
-			<tr><th width="60%"><img src="{ali_logo2}" class="image"/></th></tr>
+			<tr><th width="60%"><img src="{ali_logo2}" class="image"></th></tr>
 			<tr><th><a href="{ali_logo2}" target="_blank">{ac_view_image}</a></th></tr>
 			<tr><th>{ac_urlnow} <input type="text" size="50" value="{ali_logo2}"></th></tr>
 			</table>
@@ -172,7 +172,7 @@ td.blank{border:0px;background-color:transparent;text-align:right;padding-right:
 		</th>
 	</tr><tr>
 		<th class="unico"><a href="javascript:animatedcollapse.toggle('pla')" class="link">
-		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> {ac_id_names_coords}</a></th>
+		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {ac_id_names_coords}</a></th>
 	</tr><tr>
 		<th class="unico">
 			<div id="pla" style="display:none">
@@ -191,7 +191,7 @@ td.blank{border:0px;background-color:transparent;text-align:right;padding-right:
 		</th>
 	</tr><tr>
 		<th class="unico"><a href="javascript:animatedcollapse.toggle('recursos')" class="link">
-		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> {resources_title}</a></th>
+		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {resources_title}</a></th>
 	</tr><tr>
 		<th class="unico">
 			<div id="recursos" style="display:none">
@@ -213,7 +213,7 @@ td.blank{border:0px;background-color:transparent;text-align:right;padding-right:
 		</th>
 	</tr><tr>
 		<th class="unico"><a href="javascript:animatedcollapse.toggle('edificios')" class="link">
-		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> {buildings_title}</a></th>
+		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {buildings_title}</a></th>
 	</tr><tr>
 		<th class="unico">
 			<div id="edificios" style="display:none">
@@ -261,7 +261,7 @@ td.blank{border:0px;background-color:transparent;text-align:right;padding-right:
 		</th>
 	</tr><tr>
 		<th class="unico"><a href="javascript:animatedcollapse.toggle('naves')" class="link">
-		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> {ships_title}</a></th>
+		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {ships_title}</a></th>
 	</tr><tr>
 		<th class="unico">
 			<div id="naves" style="display:none">
@@ -291,7 +291,7 @@ td.blank{border:0px;background-color:transparent;text-align:right;padding-right:
 		</th>
 	</tr><tr>
 		<th class="unico"><a href="javascript:animatedcollapse.toggle('defensa')" class="link">
-		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> {defenses_title}</a></th>
+		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {defenses_title}</a></th>
 	</tr><tr>
 		<th class="unico">
 			<div id="defensa" style="display:none">
@@ -317,7 +317,7 @@ td.blank{border:0px;background-color:transparent;text-align:right;padding-right:
 		</th>
 	</tr><tr>
 		<th class="unico"><a href="javascript:animatedcollapse.toggle('inves')" class="link">
-		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> {ac_officier_research}</a></th>
+		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {ac_officier_research}</a></th>
 	</tr><tr>
 		<th class="unico">
 			<div id="inves" style="display:none">

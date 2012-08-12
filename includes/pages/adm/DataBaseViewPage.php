@@ -72,7 +72,7 @@ else
 		}
 	}
 
-	LogFunction($Log, "GeneralLog", $LogCanWork);
+	LogFunction($Log, "GeneralLog");
 }
 
 display(parsetemplate(gettemplate('adm/DataBaseViewBody'), $parse), FALSE, '', TRUE, FALSE);

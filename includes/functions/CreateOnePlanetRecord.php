@@ -132,7 +132,7 @@ function CreateOnePlanetRecord($Galaxy, $System, $Position, $PlanetOwnerID, $Pla
 			$QryInsertPlanet .= "`name` = '".$lang['fcp_colony']."', ";
 
 		$QryInsertPlanet .= "`id_owner` = '".$planet['id_owner']."', ";
-		$QryInsertPlanet .= "`id_level` = '".$user['authlevel']."', ";
+		$QryInsertPlanet .= "`id_level` = '".AUTHLEVEL."', ";
 		$QryInsertPlanet .= "`galaxy` = '".$planet['galaxy']."', ";
 		$QryInsertPlanet .= "`system` = '".$planet['system']."', ";
 		$QryInsertPlanet .= "`planet` = '".$planet['planet']."', ";

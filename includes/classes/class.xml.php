@@ -38,7 +38,7 @@ class xml {
 	 */
 	private function __construct($sheet)
 	{
-		$this->path = XN_ROOT.'includes'. DIRECTORY_SEPARATOR.'xml'. DIRECTORY_SEPARATOR.$sheet;
+		$this->path = XN_ROOT.'includes'.DIRECTORY_SEPARATOR.'xml'.DIRECTORY_SEPARATOR.$sheet;
 		$this->config = simplexml_load_file($this->path);
 	}
 	/**

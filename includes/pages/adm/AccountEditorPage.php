@@ -88,7 +88,7 @@ switch ($_GET['page'])
 				$Log	.=	$lang['log_and'].$lang['darkmatter'].": ".$dark."\n";
 				$Log	.=	$lang['log_to_user'].$id_dark."\n";
 
-				LogFunction($Log, "ResourcesLog", $LogCanWork);
+				LogFunction($Log, "ResourcesLog");
 			}
 		}
 		else
@@ -194,7 +194,7 @@ switch ($_GET['page'])
 					$Log	.=	$lang['battleship'].": ".$battleship."\n";
 					$Log	.=	$lang['log_to_planet'].$id."\n";
 
-					LogFunction($Log, "ShipsLog", $LogCanWork);
+					LogFunction($Log, "ShipsLog");
 				}
 			}
 			else
@@ -281,7 +281,7 @@ switch ($_GET['page'])
 					$Log	.=	$lang['interplanetary_misil'].": ".$interplanetary_misil."\n";
 					$Log	.=	$lang['log_to_planet'].$id."\n";
 
-					LogFunction($Log, "DefensesLog", $LogCanWork);
+					LogFunction($Log, "DefensesLog");
 				}
 			}
 			else
@@ -460,7 +460,7 @@ switch ($_GET['page'])
 					$Log	.=	$lang['cuantic'].": ".$sprungtor."\n";
 					$Log	.=	$lang['log_to_planet'].$id."\n";
 
-					LogFunction($Log, "BuildingsLog", $LogCanWork);
+					LogFunction($Log, "BuildingsLog");
 				}
 			}
 			else
@@ -573,7 +573,7 @@ switch ($_GET['page'])
 					$Log	.=	$lang['graviton_tech'].": ".$graviton_tech."\n";
 					$Log	.=	$lang['log_to_user'].$id."\n";
 
-					LogFunction($Log, "ResearchLog", $LogCanWork);
+					LogFunction($Log, "ResearchLog");
 				}
 			}
 			else
@@ -588,10 +588,10 @@ switch ($_GET['page'])
 	case 'personal':
 		$parse['yes']    =    $lang['one_is_yes'][1];
 		$parse['no']    =    $lang['one_is_yes'][0];
-		if ($user['authlevel'] != 3) $parse['Block']    =    "disabled='disabled'";
+		if (AUTHLEVEL != 3) $parse['Block']    =    "disabled='disabled'";
 		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
-			if ($user['authlevel'] != 3 && $_POST['username'] != NULL && $_POST['password'] != NULL && $_POST['email_2'] != NULL &&
+			if (AUTHLEVEL != 3 && $_POST['username'] != NULL && $_POST['password'] != NULL && $_POST['email_2'] != NULL &&
 				$_POST['email'] != NULL) die();
 
 			if ( ! $_POST['id'])
@@ -649,7 +649,7 @@ switch ($_GET['page'])
 					$PersonalQuery    .=    "WHERE `id` = '".$_POST['id']."'";
 					doquery($PersonalQuery, "users");
 					$Log    .=    $lang['log_to_user'].$_POST['id']."\n";
-					LogFunction($Log, "PersonalLog", $LogCanWork);
+					LogFunction($Log, "PersonalLog");
 				}
 
 				$parse['display']    =    '<tr><th colspan="3"><font color=lime>'.$lang['ad_personal_succes'].'</font></th></tr>';
@@ -708,7 +708,7 @@ switch ($_GET['page'])
 					$Log	.=	$lang['technocrat'].": ".$rpg_technocrate."\n";
 					$Log	.=	$lang['log_to_user'].$id."\n";
 
-					LogFunction($Log, "OfficierLog", $LogCanWork);
+					LogFunction($Log, "OfficierLog");
 				}
 			}
 			else
@@ -888,7 +888,7 @@ switch ($_GET['page'])
 
 					$Log	.=	$lang['log_to_planet'].$id."\n";
 
-					LogFunction($Log, "PlanetsAndMoonsLog", $LogCanWork);
+					LogFunction($Log, "PlanetsAndMoonsLog");
 			 	}
 			 	else
 			 	{
@@ -982,7 +982,7 @@ switch ($_GET['page'])
 
 
 					$Log	.=	$lang['log_to_ally_whosid'].$id."\n";
-					LogFunction($Log, "AllianceLog", $LogCanWork);
+					LogFunction($Log, "AllianceLog");
 
 			 	}
 			 	else
@@ -1000,10 +1000,10 @@ switch ($_GET['page'])
 	break;
 
 	default:
-	if ($user['authlevel'] == 3)
+	if (AUTHLEVEL === 3)
 		$parse['changepersonal'] =
 	'<tr>
-		<th><a href="AccountEditorPage.php?page=personal'.$parse['getuser'].'"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> '.$lang['ad_editor_personal'].'</a></th>
+		<th><a href="AccountEditorPage.php?page=personal'.$parse['getuser'].'"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> '.$lang['ad_editor_personal'].'</a></th>
 	</tr>';
 
 

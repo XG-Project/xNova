@@ -13,7 +13,7 @@ function ShowTopNavigationBar()
 	global $lang, $user;
 	$parse	=	$lang;
 
-	if ($user['authlevel'] == 3)
+	if (AUTHLEVEL === 3)
 		$parse['admin'] = parsetemplate(gettemplate('adm/menu/topnav_admin'), $lang);
 
 	return parsetemplate(gettemplate('adm/menu/topnav'), $parse);

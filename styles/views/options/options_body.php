@@ -51,7 +51,7 @@
 		<th><input name="design"{opt_sskin_data} type="checkbox"></th>
 	</tr><tr>
 		<th><a title="{op_deactivate_ipcheck_descrip}">{op_deactivate_ipcheck}</a></th>
-		<th><input name="noipcheck"{opt_noipc_data} type="checkbox" /></th>
+		<th><input name="noipcheck"{opt_noipc_data} type="checkbox" ></th>
 	</tr><tr>
 		<td class="c" colspan="2">{op_galaxy_settings}</td>
 	</tr><tr>
@@ -65,33 +65,33 @@
 		<th><input name="settings_fleetactions" maxlength="2" size="2" value="{opt_fleet_data}" type="text"></th>
 	</tr><tr>
 		<th>{op_show_ally_logo}</th>
-		<th><input name="settings_allylogo"{opt_allyl_data} type="checkbox" /></th>
+		<th><input name="settings_allylogo"{opt_allyl_data} type="checkbox" ></th>
 	</tr><tr>
 		<td align="center" class="c">{op_shortcut}</td>
 		<td align="center" class="c">{op_show}</td>
 	</tr><tr>
 		<th><img height="16" width="13" src="{dpath}img/e.png"> {op_spy}</th>
-		<th><input name="settings_esp"{user_settings_esp} type="checkbox" /></th>
+		<th><input name="settings_esp"{user_settings_esp} type="checkbox" ></th>
 	</tr><tr>
 		<th><img height="14" width="12" src="{dpath}img/m.png"> {op_write_message}</th>
-		<th><input name="settings_wri"{user_settings_wri} type="checkbox" /></th>
+		<th><input name="settings_wri"{user_settings_wri} type="checkbox" ></th>
 	</tr><tr>
 		<th><img height="14" width="14" src="{dpath}img/b.png"> {op_add_to_buddy_list}</th>
-		<th><input name="settings_bud"{user_settings_bud} type="checkbox" /></th>
+		<th><input name="settings_bud"{user_settings_bud} type="checkbox" ></th>
 	</tr><tr>
 		<th><img height="16" width="13" src="{dpath}img/r.png"> {op_missile_attack}</th>
-		<th><input name="settings_mis"{user_settings_mis} type="checkbox" /></th>
+		<th><input name="settings_mis"{user_settings_mis} type="checkbox" ></th>
 	</tr><tr>
 		<th><img height="16" width="13" src="{dpath}img/s.png"> {op_send_report}</th>
-		<th><input name="settings_rep"{user_settings_rep} type="checkbox" /></th>
+		<th><input name="settings_rep"{user_settings_rep} type="checkbox" ></th>
 	</tr><tr>
 		<td class="c" colspan="2">{op_vacation_delete_mode}</td>
 	</tr><tr>
 		<th><a title="{op_activate_vacation_mode_descrip}">{op_activate_vacation_mode}</a></th>
-		<th><input name="urlaubs_modus"{opt_modev_data} type="checkbox" /></th>
+		<th><input name="urlaubs_modus"{opt_modev_data} type="checkbox" ></th>
 	</tr><tr>
 		<th><a title="{op_dlte_account_descrip}">{op_dlte_account}</a></th>
-		<th><input name="db_deaktjava"{db_deaktjava} type="checkbox" /></th>
+		<th><input name="db_deaktjava"{db_deaktjava} type="checkbox" ></th>
 	</tr><tr>
 		<th colspan="2"><input value="{op_save_changes}" type="submit"></th>
 	</tr>

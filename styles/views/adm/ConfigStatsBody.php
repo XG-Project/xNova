@@ -7,11 +7,11 @@
 	</tr>
 	<tr>
 	  <th>{cs_point_per_resources_used} ({cs_resources})</th>
-	  <th><input type="text" name="stat_settings" id="stat_settings" value="{stat_settings}" /></th>
+	  <th><input type="text" name="stat_settings" id="stat_settings" value="{stat_settings}" ></th>
 	</tr>
 	<tr>
 	  <th>{cs_users_per_block}</th>
-	  <th><input type="text" name="stat_amount" id="stat_amount" value="{stat_amount}" /></th>
+	  <th><input type="text" name="stat_amount" id="stat_amount" value="{stat_amount}" ></th>
 	</tr>
 	<tr>
 	  <th>{cs_fleets_on_block}</th>
@@ -22,7 +22,7 @@
 	</tr>
 	<tr>
 	  <th>{cs_time_between_updates} ({cs_minutes})</th>
-	  <th><input type="text" name="stat_update_time" id="stat_update_time" value="{stat_update_time}" /></th>
+	  <th><input type="text" name="stat_update_time" id="stat_update_time" value="{stat_update_time}" ></th>
 	</tr>
 	<tr>
 	  <th>{cs_points_to_zero}</th>
@@ -45,7 +45,7 @@
 	</tr>
 
 	<tr>
-	  <th colspan="2"><input type="submit" name="save" value="{cs_save_changes}" /></th>
+	  <th colspan="2"><input type="submit" name="save" value="{cs_save_changes}" ></th>
 	</tr>
   </table>
 </form>

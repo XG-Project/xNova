@@ -45,13 +45,13 @@
 			{continue_button}
 		</table>
 			{shipdata}
-			<input type="hidden" name="galaxy" value="{galaxy}" />
-			<input type="hidden" name="system" value="{system}" />
-			<input type="hidden" name="planet" value="{planet}" />
-			<input type="hidden" name="planet_type" value="{planettype}" />
-			<input type="hidden" name="mission" value="{target_mission}" />
-			<input type="hidden" name="maxepedition" value="{envoimaxexpedition}" />
-			<input type="hidden" name="curepedition" value="{expeditionencours}" />
-			<input type="hidden" name="target_mission" value="{target_mission}" />
+			<input type="hidden" name="galaxy" value="{galaxy}" >
+			<input type="hidden" name="system" value="{system}" >
+			<input type="hidden" name="planet" value="{planet}" >
+			<input type="hidden" name="planet_type" value="{planettype}" >
+			<input type="hidden" name="mission" value="{target_mission}" >
+			<input type="hidden" name="maxepedition" value="{envoimaxexpedition}" >
+			<input type="hidden" name="curepedition" value="{expeditionencours}" >
+			<input type="hidden" name="target_mission" value="{target_mission}" >
 		</form>
 </div>

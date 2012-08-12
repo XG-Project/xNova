@@ -50,7 +50,7 @@
 	</config>
 	<config>
 		<name>close_reason</name>
-		<value>&#xA1;En este momento el servidor se encuentra cerrado!</value>
+		<value>&amp;iexcl;En este momento el servidor se encuentra cerrado!</value>
 	</config>
 	<config>
 		<name>metal_basic_income</name>
@@ -82,7 +82,7 @@
 	</config>
 	<config>
 		<name>noobprotection</name>
-		<value>0</value>
+		<value>1</value>
 	</config>
 	<config>
 		<name>noobprotectiontime</name>
@@ -118,7 +118,7 @@
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1344419022</value>
+		<value>1344796282</value>
 	</config>
 	<config>
 		<name>stat_settings</name>
@@ -170,7 +170,7 @@
 	</config>
 	<config>
 		<name>bots_last_update</name>
-		<value>1344419022</value>
+		<value>1344796399</value>
 	</config>
 	<config>
 		<name>log_bots</name>

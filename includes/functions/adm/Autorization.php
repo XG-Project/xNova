@@ -10,10 +10,7 @@
 
 require_once(XN_ROOT.'includes/functions/adm/LogFunction.php');
 
-if ($user['authlevel'] < 1)
-{
-	die();
-}
+if (AUTHLEVEL < 1)	die();
 
 $QueryModeration	=	read_config('moderation');
 $QueryModerationEx  =   explode(";", $QueryModeration);
@@ -21,31 +18,31 @@ $Moderator			=	explode(",", $QueryModerationEx[0]);
 $Operator			=	explode(",", $QueryModerationEx[1]);
 $Administrator		=	explode(",", $QueryModerationEx[2]);
 
-if ($user['authlevel'] == 1)
+if (AUTHLEVEL == 1)
 {
-	$Observation	=	$Moderator[0];
-	$EditUsers		=	$Moderator[1];
-	$ConfigGame		=	$Moderator[2];
-	$ToolsCanUse	=	$Moderator[3];
-	$LogCanWork		=	$Moderator[4];
+	define('ADM_OBSERVATION'	, (bool) $Moderator[0]);
+	define('ADM_USER_EDIT'		, (bool) $Moderator[1]);
+	define('ADM_CONFIGURATION'	, (bool) $Moderator[2]);
+	define('ADM_TOOLS'			, (bool) $Moderator[3]);
+	define('ADM_LOGS'			, (bool) $Moderator[4]);
 }
 
-if ($user['authlevel'] == 2)
+if (AUTHLEVEL == 2)
 {
-	$Observation	=	$Operator[0];
-	$EditUsers		=	$Operator[1];
-	$ConfigGame		=	$Operator[2];
-	$ToolsCanUse	=	$Operator[3];
-	$LogCanWork		=	$Operator[4];
+	define('ADM_OBSERVATION'	, (bool) $Operator[0]);
+	define('ADM_USER_EDIT'		, (bool) $Operator[1]);
+	define('ADM_CONFIGURATION'	, (bool) $Operator[2]);
+	define('ADM_TOOLS'			, (bool) $Operator[3]);
+	define('ADM_LOGS'			, (bool) $Operator[4]);
 }
 
-if ($user['authlevel'] == 3)
+if (AUTHLEVEL == 3)
 {
-	$Observation	=	1;
-	$EditUsers		=	1;
-	$ConfigGame		=	1;
-	$ToolsCanUse	=	1;
-	$LogCanWork		=	$Administrator[0];
+	define('ADM_OBSERVATION'	, TRUE);
+	define('ADM_USER_EDIT'		, TRUE);
+	define('ADM_CONFIGURATION'	, TRUE);
+	define('ADM_TOOLS'			, TRUE);
+	define('ADM_LOGS'			, (bool) $Administrator[0]);
 }
 
 

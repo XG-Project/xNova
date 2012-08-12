@@ -37,9 +37,11 @@ function read_config($config_name = '', $all = FALSE)
 	}
 	else
 	{
-		return $configs->get_config($config_name);
-	}
+		$value = $configs->get_config($config_name);
+		if (is_numeric($value)) $value = (int) $value;
 
+		return $value;
+	}
 }
 
 // WRITES CONFIGURATIONS
@@ -140,7 +142,7 @@ function display($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $men
 
 	$footer		  = array();
 
-	if (isset($user['authlevel']) && $user['authlevel'] == 3 && read_config('debug') == 1)
+	if (AUTHLEVEL === 3 && read_config('debug'))
 		$footer['debug'] = $debug->echo_log();
 
 	if ( ! defined('LOGIN') && ! defined('IN_ADMIN') && isset($_GET['page']) && $_GET['page'] !== 'galaxy')
@@ -285,7 +287,7 @@ function doquery($query, $table, $fetch = FALSE)
 	unset($dbsettings);
 	$numqueries++;
 
-	$debug->add("<div class=\"query\"><section class=\"query-counter\">Query ".$numqueries.":</section><section class=\"query-text\">".htmlentities($query, ENT_COMPAT, 'UTF-8')."</section><section class=\"query-table\">".$table."</section><section class=\"query-fetch\"><figure class=\" ".($fetch ? 'TRUE' : 'FALSE')."\"></figure></section></div>");
+	$debug->add("<div class=\"query\"><section class=\"query-counter\">Query ".$numqueries.":</section><section class=\"query-text\">".htmlentities($query, ENT_COMPAT, 'UTF-8')."</section><section class=\"query-table\">".$table."</section><section class=\"query-fetch\"><figure class=\"".($fetch ? 'true' : 'false')."\"></figure></section></div>");
 
 	if ($fetch)
 		return $sqlquery->fetch_array();

@@ -24,9 +24,9 @@ $parse	= $lang;
 
 
 $NOSUPERMI = '';
-if ($user['authlevel']	!= 3)
+if (AUTHLEVEL	!= 3)
 {
-	$NOSUPERMI	= "WHERE `authlevel` < '".$user['authlevel']."'";
+	$NOSUPERMI	= "WHERE `authlevel` < '".AUTHLEVEL."'";
 }
 
 $UserWhileLogin		= doquery("SELECT `id`, `username`, `authlevel` FROM {{table}} ".$NOSUPERMI." ORDER BY `username` ASC", "users");
@@ -68,7 +68,7 @@ if ($_GET)
 	{
 		$parse['error']	=	"<tr><th height=25 style=\"border: 2px red solid;\"><font color=red>".$lang['ac_username_doesnt']."</font></th></tr>";
 	}
-	elseif ($user['authlevel'] != 3 && $OnlyQueryLogin['authlevel'] > $user['authlevel'])
+	elseif (AUTHLEVEL != 3 && $OnlyQueryLogin['authlevel'] > AUTHLEVEL)
 	{
 		$parse['error']	=	"<tr><th height=25 style=\"border: 2px red solid;\"><font color=red>".$lang['ac_no_rank_level']."</font></th></tr>";
 	}
@@ -124,7 +124,7 @@ if ($_GET)
 		$Log	 =	"\n".$lang['log_info_detail_title']."\n";
 		$Log	.=	$lang['log_the_user'].$user['username'].$lang['log_searchto_1'].$UserQuery['username']."\n";
 
-		LogFunction ($Log, "GeneralLog", $LogCanWork);
+		LogFunction ($Log, "GeneralLog");
 
 		// TECNOLOGIAS
 		$parse['tec_espia']				=	$UserQuery['spy_tech'];
@@ -190,14 +190,14 @@ if ($_GET)
 		if ($alianza == 0 && $AliID == 0)
 		{
 			$parse['alianza']		=	$lang['ac_no_ally'];
-			$parse['AllianceHave']	=	"<span class=\"no_moon\"><img src=\"../styles/images/Adm/arrowright.png\" width=\"16\" height=\"10\"/>".$lang['ac_alliance']."&nbsp;".$lang['ac_no_alliance']."</span>";
+			$parse['AllianceHave']	=	"<span class=\"no_moon\"><img src=\"../styles/images/Adm/arrowright.png\" width=\"16\" height=\"10\">".$lang['ac_alliance']."&nbsp;".$lang['ac_no_alliance']."</span>";
 		}
 		elseif ($alianza != NULL && $AliID)
 		{
 			include_once("AdminFunctions/BBCode-Panel-Adm.php");
 			$bbcode = new bbcode;
 
-			$parse['AllianceHave'] 			= "<a href=\"javascript:animatedcollapse.toggle('alianza')\" class=\"link\"><img src=\"../styles/images/Adm/arrowright.png\" width=\"16\" height=\"10\"/> ".$lang['ac_alliance']."</a>";
+			$parse['AllianceHave'] 			= "<a href=\"javascript:animatedcollapse.toggle('alianza')\" class=\"link\"><img src=\"../styles/images/Adm/arrowright.png\" width=\"16\" height=\"10\"> ".$lang['ac_alliance']."</a>";
 
 			$SpecifyItemsA					= "ally_owner,id,ally_tag,ally_name,ally_web,ally_description,ally_text,ally_request,ally_image,ally_members,ally_register_time";
 
@@ -416,11 +416,11 @@ if ($_GET)
 				if (isset($MoonZ) && $MoonZ)
 				{
 					$parse['MoonHave']	=	"<a href=\"javascript:animatedcollapse.toggle('especiales')\" class=\"link\">
-					<img src=\"../styles/images/Adm/arrowright.png\" width=\"16\" height=\"10\"/> ".$lang['moon_build']."</a>";
+					<img src=\"../styles/images/Adm/arrowright.png\" width=\"16\" height=\"10\"> ".$lang['moon_build']."</a>";
 				}
 				else
 				{
-					$parse['MoonHave']	=	"<span class=\"no_moon\"><img src=\"../styles/images/Adm/arrowright.png\" width=\"16\" height=\"10\"/>
+					$parse['MoonHave']	=	"<span class=\"no_moon\"><img src=\"../styles/images/Adm/arrowright.png\" width=\"16\" height=\"10\">
 					".$lang['moon_build']."&nbsp;".$lang['ac_moons_no']."</span>";
 				}
 			}
@@ -444,11 +444,11 @@ if ($_GET)
 			if ($DestruyeD)
 			{
 				$parse['DestructionHave']	=	"<a href=\"javascript:animatedcollapse.toggle('destr')\" class=\"link\">
-				<img src=\"../styles/images/Adm/arrowright.png\" width=\"16\" height=\"10\"/> ".$lang['ac_recent_destroyed_planets']."</a>";
+				<img src=\"../styles/images/Adm/arrowright.png\" width=\"16\" height=\"10\"> ".$lang['ac_recent_destroyed_planets']."</a>";
 			}
 			else
 			{
-				$parse['DestructionHave']	=	"<span class=\"no_moon\"><img src=\"../styles/images/Adm/arrowright.png\" width=\"16\" height=\"10\"/>
+				$parse['DestructionHave']	=	"<span class=\"no_moon\"><img src=\"../styles/images/Adm/arrowright.png\" width=\"16\" height=\"10\">
 				".$lang['ac_recent_destroyed_planets']."&nbsp;".$lang['ac_isnodestruyed']."</span>";
 			}
 		}

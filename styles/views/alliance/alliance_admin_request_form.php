@@ -14,6 +14,6 @@
 		<th><textarea name="text" cols=40 rows=10 onkeyup="javascript:cntchar(500)"></textarea></th>
 	</tr>
 	<tr>
-		<th colspan="2"><input type="submit" name="action" value="{al_acept_request}"/> <input type="submit" name="action" value="{al_decline_request}"/></th>
+		<th colspan="2"><input type="submit" name="action" value="{al_acept_request}"> <input type="submit" name="action" value="{al_decline_request}"></th>
 	</tr>
 </form>

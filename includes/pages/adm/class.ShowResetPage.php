@@ -9,7 +9,7 @@
  */
 
 if ( ! defined('INSIDE')) die(header("Location: ./../../"));
-if ($user['authlevel'] < 3) die(message($lang['404_page']));
+if (AUTHLEVEL < 3) die(message($lang['404_page']));
 
 class ShowResetPage {
 
@@ -102,7 +102,7 @@ class ShowResetPage {
 
 	public function __construct()
 	{
-		global $lang;
+		global $lang, $user;
 		$parse	=	$lang;
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST')
@@ -239,7 +239,7 @@ class ShowResetPage {
 				$Log	.=	$lang['log_all_uni']."\n";
 			}
 
-			LogFunction($Log, "ResetLog", $LogCanWork);
+			LogFunction($Log, "ResetLog");
 			$parse['result']	= '<div class="content no_errors top">'.$lang['re_reset_excess'].'</div>';
 		}
 

@@ -14,7 +14,7 @@ define('IN_ADMIN', TRUE);
 define('XN_ROOT', realpath('./').'/');
 
 require_once(XN_ROOT.'global.php');
-if ($user['authlevel'] < 1) die(message($lang['404_page']));
+if (AUTHLEVEL < 1) die(message($lang['404_page']));
 
 require_once(XN_ROOT.'includes/functions/adm/Autorization.php');
 
@@ -36,6 +36,11 @@ switch($page)
 	case'moderate':
 		require_once(XN_ROOT.'includes/pages/adm/class.ShowModerationPage.php');
 		new ShowModerationPage(isset($_GET['moderation']) ? (int) $_GET['moderation'] : NULL);
+	break;
+//====================================================================================================//
+	case'settings':
+		require_once(XN_ROOT.'includes/pages/adm/class.ShowSettingsPage.php');
+		new ShowSettingsPage($user);
 	break;
 //====================================================================================================//
 	default:

@@ -15,7 +15,7 @@ define('XN_ROOT', './../');
 
 include(XN_ROOT.'global.php');
 
-if ($user['authlevel'] < 1) die(message($lang['404_page']));
+if (AUTHLEVEL < 1) die(message($lang['404_page']));
 
 $parse		=	$lang;
 $Archive	=	"Log/".$_GET['file'].".php";
@@ -23,7 +23,7 @@ $Archive	=	"Log/".$_GET['file'].".php";
 switch ($_GET['options'])
 {
 	case 'delete':
-		if ($user['authlevel']	!=	3) die();
+		if (AUTHLEVEL	!=	3) die();
 		$FP	=	fopen($Archive, "w+");
 		fclose($FP);
 
@@ -31,7 +31,7 @@ switch ($_GET['options'])
 	break;
 
 	case 'edit':
-		if ($user['authlevel']	!=	3) die();
+		if (AUTHLEVEL	!=	3) die();
 		$Fopen		=	fopen($Archive, "r+");
 
 		while ( ! feof($Fopen))
@@ -69,7 +69,7 @@ switch ($_GET['options'])
 		$Log	=	fopen($Archive, "r");
 
 
-		if ($user['authlevel']	==	3)
+		if (AUTHLEVEL	==	3)
 		{
 			$Excuse_me		=
 			"<a href=\"LogToolPage.php?options=delete&file=".$_GET['file']."\" onclick=\" return confirm('".$lang['log_alert']."');\">

@@ -10,7 +10,7 @@
 		  <th><textarea name="text" cols="40" rows="10" onkeyup="javascript:cntchar(6000)">{text_apply}</textarea></th>
 		</tr>
 		<tr>
-		  <th colspan="2"><input type="submit" name="enviar" value="{al_applyform_send}"/> <input type="submit" name="enviar" value="{al_applyform_reload}"/></th>
+		  <th colspan="2"><input type="submit" name="enviar" value="{al_applyform_send}"> <input type="submit" name="enviar" value="{al_applyform_reload}"></th>
 		</tr>
 	</table>
 	</form>

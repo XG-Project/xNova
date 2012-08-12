@@ -5,13 +5,13 @@
 	</tr>
 	<tr>
 		<td colspan="8"><span style="font-size: 0.8em"><form action="ErrorPage.php?page=php" method="post">{er_php_show}:
-			<input type="checkbox" name="show_2" {checked_2} /> E_WARNING
-			<input type="checkbox" name="show_8" {checked_8} /> E_NOTICE
-			<input type="checkbox" name="show_2048" {checked_2048} /> E_STRICT
-			<input type="checkbox" name="show_4096" {checked_4096} /> E_RECOVERABLE_ERROR
-			<input type="checkbox" name="show_8192" {checked_8192} /> E_DEPRECATED
-			<input type="checkbox" name="show_32767" {checked_32767} /> E_ALL
-			<input type="submit" name="submit" value="{er_filter}" />
+			<input type="checkbox" name="show_2" {checked_2} > E_WARNING
+			<input type="checkbox" name="show_8" {checked_8} > E_NOTICE
+			<input type="checkbox" name="show_2048" {checked_2048} > E_STRICT
+			<input type="checkbox" name="show_4096" {checked_4096} > E_RECOVERABLE_ERROR
+			<input type="checkbox" name="show_8192" {checked_8192} > E_DEPRECATED
+			<input type="checkbox" name="show_32767" {checked_32767} > E_ALL
+			<input type="submit" name="submit" value="{er_filter}" >
 		</form></span></td>
 	</tr>
 	<tr>

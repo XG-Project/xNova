@@ -29,8 +29,8 @@ switch ($page)
 		$i		=	1;
 		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
-			$CheckBots = doquery("SELECT `user` FROM {{table}} WHERE `user` = '".$db->real_escape_string($_POST['user'])."' ", "bots");
-			$CheckUser = doquery("SELECT `id` FROM {{table}} WHERE `id` = '".$db->real_escape_string($_POST['user'])."' ", "users");
+			$CheckBots = doquery("SELECT `user` FROM `{{table}}` WHERE `user` = '".$db->real_escape_string($_POST['user'])."' ", "bots");
+			$CheckUser = doquery("SELECT `id` FROM `{{table}}` WHERE `id` = '".$db->real_escape_string($_POST['user'])."' ", "users");
 
 			if ( ! $user OR ! $minutes_per_day)
 			{
@@ -63,7 +63,7 @@ switch ($page)
 
 			if ($i	===	1)
 			{
-				$Query1  = "INSERT INTO {{table}} SET ";
+				$Query1  = "INSERT INTO `{{table}}` SET ";
 				$Query1 .= "`user` = '".$user."', ";
 				$Query1 .= "`minutes_per_day` = '".$minutes_per_day."'; ";
 
@@ -109,8 +109,8 @@ switch ($page)
 
 	if (isset($delete))
 	{
-		$bot = doquery('SELECT `user` FROM {{table}} WHERE `id`='.$delete, 'bots', TRUE);
-		doquery('DELETE FROM {{table}} WHERE `id`='.$delete, 'bots');
+		$bot = doquery('SELECT `user` FROM `{{table}}` WHERE `id`='.$delete, 'bots', TRUE);
+		doquery('DELETE FROM `{{table}}` WHERE `id`='.$delete, 'bots');
 		update_config('bots', read_config('bots') - 1);
 		unlink(XN_ROOT.'includes/bots/'.md5($bot['user']).'.botdb');
 

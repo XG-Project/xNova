@@ -130,7 +130,7 @@ switch ($Mode)
 				exit();
 			}
 
-			$QryInsertAdm  = "INSERT INTO {{table}} SET ";
+			$QryInsertAdm  = "INSERT INTO `{{table}}` SET ";
 			$QryInsertAdm .= "`id`                = '1', ";
 			$QryInsertAdm .= "`username`          = '".$adm_user."', ";
 			$QryInsertAdm .= "`email`             = '".$adm_email."', ";
@@ -147,7 +147,7 @@ switch ($Mode)
 			$QryInsertAdm .= "`password`          = '".$sha1pass."';";
 			doquery($QryInsertAdm, 'users');
 
-			$QryAddAdmPlt  = "INSERT INTO {{table}} SET ";
+			$QryAddAdmPlt  = "INSERT INTO `{{table}}` SET ";
 			$QryAddAdmPlt .= "`id_owner`          = '1', ";
 			$QryAddAdmPlt .= "`galaxy`            = '1', ";
 			$QryAddAdmPlt .= "`system`            = '1', ";
@@ -170,7 +170,7 @@ switch ($Mode)
 			$QryAddAdmPlt .= "`deuterium_max`     = '1000000';";
 			doquery($QryAddAdmPlt, 'planets');
 
-			$QryAddAdmGlx  = "INSERT INTO {{table}} SET ";
+			$QryAddAdmGlx  = "INSERT INTO `{{table}}` SET ";
 			$QryAddAdmGlx .= "`galaxy`            = '1', ";
 			$QryAddAdmGlx .= "`system`            = '1', ";
 			$QryAddAdmGlx .= "`planet`            = '1', ";
@@ -262,7 +262,7 @@ switch ($Mode)
 						if ($emails)
 						{
 							$ids			= array();
-							$QryPassChange	= "UPDATE {{table}} SET `password` = CASE ";
+							$QryPassChange	= "UPDATE `{{table}}` SET `password` = CASE ";
 						}
 
 						while ($u = $emails->fetch_assoc())

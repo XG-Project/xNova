@@ -155,11 +155,11 @@ class ShowAlliancePage extends bbCode
 		{
 			if (isset($tag) && $a == "")
 			{
-				$allyrow	= doquery("SELECT * FROM {{table}} WHERE ally_tag=' ".$db->real_escape_string ($tag)."'", "alliance", TRUE);
+				$allyrow	= doquery("SELECT * FROM `{{table}}` WHERE ally_tag=' ".$db->real_escape_string ($tag)."'", "alliance", TRUE);
 			}
 			elseif (is_numeric($a) && $a&& $tag == "")
 			{
-				$allyrow	= doquery("SELECT * FROM {{table}} WHERE id= ". intval($a)."", "alliance", TRUE);
+				$allyrow	= doquery("SELECT * FROM `{{table}}` WHERE id= ". intval($a)."", "alliance", TRUE);
 			}
 			else
 			{
@@ -239,7 +239,7 @@ class ShowAlliancePage extends bbCode
 						message(str_replace('%s', $_POST['atag'], $lang['al_already_exists']), "game.php?page=alliance&mode=make", 2);
 					}
 
-					doquery("INSERT INTO {{table}} SET
+					doquery("INSERT INTO `{{table}}` SET
 								`ally_name`='".$db->real_escape_string ($_POST['aname'])."',
 								`ally_tag`='".$db->real_escape_string ($_POST['atag'])."',
 								`ally_owner`='". intval($CurrentUser['id'])."',
@@ -248,9 +248,9 @@ class ShowAlliancePage extends bbCode
 								`ally_register_time`=". time()
 							, "alliance");
 
-					$allyquery 	= doquery("SELECT * FROM {{table}} WHERE ally_tag='".$db->real_escape_string ($_POST['atag'])."'", 'alliance', TRUE);
+					$allyquery 	= doquery("SELECT * FROM `{{table}}` WHERE ally_tag='".$db->real_escape_string ($_POST['atag'])."'", 'alliance', TRUE);
 
-					doquery("UPDATE {{table}} SET
+					doquery("UPDATE `{{table}}` SET
 								`ally_id`='".$allyquery['id']."',
 								`ally_name`='".$db->real_escape_string ($allyquery['ally_name'])."',
 								`ally_register_time`='". time()."'
@@ -278,7 +278,7 @@ class ShowAlliancePage extends bbCode
 
 				if ($_SERVER['REQUEST_METHOD'] === 'POST')
 				{
-					$search = doquery("SELECT * FROM {{table}} WHERE ally_name LIKE '%".$db->real_escape_string ($_POST['searchtext'])."%' or ally_tag LIKE '%".$db->real_escape_string ($_POST['searchtext'])."%' LIMIT 30", "alliance");
+					$search = doquery("SELECT * FROM `{{table}}` WHERE ally_name LIKE '%".$db->real_escape_string ($_POST['searchtext'])."%' or ally_tag LIKE '%".$db->real_escape_string ($_POST['searchtext'])."%' LIMIT 30", "alliance");
 
 					if ($search->num_rows)
 					{
@@ -304,7 +304,7 @@ class ShowAlliancePage extends bbCode
 			{
 				if ($_GET['allyid'] != NULL)
 				{
-					$alianza = doquery("SELECT * FROM {{table}} WHERE id='". intval($_GET['allyid'])."'", "alliance", TRUE);
+					$alianza = doquery("SELECT * FROM `{{table}}` WHERE id='". intval($_GET['allyid'])."'", "alliance", TRUE);
 				}
 
 				if ($alianza['ally_request_notallow'] == 1)
@@ -318,7 +318,7 @@ class ShowAlliancePage extends bbCode
 						header("Location: ".GAMEURL."game.php?page=alliance", 2);
 					}
 
-					$allyrow = doquery("SELECT ally_tag,ally_request FROM {{table}} WHERE id='". intval($_GET['allyid'])."'", "alliance", TRUE);
+					$allyrow = doquery("SELECT ally_tag,ally_request FROM `{{table}}` WHERE id='". intval($_GET['allyid'])."'", "alliance", TRUE);
 
 					if ( ! $allyrow)
 					{
@@ -329,7 +329,7 @@ class ShowAlliancePage extends bbCode
 
 					if ($_POST['enviar'] == $lang['al_applyform_send'])
 					{
-						doquery("UPDATE {{table}} SET `ally_request`='". intval($allyid)."', ally_request_text='".$db->real_escape_string (strip_tags ($_POST['text']))."', ally_register_time='". time()."' WHERE `id`='".$CurrentUser['id']."'", "users");
+						doquery("UPDATE `{{table}}` SET `ally_request`='". intval($allyid)."', ally_request_text='".$db->real_escape_string (strip_tags ($_POST['text']))."', ally_register_time='". time()."' WHERE `id`='".$CurrentUser['id']."'", "users");
 						message($lang['al_request_confirmation_message'], "game.php?page=alliance", 2);
 					}
 					else
@@ -351,13 +351,13 @@ class ShowAlliancePage extends bbCode
 			##############################################################################################
 			if ($CurrentUser['ally_id'] == 0 && $CurrentUser['ally_request'])
 			{
-				$allyquery = doquery("SELECT ally_tag FROM {{table}} WHERE id='". intval($CurrentUser['ally_request'])."' ORDER BY `id`", "alliance", TRUE);
+				$allyquery = doquery("SELECT ally_tag FROM `{{table}}` WHERE id='". intval($CurrentUser['ally_request'])."' ORDER BY `id`", "alliance", TRUE);
 
 				extract ($allyquery);
 
 				if ($_POST['bcancel'])
 				{
-					doquery("UPDATE {{table}} SET `ally_request`=0 WHERE `id`=". intval($CurrentUser['id']), "users");
+					doquery("UPDATE `{{table}}` SET `ally_request`=0 WHERE `id`=". intval($CurrentUser['id']), "users");
 
 					$lang['request_text']	= str_replace('%s', $ally_tag, $lang['al_request_deleted']);
 					$lang['button_text'] 	= $lang['al_continue'];
@@ -384,7 +384,7 @@ class ShowAlliancePage extends bbCode
 		##############################################################################################
 		if ($CurrentUser['ally_id']&& $CurrentUser['ally_request'] == 0)
 		{
-			$ally 		= doquery("SELECT * FROM {{table}} WHERE id='". intval($CurrentUser['ally_id'])."'", "alliance", TRUE);
+			$ally 		= doquery("SELECT * FROM `{{table}}` WHERE id='". intval($CurrentUser['ally_id'])."'", "alliance", TRUE);
 			$ally_ranks = unserialize($ally['ally_ranks']);
 
 			$user_can_watch_memberlist_status	= $this->return_rank ($ally_ranks, 'onlinestatus', $ally['ally_owner'], $CurrentUser);
@@ -415,8 +415,8 @@ class ShowAlliancePage extends bbCode
 
 				if ($_GET['yes'] == 1)
 				{
-					doquery("UPDATE {{table}} SET `ally_id` = 0, `ally_name` = '', ally_rank_id = 0 WHERE `id`='". intval($CurrentUser['id'])."'", "users");
-					doquery("UPDATE {{table}} SET `ally_members` = `ally_members` - 1 WHERE `id`='". intval($ally['id'])."'", "alliance");
+					doquery("UPDATE `{{table}}` SET `ally_id` = 0, `ally_name` = '', ally_rank_id = 0 WHERE `id`='". intval($CurrentUser['id'])."'", "users");
+					doquery("UPDATE `{{table}}` SET `ally_members` = `ally_members` - 1 WHERE `id`='". intval($ally['id'])."'", "alliance");
 
 					$lang['Go_out_welldone'] 	= str_replace("%s", $ally_name, $lang['al_leave_sucess']);
 					$page 						= $this->message_box ($lang['Go_out_welldone'], "<br>", $PHP_SELF, $lang['al_continue']);
@@ -449,14 +449,14 @@ class ShowAlliancePage extends bbCode
 				}
 				else
 				{
-					$listuser	= doquery("SELECT * FROM {{table}} WHERE ally_id='". intval($CurrentUser['ally_id'])."'", 'users');
+					$listuser	= doquery("SELECT * FROM `{{table}}` WHERE ally_id='". intval($CurrentUser['ally_id'])."'", 'users');
 				}
 
 				$i = 0;
 
 				while ($u = $listuser->fetch_array())
 				{
-					$UserPoints = doquery("SELECT * FROM {{table}} WHERE `stat_type` = '1' && `stat_code` = '1' && `id_owner` = '". intval($u['id'])."';", 'statpoints', TRUE);
+					$UserPoints = doquery("SELECT * FROM `{{table}}` WHERE `stat_type` = '1' && `stat_code` = '1' && `id_owner` = '". intval($u['id'])."';", 'statpoints', TRUE);
 
 					$i++;
 					$u['i'] = $i;
@@ -525,7 +525,7 @@ class ShowAlliancePage extends bbCode
 
 				if ($i != $ally['ally_members'])
 				{
-					doquery("UPDATE {{table}} SET `ally_members`='". intval($i)."' WHERE `id`='". intval($ally['id'])."'", 'alliance');
+					doquery("UPDATE `{{table}}` SET `ally_members`='". intval($i)."' WHERE `id`='". intval($ally['id'])."'", 'alliance');
 				}
 
 				$parse['i'] 	= $i;
@@ -553,11 +553,11 @@ class ShowAlliancePage extends bbCode
 
 					if ($_POST['r'] == 0)
 					{
-						$sq	= doquery("SELECT id,username FROM {{table}} WHERE ally_id='". intval($CurrentUser['ally_id'])."'", "users");
+						$sq	= doquery("SELECT id,username FROM `{{table}}` WHERE ally_id='". intval($CurrentUser['ally_id'])."'", "users");
 					}
 					else
 					{
-						$sq	= doquery("SELECT id,username FROM {{table}} WHERE ally_id='". intval($CurrentUser['ally_id'])."' && ally_rank_id='". intval($_POST['r'])."'", "users");
+						$sq	= doquery("SELECT id,username FROM `{{table}}` WHERE ally_id='". intval($CurrentUser['ally_id'])."' && ally_rank_id='". intval($_POST['r'])."'", "users");
 					}
 
 					while ($u = $sq->fetch_array())
@@ -612,7 +612,7 @@ class ShowAlliancePage extends bbCode
 
 					$ranks 			= serialize($ally_ranks);
 
-					doquery("UPDATE {{table}} SET `ally_ranks`='".$ranks."' WHERE `id`=". intval($ally['id']), "alliance");
+					doquery("UPDATE `{{table}}` SET `ally_ranks`='".$ranks."' WHERE `id`=". intval($ally['id']), "alliance");
 
 					$goto 			= $_SERVER['PHP_SELF']."?".$_SERVER['QUERY_STRING'];
 
@@ -711,7 +711,7 @@ class ShowAlliancePage extends bbCode
 
 					$ranks	=	serialize($ally_ranks_new);
 
-					doquery("UPDATE {{table}} SET `ally_ranks`='".$ranks."' WHERE `id`=". intval($ally['id']), "alliance");
+					doquery("UPDATE `{{table}}` SET `ally_ranks`='".$ranks."' WHERE `id`=". intval($ally['id']), "alliance");
 
 					$goto 	= $_SERVER['PHP_SELF']."?".$_SERVER['QUERY_STRING'];
 
@@ -723,7 +723,7 @@ class ShowAlliancePage extends bbCode
 
 					$ally['ally_rank']	= serialize($ally_ranks);
 
-					doquery("UPDATE {{table}} SET `ally_ranks`='".$ally['ally_rank']."' WHERE `id`=". intval($ally['id'])."", "alliance");
+					doquery("UPDATE `{{table}}` SET `ally_ranks`='".$ally['ally_rank']."' WHERE `id`=". intval($ally['id'])."", "alliance");
 				}
 
 				if (count($ally_ranks) == 0 or $ally_ranks == '')
@@ -818,7 +818,7 @@ class ShowAlliancePage extends bbCode
 						exit(header("Location: ".GAMEURL."game.php?page=alliance?mode=admin&edit=ally", 2));
 					}
 
-					doquery("UPDATE {{table}} SET
+					doquery("UPDATE `{{table}}` SET
 								`ally_owner_range`='".$ally['ally_owner_range']."',
 								`ally_image`='".$ally['ally_image']."',
 								`ally_web`='".$ally['ally_web']."',
@@ -832,7 +832,7 @@ class ShowAlliancePage extends bbCode
 					{
 						$ally['ally_request']		= $_POST['text'];
 
-						doquery("UPDATE {{table}} SET
+						doquery("UPDATE `{{table}}` SET
 						`ally_request`='".$ally['ally_request']."'
 						WHERE `id`='".$ally['id']."'", "alliance");
 
@@ -842,7 +842,7 @@ class ShowAlliancePage extends bbCode
 					{
 						$ally['ally_text']			= $_POST['text'];
 
-						doquery("UPDATE {{table}} SET
+						doquery("UPDATE `{{table}}` SET
 						`ally_text`='".$ally['ally_text']."'
 						WHERE `id`='".$ally['id']."'", "alliance");
 
@@ -852,7 +852,7 @@ class ShowAlliancePage extends bbCode
 					{
 						$ally['ally_description']	= $_POST['text'];
 
-						doquery("UPDATE {{table}} SET
+						doquery("UPDATE `{{table}}` SET
 						`ally_description`='".$ally['ally_description']."'
 						WHERE `id`='".$ally['id']."'", "alliance");
 
@@ -915,20 +915,20 @@ class ShowAlliancePage extends bbCode
 						header("Location: ".GAMEURL."game.php?page=alliance", 2);
 					}
 
-					$u	= doquery("SELECT * FROM {{table}} WHERE id='". intval($kick)."' LIMIT 1", 'users', TRUE);
+					$u	= doquery("SELECT * FROM `{{table}}` WHERE id='". intval($kick)."' LIMIT 1", 'users', TRUE);
 
 					if ($u['ally_id'] == $ally['id'] && $u['id'] != $ally['ally_owner'])
 					{
-						doquery("UPDATE {{table}} SET `ally_id`='0', `ally_name`='', `ally_rank_id` = 0 WHERE `id`='". intval($u['id'])."' LIMIT 1;", 'users');
+						doquery("UPDATE `{{table}}` SET `ally_id`='0', `ally_name`='', `ally_rank_id` = 0 WHERE `id`='". intval($u['id'])."' LIMIT 1;", 'users');
 					}
 				}
 				elseif (isset($_POST['newrang']))
 				{
-					$q	= doquery("SELECT * FROM {{table}} WHERE id='". intval($u)."' LIMIT 1", 'users', TRUE);
+					$q	= doquery("SELECT * FROM `{{table}}` WHERE id='". intval($u)."' LIMIT 1", 'users', TRUE);
 
 					if ((isset($ally_ranks[$_POST['newrang']-1]) or $_POST['newrang'] == 0) && $q['id'] != $ally['ally_owner'])
 					{
-						doquery("UPDATE {{table}} SET `ally_rank_id`='".$db->real_escape_string (strip_tags ($_POST['newrang']))."' WHERE `id`='". intval($id)."'", 'users');
+						doquery("UPDATE `{{table}}` SET `ally_rank_id`='".$db->real_escape_string (strip_tags ($_POST['newrang']))."' WHERE `id`='". intval($id)."'", 'users');
 					}
 				}
 
@@ -941,7 +941,7 @@ class ShowAlliancePage extends bbCode
 				}
 				else
 				{
-					$listuser 	= doquery("SELECT * FROM {{table}} WHERE ally_id='". intval($CurrentUser['ally_id'])."'", 'users');
+					$listuser 	= doquery("SELECT * FROM `{{table}}` WHERE ally_id='". intval($CurrentUser['ally_id'])."'", 'users');
 				}
 
 				$i 				= 0;
@@ -951,7 +951,7 @@ class ShowAlliancePage extends bbCode
 
 				while ($u = $listuser->fetch_array())
 				{
-					$UserPoints			= doquery("SELECT * FROM {{table}} WHERE `stat_type` = '1' && `stat_code` = '1' && `id_owner` = '". intval($u['id'])."';", 'statpoints', TRUE);
+					$UserPoints			= doquery("SELECT * FROM `{{table}}` WHERE `stat_type` = '1' && `stat_code` = '1' && `id_owner` = '". intval($u['id'])."';", 'statpoints', TRUE);
 
 					$i++;
 					$u['i'] 			= $i;
@@ -1045,7 +1045,7 @@ class ShowAlliancePage extends bbCode
 
 				if ($i != $ally['ally_members'])
 				{
-					doquery("UPDATE {{table}} SET `ally_members`='". intval($i)."' WHERE `id`='". intval($ally['id'])."'", 'alliance');
+					doquery("UPDATE `{{table}}` SET `ally_members`='". intval($i)."' WHERE `id`='". intval($ally['id'])."'", 'alliance');
 				}
 
 				$lang['memberslist'] 	= $page_list;
@@ -1068,9 +1068,9 @@ class ShowAlliancePage extends bbCode
 				{
 					$_POST['text']  = trim (nl2br(strip_tags ($_POST['text'], '<br>')));
 
-					doquery("UPDATE {{table}} SET `ally_members` = `ally_members` + 1 WHERE id='".intval($ally['id'])."'", 'alliance');
+					doquery("UPDATE `{{table}}` SET `ally_members` = `ally_members` + 1 WHERE id='".intval($ally['id'])."'", 'alliance');
 
-					doquery("UPDATE {{table}} SET
+					doquery("UPDATE `{{table}}` SET
 								ally_name='".$ally['ally_name']."',
 								ally_request_text='',
 								ally_request='0',
@@ -1086,7 +1086,7 @@ class ShowAlliancePage extends bbCode
 				{
 					$_POST['text']  = trim (nl2br(strip_tags ($_POST['text'], '<br>')));
 
-					doquery("UPDATE {{table}} SET ally_request_text='',ally_request='0',ally_id='0' WHERE id='". intval($show)."'", 'users');
+					doquery("UPDATE `{{table}}` SET ally_request_text='',ally_request='0',ally_id='0' WHERE id='". intval($show)."'", 'users');
 
 					SendSimpleMessage($show, $CurrentUser['id'], '', 2, $ally['ally_tag'], $lang['al_you_was_declined'].$ally['ally_name'], $lang['al_hi_the_alliance'].$ally['ally_name'].$lang['al_has_declined'].$_POST['text']);
 
@@ -1094,7 +1094,7 @@ class ShowAlliancePage extends bbCode
 				}
 
 				$i 		= 0;
-				$query 	= doquery("SELECT id,username,ally_request_text,ally_register_time FROM {{table}} WHERE ally_request='". intval($ally['id'])."'", 'users');
+				$query 	= doquery("SELECT id,username,ally_request_text,ally_register_time FROM `{{table}}` WHERE ally_request='". intval($ally['id'])."'", 'users');
 
 				/***start fix by jstar***/
 				$s 		= array();
@@ -1147,8 +1147,8 @@ class ShowAlliancePage extends bbCode
 				if ($_POST['nombre'] && ! empty($_POST['nombre']))
 				{
 					$ally['ally_name']	= $db->real_escape_string (strip_tags ($_POST['nombre']));
-					doquery("UPDATE {{table}} SET `ally_name` = '".$ally['ally_name']."' WHERE `id` = '". intval($CurrentUser['ally_id'])."';", 'alliance');
-					doquery("UPDATE {{table}} SET `ally_name` = '".$ally['ally_name']."' WHERE `ally_id` = '". intval($ally['id'])."';", 'users');
+					doquery("UPDATE `{{table}}` SET `ally_name` = '".$ally['ally_name']."' WHERE `id` = '". intval($CurrentUser['ally_id'])."';", 'alliance');
+					doquery("UPDATE `{{table}}` SET `ally_name` = '".$ally['ally_name']."' WHERE `ally_id` = '". intval($ally['id'])."';", 'users');
 				}
 
 				$parse[caso] 		= $lang['al_name'];
@@ -1173,7 +1173,7 @@ class ShowAlliancePage extends bbCode
 
 				if ($_POST['etiqueta'] && ! empty($_POST['etiqueta']))
 				{
-					doquery("UPDATE {{table}} SET `ally_tag` = '".$db->real_escape_string (strip_tags ($_POST['etiqueta']))."' WHERE `id` = '".$CurrentUser['ally_id']."';", 'alliance');
+					doquery("UPDATE `{{table}}` SET `ally_tag` = '".$db->real_escape_string (strip_tags ($_POST['etiqueta']))."' WHERE `id` = '".$CurrentUser['ally_id']."';", 'alliance');
 				}
 
 				$parse['caso'] 			= $lang['al_tag'];
@@ -1191,8 +1191,8 @@ class ShowAlliancePage extends bbCode
 					header("Location: ".GAMEURL."game.php?page=alliance", 2);
 				}
 
-				doquery("UPDATE {{table}} SET `ally_name` = '', `ally_id`='0' WHERE `ally_id`='". intval($ally['id'])."'", 'users');
-				doquery("DELETE FROM {{table}} WHERE id='". intval($ally['id'])."' LIMIT 1", "alliance");
+				doquery("UPDATE `{{table}}` SET `ally_name` = '', `ally_id`='0' WHERE `ally_id`='". intval($ally['id'])."'", 'users');
+				doquery("DELETE FROM `{{table}}` WHERE id='". intval($ally['id'])."' LIMIT 1", "alliance");
 
 				exit(header("Location: ".GAMEURL."game.php?page=alliance", 2));
 			}
@@ -1203,9 +1203,9 @@ class ShowAlliancePage extends bbCode
 			{
 				if (isset($_POST['newleader']))
 				{
-					doquery("UPDATE {{table}} SET `ally_rank_id`='0' WHERE `id`=". intval($CurrentUser['id'])."", 'users');
-					doquery("UPDATE {{table}} SET `ally_owner`='".$db->real_escape_string (strip_tags ($_POST['newleader']))."' WHERE `id`=". intval($CurrentUser['ally_id'])."", 'alliance');
-					doquery("UPDATE {{table}} SET `ally_rank_id`='0' WHERE `id`='".$db->real_escape_string (strip_tags ($_POST['newleader']))."' ", 'users');
+					doquery("UPDATE `{{table}}` SET `ally_rank_id`='0' WHERE `id`=". intval($CurrentUser['id'])."", 'users');
+					doquery("UPDATE `{{table}}` SET `ally_owner`='".$db->real_escape_string (strip_tags ($_POST['newleader']))."' WHERE `id`=". intval($CurrentUser['ally_id'])."", 'alliance');
+					doquery("UPDATE `{{table}}` SET `ally_rank_id`='0' WHERE `id`='".$db->real_escape_string (strip_tags ($_POST['newleader']))."' ", 'users');
 					exit(header("Location: ".GAMEURL."game.php?page=alliance", 2));
 				}
 				if ($ally['ally_owner'] != $CurrentUser['id'])
@@ -1214,7 +1214,7 @@ class ShowAlliancePage extends bbCode
 				}
 				else
 				{
-					$listuser 		= doquery("SELECT * FROM {{table}} WHERE ally_id='". intval($CurrentUser['ally_id'])."'", 'users');
+					$listuser 		= doquery("SELECT * FROM `{{table}}` WHERE ally_id='". intval($CurrentUser['ally_id'])."'", 'users');
 					$righthand		= $lang;
 
 					while ($u = $listuser->fetch_array())
@@ -1300,7 +1300,7 @@ class ShowAlliancePage extends bbCode
 				}
 
 				// SOLICITUDES
-				$request_count	= doquery("SELECT id FROM {{table}} WHERE ally_request='".intval($ally['id'])."'", 'users')->num_rows;
+				$request_count	= doquery("SELECT id FROM `{{table}}` WHERE ally_request='".intval($ally['id'])."'", 'users')->num_rows;
 
 				if ($request_count)
 				{

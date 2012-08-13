@@ -31,7 +31,7 @@ class ShowBuddyPage
 					// REJECT / CANCEL
 					case 1:
 
-						$senderID = doquery("SELECT * FROM {{table}} WHERE `id`='". intval($bid)."'", "buddy", TRUE);
+						$senderID = doquery("SELECT * FROM `{{table}}` WHERE `id`='". intval($bid)."'", "buddy", TRUE);
 
 						if ($senderID['active'] == 0)
 						{
@@ -56,7 +56,7 @@ class ShowBuddyPage
 							}
 						}
 
-						doquery("DELETE FROM {{table}} WHERE `id`='". intval($bid)."' && (`owner`='".$CurrentUser['id']."' OR `sender`='".$CurrentUser['id']."') ", "buddy");
+						doquery("DELETE FROM `{{table}}` WHERE `id`='". intval($bid)."' && (`owner`='".$CurrentUser['id']."' OR `sender`='".$CurrentUser['id']."') ", "buddy");
 
 						header("Location: ".GAMEURL."game.php?page=buddy");
 
@@ -65,11 +65,11 @@ class ShowBuddyPage
 						// ACCEPT
 					case 2:
 
-						$senderID = doquery("SELECT * FROM {{table}} WHERE `id`='". intval($bid)."'", "buddy", TRUE);
+						$senderID = doquery("SELECT * FROM `{{table}}` WHERE `id`='". intval($bid)."'", "buddy", TRUE);
 
 						SendSimpleMessage($senderID['sender'], $CurrentUser['id'], '', 1, $CurrentUser['username'], $lang['bu_accepted_title'], str_replace('%u', $CurrentUser['username'], $lang['bu_accepted_text']));
 
-						doquery("UPDATE {{table}} SET `active` = '1' WHERE `id` ='". intval($bid)."' && `owner`='".$CurrentUser['id']."'", "buddy");
+						doquery("UPDATE `{{table}}` SET `active` = '1' WHERE `id` ='". intval($bid)."' && `owner`='".$CurrentUser['id']."'", "buddy");
 
 						header("Location: ".GAMEURL."game.php?page=buddy");
 
@@ -78,7 +78,7 @@ class ShowBuddyPage
 						// SEND REQUEST
 					case 3:
 
-						$query = doquery("SELECT `id` FROM {{table}} WHERE (`owner`='". intval($CurrentUser[id])."' && `sender`='". intval($_POST['user'])."') OR (`owner`='". intval($_POST['user'])."' && `sender`='". intval($CurrentUser[id])."')", "buddy", TRUE);
+						$query = doquery("SELECT `id` FROM `{{table}}` WHERE (`owner`='". intval($CurrentUser[id])."' && `sender`='". intval($_POST['user'])."') OR (`owner`='". intval($_POST['user'])."' && `sender`='". intval($CurrentUser[id])."')", "buddy", TRUE);
 
 						if ( ! $query)
 						{
@@ -86,7 +86,7 @@ class ShowBuddyPage
 
 							SendSimpleMessage(intval($_POST['user']), $CurrentUser['id'], '', 1, $CurrentUser['username'], $lang['bu_to_accept_title'], str_replace('%u', $CurrentUser['username'], $lang['bu_to_accept_text']));
 
-							doquery("INSERT INTO {{table}} SET `sender`='". intval($CurrentUser[id])."', `owner`='". intval($_POST['user'])."', `active`='0', `text`='".$text."'", "buddy");
+							doquery("INSERT INTO `{{table}}` SET `sender`='". intval($CurrentUser[id])."', `owner`='". intval($_POST['user'])."', `active`='0', `text`='".$text."'", "buddy");
 
 							header("Location: ".GAMEURL."game.php?page=buddy");
 						}
@@ -117,7 +117,7 @@ class ShowBuddyPage
 				else
 				{
 					// SEARCH THE PLAYER
-					$player				= doquery("SELECT `username` FROM {{table}} WHERE `id`='". intval($user)."'", "users", TRUE);
+					$player				= doquery("SELECT `username` FROM `{{table}}` WHERE `id`='". intval($user)."'", "users", TRUE);
 
 					// IF PLAYER EXISTS, PROCEED
 					if ($player)
@@ -138,7 +138,7 @@ class ShowBuddyPage
 				// NOTHING SELECTED
 			default:
 
-				$getBuddys 		= doquery("SELECT * FROM {{table}} WHERE `sender`='". intval($CurrentUser[id])."' OR `owner`='". intval($CurrentUser[id])."'", "buddy");
+				$getBuddys 		= doquery("SELECT * FROM `{{table}}` WHERE `sender`='". intval($CurrentUser[id])."' OR `owner`='". intval($CurrentUser[id])."'", "buddy");
 				$subTemplate	= gettemplate('buddy/buddy_row');
 
 				while ($buddy = $getBuddys->fetch_assoc())
@@ -147,7 +147,7 @@ class ShowBuddyPage
 					{
 						if ($buddy['sender'] == $CurrentUser['id'])
 						{
-							$owner = doquery("SELECT `id`, `username`, `galaxy`, `system`, `planet`,`ally_id`, `ally_name` FROM {{table}} WHERE `id`='". intval($buddy[owner])."'", "users", TRUE);
+							$owner = doquery("SELECT `id`, `username`, `galaxy`, `system`, `planet`,`ally_id`, `ally_name` FROM `{{table}}` WHERE `id`='". intval($buddy[owner])."'", "users", TRUE);
 
 							$parse['id']				= $owner['id'];
 							$parse['username']			= $owner['username'];
@@ -163,7 +163,7 @@ class ShowBuddyPage
 						}
 						else
 						{
-							$sender	= doquery("SELECT `id`, `username`, `galaxy`, `system`, `planet`,`ally_id`, `ally_name` FROM {{table}} WHERE `id`='". intval($buddy[sender])."'", "users", TRUE);
+							$sender	= doquery("SELECT `id`, `username`, `galaxy`, `system`, `planet`,`ally_id`, `ally_name` FROM `{{table}}` WHERE `id`='". intval($buddy[sender])."'", "users", TRUE);
 
 							$parse['id']				= $sender['id'];
 							$parse['username']			= $sender['username'];
@@ -182,11 +182,11 @@ class ShowBuddyPage
 					{
 						if ($buddy['sender'] == $CurrentUser['id'])
 						{
-							$owner = doquery("SELECT `id`, `username`, `onlinetime`, `galaxy`, `system`, `planet`,`ally_id`, `ally_name` FROM {{table}} WHERE `id`='". intval($buddy[owner])."'", "users", TRUE);
+							$owner = doquery("SELECT `id`, `username`, `onlinetime`, `galaxy`, `system`, `planet`,`ally_id`, `ally_name` FROM `{{table}}` WHERE `id`='". intval($buddy[owner])."'", "users", TRUE);
 						}
 						else
 						{
-							$owner = doquery("SELECT `id`, `username`, `onlinetime`, `galaxy`, `system`, `planet`,`ally_id`, `ally_name` FROM {{table}} WHERE `id`='". intval($buddy[sender])."'", "users", TRUE);
+							$owner = doquery("SELECT `id`, `username`, `onlinetime`, `galaxy`, `system`, `planet`,`ally_id`, `ally_name` FROM `{{table}}` WHERE `id`='". intval($buddy[sender])."'", "users", TRUE);
 						}
 
 						$parse['id']				= $owner['id'];

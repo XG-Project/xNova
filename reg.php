@@ -98,14 +98,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$errors++;
 	}
 
-	$ExistUser = doquery("SELECT `username` FROM {{table}} WHERE `username` = '".$db->real_escape_string($_POST['character'])."' LIMIT 1;", 'users', TRUE);
+	$ExistUser = doquery("SELECT `username` FROM `{{table}}` WHERE `username` = '".$db->real_escape_string($_POST['character'])."' LIMIT 1;", 'users', TRUE);
 	if ($ExistUser)
 	{
 		$errorlist .= $lang['user_already_exists'];
 		$errors++;
 	}
 
-	$ExistMail = doquery("SELECT `email` FROM {{table}} WHERE `email` = '".$db->real_escape_string($_POST['email'])."' LIMIT 1;", 'users', TRUE);
+	$ExistMail = doquery("SELECT `email` FROM `{{table}}` WHERE `email` = '".$db->real_escape_string($_POST['email'])."' LIMIT 1;", 'users', TRUE);
 	if ($ExistMail)
 	{
 		$errorlist .= $lang['mail_already_exists'];
@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$UserEmail 	= $_POST['email'];
 		$sha1newpass = sha1($newpass);
 
-		$QryInsertUser = "INSERT INTO {{table}} SET ";
+		$QryInsertUser = "INSERT INTO `{{table}}` SET ";
 		$QryInsertUser .= "`username` = '".$db->real_escape_string(strip_tags($UserName))."', ";
 		$QryInsertUser .= "`email` = '".$db->real_escape_string($UserEmail)."', ";
 		$QryInsertUser .= "`email_2` = '".$db->real_escape_string($UserEmail)."', ";
@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$QryInsertUser .= "`password`='".$sha1newpass."';";
 		doquery($QryInsertUser, 'users');
 
-		$NewUser = doquery("SELECT `id` FROM {{table}} WHERE `username` = '".$db->real_escape_string($_POST['character'])."' LIMIT 1;", 'users', TRUE);
+		$NewUser = doquery("SELECT `id` FROM `{{table}}` WHERE `username` = '".$db->real_escape_string($_POST['character'])."' LIMIT 1;", 'users', TRUE);
 
 		$LastSettedGalaxyPos = read_config('lastsettedgalaxypos');
 		$LastSettedSystemPos = read_config('lastsettedsystempos');
@@ -183,7 +183,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 			}
 
 			$QrySelectGalaxy = "SELECT * ";
-			$QrySelectGalaxy .= "FROM {{table}} ";
+			$QrySelectGalaxy .= "FROM `{{table}}` ";
 			$QrySelectGalaxy .= "WHERE ";
 			$QrySelectGalaxy .= "`galaxy` = '".$Galaxy."' && ";
 			$QrySelectGalaxy .= "`system` = '".$System."' && ";
@@ -206,9 +206,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 				update_config('lastsettedplanetpos', $LastSettedPlanetPos);
 			}
 		}
-		$PlanetID = doquery("SELECT `id` FROM {{table}} WHERE `id_owner` = '".$NewUser['id']."' LIMIT 1;", 'planets', TRUE);
+		$PlanetID = doquery("SELECT `id` FROM `{{table}}` WHERE `id_owner` = '".$NewUser['id']."' LIMIT 1;", 'planets', TRUE);
 
-		$QryUpdateUser = "UPDATE {{table}} SET ";
+		$QryUpdateUser = "UPDATE `{{table}}` SET ";
 		$QryUpdateUser .= "`id_planet` = '".$PlanetID['id']."', ";
 		$QryUpdateUser .= "`current_planet` = '".$PlanetID['id']."', ";
 		$QryUpdateUser .= "`galaxy` = '".$Galaxy."', ";

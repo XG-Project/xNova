@@ -30,9 +30,9 @@ if ($_POST && $_POST['add_moon'])
 	$TempMax	= $_POST['temp_max'];
 	$FieldMax	= $_POST['field_max'];
 
-	$search			=	doquery("SELECT * FROM {{table}} WHERE `id` LIKE '%{$PlanetID}%'", "planets");
-	$MoonPlanet		= 	doquery("SELECT * FROM {{table}} WHERE `id` = '".$PlanetID."'", 'planets', TRUE);
-	$MoonGalaxy		= 	doquery("SELECT * FROM {{table}} WHERE `id_planet` = '".$PlanetID."'", 'galaxy', TRUE);
+	$search			=	doquery("SELECT * FROM `{{table}}` WHERE `id` LIKE '%{$PlanetID}%'", "planets");
+	$MoonPlanet		= 	doquery("SELECT * FROM `{{table}}` WHERE `id` = '".$PlanetID."'", 'planets', TRUE);
+	$MoonGalaxy		= 	doquery("SELECT * FROM `{{table}}` WHERE `id_planet` = '".$PlanetID."'", 'galaxy', TRUE);
 
 
 if ($search->num_rows)
@@ -76,9 +76,9 @@ if ($search->num_rows)
 		{
 			message($lang['mo_only_numbers'], "MoonOptionsPage.php", 2);
 		}
-			$QueryFind	=	doquery("SELECT `id_level` FROM {{table}} WHERE `id` = '".$PlanetID."'", "planets", TRUE);
+			$QueryFind	=	doquery("SELECT `id_level` FROM `{{table}}` WHERE `id` = '".$PlanetID."'", "planets", TRUE);
 
-			$QryInsertMoonInPlanet  = "INSERT INTO {{table}} SET ";
+			$QryInsertMoonInPlanet  = "INSERT INTO `{{table}}` SET ";
 			$QryInsertMoonInPlanet .= "`name` = '".$MoonName."', ";
 			$QryInsertMoonInPlanet .= "`id_owner` = '".$Owner."', ";
 			$QryInsertMoonInPlanet .= "`id_level` = '".$QueryFind['id_level']."', ";
@@ -103,14 +103,14 @@ if ($search->num_rows)
 			$QryInsertMoonInPlanet .= "`deuterium_max` = '".BASE_STORAGE_SIZE."';";
 			doquery($QryInsertMoonInPlanet, 'planets');
 
-			$QryGetMoonIdFromLunas  = "SELECT * FROM {{table}} WHERE ";
+			$QryGetMoonIdFromLunas  = "SELECT * FROM `{{table}}` WHERE ";
 			$QryGetMoonIdFromLunas .= "`galaxy` = '". $Galaxy."' && ";
 			$QryGetMoonIdFromLunas .= "`system` = '". $System."' && ";
 			$QryGetMoonIdFromLunas .= "`planet` = '".$Planet."' && ";
 			$QryGetMoonIdFromLunas .= "`planet_type` = '3';";
 			$PlanetRow = doquery($QryGetMoonIdFromLunas, 'planets', TRUE);
 
-			$QryUpdateMoonInGalaxy  = "UPDATE {{table}} SET ";
+			$QryUpdateMoonInGalaxy  = "UPDATE `{{table}}` SET ";
 			$QryUpdateMoonInGalaxy .= "`id_luna` = '".$PlanetRow['id']."', ";
 			$QryUpdateMoonInGalaxy .= "`luna` = '0' ";
 			$QryUpdateMoonInGalaxy .= "WHERE ";
@@ -135,10 +135,10 @@ elseif ($_POST && $_POST['del_moon'])
 {
 	$MoonID	= $_POST['del_moon'];
 
-	$search	=	doquery("SELECT * FROM {{table}} WHERE `id` LIKE '%{$MoonID}%'", "planets");
+	$search	=	doquery("SELECT * FROM `{{table}}` WHERE `id` LIKE '%{$MoonID}%'", "planets");
 	if ($search->num_rows)
 	{
-		$MoonSelected  			= doquery("SELECT * FROM {{table}} WHERE `id` = '".$MoonID."'", 'planets', TRUE);
+		$MoonSelected  			= doquery("SELECT * FROM `{{table}}` WHERE `id` = '".$MoonID."'", 'planets', TRUE);
 
 		if ($MoonSelected['planet_type'] == 3)
 		{
@@ -146,9 +146,9 @@ elseif ($_POST && $_POST['del_moon'])
 			$System    = $MoonSelected['system'];
 			$Planet    = $MoonSelected['planet'];
 
-			doquery("DELETE FROM {{table}} WHERE `galaxy` ='".$Galaxy."' && `system` ='".$System."' && `planet` ='".$Planet."' && `planet_type` = '3'",'planets');
+			doquery("DELETE FROM `{{table}}` WHERE `galaxy` ='".$Galaxy."' && `system` ='".$System."' && `planet` ='".$Planet."' && `planet_type` = '3'",'planets');
 
-			$QryUpdateGalaxy  = "UPDATE {{table}} SET ";
+			$QryUpdateGalaxy  = "UPDATE `{{table}}` SET ";
 			$QryUpdateGalaxy .= "`id_luna` = '0' ";
 			$QryUpdateGalaxy .= "WHERE ";
 			$QryUpdateGalaxy .= "`galaxy` = '".$Galaxy."' && ";
@@ -172,7 +172,7 @@ elseif ($_POST && $_POST['del_moon'])
 elseif ($_POST && $_POST['search_moon'])
 {
 	$UserID		=	$_POST['search_moon'];
-	$search_m	=	doquery("SELECT * FROM {{table}} WHERE `id_owner` LIKE '%{$UserID}%' && `planet_type` = '3'", "planets");
+	$search_m	=	doquery("SELECT * FROM `{{table}}` WHERE `id_owner` LIKE '%{$UserID}%' && `planet_type` = '3'", "planets");
 
 	while ($c = $search_m->fetch_array())
 	{

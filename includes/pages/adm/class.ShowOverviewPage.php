@@ -21,7 +21,7 @@ class ShowOverviewPage {
 		$latest_version	= curl_exec($ch);
 		curl_close($ch);
 
-		return version_compare(read_config('version'), $latest_version, '<');
+		return ($latest_version && version_compare(read_config('version'), $latest_version, '<'));
 	}
 
 	public function __construct()
@@ -65,7 +65,7 @@ class ShowOverviewPage {
 				}
 			}
 
-			$Errors = doquery("SELECT COUNT(*) AS `errors` FROM {{table}} WHERE 1;", 'errors', TRUE);
+			$Errors = doquery("SELECT COUNT(*) AS `errors` FROM `{{table}}` WHERE 1;", 'errors', TRUE);
 
 			if ($Errors['errors'])
 			{

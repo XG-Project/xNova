@@ -87,11 +87,11 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 
 	if ($key_user	!=	NULL)
 	{
-		$search	=	doquery("SELECT * FROM {{table}} WHERE `username` LIKE '%{$key_user}%' ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
+		$search	=	doquery("SELECT * FROM `{{table}}` WHERE `username` LIKE '%{$key_user}%' ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
 	}
 	else
 	{
-		$search	=	doquery("SELECT * FROM {{table}} ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
+		$search	=	doquery("SELECT * FROM `{{table}}` ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
 	}
 
 	$cnt	=	$search->num_rows;
@@ -200,11 +200,11 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 
 	if ($key_user	==	NULL)
 	{
-		$search	=	doquery("SELECT * FROM {{table}} WHERE `planet_type` = '1' ORDER BY `".$ORDER."` ".$ORDERBY2."", "planets");
+		$search	=	doquery("SELECT * FROM `{{table}}` WHERE `planet_type` = '1' ORDER BY `".$ORDER."` ".$ORDERBY2."", "planets");
 	}
 	else
 	{
-		$search	=	doquery("SELECT * FROM {{table}} WHERE `name` LIKE '%{$key_user}%' && `planet_type` = '1' ORDER BY `".$ORDER."` ".$ORDERBY2."", "planets");
+		$search	=	doquery("SELECT * FROM `{{table}}` WHERE `name` LIKE '%{$key_user}%' && `planet_type` = '1' ORDER BY `".$ORDER."` ".$ORDERBY2."", "planets");
 	}
 
 	$cnt	=	$search->num_rows;
@@ -223,7 +223,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 			$s			=	$planet['system'];
 			$p			=	$planet['planet'];
 
-			$QueryFiind	=	doquery("SELECT `id_luna` FROM {{table}} WHERE `galaxy` = '".$g."' && `system` = '".$s."' && `planet` = '".$p."'", "galaxy", TRUE);
+			$QueryFiind	=	doquery("SELECT `id_luna` FROM `{{table}}` WHERE `galaxy` = '".$g."' && `system` = '".$s."' && `planet` = '".$p."'", "galaxy", TRUE);
 
 			if ($QueryFiind['id_luna']	!=	'0')
 				$moons	=	"<font color=lime>".$lang['se_yes']."</font>";
@@ -304,11 +304,11 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 
 	if ($key_user	==	NULL)
 	{
-		$search	=	doquery("SELECT * FROM {{table}} WHERE `planet_type` = '3' ORDER BY `".$ORDER."` ".$ORDERBY2."", "planets");
+		$search	=	doquery("SELECT * FROM `{{table}}` WHERE `planet_type` = '3' ORDER BY `".$ORDER."` ".$ORDERBY2."", "planets");
 	}
 	else
 	{
-		$search	=	doquery("SELECT * FROM {{table}} WHERE `name` LIKE '%{$key_user}%' && `planet_type` = '3' ORDER BY `".$ORDER."` ".$ORDERBY2."", "planets");
+		$search	=	doquery("SELECT * FROM `{{table}}` WHERE `name` LIKE '%{$key_user}%' && `planet_type` = '3' ORDER BY `".$ORDER."` ".$ORDERBY2."", "planets");
 	}
 
 	$cnt	=	$search->num_rows;
@@ -400,11 +400,11 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 
 	if ($key_user	==	NULL)
 	{
-		$search	=	doquery("SELECT * FROM {{table}} ORDER BY `".$ORDER."` ".$ORDERBY2."", "alliance");
+		$search	=	doquery("SELECT * FROM `{{table}}` ORDER BY `".$ORDER."` ".$ORDERBY2."", "alliance");
 	}
 	else
 	{
-		$search	=	doquery("SELECT * FROM {{table}} WHERE `ally_name` LIKE '%{$key_user}%' ORDER BY `".$ORDER."` ".$ORDERBY2."", "alliance");
+		$search	=	doquery("SELECT * FROM `{{table}}` WHERE `ally_name` LIKE '%{$key_user}%' ORDER BY `".$ORDER."` ".$ORDERBY2."", "alliance");
 	}
 
 	$cnt	=	$search->num_rows;
@@ -490,11 +490,11 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 
 	if ($key_user	==	NULL)
 	{
-		$search	=	doquery("SELECT * FROM {{table}} WHERE `urlaubs_modus` = '1' ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
+		$search	=	doquery("SELECT * FROM `{{table}}` WHERE `urlaubs_modus` = '1' ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
 	}
 	else
 	{
-		$search	=	doquery("SELECT * FROM {{table}} WHERE `username` LIKE '%{$key_user}%' && `urlaubs_modus` = '1'  ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
+		$search	=	doquery("SELECT * FROM `{{table}}` WHERE `username` LIKE '%{$key_user}%' && `urlaubs_modus` = '1'  ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
 	}
 
 	$cnt	=	$search->num_rows;
@@ -586,11 +586,11 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 
 	if ($key_user	==	NULL)
 	{
-		$search	=	doquery("SELECT * FROM {{table}} ORDER BY `".$ORDER."` ".$ORDERBY2."", "banned");
+		$search	=	doquery("SELECT * FROM `{{table}}` ORDER BY `".$ORDER."` ".$ORDERBY2."", "banned");
 	}
 	else
 	{
-		$search	=	doquery("SELECT * FROM {{table}} WHERE `who` LIKE '%{$key_user}%' ORDER BY `".$ORDER."` ".$ORDERBY2."", "banned");
+		$search	=	doquery("SELECT * FROM `{{table}}` WHERE `who` LIKE '%{$key_user}%' ORDER BY `".$ORDER."` ".$ORDERBY2."", "banned");
 	}
 
 	$cnt	=	$search->num_rows;
@@ -678,11 +678,11 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 
 	if ($key_user	==	NULL)
 	{
-		$search	=	doquery("SELECT * FROM {{table}} WHERE `authlevel` > '0' ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
+		$search	=	doquery("SELECT * FROM `{{table}}` WHERE `authlevel` > '0' ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
 	}
 	else
 	{
-		$search	=	doquery("SELECT * FROM {{table}} WHERE `username` LIKE '%{$key_user}%' && `authlevel` > '0'  ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
+		$search	=	doquery("SELECT * FROM `{{table}}` WHERE `username` LIKE '%{$key_user}%' && `authlevel` > '0'  ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
 	}
 
 	$cnt	=	$search->num_rows;
@@ -773,11 +773,11 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 
 	if ($key_user	==	NULL)
 	{
-		$search	=	doquery("SELECT * FROM {{table}} WHERE `onlinetime` < '".$Time."' ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
+		$search	=	doquery("SELECT * FROM `{{table}}` WHERE `onlinetime` < '".$Time."' ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
 	}
 	else
 	{
-		$search	=	doquery("SELECT * FROM {{table}} WHERE `username` LIKE '%{$key_user}%' && `onlinetime` < '".$Time."' ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
+		$search	=	doquery("SELECT * FROM `{{table}}` WHERE `username` LIKE '%{$key_user}%' && `onlinetime` < '".$Time."' ORDER BY `".$ORDER."` ".$ORDERBY2."", "users");
 	}
 
 	$cnt	=	$search->num_rows;

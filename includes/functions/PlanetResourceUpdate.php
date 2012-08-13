@@ -115,7 +115,7 @@ function PlanetResourceUpdate($CurrentUser, &$CurrentPlanet, $UpdateTime, $Simul
 	{
 		$Built				= HandleElementBuildingQueue($CurrentUser, $CurrentPlanet, $ProductionTime);
 
-		$QryUpdatePlanet	= "UPDATE {{table}} SET ";
+		$QryUpdatePlanet	= "UPDATE `{{table}}` SET ";
 		$QryUpdatePlanet	.= $rUpd;
 		$QryUpdatePlanet	.= "`last_update` = '".$CurrentPlanet['last_update']."', ";
 		$QryUpdatePlanet	.= "`b_hangar_id` = '".$CurrentPlanet['b_hangar_id']."', ";

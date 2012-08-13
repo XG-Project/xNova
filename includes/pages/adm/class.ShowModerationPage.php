@@ -146,12 +146,12 @@ class ShowModerationPage {
 					else
 						$id	=	$_POST['id_2'];
 
-					$QueryFind	=	doquery("SELECT `authlevel` FROM {{table}} WHERE `id` = '".$id."'", "users", TRUE);
+					$QueryFind	=	doquery("SELECT `authlevel` FROM `{{table}}` WHERE `id` = '".$id."'", "users", TRUE);
 
 					if (isset($QueryFind['authlevel']) && isset($_POST['authlevel']) && $QueryFind['authlevel'] != $_POST['authlevel'])
 					{
-						doquery("UPDATE {{table}} SET `authlevel` = '".$_POST['authlevel']."' WHERE `id` = '".$id."'", "users");
-						doquery("UPDATE {{table}} SET `id_level` = '".$_POST['authlevel']."' WHERE `id_owner` = '".$id."';", 'planets');
+						doquery("UPDATE `{{table}}` SET `authlevel` = '".$_POST['authlevel']."' WHERE `id` = '".$id."'", "users");
+						doquery("UPDATE `{{table}}` SET `id_level` = '".$_POST['authlevel']."' WHERE `id_owner` = '".$id."';", 'planets');
 
 
 						$ASD	=	$_POST['authlevel'];

@@ -109,7 +109,7 @@ if ( ! defined('INSIDE')) die(header("Location:../../"));
 			$CurrentPlanet['b_building']    = $BuildEndTime;
 			$CurrentPlanet['b_building_id'] = $NewQueue;
 
-			$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+			$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 			$QryUpdatePlanet .= "`metal` = '".        $CurrentPlanet['metal']        ."', ";
 			$QryUpdatePlanet .= "`crystal` = '".      $CurrentPlanet['crystal']      ."', ";
 			$QryUpdatePlanet .= "`deuterium` = '".    $CurrentPlanet['deuterium']    ."', ";

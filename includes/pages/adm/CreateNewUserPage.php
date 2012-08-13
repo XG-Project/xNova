@@ -31,9 +31,9 @@ $time		=	time();
 $i			=	0;
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
-	$CheckUser = doquery("SELECT `username` FROM {{table}} WHERE `username` = '".$db->real_escape_string($_POST['name'])."' LIMIT 1", "users", TRUE);
-	$CheckMail = doquery("SELECT `email` FROM {{table}} WHERE `email` = '".$db->real_escape_string($_POST['email'])."' LIMIT 1", "users", TRUE);
-	$CheckRows = doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' && `system` = '".$system."' && `planet` = '".$planet."' LIMIT 1", "galaxy", TRUE);
+	$CheckUser = doquery("SELECT `username` FROM `{{table}}` WHERE `username` = '".$db->real_escape_string($_POST['name'])."' LIMIT 1", "users", TRUE);
+	$CheckMail = doquery("SELECT `email` FROM `{{table}}` WHERE `email` = '".$db->real_escape_string($_POST['email'])."' LIMIT 1", "users", TRUE);
+	$CheckRows = doquery("SELECT * FROM `{{table}}` WHERE `galaxy` = '".$galaxy."' && `system` = '".$system."' && `planet` = '".$planet."' LIMIT 1", "galaxy", TRUE);
 
 
 	if ( ! is_numeric($galaxy) &&  ! is_numeric($system) && ! is_numeric($planet)){
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
 
 	if ($i	==	'0'){
-		$Query1  = "INSERT INTO {{table}} SET ";
+		$Query1  = "INSERT INTO `{{table}}` SET ";
 		$Query1 .= "`username` = '".$db->real_escape_string(strip_tags($name))."', ";
 		$Query1 .= "`email` = '".$db->real_escape_string($email)."', ";
 		$Query1 .= "`email_2` = '".$db->real_escape_string($email)."', ";
@@ -79,15 +79,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
 		update_config('users_amount', read_config('users_amount') + 1);
 
-		$ID_USER 	= doquery("SELECT `id` FROM {{table}} WHERE `username` = '".$db->real_escape_string($name)."' LIMIT 1", "users", TRUE);
+		$ID_USER 	= doquery("SELECT `id` FROM `{{table}}` WHERE `username` = '".$db->real_escape_string($name)."' LIMIT 1", "users", TRUE);
 
 		CreateOnePlanetRecord ($galaxy, $system, $planet, $ID_USER['id'], $UserPlanet, TRUE);
 
-		$ID_PLANET 	= doquery("SELECT `id` FROM {{table}} WHERE `id_owner` = '".$ID_USER['id']."' LIMIT 1", "planets", TRUE);
+		$ID_PLANET 	= doquery("SELECT `id` FROM `{{table}}` WHERE `id_owner` = '".$ID_USER['id']."' LIMIT 1", "planets", TRUE);
 
-		doquery("UPDATE {{table}} SET `id_level` = '".$auth."' WHERE `id` = '".$ID_PLANET['id']."'", "planets");
+		doquery("UPDATE `{{table}}` SET `id_level` = '".$auth."' WHERE `id` = '".$ID_PLANET['id']."'", "planets");
 
-		$QryUpdateUser = "UPDATE {{table}} SET ";
+		$QryUpdateUser = "UPDATE `{{table}}` SET ";
 		$QryUpdateUser .= "`id_planet` = '".$ID_PLANET['id']."', ";
 		$QryUpdateUser .= "`current_planet` = '".$ID_PLANET['id']."', ";
 		$QryUpdateUser .= "`galaxy` = '".$galaxy."', ";

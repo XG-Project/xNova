@@ -28,7 +28,7 @@ class ShowGalaxyPage extends GalaxyRows
 		$CurrentGalaxy 	= $CurrentPlanet['galaxy'];
 		$CanDestroy    	= $CurrentPlanet[$resource[213]] + $CurrentPlanet[$resource[214]];
 
-		$maxfleet       = doquery("SELECT * FROM {{table}} WHERE `fleet_owner` = '".intval($CurrentUser['id'])."';", 'fleets');
+		$maxfleet       = doquery("SELECT * FROM `{{table}}` WHERE `fleet_owner` = '".intval($CurrentUser['id'])."';", 'fleets');
 		$maxfleet_count = $maxfleet->num_rows;
 
 		if ( ! isset($mode))
@@ -183,7 +183,7 @@ class ShowGalaxyPage extends GalaxyRows
 			}
 			elseif (($CurrentPlanet['system'] != ($_POST["system"] - 1)) && ($CurrentPlanet['system'] != $_GET['system'] or $CurrentPlanet['galaxy'] != $_GET['galaxy']) && ($mode))
 			{
-				$QryGalaxyDeuterium   = "UPDATE {{table}} SET ";
+				$QryGalaxyDeuterium   = "UPDATE `{{table}}` SET ";
 				$QryGalaxyDeuterium  .= "`deuterium` = `deuterium` -  10 ";
 				$QryGalaxyDeuterium  .= "WHERE ";
 				$QryGalaxyDeuterium  .= "`id` = '".$CurrentPlanet['id']."' ";

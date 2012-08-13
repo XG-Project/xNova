@@ -26,8 +26,8 @@ class ShowMessagesPage
 			$MessPageMode = "delete";
 		}
 
-		$UsrMess       = doquery("SELECT * FROM {{table}} WHERE `message_owner` = '". intval($CurrentUser['id'])."' ORDER BY `message_time` DESC;", 'messages');
-		$UnRead        = doquery("SELECT * FROM {{table}} WHERE `id` = '". intval($CurrentUser['id'])."';", 'users', TRUE);
+		$UsrMess       = doquery("SELECT * FROM `{{table}}` WHERE `message_owner` = '". intval($CurrentUser['id'])."' ORDER BY `message_time` DESC;", 'messages');
+		$UnRead        = doquery("SELECT * FROM `{{table}}` WHERE `id` = '". intval($CurrentUser['id'])."';", 'users', TRUE);
 
 		$MessageType   = array(0, 1, 2, 3, 4, 5, 15, 99, 100);
 		$TitleColor    = array(
@@ -68,8 +68,8 @@ class ShowMessagesPage
 				}
 				else
 				{
-					$OwnerRecord	=	doquery("SELECT `id_planet`,`username` FROM {{table}} WHERE `id` = '". intval($OwnerID)."';", 'users', TRUE);
-					$OwnerHome		= 	doquery("SELECT `galaxy`,`system`,`planet` FROM {{table}} WHERE `id_planet` = '". intval($OwnerRecord["id_planet"])."';", 'galaxy', TRUE);
+					$OwnerRecord	=	doquery("SELECT `id_planet`,`username` FROM `{{table}}` WHERE `id` = '". intval($OwnerID)."';", 'users', TRUE);
+					$OwnerHome		= 	doquery("SELECT `galaxy`,`system`,`planet` FROM `{{table}}` WHERE `id_planet` = '". intval($OwnerRecord["id_planet"])."';", 'galaxy', TRUE);
 
 					if ( ! $OwnerRecord or ! $OwnerHome)
 					{
@@ -135,7 +135,7 @@ class ShowMessagesPage
 
 				if ($DeleteWhat == 'deleteall')
 				{
-					doquery("DELETE FROM {{table}} WHERE `message_owner` = '".intval($CurrentUser['id'])."';", 'messages');
+					doquery("DELETE FROM `{{table}}` WHERE `message_owner` = '".intval($CurrentUser['id'])."';", 'messages');
 				}
 				elseif ($DeleteWhat == 'deletemarked')
 				{
@@ -144,11 +144,11 @@ class ShowMessagesPage
 						if (preg_match("/delmes/i", $Message) && $Answer == 'on')
 						{
 							$MessId   = str_replace("delmes", "", $Message);
-							$MessHere = doquery("SELECT * FROM {{table}} WHERE `message_id` = '".intval($MessId)."' && `message_owner` = '".intval($CurrentUser['id'])."';", 'messages');
+							$MessHere = doquery("SELECT * FROM `{{table}}` WHERE `message_id` = '".intval($MessId)."' && `message_owner` = '".intval($CurrentUser['id'])."';", 'messages');
 
 							if ($MessHere)
 							{
-								doquery("DELETE FROM {{table}} WHERE `message_id` = '". intval($MessId)."';", 'messages');
+								doquery("DELETE FROM `{{table}}` WHERE `message_id` = '". intval($MessId)."';", 'messages');
 							}
 						}
 					}
@@ -164,11 +164,11 @@ class ShowMessagesPage
 
 						if (preg_match("/showmes/i", $Message) && ! isset($IsSelected))
 						{
-							$MessHere = doquery("SELECT * FROM {{table}} WHERE `message_id` = '". intval($MessId)."' && `message_owner` = '". intval($CurrentUser['id'])."';", 'messages');
+							$MessHere = doquery("SELECT * FROM `{{table}}` WHERE `message_id` = '". intval($MessId)."' && `message_owner` = '". intval($CurrentUser['id'])."';", 'messages');
 
 							if ($MessHere)
 							{
-								doquery("DELETE FROM {{table}} WHERE `message_id` = '". intval($MessId)."';", 'messages');
+								doquery("DELETE FROM `{{table}}` WHERE `message_id` = '". intval($MessId)."';", 'messages');
 							}
 						}
 					}
@@ -191,14 +191,14 @@ class ShowMessagesPage
 
 				if ($MessCategory == 100)
 				{
-					$UsrMess	= doquery("SELECT * FROM {{table}} WHERE `message_owner` = '". intval($CurrentUser['id'])."' ORDER BY `message_time` DESC;", 'messages');
+					$UsrMess	= doquery("SELECT * FROM `{{table}}` WHERE `message_owner` = '". intval($CurrentUser['id'])."' ORDER BY `message_time` DESC;", 'messages');
 				}
 				else
 				{
-					$UsrMess	= doquery("SELECT * FROM {{table}} WHERE `message_owner` = '". intval($CurrentUser['id'])."' && `message_type` = '".$MessCategory."' ORDER BY `message_time` DESC;", 'messages');
+					$UsrMess	= doquery("SELECT * FROM `{{table}}` WHERE `message_owner` = '". intval($CurrentUser['id'])."' && `message_type` = '".$MessCategory."' ORDER BY `message_time` DESC;", 'messages');
 				}
 
-				$QryUpdateUser  = "UPDATE {{table}} SET ";
+				$QryUpdateUser  = "UPDATE `{{table}}` SET ";
 				$QryUpdateUser .= "`new_message` = '0' ";
 				$QryUpdateUser .= "WHERE ";
 				$QryUpdateUser .= "`id` = '". intval($CurrentUser['id'])."';";

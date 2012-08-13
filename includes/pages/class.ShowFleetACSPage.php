@@ -71,7 +71,7 @@ class ShowFleetACSPage
 		if (isset($_POST['add_member_to_acs']) && ! empty($_POST['add_member_to_acs']))
 		{
 			$added_user_id 	= 0;
-			$member_qry 		= doquery("SELECT `id` FROM {{table}} WHERE `username` ='".$db->real_escape_string($_POST['addtogroup'])."' ;",'users');
+			$member_qry 		= doquery("SELECT `id` FROM `{{table}}` WHERE `username` ='".$db->real_escape_string($_POST['addtogroup'])."' ;",'users');
 
 			while ($row = $member_qry->fetch_array())
 			{
@@ -81,7 +81,7 @@ class ShowFleetACSPage
 			if ($added_user_id > 0)
 			{
 				$new_eingeladen_mr = $db->real_escape_string($_POST['acs_invited']).','.$added_user_id;
-				doquery("UPDATE {{table}} SET `eingeladen` = '".$new_eingeladen_mr."' ;",'aks');
+				doquery("UPDATE `{{table}}` SET `eingeladen` = '".$new_eingeladen_mr."' ;",'aks');
 				$acs_user_message = "<font color=\"lime\">".$lang['fl_player']." ".$_POST['addtogroup']." ".$lang['fl_add_to_attack'];
 			}
 			else
@@ -93,7 +93,7 @@ class ShowFleetACSPage
 			SendSimpleMessage($added_user_id, $CurrentUser['id'], time(), 1, $CurrentUser['username'], $lang['fl_acs_invitation_title'], $invite_message);
 		}
 
-		$query = doquery("SELECT * FROM {{table}} WHERE fleet_id = '". intval($fleetid)."'", 'fleets');
+		$query = doquery("SELECT * FROM `{{table}}` WHERE fleet_id = '". intval($fleetid)."'", 'fleets');
 
 		if ($query->num_rows != 1)
 		{
@@ -111,7 +111,7 @@ class ShowFleetACSPage
 
 		if ( ! isset($_POST['send']))
 		{
-			$fleet 				= doquery("SELECT * FROM {{table}} WHERE fleet_id = '". intval($fleetid)."'", 'fleets', TRUE);
+			$fleet 				= doquery("SELECT * FROM `{{table}}` WHERE fleet_id = '". intval($fleetid)."'", 'fleets', TRUE);
 
 			if (empty($fleet['fleet_group']))
 			{
@@ -168,8 +168,8 @@ class ShowFleetACSPage
 								WHERE teilnehmer = '". intval($CurrentUser['id'])."'", 'aks');
 				}
 
-				$acs 			= doquery("SELECT COUNT(`id`) FROM {{table}} WHERE id = '". intval($fleet['fleet_group'])."'", 'aks', TRUE);
-				$acs_madnessred = doquery("SELECT * FROM {{table}} WHERE id = '". intval($fleet['fleet_group'])."'", 'aks');
+				$acs 			= doquery("SELECT COUNT(`id`) FROM `{{table}}` WHERE id = '". intval($fleet['fleet_group'])."'", 'aks', TRUE);
+				$acs_madnessred = doquery("SELECT * FROM `{{table}}` WHERE id = '". intval($fleet['fleet_group'])."'", 'aks');
 
 				if ($acs[0] != 1)
 				{
@@ -180,7 +180,7 @@ class ShowFleetACSPage
 			if ($count['max_fleet'] <> 0 or $MaxExpedition <> 0)
 			{
 
-				$fq = doquery("SELECT * FROM {{table}} WHERE fleet_owner='".intval($CurrentUser[id])."'", "fleets");
+				$fq = doquery("SELECT * FROM `{{table}}` WHERE fleet_owner='".intval($CurrentUser[id])."'", "fleets");
 				$i  = 0;
 
 				while ($f = $fq->fetch_array())
@@ -281,7 +281,7 @@ class ShowFleetACSPage
 			{
 				if ($b != '')
 				{
-					$member_qry 	= doquery("SELECT `username` FROM {{table}} WHERE `id` ='".intval($b)."' ;",'users');
+					$member_qry 	= doquery("SELECT `username` FROM `{{table}}` WHERE `id` ='".intval($b)."' ;",'users');
 
 					while ($row = $member_qry->fetch_array())
 					{

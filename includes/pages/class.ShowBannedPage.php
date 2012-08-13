@@ -17,7 +17,7 @@ class ShowBannedPage
 		global $lang;
 
 		$parse	= $lang;
-		$query	= doquery("SELECT * FROM {{table}} ORDER BY `id`;", 'banned');
+		$query	= doquery("SELECT * FROM `{{table}}` ORDER BY `id`;", 'banned');
 
 		$i 				= 0;
 		$subTemplate	= gettemplate('banned/banned_row');

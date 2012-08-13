@@ -50,7 +50,7 @@ if ($Observation != 1) die(message($lang['404_page']));
 	elseif ($Next   && $_POST['page'])
 	{
 		if ($Selected < 100)
-			$Mess      = doquery("SELECT COUNT(*) AS `max` FROM {{table}} WHERE `message_type` = '".$Selected."';", 'messages', TRUE);
+			$Mess      = doquery("SELECT COUNT(*) AS `max` FROM `{{table}}` WHERE `message_type` = '".$Selected."';", 'messages', TRUE);
 		elseif ($Selected == 100)
 			$Mess      = doquery("SELECT COUNT(*) AS `max` FROM {{table}}", 'messages', TRUE);
 
@@ -69,7 +69,7 @@ if ($Observation != 1) die(message($lang['404_page']));
 			foreach ($_POST['sele'] as $MessId => $Value)
 			{
 				if ($Value = "on")
-					doquery("DELETE FROM {{table}} WHERE `message_id` = '".$MessId."';", 'messages');
+					doquery("DELETE FROM `{{table}}` WHERE `message_id` = '".$MessId."';", 'messages');
 			}
 		}
 	}
@@ -85,14 +85,14 @@ if ($Observation != 1) die(message($lang['404_page']));
 			$LimitDate = mktime(0, 0, 0, $SelMonth, $SelDay, $SelYear);
 			if ($LimitDate)
 			{
-				doquery("DELETE FROM {{table}} WHERE `message_time` <= '".$LimitDate."';", 'messages');
-				doquery("DELETE FROM {{table}} WHERE `time` <= '".$LimitDate."';", 'rw');
+				doquery("DELETE FROM `{{table}}` WHERE `message_time` <= '".$LimitDate."';", 'messages');
+				doquery("DELETE FROM `{{table}}` WHERE `time` <= '".$LimitDate."';", 'rw');
 			}
 		}
 	}
 
 	if ($Selected < 100)
-		$Mess      = doquery("SELECT COUNT(*) AS `max` FROM {{table}} WHERE `message_type` = '".$Selected."';", 'messages', TRUE);
+		$Mess      = doquery("SELECT COUNT(*) AS `max` FROM `{{table}}` WHERE `message_type` = '".$Selected."';", 'messages', TRUE);
 	elseif ($Selected == 100)
 		$Mess      = doquery("SELECT COUNT(*) AS `max` FROM {{table}}", 'messages', TRUE);
 
@@ -120,13 +120,13 @@ if ($Observation != 1) die(message($lang['404_page']));
 	$StartRec            = ($ViewPage - 1) * 25;
 
 	if ($Selected < 100)
-		$Messages            = doquery("SELECT * FROM {{table}} WHERE `message_type` = '".$Selected."' ORDER BY `message_time` DESC LIMIT ".$StartRec.",25;", 'messages');
+		$Messages            = doquery("SELECT * FROM `{{table}}` WHERE `message_type` = '".$Selected."' ORDER BY `message_time` DESC LIMIT ".$StartRec.",25;", 'messages');
 	elseif ($Selected == 100)
-		$Messages            = doquery("SELECT * FROM {{table}} ORDER BY `message_time` DESC LIMIT ".$StartRec.",25;", 'messages');
+		$Messages            = doquery("SELECT * FROM `{{table}}` ORDER BY `message_time` DESC LIMIT ".$StartRec.",25;", 'messages');
 
 		while ($row = $Messages->fetch_assoc())
 		{
-			$OwnerData = doquery("SELECT `username` FROM {{table}} WHERE `id` = '".$row['message_owner']."';", 'users',TRUE);
+			$OwnerData = doquery("SELECT `username` FROM `{{table}}` WHERE `id` = '".$row['message_owner']."';", 'users',TRUE);
 			$bloc['mlst_id']      = $row['message_id'];
 			$bloc['mlst_from']    = $row['message_from'];
 			$bloc['mlst_to']      = $OwnerData['username']." ".$lang['input_id'].":".$row['message_owner'];

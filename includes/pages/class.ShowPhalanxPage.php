@@ -40,13 +40,13 @@ class ShowPhalanxPage {
 		/* main page */
 		if ($CurrentPlanet['deuterium'] > 10000)
 		{
-			doquery("UPDATE {{table}} SET `deuterium` = `deuterium` - '10000' WHERE `id` = '".$CurrentUser['current_planet']."';", 'planets');
+			doquery("UPDATE `{{table}}` SET `deuterium` = `deuterium` - '10000' WHERE `id` = '".$CurrentUser['current_planet']."';", 'planets');
 
 			$QryTargetInfo = "SELECT ";
 
 			$QryTargetInfo .= "`name`, ";
 			$QryTargetInfo .= "`id_owner` ";
-			$QryTargetInfo .= "FROM {{table}} WHERE ";
+			$QryTargetInfo .= "FROM `{{table}}` WHERE ";
 			$QryTargetInfo .= "`galaxy` = '".$Galaxy."' && ";
 			$QryTargetInfo .= "`system` = '".$System."' && ";
 			$QryTargetInfo .= "`planet` = '".$Planet."' && ";
@@ -57,7 +57,7 @@ class ShowPhalanxPage {
 
 			$QryTargetInfo = "SELECT ";
 			$QryTargetInfo .= "`destruyed` ";
-			$QryTargetInfo .= "FROM {{table}} WHERE ";
+			$QryTargetInfo .= "FROM `{{table}}` WHERE ";
 			$QryTargetInfo .= "`galaxy` = '".$Galaxy."' && ";
 			$QryTargetInfo .= "`system` = '".$System."' && ";
 			$QryTargetInfo .= "`planet` = '".$Planet."' && ";
@@ -74,7 +74,7 @@ class ShowPhalanxPage {
 			}
 
 			$QryLookFleets = "SELECT * ";
-			$QryLookFleets .= "FROM {{table}} ";
+			$QryLookFleets .= "FROM `{{table}}` ";
 			$QryLookFleets .= "WHERE ((";
 			$QryLookFleets .= "`fleet_start_galaxy` = '".$Galaxy."' && ";
 			$QryLookFleets .= "`fleet_start_system` = '".$System."' && ";

@@ -44,14 +44,14 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 	$CountArray	=	count($ArrayEx);
 
 
-	$QuerySearch	 =	"SELECT ".$SpecifyItems." FROM {{table}} ";
+	$QuerySearch	 =	"SELECT ".$SpecifyItems." FROM `{{table}}` ";
 	$QuerySearch	.=	$WhereItem." ";
 	$QuerySearch	.=	$SpecifyWhere." ".$SpecialSpecify." ";
 	$QuerySearch	.=	"ORDER BY ".$Order." ".$OrderBY." ";
 	$QuerySearch	.=	"LIMIT ".$INI.",".$Limit;
 	$FinalQuery		=	doquery($QuerySearch, $Table);
 
-	$QueryCSearch	 =	"SELECT COUNT(".$ArrayEx[0].") AS `total` FROM {{table}} ";
+	$QueryCSearch	 =	"SELECT COUNT(".$ArrayEx[0].") AS `total` FROM `{{table}}` ";
 	$QueryCSearch	.=	$WhereItem." ";
 	$QueryCSearch	.=	$SpecifyWhere." ".$SpecialSpecify." ";
 	$CountQuery		=	doquery($QueryCSearch, $Table, TRUE);
@@ -180,7 +180,7 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 
 				if ($_GET['search'] == 'planet')
 				{
-				$QueryForMoons	=	doquery("SELECT id_luna FROM {{table}} WHERE id_planet = '".$WhileResult[0]."'", "galaxy", TRUE);
+				$QueryForMoons	=	doquery("SELECT id_luna FROM `{{table}}` WHERE id_planet = '".$WhileResult[0]."'", "galaxy", TRUE);
 				(($QueryForMoons['id_luna'] > '0')	? $QueryForMoons2 = "<font color=lime>".$lang['one_is_yes'][1]."</font>" : $QueryForMoons2 = $lang['one_is_yes'][0]);
 				$Search['LIST']	.=	"<th>".$QueryForMoons2."</th>";}
 

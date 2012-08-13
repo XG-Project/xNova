@@ -31,13 +31,13 @@ function UpdateBots()
 	include_once(XN_ROOT.'includes/classes/class.FlyingFleetHandler.php');
 
 	if (read_config('log_bots')) $BotLog = "\n\n------------------------------------------\n";
-	$allbots		= doquery("SELECT * FROM {{table}} WHERE `next_time` < ".$now, 'bots');
+	$allbots		= doquery("SELECT * FROM `{{table}}` WHERE `next_time` < ".$now, 'bots');
 	$update_bots	= array();
 	$update_users	= array();
 
 	while ($bot = $allbots->fetch_array())
 	{
-		$user		= doquery("SELECT * FROM {{table}} WHERE `id` = '".$bot['user']."'", 'users', TRUE);
+		$user		= doquery("SELECT * FROM `{{table}}` WHERE `id` = '".$bot['user']."'", 'users', TRUE);
 		$thebot		= new Bot($user, $bot);
 		$thebot->Play();
 		if (isset($BotLog)) $BotLog .= $thebot->log;
@@ -176,14 +176,14 @@ class Bot {
 
 		$this->HandleOwnFleets();
 
-		$iPlanetCount		= doquery("SELECT count(*) AS `total` FROM {{table}} WHERE `id_owner` = '".$this->user['id']."' && `planet_type` = '1'", 'planets',TRUE);
-		$maxfleet			= doquery("SELECT COUNT(fleet_owner) AS `actcnt` FROM {{table}} WHERE `fleet_owner` = '".$this->user['id']."';", 'fleets', TRUE);
-		$maxcolofleet		= doquery("SELECT COUNT(fleet_owner) AS `total` FROM {{table}} WHERE `fleet_owner` = '".$this->user['id']."' && `fleet_mission` = '7';", 'fleets', TRUE);
+		$iPlanetCount		= doquery("SELECT count(*) AS `total` FROM `{{table}}` WHERE `id_owner` = '".$this->user['id']."' && `planet_type` = '1'", 'planets',TRUE);
+		$maxfleet			= doquery("SELECT COUNT(fleet_owner) AS `actcnt` FROM `{{table}}` WHERE `fleet_owner` = '".$this->user['id']."';", 'fleets', TRUE);
+		$maxcolofleet		= doquery("SELECT COUNT(fleet_owner) AS `total` FROM `{{table}}` WHERE `fleet_owner` = '".$this->user['id']."' && `fleet_mission` = '7';", 'fleets', TRUE);
 		$MaxFlyingFleets	= $maxfleet['actcnt'];
 		$MaxFlottes			= $this->user[$resource[108]];
 		$planetselected		= FALSE;
 		$planetwork			= FALSE;
-		$planetquery		= doquery("SELECT * FROM {{table}} WHERE `id_owner` = '".$this->user['id']."' && `planet_type` = '1' ORDER BY `id` ASC;",'planets', FALSE);
+		$planetquery		= doquery("SELECT * FROM `{{table}}` WHERE `id_owner` = '".$this->user['id']."' && `planet_type` = '1' ORDER BY `id` ASC;",'planets', FALSE);
 		while ($this->CurrentPlanet = $planetquery->fetch_assoc())
 		{
 			if ($planetselected && $this->CurrentPlanet['id_owner'] == $this->user['id'])
@@ -232,7 +232,7 @@ class Bot {
 		}
 		if ( ! $planetwork)
 		{
-				$this->CurrentPlanet = doquery("SELECT * FROM {{table}} WHERE `id` = '".$this->user['id_planet']."';",'planets', TRUE);
+				$this->CurrentPlanet = doquery("SELECT * FROM `{{table}}` WHERE `id` = '".$this->user['id_planet']."';",'planets', TRUE);
 				CheckPlanetUsedFields($this->CurrentPlanet);
 
 				if ( ! is_null($this->log)) $this->log .= $this->user['username'].' - Hora: '.date('H:i:s - j/n/Y').' - Planeta: '.$this->CurrentPlanet['name'].' ['.$this->CurrentPlanet['id'].']'."\n";
@@ -461,14 +461,14 @@ class Bot {
 			$this->CurrentPlanet["b_tech"]      = time() + GetBuildingTime($this->user, $this->CurrentPlanet, $Techno);
 			$this->user["b_tech_planet"] = $this->CurrentPlanet["id"];
 
-			$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+			$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 			$QryUpdatePlanet .= "`b_tech_id` = '".  $this->CurrentPlanet['b_tech_id']  ."', ";
 			$QryUpdatePlanet .= "`b_tech` = '".     $this->CurrentPlanet['b_tech']     ."' ";
 			$QryUpdatePlanet .= "WHERE ";
 			$QryUpdatePlanet .= "`id` = '".         $this->CurrentPlanet['id']         ."';";
 			doquery($QryUpdatePlanet, 'planets');
 
-			$QryUpdateUser  = "UPDATE {{table}} SET ";
+			$QryUpdateUser  = "UPDATE `{{table}}` SET ";
 			$QryUpdateUser .= "`b_tech_planet` = '".$this->user['b_tech_planet']."' ";
 			$QryUpdateUser .= "WHERE ";
 			$QryUpdateUser .= "`id` = '".           $this->user['id']           ."';";
@@ -556,7 +556,7 @@ class Bot {
 
 	protected function HandleOwnFleets()
 	{
-		$_fleets = doquery("SELECT * FROM {{table}} WHERE `fleet_start_time` <= '".time()."';", 'fleets');
+		$_fleets = doquery("SELECT * FROM `{{table}}` WHERE `fleet_start_time` <= '".time()."';", 'fleets');
 		while ($row = $_fleets->fetch_array())
 		{
 			//Actualizar solo flotas que afecten al jugador actual
@@ -586,7 +586,7 @@ class Bot {
 	{
 		global $resource, $reslist, $pricelist;
 
-		$_fleets = doquery("SELECT * FROM {{table}} WHERE `fleet_owner` != '".$this->user['id']."' && `fleet_target_owner` = '".$this->user['id']."' && `fleet_end_time` <= ".time().";", 'fleets');
+		$_fleets = doquery("SELECT * FROM `{{table}}` WHERE `fleet_owner` != '".$this->user['id']."' && `fleet_target_owner` = '".$this->user['id']."' && `fleet_end_time` <= ".time().";", 'fleets');
 		while ($row = $_fleets->fetch_array())
 		{
 			//Actualizar solo flotas que afecten al jugador actual
@@ -678,7 +678,7 @@ class Bot {
 						$FleetStorage      = $FleetStorage - $Mining['deuterium'];
 					}
 
-					$QryInsertFleet  = "INSERT INTO {{table}} SET ";
+					$QryInsertFleet  = "INSERT INTO `{{table}}` SET ";
 					$QryInsertFleet .= "`fleet_owner` = '".$this->user['id']."', ";
 					$QryInsertFleet .= "`fleet_mission` = '4', ";
 					$QryInsertFleet .= "`fleet_amount` = '".$FleetShipCount."', ";
@@ -701,12 +701,12 @@ class Bot {
 					$QryInsertFleet .= "`fleet_group` = '0', ";
 					$QryInsertFleet .= "`start_time` = '".time()."';";
 					doquery($QryInsertFleet, 'fleets');
-					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+					$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 					$QryUpdatePlanet .= $FleetSubQRY;
 					$QryUpdatePlanet .= "`id` = '".$this->CurrentPlanet['id']."' ";
 					$QryUpdatePlanet .= "WHERE ";
 					$QryUpdatePlanet .= "`id` = '".$this->CurrentPlanet['id']."'";
-					doquery("LOCK TABLE {{table}} WRITE", 'planets');
+					doquery("LOCK TABLE `{{table}}` WRITE", 'planets');
 					doquery($QryUpdatePlanet, "planets");
 					doquery("UNLOCK TABLES", '');
 					$this->CurrentPlanet["metal"]  -= $Mining['metal'];
@@ -736,7 +736,7 @@ class Bot {
 			$galaxy = $this->CurrentPlanet['galaxy'];
 		}
 
-		$Colo = doquery("SELECT count(*) AS `total` FROM {{table}} WHERE `galaxy` = '".$galaxy."' && `system` = '".$system."' && `planet` = '".$planet."' && `planet_type` = '1';", 'planets', TRUE);
+		$Colo = doquery("SELECT count(*) AS `total` FROM `{{table}}` WHERE `galaxy` = '".$galaxy."' && `system` = '".$system."' && `planet` = '".$planet."' && `planet_type` = '1';", 'planets', TRUE);
 
 		if ($Colo['total'] == 0)
 		{
@@ -763,7 +763,7 @@ class Bot {
 				$FleetSubQRY     .= "`".$resource[$Ship]."` = `".$resource[$Ship]."` - ".$Count.", ";
 			}
 
-			$QryInsertFleet  = "INSERT INTO {{table}} SET ";
+			$QryInsertFleet  = "INSERT INTO `{{table}}` SET ";
 			$QryInsertFleet .= "`fleet_owner` = '".$this->user['id']."', ";
 			$QryInsertFleet .= "`fleet_mission` = '7', ";
 			$QryInsertFleet .= "`fleet_amount` = '".$FleetShipCount."', ";
@@ -786,7 +786,7 @@ class Bot {
 			$QryInsertFleet .= "`fleet_group` = '0', ";
 			$QryInsertFleet .= "`start_time` = '".time()."';";
 			doquery($QryInsertFleet, 'fleets');
-			$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+			$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 			$QryUpdatePlanet .= $FleetSubQRY;
 			$QryUpdatePlanet .= "`id` = '".$this->CurrentPlanet['id']."' ";
 			$QryUpdatePlanet .= "WHERE ";
@@ -866,7 +866,7 @@ class Bot {
 				$FleetStorage      = $FleetStorage - $Mining['crystal'];
 			}
 
-			$QryInsertFleet  = "INSERT INTO {{table}} SET ";
+			$QryInsertFleet  = "INSERT INTO `{{table}}` SET ";
 			$QryInsertFleet .= "`fleet_owner` = '".$this->user['id']."', ";
 			$QryInsertFleet .= "`fleet_mission` = '4', ";
 			$QryInsertFleet .= "`fleet_amount` = '".$FleetShipCount."', ";
@@ -889,7 +889,7 @@ class Bot {
 			$QryInsertFleet .= "`fleet_group` = '0', ";
 			$QryInsertFleet .= "`start_time` = '".time()."';";
 			doquery($QryInsertFleet, 'fleets');
-			$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+			$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 			$QryUpdatePlanet .= $FleetSubQRY;
 			$QryUpdatePlanet .= "`id` = '".$this->CurrentPlanet['id']."' ";
 			$QryUpdatePlanet .= "WHERE ";
@@ -903,7 +903,7 @@ class Bot {
 
 	protected function SavePlanetRecord()
 	{
-		$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+		$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 		$QryUpdatePlanet .= "`b_building_id` = '".$this->CurrentPlanet['b_building_id']."', ";
 		$QryUpdatePlanet .= "`b_building` = '".   $this->CurrentPlanet['b_building']   ."' ";
 		$QryUpdatePlanet .= "WHERE ";

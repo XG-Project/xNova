@@ -47,19 +47,19 @@ class GalaxyRows
 	{
 		if (($lunarow['destruyed_moon'] + 172800) <= time() && $lunarow['destruyed_moon'] != 0)
 		{
-			$QryUpdateGalaxy  = "UPDATE {{table}} SET `id_luna` = '0' WHERE `galaxy` = '".intval($lunarow['galaxy'])."' && `system` = '".intval($lunarow['system'])."' && `planet` = '".intval($lunarow['planet'])."' LIMIT 1;";
+			$QryUpdateGalaxy  = "UPDATE `{{table}}` SET `id_luna` = '0' WHERE `galaxy` = '".intval($lunarow['galaxy'])."' && `system` = '".intval($lunarow['system'])."' && `planet` = '".intval($lunarow['planet'])."' LIMIT 1;";
 		}
 
 		doquery($QryUpdateGalaxy, 'galaxy');
-		doquery("DELETE FROM {{table}} WHERE `id` = ".intval($lunarow['id'])."", 'planets');
+		doquery("DELETE FROM `{{table}}` WHERE `id` = ".intval($lunarow['id'])."", 'planets');
 	}
 
 	public function CheckAbandonPlanetState(&$planet)
 	{
 		if ($planet['destruyed'] <= time())
 		{
-			doquery("DELETE FROM {{table}} WHERE `id_planet` = '".$planet['id_planet']."' LIMIT 1;", 'galaxy');
-			doquery("DELETE FROM {{table}} WHERE `id` = '".$planet['id_planet']."'", 'planets');
+			doquery("DELETE FROM `{{table}}` WHERE `id_planet` = '".$planet['id_planet']."' LIMIT 1;", 'galaxy');
+			doquery("DELETE FROM `{{table}}` WHERE `id` = '".$planet['id_planet']."'", 'planets');
 		}
 	}
 
@@ -501,12 +501,12 @@ class GalaxyRows
 				$Systemtatus2 	= "<span class=\"inactive\">".$lang['gl_i']."</span><span class=\"longinactive\">".$lang['gl_I']."</span>";
 				$Systemtatus 	= "<span class=\"longinactive\">";
 			}
-			elseif (is_weak ($MyGameLevel, $HeGameLevel))
+			elseif (($GalaxyInfo['id'] != $user['id']) && is_weak($MyGameLevel, $HeGameLevel))
 			{
 				$Systemtatus2 	= "<span class=\"noob\">".$lang['gl_w']."</span>";
 				$Systemtatus 	= "<span class=\"noob\">";
 			}
-			elseif (is_strong ($MyGameLevel, $HeGameLevel))
+			elseif (is_strong($MyGameLevel, $HeGameLevel))
 			{
 				$Systemtatus2 	= $lang['gl_s'];
 				$Systemtatus 	= "<span class=\"strong\">";

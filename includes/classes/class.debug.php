@@ -50,7 +50,7 @@ class debug
 		if ( ! $db)
 			die($lang['cdg_mysql_not_available']);
 
-		$query = "INSERT INTO {{table}} SET
+		$query = "INSERT INTO `{{table}}` SET
 		`error_sender` = '".intval($user['id'])."' ,
 		`error_time` = '".time()."' ,
 		`error_type` = '".$db->real_escape_string($title)."' ,

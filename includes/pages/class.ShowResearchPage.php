@@ -66,7 +66,7 @@ class ShowResearchPage
 		$bContinue         	= TRUE;
 		$intergal_lab 		= $CurrentUser[$resource[123]];
 		$limite 			= $intergal_lab+1;
-		$inves 				= doquery("SELECT laboratory FROM {{table}} WHERE id_owner='".intval($CurrentUser['id'])."' ORDER BY laboratory DESC LIMIT ".$limite."", 'planets');
+		$inves 				= doquery("SELECT laboratory FROM `{{table}}` WHERE id_owner='".intval($CurrentUser['id'])."' ORDER BY laboratory DESC LIMIT ".$limite."", 'planets');
 		$lablevel 			= 0;
 
 		while ($row = $inves->fetch_array())
@@ -143,7 +143,7 @@ class ShowResearchPage
 						}
 						if ($UpdateData)
 						{
-							$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+							$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 							$QryUpdatePlanet .= "`b_tech_id` = '".  $WorkingPlanet['b_tech_id']  ."', ";
 							$QryUpdatePlanet .= "`b_tech` = '".     $WorkingPlanet['b_tech']     ."', ";
 							$QryUpdatePlanet .= "`metal` = '".      $WorkingPlanet['metal']      ."', ";
@@ -153,7 +153,7 @@ class ShowResearchPage
 							$QryUpdatePlanet .= "`id` = '".         $WorkingPlanet['id']         ."';";
 							doquery($QryUpdatePlanet, 'planets');
 
-							$QryUpdateUser  = "UPDATE {{table}} SET ";
+							$QryUpdateUser  = "UPDATE `{{table}}` SET ";
 							$QryUpdateUser .= "`b_tech_planet` = '".$CurrentUser['b_tech_planet']."' ";
 							$QryUpdateUser .= "WHERE ";
 							$QryUpdateUser .= "`id` = '".           $CurrentUser['id']           ."';";

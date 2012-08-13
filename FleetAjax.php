@@ -81,10 +81,10 @@ if ($planet > MAX_PLANET_IN_SYSTEM OR $planet < 1)
 
 $FleetArray = $fleet['fleetarray'];
 
-$CurrentFlyingFleets = doquery("SELECT COUNT(fleet_id) AS `Nbre` FROM {{table}} WHERE `fleet_owner` = '".$user['id']."';", 'fleets', TRUE);
+$CurrentFlyingFleets = doquery("SELECT COUNT(fleet_id) AS `Nbre` FROM `{{table}}` WHERE `fleet_owner` = '".$user['id']."';", 'fleets', TRUE);
 $CurrentFlyingFleets = $CurrentFlyingFleets["Nbre"];
 
-$QrySelectEnemy  = "SELECT * FROM {{table}} ";
+$QrySelectEnemy  = "SELECT * FROM `{{table}}` ";
 $QrySelectEnemy .= "WHERE ";
 $QrySelectEnemy .= "`galaxy` = '".intval($_POST['galaxy'])."' && ";
 $QrySelectEnemy .= "`system` = '".intval($_POST['system'])."' && ";
@@ -98,13 +98,13 @@ if ($TargetRow['id_owner'] == '')
 }
 elseif ($TargetRow['id_owner'] != '')
 {
-	$TargetUser = doquery("SELECT * FROM {{table}} WHERE `id` = '".$TargetRow['id_owner']."';", 'users', TRUE);
+	$TargetUser = doquery("SELECT * FROM `{{table}}` WHERE `id` = '".$TargetRow['id_owner']."';", 'users', TRUE);
 }
 
 // invisible debris by jstar
 if ($_POST['mission']== 8)
 {
-	$TargetGPlanet = doquery("SELECT invisible_start_time, metal, crystal FROM {{table}} WHERE galaxy = '".intval($_POST['galaxy'])."' && system = '".intval($_POST['system'])."' && planet = '".intval($_POST['planet'])."'", "galaxy",TRUE);
+	$TargetGPlanet = doquery("SELECT invisible_start_time, metal, crystal FROM `{{table}}` WHERE galaxy = '".intval($_POST['galaxy'])."' && system = '".intval($_POST['system'])."' && planet = '".intval($_POST['planet'])."'", "galaxy",TRUE);
 
 	if ($TargetGPlanet['metal'] == 0 && $TargetGPlanet['crystal'] == 0 && time() > ($TargetGPlanet['invisible_start_time']+DEBRIS_LIFE_TIME))
 	{
@@ -112,8 +112,8 @@ if ($_POST['mission']== 8)
 	}
 }
 
-$UserPoints		= doquery("SELECT * FROM {{table}} WHERE `stat_type` = '1' && `stat_code` = '1' && `id_owner` = '".$user['id']."';", 'statpoints', TRUE);
-$User2Points	= doquery("SELECT * FROM {{table}} WHERE `stat_type` = '1' && `stat_code` = '1' && `id_owner` = '".$TargetUser['id']."';", 'statpoints', TRUE);
+$UserPoints		= doquery("SELECT * FROM `{{table}}` WHERE `stat_type` = '1' && `stat_code` = '1' && `id_owner` = '".$user['id']."';", 'statpoints', TRUE);
+$User2Points	= doquery("SELECT * FROM `{{table}}` WHERE `stat_type` = '1' && `stat_code` = '1' && `id_owner` = '".$TargetUser['id']."';", 'statpoints', TRUE);
 
 $CurrentPoints	= $UserPoints['total_points'];
 $TargetPoints	= $User2Points['total_points'];
@@ -160,13 +160,13 @@ if ($user['urlaubs_modus'])
 
 if ($TargetUser['onlinetime'] >= (time()-60 * 60 * 24 * 7))
 {
-	if (is_weak ($CurrentPoints, $TargetPoints) && $TargetRow['id_owner'] != '' && $_POST['mission'] == 6)
+	if (is_weak($CurrentPoints, $TargetPoints) && $TargetRow['id_owner'] != '' && $_POST['mission'] == 6)
 	{
 		$ResultMessage = "603; ".$lang['fa_week_player']." |".$CurrentFlyingFleets." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
 		die($ResultMessage);
 	}
 
-	if (is_strong ($CurrentPoints, $TargetPoints) && $TargetRow['id_owner'] != '' && $_POST['mission'] == 6)
+	if (is_strong($CurrentPoints, $TargetPoints) && $TargetRow['id_owner'] != '' && $_POST['mission'] == 6)
 	{
 		$ResultMessage = "604; ".$lang['fa_strong_player']." |".$CurrentFlyingFleets." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
 		die($ResultMessage);
@@ -253,7 +253,7 @@ if ($TargetRow['id_level'] > AUTHLEVEL)
 	}
 }
 
-$QryInsertFleet  = "INSERT INTO {{table}} SET ";
+$QryInsertFleet  = "INSERT INTO `{{table}}` SET ";
 $QryInsertFleet .= "`fleet_owner` = '".$user['id']."', ";
 $QryInsertFleet .= "`fleet_mission` = '".intval($_POST['mission'])."', ";
 $QryInsertFleet .= "`fleet_amount` = '".$FleetShipCount."', ";
@@ -277,7 +277,7 @@ $UserDeuterium   -= $consumption;
 if ($UserDeuterium < 1)
 	exit();
 
-$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 $QryUpdatePlanet .= $FleetSubQRY;
 $QryUpdatePlanet .= "`deuterium` = '".$UserDeuterium."' " ;
 $QryUpdatePlanet .= "WHERE ";
@@ -286,7 +286,7 @@ doquery($QryUpdatePlanet, 'planets');
 
 $CurrentFlyingFleets++;
 
-$planetrow 		= doquery("SELECT * FROM {{table}} WHERE `id` = '".$user['current_planet']."';", 'planets', TRUE);
+$planetrow 		= doquery("SELECT * FROM `{{table}}` WHERE `id` = '".$user['current_planet']."';", 'planets', TRUE);
 $ResultMessage  = "600; ".$lang['fa_sending']." ".$FleetShipCount ." ".$lang['tech'][$Ship]." a ".$_POST['galaxy'].":".$_POST['system'].":".$_POST['planet']."...|";
 $ResultMessage .= $CurrentFlyingFleets." ".$UserSpyProbes." ".$UserRecycles." ".$UserMissiles;
 

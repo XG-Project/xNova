@@ -68,7 +68,7 @@ class CheckSession
 			if ( ! $IsUserChecked)
 				setcookie ($game_cookie, $NextCookie, $ExpireTime, "/", "", 0);
 
-			$QryUpdateUser  = "UPDATE {{table}} SET ";
+			$QryUpdateUser  = "UPDATE `{{table}}` SET ";
 			$QryUpdateUser .= "`onlinetime` = '".time()."', ";
 			$QryUpdateUser .= "`current_page` = '".$db->real_escape_string(htmlspecialchars($_SERVER['REQUEST_URI']))."', ";
 			$QryUpdateUser .= "`user_lastip` = '".$db->real_escape_string(htmlspecialchars($_SERVER['REMOTE_ADDR']))."', ";

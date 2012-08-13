@@ -19,7 +19,7 @@ include('AdminFunctions/Autorization.php');
 if ($Observation != 1) die();
 
 	$parse	= $lang;
-	$query 	= doquery("SELECT * FROM {{table}} WHERE `planet_type` = '3'", "planets");
+	$query 	= doquery("SELECT * FROM `{{table}}` WHERE `planet_type` = '3'", "planets");
 	$i 		= 0;
 
 	while ($u = $query->fetch_array())

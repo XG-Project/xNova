@@ -78,7 +78,7 @@ class ShowFleetPage
 		if ($count['max_fleet'] <> 0 or $MaxExpedition <> 0)
 		{
 
-			$fq = doquery("SELECT * FROM {{table}} WHERE fleet_owner='".intval($CurrentUser[id])."'", "fleets");
+			$fq = doquery("SELECT * FROM `{{table}}` WHERE fleet_owner='".intval($CurrentUser[id])."'", "fleets");
 			$i  = 0;
 
 			while ($f = $fq->fetch_array())

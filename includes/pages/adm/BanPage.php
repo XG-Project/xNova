@@ -37,7 +37,7 @@ if ($_GET['view'] == 'bana' && AUTHLEVEL != 3)
 elseif ($_GET['view'] == 'bana' && AUTHLEVEL == 3)
 	$WHEREBANA	=	"WHERE `bana` = 1";
 
-$UserList		=	doquery("SELECT `username`, `id`, `bana` FROM {{table}} ".$ListWHERE." ".$WHEREBANA." ORDER BY ".$ORDER." ASC", "users");
+$UserList		=	doquery("SELECT `username`, `id`, `bana` FROM `{{table}}` ".$ListWHERE." ".$WHEREBANA." ORDER BY ".$ORDER." ASC", "users");
 
 $Users	=	0;
 while ($a = $UserList->fetch_array())
@@ -58,7 +58,7 @@ else
 	$ORDER2	=	"username";
 
 $Banneds	=	0;
-$UserListBan	=	doquery("SELECT `username`, `id` FROM {{table}} WHERE `bana` = '1' ORDER BY ".$ORDER2." ASC", "users");
+$UserListBan	=	doquery("SELECT `username`, `id` FROM `{{table}}` WHERE `bana` = '1' ORDER BY ".$ORDER2." ASC", "users");
 while ($b = $UserListBan->fetch_array())
 {
 	$parse['ListBan']	.=	'<option value="'.$b['username'].'">'.$b['username'].'&nbsp;&nbsp;(ID:&nbsp;'.$b['id'].')</option>';
@@ -74,8 +74,8 @@ $UserListBan->free_result();
 
 if ($_GET['panel'])
 {
-	$QueryUserBan			=	doquery("SELECT * FROM {{table}} WHERE `who` = '".$_GET['ban_name']."'", "banned", TRUE);
-	$QueryUserBanVacation	=	doquery("SELECT urlaubs_modus FROM {{table}} WHERE `username` = '".$_GET['ban_name']."'", "users", TRUE);
+	$QueryUserBan			=	doquery("SELECT * FROM `{{table}}` WHERE `who` = '".$_GET['ban_name']."'", "banned", TRUE);
+	$QueryUserBanVacation	=	doquery("SELECT urlaubs_modus FROM `{{table}}` WHERE `username` = '".$_GET['ban_name']."'", "users", TRUE);
 
 	if ( ! $QueryUserBan)
 	{
@@ -136,7 +136,7 @@ if ($_GET['panel'])
 
 		if ($QueryUserBan)
 		{
-			$QryInsertBan      = "UPDATE {{table}} SET ";
+			$QryInsertBan      = "UPDATE `{{table}}` SET ";
 			$QryInsertBan     .= "`who` = '".$name."', ";
 			$QryInsertBan     .= "`theme` = '".$reas."', ";
 			$QryInsertBan     .= "`who2` = '".$name."', ";
@@ -149,7 +149,7 @@ if ($_GET['panel'])
 		}
 		else
 		{
-			$QryInsertBan      = "INSERT INTO {{table}} SET ";
+			$QryInsertBan      = "INSERT INTO `{{table}}` SET ";
 			$QryInsertBan     .= "`who` = \"".$name."\", ";
 			$QryInsertBan     .= "`theme` = '".$reas."', ";
 			$QryInsertBan     .= "`who2` = '".$name."', ";
@@ -160,7 +160,7 @@ if ($_GET['panel'])
 			doquery($QryInsertBan, 'banned');
 		}
 
-		$QryUpdateUser     = "UPDATE {{table}} SET ";
+		$QryUpdateUser     = "UPDATE `{{table}}` SET ";
 		$QryUpdateUser    .= "`bana` = '1', ";
 		$QryUpdateUser    .= "`banaday` = '".$BannedUntil."', ";
 
@@ -179,7 +179,7 @@ if ($_GET['panel'])
 		$QryUpdateUser    .= "`username` = '".$name."';";
 		doquery($QryUpdateUser, 'users');
 
-		$PunishThePlanets     = "UPDATE {{table}} SET ";
+		$PunishThePlanets     = "UPDATE `{{table}}` SET ";
 		$PunishThePlanets    .= "`metal_mine_porcent` = '0', ";
 		$PunishThePlanets    .= "`crystal_mine_porcent` = '0', ";
 		$PunishThePlanets    .= "`deuterium_sintetizer_porcent` = '0'";
@@ -207,8 +207,8 @@ if ($_GET['panel'])
 elseif ($_POST && $_POST['unban_name'])
 {
 	$name = $_POST['unban_name'];
-	doquery("DELETE FROM {{table}} WHERE who = '".$name."'", 'banned');
-	doquery("UPDATE {{table}} SET bana = '0', banaday = '0' WHERE username = '".$name."'", "users");
+	doquery("DELETE FROM `{{table}}` WHERE who = '".$name."'", 'banned');
+	doquery("UPDATE `{{table}}` SET bana = '0', banaday = '0' WHERE username = '".$name."'", "users");
 
 
 

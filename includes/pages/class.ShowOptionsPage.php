@@ -42,7 +42,7 @@ class ShowOptionsPage
 			{
 				$urlaubs_modus = "0";
 
-				doquery("UPDATE {{table}} SET
+				doquery("UPDATE `{{table}}` SET
 				`urlaubs_modus` = '0',
 				`urlaubs_until` = '0'
 				WHERE `id` = '".intval($CurrentUser['id'])."' LIMIT 1", "users");
@@ -61,9 +61,9 @@ class ShowOptionsPage
 			if ($CurrentUser['authlevel'] > 0)
 			{
 				if (isset($_POST['adm_pl_prot']) && $_POST['adm_pl_prot'] == 'on')
-					doquery("UPDATE {{table}} SET `id_level` = '".intval($CurrentUser['authlevel'])."' WHERE `id_owner` = '".intval($CurrentUser['id'])."';", 'planets');
+					doquery("UPDATE `{{table}}` SET `id_level` = '".intval($CurrentUser['authlevel'])."' WHERE `id_owner` = '".intval($CurrentUser['id'])."';", 'planets');
 				else
-					doquery("UPDATE {{table}} SET `id_level` = '0' WHERE `id_owner` = '".intval($CurrentUser['id'])."';", 'planets');
+					doquery("UPDATE `{{table}}` SET `id_level` = '0' WHERE `id_owner` = '".intval($CurrentUser['id'])."';", 'planets');
 			}
 			// < ------------------------------------------------------- EL SKIN ------------------------------------------------------- >
 			if (isset($_POST["design"]) && $_POST["design"] == 'on')
@@ -194,16 +194,16 @@ class ShowOptionsPage
 
 				$urlaubs_modus = "1";
 				$time = time() + 86400;
-				doquery("UPDATE {{table}} SET
+				doquery("UPDATE `{{table}}` SET
 				`urlaubs_modus` = '$urlaubs_modus',
 				`urlaubs_until` = '$time'
 				WHERE `id` = '".intval($CurrentUser["id"])."' LIMIT 1", "users");
 
-				$query = doquery("SELECT * FROM {{table}} WHERE id_owner = '".intval($CurrentUser['id'])."'", 'planets');
+				$query = doquery("SELECT * FROM `{{table}}` WHERE id_owner = '".intval($CurrentUser['id'])."'", 'planets');
 
 				while ($id =$query->fetch_array())
 				{
-					doquery("UPDATE {{table}} SET
+					doquery("UPDATE `{{table}}` SET
 					metal_perhour = '".read_config('metal_basic_income')."',
 					crystal_perhour = '".read_config('crystal_basic_income')."',
 					deuterium_perhour = '".read_config('deuterium_basic_income')."',
@@ -234,7 +234,7 @@ class ShowOptionsPage
 			$SetSort  = $db->real_escape_string($_POST['settings_sort']);
 			$SetOrder = $db->real_escape_string($_POST['settings_order']);
 			//// < -------------------------------------- ACTUALIZAR TODO LO SETEADO ANTES --------------------------------------------- >
-			doquery("UPDATE {{table}} SET
+			doquery("UPDATE `{{table}}` SET
 			`email` = '$db_email',
 			`dpath` = '$_POST[dpath]',
 			`design` = '$design',
@@ -261,7 +261,7 @@ class ShowOptionsPage
 					if ($_POST["newpass1"] != "")
 					{
 						$newpass = sha1($_POST["newpass1"]);
-						doquery("UPDATE {{table}} SET `password` = '{$newpass}' WHERE `id` = '".intval($CurrentUser['id'])."' LIMIT 1", "users");
+						doquery("UPDATE `{{table}}` SET `password` = '{$newpass}' WHERE `id` = '".intval($CurrentUser['id'])."' LIMIT 1", "users");
 						setcookie(COOKIE_NAME, "", time()-100000, "/", "", 0);
 						message($lang['op_password_changed'],"index.php",1);
 					}
@@ -270,11 +270,11 @@ class ShowOptionsPage
 			// < --------------------------------------------- CAMBIO DE NOMBRE DE USUARIO --------------------------------------------- >
 			if ($CurrentUser['username'] != $_POST["db_character"])
 			{
-				$query = doquery("SELECT id FROM {{table}} WHERE username='".$db->real_escape_string ($_POST["db_character"])."'", 'users', TRUE);
+				$query = doquery("SELECT id FROM `{{table}}` WHERE username='".$db->real_escape_string ($_POST["db_character"])."'", 'users', TRUE);
 
 				if ( ! $query)
 				{
-					doquery("UPDATE {{table}} SET username='".$db->real_escape_string ($username)."' WHERE id='".intval($CurrentUser['id'])."' LIMIT 1", "users");
+					doquery("UPDATE `{{table}}` SET username='".$db->real_escape_string ($username)."' WHERE id='".intval($CurrentUser['id'])."' LIMIT 1", "users");
 					setcookie(COOKIE_NAME, "", time()-100000, "/", "", 0);
 					message($lang['op_username_changed'], "index.php", 1);
 				}
@@ -320,7 +320,7 @@ class ShowOptionsPage
 
 				if ($CurrentUser['authlevel'] > 0)
 				{
-					$IsProtOn 					= doquery("SELECT `id_level` FROM {{table}} WHERE `id_owner` = '".intval($CurrentUser['id'])."' LIMIT 1;", 'planets', TRUE);
+					$IsProtOn 					= doquery("SELECT `id_level` FROM `{{table}}` WHERE `id_owner` = '".intval($CurrentUser['id'])."' LIMIT 1;", 'planets', TRUE);
 					$parse['adm_pl_prot_data']	= ($IsProtOn['id_level'] > 0) ? " checked":'';
 					$parse['opt_adm_frame']  	= parsetemplate(gettemplate('options/options_admadd'), $parse);
 				}

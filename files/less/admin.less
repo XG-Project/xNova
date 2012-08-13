@@ -53,6 +53,12 @@ form
 	clear:							both;
 }
 
+ul
+{
+	margin:					0px;
+	padding:				0px;
+}
+
 header
 {
 	width: 100%;
@@ -69,12 +75,6 @@ header
 
 	nav
 	{
-		ul
-		{
-			margin:					0px;
-			padding:				0px;
-		}
-
 		li
 		{
 			display:				inline-block;
@@ -164,12 +164,6 @@ nav.left
 		color:						#0099FF;
 		margin:						5px 0px;
 		font-size:					1em;
-	}
-
-	ul
-	{
-		padding:					0px;
-		margin-top:					0px;
 	}
 
 	li
@@ -373,6 +367,27 @@ div.content
 			font-weight:			bold;
 			color:					#FFCC00;
 		}
+
+		&.info
+		{
+			position:				relative;
+		}
+
+		&.menu nav
+		{
+			li
+			{
+				display:			inline-block;
+				width:				45%;
+				margin:				0px;
+				font-size:			1.3em;
+
+				figure
+				{
+					vertical-align:	middle;
+				}
+			}
+		}
 	}
 }
 
@@ -478,6 +493,13 @@ figure
 	background:						-50px -37px @spirites;
 }
 
+.arrowright
+{
+	width:							20px;
+	height:							14px;
+	background:						0 -32px @spirites;
+}
+
 .r2
 {
 	width:							15px;
@@ -539,11 +561,6 @@ figure.info:hover + section
 	font-weight:					bold;
 }
 
-div.content.info
-{
-	position:						relative;
-}
-
 @media screen and (min-width: 800px)
 {
 	body
@@ -602,9 +619,17 @@ div.content.info
 		text-align:					center;
 	}
 
-	.content-table.table.thin.divided
+	.content-table
 	{
-		width:						100%;
+		&.table.thin.divided
+		{
+			width:					100%;
+		}
+
+		&.menu
+		{
+			width:					100%;
+		}
 	}
 }
 
@@ -615,9 +640,18 @@ div.content.info
 		float:						right;
 	}
 
-	.content-table.table.thin.divided
+	.content-table
 	{
-		width:						50%;
+		&.table.thin.divided
+		{
+			width:					50%;
+		}
+
+		&.menu
+		{
+			width:					50%;
+			margin:					auto;
+		}
 	}
 }
 

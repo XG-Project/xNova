@@ -57,7 +57,7 @@ class ShowInfosPage
 			if ($NextJumpTime == 0)
 			{
 				$TargetPlanet = $_POST['jmpto'];
-				$TargetGate   = doquery("SELECT `id`, `sprungtor`, `last_jump_time` FROM {{table}} WHERE `id` = '".$TargetPlanet."';", 'planets', TRUE);
+				$TargetGate   = doquery("SELECT `id`, `sprungtor`, `last_jump_time` FROM `{{table}}` WHERE `id` = '".$TargetPlanet."';", 'planets', TRUE);
 
 				if ($TargetGate['sprungtor'] > 0)
 				{
@@ -96,21 +96,21 @@ class ShowInfosPage
 						}
 						if ($SubQueryOri != "")
 						{
-							$QryUpdateOri  = "UPDATE {{table}} SET ";
+							$QryUpdateOri  = "UPDATE `{{table}}` SET ";
 							$QryUpdateOri .= $SubQueryOri;
 							$QryUpdateOri .= "`last_jump_time` = '".$JumpTime."' ";
 							$QryUpdateOri .= "WHERE ";
 							$QryUpdateOri .= "`id` = '".$CurrentPlanet['id']."';";
 							doquery($QryUpdateOri, 'planets');
 
-							$QryUpdateDes  = "UPDATE {{table}} SET ";
+							$QryUpdateDes  = "UPDATE `{{table}}` SET ";
 							$QryUpdateDes .= $SubQueryDes;
 							$QryUpdateDes .= "`last_jump_time` = '".$JumpTime."' ";
 							$QryUpdateDes .= "WHERE ";
 							$QryUpdateDes .= "`id` = '".$TargetGate['id']."';";
 							doquery($QryUpdateDes, 'planets');
 
-							$QryUpdateUsr  = "UPDATE {{table}} SET ";
+							$QryUpdateUsr  = "UPDATE `{{table}}` SET ";
 							$QryUpdateUsr .= "`current_planet` = '".$TargetGate['id']."' ";
 							$QryUpdateUsr .= "WHERE ";
 							$QryUpdateUsr .= "`id` = '".$CurrentUser['id']."';";
@@ -177,7 +177,7 @@ class ShowInfosPage
 	private function BuildJumpableMoonCombo($CurrentUser, $CurrentPlanet)
 	{
 		global $resource;
-		$QrySelectMoons	= "SELECT * FROM {{table}} WHERE `planet_type` = '3' && `id_owner` = '".intval($CurrentUser['id'])."';";
+		$QrySelectMoons	= "SELECT * FROM `{{table}}` WHERE `planet_type` = '3' && `id_owner` = '".intval($CurrentUser['id'])."';";
 		$MoonList		= doquery($QrySelectMoons, 'planets');
 		$Combo			= "";
 		while ($CurMoon	= $MoonList->fetch_assoc())

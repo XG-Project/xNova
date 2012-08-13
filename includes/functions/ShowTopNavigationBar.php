@@ -17,7 +17,7 @@ if ( ! defined('INSIDE')) die(header("Location:../../"));
 		if ($CurrentUser['urlaubs_modus'] == 0)
 			PlanetResourceUpdate($CurrentUser, $CurrentPlanet, time());
 		else
-			doquery("UPDATE {{table}} SET `deuterium_sintetizer_porcent` = 0, `metal_mine_porcent` = 0, `crystal_mine_porcent` = 0 WHERE id_owner = ".intval($CurrentUser['id']),"planets");
+			doquery("UPDATE `{{table}}` SET `deuterium_sintetizer_porcent` = 0, `metal_mine_porcent` = 0, `crystal_mine_porcent` = 0 WHERE id_owner = ".intval($CurrentUser['id']),"planets");
 
 		$parse								= $lang;
 		$parse['dpath']						= DPATH;

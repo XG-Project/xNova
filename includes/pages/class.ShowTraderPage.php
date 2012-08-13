@@ -51,7 +51,7 @@ class ShowTraderPage
 
 						if ($CurrentPlanet['metal'] > $necessaire)
 						{
-							$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+							$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 							$QryUpdatePlanet .= "`metal` = `metal` - ".round($necessaire).", ";
 							$QryUpdatePlanet .= "`crystal` = `crystal` + ".round($_POST['cristal']).", ";
 							$QryUpdatePlanet .= "`deuterium` = `deuterium` + ".round($_POST['deut'])." ";
@@ -95,7 +95,7 @@ class ShowTraderPage
 
 						if ($CurrentPlanet['crystal'] > $necessaire)
 						{
-							$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+							$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 							$QryUpdatePlanet .= "`metal` = `metal` + ".round($_POST['metal']).", ";
 							$QryUpdatePlanet .= "`crystal` = `crystal` - ".round($necessaire).", ";
 							$QryUpdatePlanet .= "`deuterium` = `deuterium` + ".round($_POST['deut'])." ";
@@ -139,7 +139,7 @@ class ShowTraderPage
 
 						if ($CurrentPlanet['deuterium'] > $necessaire)
 						{
-							$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+							$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 							$QryUpdatePlanet .= "`metal` = `metal` + ".round($_POST['metal']).", ";
 							$QryUpdatePlanet .= "`crystal` = `crystal` + ".round($_POST['cristal']).", ";
 							$QryUpdatePlanet .= "`deuterium` = `deuterium` - ".round($necessaire)." ";

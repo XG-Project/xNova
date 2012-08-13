@@ -61,7 +61,7 @@ class ShowSearchPage
 				{
 					if ($s['ally_id']&& $s['ally_request'] == 0)
 					{
-						$aquery = doquery("SELECT id,ally_name FROM {{table}} WHERE id = ".intval($s['ally_id'])."","alliance",TRUE);
+						$aquery = doquery("SELECT id,ally_name FROM `{{table}}` WHERE id = ".intval($s['ally_id'])."","alliance",TRUE);
 					}
 					else
 					{
@@ -70,14 +70,14 @@ class ShowSearchPage
 
 					if ($type == "planetname")
 					{
-						$pquery 			= doquery("SELECT username,ally_id,ally_name FROM {{table}} WHERE id = ".intval($s['id_owner'])."","users",TRUE);
+						$pquery 			= doquery("SELECT username,ally_id,ally_name FROM `{{table}}` WHERE id = ".intval($s['id_owner'])."","users",TRUE);
 						$s['planet_name'] 	= $s['name'];
 						$s['username'] 		= $pquery['username'];
 						$s['ally_name'] 	= ($pquery['ally_name']!='')?"<a href=\"game.php?page=alliance&mode=ainfo&a={$pquery['ally_id']}\">{$pquery['ally_name']}</a>":'';
 					}
 					else
 					{
-						$pquery 			= doquery("SELECT name FROM {{table}} WHERE id = ".intval($s['id_planet'])."","planets",TRUE);
+						$pquery 			= doquery("SELECT name FROM `{{table}}` WHERE id = ".intval($s['id_planet'])."","planets",TRUE);
 						$s['planet_name']	= $pquery['name'];
 						$s['ally_name'] 	= ($aquery['ally_name']!='')?"<a href=\"game.php?page=alliance&mode=ainfo&a={$aquery['id']}\">{$aquery['ally_name']}</a>":'';
 					}

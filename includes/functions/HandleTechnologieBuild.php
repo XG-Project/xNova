@@ -17,7 +17,7 @@ if ( ! defined('INSIDE')) die(header("Location:../../"));
 		if ($CurrentUser['b_tech_planet'])
 		{
 			if ($CurrentUser['b_tech_planet'] != $CurrentPlanet['id'])
-				$WorkingPlanet = doquery("SELECT * FROM {{table}} WHERE `id` = '".intval($CurrentUser['b_tech_planet'])."';", 'planets', TRUE);
+				$WorkingPlanet = doquery("SELECT * FROM `{{table}}` WHERE `id` = '".intval($CurrentUser['b_tech_planet'])."';", 'planets', TRUE);
 
 			if ($WorkingPlanet)
 				$ThePlanet = $WorkingPlanet;
@@ -28,14 +28,14 @@ if ( ! defined('INSIDE')) die(header("Location:../../"));
 			{
 				$CurrentUser[$resource[$ThePlanet['b_tech_id']]]++;
 
-				$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+				$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 				$QryUpdatePlanet .= "`b_tech` = '0', ";
 				$QryUpdatePlanet .= "`b_tech_id` = '0' ";
 				$QryUpdatePlanet .= "WHERE ";
 				$QryUpdatePlanet .= "`id` = '".intval($ThePlanet['id'])."';";
 				doquery($QryUpdatePlanet, 'planets');
 
-				$QryUpdateUser    = "UPDATE {{table}} SET ";
+				$QryUpdateUser    = "UPDATE `{{table}}` SET ";
 				$QryUpdateUser   .= "`".$resource[$ThePlanet['b_tech_id']]."` = '".$CurrentUser[$resource[$ThePlanet['b_tech_id']]]."', ";
 				$QryUpdateUser   .= "`b_tech_planet` = '0' ";
 				$QryUpdateUser   .= "WHERE ";
@@ -54,7 +54,7 @@ if ( ! defined('INSIDE')) die(header("Location:../../"));
 			}
 			elseif ($ThePlanet["b_tech_id"] == 0)
 			{
-				doquery("UPDATE {{table}} SET `b_tech_planet` = '0'  WHERE `id` = '".intval($CurrentUser['id'])."';", 'users');
+				doquery("UPDATE `{{table}}` SET `b_tech_planet` = '0'  WHERE `id` = '".intval($CurrentUser['id'])."';", 'users');
 				$Result['WorkOn'] = "";
 				$Result['OnWork'] = FALSE;
 			}

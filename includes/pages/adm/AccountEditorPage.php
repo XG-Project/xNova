@@ -35,7 +35,7 @@ switch ($_GET['page'])
 		{
 			if ($_POST['add'])
 			{
-				$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+				$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 				$QryUpdatePlanet .= "`metal` = `metal` + '".$metal."', ";
 				$QryUpdatePlanet .= "`crystal` = `crystal` + '".$cristal."', ";
 				$QryUpdatePlanet .= "`deuterium` = `deuterium` + '".$deut."' ";
@@ -46,7 +46,7 @@ switch ($_GET['page'])
 
 				if ($id_dark != NULL)
 				{
-					$QryUpdateUser  = "UPDATE {{table}} SET ";
+					$QryUpdateUser  = "UPDATE `{{table}}` SET ";
 					$QryUpdateUser .= "`darkmatter` = `darkmatter` + '".$dark."' ";
 					$QryUpdateUser .= "WHERE ";
 					$QryUpdateUser .= "`id` = '".$id_dark."' ";
@@ -57,7 +57,7 @@ switch ($_GET['page'])
 			}
 			elseif ($_POST['delete'])
 			{
-				$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+				$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 				$QryUpdatePlanet .= "`metal` = `metal` - '".$metal."', ";
 				$QryUpdatePlanet .= "`crystal` = `crystal` - '".$cristal."', ";
 				$QryUpdatePlanet .= "`deuterium` = `deuterium` - '".$deut."' ";
@@ -68,7 +68,7 @@ switch ($_GET['page'])
 
 				if ($id_dark != NULL)
 				{
-					$QryUpdateUser  = "UPDATE {{table}} SET ";
+					$QryUpdateUser  = "UPDATE `{{table}}` SET ";
 					$QryUpdateUser .= "`darkmatter` = `darkmatter` - '".$dark."' ";
 					$QryUpdateUser .= "WHERE ";
 					$QryUpdateUser .= "`id` = '".$id_dark."' ";
@@ -128,7 +128,7 @@ switch ($_GET['page'])
 			{
 				if ($_POST['add'])
 				{
-					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+					$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 					$QryUpdatePlanet .= "`small_ship_cargo` = `small_ship_cargo` + '".$small_ship_cargo."', ";
 					$QryUpdatePlanet .= "`battleship` = `battleship` + '".$battleship."', ";
 					$QryUpdatePlanet .= "`dearth_star` = `dearth_star` + '".$dearth_star."', ";
@@ -152,7 +152,7 @@ switch ($_GET['page'])
 				}
 				elseif ($_POST['delete'])
 				{
-					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+					$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 					$QryUpdatePlanet .= "`small_ship_cargo` = `small_ship_cargo` - '".$small_ship_cargo."', ";
 					$QryUpdatePlanet .= "`battleship` = `battleship` - '".$battleship."', ";
 					$QryUpdatePlanet .= "`dearth_star` = `dearth_star` - '".$dearth_star."', ";
@@ -227,7 +227,7 @@ switch ($_GET['page'])
 			{
 				if ($_POST['add'])
 				{
-					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+					$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 					$QryUpdatePlanet .= "`misil_launcher` = `misil_launcher` + '".$misil_launcher."', ";
 					$QryUpdatePlanet .= "`small_laser` = `small_laser` + '".$small_laser."', ";
 					$QryUpdatePlanet .= "`big_laser` = `big_laser` + '".$big_laser."', ";
@@ -247,7 +247,7 @@ switch ($_GET['page'])
 				}
 				elseif ($_POST['delete'])
 				{
-					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+					$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 					$QryUpdatePlanet .= "`misil_launcher` = `misil_launcher` - '".$misil_launcher."', ";
 					$QryUpdatePlanet .= "`small_laser` = `small_laser` - '".$small_laser."', ";
 					$QryUpdatePlanet .= "`big_laser` = `big_laser` - '".$big_laser."', ";
@@ -322,11 +322,11 @@ switch ($_GET['page'])
 				is_numeric($terraformer)&& is_numeric($ally_deposit) && is_numeric($silo) && is_numeric($mondbasis) &&
 				is_numeric($phalanx) && is_numeric($sprungtor))
 			{
-				$QueryFind	=	doquery("SELECT `planet_type` FROM {{table}} WHERE `id` = '".$id."'", "planets", TRUE);
+				$QueryFind	=	doquery("SELECT `planet_type` FROM `{{table}}` WHERE `id` = '".$id."'", "planets", TRUE);
 
 				if ($_POST['add'])
 				{
-					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+					$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 					$QryUpdatePlanet .= "`metal_mine` = `metal_mine` + '".$metal_mine."', ";
 					$QryUpdatePlanet .= "`crystal_mine` = `crystal_mine` + '".$crystal_mine."', ";
 					$QryUpdatePlanet .= "`deuterium_sintetizer` = `deuterium_sintetizer` + '".$deuterium_sintetizer."', ";
@@ -350,7 +350,7 @@ switch ($_GET['page'])
 					{
 						if ($QueryFind['planet_type']	==	'3')
 						{
-							$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+							$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 							$QryUpdatePlanet .= "`mondbasis` = `mondbasis` + '".$mondbasis."', ";
 							$QryUpdatePlanet .= "`phalanx` = `phalanx` + '".$phalanx."', ";
 							$QryUpdatePlanet .= "`sprungtor` = `sprungtor` + '".$sprungtor."' ";
@@ -361,12 +361,12 @@ switch ($_GET['page'])
 							if ($mondbasis > 0)
 							{
 								$Sum	=	$mondbasis * FIELDS_BY_MOONBASIS_LEVEL;
-								//doquery("UPDATE {{table}} SET `field_max` = field_max + '".$Sum."', `field_current` = field_current + '".$mondbasis."'", "planets");
+								//doquery("UPDATE `{{table}}` SET `field_max` = field_max + '".$Sum."', `field_current` = field_current + '".$mondbasis."'", "planets");
 								// FIX START BY alivan
-								//doquery("UPDATE {{table}} SET `field_max` = field_max '".$Sum."', `field_current` = field_current '".$mondbasis."' WHERE `id` = '".$id."'", "planets");
+								//doquery("UPDATE `{{table}}` SET `field_max` = field_max '".$Sum."', `field_current` = field_current '".$mondbasis."' WHERE `id` = '".$id."'", "planets");
 								// FIX END BY alivan
 								//fix by jstar lol
-								doquery("UPDATE {{table}} SET `field_max` = field_max + '".$Sum."', `field_current` = field_current + '".$mondbasis."' WHERE `id` = '".$id."'", "planets");
+								doquery("UPDATE `{{table}}` SET `field_max` = field_max + '".$Sum."', `field_current` = field_current + '".$mondbasis."' WHERE `id` = '".$id."'", "planets");
 							}
 						}
 						else
@@ -380,7 +380,7 @@ switch ($_GET['page'])
 				}
 				elseif ($_POST['delete'])
 				{
-					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+					$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 					$QryUpdatePlanet .= "`metal_mine` = `metal_mine` - '".$metal_mine."', ";
 					$QryUpdatePlanet .= "`crystal_mine` = `crystal_mine` - '".$crystal_mine."', ";
 					$QryUpdatePlanet .= "`deuterium_sintetizer` = `deuterium_sintetizer` - '".$deuterium_sintetizer."', ";
@@ -405,7 +405,7 @@ switch ($_GET['page'])
 					{
 						if ($QueryFind['planet_type']	==	'3')
 						{
-							$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+							$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 
 
 							$QryUpdatePlanet .= "`mondbasis` = `mondbasis` - '".$mondbasis."', ";
@@ -418,12 +418,12 @@ switch ($_GET['page'])
 							if ($mondbasis > 0)
 							{
 								$Sum	=	$mondbasis * FIELDS_BY_MOONBASIS_LEVEL;
-								//doquery("UPDATE {{table}} SET `field_max` = field_max - '".$Sum."', `field_current` = field_current - '".$mondbasis."'", "planets");
+								//doquery("UPDATE `{{table}}` SET `field_max` = field_max - '".$Sum."', `field_current` = field_current - '".$mondbasis."'", "planets");
 								// FIX START BY alivan
-								//doquery("UPDATE {{table}} SET `field_max` = field_max - '".$Sum."', `field_current` = field_current - '".$mondbasis."' WHERE `id` = '".$id."'", "planets");
+								//doquery("UPDATE `{{table}}` SET `field_max` = field_max - '".$Sum."', `field_current` = field_current - '".$mondbasis."' WHERE `id` = '".$id."'", "planets");
 								// FIX END BY alivan
 								//fix by jstar
-								doquery("UPDATE {{table}} SET `field_max` = field_max - '".$Sum."', `field_current` = field_current - '".$mondbasis."' WHERE `id` = '".$id."'", "planets");
+								doquery("UPDATE `{{table}}` SET `field_max` = field_max - '".$Sum."', `field_current` = field_current - '".$mondbasis."' WHERE `id` = '".$id."'", "planets");
 							}
 						}
 						else
@@ -501,7 +501,7 @@ switch ($_GET['page'])
 
 				if ($_POST['add'])
 				{
-					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+					$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 					$QryUpdatePlanet .= "`spy_tech` = `spy_tech` + '".$spy_tech."', ";
 					$QryUpdatePlanet .= "`computer_tech` = `computer_tech` + '".$computer_tech."', ";
 					$QryUpdatePlanet .= "`military_tech` = `military_tech` + '".$military_tech."', ";
@@ -527,7 +527,7 @@ switch ($_GET['page'])
 				}
 				elseif ($_POST['delete'])
 				{
-					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+					$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 					$QryUpdatePlanet .= "`spy_tech` = `spy_tech` - '".$spy_tech."', ";
 					$QryUpdatePlanet .= "`computer_tech` = `computer_tech` - '".$computer_tech."', ";
 					$QryUpdatePlanet .= "`military_tech` = `military_tech` - '".$military_tech."', ";
@@ -602,7 +602,7 @@ switch ($_GET['page'])
 			{
 				$Log    .=    "\n".$lang['log_the_user'].$user['username']." ".$lang['log_modify_personal'].":\n";
 
-				$PersonalQuery    =    "UPDATE {{table}} SET ";
+				$PersonalQuery    =    "UPDATE `{{table}}` SET ";
 
 
 
@@ -672,7 +672,7 @@ switch ($_GET['page'])
 
 				if ($_POST['add'])
 				{
-					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+					$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 					$QryUpdatePlanet .= "`rpg_geologue` = `rpg_geologue` + '".$rpg_geologue."', ";
 					$QryUpdatePlanet .= "`rpg_amiral` = `rpg_amiral` + '".$rpg_amiral."', ";
 					$QryUpdatePlanet .= "`rpg_ingenieur` = `rpg_ingenieur` + '".$rpg_ingenieur."', ";
@@ -686,7 +686,7 @@ switch ($_GET['page'])
 				}
 				elseif ($_POST['delete'])
 				{
-					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+					$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 					$QryUpdatePlanet .= "`rpg_geologue` = `rpg_geologue` - '".$rpg_geologue."', ";
 					$QryUpdatePlanet .= "`rpg_amiral` = `rpg_amiral` - '".$rpg_amiral."', ";
 					$QryUpdatePlanet .= "`rpg_ingenieur` = `rpg_ingenieur` - '".$rpg_ingenieur."', ";
@@ -749,11 +749,11 @@ switch ($_GET['page'])
 				if ($delete != 'on')
 				{
 					if ($name != NULL){
-						doquery("UPDATE {{table}} SET `name` = '".$name."' WHERE `id` = '".$id."'", "planets");
+						doquery("UPDATE `{{table}}` SET `name` = '".$name."' WHERE `id` = '".$id."'", "planets");
 						$Log	.=	$lang['log_change_name_pla'].": ".$name."\n";}
 
 					if ($buildings == 'on'){
-						doquery("UPDATE {{table}} SET `metal_mine` = '0', `crystal_mine` = '0', `deuterium_sintetizer` = '0',
+						doquery("UPDATE `{{table}}` SET `metal_mine` = '0', `crystal_mine` = '0', `deuterium_sintetizer` = '0',
 									`solar_plant` = '0', `fusion_plant` = '0', `robot_factory` = '0',
 									`nano_factory` = '0', `hangar` = '0', `metal_store` = '0',
 									`crystal_store` = '0', `deuterium_store` = '0', `laboratory` = '0',
@@ -762,7 +762,7 @@ switch ($_GET['page'])
 						$Log	.=	$lang['log_delete_all_edi']."\n";}
 
 					if ($ships == 'on'){
-						doquery("UPDATE {{table}} SET `small_ship_cargo` = '0', `big_ship_cargo` = '0', `light_hunter` = '0',
+						doquery("UPDATE `{{table}}` SET `small_ship_cargo` = '0', `big_ship_cargo` = '0', `light_hunter` = '0',
 									`heavy_hunter` = '0', `crusher` = '0', `battle_ship` = '0',
 									`colonizer` = '0', `recycler` = '0', `spy_sonde` = '0',
 									`bomber_ship` = '0', `solar_satelit` = '0', `destructor` = '0',
@@ -770,30 +770,30 @@ switch ($_GET['page'])
 						$Log	.=	$lang['log_delete_all_ships']."\n";}
 
 					if ($defenses == 'on'){
-						doquery("UPDATE {{table}} SET `misil_launcher` = '0', `small_laser` = '0', `big_laser` = '0',
+						doquery("UPDATE `{{table}}` SET `misil_launcher` = '0', `small_laser` = '0', `big_laser` = '0',
 									`gauss_canyon` = '0', `ionic_canyon` = '0', `buster_canyon` = '0',
 									`small_protection_shield` = '0', `big_protection_shield` = '0',
 									`interceptor_misil` = '0', `interplanetary_misil` = '0' WHERE `id` = '".$id."'", "planets");
 						$Log	.=	$lang['log_delete_all_def']."\n";}
 
 					if ($c_hangar == 'on'){
-						doquery("UPDATE {{table}} SET `b_hangar` = '0', `b_hangar_plus` = '0', `b_hangar_id` = '' WHERE `id` = '".$id."'", "planets");
+						doquery("UPDATE `{{table}}` SET `b_hangar` = '0', `b_hangar_plus` = '0', `b_hangar_id` = '' WHERE `id` = '".$id."'", "planets");
 						$Log	.=	$lang['log_delete_all_c_han']."\n";}
 
 
 					if ($c_buildings == 'on'){
-						doquery("UPDATE {{table}} SET `b_building` = '0', `b_building_id` = '' WHERE `id` = '".$id."'", "planets");
+						doquery("UPDATE `{{table}}` SET `b_building` = '0', `b_building_id` = '' WHERE `id` = '".$id."'", "planets");
 						$Log	.=	$lang['log_delete_all_c_edi']."\n";}
 
 
-					$P	=	doquery("SELECT * FROM {{table}} WHERE `id` = '".$id."'", "planets", TRUE);
+					$P	=	doquery("SELECT * FROM `{{table}}` WHERE `id` = '".$id."'", "planets", TRUE);
 
 					if ($diameter != NULL && is_numeric($diameter) && $diameter > 0){
-						doquery("UPDATE {{table}} SET `diameter` = '".$diameter."' WHERE `id` = '".$id."'", "planets");
+						doquery("UPDATE `{{table}}` SET `diameter` = '".$diameter."' WHERE `id` = '".$id."'", "planets");
 						$Log	.=	$lang['log_change_diameter'].": ".$diameter."\n";}
 
 					if ($fields != NULL && is_numeric($fields) && $fields > 0){
-						doquery("UPDATE {{table}} SET `field_max` = '".$fields."' WHERE `id` = '".$id."'", "planets");
+						doquery("UPDATE `{{table}}` SET `field_max` = '".$fields."' WHERE `id` = '".$id."'", "planets");
 						$Log	.=	$lang['log_change_fields'].": ".$fields."\n";}
 
 					if ($change_pos == 'on')
@@ -801,7 +801,7 @@ switch ($_GET['page'])
 						if (is_numeric($galaxy) && is_numeric($system) && is_numeric($planet) && $galaxy > 0 && $system > 0 && $planet > 0 &&
 							$galaxy <= MAX_GALAXY_IN_WORLD && $system <= MAX_SYSTEM_IN_GALAXY && $planet <= MAX_PLANET_IN_SYSTEM)
 						{
-							$Queryyy	=	doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' && `system` = '".$system."' &&
+							$Queryyy	=	doquery("SELECT * FROM `{{table}}` WHERE `galaxy` = '".$galaxy."' && `system` = '".$system."' &&
 											`planet` = '".$planet."'", "galaxy", TRUE);
 
 							if ($P['planet_type'] == '1')
@@ -810,14 +810,14 @@ switch ($_GET['page'])
 								{
 									if ($Queryyy['id_luna'] != '0')
 									{
-										doquery("UPDATE {{table}} SET `galaxy` = '".$galaxy."', `system` = '".$system."', `planet` = '".$planet."' WHERE
+										doquery("UPDATE `{{table}}` SET `galaxy` = '".$galaxy."', `system` = '".$system."', `planet` = '".$planet."' WHERE
 										`galaxy` = '".$P['galaxy']."' && `system` = '".$P['system']."' && `planet` = '".$P['planet']."' && `planet_type` = '3'", "planets");
 									}
 
-									doquery("UPDATE {{table}} SET `galaxy` = '".$galaxy."', `system` = '".$system."', `planet` = '".$planet."' WHERE
+									doquery("UPDATE `{{table}}` SET `galaxy` = '".$galaxy."', `system` = '".$system."', `planet` = '".$planet."' WHERE
 										`id` = '".$id."'", "planets");
 
-									doquery("UPDATE {{table}} SET `galaxy` = '".$galaxy."', `system` = '".$system."', `planet` = '".$planet."' WHERE
+									doquery("UPDATE `{{table}}` SET `galaxy` = '".$galaxy."', `system` = '".$system."', `planet` = '".$planet."' WHERE
 										`id_planet` = '".$id."'", "galaxy");
 
 									$Name	=	$lang['log_planet_pos'];
@@ -833,16 +833,16 @@ switch ($_GET['page'])
 								{
 									if ($Queryyy['id_luna'] == '0')
 									{
-										doquery("UPDATE {{table}} SET `id_luna` = '0' WHERE `galaxy` = '".$P['galaxy']."' && `system` = '".$P['system']."' &&
+										doquery("UPDATE `{{table}}` SET `id_luna` = '0' WHERE `galaxy` = '".$P['galaxy']."' && `system` = '".$P['system']."' &&
 											`planet` = '".$P['planet']."'", "galaxy");
 
-										doquery("UPDATE {{table}} SET `galaxy` = '".$galaxy."', `system` = '".$system."', `planet` = '".$planet."',
+										doquery("UPDATE `{{table}}` SET `galaxy` = '".$galaxy."', `system` = '".$system."', `planet` = '".$planet."',
 										`id_luna` = '".$id."' WHERE `id_planet` = '".$Queryyy['id_planet']."'", "galaxy");
 
-										$QMOON2	=	doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' && `system` = '".$system."' &&
+										$QMOON2	=	doquery("SELECT * FROM `{{table}}` WHERE `galaxy` = '".$galaxy."' && `system` = '".$system."' &&
 										`planet` = '".$planet."'", "planets", TRUE);
 
-										doquery("UPDATE {{table}} SET `galaxy` = '".$galaxy."', `system` = '".$system."', `planet` = '".$planet."',
+										doquery("UPDATE `{{table}}` SET `galaxy` = '".$galaxy."', `system` = '".$system."', `planet` = '".$planet."',
 										`id_owner` = '".$QMOON2['id_owner']."', `id_level` = '".$QMOON2['id_level']."' WHERE `id` = '".$id."' && `planet_type` = '3'", "planets");
 										$Name	=	$lang['log_moon_pos'];
 									}
@@ -871,16 +871,16 @@ switch ($_GET['page'])
 				}
 				else
 				{
-					$QueryPlanetsS	=	doquery("SELECT planet_type FROM {{table}} WHERE id = '".$id."'", "planets", TRUE);
+					$QueryPlanetsS	=	doquery("SELECT planet_type FROM `{{table}}` WHERE id = '".$id."'", "planets", TRUE);
 					if ($QueryPlanetsS['planet_type'] == '1')
 					{
-						doquery("DELETE FROM {{table}} WHERE id = '".$id."'", "planets");
-						doquery("DELETE FROM {{table}} WHERE id_planet = '".$id."'", "galaxy");
+						doquery("DELETE FROM `{{table}}` WHERE id = '".$id."'", "planets");
+						doquery("DELETE FROM `{{table}}` WHERE id_planet = '".$id."'", "galaxy");
 					}
 					else
 					{
-						doquery("DELETE FROM {{table}} WHERE id = '".$id."'", "planets");
-						doquery("UPDATE {{table}} SET id_luna = '0', luna = '0' WHERE id_luna = '".$id."'", "galaxy");
+						doquery("DELETE FROM `{{table}}` WHERE id = '".$id."'", "planets");
+						doquery("UPDATE `{{table}}` SET id_luna = '0', luna = '0' WHERE id_luna = '".$id."'", "galaxy");
 					}
 
 					$parse['display']	=	'<tr><th colspan="3"><font color=lime>'.$lang['ad_pla_delete_planet_s'].'</font></th></tr>';
@@ -919,56 +919,56 @@ switch ($_GET['page'])
 
 			if ($id != NULL)
 			{
-				$QueryF	=	doquery("SELECT * FROM {{table}} WHERE `id` = '".$id."'", "alliance", TRUE);
+				$QueryF	=	doquery("SELECT * FROM `{{table}}` WHERE `id` = '".$id."'", "alliance", TRUE);
 
 			 	if ($QueryF)
 			 	{
 					$Log	.=	"\n".$lang['log_the_user'].$user['username']." ".$lang['log_modify_personal'].":\n";
 
 					if ($name != NULL){
-						doquery("UPDATE {{table}} SET `ally_name` = '".$name."' WHERE `id` = '".$id."'", "alliance");
-						doquery("UPDATE {{table}} SET `ally_name` = '".$name."' WHERE `ally_id` = '".$id."'", "users");
+						doquery("UPDATE `{{table}}` SET `ally_name` = '".$name."' WHERE `id` = '".$id."'", "alliance");
+						doquery("UPDATE `{{table}}` SET `ally_name` = '".$name."' WHERE `ally_id` = '".$id."'", "users");
 						$Log	.=	$lang['log_name_of_ally'].": ".$name."\n";}
 
 					if ($tag != NULL){
-						doquery("UPDATE {{table}} SET `ally_tag` = '".$tag."' WHERE `id` = '".$id."'", "alliance");
+						doquery("UPDATE `{{table}}` SET `ally_tag` = '".$tag."' WHERE `id` = '".$id."'", "alliance");
 						$Log	.=	$lang['log_tag_of_ally'].": ".$tag."\n";}
 
 
 					$i	=	0;
-					$QueryF2	=	doquery("SELECT * FROM {{table}} WHERE `id` = '".$changeleader."'", "users", TRUE);
+					$QueryF2	=	doquery("SELECT * FROM `{{table}}` WHERE `id` = '".$changeleader."'", "users", TRUE);
 					if ($QueryF2 && $changeleader != NULL && $QueryF2['ally_id'] == $id){
-						doquery("UPDATE {{table}} SET `ally_owner` = '".$changeleader."' WHERE `id` = '".$id."'", "alliance");
-						doquery("UPDATE {{table}} SET `ally_rank_id` = '0' WHERE `id` = '".$changeleader."'", "users");
+						doquery("UPDATE `{{table}}` SET `ally_owner` = '".$changeleader."' WHERE `id` = '".$id."'", "alliance");
+						doquery("UPDATE `{{table}}` SET `ally_rank_id` = '0' WHERE `id` = '".$changeleader."'", "users");
 						$Log	.=	$lang['log_idnewleader'].": ".$changeleader."\n";}
 					elseif ( ! $QueryF2 && $changeleader != NULL){
 						$Error	.=	'<tr><th colspan="3"><font color=red>'.$lang['ad_ally_not_exist3'].'</font></th></tr>';
 						$i++;}
 
 					if ($externo != NULL){
-						doquery("UPDATE {{table}} SET `ally_description` = '".$externo."' WHERE `id` = '".$id."'", "alliance");
+						doquery("UPDATE `{{table}}` SET `ally_description` = '".$externo."' WHERE `id` = '".$id."'", "alliance");
 						$Log	.=	$lang['log_text_ext'].": ".$externo."\n";}
 
 					if ($interno != NULL){
-						doquery("UPDATE {{table}} SET `ally_text` = '".$interno."' WHERE `id` = '".$id."'", "alliance");
+						doquery("UPDATE `{{table}}` SET `ally_text` = '".$interno."' WHERE `id` = '".$id."'", "alliance");
 						$Log	.=	$lang['log_text_int'].": ".$interno."\n";}
 
 					if ($solicitud != NULL){
-						doquery("UPDATE {{table}} SET `ally_request` = '".$solicitud."' WHERE `id` = '".$id."'", "alliance");
+						doquery("UPDATE `{{table}}` SET `ally_request` = '".$solicitud."' WHERE `id` = '".$id."'", "alliance");
 						$Log	.=	$lang['log_text_sol'].": ".$solicitud."\n";}
 
 					if ($delete == 'on'){
-						doquery("DELETE FROM {{table}} WHERE `id` = '".$id."'", "alliance");
-						doquery("UPDATE {{table}} SET `ally_id` = '0', `ally_name` = '', `ally_request` = '0', `ally_rank_id` = '0', `ally_register_time` = '0',
+						doquery("DELETE FROM `{{table}}` WHERE `id` = '".$id."'", "alliance");
+						doquery("UPDATE `{{table}}` SET `ally_id` = '0', `ally_name` = '', `ally_request` = '0', `ally_rank_id` = '0', `ally_register_time` = '0',
 							`ally_request` = '0' WHERE `ally_id` = '".$id."'", "users");
 						$Log	.=	$lang['log_ally_delete']."\n";}
 
 
 
-					$QueryF3	=	doquery("SELECT * FROM {{table}} WHERE `id` = '".$delete_u."'", "users", TRUE);
+					$QueryF3	=	doquery("SELECT * FROM `{{table}}` WHERE `id` = '".$delete_u."'", "users", TRUE);
 					if ($QueryF3 && $delete_u != NULL){
-						doquery("UPDATE {{table}} SET `ally_members` = ally_members - 1 WHERE `id` = '".$id."'", "alliance");
-						doquery("UPDATE {{table}} SET `ally_id` = '0', `ally_name` = '', `ally_request` = '0', `ally_rank_id` = '0', `ally_register_time` = '0',
+						doquery("UPDATE `{{table}}` SET `ally_members` = ally_members - 1 WHERE `id` = '".$id."'", "alliance");
+						doquery("UPDATE `{{table}}` SET `ally_id` = '0', `ally_name` = '', `ally_request` = '0', `ally_rank_id` = '0', `ally_register_time` = '0',
 							`ally_request` = '0' WHERE `id` = '".$delete_u."' && `ally_id` = '".$id."'", "users");
 						$Log	.=	$lang['log_id_user_expu'].": ".$delete_u."\n";}
 					elseif ( ! $QueryF3 && $delete_u != NULL){

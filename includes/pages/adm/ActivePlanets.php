@@ -19,7 +19,7 @@ include('AdminFunctions/Autorization.php');
 if ($Observation != 1) die();
 
 $parse 			= $lang;
-$ActivePlanets 	= doquery("SELECT `name`,`galaxy`,`system`,`planet`,`points`,`last_update` FROM {{table}} WHERE `last_update` >= '".(time()-15 * 60)."' ORDER BY `id` ASC", 'planets');
+$ActivePlanets 	= doquery("SELECT `name`,`galaxy`,`system`,`planet`,`points`,`last_update` FROM `{{table}}` WHERE `last_update` >= '".(time()-15 * 60)."' ORDER BY `id` ASC", 'planets');
 $Count          = 0;
 
 while ($ActivPlanet = $ActivePlanets->fetch_array())

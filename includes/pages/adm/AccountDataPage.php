@@ -29,7 +29,7 @@ if (AUTHLEVEL	!= 3)
 	$NOSUPERMI	= "WHERE `authlevel` < '".AUTHLEVEL."'";
 }
 
-$UserWhileLogin		= doquery("SELECT `id`, `username`, `authlevel` FROM {{table}} ".$NOSUPERMI." ORDER BY `username` ASC", "users");
+$UserWhileLogin		= doquery("SELECT `id`, `username`, `authlevel` FROM `{{table}}` ".$NOSUPERMI." ORDER BY `username` ASC", "users");
 
 $parse['lista']	= '';
 while ($UserList 	= $UserWhileLogin->fetch_array())
@@ -48,7 +48,7 @@ elseif (isset($_GET['id_u']))
 $OnlyQueryLogin;
 
 if (isset($id_u))
-	$OnlyQueryLogin 	= doquery("SELECT `id`, `authlevel` FROM {{table}} WHERE `id` = '".$id_u."'", "users", TRUE);
+	$OnlyQueryLogin 	= doquery("SELECT `id`, `authlevel` FROM `{{table}}` WHERE `id` = '".$id_u."'", "users", TRUE);
 
 if ($_GET)
 {
@@ -81,7 +81,7 @@ if ($_GET)
 		hyperspace_motor_tech,laser_tech,ionic_tech,buster_tech,intergalactic_tech,expedition_tech,graviton_tech,ally_id,ally_name,ally_request,
 		ally_request_text,ally_register_time,ally_rank_id,rpg_geologue,rpg_amiral,rpg_ingenieur,rpg_technocrate,darkmatter,bana,banaday";
 
-		$UserQuery 	= 	doquery("SELECT ".$SpecifyItemsU." FROM {{table}} WHERE `id` = '".$id_u."'", "users", TRUE);
+		$UserQuery 	= 	doquery("SELECT ".$SpecifyItemsU." FROM `{{table}}` WHERE `id` = '".$id_u."'", "users", TRUE);
 
 
 		$parse['reg_time']		=	date("d-m-Y H:i:s", $UserQuery['register_time']);
@@ -154,7 +154,7 @@ if ($_GET)
 		{
 			$parse['mas']			= "<a href=\"javascript:animatedcollapse.toggle('banned')\">".$lang['ac_more']."</a>";
 
-			$BannedQuery			= doquery("SELECT theme,time,longer,author FROM {{table}} WHERE `who` = '".$UserQuery['username']."'", "banned", TRUE);
+			$BannedQuery			= doquery("SELECT theme,time,longer,author FROM `{{table}}` WHERE `who` = '".$UserQuery['username']."'", "banned", TRUE);
 
 			$parse['sus_longer']	=	date("d-m-Y H-i-s", $BannedQuery['longer']);
 			$parse['sus_time']		=	date("d-m-Y H-i-s", $BannedQuery['time']);
@@ -165,7 +165,7 @@ if ($_GET)
 		// COMIENZA EL SAQUEO DE DATOS DE LA TABLA DE PUNTAJE
 		$SpecifyItemsS	= "tech_count,defs_count,fleet_count,build_count,build_points,tech_points,defs_points,fleet_points,tech_rank,build_rank,defs_rank,fleet_rank,total_points,stat_type";
 
-		$StatQuery	=	doquery("SELECT ".$SpecifyItemsS." FROM {{table}} WHERE `id_owner` = '".$id_u."' && `stat_type` = '1'", "statpoints", TRUE);
+		$StatQuery	=	doquery("SELECT ".$SpecifyItemsS." FROM `{{table}}` WHERE `id_owner` = '".$id_u."' && `stat_type` = '1'", "statpoints", TRUE);
 
 		$parse['count_tecno']		=	Format::pretty_number($StatQuery['tech_count']);
 		$parse['count_def']			=	Format::pretty_number($StatQuery['defs_count']);
@@ -201,7 +201,7 @@ if ($_GET)
 
 			$SpecifyItemsA					= "ally_owner,id,ally_tag,ally_name,ally_web,ally_description,ally_text,ally_request,ally_image,ally_members,ally_register_time";
 
-			$AllianceQuery					=	doquery("SELECT ".$SpecifyItemsA." FROM {{table}} WHERE `ally_name` = '".$alianza."'", "alliance", TRUE);
+			$AllianceQuery					=	doquery("SELECT ".$SpecifyItemsA." FROM `{{table}}` WHERE `ally_name` = '".$alianza."'", "alliance", TRUE);
 
 			$parse['alianza']				=	$alianza;
 			$parse['id_ali']				=	" (".$lang['ac_ali_idid']."&nbsp;".$AliID.")";
@@ -261,10 +261,10 @@ if ($_GET)
 				$parse['ali_logo'] = $lang['ac_no_img'];
 			}
 
-			$SearchLeader			=	doquery("SELECT `username` FROM {{table}} WHERE `id` = '".$ali_lider."'", "users", TRUE);
+			$SearchLeader			=	doquery("SELECT `username` FROM `{{table}}` WHERE `id` = '".$ali_lider."'", "users", TRUE);
 			$parse['ali_lider']		=	$SearchLeader['username'];
 
-			$StatQueryAlly			=	doquery("SELECT ".$SpecifyItemsS." FROM {{table}} WHERE `id_owner` = '".$ali_lider."' && `stat_type` = '2'", "statpoints", TRUE);
+			$StatQueryAlly			=	doquery("SELECT ".$SpecifyItemsS." FROM `{{table}}` WHERE `id_owner` = '".$ali_lider."' && `stat_type` = '2'", "statpoints", TRUE);
 
 			$parse['count_tecno_ali']		=	Format::pretty_number($StatQueryAlly['tech_count']);
 			$parse['count_def_ali']			=	Format::pretty_number($StatQueryAlly['defs_count']);
@@ -293,7 +293,7 @@ if ($_GET)
 		buster_canyon,small_protection_shield,big_protection_shield,interceptor_misil,interplanetary_misil,mondbasis,phalanx,sprungtor,
 		energy_used";
 
-		$PlanetsQuery = doquery("SELECT ".$SpecifyItemsP." FROM {{table}} WHERE `id_owner` = '".$id_u."'", "planets");
+		$PlanetsQuery = doquery("SELECT ".$SpecifyItemsP." FROM `{{table}}` WHERE `id_owner` = '".$id_u."'", "planets");
 
 		while ($PlanetsWhile = $PlanetsQuery->fetch_array())
 		{

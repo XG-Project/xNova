@@ -93,7 +93,7 @@ class ShowFleetShortcuts
 
 		$this->CurrentUser['fleet_shortcut'] = implode(";", $scarray);
 
-		doquery("UPDATE {{table}} SET fleet_shortcut='".($this->CurrentUser['fleet_shortcut'])."' WHERE id=".($this->CurrentUser['id']), "users");
+		doquery("UPDATE `{{table}}` SET fleet_shortcut='".($this->CurrentUser['fleet_shortcut'])."' WHERE id=".($this->CurrentUser['id']), "users");
 
 		header("Location: ".GAMEURL."game.php?page=shortcuts");
 	}
@@ -102,7 +102,7 @@ class ShowFleetShortcuts
 	{
 		$this->CurrentUser['fleet_shortcut'] .= "{$name},{$galaxy},{$system},{$planet},{$moon};";
 
-		doquery("UPDATE {{table}} SET fleet_shortcut='".($this->CurrentUser['fleet_shortcut'])."' WHERE id=".($this->CurrentUser['id']), "users");
+		doquery("UPDATE `{{table}}` SET fleet_shortcut='".($this->CurrentUser['fleet_shortcut'])."' WHERE id=".($this->CurrentUser['id']), "users");
 
 		header("Location: ".GAMEURL."game.php?page=shortcuts");
 	}
@@ -115,7 +115,7 @@ class ShowFleetShortcuts
 
 		$this->CurrentUser['fleet_shortcut'] = implode(";", $scarray);
 
-		doquery("UPDATE {{table}} SET fleet_shortcut='".($this->CurrentUser['fleet_shortcut'])."' WHERE id=".($this->CurrentUser['id']), "users");
+		doquery("UPDATE `{{table}}` SET fleet_shortcut='".($this->CurrentUser['fleet_shortcut'])."' WHERE id=".($this->CurrentUser['id']), "users");
 
 		header("Location: ".GAMEURL."game.php?page=shortcuts");
 	}

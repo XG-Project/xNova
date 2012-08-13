@@ -29,18 +29,18 @@ class ShowNotesPage
 
 			if ($_POST["s"] ==1)
 			{
-				doquery("INSERT INTO {{table}} SET owner=".intval($CurrentUser[id]).", time=$time, priority=$priority, title='$title', text='$text'","notes");
+				doquery("INSERT INTO `{{table}}` SET owner=".intval($CurrentUser[id]).", time=$time, priority=$priority, title='$title', text='$text'","notes");
 				header("Location: ".GAMEURL."game.php?page=notes");
 			}
 			elseif ($_POST["s"] == 2)
 			{
 				$id = intval($_POST["n"]);
-				$note_query = doquery("SELECT * FROM {{table}} WHERE id=".intval($id)." && owner=".intval($CurrentUser[id])."","notes");
+				$note_query = doquery("SELECT * FROM `{{table}}` WHERE id=".intval($id)." && owner=".intval($CurrentUser[id])."","notes");
 
 				if ( ! $note_query)
 					header("Location: ".GAMEURL."game.php?page=notes");
 
-				doquery("UPDATE {{table}} SET time=$time, priority=$priority, title='$title', text='$text' WHERE id=".intval($id)."","notes");
+				doquery("UPDATE `{{table}}` SET time=$time, priority=$priority, title='$title', text='$text' WHERE id=".intval($id)."","notes");
 				header("Location: ".GAMEURL."game.php?page=notes");
 			}
 		}
@@ -51,12 +51,12 @@ class ShowNotesPage
 				if (preg_match("/delmes/i", $a) && $b == "y")
 				{
 					$id = str_replace("delmes","", $a);
-					$note_query = doquery("SELECT * FROM {{table}} WHERE id=".intval($id)." && owner=".intval($CurrentUser[id])."","notes");
+					$note_query = doquery("SELECT * FROM `{{table}}` WHERE id=".intval($id)." && owner=".intval($CurrentUser[id])."","notes");
 
 					if ($note_query)
 					{
 						$deleted++;
-						doquery("DELETE FROM {{table}} WHERE `id`=".intval($id).";","notes");
+						doquery("DELETE FROM `{{table}}` WHERE `id`=".intval($id).";","notes");
 					}
 				}
 			}
@@ -79,7 +79,7 @@ class ShowNotesPage
 			}
 			elseif ($_GET["a"] == 2)
 			{
-				$note = doquery("SELECT * FROM {{table}} WHERE owner=".intval($CurrentUser[id])." && id=".intval($n)."",'notes',TRUE);
+				$note = doquery("SELECT * FROM `{{table}}` WHERE owner=".intval($CurrentUser[id])." && id=".intval($n)."",'notes',TRUE);
 
 				if ( ! $note)
 					header("Location: ".GAMEURL."game.php?page=notes");
@@ -100,7 +100,7 @@ class ShowNotesPage
 			}
 			else
 			{
-				$notes_query = doquery("SELECT * FROM {{table}} WHERE owner=".intval($CurrentUser[id])." ORDER BY time DESC",'notes');
+				$notes_query = doquery("SELECT * FROM `{{table}}` WHERE owner=".intval($CurrentUser[id])." ORDER BY time DESC",'notes');
 
 				$count = 0;
 

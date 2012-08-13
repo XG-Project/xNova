@@ -120,7 +120,7 @@ class ShowStatisticsPage
 				if ($StatRow[$OldRank] == 0 OR $StatRow[$Rank] == 0)
 				{
 					$rank_old				= $start;
-					$QryUpdRank				= doquery("UPDATE {{table}} SET `".$Rank."` = '".$start."', `".$OldRank."` = '".$start."' WHERE `stat_type` = '1' && `stat_code` = '1' && `id_owner` = '".intval($StatRow['id_owner'])."';", "statpoints");
+					$QryUpdRank				= doquery("UPDATE `{{table}}` SET `".$Rank."` = '".$start."', `".$OldRank."` = '".$start."' WHERE `stat_type` = '1' && `stat_code` = '1' && `id_owner` = '".intval($StatRow['id_owner'])."';", "statpoints");
 					$StatRow[$OldRank]	= $start;
 					$StatRow[$Rank]		= $start;
 				}
@@ -154,7 +154,7 @@ class ShowStatisticsPage
 		}
 		else
 		{
-			$MaxUsers = doquery("SELECT COUNT(*) AS `count` FROM {{table}} WHERE `db_deaktjava` = '0';", 'users', TRUE);
+			$MaxUsers = doquery("SELECT COUNT(*) AS `count` FROM `{{table}}` WHERE `db_deaktjava` = '0';", 'users', TRUE);
 
 			if ($MaxUsers['count'] > 100)
 			{
@@ -196,7 +196,7 @@ class ShowStatisticsPage
 				if ($StatRow[$OldRank] == 0 OR $StatRow[$Rank] == 0)
 				{
 					$rank_old				= $start;
-					$QryUpdRank				= doquery("UPDATE {{table}} SET `".$Rank."` = '".$start."', `".$OldRank."` = '".$start."' WHERE `stat_type` = '1' && `stat_code` = '1' && `id_owner` = '".intval($StatRow['id_owner'])."';", "statpoints");
+					$QryUpdRank				= doquery("UPDATE `{{table}}` SET `".$Rank."` = '".$start."', `".$OldRank."` = '".$start."' WHERE `stat_type` = '1' && `stat_code` = '1' && `id_owner` = '".intval($StatRow['id_owner'])."';", "statpoints");
 					$StatRow[$OldRank]	= $start;
 					$StatRow[$Rank]		= $start;
 				}

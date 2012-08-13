@@ -29,7 +29,7 @@ switch ($page)
 		{
 			global $lang;
 
-			$ExistMail = doquery("SELECT `email` FROM {{table}} WHERE `email` = '".$mail."' LIMIT 1;", 'users', TRUE);
+			$ExistMail = doquery("SELECT `email` FROM `{{table}}` WHERE `email` = '".$mail."' LIMIT 1;", 'users', TRUE);
 
 			if (empty($ExistMail['email']))
 			{
@@ -49,7 +49,7 @@ switch ($page)
 				$Body  .= $NewPass;
 				mail($mail, $Title, $Body);
 				$NewPassSql = sha1($NewPass);
-				$QryPassChange = "UPDATE {{table}} SET ";
+				$QryPassChange = "UPDATE `{{table}}` SET ";
 				$QryPassChange .= "`password` ='".$NewPassSql."' ";
 				$QryPassChange .= "WHERE `email`='".$mail."' LIMIT 1;";
 				doquery($QryPassChange, 'users');
@@ -73,12 +73,12 @@ switch ($page)
 	default:
 		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
-			$login = doquery("SELECT `id`,`username`,`password`,`banaday` FROM {{table}} WHERE `username` = '".$db->real_escape_string($_POST['username'])."' && `password` = '". sha1($_POST['password'])."' LIMIT 1", "users", TRUE);
+			$login = doquery("SELECT `id`,`username`,`password`,`banaday` FROM `{{table}}` WHERE `username` = '".$db->real_escape_string($_POST['username'])."' && `password` = '". sha1($_POST['password'])."' LIMIT 1", "users", TRUE);
 
 			if ($login['banaday'] <= time() && $login['banaday'] != '0')
 			{
-				doquery("UPDATE {{table}} SET `banaday` = '0', `bana` = '0' WHERE `username` = '".$login['username']."' LIMIT 1;", 'users');
-				doquery("DELETE FROM {{table}} WHERE `who` = '".$login['username']."'",'banned');
+				doquery("UPDATE `{{table}}` SET `banaday` = '0', `bana` = '0' WHERE `username` = '".$login['username']."' LIMIT 1;", 'users');
+				doquery("DELETE FROM `{{table}}` WHERE `who` = '".$login['username']."'",'banned');
 			}
 
 			if ($login)

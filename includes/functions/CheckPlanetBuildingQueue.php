@@ -86,7 +86,7 @@ if ( ! defined('INSIDE')) die(header("Location:../../"));
 				$CurrentPlanet['field_current'] = $current;
 				$CurrentPlanet['field_max']     = $max;
 
-				$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+				$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 				$QryUpdatePlanet .= "`".$resource[$Element]."` = '".$CurrentPlanet[$resource[$Element]]."', ";
 				$QryUpdatePlanet .= "`b_building` = '".$CurrentPlanet['b_building']."', ";
 				$QryUpdatePlanet .= "`b_building_id` = '".$CurrentPlanet['b_building_id']."', ";
@@ -106,7 +106,7 @@ if ( ! defined('INSIDE')) die(header("Location:../../"));
 			$CurrentPlanet['b_building']    = 0;
 			$CurrentPlanet['b_building_id'] = 0;
 
-			$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+			$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 			$QryUpdatePlanet .= "`b_building` = '".$CurrentPlanet['b_building']."', ";
 			$QryUpdatePlanet .= "`b_building_id` = '".$CurrentPlanet['b_building_id']."' ";
 			$QryUpdatePlanet .= "WHERE ";

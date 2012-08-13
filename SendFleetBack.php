@@ -17,7 +17,7 @@ include(XN_ROOT.'global.php');
 if (is_numeric($_POST['fleetid']))
 {
 	$fleetid  = intval($_POST['fleetid']);
-	$FleetRow = doquery("SELECT * FROM {{table}} WHERE `fleet_id` = '".$fleetid."';", 'fleets', TRUE);
+	$FleetRow = doquery("SELECT * FROM `{{table}}` WHERE `fleet_id` = '".$fleetid."';", 'fleets', TRUE);
 	$i = 0;
 
 	if ($FleetRow['fleet_owner'] == $user['id'])
@@ -27,15 +27,15 @@ if (is_numeric($_POST['fleetid']))
 		{
 			if ($FleetRow['fleet_group'] > 0)
 			{
-				$Aks = doquery("SELECT teilnehmer FROM {{table}} WHERE id = '".$FleetRow['fleet_group']."';", 'aks', TRUE);
+				$Aks = doquery("SELECT teilnehmer FROM `{{table}}` WHERE id = '".$FleetRow['fleet_group']."';", 'aks', TRUE);
 				if ($Aks['teilnehmer'] == $FleetRow['fleet_owner'] && $FleetRow['fleet_mission'] == 1)
 				{
-					doquery("DELETE FROM {{table}} WHERE id ='".$FleetRow['fleet_group']."';", 'aks');
-					doquery("UPDATE {{table}} SET `fleet_group` = '0' WHERE `fleet_group` = '".$FleetRow['fleet_group']."';", 'fleets');
+					doquery("DELETE FROM `{{table}}` WHERE id ='".$FleetRow['fleet_group']."';", 'aks');
+					doquery("UPDATE `{{table}}` SET `fleet_group` = '0' WHERE `fleet_group` = '".$FleetRow['fleet_group']."';", 'fleets');
 				}
 				if ($FleetRow['fleet_mission'] == 2)
 				{
-					doquery("UPDATE {{table}} SET `fleet_group` = '0' WHERE `fleet_id` = '". $fleetid."';", 'fleets');
+					doquery("UPDATE `{{table}}` SET `fleet_group` = '0' WHERE `fleet_id` = '". $fleetid."';", 'fleets');
 				}
 			}
 
@@ -54,7 +54,7 @@ if (is_numeric($_POST['fleetid']))
 			  : $CurrentFlyingTime + time();
 			/***end fix by jstar***/
 
-			$QryUpdateFleet  = "UPDATE {{table}} SET ";
+			$QryUpdateFleet  = "UPDATE `{{table}}` SET ";
 			$QryUpdateFleet .= "`fleet_start_time` = '".(time() - 1)."', ";
 			$QryUpdateFleet .= "`fleet_end_stay` = '0', ";
 			$QryUpdateFleet .= "`fleet_end_time` = '".($ReturnFlyingTime + 1)."', ";

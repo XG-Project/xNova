@@ -37,7 +37,7 @@ function CreateOnePlanetRecord($Galaxy, $System, $Position, $PlanetOwnerID, $Pla
 	global $lang;
 
 	$QrySelectPlanet = "SELECT	`id` ";
-	$QrySelectPlanet .= "FROM {{table}} ";
+	$QrySelectPlanet .= "FROM `{{table}}` ";
 	$QrySelectPlanet .= "WHERE ";
 	$QrySelectPlanet .= "`galaxy` = '".$Galaxy."' && ";
 	$QrySelectPlanet .= "`system` = '".$System."' && ";
@@ -126,7 +126,7 @@ function CreateOnePlanetRecord($Galaxy, $System, $Position, $PlanetOwnerID, $Pla
 		$planet['last_update'] = time();
 		$planet['name'] = ($PlanetName == '') ? $lang['sys_colo_defaultname'] : $PlanetName;
 
-		$QryInsertPlanet = "INSERT INTO {{table}} SET ";
+		$QryInsertPlanet = "INSERT INTO `{{table}}` SET ";
 
 		if ( ! $HomeWorld)
 			$QryInsertPlanet .= "`name` = '".$lang['fcp_colony']."', ";
@@ -155,7 +155,7 @@ function CreateOnePlanetRecord($Galaxy, $System, $Position, $PlanetOwnerID, $Pla
 		doquery($QryInsertPlanet,'planets');
 
 		$QrySelectPlanet = "SELECT `id` ";
-		$QrySelectPlanet .= "FROM {{table}} ";
+		$QrySelectPlanet .= "FROM `{{table}}` ";
 		$QrySelectPlanet .= "WHERE ";
 		$QrySelectPlanet .= "`galaxy` = '".$planet['galaxy']."' && ";
 		$QrySelectPlanet .= "`system` = '".$planet['system']."' && ";
@@ -164,7 +164,7 @@ function CreateOnePlanetRecord($Galaxy, $System, $Position, $PlanetOwnerID, $Pla
 		$GetPlanetID = doquery($QrySelectPlanet,'planets',TRUE);
 
 		$QrySelectGalaxy = "SELECT * ";
-		$QrySelectGalaxy .= "FROM {{table}} ";
+		$QrySelectGalaxy .= "FROM `{{table}}` ";
 		$QrySelectGalaxy .= "WHERE ";
 		$QrySelectGalaxy .= "`galaxy` = '".$planet['galaxy']."' && ";
 		$QrySelectGalaxy .= "`system` = '".$planet['system']."' && ";
@@ -173,7 +173,7 @@ function CreateOnePlanetRecord($Galaxy, $System, $Position, $PlanetOwnerID, $Pla
 
 		if ($GetGalaxyID)
 		{
-			$QryUpdateGalaxy = "UPDATE {{table}} SET ";
+			$QryUpdateGalaxy = "UPDATE `{{table}}` SET ";
 			$QryUpdateGalaxy .= "`id_planet` = '".$GetPlanetID['id']."' ";
 			$QryUpdateGalaxy .= "WHERE ";
 			$QryUpdateGalaxy .= "`galaxy` = '".$planet['galaxy']."' && ";
@@ -183,7 +183,7 @@ function CreateOnePlanetRecord($Galaxy, $System, $Position, $PlanetOwnerID, $Pla
 		}
 		else
 		{
-			$QryInsertGalaxy = "INSERT INTO {{table}} SET ";
+			$QryInsertGalaxy = "INSERT INTO `{{table}}` SET ";
 			$QryInsertGalaxy .= "`galaxy` = '".$planet['galaxy']."', ";
 			$QryInsertGalaxy .= "`system` = '".$planet['system']."', ";
 			$QryInsertGalaxy .= "`planet` = '".$planet['planet']."', ";

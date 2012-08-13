@@ -25,14 +25,14 @@ if ($anz < 0)
 	$anz = 0;
 }
 
-$currentplanet	= doquery("SELECT * FROM {{table}} WHERE id={$user['current_planet']}",'planets',TRUE);
+$currentplanet	= doquery("SELECT * FROM `{{table}}` WHERE id={$user['current_planet']}",'planets',TRUE);
 $iraks          = $currentplanet['interplanetary_misil'];
 $tempvar1      	= abs($s - $currentplanet['system']);
 $tempvar2      	= ($user['impulse_motor_tech'] * 2) - 1;
-$tempvar3      	= doquery("SELECT * FROM {{table}} WHERE galaxy = ".$g."  && system = ".$s." && planet = ".$i." && planet_type = 1 limit 1",  'planets',TRUE);
-$tempvar4      	= doquery("SELECT * FROM {{table}} WHERE id = ".$tempvar3['id_owner']." limit 1",'users', TRUE);
-$UserPoints     = doquery("SELECT * FROM {{table}} WHERE `stat_type` =  '1' && `stat_code` = '1' && `id_owner` = '".$user['id']."';",  'statpoints', TRUE);
-$User2Points     = doquery("SELECT * FROM {{table}} WHERE `stat_type` =  '1' && `stat_code` = '1' && `id_owner` = '".$tempvar3['id_owner'] ."';", 'statpoints', TRUE);
+$tempvar3      	= doquery("SELECT * FROM `{{table}}` WHERE galaxy = ".$g."  && system = ".$s." && planet = ".$i." && planet_type = 1 limit 1",  'planets',TRUE);
+$tempvar4      	= doquery("SELECT * FROM `{{table}}` WHERE id = ".$tempvar3['id_owner']." limit 1",'users', TRUE);
+$UserPoints     = doquery("SELECT * FROM `{{table}}` WHERE `stat_type` =  '1' && `stat_code` = '1' && `id_owner` = '".$user['id']."';",  'statpoints', TRUE);
+$User2Points     = doquery("SELECT * FROM `{{table}}` WHERE `stat_type` =  '1' && `stat_code` = '1' && `id_owner` = '".$tempvar3['id_owner'] ."';", 'statpoints', TRUE);
 
 $MyGameLevel     = $UserPoints['total_points'];
 $HeGameLevel     = $User2Points['total_points'];
@@ -79,11 +79,11 @@ if ($anz==0)
 	$errors++;
 }
 if ($tempvar4['onlinetime'] >= (time()-60 * 60 * 24 * 7)){
-	if (is_weak ($MyGameLevel, $HeGameLevel))
+	if (is_weak($MyGameLevel, $HeGameLevel))
 	{
 		$error .= $lang['fl_week_player'].'<br>';
 		$errors++;
-	}elseif (is_strong ($MyGameLevel, $HeGameLevel)){
+	}elseif (is_strong($MyGameLevel, $HeGameLevel)){
 		$error .= $lang['fl_strong_player'].'<br>';
 		$errors++;
 	}
@@ -115,7 +115,7 @@ array(
 'all' => $lang['ma_all']);
 
 
-doquery("INSERT INTO {{table}} SET
+doquery("INSERT INTO `{{table}}` SET
 fleet_owner = ".$user['id'].",
 fleet_mission = 10,
 fleet_amount = ".$anz.",
@@ -140,7 +140,7 @@ fleet_group = 0,
 fleet_mess = 0,
 start_time = ".time().";", 'fleets');
 
-doquery("UPDATE {{table}} SET interplanetary_misil =  (interplanetary_misil - ".$anz.") WHERE id =  '".$user['current_planet']."'", 'planets');
+doquery("UPDATE `{{table}}` SET interplanetary_misil =  (interplanetary_misil - ".$anz.") WHERE id =  '".$user['current_planet']."'", 'planets');
 
 message("<b>".$anz."</b>".$lang['ma_missiles_sended'].$DefenseLabel[$pziel], "game.php?page=overview", 3);
 ?>

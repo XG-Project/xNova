@@ -177,7 +177,7 @@ class ShowResourcesPage
 
 			if ( ! empty($SubQry))
 			{
-				$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+				$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 				$QryUpdatePlanet .= "`id` = '".$CurrentPlanet['id']."' ";
 				$QryUpdatePlanet .= $SubQry;
 				$QryUpdatePlanet .= "WHERE ";

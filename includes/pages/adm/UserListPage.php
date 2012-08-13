@@ -28,7 +28,7 @@ if ($Observation != 1) die();
 	else
 		$TypeSort = "id";
 
-	$query   = doquery("SELECT `id`,`username`,`email`,`ip_at_reg`,`user_lastip`,`register_time`,`onlinetime`,`bana`,`banaday` FROM {{table}} ORDER BY `".$TypeSort."` ASC", 'users');
+	$query   = doquery("SELECT `id`,`username`,`email`,`ip_at_reg`,`user_lastip`,`register_time`,`onlinetime`,`bana`,`banaday` FROM `{{table}}` ORDER BY `".$TypeSort."` ASC", 'users');
 
 	$parse['adm_ul_table'] = "";
 	$i                     = 0;

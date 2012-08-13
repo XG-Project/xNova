@@ -22,7 +22,7 @@ class ShowOverviewPage
 
 		$FlyingFleetsTable = new FlyingFleetsTable();
 
-		$lunarow = doquery("SELECT * FROM {{table}} WHERE `id_owner` = '".intval($CurrentPlanet['id_owner'])."' && `galaxy` = '".intval($CurrentPlanet['galaxy'])."' && `system` = '".intval($CurrentPlanet['system'])."' &&  `planet` = '".intval($CurrentPlanet['planet'])."' && `planet_type`='3'",'planets',TRUE);
+		$lunarow = doquery("SELECT * FROM `{{table}}` WHERE `id_owner` = '".intval($CurrentPlanet['id_owner'])."' && `galaxy` = '".intval($CurrentPlanet['galaxy'])."' && `system` = '".intval($CurrentPlanet['system'])."' &&  `planet` = '".intval($CurrentPlanet['planet'])."' && `planet_type`='3'",'planets',TRUE);
 
 		if (empty($lunarow))
 		{
@@ -55,7 +55,7 @@ class ShowOverviewPage
 					}
 					if ($newname != "")
 					{
-						doquery("UPDATE {{table}} SET `name` = '".$newname."' WHERE `id` = '".intval($CurrentUser['current_planet'])."' LIMIT 1;","planets");
+						doquery("UPDATE `{{table}}` SET `name` = '".$newname."' WHERE `id` = '".intval($CurrentUser['current_planet'])."' LIMIT 1;","planets");
 					}
 				}
 				elseif (isset($_POST['action']) && $_POST['action'] == $lang['ov_abandon_planet'])
@@ -64,7 +64,7 @@ class ShowOverviewPage
 				}
 				elseif (isset($_POST['kolonieloeschen']) && isset($_POST['deleteid']) && intval($_POST['kolonieloeschen']) == 1 && intval($_POST['deleteid']) == $CurrentUser['current_planet'])
 				{
-					$filokontrol = doquery("SELECT * FROM {{table}} WHERE fleet_owner = '".intval($CurrentUser['id'])."' && fleet_start_galaxy='".intval($CurrentPlanet['galaxy'])."' && fleet_start_system='".intval($CurrentPlanet['system'])."' && fleet_start_planet='".intval($CurrentPlanet['planet'])."'",'fleets');
+					$filokontrol = doquery("SELECT * FROM `{{table}}` WHERE fleet_owner = '".intval($CurrentUser['id'])."' && fleet_start_galaxy='".intval($CurrentPlanet['galaxy'])."' && fleet_start_system='".intval($CurrentPlanet['system'])."' && fleet_start_planet='".intval($CurrentPlanet['planet'])."'",'fleets');
 
 					while ($satir = $filokontrol->fetch_array())
 					{
@@ -74,7 +74,7 @@ class ShowOverviewPage
 						$mess = $satir['fleet_mess'];
 					}
 
-					$filokontrol = doquery("SELECT * FROM {{table}} WHERE fleet_target_owner = '".intval($CurrentUser['id'])."' && fleet_end_galaxy='".intval($CurrentPlanet['galaxy'])."' && fleet_end_system='".intval($CurrentPlanet['system'])."' && fleet_end_planet='".intval($CurrentPlanet['planet'])."'",'fleets');
+					$filokontrol = doquery("SELECT * FROM `{{table}}` WHERE fleet_target_owner = '".intval($CurrentUser['id'])."' && fleet_end_galaxy='".intval($CurrentPlanet['galaxy'])."' && fleet_end_system='".intval($CurrentPlanet['system'])."' && fleet_end_planet='".intval($CurrentPlanet['planet'])."'",'fleets');
 
 					while ($satir = $filokontrol->fetch_array())
 					{
@@ -97,9 +97,9 @@ class ShowOverviewPage
 						if (sha1($_POST['pw']) == $CurrentUser["password"] && $CurrentUser['id_planet'] != $CurrentUser['current_planet'])
 						{
 
-							doquery("UPDATE {{table}} SET `destruyed` = '".(time() + 86400)."' WHERE `id` = '".intval($CurrentUser['current_planet'])."' LIMIT 1;",'planets');
-							doquery("UPDATE {{table}} SET `current_planet` = `id_planet` WHERE `id` = '".intval($CurrentUser['id'])."' LIMIT 1","users");
-							doquery("DELETE FROM {{table}} WHERE `galaxy` = '".intval($CurrentPlanet['galaxy'])."' && `system` = '".intval($CurrentPlanet['system'])."' && `planet` = '".intval($CurrentPlanet['planet'])."' && `planet_type` = 3;",'planets');
+							doquery("UPDATE `{{table}}` SET `destruyed` = '".(time() + 86400)."' WHERE `id` = '".intval($CurrentUser['current_planet'])."' LIMIT 1;",'planets');
+							doquery("UPDATE `{{table}}` SET `current_planet` = `id_planet` WHERE `id` = '".intval($CurrentUser['id'])."' LIMIT 1","users");
+							doquery("DELETE FROM `{{table}}` WHERE `galaxy` = '".intval($CurrentPlanet['galaxy'])."' && `system` = '".intval($CurrentPlanet['system'])."' && `planet` = '".intval($CurrentPlanet['planet'])."' && `planet_type` = 3;",'planets');
 
 							message($lang['ov_planet_abandoned'],'game.php?page=overview&mode=renameplanet');
 						}
@@ -134,7 +134,7 @@ class ShowOverviewPage
 					$Have_new_message .= "</tr>";
 				}
 
-				$OwnFleets = doquery("SELECT * FROM {{table}} WHERE `fleet_owner` = '".intval($CurrentUser['id'])."';",'fleets');
+				$OwnFleets = doquery("SELECT * FROM `{{table}}` WHERE `fleet_owner` = '".intval($CurrentUser['id'])."';",'fleets');
 
 				$Record = 0;
 
@@ -191,7 +191,7 @@ class ShowOverviewPage
 				// ### LUCKY, CODES ARE BELOW
 				if ( ! empty($hedefgalaksi) && ! empty($hedefsistem) && ! empty($hedefgezegen) && ! empty($filogrubu))
 				{
-					$dostfilo = doquery("SELECT * FROM {{table}} WHERE `fleet_end_galaxy` = '".intval($hedefgalaksi)."' && `fleet_end_system` = '".intval($hedefsistem)."' && `fleet_end_planet` = '".intval($hedefgezegen)."' && `fleet_group` = '".intval($filogrubu)."';",'fleets');
+					$dostfilo = doquery("SELECT * FROM `{{table}}` WHERE `fleet_end_galaxy` = '".intval($hedefgalaksi)."' && `fleet_end_system` = '".intval($hedefsistem)."' && `fleet_end_planet` = '".intval($hedefgezegen)."' && `fleet_group` = '".intval($filogrubu)."';",'fleets');
 					$Record1 = 0;
 					while ($FleetRow = $dostfilo->fetch_array())
 					{
@@ -245,7 +245,7 @@ class ShowOverviewPage
 				//////////////////////////////////////////////////
 
 
-				$OtherFleets = doquery("SELECT * FROM {{table}} WHERE `fleet_target_owner` = '".intval($CurrentUser['id'])."';",'fleets');
+				$OtherFleets = doquery("SELECT * FROM `{{table}}` WHERE `fleet_target_owner` = '".intval($CurrentUser['id'])."';",'fleets');
 
 				$Record = 2000;
 				while ($FleetRow = $OtherFleets->fetch_array())
@@ -326,7 +326,7 @@ class ShowOverviewPage
 				{
 					if ($CurrentPlanet['planet_type'] == 1 or $lunarow['id'])
 					{
-						$moon = doquery("SELECT `id`,`name`,`image` FROM {{table}} WHERE `galaxy` = '".intval($CurrentPlanet['galaxy'])."' && `system` = '".intval($CurrentPlanet['system'])."' && `planet` = '".intval($CurrentPlanet['planet'])."' && `planet_type` = '3'",'planets',TRUE);
+						$moon = doquery("SELECT `id`,`name`,`image` FROM `{{table}}` WHERE `galaxy` = '".intval($CurrentPlanet['galaxy'])."' && `system` = '".intval($CurrentPlanet['system'])."' && `planet` = '".intval($CurrentPlanet['planet'])."' && `planet_type` = '3'",'planets',TRUE);
 						$parse['moon'] = '<th><a href="game.php?page=overview&cp='.$moon['id'].'&re=0" title="'.$moon['name'].'"><img src="'.DPATH.'planeten/'.$moon['image'].'.jpg" height="50" width="50"></a><br>'.$moon['name'].' ('.$lang['fcm_moon'].')</th>';
 					}
 					else

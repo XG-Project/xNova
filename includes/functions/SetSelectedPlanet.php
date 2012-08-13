@@ -19,12 +19,12 @@ if ( ! defined('INSIDE')) die(header("Location:../../"));
 		// ADDED && $SelectPlanetTHIS PREVENTS RUN A QUERY WHEN IT'S NOT NEEDED.
 		if (isset($SelectPlanet) && is_numeric($SelectPlanet) && isset($RestorePlanet) && $RestorePlanet == 0 && $SelectPlanet)
 		{
-			$IsPlanetMine   = doquery("SELECT `id` FROM {{table}} WHERE `id` = '".$SelectPlanet."' && `id_owner` = '".intval($CurrentUser['id'])."';", 'planets', TRUE);
+			$IsPlanetMine   = doquery("SELECT `id` FROM `{{table}}` WHERE `id` = '".$SelectPlanet."' && `id_owner` = '".intval($CurrentUser['id'])."';", 'planets', TRUE);
 
 			if ($IsPlanetMine)
 			{
 				$CurrentUser['current_planet'] = $SelectPlanet;
-				doquery("UPDATE {{table}} SET `current_planet` = '".$SelectPlanet."' WHERE `id` = '".intval($CurrentUser['id'])."';", 'users');
+				doquery("UPDATE `{{table}}` SET `current_planet` = '".$SelectPlanet."' WHERE `id` = '".intval($CurrentUser['id'])."';", 'users');
 			}
 		}
 	}

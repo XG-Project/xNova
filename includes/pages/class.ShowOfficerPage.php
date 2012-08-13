@@ -33,7 +33,7 @@ class ShowOfficierPage
 					$CurrentUser[$resource[$Selected]] += 1;
 					$CurrentUser['darkmatter']         -= $Price;
 
-					$QryUpdateUser  = "UPDATE {{table}} SET ";
+					$QryUpdateUser  = "UPDATE `{{table}}` SET ";
 					$QryUpdateUser .= "`darkmatter` = '".$CurrentUser['darkmatter']."', ";
 					$QryUpdateUser .= "`".$resource[$Selected]."` = '".$CurrentUser[$resource[$Selected]]."' ";
 					$QryUpdateUser .= "WHERE ";

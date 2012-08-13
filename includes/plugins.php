@@ -56,8 +56,8 @@ function get_hook($name)
  */
 function PluginAct($name)
 {
-	$Exists = doquery("SELECT status FROM {{table}} WHERE `plugin` = '".$name."' LIMIT 1;", "plugins", TRUE);
-	if ( ! $Exists) doquery("INSERT INTO {{table}} SET `plugin` = '".$name."';", "plugins");
+	$Exists = doquery("SELECT status FROM `{{table}}` WHERE `plugin` = '".$name."' LIMIT 1;", "plugins", TRUE);
+	if ( ! $Exists) doquery("INSERT INTO `{{table}}` SET `plugin` = '".$name."';", "plugins");
 
 	return ($Exists[0]);
 }
@@ -137,11 +137,11 @@ if (defined('IN_ADMIN'))
 		if (isset($_GET['activate']))
 		{
 			$plugin = $_GET['activate'];
-			$ex 	= doquery("SELECT status FROM {{table}} WHERE `plugin`='".$plugin."' LIMIT 1", 'plugins', TRUE);
+			$ex 	= doquery("SELECT status FROM `{{table}}` WHERE `plugin`='".$plugin."' LIMIT 1", 'plugins', TRUE);
 
 			if ($ex)
 			{
-				doquery("UPDATE {{table}} SET `status` = 1 WHERE `plugin`='".$plugin."' LIMIT 1", "plugins");
+				doquery("UPDATE `{{table}}` SET `status` = 1 WHERE `plugin`='".$plugin."' LIMIT 1", "plugins");
 				$info = "<big>Plugin Activado</big>";
 			}
 		}
@@ -150,11 +150,11 @@ if (defined('IN_ADMIN'))
 		if (isset($_GET['desactivate']))
 		{
 			$plugin = $_GET['desactivate'];
-			$ex 	= doquery("SELECT status FROM {{table}} WHERE `plugin`='".$plugin."' LIMIT 1", 'plugins', TRUE);
+			$ex 	= doquery("SELECT status FROM `{{table}}` WHERE `plugin`='".$plugin."' LIMIT 1", 'plugins', TRUE);
 
 			if ($ex)
 			{
-				doquery("UPDATE {{table}} SET `status` = 0 WHERE `plugin`='".$plugin."' LIMIT 1", "plugins");
+				doquery("UPDATE `{{table}}` SET `status` = 0 WHERE `plugin`='".$plugin."' LIMIT 1", "plugins");
 				$info = "<h1>Plugin Desactivado</h1>";
 			}
 		}

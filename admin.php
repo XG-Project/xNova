@@ -43,6 +43,11 @@ switch($page)
 		new ShowSettingsPage($user);
 	break;
 //====================================================================================================//
+	case'database':
+		require_once(XN_ROOT.'includes/pages/adm/class.ShowDatabasePage.php');
+		new ShowDatabasePage();
+	break;
+//====================================================================================================//
 	default:
 		require_once(XN_ROOT.'includes/pages/adm/class.ShowOverviewPage.php');
 		new ShowOverviewPage();

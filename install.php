@@ -342,9 +342,9 @@ switch ($Mode)
 
 				if (isset($QrysArray))
 				{
-					foreach ($QrysArray as $DoQuery)
+					foreach ($QrysArray as $query)
 					{
-						$db->query($DoQuery);
+						doquery($query);
 					}
 				}
 

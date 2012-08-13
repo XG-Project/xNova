@@ -9,7 +9,6 @@
  */
 
 if ( ! defined('INSIDE')) die(header("Location: ./../../"));
-if (AUTHLEVEL < 1) die(message($lang['404_page']));
 
 class ShowOverviewPage {
 

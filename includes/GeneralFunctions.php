@@ -266,7 +266,7 @@ function BuildPlanetAdressLink($CurrentPlanet)
 	return $Link;
 }
 
-function doquery($query, $table, $fetch = FALSE)
+function doquery($query, $table = NULL, $fetch = FALSE)
 {
 	global $db, $debug, $numqueries;
 
@@ -281,7 +281,7 @@ function doquery($query, $table, $fetch = FALSE)
 		$db->set_charset('utf8');
 	}
 
-	$sql 		= str_replace("{{table}}", $dbsettings["prefix"].$table, $query);
+	$sql 		= is_null($table) ? $query : str_replace("{{table}}", $dbsettings["prefix"].$table, $query);
 	$sqlquery 	= $db->query($sql);
 	if ( ! $sqlquery) $debug->error($db->error."<section class=\"sql-query\">".$sql."</section>", "SQL Error");
 

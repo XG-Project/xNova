@@ -18,13 +18,11 @@ class ShowQueriesPage {
 		global $lang, $db, $user;
 
 		$parse	=	$lang;
-		$Query	=	isset($_POST['query']) && ! empty($_POST['query']) ? $_POST['query'] : NULL;
+		$query	=	isset($_POST['query']) && ! empty($_POST['query']) ? $_POST['query'] : NULL;
 
-		if ($_SERVER['REQUEST_METHOD'] === 'POST' && ! is_null($Query))
+		if ($_SERVER['REQUEST_METHOD'] === 'POST' && ! is_null($query))
 		{
-			$FinalQuery	=	$db->real_escape_string($Query);
-
-			if ( ! $db->query($FinalQuery))
+			if ( ! doquery($db->real_escape_string($query)))
 			{
 				$parse['display']	= '<div class="content some_errors">'.$db->error.'</div>';
 			}

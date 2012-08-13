@@ -9,8 +9,6 @@
  */
 
 if ( ! defined('INSIDE')) die(header("Location: ./../../"));
-if (AUTHLEVEL < 1) die(message($lang['404_page']));
-
 if ( ! ADM_CONFIGURATION) die(message($lang['404_page']));
 
 class ShowSettingsPage {
@@ -293,6 +291,11 @@ class ShowSettingsPage {
 			{
 				update_config('lang' 				, $game_config['lang'] 						);
 				doquery('ALTER TABLE  `{{table}}` CHANGE  `name`  `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT  \''.$lang['homeworld'].'\'', 'planets');
+				$lang_changed = TRUE;
+			}
+			else
+			{
+				$lang_changed = FALSE;
 			}
 
 			update_config('game_disable'			, $game_config['game_disable']				);
@@ -324,6 +327,8 @@ class ShowSettingsPage {
 			update_config('log_bots'				, $game_config['log_bots']					);
 			update_config('date_format'				, $game_config['date_format']				);
 		}
+
+		if ($lang_changed) die(header('Location: admin.php?page=settings'));
 
 		$parse								= $lang;
 		$parse['game_name']					= $game_config['game_name'];
@@ -371,3 +376,7 @@ class ShowSettingsPage {
 		display(parsetemplate(gettemplate('adm/SettingsBody'), $parse), TRUE, '', TRUE, TRUE);
 	}
 }
+
+
+/* End of file class.ShowSettingsPage.php */
+/* Location: ./includes/pages/adm/class.ShowSettingsPage.php */

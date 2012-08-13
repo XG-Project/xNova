@@ -292,6 +292,11 @@ div.content
 	{
 		display:					table;
 		margin:						20px auto;
+
+		&.medium .row div.content
+		{
+			min-width:				15em;
+		}
 	}
 
 	.row
@@ -301,7 +306,7 @@ div.content
 		div.content
 		{
 			display:				table-cell;
-			padding:				3px;
+			padding:				0.3em 1em;
 			vertical-align:			middle;
 			clear:					both;
 
@@ -432,9 +437,12 @@ section.debug
 	}
 }
 
-.content-table.table.thin
+.content-table.table
 {
-	width:							auto;
+	&.thin
+	{
+		width:						auto;
+	}
 
 	&.divided .row div.content
 	{

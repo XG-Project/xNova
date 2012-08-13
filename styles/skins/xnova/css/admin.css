@@ -28,8 +28,8 @@ div.content{text-align:center;color:#E6EBFB;padding:5px;border:1px solid #415680
 .content-table h3:first-of-type{border-radius:0.75em 0.75em 0px 0px;}
 .content-table .leader{color:red;font-weight:bolder;font-size:1.5em;}
 .content-table .content:last-of-type:not([class*="errors"]){border-radius:0px 0px 0.75em 0.75em;}
-.content-table.table{display:table;margin:20px auto;}
-.content-table .row{display:table-row;}.content-table .row div.content{display:table-cell;padding:3px;vertical-align:middle;clear:both;}.content-table .row div.content.reset-universe{font-size:1.2em;font-weight:bold;color:#cc0000;background:repeat-x url('./../img/table-title.png');}
+.content-table.table{display:table;margin:20px auto;}.content-table.table.medium .row div.content{min-width:15em;}
+.content-table .row{display:table-row;}.content-table .row div.content{display:table-cell;padding:0.3em 1em;vertical-align:middle;clear:both;}.content-table .row div.content.reset-universe{font-size:1.2em;font-weight:bold;color:#cc0000;background:repeat-x url('./../img/table-title.png');}
 .content-table .row div.content:last-of-type{border-radius:0px;}
 .content-table .row:first-of-type div.content:first-of-type{border-radius:0.75em 0px 0px;}
 .content-table .row:first-of-type div.content:last-of-type{border-radius:0px 0.75em 0px 0px;}
@@ -44,7 +44,8 @@ div.content{text-align:center;color:#E6EBFB;padding:5px;border:1px solid #415680
 section.debug{width:100%;margin:auto;display:table;color:#E6EBFB;text-align:center;}section.debug div.query{display:table-row;}section.debug div.query section{display:table-cell;border:1px solid #415680;vertical-align:middle;padding:0.3em;}
 section.debug div.query:last-of-type section:first-of-type{border-radius:0px 0px 0px 0.75em;}
 section.debug div.query:last-of-type section:last-of-type{border-radius:0px 0px 0.75em 0px;}
-.content-table.table.thin{width:auto;}.content-table.table.thin.divided .row div.content{width:100%;}
+.content-table.table.thin{width:auto;}
+.content-table.table.divided .row div.content{width:100%;}
 figure{margin:0.5em;display:inline-block;}
 .true{width:16px;height:16px;background:0 0 url('./../img/spirites.png');}
 .false{width:16px;height:16px;background:0 -16px url('./../img/spirites.png');}

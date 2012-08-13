@@ -30,35 +30,35 @@ class ShowDatabasePage {
 					if (isset($_POST['optimize']))
 					{
 						doquery("OPTIMIZE TABLE {$table}", "$table");
-						$Message	= $lang['od_opt'];
+						$message	= $lang['od_opt'];
 						$Log		= "\n".$lang['log_database_title']."\n".$lang['log_the_user'].$user['username'].$lang['log_database_view'].":\n".$lang['log_data_optimize']."\n";
 					}
 					elseif (isset($_POST['repair']))
 					{
 						doquery("REPAIR TABLE {$table}", "$table");
-						$Message	= $lang['od_rep'];
+						$message	= $lang['od_rep'];
 						$Log		= "\n".$lang['log_database_title']."\n".$lang['log_the_user'].$user['username'].$lang['log_database_view'].":\n".$lang['log_data_repair']."\n";
 					}
 					elseif (isset($_POST['check']))
 					{
 						doquery("CHECK TABLE {$table}", "$table");
-						$Message	= $lang['od_check_ok'];
+						$message	= $lang['od_check_ok'];
 						$Log		= "\n".$lang['log_database_title']."\n".$lang['log_the_user'].$user['username'].$lang['log_database_view'].":\n".$lang['log_data_check']."\n";
 					}
 
 					if ($db->errno)
 					{
-						$parse['tabla'] .= "<tr>";
-						$parse['tabla'] .= "<th width=\"50%\">".$table."</th>";
-						$parse['tabla'] .= "<th width=\"50%\" style=\"color:red\">".$lang['od_not_opt']."</th>";
-						$parse['tabla'] .= "</tr>";
+						$parse['tables']	.= '<div class="row">';
+						$parse['tables']	.= '<div class="content">'.$table.'</div>';
+						$parse['tables']	.= '<div class="content some_errors">'.$lang['od_not_opt'].'</div>';
+						$parse['tables']	.= '</div>';
 					}
 					else
 					{
-						$parse['tabla'] .= "<tr>";
-						$parse['tabla'] .= "<th width=\"50%\">".$table."</th>";
-						$parse['tabla'] .= "<th width=\"50%\" style=\"color:lime\">".$Message."</th>";
-						$parse['tabla'] .= "</tr>";
+						$parse['tables']	.= '<div class="row">';
+						$parse['tables']	.= '<div class="content">'.$table.'</div>';
+						$parse['tables']	.= '<div class="content no_errors">'.$message.'</div>';
+						$parse['tables']	.= '</div>';
 					}
 				}
 			}
@@ -71,9 +71,10 @@ class ShowDatabasePage {
 			{
 				foreach ($row as $table)
 				{
-					$parse['tabla'] .= "<tr>";
-					$parse['tabla'] .= "<th width=\"50%\">".$table."</th><th width=\"50%\"><font color=aqua>".$lang['od_select_action']."</font></th>";
-					$parse['tabla'] .= "</tr>";
+					$parse['tables']		.= '<div class="row">';
+					$parse['tables']		.= '<div class="content">'.$table.'</div>';
+					$parse['tables']		.= '<div class="content">'.$lang['od_select_action'].'</div>';
+					$parse['tables']		.= '</div>';
 				}
 			}
 		}

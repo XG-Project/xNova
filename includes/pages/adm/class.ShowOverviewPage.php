@@ -91,7 +91,7 @@ class ShowOverviewPage {
 			$parse['error_class']		=	"no_error";
 		}
 
-		display(parsetemplate(gettemplate('adm/OverviewBody'), $parse), TRUE, '', TRUE, TRUE);
+		display(parsetemplate(gettemplate('adm/OverviewBody'), $parse), TRUE, '', TRUE);
 	}
 }
 

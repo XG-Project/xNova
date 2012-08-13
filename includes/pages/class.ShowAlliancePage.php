@@ -180,7 +180,7 @@ class ShowAlliancePage extends bbCode
 
 			if ( ! empty($ally_description))
 			{
-				$ally_description 	= "<tr><th colspan=2 height=100>". nl2br($this->bbCode ($ally_description))."</th></tr>";
+				$ally_description 	= "<tr><th colspan=2 height=100>".nl2br($this->bbCode ($ally_description))."</th></tr>";
 			}
 			else
 			{

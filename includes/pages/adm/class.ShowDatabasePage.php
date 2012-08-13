@@ -9,7 +9,7 @@
  */
 
 if ( ! defined('INSIDE')) die(header("Location: ./../../"));
-if ( ! ADM_CONFIGURATION) die(message($lang['404_page']));
+if ( ! ADM_CONFIGURATION) die(message($lang['not_enough_permissions']));
 
 class ShowDatabasePage {
 
@@ -79,7 +79,7 @@ class ShowDatabasePage {
 			}
 		}
 
-		display(parsetemplate(gettemplate('adm/DatabaseViewBody'), $parse), TRUE, '', TRUE, TRUE);
+		display(parsetemplate(gettemplate('adm/DatabaseViewBody'), $parse), TRUE, '', TRUE);
 	}
 }
 

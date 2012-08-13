@@ -14,7 +14,7 @@ define('IN_ADMIN', TRUE);
 define('XN_ROOT', realpath('./').'/');
 
 require_once(XN_ROOT.'global.php');
-if (AUTHLEVEL < 1) die(message($lang['404_page']));
+if (AUTHLEVEL < 1) die(message($lang['not_enough_permissions']));
 
 require_once(XN_ROOT.'includes/functions/adm/Autorization.php');
 
@@ -43,9 +43,18 @@ switch($page)
 		new ShowSettingsPage($user);
 	break;
 //====================================================================================================//
+	case'plugins':
+		//PLUGINS
+	break;
+//====================================================================================================//
 	case'database':
 		require_once(XN_ROOT.'includes/pages/adm/class.ShowDatabasePage.php');
 		new ShowDatabasePage();
+	break;
+//====================================================================================================//
+	case'errors':
+		require_once(XN_ROOT.'includes/pages/adm/class.ShowErrorsPage.php');
+		new ShowErrorsPage();
 	break;
 //====================================================================================================//
 	default:

@@ -10,7 +10,7 @@
 
 
 if ( ! defined('INSIDE')) die(header("Location: ./../../"));
-if (AUTHLEVEL < 3) die(message($lang['404_page']));
+if (AUTHLEVEL < 3) die(message($lang['not_enough_permissions']));
 
 class ShowModerationPage {
 
@@ -25,7 +25,7 @@ class ShowModerationPage {
 			$QueryModerationEx	=	explode(";", $QueryModeration);
 			$Moderator			=	explode(",", $QueryModerationEx[0]);
 			$Operator			=	explode(",", $QueryModerationEx[1]);
-			$Administrator		=	explode(",", $QueryModerationEx[2]); // Solo sirve para el historial
+			$Administrator		=	explode(",", $QueryModerationEx[2]);
 
 			// MODERADORES
 			if ($Moderator[0]) $parse['view_m']		= ' checked';
@@ -108,7 +108,7 @@ class ShowModerationPage {
 			$QueryUsers	= doquery("SELECT `id`, `username`, `authlevel` FROM {{table}}".$where."", "users");
 
 
-			while ($List = $QueryUsers->fetch_array())
+			while ($List = $QueryUsers->fetch_assoc())
 			{
 				$parse['list']	.= '<option value="'.$List['id'].'">'.$List['username'].' ('.$lang['rank'][$List['authlevel']].')</option>';
 			}
@@ -176,7 +176,7 @@ class ShowModerationPage {
 
 			$script	= '<script charset="UTF-8" src="'.GAMEURL.'js/filterlist.min.js"></script>';
 
-			display(parsetemplate(gettemplate("adm/AuthlevelBody"), $parse), TRUE, $script, TRUE, TRUE);
+			display(parsetemplate(gettemplate("adm/AuthlevelBody"), $parse), TRUE, $script, TRUE);
 		}
 		else
 		{

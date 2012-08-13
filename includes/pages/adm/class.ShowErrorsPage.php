@@ -8,20 +8,68 @@
  * @author	Razican <admin@razican.com>
  */
 
-define('INSIDE' , TRUE);
-define('INSTALL', FALSE);
-define('IN_ADMIN', TRUE);
-define('XN_ROOT', './../');
+if ( ! defined('INSIDE')) die(header("Location: ./../../"));
+if ( ! ADM_CONFIGURATION) die(message($lang['not_enough_permissions']));
 
-include(XN_ROOT.'global.php');
+class ShowErrorsPage {
 
-if ($ConfigGame != 1) die(message($lang['404_page']));
+	public function __construct()
+	{
+		global $lang;
+		$parse = $lang;
 
-	$parse = $lang;
+		$page	= isset($_GET['page']) ? $_GET['page'] : NULL;
 
-	extract($_GET);
+		switch ($page)
+		{
+			case 'sql':
+				$query = doquery("SELECT * FROM {{table}} WHERE `error_type` != 'PHP' ORDER BY `error_time`", 'errors');
+				$i = 0;
 
-	$page	= isset($page) ? $page : NULL;
+				$parse['errors_list'] = '';
+				while ($u = $query->fetch_assoc())
+				{
+					$i++;
+
+					$parse['errors_list'] .= "
+					<tr><td width=\"25\">".$u['error_id']."</td>
+					<td width=\"70\">".$u['error_sender']."</td>
+					<td width=\"100\">".$u['error_type']."</td>
+					<td width=\"230\">".date('d/m/Y h:i:s', $u['error_time'])."</td>
+					<td width=\"95\"><a href=\"?page=sql&delete=".$u['error_id']."\" border=\"0\"><img src=\"../styles/images/r1.png\" border=\"0\"></a></td></tr>
+					<tr><th colspan=\"5\" class=b>".nl2br($u['error_text'])."</td></tr>";
+				}
+
+				$parse['errors_list'] .= "<tr><th class=b colspan=5>".$i.$lang['er_errors']."</th></tr>";
+
+
+				if (isset($delete))
+				{
+					doquery("DELETE FROM {{table}} WHERE `error_id`=$delete", 'errors');
+					$Log	=	"\n".$lang['log_errores_title']."\n";
+					$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_errors']."\n";
+					LogFunction($Log, "GeneralLog");
+					header('location:ErrorPage.php?page=sql');
+				}
+				elseif (isset($deleteall) && $deleteall == 'yes')
+				{
+					doquery("DELETE FROM {{table}} WHERE `error_type` != 'PHP'", 'errors');
+					$Log	=	"\n".$lang['log_errores_title']."\n";
+					$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_all_sql_errors']."\n";
+					LogFunction($Log, "GeneralLog");
+					header('location:ErrorPage.php?page=sql');
+				}
+
+				display(parsetemplate(gettemplate('adm/errorMessagesBody'), $parse), TRUE, '', TRUE);
+			break;
+			case 'php':
+			break;
+			default:
+				display(parsetemplate(gettemplate('adm/ErrorMenu')), TRUE, '', TRUE);
+		}
+	}
+}
+
 	$parse['errors_list'] = '';
 
 	switch ($page)
@@ -31,7 +79,7 @@ if ($ConfigGame != 1) die(message($lang['404_page']));
 
 			$i = 0;
 
-			while ($u = $query->fetch_array())
+			while ($u = $query->fetch_assoc())
 			{
 				$i++;
 
@@ -42,7 +90,7 @@ if ($ConfigGame != 1) die(message($lang['404_page']));
 				<td width=\"100\">".$u['error_type']."</td>
 				<td width=\"230\">".date('d/m/Y h:i:s', $u['error_time'])."</td>
 				<td width=\"95\"><a href=\"?page=sql&delete=".$u['error_id']."\" border=\"0\"><img src=\"../styles/images/r1.png\" border=\"0\"></a></td></tr>
-				<tr><th colspan=\"5\" class=b>". nl2br($u['error_text'])."</td></tr>";
+				<tr><th colspan=\"5\" class=b>".nl2br($u['error_text'])."</td></tr>";
 			}
 
 			$parse['errors_list'] .= "<tr><th class=b colspan=5>".$i.$lang['er_errors']."</th></tr>";
@@ -65,7 +113,7 @@ if ($ConfigGame != 1) die(message($lang['404_page']));
 				header('location:ErrorPage.php?page=sql');
 			}
 
-			display(parsetemplate(gettemplate('adm/SQLErrorMessagesBody'), $parse), FALSE, '', TRUE, FALSE);
+			display(parsetemplate(gettemplate('adm/errorMessagesBody'), $parse), FALSE, '', TRUE, FALSE);
 		break;
 		case 'php':
 			$error_level	= array('32767', '8192', '4096', '2048', '8', '2');

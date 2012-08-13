@@ -9,7 +9,7 @@
  */
 
 if ( ! defined('INSIDE')) die(header("Location: ./../../"));
-if (AUTHLEVEL < 3) die(message($lang['404_page']));
+if (AUTHLEVEL < 3) die(message($lang['not_enough_permissions']));
 
 class ShowQueriesPage {
 
@@ -37,7 +37,7 @@ class ShowQueriesPage {
 			}
 		}
 
-		display(parsetemplate(gettemplate('adm/QueriesBody'), $parse), TRUE, '', TRUE, TRUE);
+		display(parsetemplate(gettemplate('adm/QueriesBody'), $parse), TRUE, '', TRUE);
 	}
 }
 

@@ -226,7 +226,7 @@ function ShowBuildTime($time)
 	return "<br>".$lang['fgf_time'] . Format::pretty_time($time);
 }
 
-function parsetemplate($template, $array)
+function parsetemplate($template, $array = array())
 {
 	$array['game_url']	= GAMEURL;
 	$array['skin_url']	= DPATH;

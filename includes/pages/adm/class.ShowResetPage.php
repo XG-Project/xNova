@@ -9,7 +9,7 @@
  */
 
 if ( ! defined('INSIDE')) die(header("Location: ./../../"));
-if (AUTHLEVEL < 3) die(message($lang['404_page']));
+if (AUTHLEVEL < 3) die(message($lang['not_enough_permissions']));
 
 class ShowResetPage {
 
@@ -243,7 +243,7 @@ class ShowResetPage {
 			$parse['result']	= '<div class="content no_errors top">'.$lang['re_reset_excess'].'</div>';
 		}
 
-		display(parsetemplate(gettemplate('adm/ResetBody'), $parse), TRUE, '', TRUE, TRUE);
+		display(parsetemplate(gettemplate('adm/ResetBody'), $parse), TRUE, '', TRUE);
 	}
 }
 

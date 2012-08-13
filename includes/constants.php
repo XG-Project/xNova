@@ -60,7 +60,7 @@ define('MAX_FLEET_OR_DEFS_PER_ROW'	, 1000000);
 define('PLANETSIZE_MULTIPLER'		,       1);
 
 // INITIAL RESOURCE OF NEW PLANETS
-define('BASE_STORAGE_SIZE'			,   10000);
+define('BASE_STORAGE_SIZE'			,  100000);
 define('BUILD_METAL'				,     500);
 define('BUILD_CRISTAL'				,     500);
 define('BUILD_DEUTERIUM'			, 	    0);

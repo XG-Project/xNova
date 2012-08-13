@@ -291,12 +291,8 @@ class ShowSettingsPage {
 			{
 				update_config('lang' 				, $game_config['lang'] 						);
 				doquery('ALTER TABLE  `{{table}}` CHANGE  `name`  `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT  \''.$lang['homeworld'].'\'', 'planets');
-				$lang_changed = TRUE;
 			}
-			else
-			{
-				$lang_changed = FALSE;
-			}
+			$lang_changed = (read_config('lang') != $game_config['lang']);
 
 			update_config('game_disable'			, $game_config['game_disable']				);
 			update_config('close_reason'			, $game_config['close_reason']				);
@@ -326,9 +322,9 @@ class ShowSettingsPage {
 			update_config('max_users'				, $game_config['max_users']					);
 			update_config('log_bots'				, $game_config['log_bots']					);
 			update_config('date_format'				, $game_config['date_format']				);
-		}
 
-		if ($lang_changed) die(header('Location: admin.php?page=settings'));
+			if ($lang_changed) die(header('Location: admin.php?page=settings'));
+		}
 
 		$parse								= $lang;
 		$parse['game_name']					= $game_config['game_name'];
@@ -359,6 +355,7 @@ class ShowSettingsPage {
 		$parse['errors_32767']				= $game_config['errors_32767'] ? ' checked' : '';
 		$parse['log_bots']					= $game_config['log_bots'] ? ' checked' : '';
 		$parse['date_format']				= $game_config['date_format'];
+		$parse['language_settings']			= '';
 
 		foreach (scandir(XN_ROOT.'language') as $lang_folder)
 		{

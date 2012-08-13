@@ -22,15 +22,15 @@ class ShowQueriesPage {
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST' && ! is_null($query))
 		{
-			if ( ! doquery($db->real_escape_string($query)))
+			if ( ! $db->query($db->real_escape_string($query)))
 			{
 				$parse['display']	= '<div class="content some_errors">'.$db->error.'</div>';
 			}
 			else
 			{
-				$Log	.=	"\n".$lang['log_queries_title']."\n";
+				$Log	=	"\n".$lang['log_queries_title']."\n";
 				$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_queries_succes']."\n";
-				$Log	.=	$Query."\n";
+				$Log	.=	$query."\n";
 				LogFunction($Log, "GeneralLog");
 
 				$parse['display']	= '<div class="content no_errors">'.$lang['qe_succes'].'</div>';

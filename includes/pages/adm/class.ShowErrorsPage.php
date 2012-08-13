@@ -15,7 +15,7 @@ class ShowErrorsPage {
 
 	public function __construct()
 	{
-		global $lang;
+		global $lang, $user;
 		$parse = $lang;
 
 		$errors	= isset($_GET['errors']) ? $_GET['errors'] : NULL;
@@ -61,7 +61,7 @@ class ShowErrorsPage {
 			case 'php':
 				if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 				{
-					doquery("DELETE FROM `{{table}}` WHERE `error_id`=$delete", 'errors');
+					doquery("DELETE FROM `{{table}}` WHERE `error_id`='".$_GET['delete']."'", 'errors');
 					$Log	=	"\n".$lang['log_errores_title']."\n";
 					$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_errors']."\n";
 					LogFunction($Log, "GeneralLog");
@@ -100,26 +100,27 @@ class ShowErrorsPage {
 					$filter .= ')';
 				}
 
-				$query = doquery("SELECT * FROM `{{table}}` WHERE `error_type` = 'PHP'".$filter." ORDER BY `error_file` ASC, `error_line` ASC", 'errors');
-				$i = 0;
-				$error_text		= array('E_ALL', 'E_DEPRECATED', 'E_RECOVERABLE_ERROR', 'E_STRICT', 'E_NOTICE', 'E_WARNING');
+				$query					= doquery("SELECT * FROM `{{table}}` WHERE `error_type` = 'PHP'".$filter." ORDER BY `error_file` ASC, `error_line` ASC", 'errors');
+				$i						= 0;
+				$error_text				= array('E_ALL', 'E_DEPRECATED', 'E_RECOVERABLE_ERROR', 'E_STRICT', 'E_NOTICE', 'E_WARNING');
+				$parse['errors_list']	= '';
 
 				while ($u = $query->fetch_assoc())
 				{
 					$i++;
 
-					//TODO HTML5
-					$parse['errors_list'] .= "
-					<tr><td width=\"25\">".$u['error_id']."</td>
-					<td width=\"50\">".date('d/m/Y H:i:s', $u['error_time'])."</td>
-					<td width=\"70\">".(( ! $u['error_sender']) ? $lang['er_public'] : $u['error_sender'])."</td>
-					<td width=\"50\">".str_replace($error_level, $error_text, $u['error_level'])."</td>
-					<td width=\"100\">".$u['error_file']."</td>
-					<td width=\"100\">".$u['error_line']."</td>
-					<td width=\"100\">".str_replace('%lang%', $lang['lang_key'], $u['error_text'])."</td>
-					<td width=\"95\"><a href=\"?page=php&delete=".$u['error_id']."\" border=\"0\"><img src=\"../styles/images/r1.png\" border=\"0\"></a></td></tr>";
+					$parse['errors_list']	.= '<div class="row">';
+					$parse['errors_list']	.= '<div class="content">'.$u['error_id'].'</div>';
+					$parse['errors_list']	.= '<div class="content">'.date('d/m/Y H:i:s', $u['error_time']).'</div>';
+					$parse['errors_list']	.= '<div class="content">'.(( ! $u['error_sender']) ? $lang['er_public'] : $u['error_sender']).'</div>';
+					$parse['errors_list']	.= '<div class="content">'.str_replace($error_level, $error_text, $u['error_level']).'</div>';
+					$parse['errors_list']	.= '<div class="content">'.$u['error_file'].'</div>';
+					$parse['errors_list']	.= '<div class="content">'.$u['error_line'].'</div>';
+					$parse['errors_list']	.= '<div class="content">'.str_replace('%lang%', $lang['lang_key'], $u['error_text']).'</div>';
+					$parse['errors_list']	.= '<div class="content"><a href="admin.php?page=errors&amp;errors=php&amp;delete='.$u['error_id'].'" title="'.$lang['button_delete'].'"><figure class="false"></figure></a></div>';
+					$parse['errors_list']	.= '</div>';
 				}
-				$parse['errors_list'] .= "<tr><th class=b colspan=5>".$i.$lang['er_errors']."</th></tr>";
+				$parse['errors_list'] .= '<div class"content">'.$i.$lang['er_errors'].'</div>';
 				display(parsetemplate(gettemplate('adm/PHPerrorMessagesBody'), $parse), TRUE, '', TRUE);
 			break;
 			default:

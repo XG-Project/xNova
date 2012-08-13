@@ -13,7 +13,7 @@ if (AUTHLEVEL < 3) die(message($lang['not_enough_permissions']));
 
 class ShowResetPage {
 
-	private function ResetUniverse($CurrentUser)
+	private function reset_universe($CurrentUser)
 	{
 		doquery("RENAME TABLE `{{table}}` TO {{table}}_s", 'planets');
 		doquery("RENAME TABLE `{{table}}` TO {{table}}_s", 'users');
@@ -84,8 +84,8 @@ class ShowResetPage {
 					{
 						$QryUpdateBot	= "UPDATE `{{table}}` SET ";
 						$QryUpdateBot	.= "`user` = '".		$NewUser['id']."', ";
-						$QryUpdateBot	.= "`last_time` = '0' ";
-						$QryUpdateBot	.= "`next_time` = '0' ";
+						$QryUpdateBot	.= "`last_time` = '0', ";
+						$QryUpdateBot	.= "`next_time` = '0', ";
 						$QryUpdateBot	.= "`last_planet` = '".	$PlanetID['id']."' ";
 						$QryUpdateUser .= "WHERE `id` = '".		$bot."';";
 						doquery($QryUpdateBot, 'bots');
@@ -107,7 +107,7 @@ class ShowResetPage {
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
-			$Log	.= "\n".$lang['log_the_user'].$user['username']." ".$lang['log_reseteo'].":\n";
+			$Log = "\n".$lang['log_the_user'].$user['username']." ".$lang['log_reseteo'].":\n";
 			if ( ! isset($_POST['resetall']) OR $_POST['resetall'] != 'on')
 			{
 				// HANGARES Y DEFENSAS
@@ -235,7 +235,7 @@ class ShowResetPage {
 			}
 			else // REINICIAR UNIVERSO
 			{
-				ResetUniverse($user);
+				$this->reset_universe($user);
 				$Log	.=	$lang['log_all_uni']."\n";
 			}
 

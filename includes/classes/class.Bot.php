@@ -126,7 +126,7 @@ function UpdateBots()
 		}
 
 		foreach ($bot_fields as $field => $text)
-			$query_bots .= $query.$text.' ELSE `'.$field.'` END,';
+			$query_bots .= $text.' ELSE `'.$field.'` END,';
 
 		$query_bots = substr($query_bots, 0, -1).' WHERE `id` IN ('.implode(',', $bot_ids).')';
 
@@ -141,7 +141,7 @@ function UpdateBots()
 		}
 
 		foreach ($user_fields as $field => $text)
-			$query_users .= $query.$text.' ELSE `'.$field.'` END,';
+			$query_users .= $text.' ELSE `'.$field.'` END,';
 
 		$query_users = substr($query_users, 0, -1).' WHERE `id` IN ('.implode(',', $user_ids).')';
 

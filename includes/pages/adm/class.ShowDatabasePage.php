@@ -15,11 +15,11 @@ class ShowDatabasePage {
 
 	public function __construct()
 	{
-		global $lang;
+		global $lang, $db, $user;
 		$parse = $lang;
 
-		$tables = doquery("SHOW TABLES");
-		//TODO HTML5
+		$tables				= doquery("SHOW TABLES");
+		$parse['tables']	= '';
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{

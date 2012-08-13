@@ -28,10 +28,12 @@ class ShowOverviewPage {
 	{
 		global $lang, $db;
 		$parse 		= $lang;
+		$message	= '';
+		$error		= 0;
 
 		if (file_exists(XN_ROOT.'install/') OR file_exists(XN_ROOT.'install.php'))
 		{
-			$Message	.= '<span>'.$lang['ow_install_file_detected'].'</span>';
+			$message	.= '<span>'.$lang['ow_install_file_detected'].'</span>';
 			$error++;
 		}
 
@@ -39,19 +41,19 @@ class ShowOverviewPage {
 		{
 			if (is_writable(XN_ROOT.'config.php'))
 			{
-				$Message	.= '<span>'.$lang['ow_config_file_writable'].'</span>';
+				$message	.= '<span>'.$lang['ow_config_file_writable'].'</span>';
 				$error++;
 			}
 
 			if ( ! is_writable(XN_ROOT.'includes/bots'))
 			{
-				$Message	.= '<span>'.$lang['ow_bot_folder_no_writable'].'</span>';
+				$message	.= '<span>'.$lang['ow_bot_folder_no_writable'].'</span>';
 				$error++;
 			}
 
 			if ( ! is_writable(XN_ROOT.'includes/xml/config.xml'))
 			{
-				$Message	.= '<span>'.$lang['ow_config_file_no_writable'].'</span>';
+				$message	.= '<span>'.$lang['ow_config_file_no_writable'].'</span>';
 				$error++;
 			}
 
@@ -59,7 +61,7 @@ class ShowOverviewPage {
 			{
 				if (is_file(XN_ROOT.'includes/logs/'.$log_file) && ( ! is_writable(XN_ROOT.'includes/logs/'.$log_file)))
 				{
-					$Message	.= '<span>'.$lang['ow_log_file_no_writable'].'</span>';
+					$message	.= '<span>'.$lang['ow_log_file_no_writable'].'</span>';
 					$error++;
 					break;
 				}
@@ -69,20 +71,20 @@ class ShowOverviewPage {
 
 			if ($Errors['errors'])
 			{
-				$Message	.= '<span>'.$lang['ow_database_errors'].'</span>';
+				$message	.= '<span>'.$lang['ow_database_errors'].'</span>';
 				$error++;
 			}
 
 			if ($this->check_updates())
 			{
-				$Message	.= '<span>'.$lang['ow_old_version'].'</span>';
+				$message	.= '<span>'.$lang['ow_old_version'].'</span>';
 				$error++;
 			}
 		}
 
 		if ($error)
 		{
-			$parse['error_message']		=	$Message;
+			$parse['error_message']		=	$message;
 			$parse['error_class']		=	"some_errors";
 		}
 		else

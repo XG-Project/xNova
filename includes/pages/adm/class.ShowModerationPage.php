@@ -16,7 +16,7 @@ class ShowModerationPage {
 
 	public function __construct($moderation)
 	{
-		global $lang;
+		global $lang, $user;
 		$parse = $lang;
 
 		if ($moderation === 1)
@@ -90,34 +90,34 @@ class ShowModerationPage {
 		}
 		elseif ($moderation === 2)
 		{
+			$parse['authlevels'] = '';
 			for ($i	= 0; $i < 4; $i++)
 			{
 				$parse['authlevels']	.=	"<option value=\"".$i."\">".$lang['rank'][$i]."</option>";
 			}
 
+			$where = '';
 			if (isset($_GET['get']) && ! empty($_GET['get']))
 			{
 				if ($_GET['get'] === 'adm')		$where	=	" WHERE `authlevel` = '3'";
 				elseif ($_GET['get'] === 'ope')	$where	=	" WHERE `authlevel` = '2'";
 				elseif ($_GET['get'] === 'mod')	$where	=	" WHERE `authlevel` = '1'";
 				elseif ($_GET['get'] === 'pla')	$where	=	" WHERE `authlevel` = '0'";
-				else	$where = '';
 			}
-
 
 			$QueryUsers	= doquery("SELECT `id`, `username`, `authlevel` FROM {{table}}".$where."", "users");
 
-
+			$parse['list'] = '';
 			while ($List = $QueryUsers->fetch_assoc())
 			{
 				$parse['list']	.= '<option value="'.$List['id'].'">'.$List['username'].' ('.$lang['rank'][$List['authlevel']].')</option>';
 			}
 
+			$parse['a_to_z'] = '';
 			for ($i=65; $i<91; $i++)
 			{
 				$parse['a_to_z']	.= '<a href="javascript:UserList.set(\'^'.chr($i).'\')" title="{bo_select_title} '.chr($i).'">'.chr($i).'</a>';
 			}
-
 
 			if ($_SERVER['REQUEST_METHOD'] === 'POST')
 			{
@@ -125,17 +125,15 @@ class ShowModerationPage {
 				{
 					$parse['display']	=	'<div class="content some_errors">'.$lang['ad_authlevel_error_2'].'</div>';
 				}
-				elseif (( !  isset($_POST['id_1']) && ! isset($_POST['id_2'])) OR (empty($_POST['id_1']) && empty($_POST['id_2'])))
+				elseif (( !  isset($_POST['id_1']) OR empty($_POST['id_1'])) && ( ! isset($_POST['id_2']) OR empty($_POST['id_2'])))
 				{
 					$parse['display']	=	'<div class="content some_errors">'.$lang['ad_forgiven_id'].'</div>';
 				}
-				elseif ((isset($_POST['id_1']) && ! is_numeric($_POST['id_1'])) OR (isset($_POST['id_2']) && ! is_numeric($_POST['id_2'])))
+				elseif ((isset($_POST['id_1']) && ! empty($_POST['id_1']) && ! is_numeric($_POST['id_1'])) OR (isset($_POST['id_2']) && ! empty($_POST['id_2']) && ! is_numeric($_POST['id_2'])))
 				{
 					$parse['display']	=	'<div class="content some_errors">'.$lang['only_numbers'].'</div>';
-					var_dump($_POST['id_1']);
-					var_dump($_POST['id_2']);
 				}
-				elseif ($_POST['id_1'] == 1 OR $_POST['id_2'] == 1)
+				elseif ($_POST['id_1'] === '1' OR $_POST['id_2'] === '1')
 				{
 					$parse['display']	=	'<div class="content some_errors">'.$lang['ad_authlevel_error_3'].'</div>';
 				}
@@ -155,13 +153,13 @@ class ShowModerationPage {
 
 
 						$ASD	=	$_POST['authlevel'];
-						$Log	.=	"\n".$lang['log_system_auth_title']."\n";
+						$Log	=	"\n".$lang['log_system_auth_title']."\n";
 						$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_change_auth_1'].$id.",\n";
-						$Log	.=	$lang['log_change_auth_2'].$lang['ad_authlevel'][$ASD]."\n";
+						$Log	.=	$lang['log_change_auth_2'].$lang['rank'][$ASD]."\n";
 
 						LogFunction($Log, "ModerationLog");
 
-						header('location: admin.php?page=moderate&moderation=2&succes=yes');
+						header('location: admin.php?page=moderate&moderation=2&success=yes');
 					}
 					else
 					{
@@ -172,7 +170,6 @@ class ShowModerationPage {
 
 			if (isset($_GET['success']) && $_GET['success']	===	'yes')
 				$parse['display']	=	'<div class="content no_errors top">'.$lang['ad_authlevel_succes'].'</div>';
-
 
 			$script	= '<script charset="UTF-8" src="'.GAMEURL.'js/filterlist.min.js"></script>';
 

@@ -42,7 +42,7 @@ class debug
 		if (read_config('debug') == 1)
 		{
 			echo "<h2>$title</h2><br><font color=red>$message</font><br><hr>";
-			echo  "<section class=\"debug\">".$this->log."/section>";
+			echo "<section class=\"debug\">".$this->log."</section>";
 		}
 
 		include(XN_ROOT.'config.php');

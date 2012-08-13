@@ -34,6 +34,7 @@ div.content{text-align:center;color:#E6EBFB;padding:5px;border:1px solid #415680
 .content-table .row:first-of-type div.content:last-of-type{border-radius:0px 0.75em 0px 0px;}
 .content-table .row:last-of-type div.content:first-of-type{border-radius:0px 0px 0px 0.75em;}
 .content-table .row:last-of-type div.content:last-of-type{border-radius:0px 0px 0.75em;}
+.content-table .row.title{font-size:1.2em;background:repeat-x url('./../img/table-title.png');border:1px solid #415680;color:#E6EBFB;padding:2px 0px;margin:0px;}
 .content-table .content textarea{width:90%;background-color:#091D39;height:25em;resize:vertical;color:#FFFFFF;}
 .content-table .content select[size]{width:80%;}
 .content-table .content.note{font-size:1.5em;font-weight:bold;color:#FFCC00;}

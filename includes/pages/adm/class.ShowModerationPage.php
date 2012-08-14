@@ -99,10 +99,10 @@ class ShowModerationPage {
 			$where = '';
 			if (isset($_GET['get']) && ! empty($_GET['get']))
 			{
-				if ($_GET['get'] === 'adm')		$where	=	" WHERE `authlevel` = '3'";
-				elseif ($_GET['get'] === 'ope')	$where	=	" WHERE `authlevel` = '2'";
-				elseif ($_GET['get'] === 'mod')	$where	=	" WHERE `authlevel` = '1'";
-				elseif ($_GET['get'] === 'pla')	$where	=	" WHERE `authlevel` = '0'";
+				if ($_GET['get'] === 'adm')		$where	= " WHERE `authlevel` = '3'";
+				elseif ($_GET['get'] === 'ope')	$where	= " WHERE `authlevel` = '2'";
+				elseif ($_GET['get'] === 'mod')	$where	= " WHERE `authlevel` = '1'";
+				elseif ($_GET['get'] === 'pla')	$where	= " WHERE `authlevel` = '0'";
 			}
 
 			$QueryUsers	= doquery("SELECT `id`, `username`, `authlevel` FROM {{table}}".$where."", "users");

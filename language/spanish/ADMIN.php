@@ -147,7 +147,7 @@ $lang['laser_tech']				= 'Tecnología láser';
 $lang['ionic_tech']				= 'Tecnología iónica';
 $lang['buster_tech']			= 'Tecnología de plasma';
 $lang['intergalactic_tech']		= 'Red de investigación intergaláctica';
-$lang['expedition_tech']		= 'Tecnología de expedicion';
+$lang['expedition_tech']		= 'Tecnología de expedición';
 $lang['graviton_tech']			= 'Tecnología de gravitón';
 //###########################################################//
 

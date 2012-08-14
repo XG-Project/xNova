@@ -27,3 +27,5 @@
 		{errors_list}
 	</section>
 </section>
+
+NOTA: CON UN FORM SE VE BIEN!!!

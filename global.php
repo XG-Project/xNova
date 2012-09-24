@@ -169,7 +169,7 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 
 			$planetrow = doquery("SELECT * FROM `{{table}}` WHERE `id` = '".$user['current_planet']."';", "planets", TRUE);
 		}
-		// Include the plugin system 0.3
+		// Include the plugin system
 		include(XN_ROOT.'includes/plugins.php');
 	}
 }

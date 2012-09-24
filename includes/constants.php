@@ -11,7 +11,7 @@
 if ( ! defined('INSIDE')) die(header("Location:../"));
 
 // VERSION
-define('SYSTEM_VERSION' 			, '1.0.0-dev');
+define('SYSTEM_VERSION' 			, '1.0.0-pa1-dev');
 define('SCRIPT' 					, 'xNova');
 
 // TEMPLATES DEFAULT SETTINGS
@@ -78,7 +78,7 @@ define('TR_DARK_MATTER'			  	,    3500);
 
 // INVISIBLES DEBRIS
 define('DEBRIS_LIFE_TIME'      		,  604800); //7*24*60*60
-define('DEBRIS_MIN_VISIBLE_SIZE'	, 	  300);
+define('DEBRIS_MIN_VISIBLE_SIZE'	, 	 1000);
 
 
 /* End of file constants.php */

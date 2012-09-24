@@ -2,7 +2,7 @@
 <configurations>
 	<config>
 		<name>version</name>
-		<value>1.0.0-dev</value>
+		<value>1.0.0-pa1-dev</value>
 	</config>
 	<config>
 		<name>users_amount</name>

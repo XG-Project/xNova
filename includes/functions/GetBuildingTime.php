@@ -65,9 +65,9 @@ if ( ! defined('INSIDE')) die(header("Location:../../"));
 			$time         = floor(($time * 60 * 60));
 		}
 
-		if ($time < 0)
+		if ($time < 1)
 		{
-			$time = 0;
+			$time = 1;
 		}
 
 		return $time;

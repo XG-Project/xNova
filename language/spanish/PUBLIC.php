@@ -40,7 +40,7 @@ $lang['login']							= 'Ingresar';
 
 //reg.php
 $lang['reg_mail_text_part1']			= "Muchas gracias por registrarte en nuestro juego.\n Tu contraseña es: ";
-$lang['reg_mail_text_part2']			= "\n\n ¡Disfrutá del juego! \n ";
+$lang['reg_mail_text_part2']			= "\n\n ¡Disfruta del juego! \n ";
 $lang['register_at']					= 'Registro en ';
 $lang['invalid_mail_adress']			= '¡Correo electrónico inválido!<br>';
 $lang['empty_user_field']				= '¡El campo del usuario no puedo estar vacío!<br>';

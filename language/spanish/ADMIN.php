@@ -415,8 +415,8 @@ $lang['ow_other_contributors']		= 'Otros colaboradores';
 $lang['ow_special_thanks']			= 'Agradecimientos especiales';
 $lang['ow_install_file_detected']	= 'Se detecto el directorio install/ o el archivo install.php. Por razones se seguridad recomendamos eliminarlos.';
 $lang['ow_config_file_writable']	= 'El archivo config.php puede ser escrito, es recomendable que sea colocado en chmod 0440 (sólo lectura).';
-$lang['ow_database_errors']			= 'Hay errores en tu base de datos. Puedes verlos haciendo <a href="admin.php?page=errors">click aquí</a>';
-$lang['ow_old_version']				= 'Hay una nueva versión disponible. Haz click <a href="http://www.razican.com/" target="_blank">aquí</a> para descargarla';
+$lang['ow_database_errors']			= 'Hay errores en tu base de datos. Puedes verlos haciendo <a href="admin.php?page=errors">clic aquí</a>';
+$lang['ow_old_version']				= 'Hay una nueva versión disponible. Haz clic <a href="http://www.razican.com/" target="_blank">aquí</a> para descargarla';
 $lang['ow_none']					= 'No hay actualizaciones ni advertencias';
 $lang['ow_log_file_no_writable']	= 'Al menos uno de los archivos de logs en /includes/logs/ no puede ser escrito, por favor, dales permisos CHMOD 0666';
 $lang['ow_config_file_no_writable']	= 'El archivo de configuración /includes/xml/config.xml no es escribible, por favor, dale los permisos CHMOD 0666';
@@ -556,7 +556,7 @@ $lang['mu_tools']					= 'Herramientas';
 $lang['mu_md5_encripter']			= 'Encriptador MD5';
 $lang['mu_optimize_db']				= 'Base de datos';
 $lang['mu_manual_points_update']	= 'Update manual de puntos';
-$lang['mu_mpu_confirmation']		= 'El update de puntos es automático, de todas formas puedes realizarlo manualmente si lo deseas haciendo click aqui ¿Deseas continuar?';
+$lang['mu_mpu_confirmation']		= 'El update de puntos es automático, de todas formas puedes realizarlo manualmente si lo deseas haciendo clic aquí ¿Deseas continuar?';
 $lang['mu_search_page']				= 'Buscador avanzado';
 $lang['mu_info_account_page']		= 'Información de cuentas';
 $lang['mu_planets_options']			= 'Opciones de planetas';
@@ -1048,7 +1048,7 @@ $lang['log_searchindb_vacat']		= 'Vacaciones';
 $lang['log_searchindb_susp']		= 'Suspendidos';
 $lang['log_searchindb_admin']		= 'Administradores';
 $lang['log_searchindb_inac']		= 'Inactivos';
-$lang['log_search_advert_popup']	= 'Para Activar/Desactivar el historial puedes hacerlo desde la sección de Permisos. Click para ir al panel de permisos.';
+$lang['log_search_advert_popup']	= 'Para Activar/Desactivar el historial puedes hacerlo desde la sección de Permisos. Clic para ir al panel de permisos.';
 //###########################################################//
 
 

@@ -14,7 +14,7 @@
 	</config>
 	<config>
 		<name>game_speed</name>
-		<value>62500</value>
+		<value>2500</value>
 	</config>
 	<config>
 		<name>fleet_speed</name>
@@ -118,7 +118,7 @@
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1348483382</value>
+		<value>1349455788</value>
 	</config>
 	<config>
 		<name>stat_settings</name>
@@ -170,7 +170,7 @@
 	</config>
 	<config>
 		<name>bots_last_update</name>
-		<value>1348483382</value>
+		<value>1349455980</value>
 	</config>
 	<config>
 		<name>log_bots</name>

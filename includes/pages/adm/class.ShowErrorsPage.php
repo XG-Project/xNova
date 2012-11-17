@@ -132,3 +132,7 @@ class ShowErrorsPage {
 		}
 	}
 }
+
+
+/* End of file class.ShowErrorsPage.php */
+/* Location: ./includes/pages/adm/class.ShowErrorsPage.php */

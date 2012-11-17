@@ -413,7 +413,7 @@ $lang['ow_proyect_leader']		= 'Líder del proyecto';
 $lang['ow_principal_contributors']	= 'Principales colaboradores';
 $lang['ow_other_contributors']		= 'Otros colaboradores';
 $lang['ow_special_thanks']			= 'Agradecimientos especiales';
-$lang['ow_install_file_detected']	= 'Se detecto el directorio install/ o el archivo install.php. Por razones se seguridad recomendamos eliminarlos.';
+$lang['ow_install_file_detected']	= 'Se detecto el directorio <i>install</i> o el archivo <i>install.php</i>. Por razones se seguridad recomendamos eliminarlos.';
 $lang['ow_config_file_writable']	= 'El archivo config.php puede ser escrito, es recomendable que sea colocado en chmod 0440 (sólo lectura).';
 $lang['ow_database_errors']			= 'Hay errores en tu base de datos. Puedes verlos haciendo <a href="admin.php?page=errors">clic aquí</a>';
 $lang['ow_old_version']				= 'Hay una nueva versión disponible. Haz clic <a href="http://www.razican.com/" target="_blank">aquí</a> para descargarla';

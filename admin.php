@@ -23,38 +23,43 @@ $page	= isset($_GET['page']) ? $_GET['page'] : NULL;
 switch($page)
 {
 //====================================================================================================//
-	case'query':
+	case 'query':
 		require_once(XN_ROOT.'includes/pages/adm/class.ShowQueriesPage.php');
 		new ShowQueriesPage();
 	break;
 //====================================================================================================//
-	case'reset':
+	case 'reset':
 		require_once(XN_ROOT.'includes/pages/adm/class.ShowResetPage.php');
 		new ShowResetPage();
 	break;
 //====================================================================================================//
-	case'moderate':
+	case 'moderate':
 		require_once(XN_ROOT.'includes/pages/adm/class.ShowModerationPage.php');
 		new ShowModerationPage(isset($_GET['moderation']) ? (int) $_GET['moderation'] : NULL);
 	break;
 //====================================================================================================//
-	case'settings':
+	case 'settings':
 		require_once(XN_ROOT.'includes/pages/adm/class.ShowSettingsPage.php');
 		new ShowSettingsPage($user);
 	break;
 //====================================================================================================//
-	case'plugins':
+	case 'plugins':
 		//PLUGINS
 	break;
 //====================================================================================================//
-	case'database':
+	case 'database':
 		require_once(XN_ROOT.'includes/pages/adm/class.ShowDatabasePage.php');
 		new ShowDatabasePage();
 	break;
 //====================================================================================================//
-	case'errors':
+	case 'errors':
 		require_once(XN_ROOT.'includes/pages/adm/class.ShowErrorsPage.php');
 		new ShowErrorsPage();
+	break;
+//====================================================================================================//
+	case 'logs':
+		require_once(XN_ROOT.'includes/pages/adm/class.ShowLogsPage.php');
+		new ShowLogsPage();
 	break;
 //====================================================================================================//
 	default:

@@ -413,7 +413,7 @@ $lang['ow_proyect_leader']		= 'Proyect Leader';
 $lang['ow_principal_contributors']	= 'Principal contributors';
 $lang['ow_other_contributors']		= 'Other Contributors';
 $lang['ow_special_thanks']			= 'Special Thanks';
-$lang['ow_install_file_detected']	= 'install/ directory or install.php was found. For security reasons, we recommend remove or rename it.';
+$lang['ow_install_file_detected']	= '<i>install</i> directory or <i>install.php</i> was found. For security reasons, we recommend remove or rename it.';
 $lang['ow_config_file_writable']	= 'The config.php file could be written, it is advisable to be placed in chmod 0440 (read only).';
 $lang['ow_database_errors']			= 'There are errors in your database. You can see them <a href="admin.php?page=errors">clicking here</a>';
 $lang['ow_old_version']				= 'There is a new version available. Click <a href="http://www.razican.com/" target="_blank">here</a> to download it.';

@@ -2,6 +2,7 @@
 .page{text-align:center;margin-top:2em;}.page h2{color:#FFFFFF;text-align:center;}
 body{font-family:Tahoma,sans-serif;font-style:normal;line-height:normal;}
 a{text-decoration:none;color:#ffffff;font-weight:bold;}
+i{font-style:italic;}
 h3{text-align:center;}
 form{margin:0px;}
 #debug{clear:both;}
@@ -43,7 +44,7 @@ div.content{text-align:center;color:#E6EBFB;padding:5px;border:1px solid #415680
 .content-table .content.menu nav li{display:inline-block;width:45%;margin:0px;font-size:1.3em;}.content-table .content.menu nav li figure{vertical-align:middle;}
 .errors{font-size:0.7em;margin-bottom:20px;border-radius:1em;}.errors a:hover{text-decoration:underline;}
 .errors span{margin:5px 0px;}
-.some_errors{border:2px solid #ff0000;color:#ff4d4d;background-color:rgba(204, 0, 0, 0.75);}
+.some_errors{border:2px solid #ff0000;color:#ff6666;background-color:rgba(204, 0, 0, 0.75);}
 .no_errors{border:2px solid #bfff00;color:#d2ff4d;background-color:rgba(153, 204, 0, 0.75);}
 section.debug{width:100%;margin:auto;display:table;color:#E6EBFB;text-align:center;}section.debug div.query{display:table-row;}section.debug div.query section{display:table-cell;border:1px solid #415680;vertical-align:middle;padding:0.3em;}
 section.debug div.query:last-of-type section:first-of-type{border-radius:0px 0px 0px 0.75em;}

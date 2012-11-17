@@ -127,7 +127,7 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 
 		$_fleets = doquery("SELECT fleet_start_galaxy,fleet_start_system,fleet_start_planet,fleet_start_type FROM `{{table}}` WHERE `fleet_start_time` <= '".time()."' and `fleet_mess` ='0' order by fleet_id asc;", 'fleets'); // OR fleet_end_time <= ".time()
 
-		while ($row = $_fleets->fetch_array())
+		while ($row = $_fleets->fetch_assoc())
 		{
 			$array 					= array();
 			$array['galaxy'] 		= $row['fleet_start_galaxy'];
@@ -142,7 +142,7 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 
 		$_fleets = doquery("SELECT fleet_end_galaxy,fleet_end_system,fleet_end_planet ,fleet_end_type FROM `{{table}}` WHERE `fleet_end_time` <= '". time()." order by fleet_id asc';", 'fleets'); // OR fleet_end_time <= ".time()
 
-		while ($row = $_fleets->fetch_array())
+		while ($row = $_fleets->fetch_assoc())
 		{
 			$array 					= array();
 			$array['galaxy'] 		= $row['fleet_end_galaxy'];

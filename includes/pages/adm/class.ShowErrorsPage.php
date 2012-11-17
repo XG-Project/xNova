@@ -46,16 +46,20 @@ class ShowErrorsPage {
 				{
 					$i++;
 
-					//TODO HTML5
-					$parse['errors_list'] .= "
-					<tr><td width=\"25\">".$u['error_id']."</td>
-					<td width=\"70\">".$u['error_sender']."</td>
-					<td width=\"100\">".$u['error_type']."</td>
-					<td width=\"230\">".date('d/m/Y h:i:s', $u['error_time'])."</td>
-					<td width=\"95\"><a href=\"?page=sql&delete=".$u['error_id']."\" border=\"0\"><img src=\"../styles/images/r1.png\" border=\"0\"></a></td></tr>
-					<tr><th colspan=\"5\" class=b>".nl2br($u['error_text'])."</td></tr>";
+					$parse['errors_list']	.= '<div class="row">';
+					$parse['errors_list']	.= '<div class="content">'.$u['error_id'].'</div>';
+					$parse['errors_list']	.= '<div class="content">'.(( ! $u['error_sender']) ? $lang['er_public'] : $u['error_sender']).'</div>';
+					$parse['errors_list']	.= '<div class="content">'.$u['error_type'].'</div>';
+					$parse['errors_list']	.= '<div class="content">'.date('d/m/Y h:i:s', $u['error_time']).'</div>';
+					$parse['errors_list']	.= '<div class="content">'.str_replace('%lang%', $lang['lang_key'], $u['error_text']).'</div>';
+					$parse['errors_list']	.= '<div class="content"><a href="admin.php?page=errors&amp;errors=sql&amp;delete='.$u['error_id'].'" title="'.$lang['button_delete'].'"><figure class="false"></figure></a></div>';
+					$parse['errors_list']	.= '</div>';
+
+					$parse['errors_list']	.= '<div class="row">';
+					$parse['errors_list']	.= '<div class="content">'.nl2br($u['error_text']).'</div>';
+					$parse['errors_list']	.= '</div>';
 				}
-				$parse['errors_list'] .= "<tr><th class=b colspan=5>".$i.$lang['er_errors']."</th></tr>";
+				$parse['total_errors'] = $i;
 				display(parsetemplate(gettemplate('adm/SQLerrorMessagesBody'), $parse), TRUE, '', TRUE);
 			break;
 			case 'php':
@@ -120,7 +124,7 @@ class ShowErrorsPage {
 					$parse['errors_list']	.= '<div class="content"><a href="admin.php?page=errors&amp;errors=php&amp;delete='.$u['error_id'].'" title="'.$lang['button_delete'].'"><figure class="false"></figure></a></div>';
 					$parse['errors_list']	.= '</div>';
 				}
-				$parse['errors_list'] .= '<div class"content">'.$i.$lang['er_errors'].'</div>';
+				$parse['total_errors']		= $i;
 				display(parsetemplate(gettemplate('adm/PHPerrorMessagesBody'), $parse), TRUE, '', TRUE);
 			break;
 			default:

@@ -102,7 +102,7 @@
 	</config>
 	<config>
 		<name>debug</name>
-		<value>0</value>
+		<value>1</value>
 	</config>
 	<config>
 		<name>lang</name>
@@ -118,7 +118,7 @@
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1349455788</value>
+		<value>1353178241</value>
 	</config>
 	<config>
 		<name>stat_settings</name>
@@ -170,7 +170,7 @@
 	</config>
 	<config>
 		<name>bots_last_update</name>
-		<value>1349455980</value>
+		<value>1353178241</value>
 	</config>
 	<config>
 		<name>log_bots</name>

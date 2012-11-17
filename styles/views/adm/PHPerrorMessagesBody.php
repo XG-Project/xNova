@@ -1,5 +1,5 @@
 <section class="page">
-	<section class="content-table table">
+	<section class="content-table">
 		<h3>{er_php_error_list} [<a href="admin.php?page=errors&amp;errors=php&amp;deleteall=yes">{er_dlte_all}</a>]</h3>
 		<div class="content">
 			<form action="admin.php?page=errors&amp;errors=php" method="post" accept-charset="UTF-8">{er_php_show}:
@@ -12,7 +12,10 @@
 				<input type="submit" name="submit" value="{er_filter}">
 			</form>
 		</div>
+		<div class="content">{total_errors} {er_errors}</div>
+	</section>
 
+	<section class="content-table table">
 		<div class="row title">
 			<div class="content">{input_id}</div>
 			<div class="content">{er_date}</div>
@@ -27,5 +30,3 @@
 		{errors_list}
 	</section>
 </section>
-
-NOTA: CON UN FORM SE VE BIEN!!!

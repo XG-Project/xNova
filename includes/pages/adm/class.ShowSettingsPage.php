@@ -287,12 +287,14 @@ class ShowSettingsPage {
 
 			LogFunction($Log, "ConfigLog");
 
-			if (read_config('lang') != $game_config['lang'])
+			if ($lang_changed = (read_config('lang') != $game_config['lang']))
 			{
 				update_config('lang' 				, $game_config['lang'] 						);
+
+				require_once(XN_ROOT.'language/'.$game_config['lang'].'/INGAME.php');
+
 				doquery('ALTER TABLE  `{{table}}` CHANGE  `name`  `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT  \''.$lang['homeworld'].'\'', 'planets');
 			}
-			$lang_changed = (read_config('lang') != $game_config['lang']);
 
 			update_config('game_disable'			, $game_config['game_disable']				);
 			update_config('close_reason'			, $game_config['close_reason']				);

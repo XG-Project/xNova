@@ -80,7 +80,7 @@ class ShowModerationPage {
 				$Log	.=	$lang['log_view'].":     ".$lang['log_viewmod'][$view_o]."\n";
 				$Log	.=	$lang['log_config'].":     ".$lang['log_viewmod'][$config_o]."\n";
 
-				LogFunction($Log, "ModerationLog");
+				LogFunction($Log, "moderation");
 
 				update_config('moderation', $QueryEdit);
 				header('location: admin.php?page=moderate&moderation=1');
@@ -157,7 +157,7 @@ class ShowModerationPage {
 						$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_change_auth_1'].$id.",\n";
 						$Log	.=	$lang['log_change_auth_2'].$lang['rank'][$ASD]."\n";
 
-						LogFunction($Log, "ModerationLog");
+						LogFunction($Log, "moderation");
 
 						header('location: admin.php?page=moderate&moderation=2&success=yes');
 					}

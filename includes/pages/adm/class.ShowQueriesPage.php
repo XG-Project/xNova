@@ -31,7 +31,7 @@ class ShowQueriesPage {
 				$Log	=	"\n".$lang['log_queries_title']."\n";
 				$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_queries_succes']."\n";
 				$Log	.=	$query."\n";
-				LogFunction($Log, "GeneralLog");
+				LogFunction($Log, "general");
 
 				$parse['display']	= '<div class="content no_errors">'.$lang['qe_succes'].'</div>';
 			}

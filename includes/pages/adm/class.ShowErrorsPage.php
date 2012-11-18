@@ -28,14 +28,14 @@ class ShowErrorsPage {
 					doquery("DELETE FROM `{{table}}` WHERE `error_id`='".$GET['delete']."'", 'errors');
 					$Log	=	"\n".$lang['log_errores_title']."\n";
 					$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_errors']."\n";
-					LogFunction($Log, "GeneralLog");
+					LogFunction($Log, "general");
 				}
 				elseif (isset($_GET['deleteall']) && $_GET['deleteall'] === 'yes')
 				{
 					doquery("DELETE FROM `{{table}}` WHERE `error_type` != 'PHP'", 'errors');
 					$Log	=	"\n".$lang['log_errores_title']."\n";
 					$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_all_sql_errors']."\n";
-					LogFunction($Log, "GeneralLog");
+					LogFunction($Log, "general");
 				}
 
 				$query = doquery("SELECT * FROM `{{table}}` WHERE `error_type` != 'PHP' ORDER BY `error_time`", 'errors');
@@ -68,14 +68,14 @@ class ShowErrorsPage {
 					doquery("DELETE FROM `{{table}}` WHERE `error_id`='".$_GET['delete']."'", 'errors');
 					$Log	=	"\n".$lang['log_errores_title']."\n";
 					$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_errors']."\n";
-					LogFunction($Log, "GeneralLog");
+					LogFunction($Log, "general");
 				}
 				elseif (isset($_GET['deleteall']) && $_GET['deleteall'] === 'yes')
 				{
 					doquery("DELETE FROM `{{table}}` WHERE `error_type` = 'PHP'", 'errors');
 					$Log	=	"\n".$lang['log_errores_title']."\n";
 					$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_all_php_errors']."\n";
-					LogFunction($Log, "GeneralLog");
+					LogFunction($Log, "general");
 				}
 
 				$error_level	= array('32767', '8192', '4096', '2048', '8', '2');

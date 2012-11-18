@@ -219,12 +219,12 @@ include_once(XN_ROOT.'includes/functions/DeleteSelectedUser.php');
 if ($_GET['delete'] == 'user'){
 	DeleteSelectedUser ($_GET['user']);
 	$Log	.=	"\n".$lang['log_searchindb_del1'].$_GET['user'].$lang['log_searchindb_del2'].$user['username']."\n";
-	LogFunction($Log, "GeneralLog");
+	LogFunction($Log, "general");
 	message($lang['se_delete_succes_p'], "SearchingPage.php?search=users&minimize=on", 2);}
 elseif ($_GET['delete'] == 'planet'){
 	DeleteSelectedPlanet ($_GET['planet']);
 	$Log	.=	"\n".$lang['log_searchindb_del3'].$_GET['planet'].$lang['log_searchindb_del2'].$user['username']."\n";
-	LogFunction($Log, "GeneralLog");
+	LogFunction($Log, "general");
 	message($lang['se_delete_succes_p'], "SearchingPage.php?search=planet&minimize=on", 2);
 	}
 

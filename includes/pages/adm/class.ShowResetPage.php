@@ -165,7 +165,7 @@ class ShowResetPage {
 				if (isset($_POST['ofis']) && $_POST['ofis'] === 'on'){
 					doquery("UPDATE `{{table}}` SET `rpg_geologue` = '0', `rpg_amiral` = '0', `rpg_ingenieur` = '0',
 												`rpg_technocrate` = '0'", "users");
-					$Log	.= $lang['log_officiers']."\n";}
+					$Log	.= $lang['log_officers']."\n";}
 
 				if (isset($_POST['inves_c']) && $_POST['inves_c'] === 'on'){
 					doquery("UPDATE `{{table}}` SET `b_tech` = '0', `b_tech_id` = '0'", "planets");
@@ -239,7 +239,7 @@ class ShowResetPage {
 				$Log	.=	$lang['log_all_uni']."\n";
 			}
 
-			LogFunction($Log, "ResetLog");
+			LogFunction($Log, "reset");
 			$parse['result']	= '<div class="content no_errors top">'.$lang['re_reset_excess'].'</div>';
 		}
 

@@ -196,7 +196,7 @@ if ($_GET['panel'])
 		$Log	.=	$lang['log_longer'].date("d-m-Y H:i:s", $BannedUntil)."\n";
 		$Log	.=	$lang['log_vacations'].$lang['log_viewmod'][$ASD]."\n";
 
-		LogFunction($Log, "GeneralLog");
+		LogFunction($Log, "general");
 
 		header('location: BanPage.php?panel=ban_name&ban_name='.$_GET['ban_name'].'&succes=yes');
 	}
@@ -215,7 +215,7 @@ elseif ($_POST && $_POST['unban_name'])
 	$Log	.=	"\n".$lang['log_suspended_title']."\n";
 	$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_suspended_3'].$name."\n";
 
-	LogFunction($Log, "GeneralLog");
+	LogFunction($Log, "general");
 
 	header('location: BanPage.php?succes2=yes');
 }

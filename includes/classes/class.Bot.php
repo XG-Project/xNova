@@ -30,7 +30,7 @@ function UpdateBots()
 	include_once(XN_ROOT.'includes/functions/CheckPlanetUsedFields.php');
 	include_once(XN_ROOT.'includes/classes/class.FlyingFleetHandler.php');
 
-	if (read_config('log_bots')) $BotLog = "\n\n------------------------------------------\n";
+	if (read_config('log_bots')) $log = "\n\n------------------------------------------\n";
 	$allbots		= doquery("SELECT * FROM `{{table}}` WHERE `next_time` < ".$now, 'bots');
 	$update_bots	= array();
 	$update_users	= array();
@@ -40,7 +40,7 @@ function UpdateBots()
 		$user		= doquery("SELECT * FROM `{{table}}` WHERE `id` = '".$bot['user']."'", 'users', TRUE);
 		$thebot		= new Bot($user, $bot);
 		$thebot->Play();
-		if (isset($BotLog)) $BotLog .= $thebot->log;
+		if (isset($log)) $log .= $thebot->log;
 
 		/**
 		 *	Para calcular la pr?xima actividad, se genera una funci?n que decrece de
@@ -98,12 +98,12 @@ function UpdateBots()
 		unset($thebot);
 	}
 
-	if (isset($BotLog))
+	if (isset($log))
 	{
-		$st		= fopen(XN_ROOT."adm/Log/BotLog.php", "a");
-		$BotLog	.= 'Bots actualizados a las '.date('H:i:s - j/n/Y', $now)."\n";
-		$BotLog	.= "------------------------------------------";
-		fwrite($st, $BotLog);
+		$st		= fopen(XN_ROOT."includes/logs/bots.php", "a");
+		$log	.= 'Bots actualizados a las '.date('H:i:s - j/n/Y', $now)."\n";
+		$log	.= "------------------------------------------";
+		fwrite($st, $log);
 		fclose($st);
 	}
 	unset($bot);

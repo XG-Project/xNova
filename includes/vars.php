@@ -289,7 +289,7 @@ if (defined('INSIDE'))
 	$reslist['tech']     = array(106, 108, 109, 110, 111, 113, 114, 115, 117, 118, 120, 121, 122, 123, 124, 199);
 	$reslist['fleet']    = array(202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215);
 	$reslist['defense']  = array(401, 402, 403, 404, 405, 406, 407, 408, 502, 503);
-	$reslist['officier'] = array(601, 602, 603, 604);
+	$reslist['officer'] = array(601, 602, 603, 604);
 	$reslist['prod']     = array( 1,   2,   3,   4,  12, 212);
 }
 ?>

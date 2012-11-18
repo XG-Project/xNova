@@ -10,7 +10,7 @@
 
 if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-class ShowOfficierPage
+class ShowOfficerPage
 {
 	public function __construct(&$CurrentUser)
 	{
@@ -23,10 +23,10 @@ class ShowOfficierPage
 		{
 			$Selected    = $_GET['offi'];
 
-			if (in_array($Selected, $reslist['officier']))
+			if (in_array($Selected, $reslist['officer']))
 			{
-				$Result =	$this->IsOfficierAccessible ($CurrentUser, $Selected);
-				$Price	=	$this->GetOfficierPrice ($Selected);
+				$Result =	$this->IsOfficerAccessible ($CurrentUser, $Selected);
+				$Price	=	$this->GetOfficerPrice ($Selected);
 
 				if ($Result)
 				{
@@ -42,21 +42,21 @@ class ShowOfficierPage
 				}
 				else
 				{
-					header("Location: ".GAMEURL."game.php?page=officier");
+					header("Location: ".GAMEURL."game.php?page=officer");
 				}
 			}
 
-			header("Location: ".GAMEURL."game.php?page=officier");
+			header("Location: ".GAMEURL."game.php?page=officer");
 
 		}
 		else
 		{
-			$OfficierRowTPL			=	gettemplate('officier/officier_row');
+			$OfficerRowTPL			=	gettemplate('officer/officer_row');
 
 			foreach ($lang['tech'] as $Element => $ElementName)
 			{
-				$Result = $this->IsOfficierAccessible ($CurrentUser, $Element);
-				$Price	= $this->GetOfficierPrice ($Element);
+				$Result = $this->IsOfficerAccessible ($CurrentUser, $Element);
+				$Price	= $this->GetOfficerPrice ($Element);
 
 				if ($Element >= 601 && $Element <= 604)
 				{
@@ -69,28 +69,28 @@ class ShowOfficierPage
 					if ($Result)
 					{
 						$bloc['off_link']  = "<font color=\"lime\"><strong>".Format::pretty_number($Price).'</strong><br>'.$lang['Darkmatter']."</font>";
-						$bloc['off_link'] .= "<br><a href=\"game.php?page=officier&mode=2&offi=".$Element."\"><font color=\"#00ff00\">".$lang['of_recruit']."</font>";
+						$bloc['off_link'] .= "<br><a href=\"game.php?page=officer&mode=2&offi=".$Element."\"><font color=\"#00ff00\">".$lang['of_recruit']."</font>";
 					}
 					else
 					{
 						$bloc['off_link'] = "<font color=\"red\"><strong>".Format::pretty_number($Price).'</strong><br>'.$lang['Darkmatter']."</font>";
 					}
-					$parse['disp_off_tbl'] .= parsetemplate($OfficierRowTPL, $bloc);
+					$parse['disp_off_tbl'] .= parsetemplate($OfficerRowTPL, $bloc);
 				}
 			}
-			$page = parsetemplate(gettemplate('officier/officier_table'), $parse);
+			$page = parsetemplate(gettemplate('officer/officer_table'), $parse);
 		}
 
 		display($page);
 	}
 
-	private function IsOfficierAccessible($CurrentUser, $Officier)
+	private function IsOfficerAccessible($CurrentUser, $Offcer)
 	{
 		global $resource, $pricelist;
 
-		if ($CurrentUser[$resource[$Officier]] < $pricelist[$Officier]['max'])
+		if ($CurrentUser[$resource[$Offcer]] < $pricelist[$Offcer]['max'])
 		{
-			$cost['darkmatter']  = floor($pricelist[$Officier]['darkmatter']);
+			$cost['darkmatter']  = floor($pricelist[$Offcer]['darkmatter']);
 
 			return ( ! ($cost['darkmatter'] > $CurrentUser['darkmatter']));
 		}
@@ -100,11 +100,11 @@ class ShowOfficierPage
 		}
 	}
 
-	private function GetOfficierPrice($Officier)
+	private function GetOfficerPrice($Officer)
 	{
 		global $pricelist;
 
-		return floor($pricelist[$Officier]['darkmatter']);
+		return floor($pricelist[$Officer]['darkmatter']);
 	}
 }
 ?>

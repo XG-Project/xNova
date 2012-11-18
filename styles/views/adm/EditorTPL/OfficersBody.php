@@ -8,14 +8,14 @@
 <th colspan="3" align="left"><a href="AccountEditorPage.php">
 <img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {ad_back_to_menu}</a></th>
 </tr><tr>
-	<td class="c" colspan="7">{officiers_title}</td>
+	<td class="c" colspan="7">{officers_title}</td>
 </tr><tr>
 	<th colspan="2">{input_id_user}</th>
 	<th><input name="id" type="text" value="0" size="3" ></th>
 </tr><tr>
 	<td class="c">{ad_number}</td>
-	<td class="c">{officiers_title}</td>
-	<td class="c">{officiers_count}</td>
+	<td class="c">{officers_title}</td>
+	<td class="c">{officers_count}</td>
 </tr><tr>
 	<th>1</th>
 	<th>{geologist}</th>

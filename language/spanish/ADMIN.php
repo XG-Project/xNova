@@ -152,9 +152,9 @@ $lang['graviton_tech']			= 'Tecnología de gravitón';
 //###########################################################//
 
 
-//---------------	OFICIALES - OFFICIERS	------------------------//
-$lang['officiers_title']		= 'Oficiales';
-$lang['officiers_count']		= 'Cantidad de oficiales';
+//---------------	OFICIALES - OFFICERS	------------------------//
+$lang['officers_title']			= 'Oficiales';
+$lang['officers_count']			= 'Cantidad de oficiales';
 $lang['geologist']				= 'Geólogo';
 $lang['admiral']				= 'Almirante';
 $lang['engineer']				= 'Ingeniero';
@@ -190,7 +190,7 @@ $lang['ad_editor_buildings']	= 'Edificios';
 $lang['ad_editor_ships']		= 'Naves';
 $lang['ad_editor_defenses']		= 'Defensas';
 $lang['ad_editor_researchs']	= 'Investigaciones';
-$lang['ad_editor_officiers']	= 'Oficiales';
+$lang['ad_editor_officers']		= 'Oficiales';
 $lang['ad_editor_personal']		= 'Datos personales';
 $lang['ad_editor_planets']		= 'Planetas y Lunas';
 $lang['ad_editor_resources']	= 'Recursos';
@@ -202,7 +202,7 @@ $lang['ad_add_succes']		= 'Investigaciones agregadas con éxito';
 $lang['ad_delete_succes']	= 'Investigaciones borradas con éxito';
 $lang['ad_research_title']	= 'Editar investigaciones';
 
-//	OFICIALES - OFFICIERS
+//	OFICIALES - OFFICERS
 $lang['ad_offi_title']			= 'Editar oficiales';
 $lang['ad_offi_succes_add']		= 'Oficiales agregados con éxito';
 $lang['ad_offi_succes_delete']	= 'Oficiales borrados con éxito';
@@ -637,7 +637,7 @@ $lang['ac_coords']							= 'Coordenada';
 $lang['ac_diameter']						= 'Diámetro';
 $lang['ac_fields']							= 'Campos';
 $lang['ac_temperature']						= 'Temp.';
-$lang['ac_officier_research']				= 'Investigaciones y Oficiales';
+$lang['ac_officer_research']				= 'Investigaciones y Oficiales';
 $lang['ac_recent_destroyed_planets']		= 'Planetas destruidos recientemente';
 $lang['ac_no_moons']						= 'El jugador no tiene lunas';
 $lang['ac_total_points']					= 'Total: ';
@@ -908,7 +908,7 @@ $lang['log_edit_succes']			= 'Editado con éxito';
 $lang['log_delete_succes']			= 'El siguiente archivo ha sido vaciado con éxito:&nbsp;';
 $lang['log_edit_link']				= 'Editar historial';
 $lang['log_delete_link']			= 'Vaciar historial';
-$lang['log_filesize_0']				= '<font color=yellow>El historial esta vacio</font>';
+$lang['log_filesize_0']				= 'El historial esta vacio';
 $lang['log_the_user']				= 'El usuario ';
 $lang['log_to_planet']				= 'al planeta con el ID: ';
 $lang['log_and']					= 'y ';
@@ -945,7 +945,7 @@ $lang['log_buildings_planet']		= 'EDIFICIOS PLANETARIOS';
 $lang['log_buildings_moon']			= 'EDIFICIOS LUNARES';
 $lang['log_c_buildings']			= 'COLA DE EDIFICIOS';
 $lang['log_researchs']				= 'INVESTIGACIONES';
-$lang['log_officiers']				= 'OFICIALES';
+$lang['log_officers']				= 'OFICIALES';
 $lang['log_c_researchs']			= 'INVESTIGACIONES EN CURSO';
 $lang['log_darkmatter']				= 'MATERIA OSCURA';
 $lang['log_resources']				= 'RECURSOS';
@@ -1048,7 +1048,7 @@ $lang['log_searchindb_vacat']		= 'Vacaciones';
 $lang['log_searchindb_susp']		= 'Suspendidos';
 $lang['log_searchindb_admin']		= 'Administradores';
 $lang['log_searchindb_inac']		= 'Inactivos';
-$lang['log_search_advert_popup']	= 'Para Activar/Desactivar el historial puedes hacerlo desde la sección de Permisos. Clic para ir al panel de permisos.';
+$lang['log_permission_advert']		= 'Puedes activar/desactivar el historial desde el panel de permisos.';
 //###########################################################//
 
 

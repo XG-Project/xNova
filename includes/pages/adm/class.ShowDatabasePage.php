@@ -63,7 +63,7 @@ class ShowDatabasePage {
 				}
 			}
 
-			LogFunction($Log, "GeneralLog");
+			LogFunction($Log, "general");
 		}
 		else
 		{

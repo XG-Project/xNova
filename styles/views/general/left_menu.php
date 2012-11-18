@@ -144,7 +144,7 @@ function f(target_url,win_name)
 
 	   <td>
 		<div align="center"><font color="#FFFFFF">
-			<a  href='game.php?page=officier'><font color='FF8900'>{lm_officiers}</font></a>
+			<a  href='game.php?page=officer'><font color='FF8900'>{lm_officers}</font></a>
 	   </font></div>
 	  </td>
 	 </tr>

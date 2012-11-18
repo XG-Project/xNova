@@ -65,7 +65,7 @@ define('BUILD_METAL'				,     500);
 define('BUILD_CRISTAL'				,     500);
 define('BUILD_DEUTERIUM'			, 	    0);
 
-// OFFICIERS DEFAULT VALUES
+// OFFICERS DEFAULT VALUES
 define('AMIRAL'				  		,       2);
 define('ENGINEER_DEFENSE'			,       2);
 define('ENGINEER_ENERGY'			,     0.5);

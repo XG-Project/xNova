@@ -88,7 +88,7 @@ switch ($_GET['page'])
 				$Log	.=	$lang['log_and'].$lang['darkmatter'].": ".$dark."\n";
 				$Log	.=	$lang['log_to_user'].$id_dark."\n";
 
-				LogFunction($Log, "ResourcesLog");
+				LogFunction($Log, "resources");
 			}
 		}
 		else
@@ -194,7 +194,7 @@ switch ($_GET['page'])
 					$Log	.=	$lang['battleship'].": ".$battleship."\n";
 					$Log	.=	$lang['log_to_planet'].$id."\n";
 
-					LogFunction($Log, "ShipsLog");
+					LogFunction($Log, "ships");
 				}
 			}
 			else
@@ -281,7 +281,7 @@ switch ($_GET['page'])
 					$Log	.=	$lang['interplanetary_misil'].": ".$interplanetary_misil."\n";
 					$Log	.=	$lang['log_to_planet'].$id."\n";
 
-					LogFunction($Log, "DefensesLog");
+					LogFunction($Log, "defenses");
 				}
 			}
 			else
@@ -460,7 +460,7 @@ switch ($_GET['page'])
 					$Log	.=	$lang['cuantic'].": ".$sprungtor."\n";
 					$Log	.=	$lang['log_to_planet'].$id."\n";
 
-					LogFunction($Log, "BuildingsLog");
+					LogFunction($Log, "buildings");
 				}
 			}
 			else
@@ -573,7 +573,7 @@ switch ($_GET['page'])
 					$Log	.=	$lang['graviton_tech'].": ".$graviton_tech."\n";
 					$Log	.=	$lang['log_to_user'].$id."\n";
 
-					LogFunction($Log, "ResearchLog");
+					LogFunction($Log, "research");
 				}
 			}
 			else
@@ -649,7 +649,7 @@ switch ($_GET['page'])
 					$PersonalQuery    .=    "WHERE `id` = '".$_POST['id']."'";
 					doquery($PersonalQuery, "users");
 					$Log    .=    $lang['log_to_user'].$_POST['id']."\n";
-					LogFunction($Log, "PersonalLog");
+					LogFunction($Log, "personal");
 				}
 
 				$parse['display']    =    '<tr><th colspan="3"><font color=lime>'.$lang['ad_personal_succes'].'</font></th></tr>';
@@ -658,7 +658,7 @@ switch ($_GET['page'])
 		display(parsetemplate(gettemplate("adm/EditorTPL/PersonalBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
-	case'officiers':
+	case'officers':
 		if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
 			$id          		= $_POST['id'];
@@ -708,7 +708,7 @@ switch ($_GET['page'])
 					$Log	.=	$lang['technocrat'].": ".$rpg_technocrate."\n";
 					$Log	.=	$lang['log_to_user'].$id."\n";
 
-					LogFunction($Log, "OfficierLog");
+					LogFunction($Log, "officers");
 				}
 			}
 			else
@@ -717,7 +717,7 @@ switch ($_GET['page'])
 			}
 		}
 
-		display(parsetemplate(gettemplate("adm/EditorTPL/OfficiersBody"), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate("adm/EditorTPL/OfficersBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case 'planets':
@@ -888,7 +888,7 @@ switch ($_GET['page'])
 
 					$Log	.=	$lang['log_to_planet'].$id."\n";
 
-					LogFunction($Log, "PlanetsAndMoonsLog");
+					LogFunction($Log, "planets_moons");
 			 	}
 			 	else
 			 	{
@@ -982,7 +982,7 @@ switch ($_GET['page'])
 
 
 					$Log	.=	$lang['log_to_ally_whosid'].$id."\n";
-					LogFunction($Log, "AllianceLog");
+					LogFunction($Log, "alliance");
 
 			 	}
 			 	else

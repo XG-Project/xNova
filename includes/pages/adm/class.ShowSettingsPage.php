@@ -285,7 +285,7 @@ class ShowSettingsPage {
 			}
 
 
-			LogFunction($Log, "ConfigLog");
+			LogFunction($Log, "config");
 
 			if ($lang_changed = (read_config('lang') != $game_config['lang']))
 			{

@@ -10,7 +10,7 @@
 	<th><a href="AccountEditorPage.php?page=defenses{getuser}"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {ad_editor_defenses}</a></th>
 	<th><a href="AccountEditorPage.php?page=researchs{getuser}"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {ad_editor_researchs}</a></th>
 </tr><tr>
-	<th><a href="AccountEditorPage.php?page=officiers{getuser}"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {ad_editor_officiers}</a></th>
+	<th><a href="AccountEditorPage.php?page=officers{getuser}"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {ad_editor_officers}</a></th>
 	<th><a href="AccountEditorPage.php?page=resources{getuser}"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {ad_editor_resources}</a></th>
 </tr><tr>
 	<th><a href="AccountEditorPage.php?page=planets{getuser}"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {ad_editor_planets}</a></th>

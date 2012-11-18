@@ -362,7 +362,9 @@ class ShowInfosPage
 		elseif ($BuildID < 600)
 			$PageTPL = gettemplate('infos/info_buildings_defense');
 		else
-			$PageTPL = gettemplate('infos/info_officiers_general');
+			$PageTPL = gettemplate('infos/info_officers_general');
+
+		//TODO FALTA EL TEMPLATE DE LOS OFICIALES
 
 		//Solo hay destroy en <200
 		if ($BuildID < 200 && $BuildID != 33 && $BuildID != 41)

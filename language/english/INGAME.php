@@ -77,7 +77,7 @@ $lang['lm_research']						= 'Research';
 $lang['lm_shipshard']						= 'Shipyard';
 $lang['lm_defenses']						= 'Defense';
 $lang['lm_resources']						= 'Resources';
-$lang['lm_officiers']						= 'Officers';
+$lang['lm_officers']						= 'Officers';
 $lang['lm_trader']							= 'Merchant';
 $lang['lm_technology']						= 'Technology';
 $lang['lm_messages']						= 'Messages';
@@ -354,7 +354,7 @@ $lang['rs_daily']							= 'Res per day:';
 $lang['rs_weekly']							= 'Res per week:';
 
 //----------------------------------------------------------------------------//
-//OFFICIERS
+//OFFICERS
 $lang['of_title']							= 'Officers';
 $lang['of_recruit']							= 'Recruit';
 $lang['of_active']							= '<strong><font color="lime">Active</font></strong>';

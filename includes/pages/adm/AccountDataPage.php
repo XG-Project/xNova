@@ -124,7 +124,7 @@ if ($_GET)
 		$Log	 =	"\n".$lang['log_info_detail_title']."\n";
 		$Log	.=	$lang['log_the_user'].$user['username'].$lang['log_searchto_1'].$UserQuery['username']."\n";
 
-		LogFunction ($Log, "GeneralLog");
+		LogFunction ($Log, "general");
 
 		// TECNOLOGIAS
 		$parse['tec_espia']				=	$UserQuery['spy_tech'];

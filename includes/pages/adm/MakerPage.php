@@ -139,7 +139,7 @@ switch ($_GET['page'])
 				$Log		.=	$lang['log_new_user_bot']."\n";
 			}
 
-			LogFunction($Log, "GeneralLog");
+			LogFunction($Log, "general");
 			$parse['display']	=	'<tr><th colspan="2"><font color=lime>'.$lang['new_user_success'].'</font></tr></th>';
 		}
 	}

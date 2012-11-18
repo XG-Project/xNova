@@ -78,7 +78,7 @@ switch ($page)
 	break;
 
 	case 'delete_log':
-			$file = fopen(XN_ROOT."adm/Log/BotLog.php", "w");
+			$file = fopen(XN_ROOT."includes/logs/bots.php", "w");
 			fclose($file);
 			display(parsetemplate(gettemplate('adm/DeleteBotBody'), $parse), FALSE, '', TRUE, FALSE);
 	break;
@@ -126,7 +126,7 @@ switch ($page)
 
 		header("Location: BotSettingsPage.php");
 	}
-	$parse['log'] = file_get_contents(XN_ROOT.'adm/Log/BotLog.php');
+	$parse['log'] = file_get_contents(XN_ROOT.'includes/bots/logs.php');
 
 	display(parsetemplate(gettemplate('adm/BotSettingsBody'), $parse), FALSE, '', TRUE, FALSE);
 }

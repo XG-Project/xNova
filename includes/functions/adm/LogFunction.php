@@ -25,7 +25,7 @@ function LogFunction($text, $category)
 		$data	.=	$lang['log_operation_succes'];
 		$data	.=	date("d-m-Y H:i:s", time())."\n";
 
-		fputs($lf, $data);
+		fwrite($lf, $data);
 		fclose($lf);
 	}
 }

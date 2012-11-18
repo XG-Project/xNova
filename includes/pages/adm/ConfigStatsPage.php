@@ -68,7 +68,7 @@ if ($ConfigGame != 1) die(message($lang['404_page']));
 			$game_stat_update_time = $_POST['stat_update_time'];
 			$Log	.=	$lang['log_stats_value_2'].": ".$_POST['stat_update_time']."\n";
 		}
-		LogFunction($Log, "ConfigLog");
+		LogFunction($Log, "config");
 		header('location:ConfigStatsPage.php');
 
 	}

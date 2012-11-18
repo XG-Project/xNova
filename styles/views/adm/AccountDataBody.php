@@ -317,14 +317,14 @@ td.blank{border:0px;background-color:transparent;text-align:right;padding-right:
 		</th>
 	</tr><tr>
 		<th class="unico"><a href="javascript:animatedcollapse.toggle('inves')" class="link">
-		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {ac_officier_research}</a></th>
+		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {ac_officer_research}</a></th>
 	</tr><tr>
 		<th class="unico">
 			<div id="inves" style="display:none">
 			<table cellspacing="0" style="border-collapse: collapse" align="center" width="60%">
 			<tr>
 			<td class="c" width="50%">{researchs_title}</td>
-			<td class="c" width="50%">{officiers_title}</td>
+			<td class="c" width="50%">{officers_title}</td>
 			</tr>
 			<tr><th>{spy_tech}: <font color=aqua>{tec_espia}</font></th><th>{geologist}: <font color=aqua>{ofi_geologo}</font></th></tr>
 			<tr><th>{computer_tech}: <font color=aqua>{tec_compu}</font></th><th>{admiral}: <font color=aqua>{ofi_almirante}</font></th></tr>

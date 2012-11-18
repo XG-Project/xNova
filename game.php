@@ -107,9 +107,9 @@ switch ($page)
 		new ShowResourcesPage($user, $planetrow);
 	break;
 //====================================================================================================//
-	case'officier':
+	case'officer':
 		require_once(XN_ROOT.'includes/pages/class.ShowOfficerPage.php');
-		new ShowOfficierPage($user);
+		new ShowOfficerPage($user);
 	break;
 //====================================================================================================//
 	case'trader':

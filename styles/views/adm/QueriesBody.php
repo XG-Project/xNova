@@ -1,5 +1,5 @@
 <section class="page">
-	<section class="content-table">
+	<section class="content-table medium">
 		<form action="admin.php?page=query" method="post" accept-charset="UTF-8">
 			<h3>{qe_execute}</h3>
 			{display}

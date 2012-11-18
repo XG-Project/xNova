@@ -59,7 +59,7 @@ if ($ToolsCanUse != 1) die(message($lang['404_page']));
 			$Log	.=	$lang['log_mes_subject'].": ".$_POST["temat"]."\n";
 			$Log	.=	$lang['log_mes_text'].": ".$_POST["tresc"]."\n";
 
-			LogFunction($Log, "GeneralLog");
+			LogFunction($Log, "general");
 
 			$parse['display']	=	"<tr><th colspan=5><font color=lime>".$lang['ma_message_sended']."</font></th></tr>";
 		}

@@ -25,7 +25,7 @@ class ShowLogsPage {
 				if (AUTHLEVEL < 3) die(message($lang['not_enough_permissions']));
 				if (is_null($file)) header('Location: admin.php?page=logs');
 
-				$fp	= fopen($file, "w+");
+				$fp	= fopen($file, "w");
 				fclose($fp);
 
 				message($lang['log_delete_succes'].$_GET['file'], "admin.php?page=logs&options=links&file=".$_GET['file'], 2);
@@ -37,7 +37,7 @@ class ShowLogsPage {
 
 				if ($_SERVER['REQUEST_METHOD'] === 'POST')
 				{
-					$fp	= fopen($file, "w+");
+					$fp	= fopen($file, "w");
 					fwrite($fp, $_POST['text']);
 					fclose($fp);
 
@@ -57,12 +57,12 @@ class ShowLogsPage {
 
 				$size				= '('.(filesize($file)/1024).' KiB)';
 				$edt_del			= AUTHLEVEL !== 3 ? $lang['log_log_title_22'] :
-					'<a href="admin.php?page=logs&options=delete&file='.$_GET['file'].'" onclick="return confirm(\''.$lang['log_alert'].'\');">'.
-					' ['.$lang['log_delete_link'].']</a><a href="admin.php?page=logs&options=edit&file='.$_GET['file'].'">['.$lang['log_edit_link'].']</a>';
+					'<a href="admin.php?page=logs&option=delete&file='.$_GET['file'].'" onclick="return confirm(\''.$lang['log_alert'].'\');">'.
+					' ['.$lang['log_delete_link'].']</a><a href="admin.php?page=logs&option=edit&file='.$_GET['file'].'">['.$lang['log_edit_link'].']</a>';
 
 				$parse['content']	= '<h3>'.$edt_del.'</h3>';
 				$parse['content']	.= '<div class="content">'.(filesize($file)/1024).' KiB'.'</div><div class="content">';
-				$parse['content']	.= filesize($file) === 0 ? $lang['log_filesize_0'] : file_get_contents($file);
+				$parse['content']	.= filesize($file) === 0 ? $lang['log_filesize_0'] : nl2br(file_get_contents($file));
 				$parse['content']	.= '</div>';
 
 				display(parsetemplate(gettemplate('adm/LogBody'), $parse), TRUE, '', TRUE);

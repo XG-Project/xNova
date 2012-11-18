@@ -228,7 +228,6 @@ function ShowBuildTime($time)
 
 function parsetemplate($template, $array = array())
 {
-	$array['game_url']	= GAMEURL;
 	$array['skin_url']	= DPATH;
 	return preg_replace('#\{([a-z0-9\-_]*?)\}#Ssie', '(isset($array[\'\1\']) ? $array[\'\1\'] : \'\');', $template);
 }

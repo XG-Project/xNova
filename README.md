@@ -30,10 +30,9 @@ interfáz gráfica, proceso que se está llevndo acabo en la rama feature/HTML5.
 Nuevas Características:
 =======================
 
-Ha cambiado por completo el panel de administración. Ahora usa CSS3 (compilado con LESS3) y HTML5. Se han
-añadido dos variables de plantillas especiales. {game_url} tendrá la dirección http a la raiz del juego.
-{skin_path} tendrá la dirección http a la raiz del tema. Obviamente no se podrán usar esas variables a la
-hora de enviar variables a las plantillas. En las propias plantillas siempre se podrán usar.
+Ha cambiado por completo el panel de administración. Ahora usa CSS3 (compilado con LESS3) y HTML5. Se ha
+añadido una variable de plantilla especial. {skin_path} tendrá la dirección http a la raiz del tema.
+Obviamente no se podrán usar esas variables a la hora de enviar variables a las plantillas. En las propias plantillas siempre se podrán usar.
 
 Requisitos mínimos:
 ===================

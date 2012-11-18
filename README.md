@@ -22,10 +22,10 @@ pretende crear un juego renovado no solo gráficamente sino también en cuanto a
 Errores:
 ========
 
-Hasta el momento se han encontrado más de 3.000 errores distintos que todavía no se han solucionado.
+Hasta el momento se han encontrado más de 3.500 errores distintos que todavía no se han solucionado.
 En este momento todos ellos son E_NOTICE. Se irán solucionando y encontrando nuevos. También se han
-detectado errores HTML y Javascript. En principio parte de la solución será cuando se reescriba la
-interfáz gráfica.
+detectado errores HTML y Javascript. En principio parte de la solución llegará cuando se reescriba la
+interfáz gráfica, proceso que se está llevndo acabo en la rama feature/HTML5.
 
 Nuevas Características:
 =======================

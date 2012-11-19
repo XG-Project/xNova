@@ -23,7 +23,7 @@ class ShowLogsPage {
 		{
 			case 'delete':
 				if (AUTHLEVEL < 3) die(message($lang['not_enough_permissions']));
-				if (is_null($file)) header('Location: admin.php?page=logs');
+				if (is_null($file)) die(header('Location: admin.php?page=logs'));
 
 				$fp	= fopen($file, "w");
 				fclose($fp);
@@ -33,7 +33,7 @@ class ShowLogsPage {
 
 			case 'edit':
 				if (AUTHLEVEL < 3) die(message($lang['not_enough_permissions']));
-				if (is_null($file)) header('Location: admin.php?page=logs');
+				if (is_null($file)) die(header('Location: admin.php?page=logs'));
 
 				if ($_SERVER['REQUEST_METHOD'] === 'POST')
 				{
@@ -52,7 +52,7 @@ class ShowLogsPage {
 			break;
 
 			case 'links':
-				if (is_null($file)) header('Location: admin.php?page=logs');
+				if (is_null($file)) die(header('Location: admin.php?page=logs'));
 
 				$edt_del			= AUTHLEVEL !== 3 ? $lang['log_log_title_22'] :
 					'<a href="admin.php?page=logs&option=delete&file='.$_GET['file'].'" onclick="return confirm(\''.$lang['log_alert'].'\');">'.

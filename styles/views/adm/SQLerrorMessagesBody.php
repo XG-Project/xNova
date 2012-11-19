@@ -7,11 +7,8 @@
 	<section class="content-table table">
 		<div class="row title">
 			<div class="content">{input_id}</div>
-			<div class="content">{er_date}</div>
 			<div class="content">{er_user}</div>
-			<div class="content">{er_level}</div>
-			<div class="content">{er_file}</div>
-			<div class="content">{er_line}</div>
+			<div class="content">{er_date}</div>
 			<div class="content">{er_data}</div>
 			<div class="content">{button_delete}</div>
 		</div>

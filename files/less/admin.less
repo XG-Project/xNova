@@ -281,6 +281,11 @@ div.content
 		{
 			border-radius:						0.75em 0.75em 0px 0px;
 		}
+
+		&.unique
+		{
+			border-radius:						0.75em;
+		}
 	}
 
 	.leader
@@ -390,6 +395,16 @@ div.content
 			height:								25em;
 			resize:								vertical;
 			color:								#FFFFFF;
+
+			&.fixed
+			{
+				resize:							none;
+			}
+
+			&.log
+			{
+				height:							15em;
+			}
 		}
 
 		select[size]

@@ -908,6 +908,7 @@ $lang['log_edit_succes']			= 'Edited successfully';
 $lang['log_delete_succes']			= 'The selected File had been emptied successfully:&nbsp;';
 $lang['log_edit_link']				= 'Edit history';
 $lang['log_delete_link']			= 'Empty history';
+$lang['log_delete_confirm']			= 'If you delete the bots log, you will delete the information of what bots have done until now. Are you sure?';
 $lang['log_filesize_0']				= 'The log is empty';
 $lang['log_the_user']				= 'The user ';
 $lang['log_to_planet']				= 'to the planet with the ID: ';
@@ -1071,6 +1072,7 @@ $lang['bot_err_complete_user']		= 'Please, write the user\'s ID';
 $lang['bot_err_minutes_per_day']	= 'Please, write the minutes the bot will be online each day. The value you entered is not correct';
 $lang['bot_err_bot_exist']			= 'There is already a bot for that user';
 $lang['bot_err_user_not_exist']		= 'The user you entered does not exist';
+$lang['bot_total']					= 'There is a total %d bots';
 //###########################################################//
 
 

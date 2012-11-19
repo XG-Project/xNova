@@ -67,9 +67,9 @@ class ShowOverviewPage {
 				}
 			}
 
-			$Errors = doquery("SELECT COUNT(*) AS `errors` FROM `{{table}}` WHERE 1;", 'errors', TRUE);
+			$errors = doquery("SELECT COUNT(*) AS `errors` FROM `{{table}}` WHERE 1;", 'errors', TRUE);
 
-			if ($Errors['errors'])
+			if ($errors['errors'])
 			{
 				$message	.= '<span>'.$lang['ow_database_errors'].'</span>';
 				$error++;

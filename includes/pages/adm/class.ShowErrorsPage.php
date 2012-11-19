@@ -49,14 +49,9 @@ class ShowErrorsPage {
 					$parse['errors_list']	.= '<div class="row">';
 					$parse['errors_list']	.= '<div class="content">'.$u['error_id'].'</div>';
 					$parse['errors_list']	.= '<div class="content">'.(( ! $u['error_sender']) ? $lang['er_public'] : $u['error_sender']).'</div>';
-					$parse['errors_list']	.= '<div class="content">'.$u['error_type'].'</div>';
 					$parse['errors_list']	.= '<div class="content">'.date('d/m/Y h:i:s', $u['error_time']).'</div>';
-					$parse['errors_list']	.= '<div class="content">'.str_replace('%lang%', $lang['lang_key'], $u['error_text']).'</div>';
-					$parse['errors_list']	.= '<div class="content"><a href="admin.php?page=errors&amp;errors=sql&amp;delete='.$u['error_id'].'" title="'.$lang['button_delete'].'"><figure class="false"></figure></a></div>';
-					$parse['errors_list']	.= '</div>';
-
-					$parse['errors_list']	.= '<div class="row">';
 					$parse['errors_list']	.= '<div class="content">'.nl2br($u['error_text']).'</div>';
+					$parse['errors_list']	.= '<div class="content"><a href="admin.php?page=errors&amp;errors=sql&amp;delete='.$u['error_id'].'" title="'.$lang['button_delete'].'"><figure class="false"></figure></a></div>';
 					$parse['errors_list']	.= '</div>';
 				}
 				$parse['total_errors'] = $i;

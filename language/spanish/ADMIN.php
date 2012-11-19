@@ -908,6 +908,7 @@ $lang['log_edit_succes']			= 'Editado con éxito';
 $lang['log_delete_succes']			= 'El siguiente archivo ha sido vaciado con éxito:&nbsp;';
 $lang['log_edit_link']				= 'Editar historial';
 $lang['log_delete_link']			= 'Vaciar historial';
+$lang['log_delete_confirm']			= 'Si borra el archivo de logs borrará la información de lo que los bots han hecho hasta ahora. ¿Estás seguro?';
 $lang['log_filesize_0']				= 'El historial esta vacio';
 $lang['log_the_user']				= 'El usuario ';
 $lang['log_to_planet']				= 'al planeta con el ID: ';
@@ -1071,6 +1072,7 @@ $lang['bot_err_complete_user']		= 'Introduzca el Id del Jugador';
 $lang['bot_err_minutes_per_day']	= 'Introzudca el tiempo de actualización del Bot, el valor introducido no es correcto';
 $lang['bot_err_bot_exist']			= 'Ya existe un bot para ese usuario';
 $lang['bot_err_user_not_exist']		= 'El usuario introducido no existe';
+$lang['bot_total']					= 'Hay un total de %d bots creados';
 //###########################################################//
 
 

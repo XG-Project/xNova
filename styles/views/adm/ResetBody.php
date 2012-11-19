@@ -22,7 +22,7 @@
 				</div>
 			</div>
 
-			<h3>{re_buldings}</h3>
+			<h3>{re_buildings}</h3>
 			<div class="row">
 				<div class="content">{re_buildings_pl}</div>
 				<div class="content">
@@ -36,7 +36,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="content">{re_reset_buldings}</div>
+				<div class="content">{re_reset_buildings}</div>
 				<div class="content">
 					<input type="checkbox" name="edif">
 				</div>

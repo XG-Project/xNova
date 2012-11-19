@@ -38,16 +38,15 @@ class ShowLogsPage {
 				if ($_SERVER['REQUEST_METHOD'] === 'POST')
 				{
 					$fp	= fopen($file, "w");
-					fwrite($fp, $_POST['text']);
+					fwrite($fp, str_replace('\r\n', PHP_EOL, $_POST['text']));
 					fclose($fp);
 
-					message($lang['log_edit_succes'], "admin.php?page=logs&options=edit&file=".$_GET['file'], 2);
+					message($lang['log_edit_succes'], "admin.php?page=logs&option=edit&file=".$_GET['file'], 2);
 				}
 
 				$parse['content']	= file_get_contents($file);
-				$size				= filesize($file)/1024;
-				$parse['size']		= "(".$FinalSize." KiB)";
 				$parse['file']		= $_GET['file'];
+				$parse['filename']	= $lang['log_file_'.$_GET['file']];
 
 				display(parsetemplate(gettemplate('adm/LogEditBody'), $parse), TRUE, '', TRUE);
 			break;
@@ -55,13 +54,12 @@ class ShowLogsPage {
 			case 'links':
 				if (is_null($file)) header('Location: admin.php?page=logs');
 
-				$size				= '('.(filesize($file)/1024).' KiB)';
 				$edt_del			= AUTHLEVEL !== 3 ? $lang['log_log_title_22'] :
 					'<a href="admin.php?page=logs&option=delete&file='.$_GET['file'].'" onclick="return confirm(\''.$lang['log_alert'].'\');">'.
 					' ['.$lang['log_delete_link'].']</a><a href="admin.php?page=logs&option=edit&file='.$_GET['file'].'">['.$lang['log_edit_link'].']</a>';
 
 				$parse['content']	= '<h3>'.$edt_del.'</h3>';
-				$parse['content']	.= '<div class="content">'.(filesize($file)/1024).' KiB'.'</div><div class="content">';
+				$parse['content']	.= '<div class="content">'.$lang['log_file_'.$_GET['file']].' ('.round((filesize($file)/1024), 3).' KiB)'.'</div><div class="content">';
 				$parse['content']	.= filesize($file) === 0 ? $lang['log_filesize_0'] : nl2br(file_get_contents($file));
 				$parse['content']	.= '</div>';
 

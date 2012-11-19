@@ -1,25 +1,19 @@
-<body>
-<h2>{setarchive} {setsize}</h2>
-<table>
-<tr>
-	<td class="c">
-		<a href="LogToolPage.php?options=delete&file={setarchive}" onclick=" return confirm('{log_alert}');">[{log_delete_link}]</a>&nbsp;
-		<a href="LogToolPage.php?options=edit&file={setarchive}">[{log_edit_link}]</a>&nbsp;
-		<a href="LogToolPage.php?options=links&file={setarchive}">[{log_go_back}]</a>
-	</td>
-</tr>
-<form action="" method="post">
-<tr>
-	<th>
-		<textarea rows="25" cols="100" name="text">
-		{display}
-		</textarea>
-	</th>
-</tr><tr>
-	<th>
-	<input type="submit" value="{log_input_value}" name="editnow" onclick="LogToolPage.php?options=edit&file={setarchive}">
-	</th>
-</tr>
-</form>
-</table>
-</body>
+<section class="page">
+	<section class="content-table medium">
+		<h3>
+			<a href="admin.php?page=logs&amp;option=delete&amp;file={file}" onclick=" return confirm('{log_alert}');">[{log_delete_link}]</a>
+			<a href="admin.php?page=logs&amp;option=links&amp;file={file}">[{log_go_back}]</a>
+		</h3>
+		<form action="admin.php?page=logs&amp;option=edit&amp;file={file}" method="post" accept-charset="UTF-8">
+			<div class="content">
+				{filename}
+			</div>
+			<div class="content">
+				<textarea name="text">{content}</textarea>
+			</div>
+			<div class="content">
+				<input type="submit" value="{log_input_value}">
+			</div>
+		</form>
+	</section>
+</section>

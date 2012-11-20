@@ -1,6 +1,6 @@
 <section class="page">
 	<section class="content-table">
-		<h3>{er_php_error_list} [<a href="admin.php?page=errors&amp;errors=php&amp;deleteall=yes">{er_dlte_all}</a>]</h3>
+		<h3>{er_php_error_list} <a href="admin.php?page=errors&amp;errors=php&amp;deleteall=yes">[{er_dlte_all}]</a></h3>
 		<div class="content">
 			<form action="admin.php?page=errors&amp;errors=php" method="post" accept-charset="UTF-8">{er_php_show}:
 				<input type="checkbox" name="show_2"{checked_2}> E_WARNING

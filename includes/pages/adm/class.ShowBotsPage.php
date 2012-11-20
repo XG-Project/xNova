@@ -94,15 +94,15 @@ class ShowBotsPage {
 				while ($u = $query->fetch_array())
 				{
 					$parse['bots_list'] .= '<div class="row">'.
-											'<div class="content">'.$u['id'].'</div>'.
+											'<div class="content no_imp">'.$u['id'].'</div>'.
 											'<div class="content">'.$u['user'].'</div>'.
 											'<div class="content">'.date('H:i:s - j/n/Y', $u['last_time']).'</div>'.
 											'<div class="content">'.date('H:i:s - j/n/Y', $u['next_time']).'</div>'.
-											'<div class="content">'.$u['minutes_per_day'].'</div>'.
-											'<div class="content">'.$u['last_planet'].'</div>'.
+											'<div class="content no_imp">'.$u['minutes_per_day'].'</div>'.
+											'<div class="content no_imp">'.$u['last_planet'].'</div>'.
 											'<div class="content"><a href="admin.php?page=bots&amp;delete='.$u['id'].'" onclick="return confirm(\''.$lang['bot_delete_confirm'].'\');">'.
 												'<figure class="false"></figure></a></div>'.
-											'<div class="content"><a href="admin.php?page=bots&amp;id_u='.$u['user'].'" title="'.$lang['button_delete'].'">'.
+											'<div class="content no_imp"><a href="admin.php?page=bots&amp;id_u='.$u['user'].'" title="'.$lang['button_delete'].'">'.
 												'<figure class="arrowright"></figure></a></div>'. //TODO Hay que actualizarlo con el nuevo link
 											'</div>';
 				}
@@ -111,8 +111,8 @@ class ShowBotsPage {
 
 				if (isset($_GET['delete']))
 				{
-					$bot = doquery('SELECT `user` FROM `{{table}}` WHERE `id`='.$delete, 'bots', TRUE);
-					doquery('DELETE FROM `{{table}}` WHERE `id`='.$delete, 'bots');
+					$bot = doquery('SELECT `user` FROM `{{table}}` WHERE `id`='.$_GET['delete'], 'bots', TRUE);
+					doquery('DELETE FROM `{{table}}` WHERE `id`='.$_GET['delete'], 'bots');
 					update_config('bots', read_config('bots') - 1);
 					unlink(XN_ROOT.'includes/bots/'.md5($bot['user']).'.botdb');
 

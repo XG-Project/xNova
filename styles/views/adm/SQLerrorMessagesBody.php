@@ -1,6 +1,6 @@
 <section class="page">
 	<section class="content-table">
-		<h3>{er_sql_error_list} [<a href="admin.php?page=errors&amp;errors=sql&amp;deleteall=yes">{er_dlte_all}</a>]</h3>
+		<h3>{er_sql_error_list} <a href="admin.php?page=errors&amp;errors=sql&amp;deleteall=yes">[{er_dlte_all}]</a></h3>
 		<div class="content">{total_errors} {er_errors}</div>
 	</section>
 

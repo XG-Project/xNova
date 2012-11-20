@@ -47,7 +47,7 @@ h3
 {
 	text-align:									center;
 
-	a
+	a:not(:first-of-type)
 	{
 		margin-left:							0.5em;
 	}
@@ -188,6 +188,7 @@ nav.left
 		margin:									3px 15px;
 		padding:								2px;
 		border:									1px transparent solid;
+		cursor:									pointer;
 
 		&:hover
 		{
@@ -198,11 +199,6 @@ nav.left
 		a
 		{
 			color:								#FFFFFF;
-
-			&:hover
-			{
-				color:							#66CCFF;
-			}
 		}
 	}
 }
@@ -649,6 +645,58 @@ figure.info:hover + section
 	body
 	{
 		background: 							right top no-repeat fixed @bg_img_small @background-color;
+	}
+}
+
+@media (max-width: 799px)
+{
+	.content-table .row
+	{
+		div.content.no_imp
+		{
+			display:							none;
+		}
+
+		//NO PARECE FUNCIONAR \\
+		&:first-of-type
+		{
+			div.content:not(.no_imp):first-of-type
+			{
+				border-top-left-radius:			0.75em;
+			}
+
+			div.content:not(.no_imp):last-of-type
+			{
+				border-top-right-radius:		0.75em;
+			}
+
+			&:last-of-type
+			{
+				div.content:not(.no_imp):first-of-type
+				{
+					border-bottom-left-radius:	0.75em;
+				}
+
+				div.content:not(.no_imp):last-of-type
+				{
+					border-bottom-right-radius:	0.75em;
+				}
+			}
+		}
+
+		&:last-of-type
+		{
+			div.content:not(.no_imp):first-of-type
+			{
+				border-bottom-left-radius:		0.75em;
+			}
+
+			div.content:not(.no_imp):last-of-type
+			{
+				border-bottom-right-radius:		0.75em;
+			}
+		}
+		//NO PARECE FUNCIONAR \\
 	}
 }
 

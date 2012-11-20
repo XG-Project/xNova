@@ -25,7 +25,7 @@ class ShowErrorsPage {
 			case 'sql':
 				if (isset($_GET['delete']) && is_numeric($_GET['delete']))
 				{
-					doquery("DELETE FROM `{{table}}` WHERE `error_id`='".$GET['delete']."'", 'errors');
+					doquery("DELETE FROM `{{table}}` WHERE `error_id`='".$_GET['delete']."'", 'errors');
 					$Log	=	"\n".$lang['log_errores_title']."\n";
 					$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_errors']."\n";
 					LogFunction($Log, "general");

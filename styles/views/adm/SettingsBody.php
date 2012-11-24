@@ -56,7 +56,7 @@
 			</div>
 
 			<div class="row">
-				<div class="content">{se_resources_producion_speed}</div>
+				<div class="content">{se_resources_production_speed}</div>
 				<div class="content">
 					<input type="number" name="game_speed"  value="{resource_multiplier}" maxlength="5">
 				</div>

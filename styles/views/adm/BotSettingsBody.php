@@ -15,8 +15,8 @@
 		<div class="row title">
 			<div class="content no_imp">{input_id}</div>
 			<div class="content">{bot_user}</div>
-			<div class="content">{bot_last_activity}</div>
-			<div class="content">{bot_next_activity}</div>
+			<div class="content no_imp">{bot_last_activity}</div>
+			<div class="content no_imp">{bot_next_activity}</div>
 			<div class="content no_imp">{bot_minutes_per_day}</div>
 			<div class="content no_imp">{bot_last_planet}</div>
 			<div class="content">{button_delete}</div>

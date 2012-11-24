@@ -96,8 +96,8 @@ class ShowBotsPage {
 					$parse['bots_list'] .= '<div class="row">'.
 											'<div class="content no_imp">'.$u['id'].'</div>'.
 											'<div class="content">'.$u['user'].'</div>'.
-											'<div class="content">'.date('H:i:s - j/n/Y', $u['last_time']).'</div>'.
-											'<div class="content">'.date('H:i:s - j/n/Y', $u['next_time']).'</div>'.
+											'<div class="content no_imp">'.date('H:i:s - j/n/Y', $u['last_time']).'</div>'.
+											'<div class="content no_imp">'.date('H:i:s - j/n/Y', $u['next_time']).'</div>'.
 											'<div class="content no_imp">'.$u['minutes_per_day'].'</div>'.
 											'<div class="content no_imp">'.$u['last_planet'].'</div>'.
 											'<div class="content"><a href="admin.php?page=bots&amp;delete='.$u['id'].'" onclick="return confirm(\''.$lang['bot_delete_confirm'].'\');">'.

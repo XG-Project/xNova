@@ -3,6 +3,7 @@
 /**
  * @package	xNova
  * @version	1.0.x
+ * @since	1.0.0
  * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
  * @link	http://www.razican.com Author's Website
  * @author	Razican <admin@razican.com>
@@ -46,7 +47,7 @@ if ( ! defined('INSIDE')) die(header("Location:../../"));
 			}
 		}
 
-		$max_rounds = 6;
+		$max_rounds = MAX_ATTACK_ROUNDS;
 
 		for ($round = 0, $rounds = array(); $round < $max_rounds; $round++)
 		{

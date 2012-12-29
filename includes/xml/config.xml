@@ -6,7 +6,7 @@
 	</config>
 	<config>
 		<name>users_amount</name>
-		<value>2</value>
+		<value>1</value>
 	</config>
 	<config>
 		<name>moderation</name>
@@ -118,7 +118,7 @@
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1353845863</value>
+		<value>1356084482</value>
 	</config>
 	<config>
 		<name>stat_settings</name>

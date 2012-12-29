@@ -38,7 +38,7 @@ switch ($page)
 			}
 			else
 			{
-				$Caracters='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+				$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 				$NewPass = '';
 				for ($i=0; $i < 8; $i++)
 				{
@@ -97,7 +97,7 @@ switch ($page)
 
 				@include('config.php');
 				$cookie = $login["id"]."/%/".$login["username"]."/%/". md5($login["password"]."--".$dbsettings["secretword"])."/%/".$rememberme;
-				setcookie(read_config('cookie_name'), $cookie, $expiretime, "/", "", 0);
+				setcookie(read_config('cookie_name'), $cookie, $expiretime, "/", "", FALSE, TRUE);
 
 				doquery("UPDATE `{{table}}` SET `current_planet` = `id_planet` WHERE `id` ='".$login["id"]."'", 'users');
 

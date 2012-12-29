@@ -67,7 +67,7 @@ class CheckSession
 			}
 
 			if ( ! $IsUserChecked)
-				setcookie ($game_cookie, $NextCookie, $ExpireTime, "/", "", 0);
+				setcookie($game_cookie, $NextCookie, $ExpireTime, "/", "", FALSE, TRUE);
 
 			$QryUpdateUser  = "UPDATE `{{table}}` SET ";
 			$QryUpdateUser .= "`onlinetime` = '".time()."', ";

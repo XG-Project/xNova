@@ -4,6 +4,6 @@ section.debug{width:100%;margin:auto;display:table;color:#E6EBFB;text-align:cent
 section.debug div.query:last-of-type section:first-of-type{border-radius:0px 0px 0px 0.75em;}
 section.debug div.query:last-of-type section:last-of-type{border-radius:0px 0px 0.75em 0px;}
 figure{margin:0.5em;display:inline-block;}
-.true{width:16px;height:16px;background:0 0 url('./../img/spirites.png');}
-.false{width:16px;height:16px;background:0 -16px url('./../img/spirites.png');}
+.true{width:16px;height:16px;background:0 0 url('./../img/sprites.png');}
+.false{width:16px;height:16px;background:0 -16px url('./../img/sprites.png');}
 @media (max-width:600px){#debug{display:none;}}

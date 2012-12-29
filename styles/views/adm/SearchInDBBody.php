@@ -1,5 +1,5 @@
 <body>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src="../js/animatedcollapse.min.js"></script>
 <script type="text/javascript">
 animatedcollapse.addDiv('search', 'fade=1,height=auto')

@@ -230,7 +230,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
 		@include('config.php');
 		$cookie = $NewUser['id']."/%/".$UserName."/%/". md5($sha1newpass."--".$dbsettings["secretword"])."/%/". 0;
-		setcookie(read_config('cookie_name'), $cookie, 0, "/", "", 0);
+		setcookie(read_config('cookie_name'), $cookie, 0, "/", "", FALSE, TRUE);
 
 		unset($dbsettings);
 

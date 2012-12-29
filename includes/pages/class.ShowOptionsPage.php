@@ -263,7 +263,7 @@ class ShowOptionsPage
 					{
 						$newpass = sha1($_POST["newpass1"]);
 						doquery("UPDATE `{{table}}` SET `password` = '{$newpass}' WHERE `id` = '".intval($CurrentUser['id'])."' LIMIT 1", "users");
-						setcookie(COOKIE_NAME, "", time()-100000, "/", "", 0);
+						setcookie(COOKIE_NAME, "", time()-100000, "/", "", FALSE, TRUE);
 						message($lang['op_password_changed'],"index.php",1);
 					}
 				}
@@ -276,7 +276,7 @@ class ShowOptionsPage
 				if ( ! $query)
 				{
 					doquery("UPDATE `{{table}}` SET username='".$db->real_escape_string ($username)."' WHERE id='".intval($CurrentUser['id'])."' LIMIT 1", "users");
-					setcookie(COOKIE_NAME, "", time()-100000, "/", "", 0);
+					setcookie(COOKIE_NAME, "", time()-100000, "/", "", FALSE, TRUE);
 					message($lang['op_username_changed'], "index.php", 1);
 				}
 			}

@@ -16,6 +16,7 @@ function ShowLeftMenu ()
 	global $lang, $user;
 
 	$parse					= $lang;
+	$parse['year']			= date("Y");
 	$parse['dpath']			= DPATH;
 	$parse['version']   	= VERSION;
 	$parse['servername']	= read_config('game_name');

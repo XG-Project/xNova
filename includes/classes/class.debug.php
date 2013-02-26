@@ -81,7 +81,7 @@ class debug
 	{
 		global $db;
 
-		if (is_null($db))
+		if ( ! empty($db))
 		{
 			$this->php_log[] = array(	'hash'		=> md5($errno.$errstr.$errfile.$errline),
 										'sender'	=> $sender,

@@ -414,13 +414,13 @@ $lang['ow_principal_contributors']	= 'Principal contributors';
 $lang['ow_other_contributors']		= 'Other Contributors';
 $lang['ow_special_thanks']			= 'Special Thanks';
 $lang['ow_install_file_detected']	= '<i>install</i> directory or <i>install.php</i> was found. For security reasons, we recommend remove or rename it.';
-$lang['ow_config_file_writable']	= 'The config.php file could be written, it is advisable to be placed in chmod 0440 (read only).';
+$lang['ow_config_file_writable']	= 'The config.php file could be written, it is advisable to be placed in chmod 0444 (read only).';
 $lang['ow_database_errors']			= 'There are errors in your database. You can see them <a href="admin.php?page=errors">clicking here</a>';
 $lang['ow_old_version']				= 'There is a new version available. Click <a href="http://www.razican.com/" target="_blank">here</a> to download it.';
 $lang['ow_none']					= 'No warnings';
 $lang['ow_log_file_no_writable']	= 'At least one of the log files in /includes/logs/ can\'t be written. Please, change their permissions to CHMOD 0666';
 $lang['ow_config_file_no_writable']	= 'Configuration file at /includes/xml/config.xml can\'t be written, please, give it CHMOD 0666 permission';
-$lang['ow_bot_folder_error']		= '/includes/bots folder is not writable or it does not exist, please, create it if it does not exist and give it CHMOD 0777 permission';
+$lang['ow_bot_folder_no_writable']	= '/includes/bots folder is not writable or it does not exist, please, create it if it does not exist and give it CHMOD 0777 permission';
 $lang['ow_plugins_dir_not_exists']	= '/includes/plugins folder does not exist. Even it is not necessary, if you want to install a plugin you must create it, and it is recommended that you do it as soon as possible.';
 //###########################################################//
 

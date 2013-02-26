@@ -12,7 +12,7 @@ Mejoras:
 - Mejorados los checks de seguridad
 - Borrados archivos innecesarios
 - Login automático
-- Comienza la migración a UTF-8
+- Codificado en UTF-8 (excepto base de datos)
 - Nuevo sistema de bots (Gracias a shoghicp)
 - Mejora de seguridad en los htaccess
 - Fecha según lenguaje, con formato configurable

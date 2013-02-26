@@ -52,7 +52,7 @@ class debug
 			die($lang['cdg_mysql_not_available']);
 
 		$query = "INSERT INTO `{{table}}` SET
-		`error_sender` = '".intval($user['id'])."' ,
+		`error_sender` = '".(isset($user['id']) ? intval($user['id']) : 0)."' ,
 		`error_time` = '".time()."' ,
 		`error_type` = '".$db->real_escape_string($title)."' ,
 		`error_text` = '".$db->real_escape_string($message)."';";
@@ -66,9 +66,13 @@ class debug
 		if ( ! $q OR  ! ($q = $q->fetch_array())) die(isset($lang['cdg_fatal_error']) ? $lang['cdg_fatal_error'] : 'FATAL ERROR');
 
 		if ( ! function_exists('message'))
-			echo $lang['cdg_error_message']." <b>".$q['rows']."</b>";
+		{
+			echo (isset($lang['cdg_error_message']) ? $lang['cdg_error_message'] : "Error, por favor contacte al administrador. Error nº:")." <b>".$q['rows']."</b>";
+		}
 		else
-			message($lang['cdg_error_message']." <b>".$q['rows']."</b>", '', '', FALSE, FALSE);
+		{
+			message((isset($lang['cdg_error_message']) ? $lang['cdg_error_message'] : "Error, por favor contacte al administrador. Error nº:")." <b>".$q['rows']."</b>", '', '', FALSE, FALSE);
+		}
 
 		die();
 	}
@@ -77,14 +81,21 @@ class debug
 	{
 		global $db;
 
-		$this->php_log[] = array(	'hash'		=> md5($errno.$errstr.$errfile.$errline),
-									'sender'	=> $sender,
-									'time'		=> time(),
-									'type'		=> 'PHP',
-									'level'		=> $errno,
-									'line'		=> $errline,
-									'file'		=> $db->real_escape_string($errfile),
-									'text'		=> $db->real_escape_string($errstr));
+		if (is_null($db))
+		{
+			$this->php_log[] = array(	'hash'		=> md5($errno.$errstr.$errfile.$errline),
+										'sender'	=> $sender,
+										'time'		=> time(),
+										'type'		=> 'PHP',
+										'level'		=> $errno,
+										'line'		=> $errline,
+										'file'		=> $db->real_escape_string($errfile),
+										'text'		=> $db->real_escape_string($errstr));
+		}
+		else
+		{
+			die($sender."-".$errno."-".$errstr."-".$errfile."-".$errline);
+		}
 	}
 
 	public function log_php()

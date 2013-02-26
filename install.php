@@ -9,32 +9,34 @@
  * @author	Razican <admin@razican.com>
  */
 
-define('INSIDE'		,	TRUE);
-define('INSTALL'	,	TRUE);
-define('XN_ROOT'	,	'./../');
+define('INSIDE', TRUE);
+define('INSTALL', TRUE);
+define('XN_ROOT', realpath('./').'/');
 
 include_once(XN_ROOT.'global.php');
 include_once(XN_ROOT.'install/databaseinfos.php');
 include_once(XN_ROOT.'install/migration.php');
 
-$Mode		= isset($_GET['mode']) ? $_GET['mode'] : '';
-$Page		= isset($_GET['page']) ? $_GET['page'] : '';
-$phpself	= $_SERVER['PHP_SELF'];
-$nextpage	= $Page + 1;
+$mode		= isset($_GET['mode']) ? $_GET['mode'] : '';
+$page		= isset($_GET['page']) ? (int) $_GET['page'] : 1;
 $parse		= array();
 
-if (empty($Mode)) $Mode = 'intro';
-if (empty($Page)) $Page = 1;
+if (empty($mode)) $mode = 'intro';
 
-switch ($Mode)
+switch ($mode)
 {
 	case 'intro':
-		$parse['version']	=	SYSTEM_VERSION;
+		$parse['version']	= SYSTEM_VERSION;
 		$frame  = parsetemplate(gettemplate('install/ins_intro'), $parse);
 	break;
 	case 'ins':
-		if ($Page == 1)
+		if ($page === 1)
 		{
+			if (filesize(XN_ROOT."config.php") !== 0)
+			{
+				exit(header('Location: index.php'));
+			}
+
 			if (isset($_GET['error']))
 			{
 				if ($_GET['error'] == 1)
@@ -43,72 +45,97 @@ switch ($Mode)
 				}
 				elseif ($_GET['error'] == 2)
 				{
-					message("El fichero config.php no puede ser sustituido, no tenia acceso chmod 777","?mode=ins&page=1", 3, FALSE, FALSE);
+					message("El fichero config.php no puede ser sustituido, no tiene acceso chmod 0777","?mode=ins&page=1", 3, FALSE, FALSE);
 				}
 			}
 
 			$frame  = parsetemplate(gettemplate('install/ins_form'), FALSE);
 		}
-		elseif ($Page == 2)
+		elseif ($page === 2)
 		{
-			$host   = $_POST['host'];
-			$user   = $_POST['user'];
-			$pass   = $_POST['passwort'];
-			$prefix = $_POST['prefix'];
-			$db     = $_POST['db'];
+			if (filesize(XN_ROOT."config.php") !== 0)
+			{
+				exit(header('Location: index.php'));
+			}
 
-			$connection	= new mysqli($host, $user, $pass, $db);
-			if ( ! is_null($connection->connect_error)) header('location: install.php?mode=ins&page=1&error=1');
+			$host	= $_POST['host'];
+			$user	= $_POST['user'];
+			$pass	= $_POST['password'];
+			$prefix	= $_POST['prefix'];
+			$dbname	= $_POST['db'];
+
+			if (empty($host) OR empty($user) OR empty($dbname))
+			{
+				exit(header('Location: install.php?mode=ins&page=1&error=1'));
+			}
+
+			$connection	= @new mysqli($host, $user, $pass, $dbname);
+			if ($connection->connect_error)
+			{
+				exit(header('location: install.php?mode=ins&page=1&error=1'));
+			}
 
 			$numcookie = mt_rand(1000, 1234567890);
 
-			if ( ! is_writable(XN_ROOT."config.php")) header('location: install.php?mode=ins&page=1&error=2');
-			else $dz = fopen(XN_ROOT."config.php", "w");
+			if ( ! is_writable(XN_ROOT."config.php"))
+			{
+				exit(header('location: install.php?mode=ins&page=1&error=2'));
+			}
+			else
+			{
+				$dz = fopen(XN_ROOT."config.php", "w");
+			}
 
 			$parse['first']	= "Conexión establecida con éxito...";
 
-			fwrite($dz, "<?php\n");
-			fwrite($dz, "if ( ! defined(\"INSIDE\")) header(\"location: ".XN_ROOT."\"); \n");
+			fwrite($dz, "<?php defined(\"INSIDE\") OR exit(header(\"location: ".XN_ROOT."\"));\n");
 			fwrite($dz, "\$dbsettings = Array(\n");
-			fwrite($dz, "\"server\"     => \"".$host."\", // MySQL server name.\n");
-			fwrite($dz, "\"user\"       => \"".$user."\", // MySQL username.\n");
-			fwrite($dz, "\"pass\"       => \"".$pass."\", // MySQL password.\n");
-			fwrite($dz, "\"name\"       => \"".$db."\", // MySQL database name.\n");
-			fwrite($dz, "\"prefix\"     => \"".$prefix."\", // Tables prefix.\n");
-			fwrite($dz, "\"secretword\" => \"xNova".$numcookie."\"); // Cookies.\n\n\n");
+			fwrite($dz, "\"server\"		=> \"".$host."\", // MySQL server name.\n");
+			fwrite($dz, "\"user\"			=> \"".$user."\", // MySQL username.\n");
+			fwrite($dz, "\"pass\"			=> \"".$pass."\", // MySQL password.\n");
+			fwrite($dz, "\"name\"			=> \"".$dbname."\", // MySQL database name.\n");
+			fwrite($dz, "\"prefix\"		=> \"".$prefix."\", // Tables prefix.\n");
+			fwrite($dz, "\"secretword\"	=> \"xNova".$numcookie."\"); // Cookies.\n\n\n");
 			fwrite($dz, "/* End of file config.php */\n/* Location: ./config.php */");
 			fclose($dz);
 
-			$parse['second']	= "Archivo config.php creado conéxito...";
+			$parse['second']	= "Archivo config.php creado con éxito...";
 
-			doquery($QryTableAks			, 'aks'    	);
-			doquery($QryTableAlliance		, 'alliance' );
-			doquery($QryTableBanned		, 'banned'   );
-			doquery($QryTableBuddy			, 'buddy'    );
-			doquery($QryTableErrors		, 'errors'   );
-			doquery($QryTableFleets		, 'fleets'   );
-			doquery($QryTableGalaxy		, 'galaxy'   );
-			doquery($QryTableMessages		, 'messages' );
-			doquery($QryTableNotes			, 'notes'    );
-			doquery($QryTablePlanets		, 'planets'  );
-			doquery($QryTablePlugins		, 'plugins'  );
-			doquery($QryTableRw			, 'rw'       );
+			doquery($QryTableAks		, 'aks'			);
+			doquery($QryTableAlliance	, 'alliance'	);
+			doquery($QryTableBanned		, 'banned'		);
+			doquery($QryTableBuddy		, 'buddy'		);
+			doquery($QryTableErrors		, 'errors'		);
+			doquery($QryTableFleets		, 'fleets'		);
+			doquery($QryTableGalaxy		, 'galaxy'		);
+			doquery($QryTableMessages	, 'messages'	);
+			doquery($QryTableNotes		, 'notes'		);
+			doquery($QryTablePlanets	, 'planets'		);
+			doquery($QryTablePlugins	, 'plugins'		);
+			doquery($QryTableRw			, 'rw'			);
 			doquery($QryTableStatPoints	, 'statpoints'	);
-			doquery($QryTableUsers			, 'users'  	);
-			doquery($QryTableBots			, 'bots'  	);
+			doquery($QryTableUsers		, 'users'		);
+			doquery($QryTableBots		, 'bots'		);
 
 			$parse['third']	= "Tablas creadas con éxito...";
 
 			$frame  = parsetemplate(gettemplate('install/ins_form_done'), $parse);
 		}
-		elseif ($Page == 3)
+		elseif ($page === 3)
 		{
+			if (filesize(XN_ROOT."config.php") === 0 OR read_config('users_amount') != 0)
+			{
+				exit(header('Location: install.php'));
+			}
+
 			if (isset($_GET['error']) && $_GET['error'] == 3)
+			{
 				message("¡Debes completar todos los campos!","?mode=ins&page=3", 2, FALSE, FALSE);
+			}
 
 			$frame  = parsetemplate(gettemplate('install/ins_acc'), FALSE);
 		}
-		elseif ($Page == 4)
+		elseif ($page === 4)
 		{
 			$adm_user   = $_POST['adm_user'];
 			$adm_pass   = $_POST['adm_pass'];
@@ -182,18 +209,22 @@ switch ($Mode)
 
 			$frame  = parsetemplate(gettemplate('install/ins_acc_done'), $parse);
 		}
+		else
+		{
+			exit(header("Location: install.php"));
+		}
 		break;
 	case'upgrade':
 		$system_version	=	str_replace('v', '', VERSION);
 
 		if (filesize(XN_ROOT.'config.php') == 0)
 		{
-			die(message("¡Error! - Tu juego no est&aacute; instalado","", "", FALSE, FALSE));
+			die(message("¡Error! - Tu juego no está instalado","install.php", "3", FALSE, FALSE));
 		}
 
-		if (SYSTEM_VERSION == $system_version)
+		if (SYSTEM_VERSION === $system_version)
 		{
-			die(message("¡Error! - No hay actualizaciones disponibles","", "", FALSE, FALSE));
+			die(message("¡Error! - No hay actualizaciones disponibles","index.php", "3", FALSE, FALSE));
 		}
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST')
@@ -360,9 +391,8 @@ switch ($Mode)
 		break;
 	default:
 }
-$parse['ins_state']    = $Page;
-$parse['ins_page']     = $frame;
-$parse['dis_ins_btn']  = "?mode=$Mode&page=$nextpage";
+$parse['ins_state']		= $page;
+$parse['ins_page']		= $frame;
 
 display(parsetemplate(gettemplate('install/ins_body'), $parse), FALSE, '', TRUE, FALSE);
 

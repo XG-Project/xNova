@@ -12,7 +12,7 @@ Improvements:
 - Better security checks
 - Deleted unnecesary files
 - Automatic login
-- Starts migration to UTF-8
+- UTF-8 encoded (except database)
 - New bots system (Thanks to shoghicp)
 - Better security in htaccess
 - Date according to language with custom made format

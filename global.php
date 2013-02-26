@@ -52,15 +52,25 @@ include_once(XN_ROOT.'includes/classes/class.Fleets.php');
 
 $debug			= new debug();
 
-if (filesize(XN_ROOT.'config.php') === 0 && (( !  defined('INSTALL')) OR ( ! INSTALL)))
+if (filesize(XN_ROOT.'config.php') === 0 && (( ! defined('INSTALL')) OR ( ! INSTALL)))
 {
 	exit(header('location: '.GAMEURL.'install.php'));
 }
-
-if (filesize(XN_ROOT.'config.php') !== 0)
+elseif (filesize(XN_ROOT.'config.php') !== 0 && read_config('users_amount') == 0 && (( ! defined('INSTALL')) OR ( ! INSTALL)))
 {
-	$game_version	=	read_config('version');
-	define('VERSION', empty($game_version) ? '' : 'v'.$game_version);
+	exit(header('location: '.GAMEURL.'install.php?mode=ins&page=3'));
+}
+
+$game_version	=	read_config('version');
+define('VERSION', empty($game_version) ? '' : 'v'.$game_version);
+
+if (defined('IN_ADMIN'))
+{
+	define('DPATH', GAMEURL.DEFAULT_SKINPATH);
+}
+else
+{
+	define('DPATH', (( ! isset($user["dpath"]) OR (empty($user["dpath"]))) ? GAMEURL.DEFAULT_SKINPATH : GAMEURL.SKIN_PATH.$user["dpath"].'/'));
 }
 
 if ( ! defined('INSTALL') OR ( ! INSTALL))
@@ -102,11 +112,6 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 		header('Location: '.GAMEURL);
 	}
 	$user          	= $Result['record'];
-
-	if (defined('IN_ADMIN'))
-		define('DPATH', GAMEURL.DEFAULT_SKINPATH);
-	else
-		define('DPATH', (( !  isset($user["dpath"]) OR (empty($user["dpath"]))) ? GAMEURL.DEFAULT_SKINPATH : GAMEURL.SKIN_PATH.$user["dpath"].'/'));
 
 	define('AUTHLEVEL', (isset($user['authlevel']) ? (int) $user['authlevel'] : 0));
 

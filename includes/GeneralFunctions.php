@@ -115,7 +115,7 @@ function display($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $men
 	else
 		$DisplayPage  = AdminUserHeader($metatags);
 
-	if ($topnav  && !$AdminPage)
+	if ($topnav  && ! $AdminPage)
 	{
 		require_once(XN_ROOT.'includes/functions/ShowTopNavigationBar.php');
 		$DisplayPage .= ShowTopNavigationBar($user, $planetrow);
@@ -143,7 +143,7 @@ function display($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $men
 
 	$footer		  = array();
 
-	if (AUTHLEVEL === 3 && read_config('debug'))
+	if ( ! defined('INSTALL') && AUTHLEVEL === 3 && read_config('debug'))
 		$footer['debug'] = $debug->echo_log();
 
 	if ( ! defined('LOGIN') && ! defined('IN_ADMIN') && isset($_GET['page']) && $_GET['page'] !== 'galaxy')
@@ -192,13 +192,15 @@ function AdminUserHeader($metatags = '')
 	global $lang;
 	$parse	= $lang;
 
+	if ( ! isset($lang['']))
+
 	if ( ! defined('IN_ADMIN'))
 		$parse['-title-'] 	= 	'xNova - Instalación';
 	else
 		$parse['-title-'] 	= 	read_config('game_name').' - Admin CP';
 
 	$parse['-favi-']	 = '<link rel="icon" href="'.GAMEURL.'favicon.png">';
-	$parse['-style-']	 = '<link rel="stylesheet" type="text/css" href="'.DPATH.'/css/admin.css">';
+	$parse['-style-']	 = '<link rel="stylesheet" type="text/css" href="'.DPATH.'css/admin.css">';
 	$parse['-meta-']	 = '<meta charset="UTF-8">';
 	$parse['-meta-']	.= '<meta name="generator" content="xNova '.VERSION.'">';
 	$parse['-meta-']	.= '<meta name="author" content="Razican">';
@@ -273,7 +275,7 @@ function doquery($query, $table = NULL, $fetch = FALSE)
 	require(XN_ROOT.'config.php');
 	if ( ! isset($dbsettings)) die();
 
-	if (is_null($db))
+	if (empty($db))
 	{
 		$db		= new mysqli($dbsettings["server"], $dbsettings["user"], $dbsettings["pass"], $dbsettings["name"]);
 		if ( ! is_null($db->connect_error)) $debug->error($db->connect_error, "SQL Error");
@@ -299,6 +301,11 @@ function doquery($query, $table = NULL, $fetch = FALSE)
 function catch_error($errno, $errstr, $errfile, $errline)
 {
 	global $user, $db, $debug;
+
+	if ( ! (error_reporting() & $errno))
+	{
+		return;
+	}
 
 	if ( ! $db)
 	{

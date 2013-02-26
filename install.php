@@ -132,30 +132,36 @@ switch ($mode)
 			{
 				message("¡Debes completar todos los campos!","?mode=ins&page=3", 2, FALSE, FALSE);
 			}
+			elseif (isset($_GET['error']) && $_GET['error'] == 4)
+			{
+				message("¡El email no es válido!","?mode=ins&page=3", 2, FALSE, FALSE);
+			}
+			elseif (isset($_GET['error']) && $_GET['error'] == 5)
+			{
+				message("¡Las contraseñas no coinciden!","?mode=ins&page=3", 2, FALSE, FALSE);
+			}
 
 			$frame  = parsetemplate(gettemplate('install/ins_acc'), FALSE);
 		}
 		elseif ($page === 4)
 		{
-			$adm_user   = $_POST['adm_user'];
-			$adm_pass   = $_POST['adm_pass'];
-			$adm_email  = $_POST['adm_email'];
-			$sha1pass    = sha1($adm_pass);
+			$adm_user	= $_POST['adm_user'];
+			$adm_pass	= $_POST['adm_pass'];
+			$adm_pascon	= $_POST['adm_passconf'];
+			$adm_email	= $_POST['adm_email'];
+			$sha1pass	= sha1($adm_pass);
 
-			if ( ! $_POST['adm_user'])
+			if (empty($adm_user) OR empty($adm_pass) OR empty($adm_pascon) OR empty($adm_email))
 			{
-				header("Location: install.php?mode=ins&page=3&error=3");
-				exit();
+				exit(header("Location: install.php?mode=ins&page=3&error=3"));
 			}
-			if ( ! $_POST['adm_pass'])
+			elseif ( ! filter_var($adm_email, FILTER_VALIDATE_EMAIL))
 			{
-				header("Location: install.php?mode=ins&page=3&error=3");
-				exit();
+				exit(header("Location: install.php?mode=ins&page=3&error=4"));
 			}
-			if ( ! $_POST['adm_email'])
+			elseif ($adm_pass !== $adm_pascon)
 			{
-				header("Location: install.php?mode=ins&page=3&error=3");
-				exit();
+				exit(header("Location: install.php?mode=ins&page=3&error=5"));
 			}
 
 			$QryInsertAdm  = "INSERT INTO `{{table}}` SET ";
@@ -206,6 +212,7 @@ switch ($mode)
 			doquery($QryAddAdmGlx, 'galaxy');
 
 			update_config('stat_last_update', time());
+			update_config('users_amount', 1);
 
 			$frame  = parsetemplate(gettemplate('install/ins_acc_done'), $parse);
 		}
@@ -215,7 +222,7 @@ switch ($mode)
 		}
 		break;
 	case'upgrade':
-		$system_version	=	str_replace('v', '', VERSION);
+		$system_version	=	substr(VERSION, 1);
 
 		if (filesize(XN_ROOT.'config.php') == 0)
 		{
@@ -237,7 +244,7 @@ switch ($mode)
 
 			if ( ! $administrator)
 			{
-				die(message("¡Error! - ¡El administrador ingresado no existe o el usuario no tiene permisos administrativos!","index.php?mode=upgrade", "3", FALSE, FALSE));
+				die(message("¡Error! - ¡El administrador ingresado no existe o el usuario no tiene permisos administrativos!","install.php?mode=upgrade", "3", FALSE, FALSE));
 			}
 
 			if (filesize(XN_ROOT.'config.php') === 0)
@@ -385,7 +392,8 @@ switch ($mode)
 		}
 		else
 		{
-			$parse['version']	=	SYSTEM_VERSION;
+			$parse['version']	= SYSTEM_VERSION;
+			$parse['script']	= SCRIPT;
 			$frame  = parsetemplate(gettemplate('install/ins_update'), $parse);
 		}
 		break;

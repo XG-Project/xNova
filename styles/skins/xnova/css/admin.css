@@ -1,7 +1,8 @@
 @charset "UTF-8";
 .page{text-align:center;margin-top:3em;}.page h2{color:#FFFFFF;text-align:center;}
 .page.install nav{color:#FFFFFF;background-color:#090c12;border-radius:0.25em;border:1px solid #6881b2;margin-bottom:1em;margin-top:1em;}
-.page.install .content{background-color:#2b3a55;border-radius:0.25em;border:1px solid #6881b2;text-align:justify;color:#BEC8FA;}.page.install .content .center p{text-align:center;}.page.install .content .center p input{margin:auto;}
+.page.install .content{background-color:#2b3a55;border-radius:0.25em;border:1px solid #6881b2;text-align:justify;color:#BEC8FA;}.page.install .content .center input{margin:auto;}
+.page.install .content .center p{text-align:center;}
 .page.install .content a{text-decoration:none;}
 .page.install .content .warning{border-radius:0.25em;border:1px solid #e68a00;background-color:rgba(255, 174, 51, 0.75);margin-bottom:1em;color:#000000;font-size:0.9em;text-align:center;padding:0.25em;}
 .page.install .content span.example{display:inline;font-style:italic;font-size:0.8em;font-weight:lighter;}

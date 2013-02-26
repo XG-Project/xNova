@@ -1,4 +1,4 @@
-<form action="install.php?mode=ins&amp;page=2" method="post" accept-charset="UTF-8">
+<form action="install.php?mode=ins&amp;page=4" method="post" accept-charset="UTF-8">
 	<h2>Establecer cuenta de administración</h2>
 	<label for="user">Usuario:</label>
 	<input type="text" name="adm_user" id="user" value="">

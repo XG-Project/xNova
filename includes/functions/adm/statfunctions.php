@@ -245,8 +245,7 @@ function MakeStats()
 		$old_stats		=	 doquery($sql_old_stats, 'statpoints');
 		while ($CurStats = $old_stats->fetch_assoc())
 		{
-			$old_stats_array[$CurStats['id_owner']]	=	$CurStats;
-
+			$old_stats_array[$CurStats['id_owner']]	= $CurStats;
 		}
 		unset($CurStats, $old_stats);
 		//We take the data of flying fleets if stat_flying is =1 in game config
@@ -279,7 +278,7 @@ function MakeStats()
 								`fleet_old_rank`, `fleet_points`, `fleet_count`,
 								`total_old_rank`, `total_points`, `total_count`, `stat_date`) VALUES ";
 		//Here we start the update...
-		while ($CurUser = $total_data->fetch_assoc())
+		while (isset($old_stats_array) && $CurUser = $total_data->fetch_assoc())
 		{
 			$u_OldTotalRank = (($old_stats_array[$CurUser['id']]['old_total_rank'])? $old_stats_array[$CurUser['id']]['old_total_rank']:0);
 			$u_OldTechRank  = (($old_stats_array[$CurUser['id']]['old_tech_rank'])? $old_stats_array[$CurUser['id']]['old_tech_rank']:0);

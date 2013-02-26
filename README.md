@@ -43,4 +43,3 @@ Se necesita PHP 5.3.0+, APACHE 2.2+ y MySQL 4.1+. Es compatible hasta PHP 5.4, A
 
 ## Instalador ##
 * Actualización desde XG Proyect (2.9.0 - 2.10.4)
-* Registro de la administración

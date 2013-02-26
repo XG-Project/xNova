@@ -1,11 +1,17 @@
 Aviso a los que vengan de XG Proyect
 ====================================
 
-En principio, esta versión es una versión con algunos fallos corregidos de la última estable de XG
-Proyect, pero no está lo suficientemente testeada como para considerarse estable. Tiene varios
+En principio, esta es una versión con algunos fallos corregidos de la última estable de XG
+Proyect 2.x, pero no está lo suficientemente testeada como para considerarse estable. Tiene varios
 cambios que podrían no ser estables, y algunos mods, como el de la gestión de errores PHP no están
 acabados. Todavía hay errores que se están solucionando, y estoy trabajando junto con XG Proyect
 para hacerlo lo más rápido posible.
+
+xNova está preparada para ser actualizada desde cualquier versión de XG Proyect desde la 2.9.0,
+pero solo hasta la 2.10.4. Es decir, cualquier versión superior no está soportada. En principio, se intentará
+soportar toda la rama 2.10.x, y por el momento se descarta implementar la actualización desde XG Proyect 3. La diferencia entre las versiones 2.10 y 3 de XG es tal que se hace muy complejo implementar un sistema de actualización que sea capaz de controlar ese cambio. No obstante, una vez se publique XG Proyect 3, se intentará implementar un downgrade.
+
+En un futuro, que no es esperable que sea antes de la salida de la versión 1.0.0 de xNova se pretende actualizar el xNova para que esté basado en XG, aunque no se sabe cuando será. El mayor problema ante esto es el terrible cambio del código. Es probable que en lugar de basar xNova en XG 3.x, se haga que xNova se actualice para implementar el código de XG 3, aunque no estará directamente basado en el. Es decir, que una vez salga XG 3, xNova seguirá su propio camino, y solo se soportarán las versiones de seguridad de la rama 2.10 de XG. Además, es probable que esa rama se quede fuera del soporte de xNova a partir de la versión 1.1.
 
 Razican's xNova
 ===============

@@ -99,6 +99,7 @@ body
 	font-family:								Tahoma, sans-serif;
 	font-style:									normal;
 	line-height:								normal;
+	background-color:							@background-color;
 }
 
 a
@@ -690,11 +691,6 @@ figure.info:hover + section
 
 @media (min-width: 800px)
 {
-	body
-	{
-		background: 							right top no-repeat fixed @bg_img_big @background-color;
-	}
-
 	.content-table
 	{
 		&.table.thin.divided.settings .row div.content:first-of-type
@@ -707,14 +703,6 @@ figure.info:hover + section
 			width:								25em;
 			height:								4em;
 		}
-	}
-}
-
-@media (min-width: 321px) and (max-width: 799px)
-{
-	body
-	{
-		background: 							right top no-repeat fixed @bg_img_small @background-color;
 	}
 }
 
@@ -767,14 +755,6 @@ figure.info:hover + section
 			}
 		}
 		//NO PARECE FUNCIONAR \\
-	}
-}
-
-@media screen and (max-width: 320px)
-{
-	body
-	{
-		background-color: 						@background-color;
 	}
 }
 

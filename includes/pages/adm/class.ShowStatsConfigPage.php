@@ -9,11 +9,50 @@
  * @author	Razican <admin@razican.com>
  */
 
-define('INSIDE' , TRUE);
-define('INSTALL', FALSE);
-define('IN_ADMIN', TRUE);
-define('XN_ROOT', './../');
+if ( ! defined('INSIDE')) die(header("Location: ./../../"));
 
+class ShowStatsConfigPage {
+
+	public function __construct()
+	{
+		global $lang;
+
+		if ( ! ADM_CONFIGURATION) die(message($lang['not_enough_permissions']));
+
+		$game_stat				=	read_config('stat');
+		$game_stat_level		=	read_config('stat_level');
+		$game_stat_flying		=	read_config('stat_flying');
+		$game_stat_settings		=	read_config('stat_settings');
+		$game_stat_amount		=	read_config('stat_amount');
+		$game_stat_update_time	=	read_config('stat_update_time');
+		$game_stat_last_update	=	read_config('stat_last_update');
+
+		if ($_SERVER['REQUEST_METHOD'] === 'POST')
+		{
+			//
+		}
+		else
+		{
+			$parse						=	$lang;
+			$selected					=	"selected";
+			$stat						=	(($game_stat == 1)? 'sel_sta0':'sel_sta1');
+			$parse[$stat]				=	$selected;
+			$stat_fly					=	(($game_stat_flying == 1)? 'sel_sf1':'sel_sf0');
+			$parse[$stat_fly]			=	$selected;
+			$parse['stat_settings']		=	$game_stat_settings;
+			$parse['stat_amount']		=	$game_stat_amount;
+			$parse['stat_update_time']	=	$game_stat_update_time;
+			$parse['timeact']			=	gmdate("d/M/y H:i:s", $game_stat_last_update);
+			$parse['selected_'.$game_stat_level]	= 'selected';
+			foreach ($lang['rank'] as $key => $rank) $parse['rank_'.$key] = $rank;
+			$parse['yes']				=	$lang['one_is_yes'][1];
+			$parse['no']				=	$lang['one_is_yes'][0];
+			$admin_settings = parsetemplate(gettemplate('adm/ConfigStatsBody'), $parse);
+			display(parsetemplate(gettemplate('adm/ConfigStatsBody'), $parse), TRUE, '', TRUE);
+		}
+	}
+}
+/*BACKUP
 include(XN_ROOT.'global.php');
 include('AdminFunctions/Autorization.php');
 

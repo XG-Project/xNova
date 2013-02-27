@@ -1,3 +1,12 @@
+<section class="page">
+	<section class="content-table table thin divided settings">
+		<form action="admin.php?page=settings" method="post" accept-charset="UTF-8">
+			<h3>{cs_title}</h3>
+		</form>
+	</section>
+</section>
+
+
 <body>
 <form method="post" action="">
 	<br>

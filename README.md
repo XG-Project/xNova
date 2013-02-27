@@ -43,3 +43,7 @@ Se necesita PHP 5.3.0+, APACHE 2.2+ y MySQL 4.1+. Es compatible hasta PHP 5.4, A
 
 ## Instalador ##
 * Actualización desde XG Proyect (2.9.0 - 2.10.4)
+
+# Estadísticas #
+
+Se pretende hacer un cambio global en el sistema de estadísticas, y orientarlo a objetos. Aún así, se va a esperar a XG Proyect 3, para ver el nuevo sistema de estadísticas, y decidir a partir de ahí.

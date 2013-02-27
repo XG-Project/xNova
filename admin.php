@@ -68,6 +68,11 @@ switch($page)
 		new ShowBotsPage();
 	break;
 //====================================================================================================//
+	case 'stats':
+		require_once(XN_ROOT.'includes/pages/adm/class.ShowStatsConfigPage.php');
+		new ShowStatsConfigPage();
+	break;
+//====================================================================================================//
 	default:
 		require_once(XN_ROOT.'includes/pages/adm/class.ShowOverviewPage.php');
 		new ShowOverviewPage();

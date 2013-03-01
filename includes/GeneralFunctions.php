@@ -244,7 +244,7 @@ function includeLang($filename)
 {
 	global $lang;
 
-	require_once(XN_ROOT."language/". DEFAULT_LANG."/".$filename.'.php');
+	include(XN_ROOT."language/". DEFAULT_LANG."/".$filename.'.php');
 }
 
 function GetStartAdressLink($FleetRow, $FleetType)

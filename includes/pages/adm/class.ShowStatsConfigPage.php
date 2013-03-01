@@ -53,8 +53,8 @@ class ShowStatsConfigPage {
 	}
 }
 /*BACKUP
-require_once(XN_ROOT.'global.php');
-require_once('AdminFunctions/Autorization.php');
+require(XN_ROOT.'global.php');
+require('AdminFunctions/Autorization.php');
 
 if ($ConfigGame != 1) die(message($lang['404_page']));
 

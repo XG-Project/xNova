@@ -14,9 +14,9 @@ define('INSTALL', FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-require_once(XN_ROOT.'global.php');
+require(XN_ROOT.'global.php');
 require_once(XN_ROOT.'includes/classes/class.FlyingFleetsTable.php');
-require_once('AdminFunctions/Autorization.php');
+require('AdminFunctions/Autorization.php');
 
 if ($Observation != 1) die();
 

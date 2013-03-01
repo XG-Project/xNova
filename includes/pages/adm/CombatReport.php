@@ -13,7 +13,7 @@ define('INSIDE' , TRUE);
 define('INSTALL', FALSE);
 define('XN_ROOT', './../');
 
-require_once(XN_ROOT.'global.php');
+require(XN_ROOT.'global.php');
 
 includeLang('INGAME');
 

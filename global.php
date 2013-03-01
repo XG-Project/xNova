@@ -93,7 +93,7 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 
 	if (read_config('bots') > 0 && read_config('bots_last_update') < time()-60)
 	{
-		require_once(XN_ROOT.'includes/classes/class.Bot.php');
+		include(XN_ROOT.'includes/classes/class.Bot.php');
 		UpdateBots();
 	}
 

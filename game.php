@@ -13,7 +13,7 @@ define('INSIDE', TRUE);
 define('INSTALL', FALSE);
 define('XN_ROOT', realpath('./').'/');
 
-require_once(XN_ROOT.'global.php');
+require(XN_ROOT.'global.php');
 
 require_once(XN_ROOT.'includes/functions/CheckPlanetBuildingQueue.php');
 require_once(XN_ROOT.'includes/functions/GetBuildingPrice.php');

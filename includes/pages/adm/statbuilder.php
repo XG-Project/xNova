@@ -14,7 +14,7 @@ define('INSTALL', FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-require_once(XN_ROOT.'global.php');
+require(XN_ROOT.'global.php');
 require_once(XN_ROOT.'adm/statfunctions.php');
 
 if (AUTHLEVEL < 2) die(message($lang['not_enough_permissions']));

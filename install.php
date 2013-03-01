@@ -13,7 +13,7 @@ define('INSIDE', TRUE);
 define('INSTALL', TRUE);
 define('XN_ROOT', realpath('./').'/');
 
-require_once(XN_ROOT.'global.php');
+require(XN_ROOT.'global.php');
 require_once(XN_ROOT.'install/databaseinfos.php');
 require_once(XN_ROOT.'install/migration.php');
 
@@ -253,7 +253,7 @@ switch ($mode)
 			}
 			else
 			{
-				require_once(XN_ROOT."config.php");
+				require(XN_ROOT."config.php");
 
 				$system_version	=	str_replace('v', '', VERSION);
 

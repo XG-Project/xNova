@@ -14,7 +14,7 @@ define('INSTALL', FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-require_once(XN_ROOT.'global.php');
+require(XN_ROOT.'global.php');
 
 if ($Observation != 1) die(message($lang['404_page']));
 

@@ -16,7 +16,7 @@ define('XN_ROOT', realpath('./').'/');
 
 $InLogin = TRUE;
 
-require_once(XN_ROOT.'global.php');
+require(XN_ROOT.'global.php');
 
 includeLang('PUBLIC');
 
@@ -228,7 +228,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
 		update_config('users_amount', read_config('users_amount') + 1);
 
-		@require_once('config.php');
+		require('config.php');
 		$cookie = $NewUser['id']."/%/".$UserName."/%/". md5($sha1newpass."--".$dbsettings["secretword"])."/%/". 0;
 		setcookie(read_config('cookie_name'), $cookie, 0, "/", "", FALSE, TRUE);
 

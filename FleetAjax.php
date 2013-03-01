@@ -13,7 +13,7 @@ define('INSIDE', TRUE);
 define('INSTALL', FALSE);
 define('XN_ROOT', realpath('./').'/');
 
-require_once(XN_ROOT.'global.php');
+require(XN_ROOT.'global.php');
 
 $UserSpyProbes	= $planetrow['spy_sonde'];
 $UserRecycles	= $planetrow['recycler'];

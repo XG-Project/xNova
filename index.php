@@ -16,7 +16,7 @@ define('XN_ROOT', realpath('./').'/');
 
 $InLogin = TRUE;
 
-require_once(XN_ROOT.'global.php');
+require(XN_ROOT.'global.php');
 
 includeLang('PUBLIC');
 
@@ -95,7 +95,7 @@ switch ($page)
 					$rememberme = 0;
 				}
 
-				@require_once('config.php');
+				require('config.php');
 				$cookie = $login["id"]."/%/".$login["username"]."/%/". md5($login["password"]."--".$dbsettings["secretword"])."/%/".$rememberme;
 				setcookie(read_config('cookie_name'), $cookie, $expiretime, "/", "", FALSE, TRUE);
 

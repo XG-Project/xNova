@@ -11,8 +11,8 @@
 
 if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-class FlyingFleetHandler
-{
+class FlyingFleetHandler {
+
 	public static function calculateAKSSteal($attackFleets, $defenderPlanet, $ForSim = FALSE)
 	{
 		//Steal-Math by Slaver for 2Moons(http://www.titanspace.org) based on http://www.owiki.de/Beute

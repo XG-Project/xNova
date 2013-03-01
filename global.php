@@ -24,7 +24,14 @@ require(XN_ROOT.'config.php');
 if (isset($dbsettings))
 {
 	$db			= new mysqli($dbsettings["server"], $dbsettings["user"], $dbsettings["pass"], $dbsettings["name"]);
-	if ( ! is_null($db->connect_error)) $debug->error($db->connect_error, "SQL Error");
+	if ( ! is_null($db->connect_error))
+	{
+		require_once(XN_ROOT.'includes/constants.php');
+		require_once(XN_ROOT.'includes/GeneralFunctions.php');
+		require_once(XN_ROOT.'includes/classes/class.debug.php');
+		$debug->error($db->connect_error, "SQL Error");
+		die("Error, por favor contacte al administrador.");
+	}
 
 	$db->set_charset('utf8');
 	unset($dbsettings);

@@ -11,8 +11,8 @@
 
 if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-class FlyingFleetsTable
-{
+class FlyingFleetsTable {
+
 	private function CreateFleetPopupedMissionLink($FleetRow, $Texte, $FleetType)
 	{
 		global $lang;

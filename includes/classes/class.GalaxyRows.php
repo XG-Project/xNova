@@ -11,8 +11,8 @@
 
 if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-class GalaxyRows
-{
+class GalaxyRows {
+
 	private function GetMissileRange ()
 	{
 		global $resource, $user;

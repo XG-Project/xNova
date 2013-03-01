@@ -73,6 +73,13 @@ switch($page)
 		new ShowStatsConfigPage();
 	break;
 //====================================================================================================//
+//====================================================================================================//
+//====================================================================================================//
+	case 'global':
+		require_once(XN_ROOT.'includes/pages/adm/class.ShowGlobalMessagePage.php');
+		new ShowGlobalMessagePage();
+	break;
+//====================================================================================================//
 	default:
 		require_once(XN_ROOT.'includes/pages/adm/class.ShowOverviewPage.php');
 		new ShowOverviewPage();

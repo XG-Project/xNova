@@ -11,8 +11,8 @@
 
 if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-class Format
-{
+class Format {
+
 	/**
 	 * method pretty_time
 	 * param $seconds

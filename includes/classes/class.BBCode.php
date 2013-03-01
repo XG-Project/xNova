@@ -11,8 +11,8 @@
 
 if ( ! defined('INSIDE')) die(header("Location: ./../../"));
 
-class bbCode
-{
+class bbCode {
+
 	public function bbCode ($string)
 	{
 		$pattern = array(

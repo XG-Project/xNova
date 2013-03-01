@@ -11,8 +11,8 @@
 
 if ( ! defined('INSIDE')) die(header('location:../../'));
 
-class CheckSession
-{
+class CheckSession {
+
 	private function CheckCookies ($IsUserChecked)
 	{
 		global $lang, $db;

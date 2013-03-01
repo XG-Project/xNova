@@ -14,7 +14,7 @@ define('INSTALL', FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT.'global.php');
+require_once(XN_ROOT.'global.php');
 
 if ($Observation != 1) die(message($lang['404_page']));
 
@@ -216,7 +216,7 @@ function MyCrazyLittleSearch($SpecifyItems, $WhereItem, $SpecifyWhere, $SpecialS
 }
 
 // BORRADO
-include_once(XN_ROOT.'includes/functions/DeleteSelectedUser.php');
+require_once(XN_ROOT.'includes/functions/DeleteSelectedUser.php');
 if ($_GET['delete'] == 'user'){
 	DeleteSelectedUser ($_GET['user']);
 	$Log	.=	"\n".$lang['log_searchindb_del1'].$_GET['user'].$lang['log_searchindb_del2'].$user['username']."\n";

@@ -82,8 +82,8 @@ class ShowShipyardPage
 	{
 		global $lang, $resource;
 
-		include_once(XN_ROOT.'includes/functions/IsTechnologieAccessible.php');
-		include_once(XN_ROOT.'includes/functions/GetElementPrice.php');
+		require_once(XN_ROOT.'includes/functions/IsTechnologieAccessible.php');
+		require_once(XN_ROOT.'includes/functions/GetElementPrice.php');
 
 		$parse = $lang;
 
@@ -218,8 +218,8 @@ class ShowShipyardPage
 	{
 		global $lang, $resource, $_POST;
 
-		include_once(XN_ROOT.'includes/functions/IsTechnologieAccessible.php');
-		include_once(XN_ROOT.'includes/functions/GetElementPrice.php');
+		require_once(XN_ROOT.'includes/functions/IsTechnologieAccessible.php');
+		require_once(XN_ROOT.'includes/functions/GetElementPrice.php');
 
 		$parse = $lang;
 

@@ -467,7 +467,7 @@ class ShowInfosPage
 				$parse['gate_start_link'] = BuildPlanetAdressLink ($CurrentPlanet);
 				if ($RestString['value'])
 				{
-					include(XN_ROOT.'includes/functions/InsertJavaScriptChronoApplet.php');
+					require_once(XN_ROOT.'includes/functions/InsertJavaScriptChronoApplet.php');
 
 					$parse['gate_time_script'] = InsertJavaScriptChronoApplet("Gate", "1", $RestString['value'], TRUE);
 					$parse['gate_wait_time']   = "<div id=\"bxx"."Gate"."1"."\"></div>";

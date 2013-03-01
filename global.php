@@ -20,7 +20,7 @@ $lang			= array();
 $IsUserChecked	= FALSE;
 
 // CONEXIÓN CON LA BASE DE DATOS \\
-require_once(XN_ROOT.'config.php');
+require(XN_ROOT.'config.php');
 if (isset($dbsettings))
 {
 	$db			= new mysqli($dbsettings["server"], $dbsettings["user"], $dbsettings["pass"], $dbsettings["name"]);
@@ -41,14 +41,14 @@ if ( ! is_null($db))
 	SecurePage::run();
 }
 
-include_once(XN_ROOT.'includes/constants.php');
-include_once(XN_ROOT.'includes/GeneralFunctions.php');
-include_once(XN_ROOT.'includes/classes/class.debug.php');
-include_once(XN_ROOT.'includes/classes/class.xml.php');
-include_once(XN_ROOT.'includes/classes/class.Format.php');
-include_once(XN_ROOT.'includes/classes/class.NoobsProtection.php');
-include_once(XN_ROOT.'includes/classes/class.Production.php');
-include_once(XN_ROOT.'includes/classes/class.Fleets.php');
+require_once(XN_ROOT.'includes/constants.php');
+require_once(XN_ROOT.'includes/GeneralFunctions.php');
+require_once(XN_ROOT.'includes/classes/class.debug.php');
+require_once(XN_ROOT.'includes/classes/class.xml.php');
+require_once(XN_ROOT.'includes/classes/class.Format.php');
+require_once(XN_ROOT.'includes/classes/class.NoobsProtection.php');
+require_once(XN_ROOT.'includes/classes/class.Production.php');
+require_once(XN_ROOT.'includes/classes/class.Fleets.php');
 
 $debug			= new debug();
 
@@ -75,15 +75,15 @@ else
 
 if ( ! defined('INSTALL') OR ( ! INSTALL))
 {
-	include_once(XN_ROOT.'includes/vars.php');
-	include_once(XN_ROOT.'includes/functions/CreateOneMoonRecord.php');
-	include_once(XN_ROOT.'includes/functions/CreateOnePlanetRecord.php');
-	include_once(XN_ROOT.'includes/functions/SendSimpleMessage.php');
-	include_once(XN_ROOT.'includes/functions/calculateAttack.php');
-	include_once(XN_ROOT.'includes/functions/formatCR.php');
-	include_once(XN_ROOT.'includes/functions/GetBuildingTime.php');
-	include_once(XN_ROOT.'includes/functions/HandleElementBuildingQueue.php');
-	include_once(XN_ROOT.'includes/functions/PlanetResourceUpdate.php');
+	require_once(XN_ROOT.'includes/vars.php');
+	require_once(XN_ROOT.'includes/functions/CreateOneMoonRecord.php');
+	require_once(XN_ROOT.'includes/functions/CreateOnePlanetRecord.php');
+	require_once(XN_ROOT.'includes/functions/SendSimpleMessage.php');
+	require_once(XN_ROOT.'includes/functions/calculateAttack.php');
+	require_once(XN_ROOT.'includes/functions/formatCR.php');
+	require_once(XN_ROOT.'includes/functions/GetBuildingTime.php');
+	require_once(XN_ROOT.'includes/functions/HandleElementBuildingQueue.php');
+	require_once(XN_ROOT.'includes/functions/PlanetResourceUpdate.php');
 
 	$game_lang	=	read_config('lang');
 
@@ -93,11 +93,11 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 
 	if (read_config('bots') > 0 && read_config('bots_last_update') < time()-60)
 	{
-		include_once(XN_ROOT.'includes/classes/class.Bot.php');
+		require_once(XN_ROOT.'includes/classes/class.Bot.php');
 		UpdateBots();
 	}
 
-	include_once(XN_ROOT.'includes/classes/class.CheckSession.php');
+	require_once(XN_ROOT.'includes/classes/class.CheckSession.php');
 
 	$Result        	= new CheckSession();
 	$Result			= $Result->CheckUser($IsUserChecked);
@@ -129,7 +129,7 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 
 	if ( ! empty($user))
 	{
-		include_once(XN_ROOT.'includes/classes/class.FlyingFleetHandler.php');
+		require_once(XN_ROOT.'includes/classes/class.FlyingFleetHandler.php');
 
 		$_fleets = doquery("SELECT fleet_start_galaxy,fleet_start_system,fleet_start_planet,fleet_start_type FROM `{{table}}` WHERE `fleet_start_time` <= '".time()."' and `fleet_mess` ='0' order by fleet_id asc;", 'fleets'); // OR fleet_end_time <= ".time()
 
@@ -176,7 +176,7 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 			$planetrow = doquery("SELECT * FROM `{{table}}` WHERE `id` = '".$user['current_planet']."';", "planets", TRUE);
 		}
 		// Include the plugin system
-		include(XN_ROOT.'includes/plugins.php');
+		require_once(XN_ROOT.'includes/plugins.php');
 	}
 }
 

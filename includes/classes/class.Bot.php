@@ -19,16 +19,16 @@ function UpdateBots()
 {
 	$now		= time();
 
-	include_once(XN_ROOT.'includes/functions/CheckPlanetBuildingQueue.php');
-	include_once(XN_ROOT.'includes/functions/GetBuildingPrice.php');
-	include_once(XN_ROOT.'includes/functions/IsElementBuyable.php');
-	include_once(XN_ROOT.'includes/functions/SetNextQueueElementOnTop.php');
-	include_once(XN_ROOT.'includes/functions/UpdatePlanetBatimentQueueList.php');
-	include_once(XN_ROOT.'includes/functions/IsTechnologieAccessible.php');
-	include_once(XN_ROOT.'includes/functions/GetElementPrice.php');
-	include_once(XN_ROOT.'includes/functions/HandleTechnologieBuild.php');
-	include_once(XN_ROOT.'includes/functions/CheckPlanetUsedFields.php');
-	include_once(XN_ROOT.'includes/classes/class.FlyingFleetHandler.php');
+	require_once(XN_ROOT.'includes/functions/CheckPlanetBuildingQueue.php');
+	require_once(XN_ROOT.'includes/functions/GetBuildingPrice.php');
+	require_once(XN_ROOT.'includes/functions/IsElementBuyable.php');
+	require_once(XN_ROOT.'includes/functions/SetNextQueueElementOnTop.php');
+	require_once(XN_ROOT.'includes/functions/UpdatePlanetBatimentQueueList.php');
+	require_once(XN_ROOT.'includes/functions/IsTechnologieAccessible.php');
+	require_once(XN_ROOT.'includes/functions/GetElementPrice.php');
+	require_once(XN_ROOT.'includes/functions/HandleTechnologieBuild.php');
+	require_once(XN_ROOT.'includes/functions/CheckPlanetUsedFields.php');
+	require_once(XN_ROOT.'includes/classes/class.FlyingFleetHandler.php');
 
 	if (read_config('log_bots')) $log = "\n\n------------------------------------------\n";
 	$allbots		= doquery("SELECT * FROM `{{table}}` WHERE `next_time` < ".$now, 'bots');

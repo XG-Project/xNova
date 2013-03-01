@@ -13,9 +13,9 @@ define('INSIDE', TRUE);
 define('INSTALL', TRUE);
 define('XN_ROOT', realpath('./').'/');
 
-include_once(XN_ROOT.'global.php');
-include_once(XN_ROOT.'install/databaseinfos.php');
-include_once(XN_ROOT.'install/migration.php');
+require_once(XN_ROOT.'global.php');
+require_once(XN_ROOT.'install/databaseinfos.php');
+require_once(XN_ROOT.'install/migration.php');
 
 $mode		= isset($_GET['mode']) ? $_GET['mode'] : '';
 $page		= isset($_GET['page']) ? (int) $_GET['page'] : 1;
@@ -253,7 +253,7 @@ switch ($mode)
 			}
 			else
 			{
-				include(XN_ROOT."config.php");
+				require_once(XN_ROOT."config.php");
 
 				$system_version	=	str_replace('v', '', VERSION);
 

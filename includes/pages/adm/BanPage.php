@@ -14,8 +14,8 @@ define('INSTALL', FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT.'global.php');
-include('AdminFunctions/Autorization.php');
+require_once(XN_ROOT.'global.php');
+require_once('AdminFunctions/Autorization.php');
 
 if ($EditUsers != 1) die(message($lang['404_page']));
 

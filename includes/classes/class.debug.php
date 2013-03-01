@@ -46,7 +46,7 @@ class debug
 			echo "<section class=\"debug\">".$this->log."</section>";
 		}
 
-		include(XN_ROOT.'config.php');
+		require(XN_ROOT.'config.php');
 
 		if ( ! $db)
 			die($lang['cdg_mysql_not_available']);

@@ -19,9 +19,9 @@ class CheckSession
 
 		$UserRow = array();
 
-		include(XN_ROOT.'config.php');
+		require(XN_ROOT.'config.php');
 
-		$game_cookie	=	read_config('cookie_name');
+		$game_cookie	= read_config('cookie_name');
 
 		if (isset($_COOKIE[$game_cookie]))
 		{
@@ -40,19 +40,19 @@ class CheckSession
 
 			if ($UserResult->num_rows != 1)
 			{
-				message($lang['ccs_multiple_users'], XN_ROOT, 5, FALSE, FALSE);
+				message($lang['ccs_multiple_users'], GAMEURL, 5, FALSE, FALSE);
 			}
 
 			$UserRow	= $UserResult->fetch_array();
 
 			if ($UserRow["id"] != $TheCookie[0])
 			{
-				message($lang['ccs_other_user'], XN_ROOT, 5,  FALSE, FALSE);
+				message($lang['ccs_other_user'], GAMEURL, 5,  FALSE, FALSE);
 			}
 
 			if (md5($UserRow["password"]."--".$dbsettings["secretword"]) !== $TheCookie[2])
 			{
-				message($lang['css_different_password'], XN_ROOT, 5,  FALSE, FALSE);
+				message($lang['css_different_password'], GAMEURL, 5,  FALSE, FALSE);
 			}
 
 			$NextCookie = implode("/%/", $TheCookie);

@@ -56,3 +56,4 @@ Queda por documentar los settings de las estadísticas, explicando para qué sir
 # Cosas por hacer (TO DO) #
 
 * Queda poner los labels en las tablas de configuración
+* Queda por hacer la creación de bots

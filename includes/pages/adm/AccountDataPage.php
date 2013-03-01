@@ -13,7 +13,7 @@ define('INSTALL', FALSE);
 define('IN_ADMIN', TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT.'global.php');
+require_once(XN_ROOT.'global.php');
 
 if ( ! $Observation)
 {
@@ -194,7 +194,7 @@ if ($_GET)
 		}
 		elseif ($alianza != NULL && $AliID)
 		{
-			include_once("AdminFunctions/BBCode-Panel-Adm.php");
+			require_once("AdminFunctions/BBCode-Panel-Adm.php");
 			$bbcode = new bbcode;
 
 			$parse['AllianceHave'] 			= "<a href=\"javascript:animatedcollapse.toggle('alianza')\" class=\"link\"><img src=\"../styles/images/Adm/arrowright.png\" width=\"16\" height=\"10\"> ".$lang['ac_alliance']."</a>";

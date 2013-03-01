@@ -151,7 +151,7 @@ function MakeStats()
 
 	if ($ChooseToDelete)
 	{
-		include_once(XN_ROOT.'includes/functions/DeleteSelectedUser.php');
+		require_once(XN_ROOT.'includes/functions/DeleteSelectedUser.php');
 
 		while ($delete = $ChooseToDelete->fetch_array())
 		{

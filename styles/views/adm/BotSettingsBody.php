@@ -3,9 +3,9 @@
 		<h3>
 			{bot_list} <a href="admin.php?page=bots&amp;deleteall=yes" onclick="return confirm('{bot_delete_all_confirm}');">[{er_dlte_all}]</a><a href="admin.php?page=bots&amp;mode=delete_log" onclick="return confirm('{log_delete_confirm}');">[{log_delete_link}]</a>
 		</h3>
-		<div class="content">{mu_user_logs}:</div>
+		<div class="content"><label for="log">{mu_user_logs}:</label></div>
 		<div class="content">
-				<textarea class="log fixed" name="text" readonly>{log}</textarea>
+				<textarea class="log fixed" id="log" readonly>{log}</textarea>
 		</div>
 	</section>
 

@@ -170,7 +170,7 @@ switch ($page)
 //====================================================================================================//
 	case'logout':
 		setcookie(read_config('cookie_name'), "", time()-100000, "/", "", FALSE, TRUE);
-		message($lang['see_you_soon'], XN_ROOT, 1, FALSE, FALSE);
+		message($lang['see_you_soon'], GAMEURL, 1, FALSE, FALSE);
 	break;
 //====================================================================================================//
 	default:

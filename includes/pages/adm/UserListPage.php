@@ -14,9 +14,9 @@ define('INSTALL',   FALSE);
 define('IN_ADMIN',    TRUE);
 define('XN_ROOT', './../');
 
-include(XN_ROOT.'global.php');
-include(XN_ROOT.'includes/functions/DeleteSelectedUser.php');
-include('AdminFunctions/Autorization.php');
+require_once(XN_ROOT.'global.php');
+require_once(XN_ROOT.'includes/functions/DeleteSelectedUser.php');
+require_once('AdminFunctions/Autorization.php');
 
 if ($Observation != 1) die();
 

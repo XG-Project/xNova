@@ -17,9 +17,9 @@ class ShowPhalanxPage {
 	{
 		global $lang;
 
-		include_once(XN_ROOT.'includes/functions/InsertJavaScriptChronoApplet.php');
-		include_once(XN_ROOT.'includes/classes/class.FlyingFleetsTable.php');
-		include_once(XN_ROOT.'includes/classes/class.GalaxyRows.php');
+		require_once(XN_ROOT.'includes/functions/InsertJavaScriptChronoApplet.php');
+		require_once(XN_ROOT.'includes/classes/class.FlyingFleetsTable.php');
+		require_once(XN_ROOT.'includes/classes/class.GalaxyRows.php');
 
 		$FlyingFleetsTable = new FlyingFleetsTable();
 		$GalaxyRows = new GalaxyRows();

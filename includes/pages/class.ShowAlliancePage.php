@@ -11,7 +11,7 @@
 
 if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-include(XN_ROOT.'includes/classes/class.BBCode.php');
+require_once(XN_ROOT.'includes/classes/class.BBCode.php');
 
 class ShowAlliancePage extends bbCode
 {

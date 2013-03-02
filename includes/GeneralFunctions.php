@@ -312,7 +312,7 @@ function catch_error($errno, $errstr, $errfile, $errline)
 
 	if (read_config('errors_'.$errno))
 	{
-		$errfile	= str_replace(XN_ROOT, 'XN_ROOT', $errfile);
+		$errfile	= str_replace(XN_ROOT, 'XN_ROOT/', $errfile);
 		$sender		= isset($user['id']) ? intval($user['id']) : 0;
 		$errstr		= str_replace('[<a href=\'', '[<a target="_blank" href=\'http://php.net/manual/%lang%/', $errstr);
 

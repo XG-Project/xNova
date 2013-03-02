@@ -22,7 +22,8 @@ require_once(XN_ROOT.'includes/functions/SetNextQueueElementOnTop.php');
 require_once(XN_ROOT.'includes/functions/SortUserPlanets.php');
 require_once(XN_ROOT.'includes/functions/UpdatePlanetBatimentQueueList.php');
 
-$page	= isset($_GET['page']) ? $_GET['page'] : NULL;
+$page		= isset($_GET['page']) ? $_GET['page'] : NULL;
+$planetrow	= isset($planetrow) ? $planetrow : NULL;
 
 switch ($page)
 {
@@ -80,7 +81,9 @@ switch ($page)
 		require_once(XN_ROOT.'includes/functions/HandleTechnologieBuild.php');
 		UpdatePlanetBatimentQueueList($planetrow, $user);
 		$IsWorking = HandleTechnologieBuild($planetrow, $user);
-		switch ($_GET['mode'])
+		$mode	= isset($_GET['mode']) ? $_GET['mode'] : NULL;
+
+		switch ($mode)
 		{
 			case 'research':
 				require_once(XN_ROOT.'includes/pages/class.ShowResearchPage.php');

@@ -277,6 +277,7 @@ function MakeStats()
 								`defs_old_rank`, `defs_points`, `defs_count`,
 								`fleet_old_rank`, `fleet_points`, `fleet_count`,
 								`total_old_rank`, `total_points`, `total_count`, `stat_date`) VALUES ";
+		$empty_query = TRUE;
 		//Here we start the update...
 		while (isset($old_stats_array) && $CurUser = $total_data->fetch_assoc())
 		{
@@ -366,13 +367,14 @@ function MakeStats()
 										'.$u_GPoints.','.$u_GCount.','.$stats_time.'),' ;
 			}
 			unset_vars('u_');
+			$empty_query = FALSE;
 
 			$CheckUserQuery = TRUE;
 		}
 		//TODO, make a end string check in case that insert_user_query end in VALUE...
 		//Here we change the end of the query for ;
 
-		if ($CheckUserQuery)
+		if ($CheckUserQuery && ! $empty_query)
 		{
 			$insert_user_query	=	substr_replace($insert_user_query, ';', -1);
 			doquery($insert_user_query, 'statpoints');
@@ -458,10 +460,12 @@ function MakeStats()
 									`defs_old_rank`, `defs_points`, `defs_count`,
 									`fleet_old_rank`, `fleet_points`, `fleet_count`,
 									`total_old_rank`, `total_points`, `total_count`, `stat_date`) VALUES ";
+			$empty_query = TRUE;
 			while ($CurAlly = $ally_points->fetch_assoc())
 			{
 				if ($ally_check_value[$CurAlly['id_ally']] == 1)
 				{
+					$empty_query = FALSE;
 					$u_OldTotalRank = (($ally_old_data[$CurAlly['id_ally']]['old_total_rank'])? $ally_old_data[$CurAlly['id_ally']]['old_total_rank']:0);
 					$u_OldTechRank  = (($ally_old_data[$CurAlly['id_ally']]['old_tech_rank'])? $ally_old_data[$CurAlly['id_ally']]['old_tech_rank']:0);
 					$u_OldBuildRank = (($ally_old_data[$CurAlly['id_ally']]['old_build_rank'])? $ally_old_data[$CurAlly['id_ally']]['old_build_rank']:0);
@@ -494,7 +498,7 @@ function MakeStats()
 			}
 			//Here we change the end of the query for ;
 
-			if ($CheckAllyQuery)
+			if ($CheckAllyQuery && ! $empty_query)
 			{
 				$insert_ally_query	=	substr_replace($insert_ally_query, ';', -1);
 				doquery($insert_ally_query, 'statpoints');

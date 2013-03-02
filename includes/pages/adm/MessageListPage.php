@@ -48,7 +48,7 @@ if ($Observation != 1) die(message($lang['404_page']));
 			$ViewPage = 1;
 
 	}
-	elseif ($Next   && $_POST['page'])
+	elseif ($Next && $_POST['page'])
 	{
 		if ($Selected < 100)
 			$Mess      = doquery("SELECT COUNT(*) AS `max` FROM `{{table}}` WHERE `message_type` = '".$Selected."';", 'messages', TRUE);

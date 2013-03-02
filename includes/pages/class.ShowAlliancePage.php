@@ -15,7 +15,7 @@ require_once(XN_ROOT.'includes/classes/class.BBCode.php');
 
 class ShowAlliancePage extends bbCode
 {
-	private function message_box ($title, $message, $goto = '', $button = ' ok ', $two_lines = FALSE)
+	private function message_box($title, $message, $goto = '', $button = ' ok ', $two_lines = FALSE)
 	{
 		$parse['goto']		=	$goto;
 		$parse['title']		=	$title;
@@ -34,19 +34,16 @@ class ShowAlliancePage extends bbCode
 		return parsetemplate(gettemplate('alliance/alliance_message_box'), $parse);
 	}
 
-	private function return_rank ($ally_ranks, $rank_type, $ally_owner, $user)
+	private function return_rank($rank_type)
 	{
-		if ($ally_ranks[$user['ally_rank_id']-1][$rank_type] == 1 or $ally['ally_owner'] == $user['id'])
-		{
-			return TRUE;
-		}
-		else
-		{
-			return FALSE;
-		}
+		global $user;
+        $ally_ranks = $this->allyRanks;
+        $ally['ally_owner'] = $this->ally['ally_owner'];
+
+		return ($ally_ranks[$user['ally_rank_id']-1][$rank_type] == 1 or $ally['ally_owner'] == $user['id']);
 	}
 
-	private function return_sort ($sort1, $sort2)
+	private function return_sort($sort1, $sort2)
 	{
 		// PRIMER ORDEN
 		switch ($sort1)
@@ -258,7 +255,7 @@ class ShowAlliancePage extends bbCode
 								WHERE `id`='". intval($CurrentUser['id'])."'"
 							, "users");
 
-					$page 		= $this->message_box (str_replace('%s', $_POST['atag'], $lang['al_created']),
+					$page 		= $this->message_box(str_replace('%s', $_POST['atag'], $lang['al_created']),
 
 					str_replace('%s', $_POST['atag'], $lang['al_created'])."<br><br>", "", $lang['al_continue']);
 				}
@@ -381,23 +378,23 @@ class ShowAlliancePage extends bbCode
 		}
 
 		##############################################################################################
-		# CU&&O YA ESTA EN UNA ALIANZA
+		# CUANDO YA ESTA EN UNA ALIANZA
 		##############################################################################################
-		if ($CurrentUser['ally_id']&& $CurrentUser['ally_request'] == 0)
+		if ($CurrentUser['ally_id'] && $CurrentUser['ally_request'] == 0)
 		{
-			$ally 		= doquery("SELECT * FROM `{{table}}` WHERE id='". intval($CurrentUser['ally_id'])."'", "alliance", TRUE);
-			$ally_ranks = unserialize($ally['ally_ranks']);
+			$this->ally			= $ally			= doquery("SELECT * FROM `{{table}}` WHERE id='". intval($CurrentUser['ally_id'])."'", "alliance", TRUE);
+			$this->allyRanks	= $ally_ranks	= unserialize($ally['ally_ranks']);
 
-			$user_can_watch_memberlist_status	= $this->return_rank ($ally_ranks, 'onlinestatus', $ally['ally_owner'], $CurrentUser);
-			$user_can_watch_memberlist			= $this->return_rank ($ally_ranks, 'memberlist', $ally['ally_owner'], $CurrentUser);
-			$user_can_send_mails				= $this->return_rank ($ally_ranks, 'mails', $ally['ally_owner'], $CurrentUser);
-			$user_can_kick						= $this->return_rank ($ally_ranks, 'kick', $ally['ally_owner'], $CurrentUser);
-			$user_can_edit_rights				= $this->return_rank ($ally_ranks, 'rechtehand', $ally['ally_owner'], $CurrentUser);
-			$user_can_exit_alliance				= $this->return_rank ($ally_ranks, 'delete', $ally['ally_owner'], $CurrentUser);
-			$user_bewerbungen_einsehen			= $this->return_rank ($ally_ranks, 'bewerbungen', $ally['ally_owner'], $CurrentUser);
-			$user_bewerbungen_bearbeiten		= $this->return_rank ($ally_ranks, 'bewerbungenbearbeiten', $ally['ally_owner'], $CurrentUser);
-			$user_admin							= $this->return_rank ($ally_ranks, 'administrieren', $ally['ally_owner'], $CurrentUser);
-			$user_onlinestatus					= $this->return_rank ($ally_ranks, 'onlinestatus', $ally['ally_owner'], $CurrentUser);
+			$user_can_watch_memberlist_status	= $this->return_rank('onlinestatus');
+			$user_can_watch_memberlist			= $this->return_rank('memberlist');
+			$user_can_send_mails				= $this->return_rank('mails');
+			$user_can_kick						= $this->return_rank('kick');
+			$user_can_edit_rights				= $this->return_rank('rechtehand');
+			$user_can_exit_alliance				= $this->return_rank('delete');
+			$user_bewerbungen_einsehen			= $this->return_rank('bewerbungen');
+			$user_bewerbungen_bearbeiten		= $this->return_rank('bewerbungenbearbeiten');
+			$user_admin							= $this->return_rank('administrieren');
+			$user_onlinestatus					= $this->return_rank('onlinestatus');
 
 			if ( ! $ally)
 			{
@@ -420,12 +417,12 @@ class ShowAlliancePage extends bbCode
 					doquery("UPDATE `{{table}}` SET `ally_members` = `ally_members` - 1 WHERE `id`='". intval($ally['id'])."'", "alliance");
 
 					$lang['Go_out_welldone'] 	= str_replace("%s", $ally_name, $lang['al_leave_sucess']);
-					$page 						= $this->message_box ($lang['Go_out_welldone'], "<br>", $PHP_SELF, $lang['al_continue']);
+					$page 						= $this->message_box($lang['Go_out_welldone'], "<br>", $PHP_SELF, $lang['al_continue']);
 				}
 				else
 				{
 					$lang['Want_go_out'] 	= str_replace("%s", $ally_name, $lang['al_do_you_really_want_to_go_out']);
-					$page 					= $this->message_box ($lang['Want_go_out'], "<br>", "game.php?page=alliance&mode=exit&yes=1", $lang['al_go_out_yes']);
+					$page 					= $this->message_box($lang['Want_go_out'], "<br>", "game.php?page=alliance&mode=exit&yes=1", $lang['al_go_out_yes']);
 				}
 
 				display($page);
@@ -444,7 +441,7 @@ class ShowAlliancePage extends bbCode
 				{
 					$sort1 		= intval($_GET['sort1']);
 					$sort2 		= intval($_GET['sort2']);
-					$sort		= $this->return_sort ($sort1, $sort2);
+					$sort		= $this->return_sort($sort1, $sort2);
 
 					$listuser	= doquery("SELECT * FROM `{{table}}users` inner join `{{table}}statpoints` on `{{table}}users`.`id`=`{{table}}statpoints`.`id_owner` WHERE ally_id='". intval($CurrentUser['ally_id'])."' && STAT_type=1 ".$sort."", '');
 				}
@@ -568,7 +565,7 @@ class ShowAlliancePage extends bbCode
 						$list .= "<br>{$u['username']} ";
 					}
 
-					$page	= $this->message_box ($lang['al_circular_sended'], $list, "game.php?page=alliance", $lang['al_continue'], TRUE);
+					$page	= $this->message_box($lang['al_circular_sended'], $list, "game.php?page=alliance", $lang['al_continue'], TRUE);
 
 					display($page);
 				}
@@ -937,7 +934,7 @@ class ShowAlliancePage extends bbCode
 				{
 					$sort1 		= intval($_GET['sort1']);
 					$sort2 		= intval($_GET['sort2']);
-					$sort		= $this->return_sort ($sort1, $sort2);
+					$sort		= $this->return_sort($sort1, $sort2);
 					$listuser	= doquery("SELECT * FROM `{{table}}users` inner join `{{table}}statpoints` on `{{table}}users`.`id`=`{{table}}statpoints`.`id_owner` WHERE ally_id='". intval($CurrentUser['ally_id'])."' && STAT_type=1 ".$sort."", '');
 				}
 				else

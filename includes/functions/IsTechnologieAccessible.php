@@ -9,6 +9,7 @@
  * @author	Razican <admin@razican.com>
  */
 
+//TODO
 if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 	function IsTechnologieAccessible($user, $planet, $Element)

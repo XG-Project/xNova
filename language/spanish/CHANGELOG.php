@@ -24,6 +24,7 @@ Errores Corregidos:
 - Varios errores de lenguaje
 - [#13] Error en Notas en modo debug
 - Se solucionan varios errores en el sistema de actualización de recursos (Gracias a Think)
+- Se soluciona un error en la alianza, en la que el administrador no tenía permisos (Gracias a Think)
 '
 );
 

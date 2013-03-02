@@ -25,8 +25,8 @@ class ShowNotesPage
 		{
 			$time 		= time();
 			$priority 	= intval($_POST["u"]);
-			$title 		= isset($_POST["title"]) ? $db->real_escape_string(strip_tags($_POST["title"])) : "Sin título";
-			$text 		= isset($_POST["text"]) ? str_replace("&lt;br /&gt;", "", stripslashes(strip_tags($db->real_escape_string($_POST["text"])))) : "Sin texto";
+			$title 		= ! empty($_POST["title"]) ? $db->real_escape_string(strip_tags($_POST["title"])) : "Sin título";
+			$text 		= ! empty($_POST["text"]) ? str_replace("&lt;br /&gt;", "", stripslashes(strip_tags($db->real_escape_string($_POST["text"])))) : "Sin texto";
 
 			if ($_POST["s"] ==1)
 			{
@@ -63,7 +63,6 @@ class ShowNotesPage
 			}
 
 			header("Location: ".GAMEURL."game.php?page=notes");
-
 		}
 		else
 		{

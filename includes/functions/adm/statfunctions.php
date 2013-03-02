@@ -99,7 +99,7 @@ function GetFleetPoints($CurrentPlanet)
 	return $RetValue;
 }
 
-// INICIO FIX ACTUALIZACION PUNTOS CON FLOTA VOL&&O
+// INICIO FIX ACTUALIZACION PUNTOS CON FLOTA VOLANDO
 function GetFlyingFleetPoints($fleet_array)
 {
 	global $resource, $pricelist, $reslist;
@@ -125,7 +125,7 @@ $RetValue['FleetPoint'] = $FleetPoints;
 return $RetValue;
 }
 
-//FIN FIX ACTUALIZACION PUNTOS CON FLOTA VOL&&O
+//FIN FIX ACTUALIZACION PUNTOS CON FLOTA VOLANDO
 function MakeStats()
 {
 	global $resource, $pricelist, $reslist;

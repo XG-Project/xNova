@@ -248,7 +248,7 @@ class ShowGalaxyPage extends GalaxyRows
 				{
 					if ($GalaxyInfo["id_planet"])
 					{
-						if ($GalaxyInfo['destruyed']&& $GalaxyInfo['id_owner'] != '' && $GalaxyInfo["id_planet"] != '')
+						if ($GalaxyInfo['destruyed'] && $GalaxyInfo['id_owner'] != '' && $GalaxyInfo["id_planet"] != '')
 						{
 							$this->CheckAbandonPlanetState ($GalaxyInfo);
 						}
@@ -257,7 +257,7 @@ class ShowGalaxyPage extends GalaxyRows
 							$this->planet_count++;
 						}
 
-						if ($GalaxyInfo["id_luna"]&& $GalaxyInfo["destruyed_moon"])
+						if ($GalaxyInfo["id_luna"] && $GalaxyInfo["destruyed_moon"])
 						{
 							$this->CheckAbandonMoonState ($GalaxyInfo);
 						}

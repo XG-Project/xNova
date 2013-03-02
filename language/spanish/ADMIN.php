@@ -255,7 +255,7 @@ $lang['ad_ally_not_exist3']	= '¡El usuario no existe o no es miembro de esa ali
 $lang['ad_ally_not_exist']	= '¡La alianza no existe!';
 $lang['ad_ally_not_exist2']	= '¡El usuario no existe!';
 
-//	PLANETAS Y LUNAS - PLANETS && MOONS
+//	PLANETAS Y LUNAS - PLANETS AND MOONS
 $lang['ad_pla_title']			= 'Editar planetas y/o lunas';
 $lang['ad_pla_edit_name']		= 'Editar nombre';
 $lang['ad_pla_change_id']		= 'Cambiarle el dueño (Ingresar ID del usuario)';

@@ -30,7 +30,7 @@ $currentplanet	= doquery("SELECT * FROM `{{table}}` WHERE id={$user['current_pla
 $iraks          = $currentplanet['interplanetary_misil'];
 $tempvar1      	= abs($s - $currentplanet['system']);
 $tempvar2      	= ($user['impulse_motor_tech'] * 2) - 1;
-$tempvar3      	= doquery("SELECT * FROM `{{table}}` WHERE galaxy = ".$g."  && system = ".$s." && planet = ".$i." && planet_type = 1 limit 1",  'planets',TRUE);
+$tempvar3      	= doquery("SELECT * FROM `{{table}}` WHERE galaxy = ".$g." && system = ".$s." && planet = ".$i." && planet_type = 1 limit 1",  'planets',TRUE);
 $tempvar4      	= doquery("SELECT * FROM `{{table}}` WHERE id = ".$tempvar3['id_owner']." limit 1",'users', TRUE);
 $UserPoints     = doquery("SELECT * FROM `{{table}}` WHERE `stat_type` =  '1' && `stat_code` = '1' && `id_owner` = '".$user['id']."';",  'statpoints', TRUE);
 $User2Points     = doquery("SELECT * FROM `{{table}}` WHERE `stat_type` =  '1' && `stat_code` = '1' && `id_owner` = '".$tempvar3['id_owner'] ."';", 'statpoints', TRUE);

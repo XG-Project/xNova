@@ -58,14 +58,7 @@ function is_weak($current_points, $other_points)
 {
 	$weak	= NoobsProtection::getInstance();
 
-	if ($weak->is_weak($current_points, $other_points))
-	{
-		return TRUE;
-	}
-	else
-	{
-		return FALSE;
-	}
+	return ($weak->is_weak($current_points, $other_points));
 }
 
 // DETERMINES IF THE PLAYER IS STRONG
@@ -73,14 +66,7 @@ function is_strong($current_points, $other_points)
 {
 	$strong	= NoobsProtection::getInstance();
 
-	if ($strong->is_weak($current_points, $other_points))
-	{
-		return TRUE;
-	}
-	else
-	{
-		return FALSE;
-	}
+	return ($strong->is_weak($current_points, $other_points));
 }
 
 // DETERMINES IF IS AN EMAIL

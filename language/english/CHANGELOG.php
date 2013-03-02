@@ -24,6 +24,7 @@ Fixed errors:
 - Some language issues
 - [#13] Error in Notes page in debug mode
 - Fixed some errors in the planet resurce updates (Thanks to Think)
+- Fixed an error in the alliance page where the adninistrator did not have permissions (Thanks to Think)
 '
 );
 

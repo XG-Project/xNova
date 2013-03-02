@@ -48,7 +48,7 @@ if (is_numeric($_POST['fleetid']))
 			//the return time when you press "call back ships"
 			$ReturnFlyingTime  =
 			//if the ships mission is maintaining position and they are already in target pianet
-			($FleetRow['fleet_end_stay']&& $CurrentFlyingTime > $fleetLeght)
+			($FleetRow['fleet_end_stay'] && $CurrentFlyingTime > $fleetLeght)
 			//then the return time is the $fleetLeght + the current time in maintaining position
 			  ? $fleetLeght + time()
 			// else normal mission

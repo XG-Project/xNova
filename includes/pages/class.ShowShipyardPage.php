@@ -214,7 +214,7 @@ class ShowShipyardPage
 		display(parsetemplate(gettemplate('buildings/buildings_fleet'), $parse));
 	}
 
-	public function DefensesBuildingPage (&$CurrentPlanet, $CurrentUser)
+	public function DefensesBuildingPage(&$CurrentPlanet, $CurrentUser)
 	{
 		global $lang, $resource, $_POST;
 
@@ -352,7 +352,7 @@ class ShowShipyardPage
 					$ListIDArray	= explode(",", $QueueArray[$i]);
 					$Element		= $ListIDArray[0];
 
-					if (($Element == 21) or ($Element == 14) or ($Element == 15))
+					if (($Element == 21) OR ($Element == 14) OR ($Element == 15))
 					{
 						break;
 					}
@@ -364,7 +364,7 @@ class ShowShipyardPage
 				$CurrentBuilding = $CurrentQueue;
 			}
 
-			if ((($CurrentBuilding == 21) or ($CurrentBuilding == 14) or ($CurrentBuilding == 15)) or  (($Element == 21) or ($Element == 14) or ($Element == 15))) // ADDED (or $Element == 21) BY LUCKY
+			if ((($CurrentBuilding == 21) OR ($CurrentBuilding == 14) OR ($CurrentBuilding == 15)) OR  (($Element == 21) OR ($Element == 14) OR ($Element == 15))) // ADDED (or $Element == 21) BY LUCKY
 			{
 				$parse[message] = "<font color=\"red\">".$lang['bd_building_shipyard']."</font>";
 				$NotBuilding = FALSE;
@@ -397,16 +397,16 @@ class ShowShipyardPage
 
 					if ($CanBuildOne)
 					{
-						$InQueue = strpos ($CurrentPlanet['b_hangar_id'], $Element.",");
+						$InQueue = strpos($CurrentPlanet['b_hangar_id'], $Element.",");
 						$IsBuildp = $CurrentPlanet[$resource[407]] >= 1;
 						$IsBuildg = $CurrentPlanet[$resource[408]] >= 1;
 						$BuildIt = TRUE;
 
-						if ($Element == 407 OR $Element == 408 && $InQueue)
+						if ($Element == 407 OR $Element == 408)
 						{
 							$BuildIt = FALSE;
 
-							if (($Element == 407 && ! $IsBuildp) OR ($Element == 408 && ! $IsBuildg))
+							if (($Element == 407 && ! $IsBuildp && ! $InQueue) OR ($Element == 408 && ! $IsBuildg && ! $InQueue))
 								$BuildIt = TRUE;
 						}
 

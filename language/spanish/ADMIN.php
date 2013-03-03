@@ -1,13 +1,14 @@
 <?php
 //---------------	GENERAL	------------------------//
-$lang['404_page']			= 'Necesitas permisos especiales para ver ésta página';
-$lang['adm_cp_title']		= 'Panel de control de administración';
-$lang['adm_cp_index']		= 'Inicio';
-$lang['mu_moderation_page']	= 'Permisos';
-$lang['mu_topnav']			= 'Administración';
-$lang['mu_select_nav']		= 'Navegación';
-$lang['adm_cp_logout']		= 'Salir';
-$lang['lang_key']			= 'es';
+$lang['404_page']				= 'Necesitas permisos especiales para ver ésta página';
+$lang['adm_cp_title']			= 'Panel de control de administración';
+$lang['adm_cp_index']			= 'Inicio';
+$lang['mu_moderation_page']		= 'Permisos';
+$lang['mu_topnav']				= 'Administración';
+$lang['mu_select_nav']			= 'Navegación';
+$lang['adm_cp_logout']			= 'Salir';
+$lang['lang_key']				= 'es';
+$lang['not_enough_permissions']	= 'No tienes permiso para acceder a esta zona.';
 
 //	MISCELANEO - MISCELLANEOUS
 $lang['ad_number']			= 'Nº';
@@ -437,6 +438,7 @@ $lang['se_fleet_speed']						= 'Velocidad de las flotas';
 $lang['se_resources_production_speed']		= 'Velocidad de producción';
 $lang['se_forum_link']						= 'Enlace del foro';
 $lang['se_max_users']						= 'Límite de usuarios';
+$lang['se_max_users_info']					= 'Número máximo de usuarios del servidor (0 para deshabilitar)';
 $lang['se_server_op_close']					= '¿Servidor online?';
 $lang['se_server_status_message']			= 'Mensaje del estado off-line';
 $lang['se_server_planet_parameters']		= 'Parámetros de los planetas nuevos';
@@ -455,7 +457,7 @@ $lang['se_save_parameters']					= 'Guardar parámetros';
 $lang['se_configuration_title']				= 'Configuración';
 $lang['se_server_name']						= 'Nombre de tu juego';
 $lang['se_cookie_name']						= 'Nombre de la cookie';
-$lang['se_cookie_advert']					= 'Al cambiar el nombre a la cookie usted y sus usuarios deberan loguearse de vuelta.<br>Recomendado cambiar el nombre solamente si tenes varios universos.';
+$lang['se_cookie_advert']					= 'Al cambiar el nombre de la cookie, todos los usuarios deberéis loguearos de nuevo.<br>Se recomienda cambiar el nombre solamente si tienes varios universos.';
 $lang['se_debug_message']					= 'El modo debug muestra un log de las queries realizadas en el momento';
 $lang['se_def_cdr']							= 'Defensas a escombros';
 $lang['se_ships_cdr']						= 'Naves a escombros';

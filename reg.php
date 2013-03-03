@@ -60,7 +60,7 @@ function mymail($to, $title, $body, $from = '')
 	return mail($to, $title, $body, $head);
 }
 
-if (read_config('max_users') <= read_config('users_amount')) die(message($lang['max_users'], '/', '3', FALSE, FALSE));
+if (read_config('max_users') != 0 && read_config('max_users') <= read_config('users_amount')) die(message($lang['max_users'], '/', '3', FALSE, FALSE));
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {

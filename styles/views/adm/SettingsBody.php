@@ -7,7 +7,7 @@
 			<div class="row">
 				<div class="content">{se_name}</div>
 				<div class="content">
-					<input type="text" name="game_name"  value="{game_name}" maxlength="60">
+					<input type="text" name="game_name" value="{game_name}" maxlength="60">
 				</div>
 				<div class="content info">
 					<figure class="i info"></figure>
@@ -18,7 +18,7 @@
 			<div class="row">
 				<div class="content">{se_cookie_name}</div>
 				<div class="content">
-					<input type="text" name="cookie_name"  value="{cookie}" maxlength="15">
+					<input type="text" name="cookie_name" value="{cookie}" maxlength="15">
 				</div>
 				<div class="content info">
 					<figure class="i info"></figure>
@@ -36,7 +36,7 @@
 			<div class="row">
 				<div class="content">{se_general_speed}</div>
 				<div class="content">
-					<input type="number" name="game_speed"  value="{game_speed}" maxlength="5">
+					<input type="number" name="game_speed" value="{game_speed}" min="1">
 				</div>
 				<div class="content info">
 					<figure class="i info"></figure>
@@ -47,7 +47,7 @@
 			<div class="row">
 				<div class="content">{se_fleet_speed}</div>
 				<div class="content">
-					<input type="number" name="game_speed"  value="{fleet_speed}" maxlength="5">
+					<input type="number" name="fleet_speed" value="{fleet_speed}" min="1">
 				</div>
 				<div class="content info">
 					<figure class="i info"></figure>
@@ -58,7 +58,7 @@
 			<div class="row">
 				<div class="content">{se_resources_production_speed}</div>
 				<div class="content">
-					<input type="number" name="game_speed"  value="{resource_multiplier}" maxlength="5">
+					<input type="number" name="resource_multiplier"  value="{resource_multiplier}" min="1">
 				</div>
 				<div class="content info">
 					<figure class="i info"></figure>
@@ -76,7 +76,11 @@
 			<div class="row">
 				<div class="content">{se_max_users}</div>
 				<div class="content">
-					<input type="number" name="max_users" value="{max_users_sett}">
+					<input type="number" name="max_users" value="{max_users_sett}" min="0">
+				</div>
+				<div class="content info">
+					<figure class="i info"></figure>
+					<section>{se_max_users_info}</section>
 				</div>
 			</div>
 
@@ -151,7 +155,7 @@
 			<div class="row">
 				<div class="content">{se_ships_cdr}</div>
 				<div class="content">
-					<input type="number" name="Fleet_Cdr" maxlength="3" size="3" value="{ships}"> %
+					<input type="number" name="Fleet_Cdr" value="{ships}" min="0" max="100"> %
 				</div>
 				<div class="content info">
 					<figure class="i info"></figure>
@@ -162,7 +166,7 @@
 			<div class="row">
 				<div class="content">{se_def_cdr}</div>
 				<div class="content">
-					<input type="number" name="Defs_Cdr" maxlength="3" size="3" value="{defenses}"> %
+					<input type="number" name="Defs_Cdr" value="{defenses}"  min="0" max="100"> %
 				</div>
 				<div class="content info">
 					<figure class="i info"></figure>

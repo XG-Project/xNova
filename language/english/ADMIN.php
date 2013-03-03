@@ -1,13 +1,14 @@
 <?php
 //---------------	GENERAL	------------------------//
-$lang['404_page']			= 'You do not have sufficient permissions';
-$lang['adm_cp_title']		= 'Administration control Panel';
-$lang['adm_cp_index']		= 'Home';
-$lang['mu_moderation_page']	= 'Permissions';
-$lang['mu_topnav']			= 'Administration';
-$lang['mu_select_nav']		= 'Navigation';
-$lang['adm_cp_logout']		= 'Quit';
-$lang['lang_key']			= 'en';
+$lang['404_page']				= 'You do not have sufficient permissions';
+$lang['adm_cp_title']			= 'Administration control Panel';
+$lang['adm_cp_index']			= 'Home';
+$lang['mu_moderation_page']		= 'Permissions';
+$lang['mu_topnav']				= 'Administration';
+$lang['mu_select_nav']			= 'Navigation';
+$lang['adm_cp_logout']			= 'Quit';
+$lang['lang_key']				= 'en';
+$lang['not_enough_permissions']	= 'You don\'t have enough permissions to enter here.';
 
 //	MISCELÁNEO - MISCELLANEOUS
 $lang['ad_number']			= 'No';
@@ -437,6 +438,7 @@ $lang['se_fleet_speed']						= 'Speed of fleet';
 $lang['se_resources_production_speed']		= 'Speed of production';
 $lang['se_forum_link']						= 'Forum link';
 $lang['se_max_users']						= 'Maximum users limit';
+$lang['se_max_users_info']					= 'Maximum users for the server (0 to disable)';
 $lang['se_server_op_close']					= 'Server online?';
 $lang['se_server_status_message']			= 'Off-line message';
 $lang['se_server_planet_parameters']		= 'Parameters of the new planets';

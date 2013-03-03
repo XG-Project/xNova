@@ -11,7 +11,7 @@
 
 if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-	function ShowTopNavigationBar ($CurrentUser, $CurrentPlanet)
+	function ShowTopNavigationBar($CurrentUser, $CurrentPlanet)
 	{
 		global $lang;
 

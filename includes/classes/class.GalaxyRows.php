@@ -507,7 +507,7 @@ class GalaxyRows {
 				$Systemtatus2 	= "<span class=\"noob\">".$lang['gl_w']."</span>";
 				$Systemtatus 	= "<span class=\"noob\">";
 			}
-			elseif (is_strong($MyGameLevel, $HeGameLevel))
+			elseif (($GalaxyInfo['id'] != $user['id']) && is_strong($MyGameLevel, $HeGameLevel))
 			{
 				$Systemtatus2 	= $lang['gl_s'];
 				$Systemtatus 	= "<span class=\"strong\">";

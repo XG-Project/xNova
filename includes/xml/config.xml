@@ -14,11 +14,11 @@
 	</config>
 	<config>
 		<name>game_speed</name>
-		<value>250000</value>
+		<value>2500</value>
 	</config>
 	<config>
 		<name>fleet_speed</name>
-		<value>250000</value>
+		<value>2500</value>
 	</config>
 	<config>
 		<name>resource_multiplier</name>
@@ -50,7 +50,7 @@
 	</config>
 	<config>
 		<name>close_reason</name>
-		<value>&amp;iexcl;En este momento el servidor se encuentra cerrado!!</value>
+		<value>&amp;iexcl;En este momento el servidor se encuentra cerrado!</value>
 	</config>
 	<config>
 		<name>metal_basic_income</name>
@@ -118,7 +118,7 @@
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1362337071</value>
+		<value>1362342647</value>
 	</config>
 	<config>
 		<name>stat_settings</name>

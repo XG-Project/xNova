@@ -61,7 +61,7 @@ class Production
 	 */
 	 public static function production_amount($production, $boost)
 	 {
-	 	return floor($production*read_config('resource_multiplier')* $boost);
+	 	return floor($production*read_config('resource_multiplier')*$boost);
 	 }
 
 	/**

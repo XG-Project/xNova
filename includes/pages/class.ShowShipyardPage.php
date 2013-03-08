@@ -150,7 +150,7 @@ class ShowShipyardPage
 					$ListIDArray	= explode(",", $QueueArray[$i]);
 					$Element		= $ListIDArray[0];
 
-					if (($Element == 21) or ($Element == 14) or ($Element == 15))
+					if (($Element == 21) OR ($Element == 14) OR ($Element == 15))
 					{
 						break;
 					}
@@ -162,7 +162,7 @@ class ShowShipyardPage
 				$CurrentBuilding = $CurrentQueue;
 			}
 
-			if ((($CurrentBuilding == 21) or ($CurrentBuilding == 14) or ($CurrentBuilding == 15)) or  (($Element == 21) or ($Element == 14) or ($Element == 15))) // ADDED (or $Element == 21) BY LUCKY
+			if ((($CurrentBuilding == 21) OR ($CurrentBuilding == 14) OR ($CurrentBuilding == 15)) OR  (($Element == 21) OR ($Element == 14) OR ($Element == 15))) // ADDED (or $Element == 21) BY LUCKY
 			{
 				$parse[message] = "<font color=\"red\">".$lang['bd_building_shipyard']."</font>";
 				$NotBuilding = FALSE;

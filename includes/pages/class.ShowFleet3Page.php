@@ -189,7 +189,7 @@ class ShowFleet3Page
 		{
 			$countfleettype = count($fleetarray);
 
-			if ($YourPlanet or !$UsedPlanet or $planettype != 3)
+			if ($YourPlanet OR ! $UsedPlanet OR $planettype != 3)
 			{
 				exit(header("Location: ".GAMEURL."game.php?page=fleet"));
 			}
@@ -231,14 +231,14 @@ class ShowFleet3Page
 		{
 			if (is_weak($MyGameLevel, $HeGameLevel) &&
 					$TargetPlanet['id_owner'] != '' &&
-					($_POST['mission'] == 1 or $_POST['mission'] == 6 or $_POST['mission'] == 9))
+					($_POST['mission'] == 1 OR $_POST['mission'] == 6 OR $_POST['mission'] == 9))
 			{
 				message("<font color=\"lime\"><b>".$lang['fl_week_player']."</b></font>", "game.php?page=fleet", 2);
 			}
 
 			if (is_strong($MyGameLevel, $HeGameLevel) &&
 					$TargetPlanet['id_owner'] != '' &&
-					($_POST['mission'] == 1 or $_POST['mission'] == 5 or $_POST['mission'] == 6 or $_POST['mission'] == 9))
+					($_POST['mission'] == 1 OR $_POST['mission'] == 5 OR $_POST['mission'] == 6 OR $_POST['mission'] == 9))
 			{
 				message("<font color=\"red\"><b>".$lang['fl_strong_player']."</b></font>", "game.php?page=fleet", 2);
 			}
@@ -279,7 +279,7 @@ class ShowFleet3Page
 				message("<font color=\"red\"><b>".$lang['fl_stay_not_on_enemy']."</b></font>", "game.php?page=fleet", 2);
 			}
 
-			if (($TargetPlanet["id_owner"] == $CurrentPlanet["id_owner"]) && (($_POST["mission"] == 1) or ($_POST["mission"] == 6)))
+			if (($TargetPlanet["id_owner"] == $CurrentPlanet["id_owner"]) && (($_POST["mission"] == 1) OR ($_POST["mission"] == 6)))
 			{
 				exit(header("Location: ".GAMEURL."game.php?page=fleet"));
 			}

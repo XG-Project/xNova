@@ -512,7 +512,7 @@ class ShowBuildingsPage
 							$parse['click'] = "<a href=\"game.php?page=buildings&cmd=insert&building=".$Element."\"><font color=#00FF00>".$lang['bd_add_to_list']."</font></a>";
 						}
 					}
-					elseif ($RoomIsOk && !$CanBuildElement)
+					elseif ($RoomIsOk && ! $CanBuildElement)
 					{
 						if ($NextBuildLevel == 1)
 							$parse['click'] = "<font color=#FF0000>".$lang['bd_build']."</font>";
@@ -527,7 +527,7 @@ class ShowBuildingsPage
 						$parse['click'] = "<font color=#FF0000>".$lang['bd_working']."</font>";
 					}
 
-					if (($Element == 21 or $Element == 14 or $Element == 15) && $CurrentPlanet["b_hangar"])
+					if (($Element == 21 OR $Element == 14 OR $Element == 15) && $CurrentPlanet["b_hangar"])
 					{
 						$parse['click'] = "<font color=#FF0000>".$lang['bd_working']."</font>";
 					}

@@ -72,7 +72,7 @@ class ShowMessagesPage
 					$OwnerRecord	=	doquery("SELECT `id_planet`,`username` FROM `{{table}}` WHERE `id` = '". intval($OwnerID)."';", 'users', TRUE);
 					$OwnerHome		= 	doquery("SELECT `galaxy`,`system`,`planet` FROM `{{table}}` WHERE `id_planet` = '". intval($OwnerRecord["id_planet"])."';", 'galaxy', TRUE);
 
-					if ( ! $OwnerRecord or ! $OwnerHome)
+					if ( ! $OwnerRecord OR ! $OwnerHome)
 					{
 						header("Location: ".GAMEURL."game.php?page=messages");
 					}

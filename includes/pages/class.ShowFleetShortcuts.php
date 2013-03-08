@@ -171,7 +171,7 @@ class ShowFleetShortcuts
 						$parse['block_rows'] .= "</tr>";
 					}
 
-					$sx=!$sx;
+					$sx=! $sx;
 				}
 			}
 			if ( ! $sx)

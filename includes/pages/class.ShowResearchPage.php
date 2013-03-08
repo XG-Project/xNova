@@ -38,7 +38,7 @@ class ShowResearchPage
 				$CurrentBuilding = $CurrentQueue;
 			}
 
-			if ($CurrentBuilding == 31 or $Element == 31) // ADDED (or $Element == 31) BY LUCKY
+			if ($CurrentBuilding == 31 OR $Element == 31) // ADDED (or $Element == 31) BY LUCKY
 			{
 				$return = FALSE;
 			}

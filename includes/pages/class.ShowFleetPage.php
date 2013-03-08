@@ -76,7 +76,7 @@ class ShowFleetPage
 		$parse['currentexpeditions']	= $ExpeditionEnCours;
 		$parse['maxexpeditions']		= $EnvoiMaxExpedition;
 
-		if ($count['max_fleet'] <> 0 or $MaxExpedition <> 0)
+		if ($count['max_fleet'] <> 0 OR $MaxExpedition <> 0)
 		{
 
 			$fq = doquery("SELECT * FROM `{{table}}` WHERE fleet_owner='".intval($CurrentUser[id])."'", "fleets");
@@ -126,7 +126,7 @@ class ShowFleetPage
 				$parse['fleet_arrival']		=	Format::pretty_time(floor($f['fleet_end_time'] + 1 - time()));
 
 				//now we can view the call back button for ships in maintaing position (2)
-				if ($f['fleet_mess'] == 0 or $f['fleet_mess'] == 2)
+				if ($f['fleet_mess'] == 0 OR $f['fleet_mess'] == 2)
 				{
 					$parse['inputs']  = "<form action=\"SendFleetBack.php\" method=\"post\">";
 					$parse['inputs'] .= "<input name=\"fleetid\" value=\"".$f['fleet_id']."\" type=\"hidden\">";

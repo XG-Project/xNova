@@ -92,10 +92,10 @@ class ShowResourcesPage
 				$CurrentPlanet['crystal_perhour']   += $crystal;
 				$CurrentPlanet['deuterium_perhour'] += $deuterium;
 
-				$metal                               = Production::current_production ($metal, $post_porcent);
-				$crystal                             = Production::current_production ($crystal, $post_porcent);
-				$deuterium                           = Production::current_production ($deuterium, $post_porcent);
-				$energy                              = Production::current_production ($energy, $post_porcent);
+				$metal                               = Production::current_production($metal, $post_porcent);
+				$crystal                             = Production::current_production($crystal, $post_porcent);
+				$deuterium                           = Production::current_production($deuterium, $post_porcent);
+				$energy                              = Production::current_production($energy, $post_porcent);
 				$Field                               = $resource[$ProdID]."_porcent";
 				$CurrRow                             = array();
 				$CurrRow['name']                     = $resource[$ProdID];
@@ -108,10 +108,10 @@ class ShowResourcesPage
 				$CurrRow['crystal_type']             = Format::pretty_number($crystal );
 				$CurrRow['deuterium_type']           = Format::pretty_number($deuterium);
 				$CurrRow['energy_type']              = Format::pretty_number($energy  );
-				$CurrRow['metal_type']               = Format::color_number($CurrRow['metal_type']   );
-				$CurrRow['crystal_type']             = Format::color_number($CurrRow['crystal_type'] );
+				$CurrRow['metal_type']               = Format::color_number($CurrRow['metal_type']);
+				$CurrRow['crystal_type']             = Format::color_number($CurrRow['crystal_type']);
 				$CurrRow['deuterium_type']           = Format::color_number($CurrRow['deuterium_type']);
-				$CurrRow['energy_type']              = Format::color_number($CurrRow['energy_type']  );
+				$CurrRow['energy_type']              = Format::color_number($CurrRow['energy_type']);
 				$parse['resource_row']              .= parsetemplate($ResourcesRowTPL, $CurrRow);
 			}
 		}

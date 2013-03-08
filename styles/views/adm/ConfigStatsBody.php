@@ -1,6 +1,6 @@
 <section class="page">
 	<section class="content-table table thin divided settings">
-		<form action="admin.php?page=settings" method="post" accept-charset="UTF-8">
+		<form action="admin.php?page=stats" method="post" accept-charset="UTF-8">
 			<h3>{cs_title}</h3>
 
 			<div class="row">

@@ -590,7 +590,7 @@ class Bot {
 		while ($row = $_fleets->fetch_array())
 		{
 			//Actualizar solo flotas que afecten al jugador actual
-			if (($row['fleet_mission'] == 1 or $row['fleet_mission'] == 2 or $row['fleet_mission'] == 9) and ($row['fleet_end_galaxy'] == $this->CurrentPlanet['galaxy'] and $row['fleet_end_system'] == $this->CurrentPlanet['system'] and $row['fleet_end_planet'] == $this->CurrentPlanet['planet'])){
+			if (($row['fleet_mission'] == 1 OR $row['fleet_mission'] == 2 OR $row['fleet_mission'] == 9) && ($row['fleet_end_galaxy'] == $this->CurrentPlanet['galaxy'] and $row['fleet_end_system'] == $this->CurrentPlanet['system'] and $row['fleet_end_planet'] == $this->CurrentPlanet['planet'])){
 				$array                = array();
 				$array['galaxy']      = $row['fleet_start_galaxy'];
 				$array['system']      = $row['fleet_start_system'];

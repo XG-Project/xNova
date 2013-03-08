@@ -177,11 +177,11 @@ class ShowGalaxyPage extends GalaxyRows
 		// START FIX BY alivan
 		if ($mode != 2)
 		{
-			if (($CurrentPlanet['system'] != ($_POST["system"] - 1)) && ($CurrentPlanet['system'] != $_GET['system'] or $CurrentPlanet['galaxy'] != $_GET['galaxy']) && ($mode) && ($CurrentPlanet['deuterium'] < 10))
+			if (($CurrentPlanet['system'] != ($_POST["system"] - 1)) && ($CurrentPlanet['system'] != $_GET['system'] OR $CurrentPlanet['galaxy'] != $_GET['galaxy']) && ($mode) && ($CurrentPlanet['deuterium'] < 10))
 			{
 				die(message($lang['gl_no_deuterium_to_view_galaxy'], "game.php?page=galaxy&mode=0", 2));
 			}
-			elseif (($CurrentPlanet['system'] != ($_POST["system"] - 1)) && ($CurrentPlanet['system'] != $_GET['system'] or $CurrentPlanet['galaxy'] != $_GET['galaxy']) && ($mode))
+			elseif (($CurrentPlanet['system'] != ($_POST["system"] - 1)) && ($CurrentPlanet['system'] != $_GET['system'] OR $CurrentPlanet['galaxy'] != $_GET['galaxy']) && ($mode))
 			{
 				$QryGalaxyDeuterium   = "UPDATE `{{table}}` SET ";
 				$QryGalaxyDeuterium  .= "`deuterium` = `deuterium` -  10 ";

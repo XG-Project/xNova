@@ -293,7 +293,7 @@ class FlyingFleetHandler {
 			$runda[$i]["atakujacy"]['count']	= $atakujacy_ilosc;
 			$runda[$i]["wrog"]['count'] 		= $wrog_ilosc;
 
-			if (($atakujacy_ilosc == 0) or ($wrog_ilosc == 0))
+			if (($atakujacy_ilosc == 0) OR ($wrog_ilosc == 0))
 				break;
 
 			foreach ($CurrentSet as $a => $b)
@@ -394,9 +394,9 @@ class FlyingFleetHandler {
 			$CurrentSet 						= $atakujacy_n;
 		}
 
-		if (($atakujacy_ilosc == 0) or ($wrog_ilosc == 0))
+		if (($atakujacy_ilosc == 0) OR ($wrog_ilosc == 0))
 		{
-			if (($atakujacy_ilosc == 0) and ($wrog_ilosc == 0))
+			if (($atakujacy_ilosc == 0) && ($wrog_ilosc == 0))
 				$wygrana = "r";
 			else
 			if ($atakujacy_ilosc == 0)
@@ -785,7 +785,7 @@ class FlyingFleetHandler {
 				$GottenMoon       = sprintf($lang['sys_moonbuilt'], $TargetPlanetName, $FleetRow['fleet_end_galaxy'], $FleetRow['fleet_end_system'], $FleetRow['fleet_end_planet']);
 				$GottenMoon .= "<br>";
 			}
-			elseif ($UserChance = 0 or $UserChance > $MoonChance)
+			elseif ($UserChance = 0 OR $UserChance > $MoonChance)
 			{
 				$GottenMoon = "";
 			}
@@ -812,7 +812,7 @@ class FlyingFleetHandler {
 			$QryInsertRapport .= '`rid` = "'.$rid.'", ';
 			$QryInsertRapport .= '`a_zestrzelona` = "'.$formatted_cr['destroyed'].'", ';
 			$QryInsertRapport .= '`raport` = "'.$db->real_escape_string($raport).'"';
-			doquery($QryInsertRapport,'rw') or die("Error inserting CR to database<br><br>Trying to execute:".$db->error);
+			doquery($QryInsertRapport,'rw') OR die("Error inserting CR to database<br><br>Trying to execute:".$db->error);
 
 			if ($result['won'] == "a")
 			{
@@ -1166,9 +1166,9 @@ class FlyingFleetHandler {
 							$SpyMessage = $Materials."<br>".$AttackLink.$MessageEnd;
 						if ($ST == "2")
 							$SpyMessage = $PlanetFleet."<br>".$AttackLink.$MessageEnd;
-						if ($ST == "4" or $ST == "3")
+						if ($ST == "4" OR $ST == "3")
 							$SpyMessage = $PlanetDefense."<br>".$AttackLink.$MessageEnd;
-						if ($ST == "5" or $ST == "6")
+						if ($ST == "5" OR $ST == "6")
 							$SpyMessage = $PlanetBuildings."<br>".$AttackLink.$MessageEnd;
 						if ($ST >= "7")
 							$SpyMessage = $TargetTechnos."<br>".$AttackLink.$MessageEnd;
@@ -1636,12 +1636,12 @@ class FlyingFleetHandler {
 					$ChanceMoon = sprintf($lang['sys_moonproba'], $MoonChance);
 				}
 
-				if (($UserChance > 0) and ($UserChance <= $MoonChance) and $galenemyrow['id_luna'] == 0)
+				if (($UserChance > 0) && ($UserChance <= $MoonChance) and $galenemyrow['id_luna'] == 0)
 				{
 					$TargetPlanetName = CreateOneMoonRecord($FleetRow['fleet_end_galaxy'], $FleetRow['fleet_end_system'], $FleetRow['fleet_end_planet'], $TargetUserID, $FleetRow['fleet_start_time'], '', $MoonChance);
 					$GottenMoon       = sprintf($lang['sys_moonbuilt'], $TargetPlanetName, $FleetRow['fleet_end_galaxy'], $FleetRow['fleet_end_system'], $FleetRow['fleet_end_planet']);
 				}
-				elseif ($UserChance = 0 or $UserChance > $MoonChance)
+				elseif ($UserChance = 0 OR $UserChance > $MoonChance)
 					$GottenMoon = "";
 
 				$AttackDate        = date("r", $FleetRow["fleet_start_time"]);

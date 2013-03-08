@@ -325,7 +325,7 @@ class ShowOverviewPage
 
 				if ($lunarow['id']&& $lunarow['destruyed'] != 1 && $CurrentPlanet['planet_type'] != 3)
 				{
-					if ($CurrentPlanet['planet_type'] == 1 or $lunarow['id'])
+					if ($CurrentPlanet['planet_type'] == 1 OR $lunarow['id'])
 					{
 						$moon = doquery("SELECT `id`,`name`,`image` FROM `{{table}}` WHERE `galaxy` = '".intval($CurrentPlanet['galaxy'])."' && `system` = '".intval($CurrentPlanet['system'])."' && `planet` = '".intval($CurrentPlanet['planet'])."' && `planet_type` = '3'",'planets',TRUE);
 						$parse['moon'] = '<th><a href="game.php?page=overview&cp='.$moon['id'].'&re=0" title="'.$moon['name'].'"><img src="'.DPATH.'planeten/'.$moon['image'].'.jpg" height="50" width="50"></a><br>'.$moon['name'].' ('.$lang['fcm_moon'].')</th>';

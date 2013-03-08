@@ -64,7 +64,7 @@ class ShowFleetACSPage
 
 		$MaxFlottes 		= Fleets::get_max_fleets($CurrentUser[$resource[108]], $CurrentUser['rpg_amiral']);
 
-		if ( ! is_numeric($fleetid) or empty($fleetid))
+		if ( ! is_numeric($fleetid) OR empty($fleetid))
 		{
 			exit(header("Location: ".GAMEURL."game.php?page=fleet"));
 		}
@@ -178,7 +178,7 @@ class ShowFleetACSPage
 				}
 			}
 
-			if ($count['max_fleet'] <> 0 or $MaxExpedition <> 0)
+			if ($count['max_fleet'] <> 0 OR $MaxExpedition <> 0)
 			{
 
 				$fq = doquery("SELECT * FROM `{{table}}` WHERE fleet_owner='".intval($CurrentUser[id])."'", "fleets");
@@ -227,7 +227,7 @@ class ShowFleetACSPage
 					$parse['fleet_end_time']	=	date("d M Y H:i:s", $f['fleet_end_time']);
 					$parse['fleet_arrival']		=	Format::pretty_time(floor($f['fleet_end_time'] + 1 - time()));
 
-					if ($f['fleet_mess'] == 0 or $f['fleet_mess'] == 2)
+					if ($f['fleet_mess'] == 0 OR $f['fleet_mess'] == 2)
 					{
 						$parse['inputs']  = "<form action=\"SendFleetBack.php\" method=\"post\">";
 						$parse['inputs'] .= "<input name=\"fleetid\" value=\"".$f['fleet_id']."\" type=\"hidden\">";

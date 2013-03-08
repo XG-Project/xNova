@@ -58,7 +58,7 @@ class ShowSearchPage
 		{
 			while ($s = $search->fetch_array())
 			{
-				if ($type == 'playername' or $type == 'planetname')
+				if ($type == 'playername' OR $type == 'planetname')
 				{
 					if ($s['ally_id']&& $s['ally_request'] == 0)
 					{

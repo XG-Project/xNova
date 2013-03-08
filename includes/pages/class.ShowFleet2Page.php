@@ -75,14 +75,14 @@ class ShowFleet2Page
 				$missiontype = array();
 			}
 		}
-		elseif ($_POST['planettype'] == 1 or $_POST['planettype'] == 3)
+		elseif ($_POST['planettype'] == 1 OR $_POST['planettype'] == 3)
 		{
-			if ($_POST['ship208'] >= 1 && !$UsedPlanet)
+			if ($_POST['ship208'] >= 1 && ! $UsedPlanet)
 			{
 				$missiontype = array(7 => $lang['type_mission'][7]);
 			}
 
-			elseif ($_POST['ship210'] >= 1 && !$YourPlanet)
+			elseif ($_POST['ship210'] >= 1 && ! $YourPlanet)
 			{
 				$missiontype = array(6 => $lang['type_mission'][6]);
 			}
@@ -110,7 +110,7 @@ class ShowFleet2Page
 				$missiontype[5] 	= $lang['type_mission'][5];
 			}
 		}
-		elseif ($_POST['ship209'] >= 1 or $_POST['ship208'])
+		elseif ($_POST['ship209'] >= 1 OR $_POST['ship208'])
 		{
 			$missiontype[3] 		= $lang['type_mission'][3];
 		}
@@ -133,7 +133,7 @@ class ShowFleet2Page
 			}
 		}
 
-		if ($_POST['planettype'] == 3 && $_POST['ship214'] >= 1 && !$YourPlanet && $UsedPlanet)
+		if ($_POST['planettype'] == 3 && $_POST['ship214'] >= 1 && ! $YourPlanet && $UsedPlanet)
 		{
 			$missiontype[9] = $lang['type_mission'][9];
 		}

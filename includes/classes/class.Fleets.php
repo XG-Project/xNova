@@ -116,13 +116,13 @@ class Fleets {
 
 			}
 
-			if ($ship == 203 or $ship == 204 or $ship == 209 or $ship == 210)
+			if ($ship == 203 OR $ship == 204 OR $ship == 209 OR $ship == 210)
 			{
 				$speed_all[$ship] 		= $pricelist[$ship]['speed'] + (($pricelist[$ship]['speed'] * $user['combustion_tech']) * 0.1);
 			}
 
 
-			if ($ship == 205 or $ship == 206 or $ship == 208)
+			if ($ship == 205 OR $ship == 206 OR $ship == 208)
 			{
 				$speed_all[$ship] 		= $pricelist[$ship]['speed'] + (($pricelist[$ship]['speed'] * $user['impulse_motor_tech']) * 0.2);
 			}
@@ -139,7 +139,7 @@ class Fleets {
 				}
  			}
 
-			if ($ship == 207 or $ship == 213 or $ship == 214 or $ship == 215)
+			if ($ship == 207 OR $ship == 213 OR $ship == 214 OR $ship == 215)
 			{
 				$speed_all[$ship] 		= $pricelist[$ship]['speed'] + (($pricelist[$ship]['speed'] * $user['hyperspace_motor_tech']) * 0.3);
 			}

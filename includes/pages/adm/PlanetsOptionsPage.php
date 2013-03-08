@@ -34,14 +34,14 @@ if ($mode == 'agregar')
 	$i	=	0;
 	$QueryS	=	doquery("SELECT * FROM `{{table}}` WHERE `galaxy` = '".$galaxy."' && `system` = '".$system."' && `planet` = '".$planet."'", "galaxy", TRUE);
 	$QueryS2	=	doquery("SELECT * FROM `{{table}}` WHERE `id` = '".$id."'", "users", TRUE);
-	if (is_numeric($_POST['id']) && isset($_POST['id']) && !$QueryS && $QueryS2)
+	if (is_numeric($_POST['id']) && isset($_POST['id']) && ! $QueryS && $QueryS2)
 	{
-		if ($galaxy < 1 or $system < 1 or $planet < 1 or ! is_numeric($galaxy) or ! is_numeric($system) or ! is_numeric($planet)){
+		if ($galaxy < 1 OR $system < 1 OR $planet < 1 OR ! is_numeric($galaxy) OR ! is_numeric($system) OR ! is_numeric($planet)){
 			$Error	.=	'<tr><th colspan="2"><font color=red>'.$lang['po_complete_all'].'</font></th></tr>';
 			$i++;}
 
 
-		if ($galaxy > MAX_GALAXY_IN_WORLD or $system > MAX_SYSTEM_IN_GALAXY or $planet > MAX_PLANET_IN_SYSTEM){
+		if ($galaxy > MAX_GALAXY_IN_WORLD OR $system > MAX_SYSTEM_IN_GALAXY OR $planet > MAX_PLANET_IN_SYSTEM){
 			$Error	.=	'<tr><th colspan="2"><font color=red>'.$lang['po_complete_all2'].'</font></th></tr>';
 			$i++;}
 

@@ -40,7 +40,7 @@ class ShowAlliancePage extends bbCode
         $ally_ranks = $this->allyRanks;
         $ally['ally_owner'] = $this->ally['ally_owner'];
 
-		return ($ally_ranks[$user['ally_rank_id']-1][$rank_type] == 1 or $ally['ally_owner'] == $user['id']);
+		return ($ally_ranks[$user['ally_rank_id']-1][$rank_type] == 1 OR $ally['ally_owner'] == $user['id']);
 	}
 
 	private function return_sort($sort1, $sort2)
@@ -123,7 +123,7 @@ class ShowAlliancePage extends bbCode
 			unset($sort2);
 		}
 
-		if (( ! is_numeric($d)) or (empty($d) && $d))
+		if (( ! is_numeric($d)) OR (empty($d) && $d))
 		{
 			unset($d);
 		}
@@ -311,7 +311,7 @@ class ShowAlliancePage extends bbCode
 				}
 				else
 				{
-					if ( ! is_numeric($_GET['allyid']) or !$_GET['allyid'] or $CurrentUser['ally_request']or $CurrentUser['ally_id'])
+					if ( ! is_numeric($_GET['allyid']) OR ! $_GET['allyid'] OR $CurrentUser['ally_request'] OR $CurrentUser['ally_id'])
 					{
 						header("Location: ".GAMEURL."game.php?page=alliance", 2);
 					}
@@ -432,7 +432,7 @@ class ShowAlliancePage extends bbCode
 			##############################################################################################
 			if ($mode == 'memberslist')
 			{
-				if ($ally['ally_owner'] != $CurrentUser['id'] && !$user_can_watch_memberlist)
+				if ($ally['ally_owner'] != $CurrentUser['id'] && ! $user_can_watch_memberlist)
 				{
 					header("Location: ".GAMEURL."game.php?page=alliance", 2);
 				}
@@ -537,7 +537,7 @@ class ShowAlliancePage extends bbCode
 			##############################################################################################
 			if ($mode == 'circular')
 			{
-				if ($ally['ally_owner'] != $CurrentUser['id'] && !$user_can_send_mails)
+				if ($ally['ally_owner'] != $CurrentUser['id'] && ! $user_can_send_mails)
 				{
 					header("Location: ".GAMEURL."game.php?page=alliance", 2);
 				}
@@ -587,7 +587,7 @@ class ShowAlliancePage extends bbCode
 			##############################################################################################
 			if ($mode == 'admin' && $edit == 'rights')
 			{
-				if ($ally['ally_owner'] != $CurrentUser['id'] && !$user_can_edit_rights)
+				if ($ally['ally_owner'] != $CurrentUser['id'] && ! $user_can_edit_rights)
 				{
 					header("Location: ".GAMEURL."game.php?page=alliance", 2);
 				}
@@ -724,7 +724,7 @@ class ShowAlliancePage extends bbCode
 					doquery("UPDATE `{{table}}` SET `ally_ranks`='".$ally['ally_rank']."' WHERE `id`=". intval($ally['id'])."", "alliance");
 				}
 
-				if (count($ally_ranks) == 0 or $ally_ranks == '')
+				if (count($ally_ranks) == 0 OR $ally_ranks == '')
 				{
 					$list = "<th>".$lang['al_no_ranks_defined']."</th>";
 				}
@@ -908,7 +908,7 @@ class ShowAlliancePage extends bbCode
 
 				if (isset($kick))
 				{
-					if ($ally['ally_owner'] != $CurrentUser['id'] && !$user_can_kick)
+					if ($ally['ally_owner'] != $CurrentUser['id'] && ! $user_can_kick)
 					{
 						header("Location: ".GAMEURL."game.php?page=alliance", 2);
 					}
@@ -924,7 +924,7 @@ class ShowAlliancePage extends bbCode
 				{
 					$q	= doquery("SELECT * FROM `{{table}}` WHERE id='". intval($u)."' LIMIT 1", 'users', TRUE);
 
-					if ((isset($ally_ranks[$_POST['newrang']-1]) or $_POST['newrang'] == 0) && $q['id'] != $ally['ally_owner'])
+					if ((isset($ally_ranks[$_POST['newrang']-1]) OR $_POST['newrang'] == 0) && $q['id'] != $ally['ally_owner'])
 					{
 						doquery("UPDATE `{{table}}` SET `ally_rank_id`='".$db->real_escape_string (strip_tags ($_POST['newrang']))."' WHERE `id`='". intval($id)."'", 'users');
 					}
@@ -962,7 +962,7 @@ class ShowAlliancePage extends bbCode
 					{
 						$ally_range 	= ($ally['ally_owner_range'] == '') ? $lang['al_founder_rank_text'] : $ally['ally_owner_range'];
 					}
-					elseif ($u['ally_rank_id'] == 0 or ! isset($ally_ranks[$u['ally_rank_id']-1]['name']))
+					elseif ($u['ally_rank_id'] == 0 OR ! isset($ally_ranks[$u['ally_rank_id']-1]['name']))
 					{
 						$ally_range 	= $lang['al_new_member_rank_text'];
 					}
@@ -971,11 +971,11 @@ class ShowAlliancePage extends bbCode
 						$ally_range 	= $ally_ranks[$u['ally_rank_id']-1]['name'];
 					}
 
-					if ($ally['ally_owner'] == $u['id'] or $rank == $u['id'])
+					if ($ally['ally_owner'] == $u['id'] OR $rank == $u['id'])
 					{
 						$u["acciones"] 	= '-';
 					}
-					elseif ($ally_ranks[$CurrentUser['ally_rank_id']-1]['kick'] == 1  &&  $ally_ranks[$CurrentUser['ally_rank_id']-1]['administrieren'] == 1 or $ally['ally_owner'] == $CurrentUser['id'])
+					elseif ($ally_ranks[$CurrentUser['ally_rank_id']-1]['kick'] == 1  &&  $ally_ranks[$CurrentUser['ally_rank_id']-1]['administrieren'] == 1 OR $ally['ally_owner'] == $CurrentUser['id'])
 					{
 						$u["acciones"] 	= "<a href=\"game.php?page=alliance&mode=admin&edit=members&kick=".$u[id]."\" onclick=\"javascript:return confirm('¿Estás seguro que deseas expulsar a ".$a[username]."?');\"><img src=\"".DPATH."pic/abort.png\" border=\"0\"></a> <a href=\"game.php?page=alliance&mode=admin&edit=members&rank=".$u[id]."\"><img src=\"". DPATH."pic/key.png\" border=\"0\"></a>";
 					}
@@ -1057,7 +1057,7 @@ class ShowAlliancePage extends bbCode
 			##############################################################################################
 			if ($mode == 'admin' && $edit == 'requests')
 			{
-				if ($ally['ally_owner'] != $CurrentUser['id'] && !$user_bewerbungen_bearbeiten)
+				if ($ally['ally_owner'] != $CurrentUser['id'] && ! $user_bewerbungen_bearbeiten)
 				{
 					header("Location: ".GAMEURL."game.php?page=alliance", 2);
 				}
@@ -1137,7 +1137,7 @@ class ShowAlliancePage extends bbCode
 			##############################################################################################
 			if ($mode == 'admin' && $edit == 'name')
 			{
-				if ($ally['ally_owner'] != $CurrentUser['id'] && !$user_admin)
+				if ($ally['ally_owner'] != $CurrentUser['id'] && ! $user_admin)
 				{
 					header("Location: ".GAMEURL."game.php?page=alliance", 2);
 				}
@@ -1159,7 +1159,7 @@ class ShowAlliancePage extends bbCode
 			##############################################################################################
 			if ($mode == 'admin' && $edit == 'tag')
 			{
-				if ($ally['ally_owner'] != $CurrentUser['id'] && !$user_admin)
+				if ($ally['ally_owner'] != $CurrentUser['id'] && ! $user_admin)
 				{
 					header("Location: ".GAMEURL."game.php?page=alliance", 2);
 				}
@@ -1184,7 +1184,7 @@ class ShowAlliancePage extends bbCode
 			##############################################################################################
 			if ($mode == 'admin' && $edit == 'exit')
 			{
-				if ($ally['ally_owner'] != $CurrentUser['id'] && !$user_can_exit_alliance)
+				if ($ally['ally_owner'] != $CurrentUser['id'] && ! $user_can_exit_alliance)
 				{
 					header("Location: ".GAMEURL."game.php?page=alliance", 2);
 				}
@@ -1267,7 +1267,7 @@ class ShowAlliancePage extends bbCode
 				}
 
 				// LISTA DE MIEMBROS
-				if ($ally['ally_owner'] == $CurrentUser['id'] or $ally_ranks[$CurrentUser['ally_rank_id']-1]['memberlist'])
+				if ($ally['ally_owner'] == $CurrentUser['id'] OR $ally_ranks[$CurrentUser['ally_rank_id']-1]['memberlist'])
 				{
 					$lang['members_list']	= " (<a href=\"game.php?page=alliance&mode=memberslist\">".$lang['al_user_list']."</a>)";
 				}
@@ -1302,7 +1302,7 @@ class ShowAlliancePage extends bbCode
 
 				if ($request_count)
 				{
-					if ($ally['ally_owner'] == $CurrentUser['id'] or $ally_ranks[$CurrentUser['ally_rank_id']-1]['bewerbungen'])
+					if ($ally['ally_owner'] == $CurrentUser['id'] OR $ally_ranks[$CurrentUser['ally_rank_id']-1]['bewerbungen'])
 					{
 						$parse['request_count']	=	$request_count;
 						$lang['requests'] 		=	parsetemplate(gettemplate('alliance/alliance_requests_row'), $parse);

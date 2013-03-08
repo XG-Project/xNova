@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_error_coord'].'</tr></th>';
 		$i++;}
 
-	if ( ! $name OR !$pass OR !$email OR !$galaxy OR !$system OR !$planet){
+	if ( ! $name OR ! $pass OR ! $email OR ! $galaxy OR ! $system OR ! $planet){
 		$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_complete_all'].'</tr></th>';
 		$i++;}
 

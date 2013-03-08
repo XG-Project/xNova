@@ -80,7 +80,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "users", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if ( ! $ORDERBY OR !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY OR ! $QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -194,7 +194,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "planets", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if ( ! $ORDERBY OR !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY OR ! $QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -298,7 +298,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "planets", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if ( ! $ORDERBY OR !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY OR ! $QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -394,7 +394,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "alliance", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if ( ! $ORDERBY OR !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY OR ! $QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -484,7 +484,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "users", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if ( ! $ORDERBY OR !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY OR ! $QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -580,7 +580,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "banned", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if ( ! $ORDERBY OR !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY OR ! $QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -672,7 +672,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "users", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if ( ! $ORDERBY OR !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY OR ! $QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];
@@ -767,7 +767,7 @@ switch(isset($_POST['search']) ? $_POST['search'] : NULL)
 	$QueryFind	=	doquery("SELECT * FROM {{table}}", "users", TRUE);
 	$ORDERBY	=	$_POST['key_order'];
 	$ORDERBY2	=	$_POST['key_acc'];
-	if ( ! $ORDERBY OR !$QueryFind[$ORDERBY])
+	if ( ! $ORDERBY OR ! $QueryFind[$ORDERBY])
 		$ORDER	=	"id";
 	else
 		$ORDER	=	$_POST['key_order'];

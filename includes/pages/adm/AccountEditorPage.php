@@ -347,7 +347,7 @@ switch ($_GET['page'])
 					$QryUpdatePlanet .= "`id` = '".$id."' ";
 					doquery($QryUpdatePlanet, "planets");
 
-					if ($mondbasis or $phalanx or $sprungtor)
+					if ($mondbasis OR $phalanx OR $sprungtor)
 					{
 						if ($QueryFind['planet_type']	==	'3')
 						{
@@ -402,7 +402,7 @@ switch ($_GET['page'])
 					doquery($QryUpdatePlanet, "planets");
 
 
-					if ($mondbasis or $phalanx or $sprungtor)
+					if ($mondbasis OR $phalanx OR $sprungtor)
 					{
 						if ($QueryFind['planet_type']	==	'3')
 						{
@@ -645,7 +645,7 @@ switch ($_GET['page'])
 					$PersonalQuery    .=    "`onlinetime` = '".time()."' ";
 
 
-				if ($_POST['username'] or $_POST['email'] or $_POST['email_2'] or $_POST['password'] or $_POST['vacation'] != '')
+				if ($_POST['username'] OR $_POST['email'] OR $_POST['email_2'] OR $_POST['password'] OR $_POST['vacation'] != '')
 				{
 					$PersonalQuery    .=    "WHERE `id` = '".$_POST['id']."'";
 					doquery($PersonalQuery, "users");

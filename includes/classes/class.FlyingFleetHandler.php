@@ -563,7 +563,7 @@ class FlyingFleetHandler {
 
 	private function MissionCaseAttack ($FleetRow)
 	{
-		global $pricelist, $lang, $resource, $CombatCaps, $user;
+		global $pricelist, $lang, $resource, $CombatCaps, $user, $db;
 
 		if ($FleetRow['fleet_mess'] == 0 && $FleetRow['fleet_start_time'] <= time())
 		{

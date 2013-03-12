@@ -274,7 +274,7 @@ if (defined('INSIDE'))
 				'metal'     => 'return   "0";',
 				'crystal'   => 'return   "0";',
 				'deuterium' => 'return - (05 * $BuildLevel * pow((1.1), $BuildLevel)) * (0.1 * $BuildLevelFactor);',
-				'energy'    => 'return   (30 * $BuildLevel * pow((1.05 + $EnergyLevel * 0.01), $BuildLevel));')
+				'energy'    => 'return   (30 * $BuildLevel * pow((1.05 + $EnergyLevel * 0.01), $BuildLevel)) * (0.1 * $BuildLevelFactor);')
 		),
 
 		212 => array('metal' =>    0, 'crystal' => 2000, 'deuterium' =>  500, 'energy' => 0, 'factor' => 0.5,

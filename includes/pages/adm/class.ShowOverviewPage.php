@@ -91,7 +91,7 @@ class ShowOverviewPage {
 		else
 		{
 			$parse['error_message']		= 	$lang['ow_none'];
-			$parse['error_class']		=	"no_error";
+			$parse['error_class']		=	"no_errors";
 		}
 
 		display(parsetemplate(gettemplate('adm/OverviewBody'), $parse), TRUE, '', TRUE);

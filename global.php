@@ -122,7 +122,7 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 
 	define('AUTHLEVEL', (isset($user['authlevel']) ? (int) $user['authlevel'] : 0));
 
-	if (read_config('game_disable') === 0 && AUTHLEVEL === 0)
+	if (read_config('game_enabled') === 0 && AUTHLEVEL === 0)
 	{
 		message(stripslashes(read_config('close_reason')), '', '', FALSE, FALSE);
 	}

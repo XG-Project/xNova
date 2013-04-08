@@ -45,7 +45,7 @@
 		<value>xNova</value>
 	</config>
 	<config>
-		<name>game_disable</name>
+		<name>game_enabled</name>
 		<value>1</value>
 	</config>
 	<config>
@@ -118,7 +118,7 @@
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1362410377</value>
+		<value>1365430178</value>
 	</config>
 	<config>
 		<name>stat_settings</name>

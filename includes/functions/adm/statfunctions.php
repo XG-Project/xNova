@@ -205,8 +205,8 @@ function MakeStats()
 	$game_stat_level	=	read_config('stat_level');
 	$game_stat			=	read_config('stat');
 
-	$game_stat_amount	= (($game_stat_amount>=10)?$game_stat_amount:10);
-	$amount_per_block	= (($game_stat_amount<$game_users_amount)?$game_users_amount:$game_stat_amount);
+	$game_stat_amount	= (($game_stat_amount>=10) ?$game_stat_amount:10);
+	$amount_per_block	= (($game_stat_amount<$game_users_amount) ?$game_users_amount:$game_stat_amount);
 	if ($total_users['count'] > $amount_per_block)
 	{
 		$LastQuery = Format::round_up($total_users['count'] / $amount_per_block);
@@ -279,15 +279,18 @@ function MakeStats()
 								`total_old_rank`, `total_points`, `total_count`, `stat_date`) VALUES ";
 		$empty_query = TRUE;
 		//Here we start the update...
-		while (isset($old_stats_array) && $CurUser = $total_data->fetch_assoc())
+		while ($CurUser = $total_data->fetch_assoc())
 		{
-			$u_OldTotalRank = (($old_stats_array[$CurUser['id']]['old_total_rank'])? $old_stats_array[$CurUser['id']]['old_total_rank']:0);
-			$u_OldTechRank  = (($old_stats_array[$CurUser['id']]['old_tech_rank'])? $old_stats_array[$CurUser['id']]['old_tech_rank']:0);
-			$u_OldBuildRank = (($old_stats_array[$CurUser['id']]['old_build_rank'])? $old_stats_array[$CurUser['id']]['old_build_rank']:0);
-			$u_OldDefsRank  = (($old_stats_array[$CurUser['id']]['old_defs_rank'])? $old_stats_array[$CurUser['id']]['old_defs_rank']:0);
-			$u_OldFleetRank = (($old_stats_array[$CurUser['id']]['old_fleet_rank'])? $old_stats_array[$CurUser['id']]['old_fleet_rank']:0);
+			$u_OldTotalRank = (isset($old_stats_array[$CurUser['id']]['old_total_rank']) ? $old_stats_array[$CurUser['id']]['old_total_rank'] : 0);
+			$u_OldTechRank  = (isset($old_stats_array[$CurUser['id']]['old_tech_rank']) ? $old_stats_array[$CurUser['id']]['old_tech_rank'] : 0);
+			$u_OldBuildRank = (isset($old_stats_array[$CurUser['id']]['old_build_rank']) ? $old_stats_array[$CurUser['id']]['old_build_rank'] : 0);
+			$u_OldDefsRank  = (isset($old_stats_array[$CurUser['id']]['old_defs_rank']) ? $old_stats_array[$CurUser['id']]['old_defs_rank'] : 0);
+			$u_OldFleetRank = (isset($old_stats_array[$CurUser['id']]['old_fleet_rank']) ? $old_stats_array[$CurUser['id']]['old_fleet_rank'] : 0);
 			//We dont need this anymore...
-			unset($old_stats_array[$CurUser['id']]);
+			if (isset($old_stats_array[$CurUser['id']]))
+			{
+				unset($old_stats_array[$CurUser['id']]);
+			}
 			//1 point=  'stat_settings' ressources
 			//Make the tech points XD
 			$u_points			= GetTechnoPoints($CurUser);
@@ -398,8 +401,8 @@ function MakeStats()
 	if ($total_ally > 0)//We only update allys if at least 1 ally exist...
 	{
 		//Min amount = 10, if it is less than 10, it is not a good system
-		$game_stat_amount= (($game_stat_amount>=10)?$game_stat_amount:10);
-		$amount_per_block	= (($game_stat_amount<$game_users_amount)?$game_users_amount:$game_stat_amount);
+		$game_stat_amount= (($game_stat_amount>=10) ?$game_stat_amount:10);
+		$amount_per_block	= (($game_stat_amount<$game_users_amount) ?$game_users_amount:$game_stat_amount);
 		if ($total_ally > $amount_per_block)
 		{
 			$LastQuery = Format::round_up($total_ally / $amount_per_block);
@@ -466,11 +469,11 @@ function MakeStats()
 				if ($ally_check_value[$CurAlly['id_ally']] == 1)
 				{
 					$empty_query = FALSE;
-					$u_OldTotalRank = (($ally_old_data[$CurAlly['id_ally']]['old_total_rank'])? $ally_old_data[$CurAlly['id_ally']]['old_total_rank']:0);
-					$u_OldTechRank  = (($ally_old_data[$CurAlly['id_ally']]['old_tech_rank'])? $ally_old_data[$CurAlly['id_ally']]['old_tech_rank']:0);
-					$u_OldBuildRank = (($ally_old_data[$CurAlly['id_ally']]['old_build_rank'])? $ally_old_data[$CurAlly['id_ally']]['old_build_rank']:0);
-					$u_OldDefsRank  = (($ally_old_data[$CurAlly['id_ally']]['old_defs_rank'])? $ally_old_data[$CurAlly['id_ally']]['old_defs_rank']:0);
-					$u_OldFleetRank = (($ally_old_data[$CurAlly['id_ally']]['old_fleet_rank'])? $ally_old_data[$CurAlly['id_ally']]['old_fleet_rank']:0);
+					$u_OldTotalRank = (($ally_old_data[$CurAlly['id_ally']]['old_total_rank']) ? $ally_old_data[$CurAlly['id_ally']]['old_total_rank'] : 0);
+					$u_OldTechRank  = (($ally_old_data[$CurAlly['id_ally']]['old_tech_rank']) ? $ally_old_data[$CurAlly['id_ally']]['old_tech_rank'] : 0);
+					$u_OldBuildRank = (($ally_old_data[$CurAlly['id_ally']]['old_build_rank']) ? $ally_old_data[$CurAlly['id_ally']]['old_build_rank'] : 0);
+					$u_OldDefsRank  = (($ally_old_data[$CurAlly['id_ally']]['old_defs_rank']) ? $ally_old_data[$CurAlly['id_ally']]['old_defs_rank'] : 0);
+					$u_OldFleetRank = (($ally_old_data[$CurAlly['id_ally']]['old_fleet_rank']) ? $ally_old_data[$CurAlly['id_ally']]['old_fleet_rank'] : 0);
 					$u_TTechCount     = $CurAlly['TechCount'];
 					$u_TTechPoints    = $CurAlly['TechPoint'];
 					$u_TBuildCount    = $CurAlly['BuildCount'];

@@ -88,7 +88,7 @@ switch ($mode)
 
 			$parse['first']	= "Conexión establecida con éxito...";
 
-			fwrite($dz, "<?php defined(\"INSIDE\") OR exit(header(\"location: ".XN_ROOT."\"));\n");
+			fwrite($dz, "<?php defined(\"INSIDE\") OR exit(header(\"location: /\"));\n");
 			fwrite($dz, "\$dbsettings = Array(\n");
 			fwrite($dz, "\"server\"		=> \"".$host."\", // MySQL server name.\n");
 			fwrite($dz, "\"user\"			=> \"".$user."\", // MySQL username.\n");
@@ -221,7 +221,7 @@ switch ($mode)
 			exit(header("Location: install.php"));
 		}
 		break;
-	case'upgrade':
+	case'upgrade': //TODO game_disable -> game_enabled
 		$system_version	=	substr(VERSION, 1);
 
 		if (filesize(XN_ROOT.'config.php') == 0)

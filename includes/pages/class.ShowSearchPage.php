@@ -74,13 +74,13 @@ class ShowSearchPage
 						$pquery 			= doquery("SELECT username,ally_id,ally_name FROM `{{table}}` WHERE id = ".intval($s['id_owner'])."","users",TRUE);
 						$s['planet_name'] 	= $s['name'];
 						$s['username'] 		= $pquery['username'];
-						$s['ally_name'] 	= ($pquery['ally_name']!='')?"<a href=\"game.php?page=alliance&mode=ainfo&a={$pquery['ally_id']}\">{$pquery['ally_name']}</a>":'';
+						$s['ally_name'] 	= ($pquery['ally_name']!='') ?"<a href=\"game.php?page=alliance&mode=ainfo&a={$pquery['ally_id']}\">{$pquery['ally_name']}</a>":'';
 					}
 					else
 					{
 						$pquery 			= doquery("SELECT name FROM `{{table}}` WHERE id = ".intval($s['id_planet'])."","planets",TRUE);
 						$s['planet_name']	= $pquery['name'];
-						$s['ally_name'] 	= ($aquery['ally_name']!='')?"<a href=\"game.php?page=alliance&mode=ainfo&a={$aquery['id']}\">{$aquery['ally_name']}</a>":'';
+						$s['ally_name'] 	= ($aquery['ally_name']!='') ?"<a href=\"game.php?page=alliance&mode=ainfo&a={$aquery['id']}\">{$aquery['ally_name']}</a>":'';
 					}
 
 					$s['position'] 		= "<a href=\"game.php?page=statistics&start=".$s['rank']."\">".$s['rank']."</a>";

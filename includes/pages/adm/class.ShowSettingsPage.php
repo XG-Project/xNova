@@ -25,17 +25,17 @@ class ShowSettingsPage {
 			$Log	= "\n".$lang['log_the_user'].$CurrentUser['username'].$lang['log_sett_no1'].":\n";
 
 
-			if (isset($_POST['closed']) && $_POST['closed'] === 'on')
+			if (isset($_POST['enabled']) && $_POST['enabled'] === 'on')
 			{
-				$game_config['game_disable']	= 1;
+				$game_config['game_enabled']	= 1;
 				$game_config['close_reason']	= addslashes($_POST['close_reason']);
-				$Log	.=	$lang['log_sett_close'].": ".$lang['log_viewmod'][1]."\n";
+				$Log	.=	$lang['log_sett_enabled'].": ".$lang['log_viewmod'][1]."\n";
 			}
 			else
 			{
-				$game_config['game_disable']	= 0;
+				$game_config['game_enabled']	= 0;
 				$game_config['close_reason']	= addslashes($_POST['close_reason']);
-				$Log	.=	$lang['log_sett_close'].": ".$lang['log_viewmod'][0]."\n";
+				$Log	.=	$lang['log_sett_enabled'].": ".$lang['log_viewmod'][0]."\n";
 				$Log	.=	$lang['log_sett_close_rea'].": ".$_POST['close_reason']."\n";
 			}
 
@@ -297,7 +297,7 @@ class ShowSettingsPage {
 				doquery('ALTER TABLE  `{{table}}` CHANGE  `name`  `name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT  \''.$lang['homeworld'].'\'', 'planets');
 			}
 
-			update_config('game_disable'			, $game_config['game_disable']				);
+			update_config('game_enabled'			, $game_config['game_enabled']				);
 			update_config('close_reason'			, $game_config['close_reason']				);
 			update_config('game_name'				, $game_config['game_name']					);
 			update_config('forum_url'				, $game_config['forum_url']					);

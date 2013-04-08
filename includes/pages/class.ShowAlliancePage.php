@@ -741,15 +741,15 @@ class ShowAlliancePage extends bbCode
 							$lang['delete']	= "<a href=\"game.php?page=alliance&mode=admin&edit=rights&d={$a}\"><img src=\"". DPATH."pic/abort.png\" title=\"Borrar rango\" border=\"0\"></a>";
 							$lang['r0'] 	= $b['name'];
 							$lang['a'] 		= $a;
-							$lang['r1'] 	= "<input type=checkbox name=\"u{$a}r0\"". (($b['delete'] == 1)?' checked':'').">"; //{$b[1]}
-							$lang['r2'] 	= "<input type=checkbox name=\"u{$a}r1\"". (($b['kick'] == 1)?' checked':'').">";
-							$lang['r3'] 	= "<input type=checkbox name=\"u{$a}r2\"". (($b['bewerbungen'] == 1)?' checked':'').">";
-							$lang['r4'] 	= "<input type=checkbox name=\"u{$a}r3\"". (($b['memberlist'] == 1)?' checked':'').">";
-							$lang['r5'] 	= "<input type=checkbox name=\"u{$a}r4\"". (($b['bewerbungenbearbeiten'] == 1)?' checked':'').">";
-							$lang['r6'] 	= "<input type=checkbox name=\"u{$a}r5\"". (($b['administrieren'] == 1)?' checked':'').">";
-							$lang['r7'] 	= "<input type=checkbox name=\"u{$a}r6\"". (($b['onlinestatus'] == 1)?' checked':'').">";
-							$lang['r8'] 	= "<input type=checkbox name=\"u{$a}r7\"". (($b['mails'] == 1)?' checked':'').">";
-							$lang['r9'] 	= "<input type=checkbox name=\"u{$a}r8\"". (($b['rechtehand'] == 1)?' checked':'').">";
+							$lang['r1'] 	= "<input type=checkbox name=\"u{$a}r0\"". (($b['delete'] == 1) ?' checked':'').">"; //{$b[1]}
+							$lang['r2'] 	= "<input type=checkbox name=\"u{$a}r1\"". (($b['kick'] == 1) ?' checked':'').">";
+							$lang['r3'] 	= "<input type=checkbox name=\"u{$a}r2\"". (($b['bewerbungen'] == 1) ?' checked':'').">";
+							$lang['r4'] 	= "<input type=checkbox name=\"u{$a}r3\"". (($b['memberlist'] == 1) ?' checked':'').">";
+							$lang['r5'] 	= "<input type=checkbox name=\"u{$a}r4\"". (($b['bewerbungenbearbeiten'] == 1) ?' checked':'').">";
+							$lang['r6'] 	= "<input type=checkbox name=\"u{$a}r5\"". (($b['administrieren'] == 1) ?' checked':'').">";
+							$lang['r7'] 	= "<input type=checkbox name=\"u{$a}r6\"". (($b['onlinestatus'] == 1) ?' checked':'').">";
+							$lang['r8'] 	= "<input type=checkbox name=\"u{$a}r7\"". (($b['mails'] == 1) ?' checked':'').">";
+							$lang['r9'] 	= "<input type=checkbox name=\"u{$a}r8\"". (($b['rechtehand'] == 1) ?' checked':'').">";
 
 							$list 			.= parsetemplate(gettemplate('alliance/alliance_admin_laws_row'), $lang);
 						}
@@ -760,14 +760,14 @@ class ShowAlliancePage extends bbCode
 							$lang['delete'] = "<a href=\"game.php?page=alliance&mode=admin&edit=rights&d={$a}\"><img src=\"{DPATH}pic/abort.png\" alt=\"{$lang['Delete_range']}\" border=0></a>";
 							$lang['a'] 		= $a;
 							$lang['r1'] 	= "<b>-</b>";
-							$lang['r2'] 	= "<input type=checkbox name=\"u{$a}r1\"". (($b['kick'] == 1)?' checked':'').">";
-							$lang['r3'] 	= "<input type=checkbox name=\"u{$a}r2\"". (($b['bewerbungen'] == 1)?' checked':'').">";
-							$lang['r4'] 	= "<input type=checkbox name=\"u{$a}r3\"". (($b['memberlist'] == 1)?' checked':'').">";
-							$lang['r5'] 	= "<input type=checkbox name=\"u{$a}r4\"". (($b['bewerbungenbearbeiten'] == 1)?' checked':'').">";
-							$lang['r6'] 	= "<input type=checkbox name=\"u{$a}r5\"". (($b['administrieren'] == 1)?' checked':'').">";
-							$lang['r7'] 	= "<input type=checkbox name=\"u{$a}r6\"". (($b['onlinestatus'] == 1)?' checked':'').">";
-							$lang['r8'] 	= "<input type=checkbox name=\"u{$a}r7\"". (($b['mails'] == 1)?' checked':'').">";
-							$lang['r9'] 	= "<input type=checkbox name=\"u{$a}r8\"". (($b['rechtehand'] == 1)?' checked':'').">";
+							$lang['r2'] 	= "<input type=checkbox name=\"u{$a}r1\"". (($b['kick'] == 1) ?' checked':'').">";
+							$lang['r3'] 	= "<input type=checkbox name=\"u{$a}r2\"". (($b['bewerbungen'] == 1) ?' checked':'').">";
+							$lang['r4'] 	= "<input type=checkbox name=\"u{$a}r3\"". (($b['memberlist'] == 1) ?' checked':'').">";
+							$lang['r5'] 	= "<input type=checkbox name=\"u{$a}r4\"". (($b['bewerbungenbearbeiten'] == 1) ?' checked':'').">";
+							$lang['r6'] 	= "<input type=checkbox name=\"u{$a}r5\"". (($b['administrieren'] == 1) ?' checked':'').">";
+							$lang['r7'] 	= "<input type=checkbox name=\"u{$a}r6\"". (($b['onlinestatus'] == 1) ?' checked':'').">";
+							$lang['r8'] 	= "<input type=checkbox name=\"u{$a}r7\"". (($b['mails'] == 1) ?' checked':'').">";
+							$lang['r9'] 	= "<input type=checkbox name=\"u{$a}r8\"". (($b['rechtehand'] == 1) ?' checked':'').">";
 
 							$list 			.= parsetemplate(gettemplate('alliance/alliance_admin_laws_row'), $lang);
 						}

@@ -289,8 +289,8 @@ class ShowOptionsPage
 
 			if ($CurrentUser['urlaubs_modus'])
 			{
-				$parse['opt_modev_data'] 	= ($CurrentUser['urlaubs_modus'] == 1)?" checked":'';
-				$parse['opt_modev_exit'] 	= ($CurrentUser['urlaubs_modus'] == 0)?" checked":'';
+				$parse['opt_modev_data'] 	= ($CurrentUser['urlaubs_modus'] == 1) ?" checked":'';
+				$parse['opt_modev_exit'] 	= ($CurrentUser['urlaubs_modus'] == 0) ?" checked":'';
 				$parse['vacation_until'] 	= date("d.m.Y G:i:s", $CurrentUser['urlaubs_until']);
 
 				display(parsetemplate(gettemplate('options/options_body_vmode'), $parse), FALSE);

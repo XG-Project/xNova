@@ -45,7 +45,7 @@
 		<value>xNova</value>
 	</config>
 	<config>
-		<name>game_disable</name>
+		<name>game_enabled</name>
 		<value>0</value>
 	</config>
 	<config>

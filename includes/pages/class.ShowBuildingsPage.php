@@ -479,7 +479,7 @@ class ShowBuildingsPage
    OLD CODE ---------------------------------------------------- OLD CODE ------------------------------------- //
 */
 					// START FIX BY JSTAR
-					$really_lvl 			= (isset($Sprice[$Element])) ? $Sprice[$Element]:$BuildingLevel;
+					$really_lvl 			= (isset($Sprice[$Element])) ? $Sprice[$Element] : $BuildingLevel;
 					$ElementBuildTime 		= GetBuildingtime($CurrentUser, $CurrentPlanet, $Element, $really_lvl);
 					$parse['price'] 		= GetElementPrice ($CurrentUser, $CurrentPlanet, $Element, TRUE, $really_lvl);
 					$parse['time'] 			= ShowBuildtime($ElementBuildTime);

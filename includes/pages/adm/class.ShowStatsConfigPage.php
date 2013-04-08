@@ -116,9 +116,9 @@ if ($ConfigGame != 1) die(message($lang['404_page']));
 	{
 		$parse						=	$lang;
 		$selected					=	"selected";
-		$stat						=	(($game_stat == 1)? 'sel_sta0':'sel_sta1');
+		$stat						=	(($game_stat == 1) ? 'sel_sta0':'sel_sta1');
 		$parse[$stat]				=	$selected;
-		$stat_fly					=	(($game_stat_flying == 1)? 'sel_sf1':'sel_sf0');
+		$stat_fly					=	(($game_stat_flying == 1) ? 'sel_sf1':'sel_sf0');
 		$parse[$stat_fly]			=	$selected;
 		$parse['stat_settings']		=	$game_stat_settings;
 		$parse['stat_amount']		=	$game_stat_amount;

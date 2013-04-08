@@ -197,7 +197,7 @@ class ShowBuddyPage
 						$parse['galaxy']			= $owner['galaxy'];
 						$parse['system']			= $owner['system'];
 						$parse['planet']			= $owner['planet'];
-						$parse['text']				= '<font color="'. (($owner["onlinetime"] + 60 * 10 >= time()) ? 'lime">'.$lang['bu_connected']."" : (($owner["onlinetime"] + 60 * 15 >= time())? 'yellow">'.$lang['bu_fifteen_minutes'] : 'red">'.$lang['bu_disconnected'])).'</font>';
+						$parse['text']				= '<font color="'. (($owner["onlinetime"] + 60 * 10 >= time()) ? 'lime">'.$lang['bu_connected']."" : (($owner["onlinetime"] + 60 * 15 >= time()) ? 'yellow">'.$lang['bu_fifteen_minutes'] : 'red">'.$lang['bu_disconnected'])).'</font>';
 						$parse['action']			= '<a href="game.php?page=buddy&mode=1&sm=1&bid='.$buddy[id].'">'.$lang['bu_delete'].'</a>';
 
 						$budys .= parsetemplate($subTemplate, $parse);

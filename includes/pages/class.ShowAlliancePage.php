@@ -33,14 +33,7 @@ class ShowAlliancePage extends bbCode
 
 	private function return_rank ( $ally_ranks , $rank_type , $ally_owner , $user )
 	{
-		if ($ally_ranks[$user['ally_rank_id']-1][$rank_type] == 1 or $ally['ally_owner'] == $user['id'])
-		{
-			return TRUE;
-		}
-		else
-		{
-			return FALSE;
-		}
+		return ($ally_ranks[$user['ally_rank_id']-1][$rank_type] == 1 or $ally_owner == $user['id']); 
 	}
 
 	private function return_sort ( $sort1 , $sort2 )

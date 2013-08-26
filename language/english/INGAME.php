@@ -131,6 +131,7 @@ $lang['ov_actions']							= 'Functions';
 $lang['ov_planet_rename']					= 'rename';
 $lang['ov_planet_rename_action']			= 'rename';
 $lang['ov_abandon_planet_not_possible']		= 'It\'s not possible abandon a planet where are fleets moving';
+$lang['ov_fields']							= 'Fields';
 
 //----------------------------------------------------------------------------//
 //GALAXY
@@ -1165,6 +1166,7 @@ $lang['cff_to_explore']						= ' to explore ';
 $lang['cff_comming_back']					= ' comes back from ';
 $lang['cff_back']							= 'Comming back';
 $lang['cff_to_destination']					= 'Heading to destination';
+$lang['cff_flotte'] 						= " fleets";
 
 //----------------------------------------------------------------------------//
 // EXTRA LANGUAGE FUNCTIONS

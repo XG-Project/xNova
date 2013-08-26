@@ -4,6 +4,76 @@ $lang['Version']     = 'Versi&oacute;n';
 $lang['Description'] = 'Descripci&oacute;n';
 $lang['changelog']   = array(
 
+'2.10.5' => ' 15/06/2013
+- [Bugs]
+#10337: Bug que no mostraba correctamente el tiempo de conexión en la alianza (By Think).-
+#10530: Agregado texto faltante "Campos" en el overview.- 
+#10340: Bug donde la formula de la planta de fusión no funcionaba correctamente.-
+#10322: Bug en el overview con la información de las flotas.-
+#10314: Bug en galaxia que mostraba a uno mismo como un jugador débil o fuerte.-
+#10313: Bug en la galaxia pone "done" aunque haya un error al enviar la flota.-
+#10718: Bug que no incluía la producción básica a la producción actual en la vista del imperio (By pele87).-
+#10730: Bug en la búsqueda donde en tag de la alianza no redireccionaba correctamente a la info page de la alianza (By Loucouss).-
+#10731: Bug que permitía atacar a los administradores, aunque la opción estuviera bloqueada (By pele87).-
+#10752: Bug en el tooltip de flotas y mostraba mal el tiempo de retorno en la página de flotas (By jstar).-
+#10794: Bug en las alianzas que no le daba correctamente permisos al administrador de la misma (By Think).-
+#10799: Bug en la protección de novatos. El jugador fuerte no era calculado correctamente (By Razican).-
+#10895: Bug en plugins.php causaba un Warning (By Razican).-
+#10908: Bug que permitía ver los acs de otros jugadores e incluso unirse a los mismos (By quaua).-
+-- [Nueva numeración]
+#00001: Bug en el mensaje js del mercader.-
+#00003: Bug en el mensaje de los misiles interplanetarios que no llegan.-
+#00004: Bug en la actualización de producción, con lo cual la misma era duplicada (By Think).-
+',
+
+'2.10.4' => ' 06/08/2012
+- [Mejoras]
+#10213: Agregada separación en los textos del bloque de alianzas en la galaxia (By LordPretender).-
+
+- [Cambio]
+#10171: Cambiado el texto de contra espionaje (Como el OGame original).-
+
+- [Optimización]
+#10245: Eliminado código redundante en class.CheckSession (By LordPretender).-
+#10195: Eliminado código redundante en Overview del admin (By Razican).-
+#10141: Se realizaba una query innecesaria al visualizar la página de recursos (By Think).-
+#10115: Eliminada llamada a JS no válida al cargar la página.-
+#10097: Reducción mínima de carga global al traer los datos del usuario (By Think).-
+#10075: Removida variable innecesaria que provocaba un notice en class.ShowOverviewPage.php (By Razican).-
+#10074: No existe el recurso 45 (By Razican).-
+#10073: $InLogin no está definido excepto en el login y el registro (By Razican).-
+
+- [Bugs]
+#10250: Corregido un bug que no mostraba la información de los misiles en el info (By Think).- 
+#10240: Corregido un bug de cookies que ocurría en algunas circunstancias (By Razican).-
+#10233: Corregido un bug que intentaba mostrar una imagen para un planeta destruido (By Think).-
+#10228: Bug que permitía escribir un tag en la alianza menor a 3 caracteres (By Think).-
+#10215: Algunos textos solo se mostraban en español (By LordPretender).-
+#10203: Reemplazado eregi_replace por preg_replace en class.FlyingFleetsTable (By Razican).-
+#10201: No se incluían correctamente algunos archivos en la página del phalanx (By JonaMix).-
+#10197: Corregida la formula de calculo de coste de energía para la planta de fusión (By Think).-
+#10196: Solucionado un bug en la protección de novatos (By LordPretender).-
+#10191: Bug que seteaba las velocidades iniciales en x10.-
+#10190: Problemas con las expediciones (By JonaMix & Think).-
+#10177: Bug de caracteres (By jstar)(New SecurePage Class).-
+#10132: Bug que añadía una fila extra en el showinfos del salto cuantico (By Razican).-
+#10129: Bug que permitía ver la información de elementos inexistentes en class.ShowInfosPage.php (By Razican).-
+#10117: Error en el js de flotas al tener activado el modo debug (By Think).-
+#10116: PHP Warning al actualizar.-
+#10106: Error al poner un usuario en vacaciones desde el panel del admin (By Think).-
+#10102: No se ve el checkbox del admin en opciones (By Razican).-
+#10099: Eliminadas líneas de lenguaje que no tenían utilidad (By Razican).-
+#10096: En ciertas circunstancias al intentar cerrar la conexión con la db se producía un error en la página de notas (By Razican).-
+#10093: Resultados repetidos en la búsqueda (By Think).-
+#10092: No se muestran correctamente los lenguajes en fleet2 (By Razican).-
+#10091: No se ven los desplegables en chrome (By Razican).-
+#10084: No se especificaba en el historial si alguna configuración se había activado o no (By Think y Razican).-
+#10080: Solucionado un bug que mostraba el debug en el top y menu del panel administrativo.-
+#10069: Error en class.ShowPhalanxPage.php, tiraba un error php al phalanxear un planeta (By Razican).-
+#9968: Problemas con los saltos de línea en la alianza y las notas (By Borboco).-
+#9926: Bug en la cola de construcción (By Think).-
+',
+
 '2.10.3' => ' 06/07/2012
 -[Mejoras]
 - Mejorado el paquete de idioma en ingl&eacute;s, se tradujeron varios textos faltantes (By cyberghoser1).-

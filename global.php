@@ -57,14 +57,13 @@ if ( INSTALL != TRUE )
 	includeLang ( 'INGAME' );
 
 	if ( !isset ( $InLogin ) or $InLogin != TRUE )
-	{		
+	{	
 		include ( XGP_ROOT . 'includes/classes/class.CheckSession.php' );
 
 		$Result        	= new CheckSession();
 		$Result			= $Result->CheckUser ( $IsUserChecked );
 		$IsUserChecked 	= $Result['state'];
 		$user          	= $Result['record'];
-		
 		require ( XGP_ROOT . 'includes/classes/class.SecurePage.php' );
 		SecurePage::run(); 
 

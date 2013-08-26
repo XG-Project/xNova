@@ -4,6 +4,28 @@ $lang['Version']     = 'Versión';
 $lang['Description'] = 'Descripción';
 $lang['changelog']   = array(
 
+'2.10.5' => ' 15/06/2013
+- [Bugs]
+#10337: Bug que no mostraba correctamente el tiempo de conexión en la alianza (By Think).-
+#10530: Agregado texto faltante "Campos" en el overview.- 
+#10340: Bug donde la formula de la planta de fusión no funcionaba correctamente.-
+#10322: Bug en el overview con la información de las flotas.-
+#10314: Bug en galaxia que mostraba a uno mismo como un jugador débil o fuerte.-
+#10313: Bug en la galaxia pone "done" aunque haya un error al enviar la flota.-
+#10718: Bug que no incluía la producción básica a la producción actual en la vista del imperio (By pele87).-
+#10730: Bug en la búsqueda donde en tag de la alianza no redireccionaba correctamente a la info page de la alianza (By Loucouss).-
+#10731: Bug que permitía atacar a los administradores, aunque la opción estuviera bloqueada (By pele87).-
+#10752: Bug en el tooltip de flotas y mostraba mal el tiempo de retorno en la página de flotas (By jstar).-
+#10794: Bug en las alianzas que no le daba correctamente permisos al administrador de la misma (By Think).-
+#10799: Bug en la protección de novatos. El jugador fuerte no era calculado correctamente (By Razican).-
+#10895: Bug en plugins.php causaba un Warning (By Razican).-
+#10908: Bug que permitía ver los acs de otros jugadores e incluso unirse a los mismos (By quaua).-
+-- [Nueva numeración]
+#00001: Bug en el mensaje js del mercader.-
+#00003: Bug en el mensaje de los misiles interplanetarios que no llegan.-
+#00004: Bug en la actualización de producción, con lo cual la misma era duplicada (By Think).-
+',
+
 '2.10.4' => ' 06/08/2012
 - [Mejoras]
 #10213: Agregada separación en los textos del bloque de alianzas en la galaxia (By LordPretender).-

@@ -10,10 +10,10 @@ function calcul() {
 	document.getElementById("deuterio").innerHTML=Deuterium;
 
 	if (isNaN(document.forms['trader'].elements['metal'].value)) {
-		document.getElementById("deuterio").innerHTML="Sólo números";
+		document.getElementById("deuterio").innerHTML="SÃ³lo nÃºmeros";
 	}
 	if (isNaN(document.forms['trader'].elements['cristal'].value)) {
-		document.getElementById("deuterio").innerHTML="Sólo números";
+		document.getElementById("deuterio").innerHTML="SÃ³lo nÃºmeros";
 	}
 }
 </script>

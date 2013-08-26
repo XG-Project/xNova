@@ -99,6 +99,7 @@ class ShowFleetPage
 
 				$fleet 						= 	explode ( ";" , $f['fleet_array'] );
 				$e 							= 	0;
+				$parse['fleet'] 			= '';  
 
 				foreach ( $fleet as $a => $b )
 				{

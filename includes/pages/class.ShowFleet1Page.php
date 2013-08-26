@@ -18,7 +18,7 @@ class ShowFleet1Page
 		// SOME DEFAULT VALUES
 		#####################################################################################################
 		// QUERYS
-		$getCurrentAcs		= doquery ( 'SELECT * FROM {{table}};' , 'aks' );
+		$getCurrentAcs      = doquery ( "SELECT * FROM {{table}} WHERE teilnehmer = '".$CurrentUser['id']."';" , "aks" ); 
 
 		// ARRAYS
 		$speed_values		= array(10 => 100,9 => 90,8 => 80,7 => 70,6 => 60,5 => 50,4 => 40,3 => 30,2 => 20,1 => 10);

@@ -2,7 +2,7 @@
 <configurations>
 	<config>
 		<name>version</name>
-		<value>2.10.4</value>
+		<value>2.10.5</value>
 	</config>
 	<config>
 		<name>users_amount</name>
@@ -50,7 +50,7 @@
 	</config>
 	<config>
 		<name>close_reason</name>
-		<value>&#xA1;En este momento el servidor se encuentra cerrado!</value>
+		<value>&amp;iexcl;En este momento el servidor se encuentra cerrado!</value>
 	</config>
 	<config>
 		<name>metal_basic_income</name>
@@ -118,7 +118,7 @@
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1343923217</value>
+		<value>1370191210</value>
 	</config>
 	<config>
 		<name>stat_settings</name>

@@ -122,7 +122,7 @@ while (($file = readdir($dir)) !== FALSE)
 	{
 		include $plugins_path . $file;
 	}
-	elseif (file_exists($plugins_path.$file.'/'.$file.'.php'))
+	 elseif (is_dir($plugins_path.$file) && file_exists($plugins_path.$file.'/'.$file.'.php')) 
 	{ // by the way, we check if the plugin is inside of a folder
 		include $plugins_path.$file.'/'.$file.'.php';
 	}

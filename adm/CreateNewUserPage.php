@@ -34,7 +34,7 @@ if ($_POST)
 	$CheckRows = doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' AND `system` = '".$system."' AND `planet` = '".$planet."' LIMIT 1", "galaxy", TRUE);
 
 
-	if (!is_numeric($galaxy) &&  !is_numeric($system) && !is_numeric($planet)){
+	if ( !is_numeric($galaxy) &&  !is_numeric($system) && !is_numeric($planet)){
 		$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_only_numbers'].'</tr></th>';
 		$i++;}
 	elseif ($galaxy > MAX_GALAXY_IN_WORLD || $system > MAX_SYSTEM_IN_GALAXY || $planet > MAX_PLANET_IN_SYSTEM || $galaxy < 1 || $system < 1 || $planet < 1){
@@ -45,7 +45,7 @@ if ($_POST)
 		$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_complete_all'].'</tr></th>';
 		$i++;}
 
-	if (!valid_email(strip_tags($email))){
+	if ( !valid_email(strip_tags($email))){
 		$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_error_email2'].'</tr></th>';
 		$i++;}
 

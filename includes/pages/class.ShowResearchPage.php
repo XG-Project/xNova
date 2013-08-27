@@ -88,7 +88,7 @@ class ShowResearchPage
 
 			if ( isset ($Techno) )
 			{
-				if (!strstr ( $Techno, ",") && !strchr ( $Techno, " ") &&
+				if ( !strstr ( $Techno, ",") && !strchr ( $Techno, " ") &&
 					!strchr ( $Techno, "+") && !strchr ( $Techno, "*") &&
 					!strchr ( $Techno, "~") && !strchr ( $Techno, "=") &&
 					!strchr ( $Techno, ";") && !strchr ( $Techno, "'") &&

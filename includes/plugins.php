@@ -6,7 +6,7 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-if (!defined('INSIDE')){die();}
+if ( !defined('INSIDE')){die();}
 
 function phpself()
 {
@@ -122,7 +122,7 @@ while (($file = readdir($dir)) !== FALSE)
 	{
 		include $plugins_path . $file;
 	}
-	elseif (file_exists($plugins_path.$file.'/'.$file.'.php'))
+	 elseif (is_dir($plugins_path.$file) && file_exists($plugins_path.$file.'/'.$file.'.php'))
 	{ // by the way, we check if the plugin is inside of a folder
 		include $plugins_path.$file.'/'.$file.'.php';
 	}
@@ -176,7 +176,7 @@ if ( defined('IN_ADMIN') )
 		$settingsplug 	.= $config_line;
 		$settingsplug 	.=' </table>';
 
-		display ( $settingsplug , FALSE , '' , TRUE , FALSE);
+		display($settingsplug , FALSE , '' , TRUE , FALSE);
 	}
 }
 ?>

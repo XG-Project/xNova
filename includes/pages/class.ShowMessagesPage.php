@@ -123,7 +123,7 @@ class ShowMessagesPage
 				$parse['text']         		= $text;
 				$parse['status_message']	= $error_page;
 
-				display ( parsetemplate ( gettemplate ( 'messages/messages_pm_form' ) , $parse ));
+				display(parsetemplate ( gettemplate ( 'messages/messages_pm_form' ) , $parse ));
 
 				break;
 
@@ -248,7 +248,7 @@ class ShowMessagesPage
 				$parse['show_messages']			= $messagesBody;
 				$parse['show_operators']		= $operatorsBody;
 
-				display ( parsetemplate ( gettemplate ( 'messages/messages_body' ) , $parse ));
+				display(parsetemplate ( gettemplate ( 'messages/messages_body' ) , $parse ));
 
 				break;
 			default:
@@ -276,7 +276,7 @@ class ShowMessagesPage
 
 				$parse['messages_menu_row']	= $body;
 
-				display ( parsetemplate ( gettemplate ( 'messages/messages_menu_body' ) , $parse ));
+				display(parsetemplate ( gettemplate ( 'messages/messages_menu_body' ) , $parse ));
 
 				break;
 		}

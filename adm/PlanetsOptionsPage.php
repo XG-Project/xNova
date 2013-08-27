@@ -100,5 +100,5 @@ elseif ($mode == 'borrar')
 }
 
 
-display (parsetemplate(gettemplate('adm/PlanetOptionsBody'),  $parse), FALSE, '', TRUE, FALSE);
+display(parsetemplate(gettemplate('adm/PlanetOptionsBody'),  $parse), FALSE, '', TRUE, FALSE);
 ?>

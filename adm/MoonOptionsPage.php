@@ -185,6 +185,6 @@ while ($b = $search_u->fetch_array())
 }
 
 
-display (parsetemplate(gettemplate("adm/MoonOptionsBody"), $parse), FALSE, '', TRUE, FALSE);
+display(parsetemplate(gettemplate("adm/MoonOptionsBody"), $parse), FALSE, '', TRUE, FALSE);
 
 ?>

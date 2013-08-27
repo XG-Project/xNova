@@ -65,7 +65,7 @@ switch ($Mode)
 			$parse['first']	= "Conexión establecida con éxito...";
 
 			fwrite($dz, "<?php\n");
-			fwrite($dz, "if (!defined(\"INSIDE\")){ header(\"location:".XN_ROOT."\"); }\n");
+			fwrite($dz, "if ( !defined(\"INSIDE\")){ header(\"location:".XN_ROOT."\"); }\n");
 			fwrite($dz, "\$dbsettings = Array(\n");
 			fwrite($dz, "\"server\"     => \"".$host."\", // MySQL server name.\n");
 			fwrite($dz, "\"user\"       => \"".$user."\", // MySQL username.\n");
@@ -319,6 +319,7 @@ switch ($Mode)
 						case '2.10.2':
 						case '2.10.3':
 						case '2.10.4':
+						case '2.10.5':
 							$QrysArray	= array($Qry12, $Qry13, $Qry14);
 							update_config ( 'version' , SYSTEM_VERSION);
 							upgrade_xml();
@@ -352,7 +353,7 @@ switch ($Mode)
 $parse['ins_state']    = $Page;
 $parse['ins_page']     = $frame;
 $parse['dis_ins_btn']  = "?mode=$Mode&page=$nextpage";
-display (parsetemplate (gettemplate('install/ins_body'), $parse), FALSE, '', TRUE, FALSE);
+display(parsetemplate (gettemplate('install/ins_body'), $parse), FALSE, '', TRUE, FALSE);
 
 
 /* End of file index.php */

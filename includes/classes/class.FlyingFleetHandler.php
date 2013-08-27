@@ -188,7 +188,7 @@ class FlyingFleetHandler
 		$atakujacy_n = array();
 		$wrog_n      = array();
 
-		if (!is_NULL($CurrentSet))
+		if ( !is_NULL($CurrentSet))
 		{
 			$atakujacy_zlom_poczatek['metal']   = 0;
 			$atakujacy_zlom_poczatek['crystal'] = 0;
@@ -203,7 +203,7 @@ class FlyingFleetHandler
 		$wrog_zlom_poczatek['crystal'] 	= 0;
 		$wrog_poczatek 					= $TargetSet;
 
-		if (!is_NULL($TargetSet))
+		if ( !is_NULL($TargetSet))
 		{
 			foreach ($TargetSet as $a => $b)
 			{
@@ -231,7 +231,7 @@ class FlyingFleetHandler
 			$wrog_tarcza      = 0;
 			$atakujacy_tarcza = 0;
 
-			if (!is_NULL($CurrentSet))
+			if ( !is_NULL($CurrentSet))
 			{
 				foreach ($CurrentSet as $a => $b)
 				{
@@ -602,7 +602,7 @@ class FlyingFleetHandler
 
 						if ($temp2[0] < 100) continue;
 
-						if (!isset($attackFleets[$fleet['fleet_id']]['detail'][$temp2[0]]))
+						if ( !isset($attackFleets[$fleet['fleet_id']]['detail'][$temp2[0]]))
 							$attackFleets[$fleet['fleet_id']]['detail'][$temp2[0]] = 0;
 
 						$attackFleets[$fleet['fleet_id']]['detail'][$temp2[0]] += $temp2[1];
@@ -622,7 +622,7 @@ class FlyingFleetHandler
 
 					if ($temp2[0] < 100) continue;
 
-					if (!isset($attackFleets[$FleetRow['fleet_id']]['detail'][$temp2[0]]))
+					if ( !isset($attackFleets[$FleetRow['fleet_id']]['detail'][$temp2[0]]))
 						$attackFleets[$FleetRow['fleet_id']]['detail'][$temp2[0]] = 0;
 
 					$attackFleets[$FleetRow['fleet_id']]['detail'][$temp2[0]] += $temp2[1];
@@ -640,7 +640,7 @@ class FlyingFleetHandler
 
 					if ($Element[0] < 100) continue;
 
-					if (!isset($defense[$defRow['fleet_id']]['def'][$Element[0]]))
+					if ( !isset($defense[$defRow['fleet_id']]['def'][$Element[0]]))
 						$defense[$defRow['fleet_id']][$Element[0]] = 0;
 
 					$defense[$defRow['fleet_id']]['def'][$Element[0]] += $Element[1];
@@ -1415,7 +1415,7 @@ class FlyingFleetHandler
 		{
 			if ($FleetRow['fleet_mess'] == 0)
 			{
-				if (!isset($CombatCaps[202]['sd']))
+				if ( !isset($CombatCaps[202]['sd']))
 					header("location:game.php?page=fleet");
 
 				$QryTargetPlanet  = "SELECT * FROM {{table}} ";
@@ -1485,7 +1485,7 @@ class FlyingFleetHandler
 
 				$TargetPlanetUpd = "";
 
-				if (!is_NULL($TargetSet))
+				if ( !is_NULL($TargetSet))
 				{
 					foreach ($TargetSet as $Ship => $Count)
 					{
@@ -1837,7 +1837,7 @@ class FlyingFleetHandler
 
 			if ($FleetRow['fleet_end_time'] <= time())
 			{
-				if (!is_NULL($CurrentSet))
+				if ( !is_NULL($CurrentSet))
 				{
 					foreach ($CurrentSet as $Ship => $Count)
 					{
@@ -1859,7 +1859,7 @@ class FlyingFleetHandler
 
 				doquery ("DELETE FROM {{table}} WHERE `fleet_id` = " . $FleetRow["fleet_id"], 'fleets');
 
-				if (!($FleetResult == "w"))
+				if ( !($FleetResult == "w"))
 				{
 					$QryUpdatePlanet  = "UPDATE {{table}} SET ";
 					$QryUpdatePlanet .= $fquery;
@@ -1886,7 +1886,7 @@ class FlyingFleetHandler
 			if ($FleetRow['fleet_mess'] == 0)
 			{
 				$planet = doquery('SELECT * FROM {{table}} WHERE `galaxy` = '.$FleetRow['fleet_end_galaxy'].' AND `system` = '.$FleetRow['fleet_end_system'].' AND `planet` = '.$FleetRow['fleet_end_planet'].' AND `planet_type` = '.$FleetRow['fleet_end_type'], 'planets', TRUE);
-				$Target = doquery('SELECT id, defence_tech FROM  {{table}} WHERE `galaxy` = '.$FleetRow['fleet_end_galaxy'].' AND  `system` = '.$FleetRow['fleet_end_system'].' AND `planet` =  '.$FleetRow['fleet_end_planet'], 'users', TRUE);
+				$Target= doquery("SELECT id, defence_tech FROM  {{table}} WHERE `id` = '".$planet['id_owner']."'", 'users', true);
 
 				if ($planet['interceptor_misil'] >= $FleetRow['fleet_amount'])
 				{

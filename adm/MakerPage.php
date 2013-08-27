@@ -293,7 +293,7 @@ switch ($_GET['page'])
 		}
 	}
 
-	display (parsetemplate(gettemplate("adm/MoonOptionsBody"), $parse), FALSE, '', TRUE, FALSE);
+	display(parsetemplate(gettemplate("adm/MoonOptionsBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case 'new_planet':
@@ -392,7 +392,7 @@ switch ($_GET['page'])
 		$parse['display2']	=	$Error;
 	}
 
-	display (parsetemplate(gettemplate('adm/PlanetOptionsBody'),  $parse), FALSE, '', TRUE, FALSE);
+	display(parsetemplate(gettemplate('adm/PlanetOptionsBody'),  $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	default:

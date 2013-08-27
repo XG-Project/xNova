@@ -373,7 +373,7 @@ class ShowFleetACSPage
 			$parse['currentexpeditions']	= $ExpeditionEnCours;
 			$parse['maxexpeditions']		= $EnvoiMaxExpedition;
 		}
-		display ( parsetemplate ( gettemplate ( 'fleet/fleet_table' ) , $parse ));
+		display(parsetemplate ( gettemplate ( 'fleet/fleet_table' ) , $parse ));
 	}
 }
 ?>

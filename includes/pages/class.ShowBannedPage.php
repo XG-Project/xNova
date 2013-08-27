@@ -44,7 +44,7 @@ class ShowBannedPage
 
 		$parse['banned_players']	= $body;
 
-		display ( parsetemplate ( gettemplate ( 'banned/banned_body' ) , $parse ));
+		display(parsetemplate ( gettemplate ( 'banned/banned_body' ) , $parse ));
 	}
 }
 ?>

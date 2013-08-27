@@ -107,7 +107,7 @@ if ($_GET['panel'])
 
 	if ($_POST['bannow'])
 	{
-		if (!is_numeric($_POST['days']) || !is_numeric($_POST['hour']) || !is_numeric($_POST['mins']) || !is_numeric($_POST['secs']))
+		if ( !is_numeric($_POST['days']) || !is_numeric($_POST['hour']) || !is_numeric($_POST['mins']) || !is_numeric($_POST['secs']))
 			return display( parsetemplate(gettemplate("adm/BanOptionsResultBody"), $parse), FALSE, '', TRUE, FALSE);
 
 		$name              = $_POST['ban_name'];

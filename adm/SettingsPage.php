@@ -304,7 +304,7 @@ function DisplayGameSettingsPage ( $CurrentUser )
 			}
 		}
 
-		return display (parsetemplate(gettemplate('adm/SettingsBody'),  $parse), FALSE, '', TRUE, FALSE);
+		return display(parsetemplate(gettemplate('adm/SettingsBody'),  $parse), FALSE, '', TRUE, FALSE);
 	}
 }
 

@@ -266,7 +266,7 @@ class simple_html_dom_node {
 		// find each selector
 		for ($c=0; $c<$count; ++$c) {
 			if (($levle=count($selectors[0]))===0) return array();
-			if (!isset($this->_[HDOM_INFO_BEGIN])) return array();
+			if ( !isset($this->_[HDOM_INFO_BEGIN])) return array();
 
 			$head = array($this->_[HDOM_INFO_BEGIN]=>1);
 
@@ -281,7 +281,7 @@ class simple_html_dom_node {
 			}
 
 			foreach ($head as $k=>$v) {
-				if (!isset($found_keys[$k]))
+				if ( !isset($found_keys[$k]))
 					$found_keys[$k] = 1;
 			}
 		}
@@ -317,10 +317,10 @@ class simple_html_dom_node {
 			return;
 		}
 
-		$end = (!empty($this->_[HDOM_INFO_END])) ? $this->_[HDOM_INFO_END] : 0;
+		$end = ( !empty($this->_[HDOM_INFO_END])) ? $this->_[HDOM_INFO_END] : 0;
 		if ($end==0) {
 			$parent = $this->parent;
-			while (!isset($parent->_[HDOM_INFO_END]) && $parent!==NULL) {
+			while ( !isset($parent->_[HDOM_INFO_END]) && $parent!==NULL) {
 				$end -= 1;
 				$parent = $parent->parent;
 			}
@@ -344,7 +344,7 @@ class simple_html_dom_node {
 				if ($no_key) {
 					if (isset($node->attr[$key])) $pass=FALSE;
 				}
-				else if (!isset($node->attr[$key])) $pass=FALSE;
+				else if ( !isset($node->attr[$key])) $pass=FALSE;
 			}
 			// compare value
 			if ($pass && $key && $val  && $val!=='*') {
@@ -383,7 +383,7 @@ class simple_html_dom_node {
 
 	protected function parse_selector($selector_string) {
 		// pattern of CSS selectors, modified from mootools
-		$pattern = "/([\w-:\*]*)(?:\#([\w-]+)|\.([\w-]+))?(?:\[@?(!?[\w-]+)(?:([!*^$]?=)[\"']?(.*?)[\"']?)?\])?([\/, ]+)/is";
+		$pattern = "/([\w-:\*]*)(?:\#([\w-]+)|\.([\w-]+))?(?:\[@?( !?[\w-]+)(?:([!*^$]?=)[\"']?(.*?)[\"']?)?\])?([\/, ]+)/is";
 		preg_match_all($pattern, trim($selector_string).' ', $matches, PREG_SET_ORDER);
 		$selectors = array();
 		$result = array();
@@ -396,11 +396,11 @@ class simple_html_dom_node {
 			if ($m[1]==='tbody') continue;
 
 			list($tag, $key, $val, $exp, $no_key) = array($m[1], NULL, NULL, '=', FALSE);
-			if (!empty($m[2])) {$key='id'; $val=$m[2];}
-			if (!empty($m[3])) {$key='class'; $val=$m[3];}
-			if (!empty($m[4])) {$key=$m[4];}
-			if (!empty($m[5])) {$exp=$m[5];}
-			if (!empty($m[6])) {$val=$m[6];}
+			if ( !empty($m[2])) {$key='id'; $val=$m[2];}
+			if ( !empty($m[3])) {$key='class'; $val=$m[3];}
+			if ( !empty($m[4])) {$key=$m[4];}
+			if ( !empty($m[5])) {$exp=$m[5];}
+			if ( !empty($m[6])) {$val=$m[6];}
 
 			// convert to lowercase
 			if ($this->dom->lowercase) {$tag=strtolower($tag); $key=strtolower($key);}
@@ -436,7 +436,7 @@ class simple_html_dom_node {
 				if (isset($this->_[HDOM_INFO_TEXT])) return $this->_[HDOM_INFO_TEXT] = $value;
 				return $this->_[HDOM_INFO_INNER] = $value;
 		}
-		if (!isset($this->attr[$name])) {
+		if ( !isset($this->attr[$name])) {
 			$this->_[HDOM_INFO_SPACE][] = array(' ', '', '');
 			$this->_[HDOM_INFO_QUOTE][] = HDOM_QUOTE_DOUBLE;
 		}
@@ -719,7 +719,7 @@ class simple_html_dom {
 			return TRUE;
 		}
 
-		if (!preg_match("/^[\w-:]+$/", $tag)) {
+		if ( !preg_match("/^[\w-:]+$/", $tag)) {
 			$node->_[HDOM_INFO_TEXT] = '<' . $tag . $this->copy_until('<>');
 			if ($this->char==='<') {
 				$this->link_nodes($node, FALSE);
@@ -813,7 +813,7 @@ class simple_html_dom {
 		}
 		else {
 			// reset parent
-			if (!isset($this->self_closing_tags[strtolower($node->tag)])) $this->parent = $node;
+			if ( !isset($this->self_closing_tags[strtolower($node->tag)])) $this->parent = $node;
 		}
 		$this->char = (++$this->pos<$this->size) ? $this->doc[$this->pos] : NULL; // next
 		return TRUE;

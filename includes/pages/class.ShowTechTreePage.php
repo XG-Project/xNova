@@ -26,7 +26,7 @@ class ShowTechTreePage
 				$parse            = array();
 				$parse['tt_name'] = $ElementName;
 
-				if (!isset($resource[$Element]))
+				if ( !isset($resource[$Element]))
 				{
 					$parse['Requirements']  = $lang['tt_requirements'];
 					$page                  .= parsetemplate($TechTreeHeadTPL, $parse);

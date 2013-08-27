@@ -33,14 +33,7 @@ class ShowAlliancePage extends bbCode
 
 	private function return_rank ( $ally_ranks , $rank_type , $ally_owner , $user )
 	{
-		if ($ally_ranks[$user['ally_rank_id']-1][$rank_type] == 1 or $ally['ally_owner'] == $user['id'])
-		{
-			return TRUE;
-		}
-		else
-		{
-			return FALSE;
-		}
+		return ($ally_ranks[$user['ally_rank_id']-1][$rank_type] == 1 or $ally_owner == $user['id']);
 	}
 
 	private function return_sort ( $sort1 , $sort2 )
@@ -207,7 +200,7 @@ class ShowAlliancePage extends bbCode
 				$parse['solicitud'] 		= "";
 			}
 
-			display ( parsetemplate ( gettemplate ( 'alliance/alliance_ainfo' ) , $parse ));
+			display(parsetemplate ( gettemplate ( 'alliance/alliance_ainfo' ) , $parse ));
 		}
 
 		// EN ESTE CASO EL USUARIO NO SE ENCUENTRA AUN EN NINGUNA ALIANZA
@@ -264,7 +257,7 @@ class ShowAlliancePage extends bbCode
 					$page .= parsetemplate(gettemplate('alliance/alliance_make'), $parse);
 				}
 
-				display ( $page);
+				display($page);
 			}
 
 			##############################################################################################
@@ -292,7 +285,7 @@ class ShowAlliancePage extends bbCode
 						$page .= parsetemplate ( gettemplate ( 'alliance/alliance_searchresult_table' ) , $parse);
 					}
 				}
-				display ( $page);
+				display($page);
 			}
 
 			##############################################################################################
@@ -340,7 +333,7 @@ class ShowAlliancePage extends bbCode
 					$parse['text_apply'] 		= $text_apply;
 					$parse['Write_to_alliance'] = str_replace('%s', $ally_tag, $lang['al_write_request']);
 
-					display ( parsetemplate ( gettemplate ( 'alliance/alliance_applyform' ) , $parse ));
+					display(parsetemplate ( gettemplate ( 'alliance/alliance_applyform' ) , $parse ));
 				}
 			}
 
@@ -369,11 +362,11 @@ class ShowAlliancePage extends bbCode
 					$page = parsetemplate ( gettemplate ( 'alliance/alliance_apply_waitform' ) , $lang);
 				}
 
-				display ( $page);
+				display($page);
 			}
 			else
 			{
-				display ( parsetemplate ( gettemplate ( 'alliance/alliance_defaultmenu' ) , $lang ));
+				display(parsetemplate ( gettemplate ( 'alliance/alliance_defaultmenu' ) , $lang ));
 			}
 		}
 
@@ -425,7 +418,7 @@ class ShowAlliancePage extends bbCode
 					$page 					= $this->message_box ( $lang['Want_go_out'] , "<br>" , "game.php?page=alliance&mode=exit&yes=1" , $lang['al_go_out_yes']);
 				}
 
-				display ( $page);
+				display($page);
 			}
 			##############################################################################################
 			# LISTA DE MIEMBROS
@@ -529,7 +522,7 @@ class ShowAlliancePage extends bbCode
 				$parse['s'] 	= $s;
 				$parse['list'] 	= $page_list;
 
-				display ( parsetemplate ( gettemplate ( 'alliance/alliance_memberslist_table' ) , $parse ));
+				display(parsetemplate ( gettemplate ( 'alliance/alliance_memberslist_table' ) , $parse ));
 			}
 			##############################################################################################
 			# CORREO CIRCULAR
@@ -566,7 +559,7 @@ class ShowAlliancePage extends bbCode
 
 					$page	= $this->message_box ( $lang['al_circular_sended'] , $list , "game.php?page=alliance" , $lang['al_continue'] , TRUE);
 
-					display ( $page);
+					display($page);
 				}
 
 				$lang['r_list'] = "<option value=\"0\">".$lang['al_all_players']."</option>";
@@ -579,7 +572,7 @@ class ShowAlliancePage extends bbCode
 					}
 				}
 
-				display ( parsetemplate ( gettemplate ( 'alliance/alliance_circular' ) , $lang ));
+				display(parsetemplate ( gettemplate ( 'alliance/alliance_circular' ) , $lang ));
 			}
 			##############################################################################################
 			# EDICION DE LOS PERMISOS O LEYES
@@ -782,7 +775,7 @@ class ShowAlliancePage extends bbCode
 
 				$lang['list']	= $list;
 				$lang['dpath'] 	= DPATH;
-				display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin_laws' ) , $lang ));
+				display(parsetemplate ( gettemplate ( 'alliance/alliance_admin_laws' ) , $lang ));
 			}
 			##############################################################################################
 			# EDICIONES GENERALES DE LA ALIANZA
@@ -895,7 +888,7 @@ class ShowAlliancePage extends bbCode
 				$lang['ally_request_notallow_1'] 	= (($ally['ally_request_notallow'] == 0) ? ' SELECTED' : '');
 				$lang['ally_owner_range'] 			= $ally['ally_owner_range'];
 
-				display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin' ) , $lang ));
+				display(parsetemplate ( gettemplate ( 'alliance/alliance_admin' ) , $lang ));
 			}
 			##############################################################################################
 			# EDICION DE LOS MIEMBROS
@@ -1050,7 +1043,7 @@ class ShowAlliancePage extends bbCode
 				$lang['memberslist'] 	= $page_list;
 				$lang['s'] 				= $s;
 
-				display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin_members_table' ) , $lang ));
+				display(parsetemplate ( gettemplate ( 'alliance/alliance_admin_members_table' ) , $lang ));
 			}
 
 			##############################################################################################
@@ -1131,7 +1124,7 @@ class ShowAlliancePage extends bbCode
 				$parse['ally_tag'] 					= $ally['ally_tag'];
 				$parse['There_is_hanging_request'] 	= str_replace ( '%n' , $i , $lang['al_no_request_pending']);
 
-				display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin_request_table' ) , $parse ));
+				display(parsetemplate ( gettemplate ( 'alliance/alliance_admin_request_table' ) , $parse ));
 			}
 			##############################################################################################
 			# CAMBIAR NOMBRE DE LA ALIANZA
@@ -1153,7 +1146,7 @@ class ShowAlliancePage extends bbCode
 				$parse[caso] 		= $lang['al_name'];
 				$parse[caso_titulo]	= $lang['al_new_name'];
 
-				display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin_rename' ) , $parse ));
+				display(parsetemplate ( gettemplate ( 'alliance/alliance_admin_rename' ) , $parse ));
 			}
 			##############################################################################################
 			# CAMBIAR ETIQUETA DE LA ALIANZA
@@ -1178,7 +1171,7 @@ class ShowAlliancePage extends bbCode
 				$parse[caso] 		= $lang['al_tag'];
 				$parse[caso_titulo]	= $lang['al_new_tag'];
 
-				display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin_rename' ) , $parse ));
+				display(parsetemplate ( gettemplate ( 'alliance/alliance_admin_rename' ) , $parse ));
 			}
 			##############################################################################################
 			# SALIR DE LA ALIANZA
@@ -1239,7 +1232,7 @@ class ShowAlliancePage extends bbCode
 					$parse['s'] 	= $s;
 					$parse['list'] 	= $page_list;
 
-					display ( parsetemplate ( gettemplate ( 'alliance/alliance_admin_transfer' ) , $parse ));
+					display(parsetemplate ( gettemplate ( 'alliance/alliance_admin_transfer' ) , $parse ));
 				}
 			}
 			##############################################################################################
@@ -1336,7 +1329,7 @@ class ShowAlliancePage extends bbCode
 				$lang['ally_members'] 		= $ally['ally_members'];
 				$lang['ally_name'] 			= $ally['ally_name'];
 
-				display ( parsetemplate ( gettemplate ( 'alliance/alliance_frontpage' ) , $lang ));
+				display(parsetemplate ( gettemplate ( 'alliance/alliance_frontpage' ) , $lang ));
 			}
 		}
 	}

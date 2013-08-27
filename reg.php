@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$LastSettedSystemPos = read_config ( 'lastsettedsystempos');
 		$LastSettedPlanetPos = read_config ( 'lastsettedplanetpos');
 
-		while (!isset($newpos_checked))
+		while ( !isset($newpos_checked))
 		{
 			for ($Galaxy = $LastSettedGalaxyPos; $Galaxy <= MAX_GALAXY_IN_WORLD; $Galaxy++)
 			{
@@ -240,6 +240,6 @@ else
 	$parse['version']	   = VERSION;
 	$parse['servername']   = read_config ( 'game_name');
 	$parse['forum_url']    = read_config ( 'forum_url');
-	display (parsetemplate(gettemplate('public/registry_form'), $parse), FALSE, '',FALSE, FALSE);
+	display(parsetemplate(gettemplate('public/registry_form'), $parse), FALSE, '',FALSE, FALSE);
 }
 ?>

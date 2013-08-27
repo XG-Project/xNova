@@ -95,7 +95,7 @@ class ShowBuildingsPage
 		{
 			$CurrentQueue  = $CurrentPlanet['b_building_id'];
 
-			if (!empty($CurrentQueue))
+			if ( !empty($CurrentQueue))
 			{
 				$QueueArray    = explode(";", $CurrentQueue);
 				$ActualCount   = count($QueueArray);
@@ -361,7 +361,7 @@ class ShowBuildingsPage
 			$Element 	= $_GET['building'];
 			$ListID 	= $_GET['listid'];
 
-			if (!in_array( trim($Element), $Allowed[$CurrentPlanet['planet_type']]))
+			if ( !in_array( trim($Element), $Allowed[$CurrentPlanet['planet_type']]))
 			{
 				unset($Element);
 			}

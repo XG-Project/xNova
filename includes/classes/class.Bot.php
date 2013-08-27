@@ -39,10 +39,10 @@ function UpdateBots()
 		if (isset($BotLog)) $BotLog .= $thebot->log;
 
 		/**
-		 *	Para calcular la próxima actividad, se genera una función que decrece de
-		 *	probabilidad casi totalmente en 15 minutos. Luego se calcula la próxima
-		 *	actividad un poco aleatóriamente, teniendo en cuenta la noche, las horas
-		 *	de sueño y según los minutos que está conectado.
+		 *	Para calcular la pr?xima actividad, se genera una funci?n que decrece de
+		 *	probabilidad casi totalmente en 15 minutos. Luego se calcula la pr?xima
+		 *	actividad un poco aleat?riamente, teniendo en cuenta la noche, las horas
+		 *	de sue?o y seg?n los minutos que est? conectado.
 		 **/
 
 		if (date('H', $now) < 8)
@@ -1001,7 +1001,7 @@ class Bot {
 		if ($pricelist[$Element]['crystal'] != 0)
 			$Buildable        = floor($Ressources["crystal"] / $pricelist[$Element]['crystal']);
 
-		if (!isset($MaxElements))
+		if ( !isset($MaxElements))
 			$MaxElements      = $Buildable;
 		elseif ($MaxElements > $Buildable)
 			$MaxElements      = $Buildable;
@@ -1009,7 +1009,7 @@ class Bot {
 		if ($pricelist[$Element]['deuterium'] != 0)
 			$Buildable        = floor($Ressources["deuterium"] / $pricelist[$Element]['deuterium']);
 
-		if (!isset($MaxElements))
+		if ( !isset($MaxElements))
 			$MaxElements      = $Buildable;
 		elseif ($MaxElements > $Buildable)
 			$MaxElements      = $Buildable;

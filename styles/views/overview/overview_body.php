@@ -40,7 +40,7 @@
 		</tr>
 		<tr>
 			<th>{ov_diameter}</th>
-			<th>{planet_diameter} {ov_distance_unit} (<a title="{Developed_fields}">{planet_field_current}</a> / <a title="{max_eveloped_fields}">{planet_field_max}</a> {fields})</th>
+			<th>{planet_diameter} {ov_distance_unit} (<a title="{Developed_fields}">{planet_field_current}</a> / <a title="{max_eveloped_fields}">{planet_field_max}</a> {ov_fields})</th>
 		</tr>
 		<tr>
 			<th>{ov_temperature}</th>

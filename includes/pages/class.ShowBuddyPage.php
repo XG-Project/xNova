@@ -124,7 +124,7 @@ class ShowBuddyPage
 						$parse['user']		= $user;
 						$parse['player']	= $player['username'];
 
-						display ( parsetemplate( gettemplate ( 'buddy/buddy_request' ) , $parse ));
+						display(parsetemplate( gettemplate ( 'buddy/buddy_request' ) , $parse ));
 					}
 					else // EXIT
 					{
@@ -206,7 +206,7 @@ class ShowBuddyPage
 				$parse['request_sended']	= $requestsReceived;
 				$parse['buddys']			= $budys;
 
-				display ( parsetemplate( gettemplate ( 'buddy/buddy_body' ) , $parse ));
+				display(parsetemplate( gettemplate ( 'buddy/buddy_body' ) , $parse ));
 
 				break;
 		}

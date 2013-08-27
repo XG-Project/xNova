@@ -61,7 +61,7 @@ if ($anz > $iraks)
 	$error .= $lang['ma_cant_send'] . $anz . $lang['ma_missile'] . $iraks.'<br>';
 	$errors++;
 }
-if (((!is_numeric($pziel) && $pziel != "all") or ($pziel < 0 or $pziel > 8)))
+if ((( !is_numeric($pziel) && $pziel != "all") or ($pziel < 0 or $pziel > 8)))
 {
 	$error .= $lang['ma_wrong_target'].'<br>';
 	$errors++;

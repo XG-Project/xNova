@@ -46,7 +46,7 @@ class FlyingFleetsTable
 		$FleetRec     = explode(";", $FleetRow['fleet_array']);
 		$FleetPopup   = "<a href='#' onmouseover=\"return overlib('";
 		$FleetPopup  .= "<table width=200>";
-		if (!defined('IN_ADMIN'))
+		if ( !defined('IN_ADMIN'))
 		{
 			if ($user['spy_tech'] < 2 && $FleetRow['fleet_owner'] != $user['id'])
 			{

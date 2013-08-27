@@ -35,7 +35,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 					$totalResourcePoints['defender'] += $pricelist[$element]['metal'] * $amount ;
 					$totalResourcePoints['defender'] += $pricelist[$element]['crystal'] * $amount ;
 				} else {
-					if (!isset($originalDef[$element])) $originalDef[$element] = 0;
+					if ( !isset($originalDef[$element])) $originalDef[$element] = 0;
 					$originalDef[$element] += $amount;
 
 					$totalResourcePoints['defender'] += $pricelist[$element]['metal'] * $amount ;
@@ -121,13 +121,13 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			// Calculate hit percentages (ACS only but ok)
 			$attackPct = array();
 			foreach ($attackAmount as $fleetID => $amount) {
-				if (!is_numeric($fleetID)) continue;
+				if ( !is_numeric($fleetID)) continue;
 				$attackPct[$fleetID] = $amount / $attackAmount['total'];
 			}
 
 			$defensePct = array();
 			foreach ($defenseAmount as $fleetID => $amount) {
-				if (!is_numeric($fleetID)) continue;
+				if ( !is_numeric($fleetID)) continue;
 				$defensePct[$fleetID] = $amount / $defenseAmount['total'];
 			}
 

@@ -17,7 +17,7 @@ class ShowFleetShortcuts
 		global $db;
 		$this->CurrentUser=$CurrentUser;
 
-		if (!empty($_GET['mode']))
+		if ( !empty($_GET['mode']))
 		{
 			$mode=$_GET['mode'];
 
@@ -133,7 +133,7 @@ class ShowFleetShortcuts
 
 			foreach ( $scarray as $a => $b )
 			{
-				if (!empty($b))
+				if ( !empty($b))
 				{
 					$c = explode(',', $b);
 

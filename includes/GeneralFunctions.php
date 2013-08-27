@@ -51,31 +51,13 @@ function update_config($config_name, $config_value)
 // DETERMINES IF THE PLAYER IS WEAK
 function is_weak($current_points, $other_points)
 {
-	$weak	= NoobsProtection::getInstance();
-
-	if ($weak->is_weak($current_points, $other_points))
-	{
-		return TRUE;
-	}
-	else
-	{
-		return FALSE;
-	}
+	return NoobsProtection::getInstance()->is_weak($current_points, $other_points);
 }
 
 // DETERMINES IF THE PLAYER IS STRONG
 function is_strong($current_points, $other_points)
 {
-	$strong	= NoobsProtection::getInstance();
-
-	if ($strong->is_weak($current_points, $other_points))
-	{
-		return TRUE;
-	}
-	else
-	{
-		return FALSE;
-	}
+	return NoobsProtection::getInstance()->is_strong($current_points, $other_points);
 }
 
 // DETERMINES IF IS AN EMAIL
@@ -92,16 +74,15 @@ function message ($mes, $dest = "", $time = "3", $topnav = FALSE, $menu = TRUE)
 
 	if ( !defined ( 'IN_ADMIN' ) )
 	{
-		display ( $page , $topnav , ( ( $dest != "" ) ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : "") , FALSE , $menu);
+		display($page , $topnav , ( ( $dest != "" ) ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : "") , FALSE , $menu);
 	}
 	else
 	{
-		display ( $page , $topnav , ( ( $dest != "" ) ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : "") , TRUE , FALSE);
+		display($page , $topnav , ( ( $dest != "" ) ? "<meta http-equiv=\"refresh\" content=\"$time;URL=$dest\">" : "") , TRUE , FALSE);
 	}
-
 }
 
-function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $menu = TRUE, $onload='')
+function display($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $menu = TRUE, $onload='')
 {
 	global $db, $debug, $user, $planetrow;
 
@@ -161,7 +142,7 @@ function StdUserHeader ($metatags = '', $onload = '')
 	$parse['-meta-']	 = "<meta charset=\"UTF-8\">\n";
 	$parse['-meta-']	.= "<meta name=\"generator\" content=\"xNova " . VERSION . "\" />\n";
 
-	if (!defined('LOGIN'))
+	if ( !defined('LOGIN'))
 	{
 		$parse['-style-']  	 = "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles/css/default.css\">\n";
 		$parse['-style-']  	.= "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles/css/formate.css\">\n";
@@ -183,7 +164,7 @@ function AdminUserHeader ($metatags = '')
 {
 	$parse	= array();
 
-	if (!defined('IN_ADMIN'))
+	if ( !defined('IN_ADMIN'))
 		$parse['-title-'] 	= 	"xNova - Instalación";
 	else
 		$parse['-title-'] 	= 	read_config ( 'game_name' ) . " - Admin CP";

@@ -6,7 +6,7 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-if (!defined('INSIDE')){ die(header ( 'location:../../' ));}
+if ( !defined('INSIDE')){ die(header ( 'location:../../' ));}
 
 class ShowFleet1Page
 {
@@ -18,7 +18,7 @@ class ShowFleet1Page
 		// SOME DEFAULT VALUES
 		#####################################################################################################
 		// QUERYS
-		$getCurrentAcs		= doquery ( 'SELECT * FROM {{table}};' , 'aks');
+		$getCurrentAcs      = doquery ( "SELECT * FROM {{table}} WHERE teilnehmer = '".$CurrentUser['id']."';" , "aks" );
 
 		// ARRAYS
 		$speed_values		= array(10 => 100,9 => 90,8 => 80,7 => 70,6 => 60,5 => 50,4 => 40,3 => 30,2 => 20,1 => 10);
@@ -54,7 +54,7 @@ class ShowFleet1Page
 		{
 			if ($i >= 201 && $i <= 215 && $_POST["ship$i"] > "0" )
 			{
-				if ( ( $_POST["ship$i"] > $CurrentPlanet[$resource[$i]]) OR (!ctype_digit( $_POST["ship$i"] )))
+				if ( ( $_POST["ship$i"] > $CurrentPlanet[$resource[$i]]) OR ( !ctype_digit( $_POST["ship$i"] )))
 				{
 					header ( 'location:game.php?page=fleet');
 				}
@@ -250,7 +250,7 @@ class ShowFleet1Page
 		$parse['curepedition'] 		= $_POST['curepedition'];
 		$parse['target_mission'] 	= $_POST['target_mission'];
 
-		display ( parsetemplate ( gettemplate ( 'fleet/fleet1_table' ) , $parse ));
+		display(parsetemplate ( gettemplate ( 'fleet/fleet1_table' ) , $parse ));
 	}
 }
 ?>

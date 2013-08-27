@@ -187,7 +187,7 @@ class ShowOverviewPage
 
 
 				// ### LUCKY , CODES ARE BELOW
-				if (!empty($hedefgalaksi) && !empty($hedefsistem) && !empty($hedefgezegen) && !empty($filogrubu))
+				if ( !empty($hedefgalaksi) && !empty($hedefsistem) && !empty($hedefgezegen) && !empty($filogrubu))
 				{
 					$dostfilo = doquery("SELECT * FROM {{table}} WHERE `fleet_end_galaxy` = '" . intval($hedefgalaksi) . "' AND `fleet_end_system` = '" . intval($hedefsistem) . "' AND `fleet_end_planet` = '" . intval($hedefgezegen) . "' AND `fleet_group` = '" . intval($filogrubu) . "';",'fleets');
 					$Record1 = 0;

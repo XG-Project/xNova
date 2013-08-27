@@ -170,7 +170,7 @@ class ShowFleet3Page
 			$YourPlanet = TRUE;
 			$UsedPlanet = TRUE;
 		}
-		elseif (!empty($select['id_owner']))
+		elseif ( !empty($select['id_owner']))
 		{
 			$YourPlanet = FALSE;
 			$UsedPlanet = TRUE;
@@ -302,19 +302,6 @@ class ShowFleet3Page
 											)
 											AND active =1" , 'buddy' , TRUE);
 
-/*
-				if ($_POST['planettype']==3)
-				{
-					$x = doquery("SELECT `ally_deposit` FROM {{table}} WHERE `galaxy` = '". intval($_POST['galaxy']) ."' AND `system` = '". intval($_POST['system']) ."' AND `planet` = '". intval($_POST['planet']) ."' AND `planet_type` = 1;", 'planets', TRUE);
-				}
-				else
-				{
-					$x = $TargetPlanet;
-				}
-*/
-			//	if (($HeDBRec['ally_id'] != $MyDBRec['ally_id'] && $buddy<1) ||  $x['ally_deposit'] < 1)
-
-
 				if ($HeDBRec['ally_id'] != $MyDBRec['ally_id'] && $buddy['buddys'] < 1 )
 				{
 					message ("<font color=\"red\"><b>".$lang['fl_stay_not_on_enemy']."</b></font>", "game.php?page=fleet", 2);
@@ -329,7 +316,7 @@ class ShowFleet3Page
 		$SpeedFactor    = read_config ( 'fleet_speed' ) / 2500;
 		$MaxFleetSpeed  = min($AllFleetSpeed);
 
-		if (!in_array($GenFleetSpeed, $speed_possible))
+		if ( !in_array($GenFleetSpeed, $speed_possible))
 		{
 			exit ( header ( "location:game.php?page=fleet" ));
 		}
@@ -367,7 +354,7 @@ class ShowFleet3Page
 			exit ( header ( "location:game.php?page=fleet" ));
 		}
 
-		if (!isset($fleetarray))
+		if ( !isset($fleetarray))
 		{
 			exit ( header ( "location:game.php?page=fleet" ));
 		}
@@ -497,7 +484,7 @@ class ShowFleet3Page
 			message ("<font color=\"red\"><b>". $lang['fl_no_enought_cargo_capacity'] . Format::pretty_number($StorageNeeded - $FleetStorage) ."</b></font>", "game.php?page=fleet", 2);
 		}
 
-		if ($TargetPlanet['id_level'] > $CurrentUser['authlevel'] && read_config ( 'adm_attack' ) == 0)
+		if ($TargetPlanet['id_level'] > $CurrentUser['authlevel'] && read_config ( 'adm_attack' ) == 1)
 		{
 			message($lang['fl_admins_cannot_be_attacked'], "game.php?page=fleet",2);
 		}
@@ -577,7 +564,7 @@ class ShowFleet3Page
 
 		$parse['fleet_list'] 	= $ships_list;
 
-		display ( parsetemplate ( gettemplate ( 'fleet/fleet3_table' ) , $parse ) , FALSE);
+		display(parsetemplate ( gettemplate ( 'fleet/fleet3_table' ) , $parse ) , FALSE);
 	}
 }
 ?>

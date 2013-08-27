@@ -75,6 +75,6 @@ while ($TheUser = $Last15Mins->fetch_array())
 
 $parse['adm_ov_data_count']  	= $Count;
 
-display ( parsetemplate(gettemplate('adm/OnlineUsersBody'), $parse), FALSE, '', TRUE, FALSE);
+display(parsetemplate(gettemplate('adm/OnlineUsersBody'), $parse), FALSE, '', TRUE, FALSE);
 
 ?>

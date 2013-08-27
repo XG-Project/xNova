@@ -177,7 +177,7 @@ elseif ($_GET['moderation'] == '2')
 			$parse['display']	=	'<tr><th colspan="3"><font color=lime>'.$lang['ad_authlevel_succes'].'</font></th></tr>';
 
 
-		display (parsetemplate(gettemplate("adm/AuthlevelBody"), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate("adm/AuthlevelBody"), $parse), FALSE, '', TRUE, FALSE);
 }
 else
 {

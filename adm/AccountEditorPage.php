@@ -96,7 +96,7 @@ switch ($_GET[page])
 
 	}
 
-			display (parsetemplate(gettemplate("adm/EditorTPL/ResourcesBody"), $parse), FALSE, '', TRUE, FALSE);
+			display(parsetemplate(gettemplate("adm/EditorTPL/ResourcesBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case'ships':
@@ -201,7 +201,7 @@ switch ($_GET[page])
 			}
 		}
 
-		display (parsetemplate(gettemplate("adm/EditorTPL/ShipsBody"), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate("adm/EditorTPL/ShipsBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case'defenses':
@@ -288,7 +288,7 @@ switch ($_GET[page])
 			}
 		}
 
-		display (parsetemplate(gettemplate("adm/EditorTPL/DefensesBody"), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate("adm/EditorTPL/DefensesBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case'buildings':
@@ -467,7 +467,7 @@ switch ($_GET[page])
 			}
 		}
 
-		display (parsetemplate(gettemplate("adm/EditorTPL/BuildingsBody"), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate("adm/EditorTPL/BuildingsBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case'researchs':
@@ -580,7 +580,7 @@ switch ($_GET[page])
 			}
 		}
 
-		display (parsetemplate(gettemplate("adm/EditorTPL/ResearchBody"), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate("adm/EditorTPL/ResearchBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case 'personal':
@@ -653,7 +653,7 @@ switch ($_GET[page])
 				$parse['display']    =    '<tr><th colspan="3"><font color=lime>'.$lang['ad_personal_succes'].'</font></th></tr>';
 			}
 		}
-		display (parsetemplate(gettemplate("adm/EditorTPL/PersonalBody"), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate("adm/EditorTPL/PersonalBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case'officiers':
@@ -715,7 +715,7 @@ switch ($_GET[page])
 			}
 		}
 
-		display (parsetemplate(gettemplate("adm/EditorTPL/OfficiersBody"), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate("adm/EditorTPL/OfficiersBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case 'planets':
@@ -899,7 +899,7 @@ switch ($_GET[page])
 			}
 		}
 
-		display (parsetemplate(gettemplate("adm/EditorTPL/PlanetsMoonsBody"), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate("adm/EditorTPL/PlanetsMoonsBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case 'alliances':
@@ -994,7 +994,7 @@ switch ($_GET[page])
 			}
 		}
 
-		display (parsetemplate(gettemplate("adm/EditorTPL/AllianceBody"), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate("adm/EditorTPL/AllianceBody"), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	default:

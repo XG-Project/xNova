@@ -457,9 +457,9 @@ if ($_GET)
 		}
 
 
-		display (parsetemplate(gettemplate("adm/AccountDataBody"), $parse), FALSE, '', TRUE, FALSE);
+		display(parsetemplate(gettemplate("adm/AccountDataBody"), $parse), FALSE, '', TRUE, FALSE);
 	}
 }
 
-display (parsetemplate(gettemplate("adm/AccountDataIntro"), $parse), FALSE, '', TRUE, FALSE);
+display(parsetemplate(gettemplate("adm/AccountDataIntro"), $parse), FALSE, '', TRUE, FALSE);
 ?>

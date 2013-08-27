@@ -63,7 +63,7 @@ switch ($page)
 			$parse['year']		   = date ( "Y");
 			$parse['version']	   = VERSION;
 			$parse['forum_url']    = read_config ( 'forum_url');
-			display ( parsetemplate ( gettemplate ( 'public/lostpassword' ) , $parse ) , FALSE , '' , FALSE , FALSE);
+			display(parsetemplate ( gettemplate ( 'public/lostpassword' ) , $parse ) , FALSE , '' , FALSE , FALSE);
 		}
 	break;
 	default:
@@ -112,7 +112,7 @@ switch ($page)
 			$parse['servername']   = read_config ( 'game_name');
 			$parse['forum_url']    = read_config ( 'forum_url');
 
-			display ( parsetemplate ( gettemplate ( 'public/index_body' ) , $parse ) , FALSE , '' , FALSE , FALSE);
+			display(parsetemplate ( gettemplate ( 'public/index_body' ) , $parse ) , FALSE , '' , FALSE , FALSE);
 		}
 }
 ?>

@@ -134,5 +134,5 @@ if ($Observation != 1) die(message ($lang['404_page']));
 
 			$parse['mlst_data_rows'] .= parsetemplate(gettemplate('adm/MessageListRows'), $bloc);
 		}
-	display (parsetemplate(gettemplate('adm/MessageListBody'), $parse), FALSE, '', TRUE, FALSE);
+	display(parsetemplate(gettemplate('adm/MessageListBody'), $parse), FALSE, '', TRUE, FALSE);
 ?>

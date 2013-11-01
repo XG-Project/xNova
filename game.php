@@ -19,7 +19,7 @@ include(XGP_ROOT . 'includes/functions/SetNextQueueElementOnTop.php');
 include(XGP_ROOT . 'includes/functions/SortUserPlanets.php');
 include(XGP_ROOT . 'includes/functions/UpdatePlanetBatimentQueueList.php');
 
-switch($_GET[page])
+switch ( ( isset ( $_GET['page'] ) ? $_GET['page'] : NULL ) )
 {
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'changelog':
@@ -72,14 +72,12 @@ switch($_GET[page])
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'buildings':
-		include_once(XGP_ROOT . 'includes/functions/HandleTechnologieBuild.php');
 		UpdatePlanetBatimentQueueList ($planetrow, $user);
-		$IsWorking = HandleTechnologieBuild($planetrow, $user);
-		switch ($_GET['mode'])
+		switch ( ( isset ( $_GET['mode'] ) ? $_GET['mode'] : NULL ) )
 		{
 			case 'research':
 				include_once(XGP_ROOT . 'includes/pages/class.ShowResearchPage.php');
-				new ShowResearchPage($planetrow, $user, $IsWorking['OnWork'], $IsWorking['WorkOn']);
+				new ShowResearchPage($planetrow, $user);
 			break;
 			case 'fleet':
 				include_once(XGP_ROOT . 'includes/pages/class.ShowShipyardPage.php');
@@ -165,7 +163,7 @@ switch($_GET[page])
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	case'logout':
 		setcookie(read_config ( 'cookie_name' ), "", time()-100000, "/", "", 0);
-		message($lang['see_you_soon'], XGP_ROOT, 1, FALSE, FALSE);
+		message($lang['see_you_soon'], XGP_ROOT, 5, FALSE, FALSE);
 	break;
 // ----------------------------------------------------------------------------------------------------------------------------------------------//
 	default:

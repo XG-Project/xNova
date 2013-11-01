@@ -32,7 +32,7 @@ function PlanetSizeRandomiser($Position,$HomeWorld = FALSE)
 
 function CreateOnePlanetRecord($Galaxy,$System,$Position,$PlanetOwnerID,$PlanetName = '',$HomeWorld = FALSE)
 {
-   global $lang;
+   global $lang, $user;
 
    $QrySelectPlanet = "SELECT	`id` ";
    $QrySelectPlanet .= "FROM {{table}} ";
@@ -130,7 +130,7 @@ function CreateOnePlanetRecord($Galaxy,$System,$Position,$PlanetOwnerID,$PlanetN
          $QryInsertPlanet .= "`name` = '" . $lang['fcp_colony'] . "', ";
 
       $QryInsertPlanet .= "`id_owner` = '" . $planet['id_owner'] . "', ";
-      $QryInsertPlanet .= "`id_level` = '" . $user['authlevel'] . "', ";
+      $QryInsertPlanet .= "`id_level` = '" . ( isset ( $user['authlevel'] ) ? $user['authlevel'] : 0 ) . "', ";
       $QryInsertPlanet .= "`galaxy` = '" . $planet['galaxy'] . "', ";
       $QryInsertPlanet .= "`system` = '" . $planet['system'] . "', ";
       $QryInsertPlanet .= "`planet` = '" . $planet['planet'] . "', ";

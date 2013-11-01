@@ -24,9 +24,9 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 	$game_stat_update_time	=	read_config ( 'stat_update_time' );
 	$game_stat_last_update	=	read_config ( 'stat_last_update' );
 
-	if ($_POST['save'] == $lang['cs_save_changes'])
+	if (isset ( $_POST['save'] ) && ($_POST['save'] == $lang['cs_save_changes']))
 	{
-		$Log	.=	"\n".$lang['log_the_user'].$user['username'].$lang['log_change_stats'].":\n";
+		$Log				=	"\n".$lang['log_the_user'].$user['username'].$lang['log_change_stats'].":\n";
 		if (isset($_POST['stat']) && $_POST['stat'] != $game_stat )
 		{
 			update_config('stat' , $_POST['stat']);

@@ -70,7 +70,7 @@ function message ( $mes , $dest = "" , $time = "3" , $topnav = FALSE , $menu = T
 {
 	$parse['mes']   = $mes;
 
-	$page .= parsetemplate ( gettemplate ( 'general/message_body' ) , $parse );
+	$page 			= parsetemplate ( gettemplate ( 'general/message_body' ) , $parse );
 
 	if ( !defined ( 'IN_ADMIN' ) )
 	{
@@ -106,10 +106,10 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 
 	$DisplayPage .= "\n<center>\n". $page ."\n</center>\n";
 
-	if(!defined('LOGIN') && $_GET['page'] != 'galaxy')
-		$DisplayPage .= parsetemplate ( gettemplate ( 'general/footer' ) , $parse );
+	if(!defined('LOGIN') && isset($_GET['page']) && $_GET['page'] != 'galaxy')
+		$DisplayPage .= parsetemplate ( gettemplate ( 'general/footer' ) , '' );
 
-	if ( $user['authlevel'] == 3 && read_config ( 'debug' ) == 1 && !$AdminPage )
+	if ( isset ( $user['authlevel'] ) && $user['authlevel'] == 3 && read_config ( 'debug' ) == 1 && !$AdminPage )
 	{
 		// Convertir a objeto dom
 		$DisplayPage = str_get_html($DisplayPage);
@@ -123,7 +123,7 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 
 	echo $DisplayPage;
 
-	if ( $user['authlevel'] == 3 && read_config ( 'debug' ) == 1 && $AdminPage && !defined('NO_DEBUG') )
+	if ( isset ( $user['authlevel'] ) && $user['authlevel'] == 3 && read_config ( 'debug' ) == 1 && $AdminPage && !defined('NO_DEBUG') )
 	{
 
 		echo "<center>";
@@ -141,21 +141,21 @@ function display ($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $me
 
 function StdUserHeader ($metatags = '')
 {
-	$parse['-title-'] 	.= read_config ( 'game_name' );
-	$parse['-favi-']	.= "<link rel=\"shortcut icon\" href=\"./favicon.ico\">\n";
-	$parse['-meta-']	.= "<meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\">\n";
-	$parse['-meta-']	.= "<meta name=\"generator\" content=\"XG Proyect " . VERSION . "\" />\n";
+	$parse['-title-']	= read_config ( 'game_name' );
+	$parse['-favi-']	= "<link rel=\"shortcut icon\" href=\"./favicon.ico\">\n";
+	$parse['-meta-']	= "<meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\">\n";
+	$parse['-meta-']   .= "<meta name=\"generator\" content=\"XG Proyect " . VERSION . "\" />\n";
 
 	if(!defined('LOGIN'))
 	{
-		$parse['-style-']  	.= "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles/css/default.css\">\n";
-		$parse['-style-']  	.= "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles/css/formate.css\">\n";
-		$parse['-style-'] 	.= "<link rel=\"stylesheet\" type=\"text/css\" href=\"". DPATH ."formate.css\" />\n";
-		$parse['-meta-']	.= "<script type=\"text/javascript\" src=\"js/overlib-min.js\"></script>\n";
+		$parse['-style-']	= "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles/css/default.css\">\n";
+		$parse['-style-']  .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles/css/formate.css\">\n";
+		$parse['-style-']  .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"". DPATH ."formate.css\" />\n";
+		$parse['-meta-']   .= "<script type=\"text/javascript\" src=\"js/overlib-min.js\"></script>\n";
 	}
 	else
 	{
-		$parse['-style-']  	.= "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles/css/styles.css\">\n";
+		$parse['-style-']	= "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles/css/styles.css\">\n";
 	}
 
 	$parse['-meta-']	.= ($metatags) ? $metatags : "";
@@ -167,18 +167,18 @@ function AdminUserHeader ($metatags = '')
 {
 	if (!defined('IN_ADMIN'))
 	{
-		$parse['-title-'] 	.= 	"XG Proyect - Install";
+		$parse['-title-']	= "XG Proyect - Install";
 	}
 	else
 	{
-		$parse['-title-'] 	.= 	read_config ( 'game_name' ) . " - Admin CP";
+		$parse['-title-']	= read_config ( 'game_name' ) . " - Admin CP";
 	}
 
 
-	$parse['-favi-']	.= 	"<link rel=\"shortcut icon\" href=\"./../favicon.ico\">\n";
-	$parse['-style-']	.=	"<link rel=\"stylesheet\" type=\"text/css\" href=\"./../styles/css/admin.css\">\n";
-	$parse['-meta-']	.= 	"<script type=\"text/javascript\" src=\"./../js/overlib-min.js\"></script>\n";
-	$parse['-meta-'] 	.= ($metatags) ? $metatags : "";
+	$parse['-favi-']	= 	"<link rel=\"shortcut icon\" href=\"./../favicon.ico\">\n";
+	$parse['-style-']	=	"<link rel=\"stylesheet\" type=\"text/css\" href=\"./../styles/css/admin.css\">\n";
+	$parse['-meta-']	= 	"<script type=\"text/javascript\" src=\"./../js/overlib-min.js\"></script>\n";
+	$parse['-meta-']   .= ($metatags) ? $metatags : "";
 
 	return parsetemplate ( gettemplate ( 'adm/simple_header' ) , $parse );
 }
@@ -277,5 +277,25 @@ function doquery ( $query , $table , $fetch = FALSE )
 	}
 
 }
+
+function mysql_escape_value ( $inp ) 
+{ 
+	/* By feedr
+	http://www.php.net/manual/en/function.mysql-real-escape-string.php#101248
+	*/
+
+	if ( is_array ( $inp ) )
+	{
+		return array_map ( __METHOD__ , $inp );	
+	}  
+	
+	if ( ! empty ( $inp ) && is_string ( $inp ) ) 
+	{ 
+		return str_replace ( array ( '\\' , "\0" , "\n" , "\r" , "'" , '"' , "\x1a" ) , array ( '\\\\' , '\\0' , '\\n' , '\\r' , "\\'" , '\\"' , '\\Z' ) , $inp ); 
+	} 
+	
+	return $inp; 
+}
+
 
 ?>

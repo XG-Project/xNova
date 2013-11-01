@@ -85,7 +85,7 @@ window.onload = t;
 <input type="hidden" name="mode" value="fleet">
 <table width="530">
 <tr>
-	<td class="c" >{work_todo}</td>
+	<td class="c" >{bd_work_todo}</td>
 </tr>
 <tr>
 	<th ><select name="auftr" size="10"></select></th>

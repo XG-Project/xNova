@@ -19,14 +19,16 @@ function check_updates()
 {
 	if ( function_exists ( 'file_get_contents' ) )
 	{
-		$last_v 	= @file_get_contents ( 'http://xgproyect.xgproyect.net/current.php' );
-		$system_v	= read_config ( 'version' );		
-			
+		$last_v 	= file_get_contents ( 'http://xgproyect.xgproyect.net/current.php' );
+		$system_v	= read_config ( 'version' );
+
 		return version_compare ( $system_v , $last_v , '<' );
 	}
 }
 
-$parse	=	$lang;
+$parse		= $lang;
+$Message	= '';
+$error		= 0;
 
 if(file_exists(XGP_ROOT . 'install/') && defined('IN_ADMIN'))
 {

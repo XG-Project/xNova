@@ -18,14 +18,14 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 	       return FALSE;
 
 		if ($Incremental)
-			$level  = ($CurrentPlanet[$resource[$Element]]) ? $CurrentPlanet[$resource[$Element]] : $CurrentUser[$resource[$Element]];
+			$level  = (isset($CurrentPlanet[$resource[$Element]])) ? $CurrentPlanet[$resource[$Element]] : $CurrentUser[$resource[$Element]];
 
 		$RetValue = TRUE;
 		$array    = array('metal', 'crystal', 'deuterium', 'energy_max');
 
 		foreach ($array as $ResType)
 		{
-			if ($pricelist[$Element][$ResType] != 0)
+			if (isset($pricelist[$Element][$ResType]) && $pricelist[$Element][$ResType] != 0)
 			{
 				if ($Incremental)
 					$cost[$ResType]  = floor($pricelist[$Element][$ResType] * pow($pricelist[$Element]['factor'], $level));

@@ -15,41 +15,43 @@ class ShowNotesPage
 		global $lang;
 
 		$parse 	= $lang;
-		$a 		= intval($_GET['a']);
-		$n 		= intval($_GET['n']);
-
-		if($_POST["s"] == 1 || $_POST["s"] == 2)
+		$a 		= intval((isset($_GET['a'])?$_GET['a']:NULL));
+		$n 		= intval((isset($_GET['n'])?$_GET['n']:NULL));
+		$s 		= intval((isset($_POST['s'])?$_POST['s']:NULL));
+		
+		if($s == 1 || $s == 2)
 		{
 			$time 		= time();
 			$priority 	= intval($_POST["u"]);
-			$title 		= ($_POST["title"]) ? mysql_escape_string(strip_tags($_POST["title"])) : "Sin t&iacute;tulo";
-			$text 		= ( $_POST["text"] ) ? str_replace ( "&lt;br /&gt;" , "" , stripslashes ( strip_tags ( mysql_escape_string ( $_POST["text"] ) ) ) ) : "Sin texto";
+			$title 		= ($_POST["title"]) ? mysql_escape_value(strip_tags($_POST["title"])) : "Sin t&iacute;tulo";
+			$text 		= ( $_POST["text"] ) ? str_replace ( "&lt;br /&gt;" , "" , stripslashes ( strip_tags ( mysql_escape_value ( $_POST["text"] ) ) ) ) : "Sin texto";
 
-			if($_POST["s"] ==1)
+			if($s ==1)
 			{
-				doquery("INSERT INTO {{table}} SET owner=".intval($CurrentUser[id]).", time=$time, priority=$priority, title='$title', text='$text'","notes");
+				doquery("INSERT INTO {{table}} SET owner=".intval($CurrentUser['id']).", time=$time, priority=$priority, title='$title', text='$text'","notes");
 				header("location:game.php?page=notes");
 			}
-			elseif($_POST["s"] == 2)
+			elseif($s == 2)
 			{
-				$id = intval($_POST["n"]);
-				$note_query = doquery("SELECT * FROM {{table}} WHERE id=".intval($id)." AND owner=".intval($CurrentUser[id])."","notes");
+				$id	= intval((isset($_POST['n'])?$_POST['n']:NULL));
+				$note_query = doquery("SELECT * FROM {{table}} WHERE id=".$id." AND owner=".intval($CurrentUser['id'])."","notes");
 
 				if(!$note_query)
 					header("location:game.php?page=notes");
 
-				doquery("UPDATE {{table}} SET time=$time, priority=$priority, title='$title', text='$text' WHERE id=".intval($id)."","notes");
+				doquery("UPDATE {{table}} SET time=$time, priority=$priority, title='$title', text='$text' WHERE id=".$id."","notes");
 				header("location:game.php?page=notes");
 			}
 		}
 		elseif($_POST)
 		{
+			$deleted = 0;
 			foreach($_POST as $a => $b)
 			{
 				if(preg_match("/delmes/i",$a) && $b == "y")
 				{
 					$id = str_replace("delmes","",$a);
-					$note_query = doquery("SELECT * FROM {{table}} WHERE id=".intval($id)." AND owner=".intval($CurrentUser[id])."","notes");
+					$note_query = doquery("SELECT * FROM {{table}} WHERE id=".intval($id)." AND owner=".intval($CurrentUser['id'])."","notes");
 
 					if($note_query)
 					{
@@ -66,24 +68,25 @@ class ShowNotesPage
 		}
 		else
 		{
-			if($_GET["a"] == 1)
+			if($a == 1)
 			{
 				$parse['c_Options'] = "<option value=2 selected=selected>".$lang['nt_important']."</option>
 				<option value=1>".$lang['nt_normal']."</option>
 				<option value=0>".$lang['nt_unimportant']."</option>";
 				$parse['TITLE'] 	= $lang['nt_create_note'];
-				$parse[inputs]  	= "<input type=hidden name=s value=1>";
+				$parse['inputs']  	= "<input type=hidden name=s value=1>";
 
 				display(parsetemplate(gettemplate('notes/notes_form'), $parse), FALSE, '', FALSE, FALSE);
 
 			}
-			elseif($_GET["a"] == 2)
+			elseif($a == 2)
 			{
-				$note = doquery("SELECT * FROM {{table}} WHERE owner=".intval($CurrentUser[id])." AND id=".intval($n)."",'notes',TRUE);
+				$note = doquery("SELECT * FROM {{table}} WHERE owner=".intval($CurrentUser['id'])." AND id=".intval($n)."",'notes',TRUE);
 
 				if(!$note)
 					header("location:game.php?page=notes");
-
+				
+				$SELECTED = array ( 0 => '' , 1 => '' , 2 => '' );
 				$SELECTED[$note['priority']] = ' selected="selected"';
 
 				$parse['c_Options'] = "<option value=2{$SELECTED[2]}>".$lang['nt_important']."</option>
@@ -92,18 +95,19 @@ class ShowNotesPage
 
 				$parse['TITLE'] 	= $lang['nt_edit_note'];
 				$parse['inputs'] 	= '<input type=hidden name=s value=2><input type=hidden name=n value='.$note['id'].'>';
-				$parse[asunto]		= $note[title];
-				$parse[texto]		= $note[text];
+				$parse['asunto']	= $note['title'];
+				$parse['texto']		= $note['text'];
 
 				display(parsetemplate(gettemplate('notes/notes_form'), $parse), FALSE, '', FALSE, FALSE);
 
 			}
 			else
 			{
-				$notes_query = doquery("SELECT * FROM {{table}} WHERE owner=".intval($CurrentUser[id])." ORDER BY time DESC",'notes');
+				$notes_query = doquery("SELECT * FROM {{table}} WHERE owner=".intval($CurrentUser['id'])." ORDER BY time DESC",'notes');
 
-				$count = 0;
-
+				$count 	= 0;
+				$list	= '';
+				
 				$NotesBodyEntryTPL=gettemplate('notes/notes_body_entry');
 				while($note = mysql_fetch_array($notes_query))
 				{

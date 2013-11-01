@@ -34,16 +34,19 @@ class ShowResourcesPage
 
 		$parse['production_level'] 			 = 100;
 		$post_porcent 						 = Production::max_production ( $CurrentPlanet['energy_max'] , $CurrentPlanet['energy_used'] );
-		
-		
-		$parse['resource_row']               = "";
-		$CurrentPlanet['metal_perhour']      = 0;
-		$CurrentPlanet['crystal_perhour']    = 0;
-		$CurrentPlanet['deuterium_perhour']  = 0;
-		$CurrentPlanet['energy_max']         = 0;
-		$CurrentPlanet['energy_used']        = 0;
-		$BuildTemp                           = $CurrentPlanet[ 'temp_max' ];
-		$ResourcesRowTPL					 = gettemplate('resources/resources_row');
+
+
+		$parse['resource_row']           	= '';
+		$parse['metal_max']             	= '';
+		$parse['crystal_max']           	= '';
+		$parse['deuterium_max']				= '';
+		$CurrentPlanet['metal_perhour']  	= 0;
+		$CurrentPlanet['crystal_perhour']	= 0;
+		$CurrentPlanet['deuterium_perhour']	= 0;
+		$CurrentPlanet['energy_max']     	= 0;
+		$CurrentPlanet['energy_used']    	= 0;
+		$BuildTemp                       	= $CurrentPlanet[ 'temp_max' ];
+		$ResourcesRowTPL					= gettemplate('resources/resources_row');
 		foreach($reslist['prod'] as $ProdID)
 		{
 			if ($CurrentPlanet[$resource[$ProdID]] > 0 && isset($ProdGrid[$ProdID]))
@@ -51,31 +54,31 @@ class ShowResourcesPage
 				$BuildLevelFactor	= $CurrentPlanet[ $resource[$ProdID]."_porcent" ];
 				$BuildLevel			= $CurrentPlanet[ $resource[$ProdID] ];
 				$EnergyLevel        = $CurrentUser["energy_tech"];
-				
+
 				// BOOST
 				$geologe_boost		= 1 + ( $CurrentUser['rpg_geologue']  * GEOLOGUE );
 				$engineer_boost		= 1 + ( $CurrentUser['rpg_ingenieur'] * ENGINEER_ENERGY );
-				
+
 				// PRODUCTION FORMULAS
 				$metal_prod			= eval ( $ProdGrid[$ProdID]['formule']['metal'] );
 				$crystal_prod		= eval ( $ProdGrid[$ProdID]['formule']['crystal'] );
 				$deuterium_prod		= eval ( $ProdGrid[$ProdID]['formule']['deuterium'] );
 				$energy_prod		= eval ( $ProdGrid[$ProdID]['formule']['energy'] );
-				
+
 				// PRODUCTION
 				$metal				= Production::production_amount ( $metal_prod , $geologe_boost );
 				$crystal			= Production::production_amount ( $crystal_prod , $geologe_boost );
 				$deuterium			= Production::production_amount ( $deuterium_prod , $geologe_boost );
-				
+
 				if ( $ProdID >= 4 )
-				{							
-					$energy			= Production::production_amount ( $energy_prod , $engineer_boost );
-				}
-				else 
 				{
-					$energy			= Production::production_amount ( $energy_prod , 1 );
+					$energy			= Production::production_amount ( $energy_prod , $engineer_boost , TRUE );
 				}
-				
+				else
+				{
+					$energy			= Production::production_amount ( $energy_prod , 1 , TRUE );
+				}
+
 				if ( $energy > 0 )
 				{
 					$CurrentPlanet['energy_max']    += $energy;
@@ -96,7 +99,7 @@ class ShowResourcesPage
 				$Field                               = $resource[$ProdID] ."_porcent";
 				$CurrRow                             = array();
 				$CurrRow['name']                     = $resource[$ProdID];
-				$CurrRow['porcent']                  = $CurrentPlanet[$Field];				
+				$CurrRow['porcent']                  = $CurrentPlanet[$Field];
 				$CurrRow['option']					 = $this->build_options ( $CurrRow['porcent'] );
 				$CurrRow['type']                     = $lang['tech'][$ProdID];
 				$CurrRow['level']                    = ($ProdID > 200) ? $lang['rs_amount'] : $lang['rs_lvl'];
@@ -114,7 +117,7 @@ class ShowResourcesPage
 		}
 
 		$parse['Production_of_resources_in_the_planet'] = str_replace('%s', $CurrentPlanet['name'], $lang['rs_production_on_planet']);
-		
+
 		$parse['production_level']		 = $this->prod_level ( $CurrentPlanet['energy_used'] , $CurrentPlanet['energy_max'] );
 		$parse['metal_basic_income']     = $game_metal_basic_income;
 		$parse['crystal_basic_income']   = $game_crystal_basic_income;
@@ -128,16 +131,16 @@ class ShowResourcesPage
 		$parse['crystal_total']         = Format::color_number( Format::pretty_number( floor( ( ($CurrentPlanet['crystal_perhour']   * 0.01 * $parse['production_level'] ) + $parse['crystal_basic_income']))));
 		$parse['deuterium_total']       = Format::color_number( Format::pretty_number( floor( ( ($CurrentPlanet['deuterium_perhour'] * 0.01 * $parse['production_level'] ) + $parse['deuterium_basic_income']))));
 		$parse['energy_total']          = Format::color_number( Format::pretty_number( floor( ( $CurrentPlanet['energy_max'] + $parse['energy_basic_income']    ) + $CurrentPlanet['energy_used'] ) ) );
-			
-			
-		$parse['daily_metal']			= $this->calculate_daily ( $CurrentPlanet['metal_perhour'] , $parse['production_level'] , $parse['metal_basic_income'] );	
-		$parse['weekly_metal']			= $this->calculate_weekly ( $CurrentPlanet['metal_perhour'] , $parse['production_level'] , $parse['metal_basic_income'] );	
-		
-		
+
+
+		$parse['daily_metal']			= $this->calculate_daily ( $CurrentPlanet['metal_perhour'] , $parse['production_level'] , $parse['metal_basic_income'] );
+		$parse['weekly_metal']			= $this->calculate_weekly ( $CurrentPlanet['metal_perhour'] , $parse['production_level'] , $parse['metal_basic_income'] );
+
+
 		$parse['daily_crystal']			= $this->calculate_daily ( $CurrentPlanet['crystal_perhour'] , $parse['production_level'] , $parse['crystal_basic_income'] );
-		$parse['weekly_crystal']		= $this->calculate_weekly ( $CurrentPlanet['crystal_perhour'] , $parse['production_level'] , $parse['crystal_basic_income'] );		
-			
-		
+		$parse['weekly_crystal']		= $this->calculate_weekly ( $CurrentPlanet['crystal_perhour'] , $parse['production_level'] , $parse['crystal_basic_income'] );
+
+
 		$parse['daily_deuterium']		= $this->calculate_daily ( $CurrentPlanet['deuterium_perhour'] , $parse['production_level'] , $parse['deuterium_basic_income'] );
 		$parse['weekly_deuterium']		= $this->calculate_weekly ( $CurrentPlanet['deuterium_perhour'] , $parse['production_level'] , $parse['deuterium_basic_income'] );
 
@@ -173,20 +176,20 @@ class ShowResourcesPage
 					$SubQry                      .= ", `".$FieldName."` = '".$Value."'";
 				}
 			}
-				
+
 			$QryUpdatePlanet  = "UPDATE {{table}} SET ";
 			$QryUpdatePlanet .= "`id` = '". $CurrentPlanet['id'] ."' ";
 			$QryUpdatePlanet .= $SubQry;
 			$QryUpdatePlanet .= "WHERE ";
 			$QryUpdatePlanet .= "`id` = '". $CurrentPlanet['id'] ."';";
 			doquery( $QryUpdatePlanet, 'planets');
-			
+
 			header("Location: game.php?page=resources");
 		}
 
 		return display(parsetemplate( gettemplate('resources/resources'), $parse));
 	}
-	
+
 	/**
 	 * method build_options
 	 * param $current_porcentage
@@ -194,10 +197,12 @@ class ShowResourcesPage
 	 */
 	private function build_options ( $current_porcentage )
 	{
+		$option_row	= '';
+
 		for ( $option = 10 ; $option >= 0 ; $option-- )
 		{
 			$opt_value			= $option * 10;
-			
+
 			if ( $option == $current_porcentage )
 			{
 				$opt_selected	= " selected=selected";
@@ -206,13 +211,13 @@ class ShowResourcesPage
 			{
 				$opt_selected	= "";
 			}
-			
+
 			$option_row .= "<option value=\"" . $opt_value . "\"" . $opt_selected . ">" . $opt_value . "%</option>";
 		}
-		
+
 		return $option_row;
 	}
-	
+
 	/**
 	 * method calculate_daily
 	 * param1 $prod_per_hour
@@ -221,10 +226,10 @@ class ShowResourcesPage
 	 * return production per day
 	 */
 	private function calculate_daily ( $prod_per_hour , $prod_level , $basic_income )
-	{	
-		return floor ( ( $basic_income + ( $prod_per_hour * 0.01 * $prod_level ) ) * 24 );		
+	{
+		return floor ( ( $basic_income + ( $prod_per_hour * 0.01 * $prod_level ) ) * 24 );
 	}
-	
+
 	/**
 	 * method calculate_weekly
 	 * param1 $prod_per_hour
@@ -233,10 +238,10 @@ class ShowResourcesPage
 	 * return production per week
 	 */
 	private function calculate_weekly ( $prod_per_hour , $prod_level , $basic_income )
-	{		
+	{
 		return floor ( ( $basic_income + ( $prod_per_hour * 0.01 * $prod_level ) ) * 24 * 7 );
 	}
-	
+
 	/**
 	 * method resource_color
 	 * param1 $current_amount
@@ -254,7 +259,7 @@ class ShowResourcesPage
 			return ( Format::color_green ( Format::pretty_number ( $max_amount / 1000 ) . 'k' ) );
 		}
 	}
-	
+
 	/**
 	 * method prod_level
 	 * param1 $energy_used
@@ -284,7 +289,7 @@ class ShowResourcesPage
 		{
 			$prod_level	= 100;
 		}
-		
+
 		return $prod_level;
 	}
 }

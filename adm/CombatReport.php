@@ -14,7 +14,7 @@ include(XGP_ROOT . 'global.php');
 
 includeLang('INGAME');
 
-$raportrow 	= doquery("SELECT * FROM {{table}} WHERE `rid` = '".(mysql_escape_string($_GET["raport"]))."';", 'rw', TRUE);
+$raportrow 	= doquery("SELECT * FROM {{table}} WHERE `rid` = '".(mysql_escape_value($_GET["raport"]))."';", 'rw', TRUE);
 if (($raportrow["owners"] == $user["id"]) && ($raportrow["a_zestrzelona"] == 1))
 {
 	$Page .= "<td>".$lang['cr_lost_contact']."<br>";

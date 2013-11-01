@@ -74,12 +74,12 @@ class ShowFleet2Page
 		}
 		elseif ($_POST['planettype'] == 1 or $_POST['planettype'] == 3)
 		{
-			if ($_POST['ship208'] >= 1 && !$UsedPlanet)
+			if (isset($_POST['ship208']) && $_POST['ship208'] >= 1 && !$UsedPlanet)
 			{
 				$missiontype = array ( 7 => $lang['type_mission'][7] );
 			}
 
-			elseif ($_POST['ship210'] >= 1 && !$YourPlanet)
+			elseif (isset($_POST['ship210']) && $_POST['ship210'] >= 1 && !$YourPlanet)
 			{
 				$missiontype = array ( 6 => $lang['type_mission'][6] );
 			}
@@ -174,6 +174,8 @@ class ShowFleet2Page
 		#####################################################################################################
 		// EXTRA INPUTS
 		#####################################################################################################
+		$input_extra	= '';
+
 		foreach ( $fleetarray as $Ship => $Count )
 		{
 			$input_parse['ship']		=	$Ship;
@@ -257,6 +259,7 @@ class ShowFleet2Page
 		elseif ( $missiontype[5] != '' )
 		{
 			$stay_row['stay_type']				= 'holdingtime';
+			$stay_row['options']				= '';
 
 			foreach ( $hold_values as $value )
 			{

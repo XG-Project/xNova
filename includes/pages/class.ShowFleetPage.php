@@ -12,19 +12,19 @@ class ShowFleetPage
 {
 	function __construct ( $CurrentUser , $CurrentPlanet )
 	{
-		global $lang, $reslist, $resource;
+		global $lang, $reslist, $resource, $pricelist;
 
 		#####################################################################################################
 		// SOME DEFAULT VALUES
 		#####################################################################################################
 		// QUERYS
 		$count				= doquery ( "SELECT
-											(SELECT COUNT(fleet_owner) AS `actcnt` 
-												FROM {{table}}fleets 
+											(SELECT COUNT(fleet_owner) AS `actcnt`
+												FROM {{table}}fleets
 												WHERE `fleet_owner` = '" . intval ( $CurrentUser['id'] ) . "') AS max_fleet,
-											(SELECT COUNT(fleet_owner) AS `expedi` 
-												FROM {{table}}fleets 
-													WHERE `fleet_owner` = '" . intval ( $CurrentUser['id'] ) . "' 
+											(SELECT COUNT(fleet_owner) AS `expedi`
+												FROM {{table}}fleets
+													WHERE `fleet_owner` = '" . intval ( $CurrentUser['id'] ) . "'
 														AND `fleet_mission` = '15') AS max_expeditions" , '' , TRUE);
 
 
@@ -36,28 +36,28 @@ class ShowFleetPage
 		// LANGUAGE
 		$parse 						= $lang;
 
-		$MaxFlyingFleets    	= $count['max_fleet'];
-		$MaxExpedition      	= $CurrentUser[$resource[124]];
+		$MaxFlyingFleets    		= $count['max_fleet'];
+		$MaxExpedition      		= $CurrentUser[$resource[124]];
 
 		if ($MaxExpedition >= 1)
 		{
-			$ExpeditionEnCours  = $count['max_expeditions'];
-			$EnvoiMaxExpedition = Fleets::get_max_expeditions ( $MaxExpedition );
+			$ExpeditionEnCours  	= $count['max_expeditions'];
+			$EnvoiMaxExpedition 	= Fleets::get_max_expeditions ( $MaxExpedition );
 		}
 		else
 		{
-			$ExpeditionEnCours 	= 0;
-			$EnvoiMaxExpedition = 0;
+			$ExpeditionEnCours 		= 0;
+			$EnvoiMaxExpedition 	= 0;
 		}
 
 		$MaxFlottes		= Fleets::get_max_fleets ( $CurrentUser[$resource[108]] , $CurrentUser['rpg_amiral'] );
 		$missiontype	= Fleets::get_missions();
-		$galaxy         = intval($_GET['galaxy']);
-		$system         = intval($_GET['system']);
-		$planet         = intval($_GET['planet']);
-		$planettype     = intval($_GET['planettype']);
-		$target_mission = intval($_GET['target_mission']);
-		$ShipData       = "";
+		$galaxy         = intval((isset($_GET['galaxy'])?$_GET['galaxy']:NULL));
+		$system         = intval((isset($_GET['system'])?$_GET['system']:NULL));
+		$planet         = intval((isset($_GET['planet'])?$_GET['planet']:NULL));
+		$planettype     = intval((isset($_GET['planettype'])?$_GET['planettype']:NULL));
+		$target_mission = intval((isset($_GET['target_mission'])?$_GET['target_mission']:NULL));
+		$ShipData       = '';
 
 		if (!$galaxy)
 			$galaxy = $CurrentPlanet['galaxy'];
@@ -72,19 +72,21 @@ class ShowFleetPage
 		$parse['maxfleets']				= $MaxFlottes;
 		$parse['currentexpeditions']	= $ExpeditionEnCours;
 		$parse['maxexpeditions']		= $EnvoiMaxExpedition;
+		$i  							= 0;
+		$flying_fleets					= '';
+		$ships_row						= '';
+		$ship_inputs 					= '';
 
 		if ( $count['max_fleet'] <> 0 or $MaxExpedition <> 0 )
 		{
-
-			$fq = doquery("SELECT * FROM {{table}} WHERE fleet_owner='".intval($CurrentUser[id])."'", "fleets");
-			$i  = 0;
+			$fq = doquery("SELECT * FROM {{table}} WHERE fleet_owner='".intval($CurrentUser['id'])."'", "fleets");
 
 			while ( $f = mysql_fetch_array ( $fq ) )
 			{
 				$i++;
 
 				$parse['num']				=	$i;
-				$parse['fleet_mission']		=	$missiontype[$f[fleet_mission]];
+				$parse['fleet_mission']		=	$missiontype[$f['fleet_mission']];
 
 				if (($f['fleet_start_time'] + 1) == $f['fleet_end_time'])
 				{
@@ -99,7 +101,7 @@ class ShowFleetPage
 
 				$fleet 						= 	explode ( ";" , $f['fleet_array'] );
 				$e 							= 	0;
-				$parse['fleet'] 			= '';  
+				$parse['fleet'] 			= '';
 
 				foreach ( $fleet as $a => $b )
 				{
@@ -116,10 +118,10 @@ class ShowFleetPage
 					}
 				}
 
-				$parse['fleet_amount']		=	Format::pretty_number ( $f[fleet_amount] );
-				$parse['fleet_start']		=	"[".$f[fleet_start_galaxy].":".$f[fleet_start_system].":".$f[fleet_start_planet]."]";
+				$parse['fleet_amount']		=	Format::pretty_number ( $f['fleet_amount'] );
+				$parse['fleet_start']		=	"[".$f['fleet_start_galaxy'].":".$f['fleet_start_system'].":".$f['fleet_start_planet']."]";
 				$parse['fleet_start_time']	=	date ( "d M Y H:i:s" , $f['fleet_start_time'] );
-				$parse['fleet_end']			=	"[".$f[fleet_end_galaxy].":".$f[fleet_end_system].":".$f[fleet_end_planet]."]";
+				$parse['fleet_end']			=	"[".$f['fleet_end_galaxy'].":".$f['fleet_end_system'].":".$f['fleet_end_planet']."]";
 				$parse['fleet_end_time']	=	date ( "d M Y H:i:s" , $f['fleet_end_time'] );
 				$parse['fleet_arrival']		=	Format::pretty_time ( floor ( $f['fleet_end_time'] + 1 - time() ) );
 
@@ -131,7 +133,7 @@ class ShowFleetPage
 					$parse['inputs'] .= "<input value=\"".$lang['fl_send_back']."\" type=\"submit\" name=\"send\">";
 					$parse['inputs'] .= "</form>";
 
-					if ($f[fleet_mission] == 1)
+					if ($f['fleet_mission'] == 1)
 					{
 						$parse['inputs'] .= "<form action=\"game.php?page=fleetACS\" method=\"post\">";
 						$parse['inputs'] .= "<input name=\"fleetid\" value=\"". $f['fleet_id'] ."\" type=\"hidden\">";

@@ -337,6 +337,7 @@ $lang['bd_operating']						= '(En funcionamiento)';
 $lang['bd_continue']						= 'Continuar';
 $lang['bd_ready']							= 'Listo';
 $lang['bd_finished']						= 'Terminado';
+$lang['bd_work_todo']						= 'Cola de construcciÃ³n';
 
 //----------------------------------------------------------------------------//
 //RESOURCES
@@ -1130,7 +1131,7 @@ $lang['css_account_banned_expire']			= 'Expiraci&oacute;n:';
 //----------------------------------------------------------------------------//
 //class.debug.php
 $lang['cdg_mysql_not_available']			= 'mySQL no esta disponible por el momento, sentimos el inconveniente...';
-$lang['cdg_error_message']					= 'Error, por favor contacte al administrador. Error n°:';
+$lang['cdg_error_message']					= 'Error, por favor contacte al administrador. Error nï¿½:';
 $lang['cdg_fatal_error']					= 'ERROR FATAL';
 
 //----------------------------------------------------------------------------//

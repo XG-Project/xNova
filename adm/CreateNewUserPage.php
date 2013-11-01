@@ -29,8 +29,8 @@ $time		=	time();
 $i			=	0;
 if ($_POST)
 {
-	$CheckUser = doquery("SELECT `username` FROM {{table}} WHERE `username` = '" . mysql_escape_string($_POST['name']) . "' LIMIT 1", "users", TRUE);
-	$CheckMail = doquery("SELECT `email` FROM {{table}} WHERE `email` = '" . mysql_escape_string($_POST['email']) . "' LIMIT 1", "users", TRUE);
+	$CheckUser = doquery("SELECT `username` FROM {{table}} WHERE `username` = '" . mysql_escape_value($_POST['name']) . "' LIMIT 1", "users", TRUE);
+	$CheckMail = doquery("SELECT `email` FROM {{table}} WHERE `email` = '" . mysql_escape_value($_POST['email']) . "' LIMIT 1", "users", TRUE);
 	$CheckRows = doquery("SELECT * FROM {{table}} WHERE `galaxy` = '".$galaxy."' AND `system` = '".$system."' AND `planet` = '".$planet."' LIMIT 1", "galaxy", TRUE);
 
 
@@ -64,9 +64,9 @@ if ($_POST)
 
 	if ($i	==	'0'){
 		$Query1  = "INSERT INTO {{table}} SET ";
-		$Query1 .= "`username` = '" . mysql_escape_string(strip_tags($name)) . "', ";
-		$Query1 .= "`email` = '" . mysql_escape_string($email) . "', ";
-		$Query1 .= "`email_2` = '" . mysql_escape_string($email) . "', ";
+		$Query1 .= "`username` = '" . mysql_escape_value(strip_tags($name)) . "', ";
+		$Query1 .= "`email` = '" . mysql_escape_value($email) . "', ";
+		$Query1 .= "`email_2` = '" . mysql_escape_value($email) . "', ";
 		$Query1 .= "`ip_at_reg` = '" . $_SERVER["REMOTE_ADDR"] . "', ";
 		$Query1 .= "`id_planet` = '0', ";
 		$Query1 .= "`register_time` = '" .$time. "', ";
@@ -75,9 +75,7 @@ if ($_POST)
 		$Query1 .= "`password`='" . $pass . "';";
 		doquery($Query1, "users");
 
-		update_config ( 'users_amount' , read_config ( 'users_amount' ) + 1 );
-
-		$ID_USER 	= doquery("SELECT `id` FROM {{table}} WHERE `username` = '" . mysql_escape_string($name) . "' LIMIT 1", "users", TRUE);
+		$ID_USER 	= doquery("SELECT `id` FROM {{table}} WHERE `username` = '" . mysql_escape_value($name) . "' LIMIT 1", "users", TRUE);
 
 		CreateOnePlanetRecord ($galaxy, $system, $planet, $ID_USER['id'], $UserPlanet, TRUE);
 

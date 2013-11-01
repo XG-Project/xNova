@@ -15,17 +15,19 @@ include(XGP_ROOT . 'global.php');
 
 if ($user['authlevel'] < 1) die(message ($lang['404_page']));
 
-$parse		=	$lang;
-$Archive	=	"Log/".$_GET['file'].".php";
 
-switch ($_GET['options'])
+$file		= isset ( $_GET['file'] ) ? $_GET['file'] : NULL;
+$parse		=	$lang;
+$Archive	=	"Log/". $file .".php";
+
+switch ( ( isset ( $_GET['options'] ) ? $_GET['options'] : NULL ))
 {
 	case 'delete':
 		if ($user['authlevel']	!=	3) die();
 		$FP	=	fopen($Archive, "w+");
 		fclose($FP);
 
-		message($lang['log_delete_succes'].$_GET['file'], "LogToolPage.php?options=links&file=".$_GET['file']."", 2);
+		message($lang['log_delete_succes'].$file, "LogToolPage.php?options=links&file=".$file."", 2);
 	break;
 
 	case 'edit':
@@ -44,19 +46,19 @@ switch ($_GET['options'])
 			$Fopen2	=	fopen($Archive, "w+");
 			fputs($Fopen2, $_POST['text']);
 			fclose($Fopen2);
-			message($lang['log_edit_succes'], "LogToolPage.php?options=edit&file=".$_GET['file']."", 2);
+			message($lang['log_edit_succes'], "LogToolPage.php?options=edit&file=".$file."", 2);
 		}
 
 		$FileSize				=	filesize($Archive);
 		$FinalSize				=	$FileSize / 1000;
 		$parse['setsize']		=	"&nbsp;&nbsp;(".$FinalSize." KB)";
-		$parse['setarchive']	=	$_GET['file'];
+		$parse['setarchive']	=	$file;
 
 		display (parsetemplate(gettemplate('adm/LogEditBody'), $parse), FALSE, '', TRUE, FALSE);
 	break;
 
 	case 'links':
-		$Archive	=	"Log/".$_GET['file'].".php";
+		$Archive	=	"Log/".$file.".php";
 		if (!file_exists($Archive))
 		{
 			fopen($Archive, "w+");
@@ -70,9 +72,9 @@ switch ($_GET['options'])
 		if($user['authlevel']	==	3)
 		{
 			$Excuse_me		=
-			"<a href=\"LogToolPage.php?options=delete&file=".$_GET['file']."\" onClick=\" return confirm('".$lang['log_alert']."');\">
+			"<a href=\"LogToolPage.php?options=delete&file=".$file."\" onClick=\" return confirm('".$lang['log_alert']."');\">
 			".$lang['log_delete_link']."</a>&nbsp;
-			<a href=\"LogToolPage.php?options=edit&file=".$_GET['file']."\">".$lang['log_edit_link']."</a>";
+			<a href=\"LogToolPage.php?options=edit&file=".$file."\">".$lang['log_edit_link']."</a>";
 		}
 		else
 		{
@@ -102,7 +104,7 @@ switch ($_GET['options'])
 		$FileSize				=	filesize($Archive);
 		$FinalSize				=	$FileSize / 1000;
 		$parse['setsize']		=	"&nbsp;&nbsp;(".$FinalSize." KB)";
-		$parse['setarchive']	=	$_GET['file'];
+		$parse['setarchive']	=	$file;
 		display (parsetemplate(gettemplate('adm/LogBody'), $parse), FALSE, '', TRUE, FALSE);
 	break;
 

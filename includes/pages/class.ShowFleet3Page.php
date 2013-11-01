@@ -226,8 +226,8 @@ class ShowFleet3Page
 
 		if($HeDBRec['onlinetime'] >= (time()-60 * 60 * 24 * 7))
 		{
-			if ( is_weak ( $MyGameLevel , $HeGameLevel ) && 
-					$TargetPlanet['id_owner'] != '' && 
+			if ( is_weak ( $MyGameLevel , $HeGameLevel ) &&
+					$TargetPlanet['id_owner'] != '' &&
 					($_POST['mission'] == 1 or $_POST['mission'] == 6 or $_POST['mission'] == 9))
 			{
 				message("<font color=\"lime\"><b>".$lang['fl_week_player']."</b></font>", "game.php?page=fleet", 2);
@@ -270,12 +270,12 @@ class ShowFleet3Page
 			{
 				message ("<font color=\"red\"><b>".$lang['fl_planet_populed']."</b></font>", "game.php?page=fleet", 2);
 			}
-						
+
 			if ($HeDBRec['ally_id'] != $MyDBRec['ally_id'] && $_POST['mission'] == 4)
 			{
 				message ("<font color=\"red\"><b>".$lang['fl_stay_not_on_enemy']."</b></font>", "game.php?page=fleet", 2);
 			}
-			
+
 			if (($TargetPlanet["id_owner"] == $CurrentPlanet["id_owner"]) && (($_POST["mission"] == 1) or ($_POST["mission"] == 6)))
 			{
 				exit ( header ( "location:game.php?page=fleet" ) );
@@ -285,11 +285,11 @@ class ShowFleet3Page
 			{
 				message ("<font color=\"red\"><b>".$lang['fl_deploy_only_your_planets']."</b></font>","game.php?page=fleet", 2);
 			}
-			
+
 			if($_POST['mission'] == 5)
-			{	
+			{
 				$buddy = doquery ( "SELECT COUNT( * ) AS buddys
-										FROM  `{{table}}` 
+										FROM  `{{table}}`
 											WHERE (
 												(
 													sender ='" . intval($CurrentPlanet['id_owner']) . "'
@@ -553,6 +553,7 @@ class ShowFleet3Page
 		$parse['end_time'] 		= date("M D d H:i:s", $fleet['end_time']);
 
 		$ships_row_template		= gettemplate ( 'fleet/fleet3_ships_row' );
+		$ships_list				= '';
 
 		foreach ( $fleetarray as $Ship => $Count )
 		{

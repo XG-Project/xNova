@@ -20,7 +20,7 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
         $game_resource_multiplier        =    read_config ( 'resource_multiplier' );
         $ProductionTime               = ($UpdateTime - $CurrentPlanet['last_update']);
         $CurrentPlanet['last_update'] = $UpdateTime;
-        
+
         $rList = array("metal"=>array("warehouse_num"=>22),
                        "crystal"=>array("warehouse_num"=>23),
                        "deuterium"=>array("warehouse_num"=>24));
@@ -28,51 +28,51 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
         $BuildTemp    = $CurrentPlanet[ 'temp_max' ];
         $post_porcent =    Production::max_production ( $CurrentPlanet['energy_max'] , $CurrentPlanet['energy_used'] );
 
-        $EnergyLevel = $CurrentUser['energy_tech'];
-        
+        $BuildEnergy = $CurrentUser['energy_tech'];
+
         //Data init: Set vars on zero so they don't start madly increasing.
         foreach($rList as $rname => $rdata) {
             $CurrentPlanet[$rname.'_perhour'] = 0;
         }
         $CurrentPlanet['energy_max'] = $CurrentPlanet['energy_used'] = 0;
-        
+
         if ($CurrentPlanet['planet_type'] != 3)
         {
             foreach ( $reslist['prod'] as $ProdID)
             {
-                $BuildLevelFactor            = $CurrentPlanet[ $resource[$ProdID] ."_porcent" ];
-                $BuildLevel                    = $CurrentPlanet[ $resource[$ProdID] ];
-                                
+                $BuildLevelFactor		= $CurrentPlanet[ $resource[$ProdID] ."_porcent" ];
+                $BuildLevel				= $CurrentPlanet[ $resource[$ProdID] ];
+
                 // BOOST
-                $geologe_boost                = 1 + ( $CurrentUser['rpg_geologue']  * GEOLOGUE );
-                $engineer_boost                = 1 + ( $CurrentUser['rpg_ingenieur'] * ENGINEER_ENERGY );
-                
+                $geologe_boost        	= 1 + ( $CurrentUser['rpg_geologue']  * GEOLOGUE );
+                $engineer_boost			= 1 + ( $CurrentUser['rpg_ingenieur'] * ENGINEER_ENERGY );
+
                 //Standard resources
                 foreach($rList as $rname => $rdata)
                 {
                     $cProd = eval ( $ProdGrid[$ProdID]['formule'][$rname] );  // PRODUCTION FORMULAS
                     $CurrentPlanet[$rname.'_perhour']        += Production::current_production ( Production::production_amount ( $cProd , $geologe_boost ) , $post_porcent); // PRODUCTION
                 }
-                
+
                 //Energy
                 $cProd = eval ( $ProdGrid[$ProdID]['formule']["energy"] );
-                $energy_prod = Production::current_production ( Production::production_amount ( $cProd , $geologe_boost ) , $post_porcent);
-                
+                $energy_prod = Production::current_production ( Production::production_amount ( $cProd , $geologe_boost , TRUE ) , $post_porcent);
+
                 if( $ProdID >= 4 )
-                {                    
+                {
                     if ( $ProdID == 12 && $CurrentPlanet['deuterium'] == 0 ) {
                         continue;
                     }
-                                            
-                    $CurrentPlanet['energy_max']        +=  Production::production_amount ( $energy_prod , $engineer_boost );
+
+                    $CurrentPlanet['energy_max']        +=  Production::production_amount ( $energy_prod , $engineer_boost , TRUE );
                 }
-                else 
+                else
                 {
-                    $CurrentPlanet['energy_used']    += Production::production_amount ( $energy_prod , 1 );
+                    $CurrentPlanet['energy_used']    += Production::production_amount ( $energy_prod , 1 , TRUE );
                 }
             }
         }
-        
+
         if($CurrentPlanet['energy_max'] == 0) //Zero production in no energy planets
         {
             foreach($rList as $rname => $rdata) {
@@ -89,9 +89,9 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
                 $b_income[$rname] = read_config ( $rname.'_basic_income' );
             else
                 $b_income[$rname] = 0;
-            
+
             $CurrentPlanet[$rname.'_max'] = Production::max_storable ( $CurrentPlanet[ $resource[$rdata['warehouse_num'] ]]);
-            
+
             if ( $CurrentPlanet[$rname] <= $CurrentPlanet[$rname.'_max'] )
             {
                 $prod = (($ProductionTime * ($CurrentPlanet[$rname.'_perhour'] / 3600))) * (0.01 * $production_level);
@@ -104,11 +104,11 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
                     $CurrentPlanet[$rname]  = $CurrentPlanet[$rname.'_max'];
                 }
             }
-            
+
             if( $CurrentPlanet[$rname] < 0 ) {
                 $CurrentPlanet[$rname]  = 0;
             }
-            
+
             $rUpd .= "`$rname` = '" . $CurrentPlanet[$rname] ."', ";
             $rUpd .= "`".$rname."_perhour` = '" . $CurrentPlanet[$rname.'_perhour'] ."', ";
         }

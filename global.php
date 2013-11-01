@@ -7,7 +7,9 @@
  */
 
 // SETEADO PARA EVITAR ERRORRES EN VERSION DE PHP MAYORES A 5.3.0
-error_reporting ( E_ALL & ~E_NOTICE );
+//error_reporting ( E_ALL & ~E_NOTICE );
+//ini_set('display_errors', 1);
+//error_reporting(E_ALL);
 
 $user          	= array();
 $lang          	= array();
@@ -57,7 +59,7 @@ if ( INSTALL != TRUE )
 	includeLang ( 'INGAME' );
 
 	if ( !isset ( $InLogin ) or $InLogin != TRUE )
-	{	
+	{
 		include ( XGP_ROOT . 'includes/classes/class.CheckSession.php' );
 
 		$Result        	= new CheckSession();
@@ -65,7 +67,7 @@ if ( INSTALL != TRUE )
 		$IsUserChecked 	= $Result['state'];
 		$user          	= $Result['record'];
 		require ( XGP_ROOT . 'includes/classes/class.SecurePage.php' );
-		SecurePage::run(); 
+		SecurePage::run();
 
 		if ( read_config ( 'game_disable' ) == 0 && $user['authlevel'] == 0 )
 		{
@@ -129,7 +131,9 @@ if ( INSTALL != TRUE )
 		include ( XGP_ROOT . 'includes/functions/SetSelectedPlanet.php' );
 		SetSelectedPlanet ( $user );
 
-		$planetrow = doquery ( "SELECT * FROM `{{table}}` WHERE `id` = '" . $user['current_planet'] . "';" , "planets" , TRUE );
+		$planetrow = doquery ( "SELECT *, (SELECT COUNT(`id`) AS count FROM `{{table}}users` ) AS total_users
+									FROM `{{table}}planets`
+									WHERE `id` = '" . $user['current_planet'] . "';" , '' , TRUE );
 
 		// Include the plugin system 0.3
 		include ( XGP_ROOT . 'includes/plugins.php' );

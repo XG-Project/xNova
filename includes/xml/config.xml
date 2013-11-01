@@ -2,7 +2,7 @@
 <configurations>
 	<config>
 		<name>version</name>
-		<value>2.10.5</value>
+		<value>2.10.6</value>
 	</config>
 	<config>
 		<name>users_amount</name>
@@ -74,15 +74,15 @@
 	</config>
 	<config>
 		<name>lastsettedsystempos</name>
-		<value>1</value>
-	</config>
-	<config>
-		<name>lastsettedplanetpos</name>
 		<value>3</value>
 	</config>
 	<config>
-		<name>noobprotection</name>
+		<name>lastsettedplanetpos</name>
 		<value>1</value>
+	</config>
+	<config>
+		<name>noobprotection</name>
+		<value>0</value>
 	</config>
 	<config>
 		<name>noobprotectiontime</name>
@@ -118,7 +118,7 @@
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1370191210</value>
+		<value>1381624965</value>
 	</config>
 	<config>
 		<name>stat_settings</name>
@@ -130,7 +130,7 @@
 	</config>
 	<config>
 		<name>stat_update_time</name>
-		<value>15</value>
+		<value>1</value>
 	</config>
 	<config>
 		<name>stat_flying</name>

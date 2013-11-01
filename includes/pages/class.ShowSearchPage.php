@@ -14,10 +14,11 @@ class ShowSearchPage
 	{
 		global $lang;
 
-		$parse 	= $lang;
-		$type 	= $_POST['type'];
-
-		$searchtext = mysql_escape_string($_POST["searchtext"]);
+		$parse 			= $lang;
+		$type 			= isset ( $_POST['type'] ) ? $_POST['type'] : NULL;
+		$search_results	= '';
+		$searchtext 	= mysql_escape_value((isset($_POST["searchtext"])?$_POST["searchtext"]:NULL));
+		
 		//queries fixed by Jstar
 		if ( $_POST )
 		{
@@ -44,16 +45,18 @@ class ShowSearchPage
                     $row     = gettemplate('search/search_ally_row');
                     $search = doquery("SELECT a.* ,s.total_points as points FROM {{table}}alliance as a , {{table}}statpoints as s  WHERE a.id = s.id_owner AND s.stat_type=2 AND a.ally_name LIKE '%".$searchtext."%' LIMIT 25 ; ","");
                 break;
-            } 
+            }
 		}
 
 		if(isset($searchtext) && isset($type))
 		{
+			$result_list	= '';
+			
 			while($s = mysql_fetch_array($search, MYSQL_BOTH))
 			{
 				if($type == 'playername' or $type == 'planetname')
 				{
-					if($s['ally_id'] != 0 && $s['ally_request'] == 0)
+					if(isset($s['ally_id']) && $s['ally_id'] != 0 && $s['ally_request'] == 0)
 					{
 						$aquery = doquery("SELECT id,ally_name FROM {{table}} WHERE id = ".intval($s['ally_id'])."","alliance",TRUE);
 					}
@@ -83,9 +86,9 @@ class ShowSearchPage
 				}
 				elseif($type=='allytag'||$type=='allyname')
 				{
-					$s['ally_points'] = Format::pretty_number($s['ally_points']);
+					$s['ally_points'] = Format::pretty_number($s['points']);
 
-					$s['ally_tag'] = "<a href=\"game.php?page=alliance&mode=ainfo&a={$s['id']}\">{$s['ally_tag']}</a>";                    
+					$s['ally_tag'] = "<a href=\"game.php?page=alliance&mode=ainfo&a={$s['id']}\">{$s['ally_tag']}</a>";
 
 					$result_list .= parsetemplate($row, $s);
 				}
@@ -97,10 +100,10 @@ class ShowSearchPage
 			}
 		}
 
-		$parse['type_playername'] 	= ($_POST["type"] == "playername") ? " SELECTED" : "";
-		$parse['type_planetname'] 	= ($_POST["type"] == "planetname") ? " SELECTED" : "";
-		$parse['type_allytag'] 		= ($_POST["type"] == "allytag") ? " SELECTED" : "";
-		$parse['type_allyname'] 	= ($_POST["type"] == "allyname") ? " SELECTED" : "";
+		$parse['type_playername'] 	= ($type == "playername") ? " SELECTED" : "";
+		$parse['type_planetname'] 	= ($type == "planetname") ? " SELECTED" : "";
+		$parse['type_allytag'] 		= ($type == "allytag") ? " SELECTED" : "";
+		$parse['type_allyname'] 	= ($type == "allyname") ? " SELECTED" : "";
 		$parse['searchtext'] 		= $searchtext;
 		$parse['search_results'] 	= $search_results;
 

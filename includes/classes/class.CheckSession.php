@@ -25,7 +25,7 @@ class CheckSession
             $TheCookie	= explode("/%/", $_COOKIE[$game_cookie]);
 
             // START FIX BY JSTAR
-            $TheCookie	= array_map ( 'mysql_escape_string' , $TheCookie );
+            $TheCookie	= array_map ( 'mysql_escape_value' , $TheCookie );
             // END FIX BY JSTAR
 
             // BETTER QUERY BY LUCKY! REDUCE GENERAL QUERY FROM 11 TO 10.
@@ -70,9 +70,9 @@ class CheckSession
             
             $QryUpdateUser  = "UPDATE {{table}} SET ";
             $QryUpdateUser .= "`onlinetime` = '". time() ."', ";
-            $QryUpdateUser .= "`current_page` = '". mysql_real_escape_string(htmlspecialchars($_SERVER['REQUEST_URI'])) ."', ";
-            $QryUpdateUser .= "`user_lastip` = '". mysql_real_escape_string(htmlspecialchars($_SERVER['REMOTE_ADDR'])) ."', ";
-            $QryUpdateUser .= "`user_agent` = '". mysql_real_escape_string(htmlspecialchars($_SERVER['HTTP_USER_AGENT'])) ."' ";
+            $QryUpdateUser .= "`current_page` = '". mysql_escape_value(htmlspecialchars($_SERVER['REQUEST_URI'])) ."', ";
+            $QryUpdateUser .= "`user_lastip` = '". mysql_escape_value(htmlspecialchars($_SERVER['REMOTE_ADDR'])) ."', ";
+            $QryUpdateUser .= "`user_agent` = '". mysql_escape_value(htmlspecialchars($_SERVER['HTTP_USER_AGENT'])) ."' ";
             $QryUpdateUser .= "WHERE ";
             $QryUpdateUser .= "`id` = '". intval($TheCookie[0]) ."' LIMIT 1;";
             doquery( $QryUpdateUser, 'users');

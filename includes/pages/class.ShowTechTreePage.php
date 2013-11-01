@@ -16,8 +16,9 @@ class ShowTechTreePage
 
 		$parse = $lang;
 
-		$TechTreeHeadTPL=gettemplate('techtree/techtree_head');
-		$TechTreeRowTPL =gettemplate('techtree/techtree_row');
+		$TechTreeHeadTPL	= gettemplate('techtree/techtree_head');
+		$TechTreeRowTPL 	= gettemplate('techtree/techtree_row');
+		$page				= '';
 
 		foreach($lang['tech'] as $Element => $ElementName)
 		{

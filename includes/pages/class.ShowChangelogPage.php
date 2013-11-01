@@ -16,7 +16,8 @@ class ShowChangelogPage
 
 		includeLang ( 'CHANGELOG' );
 		$template	=	gettemplate ( 'changelog/changelog_table' );
-
+		$body		= '';
+		
 		foreach ( $lang['changelog'] as $version => $description )
 		{
 			$parse['version_number']	= $version;

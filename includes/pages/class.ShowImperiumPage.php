@@ -37,10 +37,10 @@ class ShowImperiumPage
 			$planet[] = $p;
 		}
 
-		$parse['mount'] = 	count ( $planet ) + 1;
-
-		$EmpireRowTPL	=	gettemplate ( 'empire/empire_row' );
-
+		$parse['mount'] = count ( $planet ) + 1;
+		$EmpireRowTPL	= gettemplate ( 'empire/empire_row' );
+		$r				= array();
+		
 		foreach ( $planet as $p )
 		{
 			$metal_prod 	= $p['metal_perhour'] + read_config ( 'metal_basic_income' );
@@ -52,14 +52,37 @@ class ShowImperiumPage
 
 			for ($k = 0; $k < 8; $k++)
 			{
-				$data['text'] = $datat[$k];
+				if ( ! isset ( $parse[$f[$k]] ) )
+				{
+					$parse[$f[$k]] = '';	
+				}
+					
+				$data['text'] 	= $datat[$k];
 				$parse[$f[$k]] .= parsetemplate($EmpireRowTPL, $data);
 			}
 
 			foreach ($resource as $i => $res)
 			{
-				$data['text'] = ($p[$resource[$i]] == 0 && $CurrentUser[$resource[$i]] == 0) ? '-' : ((in_array($i, $reslist['build'])) ? "<a href=\"game.php?page=buildings&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$p[$resource[$i]]}</a>" : ((in_array($i, $reslist['tech'])) ? "<a href=\"game.php?page=buildings&mode=research&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$CurrentUser[$resource[$i]]}</a>" : ((in_array($i, $reslist['fleet'])) ? "<a href=\"game.php?page=buildings&mode=fleet&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$p[$resource[$i]]}</a>" : ((in_array($i, $reslist['defense'])) ? "<a href=\"game.php?page=buildings&mode=defense&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$p[$resource[$i]]}</a>" : '-'))));
-				$r[$i] .= parsetemplate($EmpireRowTPL, $data);
+				if ( ! in_array ( $i , $reslist['officier'] ) ) // EXCLUDE OFFICIERS
+				{
+					if ( ! isset ( $r[$i] ) )
+					{
+						$r[$i] = '';	
+					}
+
+					if ( ! isset ( $p[$resource[$i]] ) )
+					{
+						$p[$resource[$i]] = 0;
+					}
+					
+					if ( ! isset ( $CurrentUser[$resource[$i]] ) )
+					{
+						$CurrentUser[$resource[$i]] = 0;
+					}
+					
+					$data['text'] = ($p[$resource[$i]] == 0 && $CurrentUser[$resource[$i]] == 0) ? '-' : ((in_array($i, $reslist['build'])) ? "<a href=\"game.php?page=buildings&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$p[$resource[$i]]}</a>" : ((in_array($i, $reslist['tech'])) ? "<a href=\"game.php?page=buildings&mode=research&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$CurrentUser[$resource[$i]]}</a>" : ((in_array($i, $reslist['fleet'])) ? "<a href=\"game.php?page=buildings&mode=fleet&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$p[$resource[$i]]}</a>" : ((in_array($i, $reslist['defense'])) ? "<a href=\"game.php?page=buildings&mode=defense&cp={$p['id']}&amp;re=0&amp;planettype={$p['planet_type']}\">{$p[$resource[$i]]}</a>" : '-'))));
+					$r[$i] 		 .= parsetemplate($EmpireRowTPL, $data);
+				}
 			}
 		}
 
@@ -70,6 +93,11 @@ class ShowImperiumPage
 		{
 			foreach ( $reslist[$m[$j]] as $a => $i )
 			{
+				if ( ! isset ( $parse[$n[$j]] ) )
+				{
+					$parse[$n[$j]] = '';
+				}
+			
 				$data['text'] 	= $lang['tech'][$i];
 				$parse[$n[$j]] .= "<tr>" . parsetemplate ( $EmpireRowTPL , $data ) . $r[$i] . "</tr>";
 			}

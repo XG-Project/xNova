@@ -16,8 +16,9 @@ class ShowOfficierPage
 
 		$parse 	= $lang;
 		$bloc	= $lang;
-
-		if ($_GET['mode'] == 2)
+		$mode	= isset ( $_GET['mode'] ) ? $_GET['mode'] : NULL;
+		
+		if ($mode == 2)
 		{
 			$Selected    = $_GET['offi'];
 
@@ -49,15 +50,16 @@ class ShowOfficierPage
 		}
 		else
 		{
-			$OfficierRowTPL			=	gettemplate('officier/officier_row');
-
+			$OfficierRowTPL			= gettemplate('officier/officier_row');
+			$parse['disp_off_tbl']	= '';
+			
 			foreach($lang['tech'] as $Element => $ElementName)
 			{
-				$Result = $this->IsOfficierAccessible ($CurrentUser, $Element);
-				$Price	= $this->GetOfficierPrice ( $Element );
-
 				if ($Element >= 601 && $Element <= 604)
 				{
+					$Result 			= $this->IsOfficierAccessible ($CurrentUser, $Element);
+					$Price				= $this->GetOfficierPrice ( $Element );
+					
 					$bloc['dpath']		= DPATH;
 					$bloc['off_id']   	= $Element;
 					$bloc['off_status']	= ( ( $CurrentUser[$resource[$Element]] == 1 ) ? $lang['of_active'] : $lang['of_inactive'] );

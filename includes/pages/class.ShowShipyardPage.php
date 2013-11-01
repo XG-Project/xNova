@@ -46,11 +46,12 @@ class ShowShipyardPage
 	{
 		global $lang, $pricelist;
 
-		$ElementQueue = explode(';', $CurrentPlanet['b_hangar_id']);
-		$NbrePerType  = "";
-		$NamePerType  = "";
-		$TimePerType  = "";
-
+		$ElementQueue 	= explode(';', $CurrentPlanet['b_hangar_id']);
+		$NbrePerType  	= "";
+		$NamePerType  	= "";
+		$TimePerType  	= "";
+		$QueueTime		= 0;
+		
 		foreach($ElementQueue as $ElementLine => $Element)
 		{
 			if ($Element != '')
@@ -70,9 +71,8 @@ class ShowShipyardPage
 		$parse['c'] 					= $TimePerType;
 		$parse['b_hangar_id_plus'] 		= $CurrentPlanet['b_hangar'];
 		$parse['pretty_time_b_hangar'] 	= Format::pretty_time($QueueTime - $CurrentPlanet['b_hangar']);
-		$text .= parsetemplate(gettemplate('buildings/buildings_script'), $parse);
 
-		return $text;
+		return parsetemplate(gettemplate('buildings/buildings_script'), $parse);
 	}
 
 	public function FleetBuildingPage ( &$CurrentPlanet, $CurrentUser )
@@ -166,7 +166,9 @@ class ShowShipyardPage
 			}
 		}
 
-		$TabIndex = 0;
+		$TabIndex 	= 0;
+		$PageTable	= '';
+		$BuildQueue	= '';
 		foreach($lang['tech'] as $Element => $ElementName)
 		{
 			if ($Element > 201 && $Element <= 399)
@@ -195,7 +197,7 @@ class ShowShipyardPage
 
 					if($NotBuilding)
 					{
-						$parse[build_fleet] 	= "<tr><td class=\"c\" colspan=\"2\" align=\"center\"><input type=\"submit\" value=\"".$lang['bd_build_ships']."\"></td></tr>";
+						$parse['build_fleet'] 	= "<tr><td class=\"c\" colspan=\"2\" align=\"center\"><input type=\"submit\" value=\"".$lang['bd_build_ships']."\"></td></tr>";
 					}
 
 					$PageTable .= parsetemplate(gettemplate('buildings/buildings_fleet_row'), $parse);
@@ -370,8 +372,10 @@ class ShowShipyardPage
 
 		}
 
-		$TabIndex  = 0;
-		$PageTable = "";
+		$TabIndex  	= 0;
+		$PageTable 	= '';
+		$BuildQueue	= '';
+
 		foreach($lang['tech'] as $Element => $ElementName)
 		{
 			if ($Element > 400 && $Element <= 599)
@@ -423,7 +427,7 @@ class ShowShipyardPage
 
 						if($NotBuilding)
 						{
-							$parse[build_defenses] = "<tr><td class=\"c\" colspan=\"2\" align=\"center\"><input type=\"submit\" value=\"".$lang['bd_build_defenses']."\"></td></tr>";
+							$parse['build_defenses'] = "<tr><td class=\"c\" colspan=\"2\" align=\"center\"><input type=\"submit\" value=\"".$lang['bd_build_defenses']."\"></td></tr>";
 						}
 					}
 

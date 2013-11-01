@@ -22,7 +22,7 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 				{
 					//BREAK
 				}
-				elseif ($planet[$resource[$ReqElement]] && $planet[$resource[$ReqElement]] >= $EleLevel)
+				elseif (isset($planet[$resource[$ReqElement]]) && $planet[$resource[$ReqElement]] >= $EleLevel)
 				{
 					$enabled = TRUE;
 				}

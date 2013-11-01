@@ -6,9 +6,7 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-define('INSIDE'  , TRUE);
-define('INSTALL' , FALSE);
-define('IN_ADMIN', TRUE);
+if(!defined('INSIDE')){ die(header("location:../../"));}
 
 if ( $user['authlevel'] < 1 )
 {
@@ -30,7 +28,7 @@ function LogFunction ( $Text , $Estado , $LogCanWork )
 		}
 
 		$FP		 =	fopen ( $Archive , "r+" );
-		$Date	.=	$Text;
+		$Date	 =	$Text;
 		$Date	.=	$lang['log_operation_succes'];
 		$Date	.=	date ( "d-m-Y H:i:s" , time() ) . "\n";
 

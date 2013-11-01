@@ -15,14 +15,17 @@ include(XGP_ROOT . 'global.php');
 
 if ($ConfigGame != 1) die(message ($lang['404_page']));
 
-	$parse = $lang;
-
-	extract($_GET);
+	$parse 		= $lang;
+	$deleteall	= '';
+	
+	
+	extract ( $_GET );
 
 	$query = doquery("SELECT * FROM {{table}}", 'errors');
 
-	$i = 0;
-
+	$i 						= 0;
+	$parse['errors_list']	= '';
+	
 	while ($u = mysql_fetch_array($query))
 	{
 		$i++;
@@ -50,8 +53,8 @@ if ($ConfigGame != 1) die(message ($lang['404_page']));
 	elseif ($deleteall == 'yes')
 	{
 		doquery("TRUNCATE TABLE {{table}}", 'errors');
-		$Log	.=	"\n".$lang['log_errores_title']."\n";
-		$Log	.=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_all_errors']."\n";
+		$Log	=	"\n".$lang['log_errores_title']."\n";
+		$Log   .=	$lang['log_the_user'].$user['username']." ".$lang['log_delete_all_errors']."\n";
 		LogFunction($Log, "GeneralLog", $LogCanWork);
 		header ( 'location:ErrorPage.php' );
 	}

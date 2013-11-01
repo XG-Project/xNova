@@ -14,10 +14,10 @@ class ShowMessagesPage
 	{
 		global $lang;
 
-		$OwnerID		= intval ( $_GET['id'] );
-		$MessCategory  	= intval ( $_GET['messcat'] );
-		$MessPageMode  	= addslashes ( mysql_escape_string ( $_GET["mode"] ) );
-		$DeleteWhat    	= $_POST['deletemessages'];
+		$OwnerID		= intval ( (isset($_GET['id'])?$_GET['id']:NULL) );
+		$MessCategory  	= intval ( (isset($_GET['messcat'])?$_GET['messcat']:NULL) );
+		$MessPageMode  	= addslashes ( mysql_escape_value ( (isset($_GET['mode'])?$_GET['mode']:NULL) ) );
+		$DeleteWhat    	= isset($_POST['deletemessages'])?$_POST['deletemessages']:NULL;
 
 		if ( isset ( $DeleteWhat ) )
 		{
@@ -44,7 +44,6 @@ class ShowMessagesPage
 		{
 			if ( in_array ( $MessType , $MessageType ) )
 			{
-				$WaitingMess[$MessType]	= $UnRead[$messfields[$MessType]];
 				$TotalMess[$MessType]   = 0;
 			}
 		}
@@ -158,7 +157,7 @@ class ShowMessagesPage
 						$CurMess    	= preg_match ( "/showmes/i" , $Message );
 						$MessId     	= str_replace ( "showmes" , "" , $Message );
 						$Selected   	= "delmes" . $MessId;
-						$IsSelected		= $_POST[$Selected];
+						$IsSelected		= isset ( $_POST[$Selected] ) ? $_POST[$Selected] : NULL;
 
 						if ( preg_match ( "/showmes/i" , $Message ) && !isset ( $IsSelected ) )
 						{
@@ -201,7 +200,9 @@ class ShowMessagesPage
 				$QryUpdateUser .= "WHERE ";
 				$QryUpdateUser .= "`id` = '" . intval ( $CurrentUser['id'] ) . "';";
 				doquery ( $QryUpdateUser, 'users');
-
+				
+				$messagesBody	= '';
+				
 				while ( $CurMess = mysql_fetch_array ( $UsrMess ) )
 				{
 					$parse['message_id']		=	$CurMess['message_id'];
@@ -234,8 +235,9 @@ class ShowMessagesPage
 				$QrySelectUser  = "SELECT `username`, `email` ";
 				$QrySelectUser .= "FROM `{{table}}` ";
 				$QrySelectUser .= "WHERE `authlevel` != '0' ORDER BY `username` ASC;";
-				$GameOps = doquery ($QrySelectUser, 'users');
-
+				$GameOps 		= doquery ($QrySelectUser, 'users');
+				$operatorsBody	= '';
+				
 				while ( $Ops = mysql_fetch_assoc ( $GameOps ) )
 				{
 					$parse['dpath']		= DPATH;
@@ -253,12 +255,12 @@ class ShowMessagesPage
 				break;
 			default:
 
-				$parse				=   $lang;
-				$parse['all_color']	=	$TitleColor[100];
-				$parse['all_total']	=  	$TotalMess[100];
-				$parse['all_lang']	= 	$lang['mg_type'][100];
-
-				$subTemplate 	= gettemplate ( 'messages/messages_menu_row' );
+				$parse				= $lang;
+				$parse['all_color']	= $TitleColor[100];
+				$parse['all_total']	= $TotalMess[100];
+				$parse['all_lang']	= $lang['mg_type'][100];
+				$body				= '';
+				$subTemplate 		= gettemplate ( 'messages/messages_menu_row' );
 
 				for ( $MessType = 0 ; $MessType < 100 ; $MessType++ )
 				{

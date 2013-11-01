@@ -4,10 +4,30 @@ $lang['Version']     = 'Versión';
 $lang['Description'] = 'Descripción';
 $lang['changelog']   = array(
 
+'2.10.6' => ' 13/07/2013
+- [Mejoras]
+- Varias mejoras de código, se removieron varios notices y warnings.-
+- Removido HandleTechnologieBuild.php, se movio como un metodo a la clase class.ShowResearchPage.php.-
+- Removido index.html del directorio adm.-
+- Implementado el motor de combate de jstar.-
+
+- [Bugs]
+#00000: Bug donde se mostraban las lunas destruidas en el selector de planetas.-
+#00000: Bug donde la energia no era tenida en cuenta en la actualización de recursos.-
+#00000: Bug donde no se mostraba en otro color la alianza propia de un jugador dentro de las estadísticas.-
+#00000: Bug que no mostraba los puntos de la alianza al realizar una búsqueda por nombre/tag de alianza en las búsquedas.-
+#00000: Bug que al aumentar la velocidad del juego, aumentaba la energía proporcionalmente, la energía debía quedar siempre igual.-
+#00000: Bug en las estadísticas que no reconocía correctamente cuando un usuario estaba baneado o no.-
+#00022: Bug donde no se mostraba el texto respectivo en la cola de naves y defensas.-
+#00025: Bug donde no mostraba correctamente la cantidad de usuarios reales que tenía el juego en el overview.-
+#00027: Bug en el reporte de combate que mostraba más rondas de las que realmente eran.-
+#00029: Reemplazadas las funciones mysql_escape_string y mysql_real_escape string por mysql_escape_value (función propia comunidad PHP).-
+',
+
 '2.10.5' => ' 15/06/2013
 - [Bugs]
 #10337: Bug que no mostraba correctamente el tiempo de conexión en la alianza (By Think).-
-#10530: Agregado texto faltante "Campos" en el overview.- 
+#10530: Agregado texto faltante "Campos" en el overview.-
 #10340: Bug donde la formula de la planta de fusión no funcionaba correctamente.-
 #10322: Bug en el overview con la información de las flotas.-
 #10314: Bug en galaxia que mostraba a uno mismo como un jugador débil o fuerte.-
@@ -44,7 +64,7 @@ $lang['changelog']   = array(
 #10073: $InLogin no está definido excepto en el login y el registro (By Razican).-
 
 - [Bugs]
-#10250: Corregido un bug que no mostraba la información de los misiles en el info (By Think).- 
+#10250: Corregido un bug que no mostraba la información de los misiles en el info (By Think).-
 #10240: Corregido un bug de cookies que ocurría en algunas circunstancias (By Razican).-
 #10233: Corregido un bug que intentaba mostrar una imagen para un planeta destruido (By Think).-
 #10228: Bug que permitía escribir un tag en la alianza menor a 3 caracteres (By Think).-
@@ -101,7 +121,7 @@ $lang['changelog']   = array(
 - El año final del copyright se muestra dinámicamente en el index.-
 - Mejoras internas globales.-
 - Mejoras en la validación del modo vacaciones. Antes realizaba una query + una query por cada planeta, ahora realiza sólo una.-
-- Mejorada la velocidad de procesamiento al determinar si un usuario puede o no entrar en modo vacaciones.- 
+- Mejorada la velocidad de procesamiento al determinar si un usuario puede o no entrar en modo vacaciones.-
 - De 2 a 1 query para determinar si un jugador puede o no entrar en modo vacaciones.-
 
 -[Bugs]

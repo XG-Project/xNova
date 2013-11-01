@@ -6,9 +6,7 @@
  * @copyright Copyright (C) 2008 - 2012
  */
 
-define('INSIDE'  , TRUE);
-define('INSTALL' , FALSE);
-define('IN_ADMIN', TRUE);
+if(!defined('INSIDE')){ die(header("location:../../"));}
 
 include_once ( 'LogFunction.php' );
 
@@ -18,7 +16,7 @@ if ( $user['authlevel'] < 1 )
 }
 
 $QueryModeration	=	read_config ( 'moderation' );
-$QueryModerationEx  =   explode ( ";" , $QueryModeration ); 
+$QueryModerationEx  =   explode ( ";" , $QueryModeration );
 $Moderator			=	explode ( "," , $QueryModerationEx[0] );
 $Operator			=	explode ( "," , $QueryModerationEx[1] );
 $Administrator		=	explode ( "," , $QueryModerationEx[2] );

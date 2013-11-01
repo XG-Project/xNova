@@ -8,19 +8,19 @@
 
 if(!defined('INSIDE')){ die(header("location:../../"));}
 
-class Production 
+class Production
 {
 	/**
 	 * method max_resource
 	 * param $storage_level
 	 * return max storage capacity
 	 */
-	public static function max_storable ( $storage_level )    
-	{                    
+	public static function max_storable ( $storage_level )
+	{
 		return ( BASE_STORAGE_SIZE + 50000 * ( Format::round_up ( pow ( 1.6 , $storage_level ) ) -1 ) );
-	} 
-	
-	
+	}
+
+
 	/**
 	 * method max_production
 	 * param1 $max_energy
@@ -28,7 +28,7 @@ class Production
 	 * return validated production factor (0%-100%)
 	 */
 	public static function max_production ( $max_energy , $energy_used )
-	{	
+	{
 		if ( ( $max_energy == 0 ) && ( $energy_used > 0 ) )
 		{
 			$percentage	= 0;
@@ -46,21 +46,28 @@ class Production
 		{
 			$percentage	= 100;
 		}
-		
+
 		return $percentage;
 	}
-	
+
 	/**
 	 * method production_amount
 	 * param1 $production
 	 * param2 $boost
 	 * return production amount
 	 */
-	 public static function production_amount ( $production , $boost )
+	 public static function production_amount ( $production , $boost , $is_energy = FALSE )
 	 {
-	 	return floor( $production * read_config ( 'resource_multiplier' ) * $boost );
+	 	if ( $is_energy )
+	 	{
+	 		return floor( $production * $boost );
+	 	}
+	 	else
+	 	{
+	 		return floor( $production * read_config ( 'resource_multiplier' ) * $boost );
+	 	}
 	 }
-	 
+
 	/**
 	 * method current_production
 	 * param $resource
@@ -69,7 +76,7 @@ class Production
 	 public static function current_production ( $resource , $max_production )
 	 {
 	 	return ( $resource * 0.01 * $max_production );
-	 } 
+	 }
 }
 
 ?>

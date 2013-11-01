@@ -13,20 +13,23 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 		global $pricelist, $resource;
 
 		if ($Incremental)
-			$level = ($CurrentPlanet[$resource[$Element]]) ? $CurrentPlanet[$resource[$Element]] : $CurrentUser[$resource[$Element]];
+			$level = (isset($CurrentPlanet[$resource[$Element]])) ? $CurrentPlanet[$resource[$Element]] : $CurrentUser[$resource[$Element]];
 
 		$array = array('metal', 'crystal', 'deuterium', 'energy_max');
 		foreach ($array as $ResType)
 		{
-			if ($Incremental)
-				$cost[$ResType] = floor($pricelist[$Element][$ResType] * pow($pricelist[$Element]['factor'], $level));
-			else
-				$cost[$ResType] = floor($pricelist[$Element][$ResType]);
-
-			if ($ForDestroy == TRUE)
+			if ( isset ( $pricelist[$Element][$ResType] ) )
 			{
-				$cost[$ResType]  = floor($cost[$ResType]) / 2;
-				$cost[$ResType] /= 2;
+				if ($Incremental)
+					$cost[$ResType] = floor($pricelist[$Element][$ResType] * pow($pricelist[$Element]['factor'], $level));
+				else
+					$cost[$ResType] = floor($pricelist[$Element][$ResType]);
+
+				if ($ForDestroy == TRUE)
+				{
+					$cost[$ResType]  = floor($cost[$ResType]) / 2;
+					$cost[$ResType] /= 2;
+				}
 			}
 		}
 

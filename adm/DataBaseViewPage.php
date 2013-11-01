@@ -19,7 +19,9 @@ $parse = $lang;
 
 if (!$_POST)
 {
-	$Tablas = doquery("SHOW TABLES","todas");
+	$Tablas 		= doquery("SHOW TABLES","todas");
+	$parse['tabla']	= '';
+	
 	while ($row = mysql_fetch_assoc($Tablas))
 	{
 		foreach ($row as $opcion => $tabla)
@@ -32,26 +34,33 @@ if (!$_POST)
 }
 else
 {
-	$Tablas = doquery("SHOW TABLES",'todas');
-
+	$Tablas 		= doquery("SHOW TABLES",'todas');
+	$parse['tabla']	= '';
+	
 	while ($row = mysql_fetch_assoc($Tablas))
 	{
 		foreach ($row as $opcion => $tabla)
 		{
-			if ($_POST['Optimize']){
+			if ( isset ( $_POST['Optimize'] ) )
+			{
 				doquery("OPTIMIZE TABLE {$tabla}", "$tabla");
 				$Message	=	$lang['od_opt'];
-				$Log	=	"\n".$lang['log_database_title']."\n".$lang['log_the_user'].$user['username'].$lang['log_database_view'].":\n".$lang['log_data_optimize']."\n";}
+				$Log	=	"\n".$lang['log_database_title']."\n".$lang['log_the_user'].$user['username'].$lang['log_database_view'].":\n".$lang['log_data_optimize']."\n";
+			}
 
-			if ($_POST['Repair']){
+			if ( isset ( $_POST['Repair'] ) )
+			{
 				doquery("REPAIR TABLE {$tabla}", "$tabla");
 				$Message	=	$lang['od_rep'];
-				$Log	=	"\n".$lang['log_database_title']."\n".$lang['log_the_user'].$user['username'].$lang['log_database_view'].":\n".$lang['log_data_repair']."\n";}
+				$Log	=	"\n".$lang['log_database_title']."\n".$lang['log_the_user'].$user['username'].$lang['log_database_view'].":\n".$lang['log_data_repair']."\n";
+			}
 
-			if ($_POST['Check']){
+			if ( isset ( $_POST['Check'] ) )
+			{
 				doquery("CHECK TABLE {$tabla}", "$tabla");
 				$Message	=	$lang['od_check_ok'];
-				$Log	=	"\n".$lang['log_database_title']."\n".$lang['log_the_user'].$user['username'].$lang['log_database_view'].":\n".$lang['log_data_check']."\n";}
+				$Log	=	"\n".$lang['log_database_title']."\n".$lang['log_the_user'].$user['username'].$lang['log_database_view'].":\n".$lang['log_data_check']."\n";
+			}
 
 			if (mysql_errno())
 			{

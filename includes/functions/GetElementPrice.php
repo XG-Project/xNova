@@ -9,13 +9,12 @@
 if(!defined('INSIDE')){ die(header("location:../../"));}
 
 	function GetElementPrice ($user, $planet, $Element, $userfactor = TRUE, $level = FALSE)
-	//function GetElementPrice ($user, $planet, $Element, $userfactor = TRUE)
 	{
 		global $pricelist, $resource, $lang;
 
 		//if ($userfactor) // OLD CODE
 		if ($userfactor && ($level === FALSE)) // FIX BY JSTAR
-			$level = ($planet[$resource[$Element]]) ? $planet[$resource[$Element]] : $user[$resource[$Element]];
+			$level = (isset($planet[$resource[$Element]])) ? $planet[$resource[$Element]] : $user[$resource[$Element]];
 
 		$is_buyeable = TRUE;
 
@@ -29,7 +28,7 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 		$text = $lang['fgp_require'];
 		foreach ($array as $ResType => $ResTitle)
 		{
-			if ($pricelist[$Element][$ResType] != 0)
+			if (isset ( $pricelist[$Element][$ResType] ) && $pricelist[$Element][$ResType] != 0)
 			{
 				$text .= $ResTitle . ": ";
 				if ($userfactor)

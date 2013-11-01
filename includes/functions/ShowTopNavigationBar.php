@@ -41,7 +41,10 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 
 		$parse['planetlist'] 			= '';
 		$ThisUsersPlanets    			= SortUserPlanets ( $CurrentUser );
-
+		$gid							= isset ( $_GET['gid'] ) ? $_GET['gid'] : NULL;
+		$page							= isset ( $_GET['page'] ) ? $_GET['page'] : NULL;
+		$mode							= isset ( $_GET['mode'] ) ? $_GET['mode'] : NULL; 
+		
 		while ($CurPlanet = mysql_fetch_array($ThisUsersPlanets))
 		{
 			if ($CurPlanet["destruyed"] == 0)
@@ -49,8 +52,8 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 				$parse['planetlist'] .= "\n<option ";
 				if ($CurPlanet['id'] == $CurrentUser['current_planet'])
 					$parse['planetlist'] .= "selected=\"selected\" ";
-				$parse['planetlist'] .= "value=\"game.php?page=$_GET[page]&gid=$_GET[gid]&cp=".$CurPlanet['id']."";
-				$parse['planetlist'] .= "&amp;mode=".$_GET['mode'];
+				$parse['planetlist'] .= "value=\"game.php?page=$page&gid=$gid&cp=".$CurPlanet['id']."";
+				$parse['planetlist'] .= "&amp;mode=".$mode;
 				$parse['planetlist'] .= "&amp;re=0\">";
 				if($CurPlanet['planet_type'] != 3)
 					$parse['planetlist'] .= "".$CurPlanet['name'];

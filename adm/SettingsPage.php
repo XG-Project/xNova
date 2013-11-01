@@ -22,9 +22,9 @@ function DisplayGameSettingsPage ( $CurrentUser )
 
 	$game_config	= 	read_config ( '' , TRUE );
 
-	if ( $_POST['opt_save'] == "1" )
+	if ( isset($_POST['opt_save']) && $_POST['opt_save'] == "1" )
 	{
-		$Log    .= "\n".$lang['log_the_user'].$CurrentUser['username'].$lang['log_sett_no1'].":\n";
+		$Log	= "\n".$lang['log_the_user'].$CurrentUser['username'].$lang['log_sett_no1'].":\n";
 
 		if (isset($_POST['closed']) && $_POST['closed'] == 'on') {
 		$game_config['game_disable']         = 1;
@@ -199,7 +199,8 @@ function DisplayGameSettingsPage ( $CurrentUser )
 		$parse['noobprot2'] 				= $game_config['noobprotectiontime'];
 		$parse['noobprot3'] 				= $game_config['noobprotectionmulti'];
 
-		$LangFolder = opendir("./../" . 'language');
+		$LangFolder 				= opendir("./../" . 'language');
+		$parse['language_settings']	= '';
 
 		while (($LangSubFolder = readdir($LangFolder)) !== FALSE)
 		{

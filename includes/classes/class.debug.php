@@ -48,8 +48,8 @@ class debug
 		$query = "INSERT INTO {{table}} SET
 		`error_sender` = '".intval($user['id'])."' ,
 		`error_time` = '".time()."' ,
-		`error_type` = '".mysql_escape_string($title)."' ,
-		`error_text` = '".mysql_escape_string($message)."';";
+		`error_type` = '".mysql_escape_value($title)."' ,
+		`error_text` = '".mysql_escape_value($message)."';";
 
 		$sqlquery = mysql_query(str_replace("{{table}}", $dbsettings["prefix"].'errors',$query)) or die($lang['cdg_fatal_error']);
 

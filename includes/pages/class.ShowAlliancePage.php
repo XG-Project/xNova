@@ -33,7 +33,7 @@ class ShowAlliancePage extends bbCode
 
 	private function return_rank ( $ally_ranks , $rank_type , $ally_owner , $user )
 	{
-		return ($ally_ranks[$user['ally_rank_id']-1][$rank_type] == 1 or $ally_owner == $user['id']); 
+		return ($ally_ranks[$user['ally_rank_id']-1][$rank_type] == 1 or $ally_owner == $user['id']);
 	}
 
 	private function return_sort ( $sort1 , $sort2 )
@@ -79,74 +79,34 @@ class ShowAlliancePage extends bbCode
 		global $lang;
 
 		$parse 		= $lang;
-		$mode		= $_GET['mode']; //MODO PRINCIPAL
-		$a			= intval ( $_GET['a'] ); // ORDEN ALTERNATIVA "A"
-		$sort1 		= intval ( $_GET['sort1'] ); // ORDEN 1
-		$sort2 		= intval ( $_GET['sort2'] ); // ORDEN 2
-		$d 			= $_GET['d']; // ELIMINAR RANGO
-		$edit 		= $_GET['edit']; // EDITAR
-		$rank 		= intval ( $_GET['rank'] ); // ADMIN -> RANGOS -> MIEMBROS
-		$kick 		= intval ( $_GET['kick'] ); // ADMIN -> EXPULSAR -> MIEMBROS
-		$id 		= intval ( $_GET['id'] ); // ID DE LA ALIANZA
-		$yes      	= $_GET['yes']; //CONFIRMACION
-		$allyid   	= intval ( $_GET['allyid'] ); // ID DE LA ALIANZA
-		$show     	= intval ( $_GET['show'] ); // ID DE LA ALIANZA
-		$sendmail	= intval ( $_GET['sendmail'] ); // VALOR = 1, COFIRMA ENVIO DEL EMAIL
-		$t        	= intval ( $_GET['t'] ); // TEXTO A EDITAR DE LA ALIANZA
-		$tag      	= mysql_escape_string ( $_GET['tag'] ); // ETIQUETA DE LA ALIANZA
+		$mode		= isset ( $_GET['mode'] ) ? $_GET['mode'] : NULL; //MODO PRINCIPAL
+		$a			= intval ( ( isset ( $_GET['a'] ) ? $_GET['a'] : NULL ) ); // ORDEN ALTERNATIVA "A"
+		$sort1 		= intval ( ( isset ( $_GET['sort1'] ) ? $_GET['sort1'] : NULL ) ); // ORDEN 1
+		$sort2 		= intval ( ( isset ( $_GET['sort2'] ) ? $_GET['sort2'] : NULL ) ); // ORDEN 2
+		$d 			= ( isset ( $_GET['d'] ) ? $_GET['d'] : NULL ); // ELIMINAR RANGO
+		$edit 		= ( isset ( $_GET['edit'] ) ? $_GET['edit'] : NULL ); // EDITAR
+		$rank 		= intval ( ( isset ( $_GET['rank'] ) ? $_GET['rank'] : NULL ) ); // ADMIN -> RANGOS -> MIEMBROS
+		$kick 		= intval ( ( isset ( $_GET['kick'] ) ? $_GET['kick'] : NULL ) ); // ADMIN -> EXPULSAR -> MIEMBROS
+		$id 		= intval ( ( isset ( $_GET['id'] ) ? $_GET['id'] : NULL ) ); // ID DE LA ALIANZA
+		$yes      	= ( isset ( $_GET['yes'] ) ? $_GET['yes'] : NULL ); //CONFIRMACION
+		$allyid   	= intval ( ( isset ( $_GET['allyid'] ) ? $_GET['allyid'] : NULL ) ); // ID DE LA ALIANZA
+		$show     	= intval ( ( isset ( $_GET['show'] ) ? $_GET['show'] : NULL ) ); // ID DE LA ALIANZA
+		$sendmail	= intval ( ( isset ( $_GET['sendmail'] ) ? $_GET['sendmail'] : NULL ) ); // VALOR = 1, COFIRMA ENVIO DEL EMAIL
+		$t        	= intval ( ( isset ( $_GET['t'] ) ? $_GET['t'] : NULL ) ); // TEXTO A EDITAR DE LA ALIANZA
+		$tag      	= mysql_escape_value ( ( isset ( $_GET['tag'] ) ? $_GET['tag'] : NULL ) ); // ETIQUETA DE LA ALIANZA
 
 		// VALIDACIONES
-		if ( empty ( $mode ) )
-		{
-			unset ( $mode );
-		}
-
-		if ( empty ( $a ) )
-		{
-			unset ( $a );
-		}
-
-		if ( empty ( $sort1 ) )
-		{
-			unset ( $sort1 );
-		}
-
-		if ( empty ( $sort2 ) )
-		{
-			unset ( $sort2 );
-		}
-
 		if ( ( !is_numeric ( $d ) ) or ( empty ( $d ) && $d != 0 ) )
 		{
 			unset ( $d );
 		}
 
-		if ( empty ( $edit ) )
-		{
-			unset ( $edit );
-		}
-
-		if ( empty ( $rank ) )
-		{
-			unset ( $rank );
-		}
-
-		if ( empty ( $kick ) )
-		{
-			unset ( $kick );
-		}
-
-		if ( empty ( $id ) )
-		{
-			unset ( $id );
-		}
-
 		// EN ESTE CASO EL USUARIO SOLO ESTÁ DE VISITA EN LA ALIANZA
-		if ($_GET['mode'] == 'ainfo')
+		if ($mode == 'ainfo')
 		{
 			if ( isset ( $tag ) && $a == "" )
 			{
-				$allyrow	= doquery ( "SELECT * FROM {{table}} WHERE ally_tag=' " .mysql_escape_string ( $tag ) . "'" , "alliance" , TRUE );
+				$allyrow	= doquery ( "SELECT * FROM {{table}} WHERE ally_tag=' " .mysql_escape_value ( $tag ) . "'" , "alliance" , TRUE );
 			}
 			elseif ( is_numeric ( $a ) && $a != 0 && $tag == "" )
 			{
@@ -223,7 +183,7 @@ class ShowAlliancePage extends bbCode
 						message ( $lang['al_name_required'] , "game.php?page=alliance&mode=make" , 2 );
 					}
 
-					$tagquery	= doquery ( "SELECT * FROM `{{table}}` WHERE ally_tag='" . mysql_escape_string ( $_POST['atag'] ) . "'" , 'alliance' , TRUE );
+					$tagquery	= doquery ( "SELECT * FROM `{{table}}` WHERE ally_tag='" . mysql_escape_value ( $_POST['atag'] ) . "'" , 'alliance' , TRUE );
 
 					if ($tagquery)
 					{
@@ -231,19 +191,19 @@ class ShowAlliancePage extends bbCode
 					}
 
 					doquery("INSERT INTO {{table}} SET
-								`ally_name`='" . mysql_escape_string ( $_POST['aname'] ) . "',
-								`ally_tag`='" . mysql_escape_string ( $_POST['atag'] ) . "' ,
+								`ally_name`='" . mysql_escape_value ( $_POST['aname'] ) . "',
+								`ally_tag`='" . mysql_escape_value ( $_POST['atag'] ) . "' ,
 								`ally_owner`='" . intval ( $CurrentUser['id'] ) . "',
 								`ally_owner_range`='Leader',
 								`ally_members`='1',
 								`ally_register_time`=" . time()
 							, "alliance" );
 
-					$allyquery 	= doquery ( "SELECT * FROM {{table}} WHERE ally_tag='" . mysql_escape_string ( $_POST['atag'] ) . "'" , 'alliance' , TRUE );
+					$allyquery 	= doquery ( "SELECT * FROM {{table}} WHERE ally_tag='" . mysql_escape_value ( $_POST['atag'] ) . "'" , 'alliance' , TRUE );
 
 					doquery("UPDATE {{table}} SET
 								`ally_id`='" . $allyquery['id'] . "',
-								`ally_name`='" . mysql_escape_string ( $allyquery['ally_name'] ) . "',
+								`ally_name`='" . mysql_escape_value ( $allyquery['ally_name'] ) . "',
 								`ally_register_time`='" . time() . "'
 								WHERE `id`='" . intval ( $CurrentUser['id'] ) . "'"
 							, "users" );
@@ -269,7 +229,7 @@ class ShowAlliancePage extends bbCode
 
 				if ( $_POST )
 				{
-					$search = doquery ( "SELECT * FROM {{table}} WHERE ally_name LIKE '%" . mysql_escape_string ( $_POST['searchtext'] ) . "%' or ally_tag LIKE '%" . mysql_escape_string ( $_POST['searchtext'] ) . "%' LIMIT 30" , "alliance" );
+					$search = doquery ( "SELECT * FROM {{table}} WHERE ally_name LIKE '%" . mysql_escape_value ( $_POST['searchtext'] ) . "%' or ally_tag LIKE '%" . mysql_escape_value ( $_POST['searchtext'] ) . "%' LIMIT 30" , "alliance" );
 
 					if ( mysql_num_rows ( $search ) != 0 )
 					{
@@ -320,7 +280,7 @@ class ShowAlliancePage extends bbCode
 
 					if ( $_POST['enviar'] == $lang['al_applyform_send'] )
 					{
-						doquery ( "UPDATE {{table}} SET `ally_request`='" . intval ( $allyid ) . "' , ally_request_text='" . mysql_escape_string ( strip_tags ( $_POST['text'] ) ) . "' , ally_register_time='" . time() . "' WHERE `id`='" . $CurrentUser['id'] . "'" , "users" );
+						doquery ( "UPDATE {{table}} SET `ally_request`='" . intval ( $allyid ) . "' , ally_request_text='" . mysql_escape_value ( strip_tags ( $_POST['text'] ) ) . "' , ally_register_time='" . time() . "' WHERE `id`='" . $CurrentUser['id'] . "'" , "users" );
 						message ( $lang['al_request_confirmation_message'] , "game.php?page=alliance" , 2 );
 					}
 					else
@@ -587,7 +547,7 @@ class ShowAlliancePage extends bbCode
 				if ( !empty ( $_POST['newrangname'] ) )
 				{
 
-					$name			= mysql_escape_string ( strip_tags ( $_POST['newrangname'] ) );
+					$name			= mysql_escape_value ( strip_tags ( $_POST['newrangname'] ) );
 					$ally_ranks[]	= array	(
 												'name' => $name,
 												'mails' => 0,
@@ -795,15 +755,15 @@ class ShowAlliancePage extends bbCode
 						$_POST['web'] 				= stripslashes ( $_POST['web'] );
 						$_POST['image'] 			= stripslashes ( $_POST['image'] );
 				//		$_POST['text'] 				= stripslashes ( $_POST['text'] );
-						$_POST['text']				= str_replace ( "&lt;br /&gt;" , "" , stripslashes ( strip_tags ( mysql_escape_string ( $_POST["text"] ) ) ) );
+						$_POST['text']				= str_replace ( "&lt;br /&gt;" , "" , stripslashes ( strip_tags ( mysql_escape_value ( $_POST["text"] ) ) ) );
 					}
 				}
 
 				if ($_POST['options'])
 				{
-					$ally['ally_owner_range'] 		= mysql_escape_string(htmlspecialchars(strip_tags($_POST['owner_range'])));
-					$ally['ally_web'] 				= mysql_escape_string(htmlspecialchars(strip_tags($_POST['web'])));
-					$ally['ally_image'] 			= mysql_escape_string(htmlspecialchars(strip_tags($_POST['image'])));
+					$ally['ally_owner_range'] 		= mysql_escape_value(htmlspecialchars(strip_tags($_POST['owner_range'])));
+					$ally['ally_web'] 				= mysql_escape_value(htmlspecialchars(strip_tags($_POST['web'])));
+					$ally['ally_image'] 			= mysql_escape_value(htmlspecialchars(strip_tags($_POST['image'])));
 					$ally['ally_request_notallow']	= intval($_POST['request_notallow']);
 
 					if ( $ally['ally_request_notallow'] != 0 && $ally['ally_request_notallow'] != 1 )
@@ -921,7 +881,7 @@ class ShowAlliancePage extends bbCode
 
 					if ( ( isset ( $ally_ranks[$_POST['newrang']-1] ) or $_POST['newrang'] == 0 ) && $q['id'] != $ally['ally_owner'] )
 					{
-						doquery ( "UPDATE {{table}} SET `ally_rank_id`='" . mysql_escape_string ( strip_tags ( $_POST['newrang'] ) ) . "' WHERE `id`='" . intval ( $id ) . "'" , 'users' );
+						doquery ( "UPDATE {{table}} SET `ally_rank_id`='" . mysql_escape_value ( strip_tags ( $_POST['newrang'] ) ) . "' WHERE `id`='" . intval ( $id ) . "'" , 'users' );
 					}
 				}
 
@@ -948,9 +908,9 @@ class ShowAlliancePage extends bbCode
 
 					$i++;
 					$u['i'] 			= $i;
-					$u['points'] 		= Format::pretty_number ( $UserPoints['total_points'] );					
+					$u['points'] 		= Format::pretty_number ( $UserPoints['total_points'] );
 					$days 				= floor ( ( time() - $u["onlinetime"] ) / ( 3600 * 24 ) );
-					
+
 					$u["onlinetime"]	= str_replace ( "%s" , $days , "%s d" );
 
 					if ( $ally['ally_owner'] == $u['id'] )
@@ -1139,7 +1099,7 @@ class ShowAlliancePage extends bbCode
 
 				if ( $_POST['nombre'] && !empty($_POST['nombre'] ) )
 				{
-					$ally['ally_name']	= mysql_escape_string ( strip_tags ( $_POST['nombre'] ) );
+					$ally['ally_name']	= mysql_escape_value ( strip_tags ( $_POST['nombre'] ) );
 					doquery ( "UPDATE {{table}} SET `ally_name` = '" . $ally['ally_name'] . "' WHERE `id` = '" . intval ( $CurrentUser['ally_id']) . "';" , 'alliance' );
 					doquery ( "UPDATE {{table}} SET `ally_name` = '" . $ally['ally_name'] . "' WHERE `ally_id` = '" . intval ( $ally['id'] ) . "';" , 'users' );
 				}
@@ -1158,15 +1118,15 @@ class ShowAlliancePage extends bbCode
 				{
 					header ( "location:game.php?page=alliance" , 2 );
 				}
-				
+
 				if ( isset ( $_POST['etiqueta'] ) && ( strlen ( $_POST['etiqueta'] ) < 3 OR strlen ( $_POST['etiqueta'] ) > 8 ) )
 				{
-					exit ( message ( $lang['al_make_ally_tag_required'] , "game.php?page=alliance&mode=admin&edit=tag" , 4 ) ); 
+					exit ( message ( $lang['al_make_ally_tag_required'] , "game.php?page=alliance&mode=admin&edit=tag" , 4 ) );
 				}
-					
+
 				if ( $_POST['etiqueta'] && !empty ( $_POST['etiqueta'] ) )
 				{
-					doquery ( "UPDATE {{table}} SET `ally_tag` = '". mysql_escape_string ( strip_tags ( $_POST['etiqueta'] ) ) . "' WHERE `id` = '" . $CurrentUser['ally_id'] . "';" , 'alliance' );
+					doquery ( "UPDATE {{table}} SET `ally_tag` = '". mysql_escape_value ( strip_tags ( $_POST['etiqueta'] ) ) . "' WHERE `id` = '" . $CurrentUser['ally_id'] . "';" , 'alliance' );
 				}
 
 				$parse[caso] 		= $lang['al_tag'];
@@ -1197,8 +1157,8 @@ class ShowAlliancePage extends bbCode
 				if ( isset ( $_POST['newleader'] ) )
 				{
 					doquery ( "UPDATE {{table}} SET `ally_rank_id`='0' WHERE `id`=" . intval ( $CurrentUser['id'] ) . "", 'users');
-					doquery ( "UPDATE {{table}} SET `ally_owner`='" . mysql_escape_string ( strip_tags ( $_POST['newleader'] ) ) . "' WHERE `id`=" . intval ( $CurrentUser['ally_id'] ) . "" , 'alliance' );
-					doquery ( "UPDATE {{table}} SET `ally_rank_id`='0' WHERE `id`='" . mysql_escape_string ( strip_tags ( $_POST['newleader'] ) ) . "' " , 'users' );
+					doquery ( "UPDATE {{table}} SET `ally_owner`='" . mysql_escape_value ( strip_tags ( $_POST['newleader'] ) ) . "' WHERE `id`=" . intval ( $CurrentUser['ally_id'] ) . "" , 'alliance' );
+					doquery ( "UPDATE {{table}} SET `ally_rank_id`='0' WHERE `id`='" . mysql_escape_value ( strip_tags ( $_POST['newleader'] ) ) . "' " , 'users' );
 					exit ( header ( "location:game.php?page=alliance" , 2 ) );
 				}
 				if ( $ally['ally_owner'] != $CurrentUser['id'] )

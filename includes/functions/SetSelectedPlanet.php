@@ -11,8 +11,8 @@ if(!defined('INSIDE')){ die(header("location:../../"));}
 	function SetSelectedPlanet ( &$CurrentUser )
 	{
 
-		$SelectPlanet  = intval($_GET['cp']);
-		$RestorePlanet = intval($_GET['re']);
+		$SelectPlanet  = intval((isset($_GET['cp'])?$_GET['cp']:NULL));
+		$RestorePlanet = intval((isset($_GET['re'])?$_GET['re']:NULL));
 
 		// ADDED && $SelectPlanet != 0 THIS PREVENTS RUN A QUERY WHEN IT'S NOT NEEDED.
 		if (isset($SelectPlanet) && is_numeric($SelectPlanet) && isset($RestorePlanet) && $RestorePlanet == 0 && $SelectPlanet != 0 )

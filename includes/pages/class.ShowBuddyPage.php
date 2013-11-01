@@ -14,10 +14,10 @@ class ShowBuddyPage
 	{
 		global $lang;
 
-		$mode	= intval ( $_GET['mode'] );
-		$bid	= intval ( $_GET['bid'] );
-		$sm		= intval ( $_GET['sm'] );
-		$user	= intval ( $_GET['u'] );
+		$mode	= intval ( ( isset ( $_GET['mode'] ) ? $_GET['mode'] : NULL ) );
+		$bid	= intval ( ( isset ( $_GET['bid'] ) ? $_GET['bid'] : NULL ) );
+		$sm		= intval ( ( isset ( $_GET['sm'] ) ? $_GET['sm'] : NULL ) );
+		$user	= intval ( ( isset ( $_GET['u'] ) ? $_GET['u'] : NULL ) );
 		$parse	= $lang;
 
 		switch ( $mode )
@@ -81,7 +81,7 @@ class ShowBuddyPage
 						if ( !$query )
 						{
 
-							$text = mysql_escape_string ( strip_tags ( $_POST['text'] ) );
+							$text = mysql_escape_value ( strip_tags ( $_POST['text'] ) );
 
 							SendSimpleMessage ( intval ( $_POST['user'] ) , $CurrentUser['id'] , '' , 1 , $CurrentUser['username'] , $lang['bu_to_accept_title'] , str_replace ( '%u' , $CurrentUser['username'] , $lang['bu_to_accept_text'] ) );
 
@@ -137,9 +137,12 @@ class ShowBuddyPage
 				// NOTHING SELECTED
 			default:
 
-				$getBuddys 		= doquery ( "SELECT * FROM {{table}} WHERE `sender`='" . intval ( $CurrentUser[id] ) . "' OR `owner`='" . intval ( $CurrentUser[id] ) . "'" , "buddy" );
-				$subTemplate	= gettemplate ( 'buddy/buddy_row' );
-
+				$getBuddys 			= doquery ( "SELECT * FROM {{table}} WHERE `sender`='" . intval ( $CurrentUser['id'] ) . "' OR `owner`='" . intval ( $CurrentUser['id'] ) . "'" , "buddy" );
+				$subTemplate		= gettemplate ( 'buddy/buddy_row' );
+				$requestsSended		= '';
+				$requestsReceived	= '';
+				$budys				= '';
+				
 				while ( $buddy = mysql_fetch_assoc ( $getBuddys ) )
 				{
 					if ( $buddy['active'] == 0 )
@@ -156,7 +159,7 @@ class ShowBuddyPage
 							$parse['system']			= $owner['system'];
 							$parse['planet']			= $owner['planet'];
 							$parse['text']				= $buddy['text'];
-							$parse['action']			= '<a href="game.php?page=buddy&mode=1&sm=1&bid=' . $buddy[id] . '">' . $lang['bu_cancel_request'] . '</a>';
+							$parse['action']			= '<a href="game.php?page=buddy&mode=1&sm=1&bid=' . $buddy['id'] . '">' . $lang['bu_cancel_request'] . '</a>';
 
 							$requestsSended .= parsetemplate ( $subTemplate , $parse );
 						}
@@ -172,7 +175,7 @@ class ShowBuddyPage
 							$parse['system']			= $sender['system'];
 							$parse['planet']			= $sender['planet'];
 							$parse['text']				= $buddy['text'];
-							$parse['action']			= '<a href="game.php?page=buddy&mode=1&sm=2&bid=' . $buddy[id] . '">' . $lang['bu_accept'] . '</a><br /><a href="game.php?page=buddy&mode=1&sm=1&bid=' . $buddy[id] . '">' . $lang['bu_decline'] . '</a>';
+							$parse['action']			= '<a href="game.php?page=buddy&mode=1&sm=2&bid=' . $buddy['id'] . '">' . $lang['bu_accept'] . '</a><br /><a href="game.php?page=buddy&mode=1&sm=1&bid=' . $buddy['id'] . '">' . $lang['bu_decline'] . '</a>';
 
 							$requestsReceived .= parsetemplate ( $subTemplate , $parse );
 						}
@@ -181,11 +184,11 @@ class ShowBuddyPage
 					{
 						if ( $buddy['sender'] == $CurrentUser['id'] )
 						{
-							$owner = doquery ( "SELECT `id`, `username`, `onlinetime`, `galaxy`, `system`, `planet`,`ally_id`, `ally_name` FROM {{table}} WHERE `id`='" . intval ( $buddy[owner] ) . "'" , "users" , TRUE );
+							$owner = doquery ( "SELECT `id`, `username`, `onlinetime`, `galaxy`, `system`, `planet`,`ally_id`, `ally_name` FROM {{table}} WHERE `id`='" . intval ( $buddy['owner'] ) . "'" , "users" , TRUE );
 						}
 						else
 						{
-							$owner = doquery ( "SELECT `id`, `username`, `onlinetime`, `galaxy`, `system`, `planet`,`ally_id`, `ally_name` FROM {{table}} WHERE `id`='" . intval ( $buddy[sender] ) . "'" , "users" , TRUE );
+							$owner = doquery ( "SELECT `id`, `username`, `onlinetime`, `galaxy`, `system`, `planet`,`ally_id`, `ally_name` FROM {{table}} WHERE `id`='" . intval ( $buddy['sender'] ) . "'" , "users" , TRUE );
 						}
 
 						$parse['id']				= $owner['id'];

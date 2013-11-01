@@ -94,14 +94,14 @@ if ($_POST)
 		$errors++;
 	}
 
-	$ExistUser = doquery("SELECT `username` FROM {{table}} WHERE `username` = '" . mysql_escape_string($_POST['character']) . "' LIMIT 1;", 'users', TRUE);
+	$ExistUser = doquery("SELECT `username` FROM {{table}} WHERE `username` = '" . mysql_escape_value($_POST['character']) . "' LIMIT 1;", 'users', TRUE);
 	if ($ExistUser)
 	{
 		$errorlist .= $lang['user_already_exists'];
 		$errors++;
 	}
 
-	$ExistMail = doquery("SELECT `email` FROM {{table}} WHERE `email` = '" . mysql_escape_string($_POST['email']) . "' LIMIT 1;", 'users', TRUE);
+	$ExistMail = doquery("SELECT `email` FROM {{table}} WHERE `email` = '" . mysql_escape_value($_POST['email']) . "' LIMIT 1;", 'users', TRUE);
 	if ($ExistMail)
 	{
 		$errorlist .= $lang['mail_already_exists'];
@@ -120,18 +120,18 @@ if ($_POST)
 		$md5newpass = md5($newpass);
 
 		$QryInsertUser = "INSERT INTO {{table}} SET ";
-		$QryInsertUser .= "`username` = '" . mysql_escape_string(strip_tags($UserName)) . "', ";
-		$QryInsertUser .= "`email` = '" . mysql_escape_string($UserEmail) . "', ";
-		$QryInsertUser .= "`email_2` = '" . mysql_escape_string($UserEmail) . "', ";
+		$QryInsertUser .= "`username` = '" . mysql_escape_value(strip_tags($UserName)) . "', ";
+		$QryInsertUser .= "`email` = '" . mysql_escape_value($UserEmail) . "', ";
+		$QryInsertUser .= "`email_2` = '" . mysql_escape_value($UserEmail) . "', ";
 		$QryInsertUser .= "`ip_at_reg` = '" . $_SERVER["REMOTE_ADDR"] . "', ";
-		$QryInsertAdm  .= "`user_agent` = '', ";
+		$QryInsertUser  .= "`user_agent` = '', ";
 		$QryInsertUser .= "`id_planet` = '0', ";
 		$QryInsertUser .= "`register_time` = '" . time() . "', ";
 
 		$QryInsertUser .= "`password`='" . $md5newpass . "';";
 		doquery($QryInsertUser, 'users');
 
-		$NewUser = doquery("SELECT `id` FROM {{table}} WHERE `username` = '" . mysql_escape_string($_POST['character']) . "' LIMIT 1;", 'users', TRUE);
+		$NewUser = doquery("SELECT `id` FROM {{table}} WHERE `username` = '" . mysql_escape_value($_POST['character']) . "' LIMIT 1;", 'users', TRUE);
 
 		$LastSettedGalaxyPos = read_config ( 'lastsettedgalaxypos' );
 		$LastSettedSystemPos = read_config ( 'lastsettedsystempos' );
@@ -192,7 +192,7 @@ if ($_POST)
 
 			if (!$GalaxyRow)
 			{
-				CreateOnePlanetRecord ($Galaxy, $System, $Planet, $NewUser['id'], $UserPlanet, TRUE);
+				CreateOnePlanetRecord ($Galaxy, $System, $Planet, $NewUser['id'], '', TRUE);
 				$newpos_checked = TRUE;
 			}
 			if ($newpos_checked)
@@ -219,9 +219,7 @@ if ($_POST)
 		$sender 	= $lang['welcome_message_sender'];
 		$Subject 	= $lang['welcome_message_subject'];
 		$message 	= $lang['welcome_message_content'];
-		SendSimpleMessage($NewUser['id'], $sender, $Time, 1, $from, $Subject, $message);
-
-		update_config ( 'users_amount' , read_config ( 'users_amount' ) + 1 );
+		SendSimpleMessage($NewUser['id'], $sender, '', 1, $from, $Subject, $message);
 
 		@include('config.php');
 		$cookie = $NewUser['id'] . "/%/" . $UserName . "/%/" . md5($md5newpass . "--" . $dbsettings["secretword"]) . "/%/" . 0;

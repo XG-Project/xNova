@@ -15,17 +15,9 @@ class ShowStatisticsPage
 		global $lang;
 
 		$parse	= $lang;
-		$who   	= (isset($_POST['who']))   ? $_POST['who']   : $_GET['who'];
-		if (!isset($who))
-			$who   = 1;
-
-		$type  	= (isset($_POST['type']))  ? $_POST['type']  : $_GET['type'];
-		if (!isset($type))
-			$type  = 1;
-
-		$range 	= (isset($_POST['range'])) ? $_POST['range'] : $_GET['range'];
-		if (!isset($range))
-			$range = 1;
+		$who   	= (isset($_POST['who']))   ? $_POST['who']   : (isset($_GET['who'])?$_GET['who']:1);
+		$type  	= (isset($_POST['type']))  ? $_POST['type']  : (isset($_GET['type'])?$_GET['type']:1);
+		$range 	= (isset($_POST['range'])) ? $_POST['range'] : (isset($_GET['range'])?$_GET['range']:1);
 
 		$parse['who']    = "<option value=\"1\"". (($who == "1") ? " SELECTED" : "") .">".$lang['st_player']."</option>";
 		$parse['who']   .= "<option value=\"2\"". (($who == "2") ? " SELECTED" : "") .">".$lang['st_alliance']."</option>";
@@ -84,8 +76,9 @@ class ShowStatisticsPage
 
 		if ($who == 2)
 		{
-			$MaxAllys = doquery ("SELECT COUNT(*) AS `count` FROM {{table}};", 'alliance', TRUE);
-
+			$MaxAllys 	= doquery ("SELECT COUNT(*) AS `count` FROM {{table}};", 'alliance', TRUE);
+			$LastPage	= 0;
+			
 			if ($MaxAllys['count'] > 100)
 			{
 				$LastPage = floor($MaxAllys['count'] / 100);
@@ -152,8 +145,9 @@ class ShowStatisticsPage
 		}
 		else
 		{
-			$MaxUsers = doquery ("SELECT COUNT(*) AS `count` FROM {{table}} WHERE `db_deaktjava` = '0';", 'users', TRUE);
-
+			$MaxUsers 	= doquery ("SELECT COUNT(*) AS `count` FROM {{table}} WHERE `db_deaktjava` = '0';", 'users', TRUE);
+			$LastPage	= 0;
+			
 			if ($MaxUsers['count'] > 100)
 			{
 				$LastPage = floor($MaxUsers['count'] / 100);
@@ -226,7 +220,7 @@ class ShowStatisticsPage
 					else
 						$parse['player_mes']      = "";
 
-					if ($UsrRow['ally_name'] == $CurrentUser['ally_name'])
+					if ($StatRow['ally_name'] == $CurrentUser['ally_name'])
 					{
 						$parse['player_alliance'] = "<a href=\"game.php?page=alliance&mode=ainfo&a=".$StatRow['ally_id']."\"><font color=\"#33CCFF\">".$StatRow['ally_name']."</font></a>";
 					}

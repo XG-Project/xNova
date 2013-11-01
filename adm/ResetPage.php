@@ -85,7 +85,6 @@ function ResetUniverse ( $CurrentUser )
 			}
 		}
 
-		update_config ( 'users_amount' , $TransUser );
 		doquery("DROP TABLE {{table}}", 'planets_s');
 		doquery("DROP TABLE {{table}}", 'users_s');
 }

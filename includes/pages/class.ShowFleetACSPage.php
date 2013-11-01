@@ -69,7 +69,7 @@ class ShowFleetACSPage
 		if ( isset ( $_POST['add_member_to_acs'] ) && !empty ( $_POST['add_member_to_acs'] ) )
 		{
 			$added_user_id 	= 0;
-			$member_qry 		= doquery("SELECT `id` FROM {{table}} WHERE `username` ='".mysql_escape_string($_POST['addtogroup'])."' ;",'users');
+			$member_qry 		= doquery("SELECT `id` FROM {{table}} WHERE `username` ='".mysql_escape_value($_POST['addtogroup'])."' ;",'users');
 
 			while ( $row = mysql_fetch_array ( $member_qry ) )
 			{
@@ -78,7 +78,7 @@ class ShowFleetACSPage
 
 			if ( $added_user_id > 0 )
 			{
-				$new_eingeladen_mr = mysql_escape_string($_POST['acs_invited']).','.$added_user_id;
+				$new_eingeladen_mr = mysql_escape_value($_POST['acs_invited']).','.$added_user_id;
 				doquery("UPDATE {{table}} SET `eingeladen` = '".$new_eingeladen_mr."' ;",'aks');
 				$acs_user_message = "<font color=\"lime\">".$lang['fl_player']." ".$_POST['addtogroup']." ". $lang['fl_add_to_attack'];
 			}
@@ -162,7 +162,7 @@ class ShowFleetACSPage
 				if ( $_POST['txt_name_acs'] != "" )
 				{
 					doquery ( "UPDATE {{table}}
-								SET name = '" . mysql_escape_string($_POST['txt_name_acs']) . "'
+								SET name = '" . mysql_escape_value($_POST['txt_name_acs']) . "'
 								WHERE teilnehmer = '" . intval($CurrentUser['id']) . "'", 'aks');
 				}
 

@@ -1,14 +1,17 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @since	1.0.0
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com
+ * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-	function calculateAttack (&$attackers, &$defenders)
+	function calculateAttack(&$attackers, &$defenders)
 	{
 		global $pricelist, $CombatCaps, $resource;
 
@@ -35,7 +38,8 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 					$totalResourcePoints['defender'] += $pricelist[$element]['metal'] * $amount ;
 					$totalResourcePoints['defender'] += $pricelist[$element]['crystal'] * $amount ;
 				} else {
-					if ( !isset($originalDef[$element])) $originalDef[$element] = 0;
+					if ( ! isset($originalDef[$element])) $originalDef[$element] = 0;
+
 					$originalDef[$element] += $amount;
 
 					$totalResourcePoints['defender'] += $pricelist[$element]['metal'] * $amount ;
@@ -44,9 +48,10 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			}
 		}
 
-		$max_rounds = 6;
+		$max_rounds = MAX_ATTACK_ROUNDS;
 
-		for ($round = 0, $rounds = array(); $round < $max_rounds; $round++) {
+		for ($round = 0, $rounds = array(); $round < $max_rounds; $round++)
+		{
 			$attackDamage  = array('total' => 0);
 			$attackShield  = array('total' => 0);
 			$attackAmount  = array('total' => 0);
@@ -99,7 +104,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 					$thisDef    = $amount * ($CombatCaps[$element]['shield']) * $defTech ; //bouclier
 					$thisShield    = $amount * ($pricelist[$element]['metal'] + $pricelist[$element]['crystal']) / 10 * $shieldTech; //coque
 
-					if ($element == 407 || $element == 408 ) $thisAtt = 0;
+					if ($element == 407 OR $element == 408) $thisAtt = 0;
 
 					$defArray[$fleetID][$element] = array('def' => $thisDef, 'shield' => $thisShield, 'att' => $thisAtt);
 
@@ -114,20 +119,20 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 			$rounds[$round] = array('attackers' => $attackers, 'defenders' => $defenders, 'attack' => $attackDamage, 'defense' => $defenseDamage, 'attackA' => $attackAmount, 'defenseA' => $defenseAmount, 'infoA' => $attArray, 'infoD' => $defArray);
 
-			if ($defenseAmount['total'] <= 0 || $attackAmount['total'] <= 0) {
+			if ($defenseAmount['total'] <= 0 OR $attackAmount['total'] <= 0) {
 				break;
 			}
 
 			// Calculate hit percentages (ACS only but ok)
 			$attackPct = array();
 			foreach ($attackAmount as $fleetID => $amount) {
-				if ( !is_numeric($fleetID)) continue;
+				if ( ! is_numeric($fleetID)) continue;
 				$attackPct[$fleetID] = $amount / $attackAmount['total'];
 			}
 
 			$defensePct = array();
 			foreach ($defenseAmount as $fleetID => $amount) {
-				if ( !is_numeric($fleetID)) continue;
+				if ( ! is_numeric($fleetID)) continue;
 				$defensePct[$fleetID] = $amount / $defenseAmount['total'];
 			}
 
@@ -210,16 +215,24 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			}
 
 			// "Rapidfire"
-			foreach ($attackers as $fleetID => $attacker) {
-				foreach ($defenders as $fleetID2 => $defender) {
-					foreach ($attacker['detail'] as $element => $amount) {
-						if ($amount > 0) {
-							foreach ($CombatCaps[$element]['sd'] as $c => $d) {
-								if (isset($defender['def'][$c])) {
-									if ($d > 0) {
+			foreach ($attackers as $fleetID => $attacker)
+			{
+				foreach ($defenders as $fleetID2 => $defender)
+				{
+					foreach ($attacker['detail'] as $element => $amount)
+					{
+						if ($amount > 0)
+						{
+							foreach ($CombatCaps[$element]['sd'] as $c => $d)
+							{
+								if (isset($defender['def'][$c]))
+								{
+									if ($d > 0)
+									{
 										$e = ($d / $defender['techs'][0]) / ($defender['techs'][1] * $attacker['techs'][2]);
 										$defender_n[$fleetID2][$c] -= ceil(($amount * $e * (rand(50,120)/ 100)/ 2) * $defensePct[$fleetID2] * ($amount / $attackAmount[$fleetID]));
-										if ($defender_n[$fleetID2][$c] <= 0) {
+										if ($defender_n[$fleetID2][$c] <= 0)
+										{
 											$defender_n[$fleetID2][$c] = 0;
 										}
 									}
@@ -228,14 +241,20 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 						}
 					}
 
-					foreach ($defender['def'] as $element => $amount) {
-						if ($amount > 0) {
-							foreach ($CombatCaps[$element]['sd'] as $c => $d) {
-								if (isset($attacker['detail'][$c])) {
-									if ($d > 0) {
+					foreach ($defender['def'] as $element => $amount)
+					{
+						if ($amount > 0)
+						{
+							foreach ($CombatCaps[$element]['sd'] as $c => $d)
+							{
+								if (isset($attacker['detail'][$c]))
+								{
+									if ($d > 0)
+									{
 										$e = ($d / $defender['techs'][0]) / ($defender['techs'][1] * $attacker['techs'][2]);
 										$attacker_n[$fleetID][$c] -= ceil(($amount * $e * (rand(50,120)/ 100)/ 2) * $attackPct[$fleetID] * ($amount / $defenseAmount[$fleetID2]));
-										if ($attacker_n[$fleetID][$c] <= 0) {
+										if ($attacker_n[$fleetID][$c] <= 0)
+										{
 											$attacker_n[$fleetID][$c] = 0;
 										}
 									}
@@ -249,11 +268,13 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			$rounds[$round]['attackShield'] = $attacker_shield;
 			$rounds[$round]['defShield'] = $defender_shield;
 
-			foreach ($attackers as $fleetID => $attacker) {
+			foreach ($attackers as $fleetID => $attacker)
+			{
 				$attackers[$fleetID]['detail'] = array_map('round', $attacker_n[$fleetID]);
 			}
 
-			foreach ($defenders as $fleetID => $defender) {
+			foreach ($defenders as $fleetID => $defender)
+			{
 				$defenders[$fleetID]['def'] = array_map('round', $defender_n[$fleetID]);
 			}
 		}
@@ -293,16 +314,16 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 					$totalResourcePoints['defender'] -= $pricelist[$element]['metal'] * $amount ;
 					$totalResourcePoints['defender'] -= $pricelist[$element]['crystal'] * $amount ;
 
-					if ($user['rpg_technocrate'] == 1 )
+					if ($user['rpg_technocrate'] == 1)
 					{
-						$lost = floor ( ( $originalDef[$element] - $amount ) / ENGINEER_DEFENSE);
+						$lost = floor(($originalDef[$element] - $amount) / ENGINEER_DEFENSE);
 					}
 					else
 					{
 						$lost = $originalDef[$element] - $amount;
 					}
 
-					$giveback = round ( $lost * ( rand ( 70 * 0.8 , 70 * 1.2 ) / 100 ));
+					$giveback = round($lost * (rand(70 * 0.8, 70 * 1.2) / 100));
 					$defenders[$fleetID]['def'][$element] += $giveback;
 					$resourcePointsDefenderDefs['metal'] += $pricelist[$element]['metal'] * ($lost - $giveback) ;
 					$resourcePointsDefenderDefs['crystal'] += $pricelist[$element]['crystal'] * ($lost - $giveback) ;
@@ -311,8 +332,8 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			}
 		}
 
-		$game_fleet_cdr	=	read_config ( 'fleet_cdr');
-		$game_defs_cdr	=	read_config ( 'defs_cdr');
+		$game_fleet_cdr	=	read_config('fleet_cdr');
+		$game_defs_cdr	=	read_config('defs_cdr');
 		$totalLost 		= array('att' => $totalResourcePoints['attacker'], 'def' => $totalResourcePoints['defender']);
 		$debAttMet 		= ($resourcePointsAttacker['metal'] * ($game_fleet_cdr / 100));
 		$debAttCry 		= ($resourcePointsAttacker['crystal'] * ($game_fleet_cdr / 100));

@@ -1,12 +1,15 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @since	1.0.0
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com
+ * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 	function formatCR (&$result_array,&$steal_array,&$moon_int,&$moon_string,&$time_float)
 	{
@@ -18,7 +21,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 		$round_no 	= 1;
 		$destroyed	= 0;
 
-		foreach ( $result_array['rw'] as $round => $data1)
+		foreach ($result_array['rw'] as $round => $data1)
 		{
 			if ($round_no <= 6)
 			{
@@ -33,7 +36,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 				$coord5 	= 0;
 				$coord6 	= 0;
 
-				foreach ( $attackers1 as $fleet_id1 => $data2)
+				foreach ($attackers1 as $fleet_id1 => $data2)
 				{
 					$name 	= $data2['user']['username'];
 					$coord1 = $data2['fleet']['fleet_start_galaxy'];
@@ -43,9 +46,9 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 					$shie 	= ($data2['user']['defence_tech'] * 10);
 					$armr 	= ($data2['user']['shield_tech'] * 10);
 
-					if ($coord4 == 0){$coord4 += $data2['fleet']['fleet_end_galaxy'];}
-					if ($coord5 == 0){$coord5 += $data2['fleet']['fleet_end_system'];}
-					if ($coord6 == 0){$coord6 += $data2['fleet']['fleet_end_planet'];}
+					if ($coord4 == 0) $coord4 += $data2['fleet']['fleet_end_galaxy'];
+					if ($coord5 == 0) $coord5 += $data2['fleet']['fleet_end_system'];
+					if ($coord6 == 0) $coord6 += $data2['fleet']['fleet_end_planet'];
 
 					$fl_info1  	= "<table><tr><th>";
 					$fl_info1 	.= $lang['sys_attack_attacker_pos']." ".$name." ([".$coord1.":".$coord2.":".$coord3."])<br>";
@@ -56,7 +59,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 					{
 						if (number_format($data1['attack']['total']) == 0)
 						{
-							$ships1 = "<tr><br><br>". $lang['sys_destroyed']."<br></tr>";
+							$ships1 = "<tr><br><br>".$lang['sys_destroyed']."<br></tr>";
 							$count1 = "";
 							$destroyed = 1;
 						}
@@ -68,7 +71,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 						$ships1  = "<tr><th>".$lang['sys_ship_type']."</th>";
 						$count1  = "<tr><th>".$lang['sys_ship_count']."</th>";
 
-						foreach ( $data2['detail'] as $ship_id1 => $ship_count1)
+						foreach ($data2['detail'] as $ship_id1 => $ship_count1)
 						{
 						   if ($ship_count1 > 0)
 						   {
@@ -85,7 +88,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 						$ships1  = "<tr><th>".$lang['sys_ship_type']."</th>";
 						$count1  = "<tr><th>".$lang['sys_ship_count']."</th>";
 
-						foreach ( $data2['detail'] as $ship_id1 => $ship_count1)
+						foreach ($data2['detail'] as $ship_id1 => $ship_count1)
 						{
 							if ($ship_count1 > 0)
 							{
@@ -99,20 +102,20 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 					}
 					else
 					{
-						$ships1 = "<tr><br><br>". $lang['sys_destroyed']."<br></tr>";
+						$ships1 = "<tr><br><br>".$lang['sys_destroyed']."<br></tr>";
 						$count1 = "";
 					}
 
 					$info_part1[$fleet_id1] = $fl_info1.$table1.$ships1.$count1;
 				}
 
-				foreach ( $attackers2 as $fleet_id2 => $data3)
+				foreach ($attackers2 as $fleet_id2 => $data3)
 				{
 					$weap1  = "<tr><th>".$lang['sys_ship_weapon']."</th>";
 					$shields1  = "<tr><th>".$lang['sys_ship_shield']."</th>";
 					$armour1  = "<tr><th>".$lang['sys_ship_armour']."</th>";
 
-					foreach ( $data3 as $ship_id2 => $ship_points1)
+					foreach ($data3 as $ship_id2 => $ship_points1)
 					{
 						if ($ship_points1['shield'] > 0)
 						{
@@ -141,7 +144,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 					}
 				}
 
-				foreach ( $defenders1 as $fleet_id1 => $data2)
+				foreach ($defenders1 as $fleet_id1 => $data2)
 				{
 					$name = $data2['user']['username'];
 					$weap = ($data2['user']['military_tech'] * 10);
@@ -159,7 +162,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 						$ships1  = "<tr><th>".$lang['sys_ship_type']."</th>";
 						$count1  = "<tr><th>".$lang['sys_ship_count']."</th>";
 
-						foreach ( $data2['def'] as $ship_id1 => $ship_count1)
+						foreach ($data2['def'] as $ship_id1 => $ship_count1)
 						{
 							if ($ship_count1 > 0)
 							{
@@ -173,20 +176,20 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 					}
 					else
 					{
-						$ships1 = "<tr><br><br>". $lang['sys_destroyed']."<br></tr>";
+						$ships1 = "<tr><br><br>".$lang['sys_destroyed']."<br></tr>";
 						$count1 = "";
 					}
 
 					$info_part1[$fleet_id1] = $fl_info1.$table1.$ships1.$count1;
 				}
 
-				foreach ( $defenders2 as $fleet_id2 => $data3)
+				foreach ($defenders2 as $fleet_id2 => $data3)
 				{
 					$weap1  	= "<tr><th>".$lang['sys_ship_weapon']."</th>";
 					$shields1  	= "<tr><th>".$lang['sys_ship_shield']."</th>";
 					$armour1  	= "<tr><th>".$lang['sys_ship_armour']."</th>";
 
-					foreach ( $data3 as $ship_id2 => $ship_points1)
+					foreach ($data3 as $ship_id2 => $ship_points1)
 					{
 						if ($ship_points1['shield'] > 0)
 						{

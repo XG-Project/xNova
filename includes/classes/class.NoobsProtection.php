@@ -1,15 +1,18 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright © 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @since	1.0.0
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com
+ * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-class NoobsProtection
-{
+class NoobsProtection {
+
 	private static $instance = NULL;
 	private $_protection;
 	private $_protectiontime;
@@ -41,7 +44,7 @@ class NoobsProtection
 
 	public static function getInstance()
 	{
-		if (self::$instance == NULL)
+		if (is_null(self::$instance))
 		{
 			//make new istance of this class and save it to field for next usage
 			$c = __class__;

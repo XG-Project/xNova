@@ -1,16 +1,15 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com
+ * @author	Razican <admin@razican.com>
+ * @author	Think
  */
 
-/**
- * @author	Think
- **/
-
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("location: ../../"));
 
 function PlanetResourceUpdate($CurrentUser, &$CurrentPlanet, $UpdateTime, $Simul = FALSE)
 {
@@ -25,7 +24,7 @@ function PlanetResourceUpdate($CurrentUser, &$CurrentPlanet, $UpdateTime, $Simul
 					"crystal"=>array("warehouse_num"=>23),
 					"deuterium"=>array("warehouse_num"=>24));
 
-	$BuildTemp		= $CurrentPlanet[ 'temp_max' ];
+	$BuildTemp		= $CurrentPlanet['temp_max'];
 	$post_porcent	= Production::max_production($CurrentPlanet['energy_max'], $CurrentPlanet['energy_used']);
 
 	$EnergyLevel = $CurrentUser['energy_tech'];
@@ -57,8 +56,8 @@ function PlanetResourceUpdate($CurrentUser, &$CurrentPlanet, $UpdateTime, $Simul
 			}
 
 			//Energy
-			$cProd				= eval($ProdGrid[$ProdID]['formule']["energy"]);
-			$energy_prod		= Production::current_production(Production::production_amount($cProd, $geologe_boost), $post_porcent);
+			$cProd = eval($ProdGrid[$ProdID]['formule']["energy"]);
+			$energy_prod = Production::current_production(eval($ProdGrid[$ProdID]['formule']['energy']), $post_porcent);
 
 			if ($ProdID >= 4)
 			{
@@ -116,7 +115,7 @@ function PlanetResourceUpdate($CurrentUser, &$CurrentPlanet, $UpdateTime, $Simul
 	{
 		$Built				= HandleElementBuildingQueue($CurrentUser, $CurrentPlanet, $ProductionTime);
 
-		$QryUpdatePlanet	= "UPDATE {{table}} SET ";
+		$QryUpdatePlanet	= "UPDATE `{{table}}` SET ";
 		$QryUpdatePlanet	.= $rUpd;
 		$QryUpdatePlanet	.= "`last_update` = '".$CurrentPlanet['last_update']."', ";
 		$QryUpdatePlanet	.= "`b_hangar_id` = '".$CurrentPlanet['b_hangar_id']."', ";

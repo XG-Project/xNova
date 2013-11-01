@@ -1,11 +1,9 @@
-		<tr>
-			<td>Correo electrónico:</td>
-			<td><input name="adm_email" size="20" maxlength="40" type="text"></td>
-		</tr>
-		<tr>
-			<td>Contraseña:</td>
-			<td><input name="adm_pass" size="20" maxlength="20" type="password"></td>
-		</tr>
-		<tr>
-			<th align="center" colspan="2"><input type="submit" name="continuar" value="Actualizar a la versión {version}"/></th>
-		</tr>
+<form action="install.php?mode=upgrade" method="post" accept-charset="UTF-8">
+	<label for="email">Correo elctrónico del administrador:</label>
+	<input type="email" name="adm_email" id="email" value="">
+
+	<label for="pass">Contraseña:</label>
+	<input type="password" name="adm_pass" id="pass" value="">
+
+	<input type="submit" value="Actualizar a {script} {version}">
+</form>

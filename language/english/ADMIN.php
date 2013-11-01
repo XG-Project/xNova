@@ -1,11 +1,14 @@
 <?php
 //---------------	GENERAL	------------------------//
-$lang['404_page']			= 'You do not have sufficient permissions';
-$lang['adm_cp_title']		= 'Administration control Panel';
-$lang['adm_cp_index']		= 'Home';
-$lang['mu_moderation_page']	= 'Permissions';
-$lang['adm_cp_logout']		= 'Quit';
-$lang['lang_key']			= 'en';
+$lang['404_page']				= 'You do not have sufficient permissions';
+$lang['adm_cp_title']			= 'Administration control Panel';
+$lang['adm_cp_index']			= 'Home';
+$lang['mu_moderation_page']		= 'Permissions';
+$lang['mu_topnav']				= 'Administration';
+$lang['mu_select_nav']			= 'Navigation';
+$lang['adm_cp_logout']			= 'Quit';
+$lang['lang_key']				= 'en';
+$lang['not_enough_permissions']	= 'You don\'t have enough permissions to enter here.';
 
 //	MISCELÁNEO - MISCELLANEOUS
 $lang['ad_number']			= 'No';
@@ -150,9 +153,9 @@ $lang['graviton_tech']			= 'Graviton Technology';
 //###########################################################//
 
 
-//---------------	OFICIALES - OFFICIERS	------------------------//
-$lang['officiers_title']		= 'Officers';
-$lang['officiers_count']		= 'Officers Count';
+//---------------	OFICIALES - OFFICERS	------------------------//
+$lang['officers_title']			= 'Officers';
+$lang['officers_count']			= 'Officers Count';
 $lang['geologist']				= 'Geologist';
 $lang['admiral']				= 'Admiral';
 $lang['engineer']				= 'Engineer';
@@ -188,7 +191,7 @@ $lang['ad_editor_buildings']	= 'Buildings';
 $lang['ad_editor_ships']		= 'Ships';
 $lang['ad_editor_defenses']		= 'Defenses';
 $lang['ad_editor_researchs']	= 'Research';
-$lang['ad_editor_officiers']	= 'Officers';
+$lang['ad_editor_officers']		= 'Officers';
 $lang['ad_editor_personal']		= 'Personal Data';
 $lang['ad_editor_planets']		= 'Planets and Moons';
 $lang['ad_editor_resources']	= 'Resources';
@@ -200,7 +203,7 @@ $lang['ad_add_succes']		= 'Research added successfully';
 $lang['ad_delete_succes']	= 'Research deleted successfully';
 $lang['ad_research_title']	= 'Edit Research';
 
-//	OFICIALES - OFFICIERS
+//	OFICIALES - OFFICERS
 $lang['ad_offi_title']			= 'Edit Officers';
 $lang['ad_offi_succes_add']		= 'Officers added successfully';
 $lang['ad_offi_succes_delete']	= 'Officers deleted succefully';
@@ -297,12 +300,12 @@ $lang['bo_user_doesnt_exist']	= 'The player does not exist!';
 $lang['bo_user_select']			= 'Select...';
 $lang['bo_select_title']		= 'Show the names beginnin with';
 $lang['bo_suspended_panel']		= 'Suspension Panel';
-$lang['bo_bbb_go_back']			= '[ Back ]';
-$lang['bo_bbb_go_act']			= '[ Refresh ]';
+$lang['bo_bbb_go_back']			= '[ Back]';
+$lang['bo_bbb_go_act']			= '[ Refresh]';
 $lang['bo_bbb_title_1']			= 'Suspension system';
 $lang['bo_bbb_title_2']			= 'Set date on which the suspension will lose';
 $lang['bo_bbb_title_3']			= 'Suspension System<br><font color=red>Note: this user is already suspended';
-$lang['bo_bbb_title_4']			= 'To subtract days, hours, etc. adds a minus ( - )before the number, Example: -5 ';
+$lang['bo_bbb_title_4']			= 'To subtract days, hours, etc. adds a minus (-)before the number, Example: -5 ';
 $lang['bo_bbb_title_5']			= 'Suspended until';
 $lang['bo_bbb_title_6']			= 'Change date';
 $lang['bo_characters_1']		= 'Avaible characters: ';
@@ -404,20 +407,21 @@ $lang['od_select_action']	= 'Select';
 $lang['ow_title']				= 'Welcome to xNova';
 $lang['ow_welcome_text']		= 'Thank you for choosing xNova. Day by day we work to be the No1 OpenSource OGame on the web. Here is a "look" of the overall game. You can make all the changes you want browsing the menu on the left.';
 $lang['ow_overview']			= 'Control panel';
+$lang['ow_bug_report']			= 'Bug report';
 $lang['ow_support']				= 'Support';
 $lang['ow_credits']				= 'Credits';
 $lang['ow_proyect_leader']		= 'Proyect Leader';
 $lang['ow_principal_contributors']	= 'Principal contributors';
 $lang['ow_other_contributors']		= 'Other Contributors';
 $lang['ow_special_thanks']			= 'Special Thanks';
-$lang['ow_install_file_detected']	= 'install/ directory was found. For security reasons, we recommend remove or rename it.';
-$lang['ow_config_file_writable']	= 'The config.php file could be written, it is advisable to be placed in chmod 0440 (read only).';
-$lang['ow_database_errors']			= 'There are errors in your database. You can see them <a href="errors.php">clicking here</a>';
-$lang['ow_old_version']				= 'There is a new version available. Click <a href="http://www.razican.com/" target="_blanck">here</a> to download it.';
+$lang['ow_install_file_detected']	= '<i>install</i> directory or <i>install.php</i> was found. For security reasons, we recommend remove or rename it.';
+$lang['ow_config_file_writable']	= 'The config.php file could be written, it is advisable to be placed in chmod 0444 (read only).';
+$lang['ow_database_errors']			= 'There are errors in your database. You can see them <a href="admin.php?page=errors">clicking here</a>';
+$lang['ow_old_version']				= 'There is a new version available. Click <a href="http://www.razican.com/" target="_blank">here</a> to download it.';
 $lang['ow_none']					= 'No warnings';
-$lang['ow_log_file_no_writable']	= 'At least one of the log files in /adm/Log/ can\'t be written. Please, change their permissions to CHMOD 0666';
+$lang['ow_log_file_no_writable']	= 'At least one of the log files in /includes/logs/ can\'t be written. Please, change their permissions to CHMOD 0666';
 $lang['ow_config_file_no_writable']	= 'Configuration file at /includes/xml/config.xml can\'t be written, please, give it CHMOD 0666 permission';
-$lang['ow_bot_folder_error']		= '/includes/bots folder is not writable or it does not exist, please, create it if it does not exist and give it CHMOD 0777 permission';
+$lang['ow_bot_folder_no_writable']	= '/includes/bots folder is not writable or it does not exist, please, create it if it does not exist and give it CHMOD 0777 permission';
 $lang['ow_plugins_dir_not_exists']	= '/includes/plugins folder does not exist. Even it is not necessary, if you want to install a plugin you must create it, and it is recommended that you do it as soon as possible.';
 //###########################################################//
 
@@ -431,9 +435,10 @@ $lang['se_normal_speed']					= 'Normal game speed: 1 <br> Maximum recommended sp
 $lang['se_normal_speed_resoruces']			= 'Normal production speed: 1 <br> Maximum recommended speed: 5';
 $lang['se_normal_speed_fleett']				= 'Normal speed of fleets: 1 <br> Maximum recommended speed: 5';
 $lang['se_fleet_speed']						= 'Speed of fleet';
-$lang['se_resources_producion_speed']		= 'Speed of production';
+$lang['se_resources_production_speed']		= 'Speed of production';
 $lang['se_forum_link']						= 'Forum link';
 $lang['se_max_users']						= 'Maximum users limit';
+$lang['se_max_users_info']					= 'Maximum users for the server (0 to disable)';
 $lang['se_server_op_close']					= 'Server online?';
 $lang['se_server_status_message']			= 'Off-line message';
 $lang['se_server_planet_parameters']		= 'Parameters of the new planets';
@@ -450,7 +455,7 @@ $lang['se_admin_protection']				= 'Protection';
 $lang['se_debug_mode']						= 'Debug mode';
 $lang['se_save_parameters']					= 'Save settings';
 $lang['se_configuration_title']				= 'Configuration';
-$lang['se_server_naame']					= 'Name of your game';
+$lang['se_server_name']						= 'Name of your game';
 $lang['se_cookie_name']						= 'Cookie name';
 $lang['se_cookie_advert']					= 'When you rename the cookie to you and your users must login back. <br> rename Recommended only if you got several universes.';
 $lang['se_debug_message']					= 'Debug mode displays a log of queries conducted at the time';
@@ -462,7 +467,7 @@ $lang['se_noob_protect']					= 'Protection from novices';
 $lang['se_noob_protect2']					= 'Protection N. points';
 $lang['se_noob_protect3']					= 'Protection N. limit points';
 $lang['se_noob_protect_e2']					= 'Limit point where you stop being rookie';
-$lang['se_noob_protect_e3']					= 'Click here to see more info';
+$lang['se_noob_protect_e3']					= 'This multiplier indicates how many points above and below will be able to attack a given user regarding to its points';
 $lang['se_log_php_errors']					= 'Errors you want to log';
 $lang['se_log_bots']						= 'Save logs from bots? it can reduce performance';
 $lang['se_date_format']						= 'Date format in "Overview":';
@@ -569,10 +574,10 @@ $lang['re_defenses_and_ships']				= 'Hangar Defenses';
 $lang['re_defenses']						= 'Reset defenses';
 $lang['re_ships']							= 'Reset ships';
 $lang['re_reset_hangar']					= 'Reset shipyard and defense queue';
-$lang['re_buldings']						= 'Buildings';
+$lang['re_buildings']						= 'Buildings';
 $lang['re_buildings_pl']					= 'Reset planetary buildings';
 $lang['re_buildings_lu']					= 'Reset lunar buildings';
-$lang['re_reset_buldings']					= 'Reset queue buildings';
+$lang['re_reset_buildings']					= 'Reset queue buildings';
 $lang['re_inve_ofis']						= 'Research and officers';
 $lang['re_ofici']							= 'Reset officers';
 $lang['re_investigations']					= 'Reset research';
@@ -634,7 +639,7 @@ $lang['ac_coords']							= 'Coordinates';
 $lang['ac_diameter']						= 'Diameter';
 $lang['ac_fields']							= 'Fields';
 $lang['ac_temperature']						= 'Temp.';
-$lang['ac_officier_research']				= 'Reasearch and Officers';
+$lang['ac_officer_research']				= 'Reasearch and Officers';
 $lang['ac_recent_destroyed_planets']		= 'Planets destroyed recently';
 $lang['ac_no_moons']						= 'The player has no moons';
 $lang['ac_total_points']					= 'Total: ';
@@ -686,7 +691,7 @@ $lang['ac_note_k']							.= '<tr><th width=10%><font color=lime>T</font></th><th
 $lang['ac_note_k']							.= '<tr><th width=10%><font color=lime>B</font></th><th>Overcome or the same as the billion</th></tr>';
 $lang['ac_note_k']							.= '<tr><th width=10%><font color=lime>M</font></th><th>Overcome or the same as the million</th></tr>';
 $lang['ac_note_k']							.= '<tr><th width=10%><font color=lime>K</font></th><th>Overcome or the same as the thousand</th></tr></table>';
-$lang['ac_leyend']							= '[ Leyend ]';
+$lang['ac_leyend']							= '[ Leyend]';
 $lang['ac_no_rank_level']					= 'You do not have sufficient permissions to view information about this user!';
 //###########################################################//
 
@@ -824,8 +829,8 @@ $lang['new_creator_title_u']	= 'Create/delete users';
 $lang['new_creator_title_p']	= 'Create/Delete planets';
 $lang['new_creator_title_l']	= 'Create/delete moons';
 $lang['new_creator_coor']		= 'Coordinates';
-$lang['new_creator_go_back']	= '[ Return to menu ]';
-$lang['new_creator_refresh']	= '[ Refresh ]';
+$lang['new_creator_go_back']	= '[ Return to menu]';
+$lang['new_creator_refresh']	= '[ Refresh]';
 
 //	CREADOR DE USUARIOS - USERS MAKER
 $lang['new_title']				= 'Add new user';
@@ -884,19 +889,19 @@ $lang['po_delete_moon']				= 'Delete moon';
 
 //---------------	HISTORIAL - LOG	------------------------//
 $lang['log_viewmod']				= array('No', 'Yes');
-$lang['log_log_body_build']			= 'Buildings log';
-$lang['log_log_body_resou']			= 'Resources log';
-$lang['log_log_body_def']			= 'Defenses log';
-$lang['log_log_body_ships']			= 'Ships log';
-$lang['log_log_body_techs']			= 'Research log';
-$lang['log_log_body_offi']			= 'Officers log';
-$lang['log_log_body_personal']		= 'Personal data log';
-$lang['log_log_body_ally']			= 'Alliance log';
-$lang['log_log_body_p_m']			= 'Planets and moons log';
-$lang['log_log_body_reset']			= 'System reset log';
-$lang['log_log_body_mod']			= 'Restraint system log';
-$lang['log_log_body_gen']			= 'General log';
-$lang['log_log_body_config']		= 'Configuration log';
+$lang['log_file_buildings']			= 'Buildings log';
+$lang['log_file_resources']			= 'Resources log';
+$lang['log_file_defenses']			= 'Defenses log';
+$lang['log_file_ships']				= 'Ships log';
+$lang['log_file_research']			= 'Research log';
+$lang['log_file_officers']			= 'Officers log';
+$lang['log_file_personal']			= 'Personal data log';
+$lang['log_file_alliance']			= 'Alliance log';
+$lang['log_file_planets_moons']		= 'Planets and moons log';
+$lang['log_file_reset']				= 'System reset log';
+$lang['log_file_moderation']		= 'Restraint system log';
+$lang['log_file_general']			= 'General log';
+$lang['log_file_config']			= 'Configuration log';
 $lang['log_log_title_22']			= 'Log';
 $lang['log_alert']					= 'Clicking accept will delete the entire contents of the text file, do you wish to continue?';
 $lang['log_input_value']			= 'Edit';
@@ -905,7 +910,8 @@ $lang['log_edit_succes']			= 'Edited successfully';
 $lang['log_delete_succes']			= 'The selected File had been emptied successfully:&nbsp;';
 $lang['log_edit_link']				= 'Edit history';
 $lang['log_delete_link']			= 'Empty history';
-$lang['log_filesize_0']				= '<font color=yellow>History has been emptied</font>';
+$lang['log_delete_confirm']			= 'If you delete the bots log, you will delete the information of what bots have done until now. Are you sure?';
+$lang['log_filesize_0']				= 'The log is empty';
 $lang['log_the_user']				= 'The user ';
 $lang['log_to_planet']				= 'to the planet with the ID: ';
 $lang['log_and']					= 'and ';
@@ -942,7 +948,7 @@ $lang['log_buildings_planet']		= 'PLANET BUILDINGS';
 $lang['log_buildings_moon']			= 'MOON BUILDINGS';
 $lang['log_c_buildings']			= 'ROW OF BUILDINGS';
 $lang['log_researchs']				= 'RESEARCH';
-$lang['log_officiers']				= 'OFFICERS';
+$lang['log_officers']				= 'OFFICERS';
 $lang['log_c_researchs']			= 'INVESTIGATIONS OF COURSE';
 $lang['log_darkmatter']				= 'DARK MATTER';
 $lang['log_resources']				= 'RESOURCES';
@@ -960,8 +966,8 @@ $lang['log_bots']					= 'BOTS';
 $lang['log_all_uni']				= 'ALL THE UNIVERSE';
 $lang['log_change_auth_1']			= 'Change the range of the user with the ID ';
 $lang['log_change_auth_2']			= 'The correct range now is: ';
-$lang['log_can_view_mod']			= 'The moderators may see... ';
-$lang['log_can_view_ope']			= 'The operators may see... ';
+$lang['log_can_view_mod']			= 'The moderators may see...';
+$lang['log_can_view_ope']			= 'The operators may see...';
 $lang['log_tools']					= 'Tools?';
 $lang['log_edit']					= 'Edit?';
 $lang['log_view']					= 'View observation menu?';
@@ -1004,7 +1010,7 @@ $lang['log_data_repair']			= 'REPAIR';
 $lang['log_data_check']				= 'CHECK';
 $lang['log_change_stats']			= ' has changed the parameters of statistics';
 $lang['log_stats_value']			= 'Value of statistical 1 point';
-$lang['log_stats_value_2']			= 'Time of statistics update (minutes)';
+$lang['log_stats_value_2']			= 'Time of statistics update(minutes)';
 $lang['log_stats_value_3']			= 'Block User';
 $lang['log_stats_value_4']			= 'Fleet update block?';
 $lang['log_stats_value_5']			= 'The administration may be in the ranking?';
@@ -1013,7 +1019,7 @@ $lang['log_sett_no1']				= ' change the following configuration';
 $lang['log_sett_max_users']			= 'Maximum usrers:';
 $lang['log_sett_bots_log']			= 'Will bot actions be registered?';
 $lang['log_sett_date_format']		= 'Date format:';
-$lang['log_sett_close']				= 'Server closed? ';
+$lang['log_sett_enabled']			= 'Server enabled? ';
 $lang['log_sett_close_rea']			= 'Reason? ';
 $lang['log_sett_debug']				= 'DEBUG mode activated? ';
 $lang['log_sett_name_game']			= 'Name of the  game ';
@@ -1045,7 +1051,7 @@ $lang['log_searchindb_vacat']		= 'Vacations';
 $lang['log_searchindb_susp']		= 'Suspended';
 $lang['log_searchindb_admin']		= 'Administrators';
 $lang['log_searchindb_inac']		= 'Inactive';
-$lang['log_search_advert_popup']	= 'To activate / deactivate history do so from the Permissions section. Click to go to the permissions panel.';
+$lang['log_permission_advert']		= 'You can activate/deactivate logs in the permissions panel.';
 //###########################################################//
 
 
@@ -1068,6 +1074,7 @@ $lang['bot_err_complete_user']		= 'Please, write the user\'s ID';
 $lang['bot_err_minutes_per_day']	= 'Please, write the minutes the bot will be online each day. The value you entered is not correct';
 $lang['bot_err_bot_exist']			= 'There is already a bot for that user';
 $lang['bot_err_user_not_exist']		= 'The user you entered does not exist';
+$lang['bot_total']					= 'There is a total %d bots';
 //###########################################################//
 
 

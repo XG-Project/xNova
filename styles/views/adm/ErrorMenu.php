@@ -1,12 +1,17 @@
-<style>.menu-table th{border:0px;text-align:left;height:50px;}a{font-size:13px;}a:hover{font-size:14px;}</style>
-<body>
-<br><br><br>
-<table class="menu-table" width="40%">
-<td class="c" colspan="9">{er_menu}</td>
-<tr>
-	<th><a href="ErrorPage.php?page=php"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> {er_php}</a></th>
-	<th><a href="ErrorPage.php?page=sql"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> {er_sql}</a></th>
-</tr>
-</td>
-</table>
-</body>
+<section class="page">
+	<section class="content-table menu">
+		<h3>{er_menu}</h3>
+		<div class="content menu">
+			<nav>
+				<ul>
+					<li><a title="{er_php}" href="admin.php?page=errors&amp;errors=php">
+						<figure class="arrowright"></figure>{er_php}
+					</a></li>
+					<li><a title="{er_sql}" href="admin.php?page=errors&amp;errors=sql">
+						<figure class="arrowright"></figure>{er_sql}
+					</a></li>
+				</ul>
+			</nav>
+		</div>
+	</section>
+</section>

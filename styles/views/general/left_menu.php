@@ -16,7 +16,7 @@ function f(target_url,win_name)
 <p style="width:110px;"><NOBR>{servername} (<a href="game.php?page=changelog">{version}</a>)</NOBR></p>
 <table width="110" cellspacing="0" cellpadding="0">
  <tr>
-  <td><img src="{dpath}gfx/production.png" width="110" height="40" /></td>
+  <td><img src="{dpath}gfx/production.png" width="110" height="40" ></td>
  </tr>
 
 
@@ -144,7 +144,7 @@ function f(target_url,win_name)
 
 	   <td>
 		<div align="center"><font color="#FFFFFF">
-			<a  href='game.php?page=officier'><font color='FF8900'>{lm_officiers}</font></a>
+			<a  href='game.php?page=officer'><font color='FF8900'>{lm_officers}</font></a>
 	   </font></div>
 	  </td>
 	 </tr>
@@ -184,7 +184,6 @@ function f(target_url,win_name)
   <td>
    <div align="center"><font color="#FFFFFF">
 	 <a href="#" onClick="f('game.php?page=notes', '{lm_notes}')">{lm_notes}</a>
-
 	</font></div>
   </td>
  </tr>
@@ -221,7 +220,7 @@ function f(target_url,win_name)
  <tr>
   <td>
    <div align="center"><font color="#FFFFFF">
-	 <a href="https://github.com/Razican/xNova" title="Powered by xNova {version} © 2012 Creative Commons BY-SA based on XG Proyect">© 2012</a>
+	 <a href="https://github.com/Razican/xNova" title="Powered by xNova {version} © 2012-{year} Creative Commons BY-SA based on XG Proyect">© 2012-{year}</a>
 	</font></div>
   </td>
  </tr>

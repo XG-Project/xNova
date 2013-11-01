@@ -14,7 +14,7 @@ a  = new Array({a}'');
 aa = '{bd_completed}';
 
 function t() {
-	if ( hs == 0 ) {
+	if (hs == 0) {
 		xd();
 		hs = 1;
 	}
@@ -23,10 +23,10 @@ function t() {
 	s = Math.round(s);
 	m = 0;
 	h = 0;
-	if ( s < 0 ) {
+	if (s < 0) {
 		a[p]--;
 		xd();
-		if ( a[p] <= 0 ) {
+		if (a[p] <= 0) {
 			p++;
 			xd();
 		}
@@ -34,21 +34,21 @@ function t() {
 		v = new Date();
 		s = 0;
 	}
-	if ( s > 59 ) {
+	if (s > 59) {
 		m = Math.floor(s / 60);
 		s = s - m * 60;
 	}
-	if ( m > 59 ) {
+	if (m > 59) {
 		h = Math.floor(m / 60);
 		m = m - h * 60;
 	}
-	if ( s < 10 ) {
+	if (s < 10) {
 		s = "0" + s;
 	}
 	if (m < 10) {
 	  m = "0" + m;
 	}
-	if ( p > b.length - 2 ) {
+	if (p > b.length - 2) {
 		document.getElementById("bx").innerHTML=aa ;
 	} else {
 		document.getElementById("bx").innerHTML=b[p]+" "+h+":"+m+":"+s;
@@ -60,21 +60,21 @@ function xd() {
 	while (document.Atr.auftr.length > 0) {
 		document.Atr.auftr.options[document.Atr.auftr.length-1] = NULL;
 	}
-	if ( p > b.length - 2 ) {
+	if (p > b.length - 2) {
 		document.Atr.auftr.options[document.Atr.auftr.length] = new Option(aa);
 	}
-	for ( iv = p; iv <= b.length - 2; iv++ ) {
-		if ( a[iv] < 2 ) {
+	for (iv = p; iv <= b.length - 2; iv++) {
+		if (a[iv] < 2) {
 			ae = " ";
 		} else {
 			ae = " ";
 		}
-		if ( iv == p ) {
+		if (iv == p) {
 			act = " {bd_operating}";
 		} else {
 			act = "";
 		}
-		document.Atr.auftr.options[document.Atr.auftr.length] = new Option( a[iv] + ae + " \"" + b[iv] + "\"" + act, iv + of);
+		document.Atr.auftr.options[document.Atr.auftr.length] = new Option(a[iv] + ae + " \"" + b[iv] + "\"" + act, iv + of);
 	}
 }
 

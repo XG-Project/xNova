@@ -5,28 +5,28 @@ function getStorageFaktor() {
 }
 </script>
 <form action="game.php?page=fleet3" method="post" onsubmit='this.submit.disabled = TRUE;'>
-<input type="hidden" name="thisresource1"  value="{metal}" />
-<input type="hidden" name="thisresource2"  value="{crystal}" />
-<input type="hidden" name="thisresource3"  value="{deuterium}" />
-<input type="hidden" name="consumption"    value="{consumption}" />
-<input type="hidden" name="dist"           value="{distance}" />
-<input type="hidden" name="speedfactor"    value="{speedfactor}" />
-<input type="hidden" name="thisgalaxy"     value="{thisgalaxy}" />
-<input type="hidden" name="thissystem"     value="{thissystem}" />
-<input type="hidden" name="thisplanet"     value="{thisplanet}" />
-<input type="hidden" name="galaxy"         value="{galaxy}" />
-<input type="hidden" name="system"         value="{system}" />
-<input type="hidden" name="planet"         value="{planet}" />
-<input type="hidden" name="thisplanettype" value="{thisplanettype}" />
-<input type="hidden" name="planettype"     value="{planettype}" />
-<input type="hidden" name="speedallsmin"   value="{speedallsmin}" />
-<input type="hidden" name="speed"          value="{speed}" />
-<input type="hidden" name="speedfactor"    value="{speedfactor}" />
-<input type="hidden" name="usedfleet"      value="{usedfleet}" />
-<input type="hidden" name="maxepedition"   value="{maxepedition}" />
-<input type="hidden" name="curepedition"   value="{curepedition}" />
-<input type="hidden" name="fleet_group"    value="{fleet_group}" />
-<input type="hidden" name="acs_target_mr"  value="{acs_target_mr}" />
+<input type="hidden" name="thisresource1"  value="{metal}" >
+<input type="hidden" name="thisresource2"  value="{crystal}" >
+<input type="hidden" name="thisresource3"  value="{deuterium}" >
+<input type="hidden" name="consumption"    value="{consumption}" >
+<input type="hidden" name="dist"           value="{distance}" >
+<input type="hidden" name="speedfactor"    value="{speedfactor}" >
+<input type="hidden" name="thisgalaxy"     value="{thisgalaxy}" >
+<input type="hidden" name="thissystem"     value="{thissystem}" >
+<input type="hidden" name="thisplanet"     value="{thisplanet}" >
+<input type="hidden" name="galaxy"         value="{galaxy}" >
+<input type="hidden" name="system"         value="{system}" >
+<input type="hidden" name="planet"         value="{planet}" >
+<input type="hidden" name="thisplanettype" value="{thisplanettype}" >
+<input type="hidden" name="planettype"     value="{planettype}" >
+<input type="hidden" name="speedallsmin"   value="{speedallsmin}" >
+<input type="hidden" name="speed"          value="{speed}" >
+<input type="hidden" name="speedfactor"    value="{speedfactor}" >
+<input type="hidden" name="usedfleet"      value="{usedfleet}" >
+<input type="hidden" name="maxepedition"   value="{maxepedition}" >
+<input type="hidden" name="curepedition"   value="{curepedition}" >
+<input type="hidden" name="fleet_group"    value="{fleet_group}" >
+<input type="hidden" name="acs_target_mr"  value="{acs_target_mr}" >
 {input_extra}
 <div id="content">
 	<table border="0" cellpadding="0" cellspacing="1" width="519">

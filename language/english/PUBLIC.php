@@ -15,7 +15,7 @@ $lang['mail_text']						= 'This is your new password: ';
 $lang['mail_sended']					= 'Your new password has been successfully sent!';
 
 //case default
-$lang['login_error']					= 'Incorrect data entered! <br><a href="index.php" target="_top">Back to index</a>';
+$lang['login_error']					= 'Incorrect data entered!<br><a href="index.php" target="_top">Back to index</a>';
 
 /* ------------------------------------------------------------------------------------------ */
 

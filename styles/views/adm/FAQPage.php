@@ -9,26 +9,26 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 <tr>
 	<td class="c" colspan="2">Índice</td>
 </tr><tr>
-	<th><a href="#ACCDATA" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> Información de cuentas</a></th>
-	<th><a href="#SEARCH" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> Buscador avanzado</a></th>
+	<th><a href="#ACCDATA" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> Información de cuentas</a></th>
+	<th><a href="#SEARCH" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> Buscador avanzado</a></th>
 </tr><tr>
-	<th><a href="#EDIT" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> Editor</a></th>
-	<th><a href="#BAN" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> Panel de suspensión</a></th>
+	<th><a href="#EDIT" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> Editor</a></th>
+	<th><a href="#BAN" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> Panel de suspensión</a></th>
 </tr><tr>
-	<th><a href="#ERRORS" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> Lista de errores</a></th>
-	<th><a href="#MESSAGES" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> Lista de mensajes</a></th>
+	<th><a href="#ERRORS" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> Lista de errores</a></th>
+	<th><a href="#MESSAGES" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> Lista de mensajes</a></th>
 </tr><tr>
-	<th><a href="#CREATEUSER" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> Creación de usuarios</a></th>
-	<th><a href="#BD" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> Base de datos</a></th>
+	<th><a href="#CREATEUSER" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> Creación de usuarios</a></th>
+	<th><a href="#BD" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> Base de datos</a></th>
 </tr><tr>
-	<th><a href="#STATS" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> Paámetros de las estadísticas</a></th>
-	<th><a href="#GMESS" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> Mensaje global</a></th>
+	<th><a href="#STATS" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> Paámetros de las estadísticas</a></th>
+	<th><a href="#GMESS" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> Mensaje global</a></th>
 </tr><tr>
-	<th><a href="#ENCRIPT" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> Encriptador MD5</a></th>
-	<th><a href="#AUTH" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> Rangos / Nivel de autoridad</a></th>
+	<th><a href="#ENCRIPT" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> Encriptador MD5</a></th>
+	<th><a href="#AUTH" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> Rangos / Nivel de autoridad</a></th>
 </tr><tr>
-	<th><a href="#PLANETSMOONS" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> Creador de Planetas y Lunas</a></th>
-	<th><a href="#asdas" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> asd</a></th>
+	<th><a href="#PLANETSMOONS" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> Creador de Planetas y Lunas</a></th>
+	<th><a href="#asdas" title="Ir"><img src="../styles/images/Adm/arrowright.png" width="16" height="10"> asd</a></th>
 </tr>
 <tr>
 	<td class="c" colspan="2">&nbsp;</td>
@@ -40,7 +40,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 <tr>
 	<a name="ACCDATA"></a>
 	<td class="c">Funcionamiento del sistema de información de cuentas</td>
-	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"/></a></td>
+	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"></a></td>
 </tr><tr>
 	<th colspan="2">
 		Tal como dice el titulo, busca una información completa y detallada, asi como naves, defensas, investigaciones, edificios, lunas, planetas, alianza, puntaje de un usuario especificado.
@@ -53,7 +53,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 <tr>
 	<a name="SEARCH"></a>
 	<td class="c">Funcionamiento del buscador avanzado</td>
-	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"/></a></td>
+	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"></a></td>
 </tr><tr>
 	<th colspan="2">
 		<b>El buscador avanzado es capaz de buscar información parcial de un usuario especificado.</b>	<br><br>
@@ -69,7 +69,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 		.- <b>Descendiente:</b> <i>ordena de mayor a menor.</i>	<br><br>
 
 		Tambien pueden ordenarse por ID, Nombre, etc. (Según la búsqueda).	<br>
-		Si la palabra clave esta en blanco (vacio), buscara todos los nombres que haya en la tabla.
+		Si la palabra clave esta en blanco (vacío), buscara todos los nombres que haya en la tabla.
 	</th>
 </tr>
 </table>
@@ -79,7 +79,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 <tr>
 	<a name="EDIT"></a>
 	<td class="c">Funcionamiento del editor</td>
-	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"/></a></td>
+	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"></a></td>
 </tr><tr>
 	<th colspan="2">
 		<b>Está mas que claro que la función es editar.</b>	<br>
@@ -108,7 +108,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 <tr>
 	<a name="BAN"></a>
 	<td class="c">Funcionamiento del panel de suspensión</td>
-	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"/></a></td>
+	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"></a></td>
 </tr><tr>
 	<th colspan="2">
 		<b>En caso de que...</b>	<br>
@@ -128,7 +128,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 <tr>
 	<a name="CREATEUSER"></a>
 	<td class="c">Funcionamiento del creador de usuarios</td>
-	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"/></a></td>
+	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"></a></td>
 </tr><tr>
 	<th colspan="2">
 		<b>Para crear un nuevo:</b>	<br>
@@ -148,7 +148,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 <tr>
 	<a name="MESSAGES"></a>
 	<td class="c">Funcionamiento de la lista de mensajes</td>
-	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"/></a></td>
+	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"></a></td>
 </tr><tr>
 	<th colspan="2">
 		Despliega una lista de todos los mensajes en el juego, no hay mucho que saber al respecto, lo único que hay que tener en cuenta es que a la hora de borrar los mensajes, estos se borraran por completo de la base de datos, por ende, también se le borraran a los jugadores.
@@ -161,7 +161,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 <tr>
 	<a name="ERRORS"></a>
 	<td class="c">Funcionamiento de la lista de errores</td>
-	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"/></a></td>
+	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"></a></td>
 </tr><tr>
 	<th colspan="2">
 		Despliega una lista de todos los errores registrados con respecto a la base de datos (Errores de syntaxis, etc.), al borrarlos también se borraran por completo de la base de datos.
@@ -174,7 +174,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 <tr>
 	<a name="BD"></a>
 	<td class="c">Base de datos</td>
-	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"/></a></td>
+	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"></a></td>
 </tr><tr>
 	<th colspan="2">
 		<b>Funcionamiento</b>	<br><br>
@@ -190,7 +190,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 <tr>
 	<a name="STATS"></a>
 	<td class="c">Paámetros de estadísticas</td>
-	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"/></a></td>
+	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"></a></td>
 </tr><tr>
 	<th colspan="2">
 		<b>Funcionamiento</b>	<br><br>
@@ -210,7 +210,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 <tr>
 	<a name="GMESS"></a>
 	<td class="c">Mensaje global</td>
-	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"/></a></td>
+	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"></a></td>
 </tr><tr>
 	<th colspan="2">
 		Envia un mensaje a todos los usuarios, los mensajes de los moderadores apareceran en verde, el de los operadores en amarillo y el de los administradores en rojo (una vez que se envia).
@@ -223,7 +223,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 <tr>
 	<a name="ENCRIPT"></a>
 	<td class="c">Encriptador MD5</td>
-	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"/></a></td>
+	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"></a></td>
 </tr><tr>
 	<th colspan="2">
 		Muy útil en el caso de tener que cambiar la contraseña desde la base de datos manualmente.
@@ -236,7 +236,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 <tr>
 	<a name="ACCESS"></a>
 	<td class="c">Permisos</td>
-	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"/></a></td>
+	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"></a></td>
 </tr><tr>
 	<th colspan="2">
 		Los permisos se dividen en 5 partes...	<br><br>
@@ -254,7 +254,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 <tr>
 	<a name="AUTH"></a>
 	<td class="c">Rangos / Nivel de autoridad</td>
-	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"/></a></td>
+	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"></a></td>
 </tr><tr>
 	<th colspan="2">
 		Hay 4 niveles de autoridad, Jugador, Moderador, Operador y Administrador.<br><br>
@@ -271,7 +271,7 @@ a{font-size:13px;font-weight:bold;}a:hover{font-size:13px;font-weight:bold;}
 <tr>
 	<a name="PLANETSMOONS"></a>
 	<td class="c">Creador de Planetas y Lunas</td>
-	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"/></a></td>
+	<td class="c" width="2%"><a href="#UP" title="Subir"><img src="../styles/images/Adm/UP.png" width="16" height="16"></a></td>
 </tr><tr>
 	<th colspan="2">
 		Simple de usar.<br><br>

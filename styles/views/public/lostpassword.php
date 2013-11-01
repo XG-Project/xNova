@@ -17,7 +17,7 @@
 					<div id="register" class="bigbutton" onclick="document.lstpass_form.submit();">{retrieve_pass}</div>
 					<div id="text2">
 						<div id="text3">
-							<center><b>{email}: <input type="text" name="email" /></b></center>
+							<center><b>{email}: <input type="text" name="email" ></b></center>
 						</div>
 					<!-- PLEASE DO NOT REMOVE THE COPYRGHT LINE // POR FAVOR NO BORRES LA LINEA DE COPYRIGHTS -->
 					<div id="copyright">

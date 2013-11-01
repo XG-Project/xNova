@@ -6,10 +6,10 @@
 			</tr>
 			<tr>
 				<th>{op_end_vacation_mode}</th>
-				<th><input type="checkbox" name="exit_modus" {opt_modev_exit}/></th>
+				<th><input type="checkbox" name="exit_modus" {opt_modev_exit}></th>
 			</tr>
 			<tr>
-				<th colspan="2"><input type="submit" value="{op_save_changes}" /></th>
+				<th colspan="2"><input type="submit" value="{op_save_changes}" ></th>
 			</tr>
 		</table>
 	</form>

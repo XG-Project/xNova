@@ -25,7 +25,9 @@ function whenResponse () {
 	retVals   = Message.split(";");
 	CmdCode   = retVals[0];
 	strInfo   = retVals[1];
-	if (CmdCode == 600){addToTable("{done}", "success");}
+
+	if (CmdCode == 600) addToTable("{done}", "success");
+
 	changeSlots(UsedSlots);
 	setShips("probes", SpyProbes);
 	setShips("recyclers", Recyclers);

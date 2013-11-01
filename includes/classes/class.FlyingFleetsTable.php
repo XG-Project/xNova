@@ -1,15 +1,18 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @since	1.0.0
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com
+ * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-class FlyingFleetsTable
-{
+class FlyingFleetsTable {
+
 	private function CreateFleetPopupedMissionLink($FleetRow, $Texte, $FleetType)
 	{
 		global $lang;
@@ -18,11 +21,11 @@ class FlyingFleetsTable
 		if ($FleetTotalC <> 0)
 		{
 			$FRessource   = "<table width=200>";
-			$FRessource  .= "<tr><td width=50% align=left><font color=white>".$lang['Metal']."<font></td><td width=50% align=right><font color=white>". Format::pretty_number($FleetRow['fleet_resource_metal']) ."<font></td></tr>";
-			$FRessource  .= "<tr><td width=50% align=left><font color=white>".$lang['Crystal']."<font></td><td width=50% align=right><font color=white>". Format::pretty_number($FleetRow['fleet_resource_crystal']) ."<font></td></tr>";
-			$FRessource  .= "<tr><td width=50% align=left><font color=white>".$lang['Deuterium']."<font></td><td width=50% align=right><font color=white>". Format::pretty_number($FleetRow['fleet_resource_deuterium']) ."<font></td></tr>";
+			$FRessource  .= "<tr><td width=50% align=left><font color=white>".$lang['Metal']."<font></td><td width=50% align=right><font color=white>".Format::pretty_number($FleetRow['fleet_resource_metal'])."<font></td></tr>";
+			$FRessource  .= "<tr><td width=50% align=left><font color=white>".$lang['Crystal']."<font></td><td width=50% align=right><font color=white>".Format::pretty_number($FleetRow['fleet_resource_crystal'])."<font></td></tr>";
+			$FRessource  .= "<tr><td width=50% align=left><font color=white>".$lang['Deuterium']."<font></td><td width=50% align=right><font color=white>".Format::pretty_number($FleetRow['fleet_resource_deuterium'])."<font></td></tr>";
 			if ($FleetRow['fleet_resource_darkmatter'] > 0)
-				$FRessource  .= "<tr><td width=50% align=left><font color=white>".$lang['Darkmatter']."<font></td><td width=50% align=right><font color=white>". Format::pretty_number($FleetRow['fleet_resource_darkmatter']) ."<font></td></tr>";
+				$FRessource  .= "<tr><td width=50% align=left><font color=white>".$lang['Darkmatter']."<font></td><td width=50% align=right><font color=white>".Format::pretty_number($FleetRow['fleet_resource_darkmatter'])."<font></td></tr>";
 			$FRessource  .= "</table>";
 		}
 		else
@@ -30,11 +33,11 @@ class FlyingFleetsTable
 
 		if ($FRessource <> "")
 		{
-			$MissionPopup  = "<a href='#' onmouseover=\"return overlib('". $FRessource ."');";
-			$MissionPopup .= "\" onmouseout=\"return nd();\" class=\"". $FleetType ."\">" . $Texte ."</a>";
+			$MissionPopup  = "<a href='#' onmouseover=\"return overlib('".$FRessource."');";
+			$MissionPopup .= "\" onmouseout=\"return nd();\" class=\"".$FleetType."\">".$Texte."</a>";
 		}
 		else
-			$MissionPopup  = $Texte ."";
+			$MissionPopup  = $Texte."";
 
 		return $MissionPopup;
 	}
@@ -46,7 +49,8 @@ class FlyingFleetsTable
 		$FleetRec     = explode(";", $FleetRow['fleet_array']);
 		$FleetPopup   = "<a href='#' onmouseover=\"return overlib('";
 		$FleetPopup  .= "<table width=200>";
-		if ( !defined('IN_ADMIN'))
+
+		if ( ! defined('IN_ADMIN'))
 		{
 			if ($user['spy_tech'] < 2 && $FleetRow['fleet_owner'] != $user['id'])
 			{
@@ -54,12 +58,12 @@ class FlyingFleetsTable
 			}
 			elseif ($user['spy_tech'] >= 2 && $user['spy_tech'] < 4 && $FleetRow['fleet_owner'] != $user['id'])
 			{
-				$FleetPopup .= "<tr><td width=50% align=left><font color=white>".$lang['cff_aproaching'].$FleetRow[fleet_amount].$lang['cff_ships']."<font></td></tr>";
+				$FleetPopup .= "<tr><td width=50% align=left><font color=white>".$lang['cff_aproaching'].$FleetRow['fleet_amount'].$lang['cff_ships']."<font></td></tr>";
 			}
 			else
 			{
 				if ($FleetRow['fleet_owner'] != $user['id'])
-					$FleetPopup .= "<tr><td width=100% align=left><font color=white>".$lang['cff_aproaching'].$FleetRow[fleet_amount].$lang['cff_ships'].":<font></td></tr>";
+					$FleetPopup .= "<tr><td width=100% align=left><font color=white>".$lang['cff_aproaching'].$FleetRow['fleet_amount'].$lang['cff_ships'].":<font></td></tr>";
 
 				foreach ($FleetRec as $Item => $Group)
 				{
@@ -67,13 +71,13 @@ class FlyingFleetsTable
 					{
 						$Ship    = explode(",", $Group);
 						if ($FleetRow['fleet_owner'] == $user['id'])
-							$FleetPopup .= "<tr><td width=50% align=left><font color=white>". $lang['tech'][$Ship[0]] .":<font></td><td width=50% align=right><font color=white>". Format::pretty_number($Ship[1]) ."<font></td></tr>";
+							$FleetPopup .= "<tr><td width=50% align=left><font color=white>".$lang['tech'][$Ship[0]].":<font></td><td width=50% align=right><font color=white>".Format::pretty_number($Ship[1])."<font></td></tr>";
 						elseif ($FleetRow['fleet_owner'] != $user['id'])
 						{
 							if ($user['spy_tech'] >= 4 && $user['spy_tech'] < 8)
-								$FleetPopup .= "<tr><td width=50% align=left><font color=white>". $lang['tech'][$Ship[0]] ."<font></td></tr>";
+								$FleetPopup .= "<tr><td width=50% align=left><font color=white>".$lang['tech'][$Ship[0]]."<font></td></tr>";
 							elseif ($user['spy_tech'] >= 8)
-								$FleetPopup .= "<tr><td width=50% align=left><font color=white>". $lang['tech'][$Ship[0]] .":<font></td><td width=50% align=right><font color=white>". Format::pretty_number($Ship[1]) ."<font></td></tr>";
+								$FleetPopup .= "<tr><td width=50% align=left><font color=white>".$lang['tech'][$Ship[0]].":<font></td><td width=50% align=right><font color=white>".Format::pretty_number($Ship[1])."<font></td></tr>";
 						}
 					}
 				}
@@ -86,13 +90,13 @@ class FlyingFleetsTable
 				if ($Group  != '')
 				{
 					$Ship    = explode(",", $Group);
-					$FleetPopup .= "<tr><td width=50% align=left><font color=white>". $lang['tech'][$Ship[0]] .":<font></td><td width=50% align=right><font color=white>". Format::pretty_number($Ship[1]) ."<font></td></tr>";
+					$FleetPopup .= "<tr><td width=50% align=left><font color=white>".$lang['tech'][$Ship[0]].":<font></td><td width=50% align=right><font color=white>".Format::pretty_number($Ship[1])."<font></td></tr>";
 				}
 			}
 		}
 
 		$FleetPopup  .= "</table>";
-		$FleetPopup  .= "');\" onmouseout=\"return nd();\" class=\"". $FleetType ."\">". $Texte ."</a>";
+		$FleetPopup  .= "');\" onmouseout=\"return nd();\" class=\"".$FleetType."\">".$Texte."</a>";
 
 
 
@@ -103,8 +107,8 @@ class FlyingFleetsTable
 	{
 		global $lang;
 
-		$PlayerName  = doquery ("SELECT `username` FROM {{table}} WHERE `id` = '". intval($FleetRow['fleet_owner'])."';", 'users', TRUE);
-		$Link  		 = $PlayerName['username']. " ";
+		$PlayerName  = doquery("SELECT `username` FROM `{{table}}` WHERE `id` = '".intval($FleetRow['fleet_owner'])."';", 'users', TRUE);
+		$Link  		 = $PlayerName['username']." ";
 		$Link 		.= "<a href=\"game.php?page=messages&mode=write&id=".$FleetRow['fleet_owner']."\">";
 		$Link 		.= "<img height=\"14\" width=\"12\" src=\"".DPATH."/img/m.png\" title=\"".$lang['write_message']."\" border=\"0\"></a>";
 
@@ -116,26 +120,26 @@ class FlyingFleetsTable
 	{
 		global $lang;
 
-		$FlyingFleets = doquery ("SELECT * FROM {{table}} ORDER BY `fleet_end_time` ASC;", 'fleets');
+		$FlyingFleets = doquery("SELECT * FROM `{{table}}` ORDER BY `fleet_end_time` ASC;", 'fleets');
 
-		while ( $CurrentFleet = $FlyingFleets->fetch_assoc())
+		while ($CurrentFleet = $FlyingFleets->fetch_assoc())
 		{
-			$FleetOwner       = doquery("SELECT `username` FROM {{table}} WHERE `id` = '". intval($CurrentFleet['fleet_owner']) ."';", 'users', TRUE);
-			$TargetOwner      = doquery("SELECT `username` FROM {{table}} WHERE `id` = '". intval($CurrentFleet['fleet_target_owner']) ."';", 'users', TRUE);
+			$FleetOwner       = doquery("SELECT `username` FROM `{{table}}` WHERE `id` = '".intval($CurrentFleet['fleet_owner'])."';", 'users', TRUE);
+			$TargetOwner      = doquery("SELECT `username` FROM `{{table}}` WHERE `id` = '".intval($CurrentFleet['fleet_target_owner'])."';", 'users', TRUE);
 
 			$Bloc['Id']       = $CurrentFleet['fleet_id'];
-			$Bloc['Mission']  = $this->CreateFleetPopupedMissionLink ( $CurrentFleet, $lang['type_mission'][ $CurrentFleet['fleet_mission'] ], '');
-			$Bloc['Mission'] .= "<br>". (($CurrentFleet['fleet_mess'] == 1) ? "R" : "A");
-			$Bloc['Fleet']    = $this->CreateFleetPopupedFleetLink ( $CurrentFleet, $lang['tech'][200], '');
-			$Bloc['St_Owner'] = "[". $CurrentFleet['fleet_owner'] ."]<br>". $FleetOwner['username'];
-			$Bloc['St_Posit'] = "[".$CurrentFleet['fleet_start_galaxy'] .":". $CurrentFleet['fleet_start_system'] .":". $CurrentFleet['fleet_start_planet'] ."]<br>". ( ($CurrentFleet['fleet_start_type'] == 1) ? "[P]": (($CurrentFleet['fleet_start_type'] == 2) ? "D" : "L"  )) ."";
+			$Bloc['Mission']  = $this->CreateFleetPopupedMissionLink ($CurrentFleet, $lang['type_mission'][$CurrentFleet['fleet_mission']], '');
+			$Bloc['Mission'] .= "<br>".(($CurrentFleet['fleet_mess'] == 1) ? "R" : "A");
+			$Bloc['Fleet']    = $this->CreateFleetPopupedFleetLink($CurrentFleet, $lang['tech'][200], '');
+			$Bloc['St_Owner'] = "[".$CurrentFleet['fleet_owner']."]<br>".$FleetOwner['username'];
+			$Bloc['St_Posit'] = "[".$CurrentFleet['fleet_start_galaxy'].":".$CurrentFleet['fleet_start_system'].":".$CurrentFleet['fleet_start_planet']."]<br>".(($CurrentFleet['fleet_start_type'] == 1) ? "[P]": (($CurrentFleet['fleet_start_type'] == 2) ? "D" : "L"))."";
 			$Bloc['St_Time']  = date('G:i:s d/n/Y', $CurrentFleet['fleet_start_time']);
 			if (is_array($TargetOwner))
-				$Bloc['En_Owner'] = "[". $CurrentFleet['fleet_target_owner'] ."]<br>". $TargetOwner['username'];
+				$Bloc['En_Owner'] = "[".$CurrentFleet['fleet_target_owner']."]<br>".$TargetOwner['username'];
 			else
 				$Bloc['En_Owner'] = "";
 
-			$Bloc['En_Posit'] = "[".$CurrentFleet['fleet_end_galaxy'] .":". $CurrentFleet['fleet_end_system'] .":". $CurrentFleet['fleet_end_planet'] ."]<br>". ( ($CurrentFleet['fleet_end_type'] == 1) ? "[P]": (($CurrentFleet['fleet_end_type'] == 2) ? "D" : "L"  )) ."";
+			$Bloc['En_Posit'] = "[".$CurrentFleet['fleet_end_galaxy'].":".$CurrentFleet['fleet_end_system'].":".$CurrentFleet['fleet_end_planet']."]<br>".(($CurrentFleet['fleet_end_type'] == 1) ? "[P]": (($CurrentFleet['fleet_end_type'] == 2) ? "D" : "L"))."";
 
 			if ($CurrentFleet['fleet_mission'] == 5)
 			{
@@ -164,7 +168,7 @@ class FlyingFleetsTable
 	{
 		global $lang;
 
-		$FleetStyle  = array (
+		$FleetStyle  = array(
 		1 => 'attack',
 		2 => 'federation',
 		3 => 'transport',
@@ -178,20 +182,20 @@ class FlyingFleetsTable
 		15 => 'transport',
 		);
 
-		$FleetStatus = array ( 0 => 'flight', 1 => 'holding', 2 => 'return');
+		$FleetStatus = array(0 => 'flight', 1 => 'holding', 2 => 'return');
 
-		if ($Owner )
+		if ($Owner)
 			$FleetPrefix = 'own';
 		else
 			$FleetPrefix = '';
 
-		$RowsTPL        = gettemplate ('overview/overview_fleet_event');
+		$RowsTPL        = gettemplate('overview/overview_fleet_event');
 		$MissionType    = $FleetRow['fleet_mission'];
-		$FleetContent   = $this->CreateFleetPopupedFleetLink($FleetRow, $lang['cff_flotte'], $FleetPrefix.$FleetStyle[$MissionType]);
+		$FleetContent   = $this->CreateFleetPopupedFleetLink($FleetRow, $lang['cff_fleet'], $FleetPrefix.$FleetStyle[$MissionType]);
 		$FleetCapacity  = $this->CreateFleetPopupedMissionLink($FleetRow, $lang['type_mission'][$MissionType], $FleetPrefix.$FleetStyle[$MissionType]);
-		$StartPlanet    = doquery("SELECT `name` FROM {{table}} WHERE `galaxy` = '".intval($FleetRow['fleet_start_galaxy'])."' AND `system` = '".intval($FleetRow['fleet_start_system'])."' AND `planet` = '".intval($FleetRow['fleet_start_planet'])."' AND `planet_type` = '".intval($FleetRow['fleet_start_type'])."';", 'planets', TRUE);
+		$StartPlanet    = doquery("SELECT `name` FROM `{{table}}` WHERE `galaxy` = '".intval($FleetRow['fleet_start_galaxy'])."' && `system` = '".intval($FleetRow['fleet_start_system'])."' && `planet` = '".intval($FleetRow['fleet_start_planet'])."' && `planet_type` = '".intval($FleetRow['fleet_start_type'])."';", 'planets', TRUE);
 		$StartType      = $FleetRow['fleet_start_type'];
-		$TargetPlanet   = doquery("SELECT `name` FROM {{table}} WHERE `galaxy` = '".intval($FleetRow['fleet_end_galaxy'])."' AND `system` = '".intval($FleetRow['fleet_end_system'])."' AND `planet` = '".intval($FleetRow['fleet_end_planet'])."' AND `planet_type` = '".intval($FleetRow['fleet_end_type'])."';", 'planets', TRUE);
+		$TargetPlanet   = doquery("SELECT `name` FROM `{{table}}` WHERE `galaxy` = '".intval($FleetRow['fleet_end_galaxy'])."' && `system` = '".intval($FleetRow['fleet_end_system'])."' && `planet` = '".intval($FleetRow['fleet_end_planet'])."' && `planet_type` = '".intval($FleetRow['fleet_end_type'])."';", 'planets', TRUE);
 		$TargetType     = $FleetRow['fleet_end_type'];
 
 		if ($Status != 2)
@@ -201,8 +205,8 @@ class FlyingFleetsTable
 			elseif ($StartType == 3)
 				$StartID  = $lang['cff_from_the_moon'];
 
-			$StartID .= $StartPlanet['name'] ." ";
-			$StartID .= GetStartAdressLink ( $FleetRow, $FleetPrefix . $FleetStyle[ $MissionType ]);
+			$StartID .= $StartPlanet['name']." ";
+			$StartID .= GetStartAdressLink($FleetRow, $FleetPrefix.$FleetStyle[$MissionType]);
 
 			if ($MissionType != 15)
 			{
@@ -217,8 +221,8 @@ class FlyingFleetsTable
 			else
 				$TargetID  = $lang['cff_the_position'];
 
-			$TargetID .= $TargetPlanet['name'] ." ";
-			$TargetID .= GetTargetAdressLink ( $FleetRow, $FleetPrefix . $FleetStyle[ $MissionType ]);
+			$TargetID .= $TargetPlanet['name']." ";
+			$TargetID .= GetTargetAdressLink($FleetRow, $FleetPrefix.$FleetStyle[$MissionType]);
 		}
 		else
 		{
@@ -227,10 +231,10 @@ class FlyingFleetsTable
 			elseif ($StartType == 3)
 				$StartID  = $lang['cff_the_moon'];
 
-			$StartID .= $StartPlanet['name'] ." ";
-			$StartID .= GetStartAdressLink ( $FleetRow, $FleetPrefix . $FleetStyle[ $MissionType ]);
+			$StartID .= $StartPlanet['name']." ";
+			$StartID .= GetStartAdressLink($FleetRow, $FleetPrefix.$FleetStyle[$MissionType]);
 
-			if ($MissionType != 15 )
+			if ($MissionType != 15)
 			{
 				if ($TargetType == 1)
 					$TargetID  = $lang['cff_from_planet'];
@@ -242,13 +246,13 @@ class FlyingFleetsTable
 			else
 				$TargetID  = $lang['cff_from_position'];
 
-			$TargetID .= $TargetPlanet['name'] ." ";
-			$TargetID .= GetTargetAdressLink ( $FleetRow, $FleetPrefix . $FleetStyle[ $MissionType ]);
+			$TargetID .= $TargetPlanet['name']." ";
+			$TargetID .= GetTargetAdressLink($FleetRow, $FleetPrefix.$FleetStyle[$MissionType]);
 		}
 
 		if ($MissionType == 10)
 		{
-			$EventString  = $lang['cff_missile_attack']." ( ".preg_replace("(503,)i","",$FleetRow["fleet_array"])." ) ";
+			$EventString  = $lang['cff_missile_attack']." (".preg_replace("(503,)i","", $FleetRow["fleet_array"]).") ";
 			$Time         = $FleetRow['fleet_start_time'];
 			$Rest         = $Time - time();
 			$EventString .= $lang['cff_from'];
@@ -269,7 +273,7 @@ class FlyingFleetsTable
 				$EventString  = $lang['cff_a'];
 				$EventString .= $FleetContent;
 				$EventString .= $lang['cff_of'];
-				$EventString .= $this->BuildHostileFleetPlayerLink ( $FleetRow);
+				$EventString .= $this->BuildHostileFleetPlayerLink($FleetRow);
 			}
 
 			if ($Status == 0)
@@ -304,13 +308,13 @@ class FlyingFleetsTable
 			$EventString .= $FleetCapacity;
 		}
 
-		$bloc['fleet_status'] = $FleetStatus[ $Status ];
+		$bloc['fleet_status'] = $FleetStatus[$Status];
 		$bloc['fleet_prefix'] = $FleetPrefix;
-		$bloc['fleet_style']  = $FleetStyle[ $MissionType ];
-		$bloc['fleet_javai']  = InsertJavaScriptChronoApplet ( $Label, $Record, $Rest, TRUE);
-		$bloc['fleet_order']  = $Label . $Record;
+		$bloc['fleet_style']  = $FleetStyle[$MissionType];
+		$bloc['fleet_javai']  = InsertJavaScriptChronoApplet($Label, $Record, $Rest, TRUE);
+		$bloc['fleet_order']  = $Label.$Record;
 		$bloc['fleet_descr']  = $EventString;
-		$bloc['fleet_javas']  = InsertJavaScriptChronoApplet ( $Label, $Record, $Rest, FALSE);
+		$bloc['fleet_javas']  = InsertJavaScriptChronoApplet($Label, $Record, $Rest, FALSE);
 
 		return parsetemplate($RowsTPL, $bloc);
 	}

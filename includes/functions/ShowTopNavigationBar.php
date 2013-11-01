@@ -1,21 +1,24 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @since	1.0.0
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com
+ * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-	function ShowTopNavigationBar ($CurrentUser, $CurrentPlanet)
+	function ShowTopNavigationBar($CurrentUser, $CurrentPlanet)
 	{
 		global $lang;
 
 		if ($CurrentUser['urlaubs_modus'] == 0)
 			PlanetResourceUpdate($CurrentUser, $CurrentPlanet, time());
 		else
-			doquery("UPDATE {{table}} SET `deuterium_sintetizer_porcent` = 0, `metal_mine_porcent` = 0, `crystal_mine_porcent` = 0 WHERE id_owner = ".intval($CurrentUser['id']),"planets");
+			doquery("UPDATE `{{table}}` SET `deuterium_sintetizer_porcent` = 0, `metal_mine_porcent` = 0, `crystal_mine_porcent` = 0 WHERE id_owner = ".intval($CurrentUser['id']),"planets");
 
 		$parse								= $lang;
 		$parse['dpath']						= DPATH;
@@ -23,20 +26,20 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 
 		if ($CurrentUser['urlaubs_modus'] && $CurrentUser['db_deaktjava'])
 		{
-			$parse['show_umod_notice']		.= $CurrentUser['db_deaktjava'] ? '<table width="100%" style="border: 2px solid red; text-align:center;background:transparent;"><tr style="background:transparent;"><td style="background:transparent;">' . $lang['tn_delete_mode'] . date('d.m.Y h:i:s',$CurrentUser['db_deaktjava'] + (60 * 60 * 24 * 7)).'</td></tr></table>' : '';
+			$parse['show_umod_notice']		.= $CurrentUser['db_deaktjava'] ? '<table width="100%" style="border: 2px solid red; text-align:center;background:transparent;"><tr style="background:transparent;"><td style="background:transparent;">'.$lang['tn_delete_mode'] . date('d.m.Y h:i:s', $CurrentUser['db_deaktjava'] + (60 * 60 * 24 * 7)).'</td></tr></table>' : '';
 		}
 		else
 		{
-			if ($CurrentUser['urlaubs_modus'] < time() )
+			if ($CurrentUser['urlaubs_modus'] < time())
 			{
-				$parse['show_umod_notice']	= $CurrentUser['urlaubs_modus'] ? '<table width="100%" style="border: 2px solid #1DF0F0; text-align:center;background:transparent;"><tr style="background:transparent;"><td style="background:transparent;">' . $lang['tn_vacation_mode_active'] .'</td></tr></table><br>' : '';
+				$parse['show_umod_notice']	= $CurrentUser['urlaubs_modus'] ? '<table width="100%" style="border: 2px solid #1DF0F0; text-align:center;background:transparent;"><tr style="background:transparent;"><td style="background:transparent;">'.$lang['tn_vacation_mode_active'].'</td></tr></table><br>' : '';
 			}
 			else
 			{
-				$parse['show_umod_notice']	= $CurrentUser['urlaubs_modus'] ? '<table width="100%" style="border: 2px solid #1DF0F0; text-align:center;background:transparent;"><tr style="background:transparent;"><td style="background:transparent;">' . $lang['tn_vacation_mode'] . date('d.m.Y h:i:s',$CurrentUser['urlaubs_until']).'</td></tr></table><br>' : '';
+				$parse['show_umod_notice']	= $CurrentUser['urlaubs_modus'] ? '<table width="100%" style="border: 2px solid #1DF0F0; text-align:center;background:transparent;"><tr style="background:transparent;"><td style="background:transparent;">'.$lang['tn_vacation_mode'] . date('d.m.Y h:i:s', $CurrentUser['urlaubs_until']).'</td></tr></table><br>' : '';
 			}
 
-			$parse['show_umod_notice']		.= $CurrentUser['db_deaktjava'] ? '<table width="100%" style="border: 2px solid red; text-align:center;background:transparent;"><tr style="background:transparent;"><td style="background:transparent;">' . $lang['tn_delete_mode'] . date('d.m.Y h:i:s',$CurrentUser['db_deaktjava'] + (60 * 60 * 24 * 7)).'</td></tr></table>' : '';
+			$parse['show_umod_notice']		.= $CurrentUser['db_deaktjava'] ? '<table width="100%" style="border: 2px solid red; text-align:center;background:transparent;"><tr style="background:transparent;"><td style="background:transparent;">'.$lang['tn_delete_mode'] . date('d.m.Y h:i:s', $CurrentUser['db_deaktjava'] + (60 * 60 * 24 * 7)).'</td></tr></table>' : '';
 		}
 
 		$parse['planetlist']			= '';
@@ -57,7 +60,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 				if ($CurPlanet['planet_type'] != 3)
 					$parse['planetlist'] .= "".$CurPlanet['name'];
 				else
-					$parse['planetlist'] .= "".$CurPlanet['name'] . " (" . $lang['fcm_moon'] . ")";
+					$parse['planetlist'] .= "".$CurPlanet['name']." (".$lang['fcm_moon'].")";
 				$parse['planetlist'] .= "&nbsp;[".$CurPlanet['galaxy'].":";
 				$parse['planetlist'] .= "".$CurPlanet['system'].":";
 				$parse['planetlist'] .= "".$CurPlanet['planet'];
@@ -65,7 +68,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			}
 		}
 
-		$energy = Format::pretty_number($CurrentPlanet["energy_max"] + $CurrentPlanet["energy_used"]) . "/" . Format::pretty_number($CurrentPlanet["energy_max"]);
+		$energy = Format::pretty_number($CurrentPlanet["energy_max"] + $CurrentPlanet["energy_used"])."/". Format::pretty_number($CurrentPlanet["energy_max"]);
 		// Energie
 		if (($CurrentPlanet["energy_max"] + $CurrentPlanet["energy_used"]) < 0) {
 			$parse['energy'] = Format::color_red($energy);

@@ -1,26 +1,29 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @since	1.0.0
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com
+ * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-function UpdatePlanetBatimentQueueList ( &$CurrentPlanet, &$CurrentUser ) {
+function UpdatePlanetBatimentQueueList (&$CurrentPlanet, &$CurrentUser) {
 
 	$RetValue = FALSE;
-	if ($CurrentPlanet['b_building_id'] != 0 )
+	if ($CurrentPlanet['b_building_id'])
 	{
-		while ( $CurrentPlanet['b_building_id'] != 0 )
+		while ($CurrentPlanet['b_building_id'])
 		{
-			if ($CurrentPlanet['b_building'] <= time() )
+			if ($CurrentPlanet['b_building'] <= time())
 			{
-				PlanetResourceUpdate ( $CurrentUser, $CurrentPlanet, $CurrentPlanet['b_building'], FALSE);
-				$IsDone = CheckPlanetBuildingQueue( $CurrentPlanet, $CurrentUser);
-				if ($IsDone )
-					SetNextQueueElementOnTop ( $CurrentPlanet, $CurrentUser);
+				PlanetResourceUpdate($CurrentUser, $CurrentPlanet, $CurrentPlanet['b_building'], FALSE);
+				$IsDone = CheckPlanetBuildingQueue($CurrentPlanet, $CurrentUser);
+				if ($IsDone)
+					SetNextQueueElementOnTop($CurrentPlanet, $CurrentUser);
 			}
 			else
 			{

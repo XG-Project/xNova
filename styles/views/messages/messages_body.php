@@ -22,7 +22,7 @@ new_win.focus();
 								{show_messages}
 							<tr>
 								<th colspan="4">
-									<input id="fullreports" name="fullreports" type="checkbox" />{mg_show_only_header_spy_reports}
+									<input id="fullreports" name="fullreports" type="checkbox" >{mg_show_only_header_spy_reports}
 								</th>
 							</tr>
 							<tr>

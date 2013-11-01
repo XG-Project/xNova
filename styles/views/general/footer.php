@@ -1,3 +1,4 @@
+{debug}
 <script type="text/javascript">
 messageboxHeight=0;
 errorboxHeight=0;

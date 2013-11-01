@@ -1,4 +1,4 @@
-<table width="100%" border="0px" style="background:url(./../styles/images/Adm/blank.png);">
+<table width="100%" border="0px" style="background-color:transparent;">
 {PAGES}
 </table>
 

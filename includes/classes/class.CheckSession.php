@@ -1,24 +1,27 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @since	1.0.0
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com
+ * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header ( 'location:../../' ));
+if ( ! defined('INSIDE')) die(header('location:../../'));
 
-class CheckSession
-{
+class CheckSession {
+
 	private function CheckCookies ($IsUserChecked)
 	{
 		global $lang, $db;
 
 		$UserRow = array();
 
-		include(XN_ROOT.'config.php');
+		require(XN_ROOT.'config.php');
 
-		$game_cookie	=	read_config('cookie_name');
+		$game_cookie	= read_config('cookie_name');
 
 		if (isset($_COOKIE[$game_cookie]))
 		{
@@ -37,19 +40,19 @@ class CheckSession
 
 			if ($UserResult->num_rows != 1)
 			{
-				message($lang['ccs_multiple_users'], XN_ROOT, 5, FALSE, FALSE);
+				message($lang['ccs_multiple_users'], GAMEURL, 5, FALSE, FALSE);
 			}
 
 			$UserRow	= $UserResult->fetch_array();
 
 			if ($UserRow["id"] != $TheCookie[0])
 			{
-				message($lang['ccs_other_user'], XN_ROOT, 5,  FALSE, FALSE);
+				message($lang['ccs_other_user'], GAMEURL, 5,  FALSE, FALSE);
 			}
 
 			if (md5($UserRow["password"]."--".$dbsettings["secretword"]) !== $TheCookie[2])
 			{
-				message($lang['css_different_password'], XN_ROOT, 5,  FALSE, FALSE);
+				message($lang['css_different_password'], GAMEURL, 5,  FALSE, FALSE);
 			}
 
 			$NextCookie = implode("/%/", $TheCookie);
@@ -64,16 +67,16 @@ class CheckSession
 			}
 
 			if ( ! $IsUserChecked)
-				setcookie ($game_cookie, $NextCookie, $ExpireTime, "/", "", 0);
+				setcookie($game_cookie, $NextCookie, $ExpireTime, "/", "", FALSE, TRUE);
 
-			$QryUpdateUser  = "UPDATE {{table}} SET ";
-			$QryUpdateUser .= "`onlinetime` = '". time() ."', ";
-			$QryUpdateUser .= "`current_page` = '". $db->real_escape_string(htmlspecialchars($_SERVER['REQUEST_URI'])) ."', ";
-			$QryUpdateUser .= "`user_lastip` = '". $db->real_escape_string(htmlspecialchars($_SERVER['REMOTE_ADDR'])) ."', ";
-			$QryUpdateUser .= "`user_agent` = '". $db->real_escape_string(htmlspecialchars($_SERVER['HTTP_USER_AGENT'])) ."' ";
+			$QryUpdateUser  = "UPDATE `{{table}}` SET ";
+			$QryUpdateUser .= "`onlinetime` = '".time()."', ";
+			$QryUpdateUser .= "`current_page` = '".$db->real_escape_string(htmlspecialchars($_SERVER['REQUEST_URI']))."', ";
+			$QryUpdateUser .= "`user_lastip` = '".$db->real_escape_string(htmlspecialchars($_SERVER['REMOTE_ADDR']))."', ";
+			$QryUpdateUser .= "`user_agent` = '".$db->real_escape_string(htmlspecialchars($_SERVER['HTTP_USER_AGENT']))."' ";
 			$QryUpdateUser .= "WHERE ";
-			$QryUpdateUser .= "`id` = '". intval($TheCookie[0]) ."' LIMIT 1;";
-			doquery( $QryUpdateUser, 'users');
+			$QryUpdateUser .= "`id` = '".intval($TheCookie[0])."' LIMIT 1;";
+			doquery($QryUpdateUser, 'users');
 
 			$IsUserChecked = TRUE;
 		}
@@ -93,7 +96,7 @@ class CheckSession
 		$Result        = $this->CheckCookies($IsUserChecked);
 		$IsUserChecked = $Result['state'];
 
-		if ($Result['record'] != FALSE)
+		if ($Result['record'])
 		{
 			$user = $Result['record'];
 

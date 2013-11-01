@@ -1,115 +1,57 @@
-<style>table.lic{background:url(../styles/images/Adm/blank.png);border:2px {color} solid;}
-th.lic{border:0px;}</style>
-<body>
-<h1>{ow_title}</h1>
-<table width="90%" class="lic">
-<tr>
-	<th class="lic">{error_message}</th>
-</tr>
-</table>
+<section class="page">
+	<h2>{ow_title}</h2>
+	<section class="content errors {error_class}"><span>{error_message}</span></section>
 
-<br>
-<table width="80%">
-	<tr>
-		<td class="c">{ow_overview}</td>
-	</tr>
-	<tr>
-		<th height="50px"><div align="justify">{ow_welcome_text}</div></th>
-	</tr>
-	<tr>
-		<td class="c">{ow_support}</td>
-	</tr>
-	<tr>
-		<th>
-			<br>
-			<a href="https://github.com/Razican/xNova/issues" target="_blank">Reporte de bugs (Bug Report)</a>
-			<br>
-			<a href="http://www.razican.com/" target="_blank">El Blog de Razican</a>
-			<br>
-			<br>
-		</th>
-	</tr>
-	<tr>
-	  <th class="lic"><h3>{ow_principal_contributors}</h3></th>
-	</tr>
-	<tr>
-	  <th class="lic" align="center">
-		<table width="100%" border="0">
-		  <tr>
-			<td>
-				shoghicp (Sistema de bots)<br>
-				Think (Fix varios)
-			</td>
-		  </tr>
-		</table>
-	  </th>
-	</tr>
-	<tr>
-		<td class="c">{ow_credits}</td>
-	</tr>
-	<tr>
-		<th align="center">
-			<table width="100%">
-				<tr>
-				  <th class="lic"><h3>{ow_proyect_leader}</h3></th>
-				</tr>
-				<tr>
-				  <th class="lic"><h3><font color="red">Razican</font></h3></th>
-				</tr>
-			</table>
-		</th>
-	</tr>
-	<tr>
-		<td class="c">XG Proyect</td>
-	</tr>
-	<tr>
-		<th align="center">
-			<table width="100%">
-				<tr>
-				  <th class="lic"><h3>{ow_proyect_leader}</h3></th>
-				</tr>
-				<tr>
-				  <th class="lic"><h3><font color="red">lucky</font></h3></th>
-				</tr>
-				<tr>
-				  <th class="lic"><h3>{ow_principal_contributors}</h3></th>
-				</tr>
-				<tr>
-				  <th class="lic" align="center">
-					<table width="100%" border="0">
-					  <tr>
-						<td>
-							angelus_ira (Estadísticas - optimización general)<br>
-							Calzon (Fix varios)<br>
-							cyberrichy (SAC's)<br>
-							jstar (Fix varios - optimización general)<br>
-							Neko (Panel administrativo - Fix varios)<br>
-							PowerMaster (Fix varios)<br>
-							Think (Fix varios)<br>
-							zorro2666 (Fix varios)
-						</td>
-					  </tr>
-					</table>
-				  </th>
-				</tr>
-				<tr>
-					<th class="lic"><h3>{ow_other_contributors}</h3></th>
-				</tr>
-				<tr>
-				  <th class="lic" align="center">
-					<div align="justify">
-					adri93, Alberto14, Anghelito, Arali, edering, Green, jtsamper, Kloud, medel, MSW, Neurus, Nickolay, Pada, privatethedawn, Tarta, thyphoon, tomtom, Tonique, Trojan, Saint, shoghicp, slaver7, war4head, zorro2666
-					</div>
-				  </th>
-				</tr>
-				<tr>
-				  <th class="lic"><h3>{ow_special_thanks}</h3></th>
-				</tr>
-				<tr>
-					<th class="lic">Raito<br>Chlorel<br>e-Zobar<br>Flousedid<br><br></th>
-				</tr>
-			</table>
-		</th>
-	</tr>
-</table>
-</body>
+	<section class="content-table">
+		<h3>{ow_overview}</h3>
+		<div class="content">{ow_welcome_text}</div>
+
+		<h3>{ow_support}</h3>
+		<div class="content">
+			<span><a href="https://github.com/Razican/xNova/issues" target="_blank">{ow_bug_report}</a></span>
+			<span><a href="http://www.razican.com/" target="_blank">El Blog de Razican</a></span>
+		</div>
+
+		<h3>{ow_credits}</h3>
+		<div class="content">
+			<span>{ow_proyect_leader}</span>
+			<span class="leader">Razican</span>
+		</div>
+
+		<h3>{ow_principal_contributors}</h3>
+		<div class="content">
+			<span>shoghicp (Sistema de bots)</span>
+			<span>Think (Fix varios)</span>
+		</div>
+	</section>
+
+	<section class="content-table">
+		<h3>XG Proyect</h3>
+		<div class="content">
+			<span>{ow_proyect_leader}</span>
+			<span class="leader">lucky</span>
+		</div>
+
+		<h3>{ow_principal_contributors}</h3>
+		<div class="content">
+			<span>angelus_ira (Estadísticas - optimización general)</span>
+			<span>Calzon (Fix varios)</span>
+			<span>cyberrichy (SAC's)</span>
+			<span>jstar (Fix varios - optimización general)</span>
+			<span>Neko (Panel administrativo - Fix varios)</span>
+			<span>PowerMaster (Fix varios)</span>
+			<span>Think (Fix varios)</span>
+			<span>zorro2666 (Fix varios)</span>
+		</div>
+
+		<h3>{ow_other_contributors}</h3>
+		<div class="content">
+			<span>adri93, Alberto14, Anghelito, Arali, edering, Green, jtsamper, Kloud, medel, MSW, Neurus, Nickolay, Pada, privatethedawn, Tarta, thyphoon, tomtom, Tonique, Trojan, Saint, shoghicp, slaver7, war4head, zorro2666</span>
+		</div>
+
+		<h3>{ow_special_thanks}</h3>
+		<div class="content">
+			<span>Raito, Chlorel, e-Zobar, Flousedid</span>
+		</div>
+	</section>
+</section>

@@ -1,19 +1,22 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @since	1.0.0
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com
+ * @author	Razican <admin@razican.com>
  */
 
-define('INSIDE'  ,  TRUE);
-define('INSTALL' , FALSE);
-define('LOGIN'   ,  TRUE);
-define('XN_ROOT',	'./');
+define('INSIDE', TRUE);
+define('INSTALL', FALSE);
+define('LOGIN', TRUE);
+define('XN_ROOT', realpath('./').'/');
 
 $InLogin = TRUE;
 
-include(XN_ROOT.'global.php');
+require(XN_ROOT.'global.php');
 
 includeLang('PUBLIC');
 
@@ -43,7 +46,7 @@ function mymail($to, $title, $body, $from = '')
 	$head = '';
 	$head .= "Content-Type: text/html \r\n";
 	$head  .= "charset: UTF-8 \r\n";
-	$head .= "Date: " . date('r') . " \r\n";
+	$head .= "Date: ". date('r')." \r\n";
 	$head .= "Return-Path: $rp \r\n";
 	$head .= "From: $from \r\n";
 	$head .= "Sender: $from \r\n";
@@ -51,13 +54,13 @@ function mymail($to, $title, $body, $from = '')
 	$head .= "Organization: $org \r\n";
 	$head .= "X-Sender: $from \r\n";
 	$head .= "X-Priority: 3 \r\n";
-	$body = str_replace("\r\n" , "\n", $body);
-	$body = str_replace("\n" , "\r\n", $body);
+	$body = str_replace("\r\n", "\n", $body);
+	$body = str_replace("\n", "\r\n", $body);
 
 	return mail($to, $title, $body, $head);
 }
 
-if (read_config('max_users') <= read_config('users_amount')) die(message($lang['max_users'], '/', '3', FALSE, FALSE));
+if (read_config('max_users') != 0 && read_config('max_users') <= read_config('users_amount')) die(message($lang['max_users'], '/', '3', FALSE, FALSE));
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
@@ -96,23 +99,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$errors++;
 	}
 
-	$ExistUser = doquery("SELECT `username` FROM {{table}} WHERE `username` = '" . $db->real_escape_string($_POST['character']) . "' LIMIT 1;", 'users', TRUE);
+	$ExistUser = doquery("SELECT `username` FROM `{{table}}` WHERE `username` = '".$db->real_escape_string($_POST['character'])."' LIMIT 1;", 'users', TRUE);
 	if ($ExistUser)
 	{
 		$errorlist .= $lang['user_already_exists'];
 		$errors++;
 	}
 
-	$ExistMail = doquery("SELECT `email` FROM {{table}} WHERE `email` = '" . $db->real_escape_string($_POST['email']) . "' LIMIT 1;", 'users', TRUE);
+	$ExistMail = doquery("SELECT `email` FROM `{{table}}` WHERE `email` = '".$db->real_escape_string($_POST['email'])."' LIMIT 1;", 'users', TRUE);
 	if ($ExistMail)
 	{
 		$errorlist .= $lang['mail_already_exists'];
 		$errors++;
 	}
 
-	if ($errors != 0)
+	if ($errors)
 	{
-		message ($errorlist, "reg.php", "3", FALSE, FALSE);
+		message($errorlist, "reg.php", "3", FALSE, FALSE);
 	}
 	else
 	{
@@ -121,25 +124,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$UserEmail 	= $_POST['email'];
 		$sha1newpass = sha1($newpass);
 
-		$QryInsertUser = "INSERT INTO {{table}} SET ";
-		$QryInsertUser .= "`username` = '" . $db->real_escape_string(strip_tags($UserName)) . "', ";
-		$QryInsertUser .= "`email` = '" . $db->real_escape_string($UserEmail) . "', ";
-		$QryInsertUser .= "`email_2` = '" . $db->real_escape_string($UserEmail) . "', ";
-		$QryInsertUser .= "`ip_at_reg` = '" . $_SERVER["REMOTE_ADDR"] . "', ";
+		$QryInsertUser = "INSERT INTO `{{table}}` SET ";
+		$QryInsertUser .= "`username` = '".$db->real_escape_string(strip_tags($UserName))."', ";
+		$QryInsertUser .= "`email` = '".$db->real_escape_string($UserEmail)."', ";
+		$QryInsertUser .= "`email_2` = '".$db->real_escape_string($UserEmail)."', ";
+		$QryInsertUser .= "`ip_at_reg` = '".$_SERVER["REMOTE_ADDR"]."', ";
 		$QryInsertAdm  .= "`user_agent` = '', ";
 		$QryInsertUser .= "`id_planet` = '0', ";
-		$QryInsertUser .= "`register_time` = '" . time() . "', ";
+		$QryInsertUser .= "`register_time` = '". time()."', ";
 
-		$QryInsertUser .= "`password`='" . $sha1newpass . "';";
+		$QryInsertUser .= "`password`='".$sha1newpass."';";
 		doquery($QryInsertUser, 'users');
 
-		$NewUser = doquery("SELECT `id` FROM {{table}} WHERE `username` = '" . $db->real_escape_string($_POST['character']) . "' LIMIT 1;", 'users', TRUE);
+		$NewUser = doquery("SELECT `id` FROM `{{table}}` WHERE `username` = '".$db->real_escape_string($_POST['character'])."' LIMIT 1;", 'users', TRUE);
 
-		$LastSettedGalaxyPos = read_config ( 'lastsettedgalaxypos');
-		$LastSettedSystemPos = read_config ( 'lastsettedsystempos');
-		$LastSettedPlanetPos = read_config ( 'lastsettedplanetpos');
+		$LastSettedGalaxyPos = read_config('lastsettedgalaxypos');
+		$LastSettedSystemPos = read_config('lastsettedsystempos');
+		$LastSettedPlanetPos = read_config('lastsettedplanetpos');
 
-		while ( !isset($newpos_checked))
+		while ( ! isset($newpos_checked))
 		{
 			for ($Galaxy = $LastSettedGalaxyPos; $Galaxy <= MAX_GALAXY_IN_WORLD; $Galaxy++)
 			{
@@ -147,7 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 				{
 					for ($Posit = $LastSettedPlanetPos; $Posit <= 4; $Posit++)
 					{
-						$Planet = round (rand (4, 12));
+						$Planet = round(rand(4, 12));
 
 						switch ($LastSettedPlanetPos)
 						{
@@ -181,11 +184,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 			}
 
 			$QrySelectGalaxy = "SELECT * ";
-			$QrySelectGalaxy .= "FROM {{table}} ";
+			$QrySelectGalaxy .= "FROM `{{table}}` ";
 			$QrySelectGalaxy .= "WHERE ";
-			$QrySelectGalaxy .= "`galaxy` = '" . $Galaxy . "' AND ";
-			$QrySelectGalaxy .= "`system` = '" . $System . "' AND ";
-			$QrySelectGalaxy .= "`planet` = '" . $Planet . "' ";
+			$QrySelectGalaxy .= "`galaxy` = '".$Galaxy."' && ";
+			$QrySelectGalaxy .= "`system` = '".$System."' && ";
+			$QrySelectGalaxy .= "`planet` = '".$Planet."' ";
 			$QrySelectGalaxy .= "LIMIT 1;";
 			$GalaxyRow = doquery($QrySelectGalaxy, 'galaxy', TRUE);
 
@@ -199,21 +202,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 			}
 			if ($newpos_checked)
 			{
-				update_config ( 'lastsettedgalaxypos' , $LastSettedGalaxyPos);
-				update_config ( 'lastsettedsystempos' , $LastSettedSystemPos);
-				update_config ( 'lastsettedplanetpos' , $LastSettedPlanetPos);
+				update_config('lastsettedgalaxypos', $LastSettedGalaxyPos);
+				update_config('lastsettedsystempos', $LastSettedSystemPos);
+				update_config('lastsettedplanetpos', $LastSettedPlanetPos);
 			}
 		}
-		$PlanetID = doquery("SELECT `id` FROM {{table}} WHERE `id_owner` = '". $NewUser['id'] ."' LIMIT 1;" , 'planets', TRUE);
+		$PlanetID = doquery("SELECT `id` FROM `{{table}}` WHERE `id_owner` = '".$NewUser['id']."' LIMIT 1;", 'planets', TRUE);
 
-		$QryUpdateUser = "UPDATE {{table}} SET ";
-		$QryUpdateUser .= "`id_planet` = '" . $PlanetID['id'] . "', ";
-		$QryUpdateUser .= "`current_planet` = '" . $PlanetID['id'] . "', ";
-		$QryUpdateUser .= "`galaxy` = '" . $Galaxy . "', ";
-		$QryUpdateUser .= "`system` = '" . $System . "', ";
-		$QryUpdateUser .= "`planet` = '" . $Planet . "' ";
+		$QryUpdateUser = "UPDATE `{{table}}` SET ";
+		$QryUpdateUser .= "`id_planet` = '".$PlanetID['id']."', ";
+		$QryUpdateUser .= "`current_planet` = '".$PlanetID['id']."', ";
+		$QryUpdateUser .= "`galaxy` = '".$Galaxy."', ";
+		$QryUpdateUser .= "`system` = '".$System."', ";
+		$QryUpdateUser .= "`planet` = '".$Planet."' ";
 		$QryUpdateUser .= "WHERE ";
-		$QryUpdateUser .= "`id` = '" . $NewUser['id'] . "' ";
+		$QryUpdateUser .= "`id` = '".$NewUser['id']."' ";
 		$QryUpdateUser .= "LIMIT 1;";
 		doquery($QryUpdateUser, 'users');
 
@@ -223,23 +226,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$message 	= $lang['welcome_message_content'];
 		SendSimpleMessage($NewUser['id'], $sender, $Time, 1, $from, $Subject, $message);
 
-		update_config ( 'users_amount' , read_config ( 'users_amount' ) + 1);
+		update_config('users_amount', read_config('users_amount') + 1);
 
-		@include('config.php');
-		$cookie = $NewUser['id'] . "/%/" . $UserName . "/%/" . md5($sha1newpass . "--" . $dbsettings["secretword"]) . "/%/" . 0;
-		setcookie(read_config ( 'cookie_name' ), $cookie, 0, "/", "", 0);
+		require('config.php');
+		$cookie = $NewUser['id']."/%/".$UserName."/%/". md5($sha1newpass."--".$dbsettings["secretword"])."/%/". 0;
+		setcookie(read_config('cookie_name'), $cookie, 0, "/", "", FALSE, TRUE);
 
 		unset($dbsettings);
 
-		header("location:game.php?page=overview");
+		header("Location: ".GAMEURL."game.php?page=overview");
 	}
 }
 else
 {
-	$parse['year']		   = date ( "Y");
+	$parse['year']		   = date("Y");
 	$parse['version']	   = VERSION;
-	$parse['servername']   = read_config ( 'game_name');
-	$parse['forum_url']    = read_config ( 'forum_url');
+	$parse['servername']   = read_config('game_name');
+	$parse['forum_url']    = read_config('forum_url');
+
 	display(parsetemplate(gettemplate('public/registry_form'), $parse), FALSE, '',FALSE, FALSE);
 }
 ?>

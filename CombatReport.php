@@ -1,21 +1,24 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @since	1.0.0
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com
+ * @author	Razican <admin@razican.com>
  */
 
-define('INSIDE'  , TRUE);
-define('INSTALL' , FALSE);
-define('XN_ROOT',	'./');
+define('INSIDE', TRUE);
+define('INSTALL', FALSE);
+define('XN_ROOT', realpath('./').'/');
 
-include(XN_ROOT.'global.php');
+require(XN_ROOT.'global.php');
 
 includeLang('INGAME');
 $Page .= "<div id=\"content\">";
 
-$raportrow 	= doquery("SELECT * FROM {{table}} WHERE `rid` = '".($db->real_escape_string($_GET["raport"]))."';", 'rw', TRUE);
+$raportrow 	= doquery("SELECT * FROM `{{table}}` WHERE `rid` = '".($db->real_escape_string($_GET["raport"]))."';", 'rw', TRUE);
 
 
 $owners	= explode(",", $raportrow["owners"]);

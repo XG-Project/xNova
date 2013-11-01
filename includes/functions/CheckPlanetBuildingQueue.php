@@ -1,22 +1,25 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @since	1.0.0
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com
+ * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-	function CheckPlanetBuildingQueue ( &$CurrentPlanet, &$CurrentUser )
+	function CheckPlanetBuildingQueue (&$CurrentPlanet, &$CurrentUser)
 	{
 		global $resource;
 
 		$RetValue     = FALSE;
-		if ($CurrentPlanet['b_building_id'] != 0)
+		if ($CurrentPlanet['b_building_id'])
 		{
 			$CurrentQueue  = $CurrentPlanet['b_building_id'];
-			if ($CurrentQueue != 0)
+			if ($CurrentQueue)
 			{
 				$QueueArray    = explode(";", $CurrentQueue);
 				$ActualCount   = count($QueueArray);
@@ -28,11 +31,11 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			$Element      = $BuildArray[0];
 			array_shift($QueueArray);
 
-			$ForDestroy = $BuildMode == 'destroy';
+			$ForDestroy = $BuildMode === 'destroy';
 
 			if ($BuildEndTime <= time())
 			{
-				$Needed                        = GetBuildingPrice ($CurrentUser, $CurrentPlanet, $Element, TRUE, $ForDestroy);
+				$Needed                        = GetBuildingPrice($CurrentUser, $CurrentPlanet, $Element, TRUE, $ForDestroy);
 				$Units                         = $Needed['metal'] + $Needed['crystal'] + $Needed['deuterium'];
 
 				$current = intval($CurrentPlanet['field_current']);
@@ -46,9 +49,9 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 						$max     += FIELDS_BY_MOONBASIS_LEVEL;
 						$CurrentPlanet[$resource[$Element]]++;
 					}
-					elseif ($Element != 0)
+					elseif ($Element)
 					{
-						if ($ForDestroy == FALSE)
+						if ( ! $ForDestroy)
 						{
 							$current += 1;
 							$CurrentPlanet[$resource[$Element]]++;
@@ -62,7 +65,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 				}
 				elseif ($CurrentPlanet['planet_type'] == 1)
 				{
-					if ($ForDestroy == FALSE)
+					if ( ! $ForDestroy)
 					{
 						$current += 1;
 						$CurrentPlanet[$resource[$Element]]++;
@@ -73,7 +76,7 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 						$CurrentPlanet[$resource[$Element]]--;
 					}
 				}
-				if (count($QueueArray ) == 0)
+				if (count($QueueArray) == 0)
 					$NewQueue = 0;
 				else
 					$NewQueue = implode(";", $QueueArray);
@@ -84,15 +87,15 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 				$CurrentPlanet['field_current'] = $current;
 				$CurrentPlanet['field_max']     = $max;
 
-				$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+				$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
 				$QryUpdatePlanet .= "`".$resource[$Element]."` = '".$CurrentPlanet[$resource[$Element]]."', ";
-				$QryUpdatePlanet .= "`b_building` = '". $CurrentPlanet['b_building'] ."' , ";
-				$QryUpdatePlanet .= "`b_building_id` = '". $CurrentPlanet['b_building_id'] ."' , ";
-				$QryUpdatePlanet .= "`field_current` = '" . $CurrentPlanet['field_current'] . "', ";
-				$QryUpdatePlanet .= "`field_max` = '" . $CurrentPlanet['field_max'] . "' ";
+				$QryUpdatePlanet .= "`b_building` = '".$CurrentPlanet['b_building']."', ";
+				$QryUpdatePlanet .= "`b_building_id` = '".$CurrentPlanet['b_building_id']."', ";
+				$QryUpdatePlanet .= "`field_current` = '".$CurrentPlanet['field_current']."', ";
+				$QryUpdatePlanet .= "`field_max` = '".$CurrentPlanet['field_max']."' ";
 				$QryUpdatePlanet .= "WHERE ";
-				$QryUpdatePlanet .= "`id` = '" . $CurrentPlanet['id'] . "';";
-				doquery( $QryUpdatePlanet, 'planets');
+				$QryUpdatePlanet .= "`id` = '".$CurrentPlanet['id']."';";
+				doquery($QryUpdatePlanet, 'planets');
 
 				$RetValue = TRUE;
 			}
@@ -104,12 +107,12 @@ if ( ! defined('INSIDE')) die(header("location:../../"));
 			$CurrentPlanet['b_building']    = 0;
 			$CurrentPlanet['b_building_id'] = 0;
 
-			$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-			$QryUpdatePlanet .= "`b_building` = '". $CurrentPlanet['b_building'] ."' , ";
-			$QryUpdatePlanet .= "`b_building_id` = '". $CurrentPlanet['b_building_id'] ."' ";
+			$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
+			$QryUpdatePlanet .= "`b_building` = '".$CurrentPlanet['b_building']."', ";
+			$QryUpdatePlanet .= "`b_building_id` = '".$CurrentPlanet['b_building_id']."' ";
 			$QryUpdatePlanet .= "WHERE ";
-			$QryUpdatePlanet .= "`id` = '" . $CurrentPlanet['id'] . "';";
-			doquery( $QryUpdatePlanet, 'planets');
+			$QryUpdatePlanet .= "`id` = '".$CurrentPlanet['id']."';";
+			doquery($QryUpdatePlanet, 'planets');
 
 			$RetValue = FALSE;
 		}

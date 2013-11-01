@@ -1,18 +1,21 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @since	1.0.0
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com
+ * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 class ShowResearchPage
 {
-	private function CheckLabSettingsInQueue ($CurrentPlanet)
+	private function CheckLabSettingsInQueue($CurrentPlanet)
 	{
-		if ($CurrentPlanet['b_building_id'] != 0)
+		if ($CurrentPlanet['b_building_id'])
 		{
 			$CurrentQueue = $CurrentPlanet['b_building_id'];
 			if (strpos ($CurrentQueue, ";"))
@@ -35,7 +38,7 @@ class ShowResearchPage
 				$CurrentBuilding = $CurrentQueue;
 			}
 
-			if ($CurrentBuilding == 31 or $Element == 31) // ADDED (or $Element == 31) BY LUCKY
+			if ($CurrentBuilding == 31 OR $Element == 31) // ADDED (or $Element == 31) BY LUCKY
 			{
 				$return = FALSE;
 			}
@@ -52,19 +55,19 @@ class ShowResearchPage
 		return $return;
 	}
 
-	public function __construct (&$CurrentPlanet, $CurrentUser, $InResearch, $ThePlanet)
+	public function __construct(&$CurrentPlanet, $CurrentUser, $InResearch, $ThePlanet)
 	{
 		global $lang, $resource, $reslist, $_GET;
 
-		include_once(XN_ROOT.'includes/functions/IsTechnologieAccessible.php');
-		include_once(XN_ROOT.'includes/functions/GetElementPrice.php');
+		require_once(XN_ROOT.'includes/functions/IsTechnologieAccessible.php');
+		require_once(XN_ROOT.'includes/functions/GetElementPrice.php');
 
 		$PageParse			= $lang;
 		$NoResearchMessage 	= "";
 		$bContinue         	= TRUE;
 		$intergal_lab 		= $CurrentUser[$resource[123]];
 		$limite 			= $intergal_lab+1;
-		$inves 				= doquery("SELECT laboratory FROM {{table}} WHERE id_owner='".intval($CurrentUser['id'])."' ORDER BY laboratory DESC LIMIT ".$limite."", 'planets');
+		$inves 				= doquery("SELECT laboratory FROM `{{table}}` WHERE id_owner='".intval($CurrentUser['id'])."' ORDER BY laboratory DESC LIMIT ".$limite."", 'planets');
 		$lablevel 			= 0;
 
 		while ($row = $inves->fetch_array())
@@ -86,20 +89,20 @@ class ShowResearchPage
 			$TheCommand 	= $_GET['cmd'];
 			$Techno     	= intval($_GET['tech']);
 
-			if ( isset ($Techno) )
+			if (isset($Techno))
 			{
-				if ( !strstr ( $Techno, ",") && !strchr ( $Techno, " ") &&
-					!strchr ( $Techno, "+") && !strchr ( $Techno, "*") &&
-					!strchr ( $Techno, "~") && !strchr ( $Techno, "=") &&
-					!strchr ( $Techno, ";") && !strchr ( $Techno, "'") &&
-					!strchr ( $Techno, "#") && !strchr ( $Techno, "-") &&
-					!strchr ( $Techno, "_") && !strchr ( $Techno, "[") &&
-					!strchr ( $Techno, "]") && !strchr ( $Techno, ".") &&
-					!strchr ( $Techno, ":"))
+				if ( ! strstr ($Techno, ",") && ! strchr($Techno, " ") &&
+					! strchr($Techno, "+") && ! strchr($Techno, "*") &&
+					! strchr($Techno, "~") && ! strchr($Techno, "=") &&
+					! strchr($Techno, ";") && ! strchr($Techno, "'") &&
+					! strchr($Techno, "#") && ! strchr($Techno, "-") &&
+					! strchr($Techno, "_") && ! strchr($Techno, "[") &&
+					! strchr($Techno, "]") && ! strchr($Techno, ".") &&
+					! strchr($Techno, ":"))
 				{
-					if ( in_array($Techno, $reslist['tech']) )
+					if (in_array($Techno, $reslist['tech']))
 					{
-						if ( is_array ($ThePlanet) )
+						if (is_array($ThePlanet))
 						{
 							$WorkingPlanet = $ThePlanet;
 						}
@@ -141,25 +144,25 @@ class ShowResearchPage
 						}
 						if ($UpdateData)
 						{
-							$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-							$QryUpdatePlanet .= "`b_tech_id` = '".   $WorkingPlanet['b_tech_id']   ."', ";
-							$QryUpdatePlanet .= "`b_tech` = '".      $WorkingPlanet['b_tech']      ."', ";
-							$QryUpdatePlanet .= "`metal` = '".       $WorkingPlanet['metal']       ."', ";
-							$QryUpdatePlanet .= "`crystal` = '".     $WorkingPlanet['crystal']     ."', ";
-							$QryUpdatePlanet .= "`deuterium` = '".   $WorkingPlanet['deuterium']   ."' ";
+							$QryUpdatePlanet  = "UPDATE `{{table}}` SET ";
+							$QryUpdatePlanet .= "`b_tech_id` = '".  $WorkingPlanet['b_tech_id']  ."', ";
+							$QryUpdatePlanet .= "`b_tech` = '".     $WorkingPlanet['b_tech']     ."', ";
+							$QryUpdatePlanet .= "`metal` = '".      $WorkingPlanet['metal']      ."', ";
+							$QryUpdatePlanet .= "`crystal` = '".    $WorkingPlanet['crystal']    ."', ";
+							$QryUpdatePlanet .= "`deuterium` = '".  $WorkingPlanet['deuterium']  ."' ";
 							$QryUpdatePlanet .= "WHERE ";
-							$QryUpdatePlanet .= "`id` = '".          $WorkingPlanet['id']          ."';";
-							doquery( $QryUpdatePlanet, 'planets');
+							$QryUpdatePlanet .= "`id` = '".         $WorkingPlanet['id']         ."';";
+							doquery($QryUpdatePlanet, 'planets');
 
-							$QryUpdateUser  = "UPDATE {{table}} SET ";
-							$QryUpdateUser .= "`b_tech_planet` = '". $CurrentUser['b_tech_planet'] ."' ";
+							$QryUpdateUser  = "UPDATE `{{table}}` SET ";
+							$QryUpdateUser .= "`b_tech_planet` = '".$CurrentUser['b_tech_planet']."' ";
 							$QryUpdateUser .= "WHERE ";
-							$QryUpdateUser .= "`id` = '".            $CurrentUser['id']            ."';";
-							doquery( $QryUpdateUser, 'users');
+							$QryUpdateUser .= "`id` = '".           $CurrentUser['id']           ."';";
+							doquery($QryUpdateUser, 'users');
 						}
 
 						$CurrentPlanet = $WorkingPlanet;
-						if (is_array ($ThePlanet))
+						if (is_array($ThePlanet))
 						{
 							$ThePlanet     = $WorkingPlanet;
 						}
@@ -175,14 +178,14 @@ class ShowResearchPage
 					}
 				}
 				else
-					die(header("location:game.php?page=buildings&mode=research"));
+					die(header("Location: ".GAMEURL."game.php?page=buildings&mode=research"));
 			}
 			else
 			{
 				$bContinue = FALSE;
 			}
 
-			header ("Location: game.php?page=buildings&mode=research");
+			header("Location: ".GAMEURL."game.php?page=buildings&mode=research");
 
 		}
 
@@ -193,7 +196,7 @@ class ShowResearchPage
 		{
 			if ($Tech > 105 && $Tech <= 199)
 			{
-				if ( IsTechnologieAccessible($CurrentUser, $CurrentPlanet, $Tech))
+				if (IsTechnologieAccessible($CurrentUser, $CurrentPlanet, $Tech))
 				{
 					$RowParse['dpath']       = DPATH;
 					$RowParse['tech_id']     = $Tech;
@@ -201,16 +204,16 @@ class ShowResearchPage
 
 					if ($Tech == 106)
 					{
-						$RowParse['tech_level']  = ($building_level == 0 ) ? "" : "(". $lang['bd_lvl'] . " ".$building_level .")" ;
-						$RowParse['tech_level']  .= ($CurrentUser['rpg_technocrate'] == 0) ? "" : "<strong><font color=\"lime\"> +" . ($CurrentUser['rpg_technocrate'] * TECHNOCRATE_SPY) . $lang['bd_spy']	. "</font></strong>";
+						$RowParse['tech_level']  = ($building_level == 0) ? "" : "(".$lang['bd_lvl']." ".$building_level.")" ;
+						$RowParse['tech_level']  .= ($CurrentUser['rpg_technocrate'] == 0) ? "" : "<strong><font color=\"lime\"> +". ($CurrentUser['rpg_technocrate'] * TECHNOCRATE_SPY).$lang['bd_spy']	."</font></strong>";
 					}
 					elseif ($Tech == 108)
 					{
-						$RowParse['tech_level']  = ($building_level == 0) ? "" : "(". $lang['bd_lvl'] . " ".$building_level .")";
-						$RowParse['tech_level']  .= ($CurrentUser['rpg_amiral'] == 0) ? "" : "<strong><font color=\"lime\"> +" . ($CurrentUser['rpg_amiral'] * AMIRAL) . $lang['bd_commander'] . "</font></strong>";
+						$RowParse['tech_level']  = ($building_level == 0) ? "" : "(".$lang['bd_lvl']." ".$building_level.")";
+						$RowParse['tech_level']  .= ($CurrentUser['rpg_amiral'] == 0) ? "" : "<strong><font color=\"lime\"> +". ($CurrentUser['rpg_amiral'] * AMIRAL).$lang['bd_commander']."</font></strong>";
 					}
 					else
-						$RowParse['tech_level']  = ($building_level == 0) ? "" : "(". $lang['bd_lvl'] . " ".$building_level.")";
+						$RowParse['tech_level']  = ($building_level == 0) ? "" : "(".$lang['bd_lvl']." ".$building_level.")";
 
 					$RowParse['tech_name']   = $TechName;
 					$RowParse['tech_descr']  = $lang['res']['descriptions'][$Tech];
@@ -224,7 +227,7 @@ class ShowResearchPage
 						$LevelToDo = 1 + $CurrentUser[$resource[$Tech]];
 						if ($CanBeDone)
 						{
-							if ( ! $this->CheckLabSettingsInQueue ( $CurrentPlanet ))
+							if ( ! $this->CheckLabSettingsInQueue ($CurrentPlanet))
 							{
 								if ($LevelToDo == 1)
 									$TechnoLink  = "<font color=#FF0000>".$lang['bd_research']."</font>";
@@ -259,7 +262,7 @@ class ShowResearchPage
 							if ($ThePlanet['id'] != $CurrentPlanet['id'])
 							{
 								$bloc['tech_time']  = $ThePlanet["b_tech"] - time();
-								$bloc['tech_name']  = "de<br>". $ThePlanet["name"];
+								$bloc['tech_name']  = "de<br>".$ThePlanet["name"];
 								$bloc['tech_home']  = $ThePlanet["id"];
 								$bloc['tech_id']    = $ThePlanet["b_tech_id"];
 							}

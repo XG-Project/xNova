@@ -1,0 +1,9 @@
+.content-table{background-color:#344566;font-size:0.7em;padding:1px;margin:20px 0px;border-radius:1em;width:100%;}.content-table h3{font-size:1.2em;background:repeat-x url('./../img/table-title.png');border-radius:0px;border:1px solid #415680;color:#E6EBFB;padding:2px 0px;margin:0px;}
+.content-table h3:first-of-type{border-radius:0.75em 0.75em 0px 0px;}
+section.debug{width:100%;margin:auto;display:table;color:#E6EBFB;text-align:center;}section.debug div.query{display:table-row;}section.debug div.query section{display:table-cell;border:1px solid #415680;vertical-align:middle;padding:0.3em;}
+section.debug div.query:last-of-type section:first-of-type{border-radius:0px 0px 0px 0.75em;}
+section.debug div.query:last-of-type section:last-of-type{border-radius:0px 0px 0.75em 0px;}
+figure{margin:0.5em;display:inline-block;}
+.true{width:16px;height:16px;background:0 0 url('./../img/sprites.png');}
+.false{width:16px;height:16px;background:0 -16px url('./../img/sprites.png');}
+@media (max-width:600px){#debug{display:none;}}

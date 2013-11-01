@@ -15,7 +15,7 @@
 		</td>
 		</tr>
 	</table></td>
-<td class='header'>   <table class='header' id='resources' border="0" cellspacing="0" cellpadding="0" padding-right='30' >
+	<td class='header'><table class='header' id='resources' border="0" cellspacing="0" cellpadding="0" padding-right='30' >
 		<tr class='header'>
 		<td align="center" width="85" class='header'>
 			<img border="0" src="{dpath}images/metal.png" width="42" height="22">
@@ -26,7 +26,7 @@
 		</td>
 
 		<td align="center" width="85" class='header'>
-			<img height="14" width="12" border="0" src="{dpath}images/deuterium.png" width="42" height="22">
+			<img border="0" src="{dpath}images/deuterium.png" width="42" height="22">
 		</td>
 
 		<td align="center" width="85" class='header'>

@@ -1,52 +1,116 @@
-<body>
-<form action="" method="post">
-<table width="30%">
-<tr><td class="c" colspan="6">{mod_title}</td></tr>
-<tr>
-<th><img title="{mod_range}" src="../styles/images/arrow.png" /></th>
-<th><img title="{mod_power_config}" src="../styles/images/r4.png" /></th>
-<th><img title="{mod_power_edit}" src="../styles/images/r3.png" /></th>
-<th><img title="{mod_power_view}" src="../styles/images/r2.png" /></th>
-<th><img title="{mod_power_tools}" src="../styles/images/r5.png" /></th>
-<th><img title="{mod_power_loog}" src="../styles/images/r6.png" /></th>
-</tr>
+<section class="page">
+	<section class="content-table table thin">
+		<form action="admin.php?page=moderate&amp;moderation=1" method="post" accept-charset="UTF-8">
+			<h3>{mod_title}</h3>
+			<div class="row">
+				<div class="content">
+					<figure title="{mod_range}" class="arrow"></figure>
+				</div>
+				<div class="content">
+					<figure title="{mod_power_config}" class="r4"></figure>
+				</div>
+				<div class="content">
+					<figure title="{mod_power_edit}" class="r3"></figure>
+				</div>
+				<div class="content">
+					<figure title="{mod_power_view}" class="r2"></figure>
+				</div>
+				<div class="content">
+					<figure title="{mod_power_tools}" class="r5"></figure>
+				</div>
+				<div class="content">
+					<figure title="{mod_power_loog}" class="r6"></figure>
+				</div>
+			</div>
+			<div class="row">
+				<div class="content">{mods}</div>
+				<div class="content">
+					<input type="checkbox" name="config_m"{config_m}>
+				</div>
+				<div class="content">
+					<input type="checkbox" name="edit_m"{edit_m}>
+				</div>
+				<div class="content">
+					<input type="checkbox" name="view_m"{view_m}>
+				</div>
+				<div class="content">
+					<input type="checkbox" name="tools_m"{tools_m}>
+				</div>
+				<div class="content">
+					<input type="checkbox" name="log_m"{log_m}>
+				</div>
+			</div>
+			<div class="row">
+				<div class="content">{oper}</div>
+				<div class="content">
+					<input type="checkbox" name="config_o"{config_o}>
+				</div>
+				<div class="content">
+					<input type="checkbox" name="edit_o"{edit_o}>
+				</div>
+				<div class="content">
+					<input type="checkbox" name="view_o"{view_o}>
+				</div>
+				<div class="content">
+					<input type="checkbox" name="tools_o"{tools_o}>
+				</div>
+				<div class="content">
+					<input type="checkbox" name="log_o"{log_o}>
+				</div>
+			</div>
+			<div class="row">
+				<div class="content">{adm}</div>
+				<div class="content">
+					<input type="checkbox" checked disabled>
+				</div>
+				<div class="content">
+					<input type="checkbox" checked disabled>
+				</div>
+				<div class="content">
+					<input type="checkbox" checked disabled>
+				</div>
+				<div class="content">
+					<input type="checkbox" checked disabled>
+				</div>
+				<div class="content">
+					<input type="checkbox" name="log_a"{log_a}>
+				</div>
+			</div>
 
-<tr>
-<th>{mods}</th>
-<th><input type="checkbox" {config_m} name="config_m" value="on"/></th>
-<th><input type="checkbox" {edit_m} name="edit_m" value="on"/></th>
-<th><input type="checkbox" {view_m} name="view_m" value="on" /></th>
-<th><input type="checkbox" {tools_m} name="tools_m" value="on"/></th>
-<th><input type="checkbox" {log_m} name="log_m" value="on"/></th>
-</tr>
+			<div class="content"><input type="submit" value="{button_submit}"></div>
+		</form>
+	</section>
 
-<tr>
-<th>{oper}</th>
-<th><input type="checkbox" {config_o} name="config_o" value="on"/></th>
-<th><input type="checkbox" {edit_o} name="edit_o" value="on"/></th>
-<th><input type="checkbox" {view_o} name="view_o" value="on"/></th>
-<th><input type="checkbox" {tools_o} name="tools_o" value="on"/></th>
-<th><input type="checkbox" {log_o} name="log_o" value="on"/></th>
-</tr>
-
-<tr>
-<th>{adm}</th>
-<th><input type="checkbox" checked disabled="disabled"/></th>
-<th><input type="checkbox" checked disabled="disabled"/></th>
-<th><input type="checkbox" checked disabled="disabled"/></th>
-<th><input type="checkbox" checked disabled="disabled"/></th>
-<th><input type="checkbox" {log_a} name="log_a" value="on"/></th>
-</tr>
-<tr><th colspan="6"><input type="submit" value="{button_submit}" name="mode" /></th></tr>
-</table>
-
-<br>
-<table width="30%">
-<tr><th><img src="../styles/images/r4.png" /></th><th>{mod_power_config}</th></tr>
-<tr><th><img src="../styles/images/r3.png" /></th><th>{mod_power_edit}</th></tr>
-<tr><th><img src="../styles/images/r2.png" /></th><th>{mod_power_view}</th></tr>
-<tr><th><img src="../styles/images/r5.png" /></th><th>{mod_power_tools}</th></tr>
-<tr><th><img src="../styles/images/r6.png" /></th><th>{mod_power_loog}</th></tr>
-</table>
-</form>
-</body>
+	<section class="content-table table thin">
+		<div class="row">
+			<div class="content">
+				<figure title="{mod_power_config}" class="r4"></figure>
+			</div>
+			<div class="content">{mod_power_config}</div>
+		</div>
+		<div class="row">
+			<div class="content">
+				<figure title="{mod_power_config}" class="r3"></figure>
+			</div>
+			<div class="content">{mod_power_edit}</div>
+		</div>
+		<div class="row">
+			<div class="content">
+				<figure title="{mod_power_config}" class="r2"></figure>
+			</div>
+			<div class="content">{mod_power_view}</div>
+		</div>
+		<div class="row">
+			<div class="content">
+				<figure title="{mod_power_config}" class="r5"></figure>
+			</div>
+			<div class="content">{mod_power_tools}</div>
+		</div>
+		<div class="row">
+			<div class="content">
+				<figure title="{mod_power_config}" class="r6"></figure>
+			</div>
+			<div class="content">{mod_power_loog}</div>
+		</div>
+	</section>
+</section>

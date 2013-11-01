@@ -1,67 +1,47 @@
-<body>
-<h2>{setarchive} {setsize}</h2>
-<table width="50%">
-<tr>
-	<td class="c">
-		{log_title}
-	</td>
-	<td class="c" width="2%">
-		<a href="Moderation.php?moderation=1"><img src="../styles/images/Adm/i.png" onMouseOver='return overlib("{log_search_advert_popup}", CENTER, OFFSETX, -150, OFFSETY, -10, WIDTH, 250);' onMouseOut='return nd();'></a>
-	</td>
-</tr><tr>
-	<th align="left" colspan="2">
-		<a href="LogToolPage.php?options=links&file=BuildingsLog">{log_log_body_build}</a>
-	</th>
-</tr><tr>
-	<th align="left" colspan="2">
-		<a href="LogToolPage.php?options=links&file=ResourcesLog">{log_log_body_resou}</a>
-	</th>
-</tr><tr>
-	<th align="left" colspan="2">
-		<a href="LogToolPage.php?options=links&file=DefensesLog">{log_log_body_def}</a>
-	</th>
-</tr><tr>
-	<th align="left" colspan="2">
-		<a href="LogToolPage.php?options=links&file=ShipsLog">{log_log_body_ships}</a>
-	</th>
-</tr><tr>
-	<th align="left" colspan="2">
-		<a href="LogToolPage.php?options=links&file=ResearchLog">{log_log_body_techs}</a>
-	</th>
-</tr><tr>
-	<th align="left" colspan="2">
-		<a href="LogToolPage.php?options=links&file=OfficierLog">{log_log_body_offi}</a>
-	</th>
-</tr><tr>
-	<th align="left" colspan="2">
-		<a href="LogToolPage.php?options=links&file=PersonalLog">{log_log_body_personal}</a>
-	</th>
-</tr><tr>
-	<th align="left" colspan="2">
-		<a href="LogToolPage.php?options=links&file=AllianceLog">{log_log_body_ally}</a>
-	</th>
-</tr><tr>
-	<th align="left" colspan="2">
-		<a href="LogToolPage.php?options=links&file=PlanetsAndMoonsLog">{log_log_body_p_m}</a>
-	</th>
-</tr><tr>
-	<th align="left" colspan="2">
-		<a href="LogToolPage.php?options=links&file=ResetLog">{log_log_body_reset}</a>
-	</th>
-</tr><tr>
-	<th align="left" colspan="2">
-		<a href="LogToolPage.php?options=links&file=ModerationLog">{log_log_body_mod}</a>
-	</th>
-</tr><tr>
-	<th align="left" colspan="2">
-		<a href="LogToolPage.php?options=links&file=GeneralLog">{log_log_body_gen}</a>
-	</th>
-</tr><tr>
-	<th align="left" colspan="2">
-		<a href="LogToolPage.php?options=links&file=ConfigLog">{log_log_body_config}</a>
-	</th>
-</tr>
-	{display}
-</table>
-</form>
-</body>
+<section class="page">
+	<section class="content-table medium">
+		<h3>{log_title}</h3>
+		<div class="content">{log_permission_advert}</div>
+
+		<div class="content left">
+			<a href="admin.php?page=logs&amp;option=links&amp;file=buildings">{log_file_buildings}</a>
+		</div>
+		<div class="content left">
+			<a href="admin.php?page=logs&amp;option=links&amp;file=resources">{log_file_resources}</a>
+		</div>
+		<div class="content left">
+			<a href="admin.php?page=logs&amp;option=links&amp;file=defenses">{log_file_defenses}</a>
+		</div>
+		<div class="content left">
+			<a href="admin.php?page=logs&amp;option=links&amp;file=ships">{log_file_ships}</a>
+		</div>
+		<div class="content left">
+			<a href="admin.php?page=logs&amp;option=links&amp;file=research">{log_file_research}</a>
+		</div>
+		<div class="content left">
+			<a href="admin.php?page=logs&amp;option=links&amp;file=officers">{log_file_officers}</a>
+		</div>
+		<div class="content left">
+			<a href="admin.php?page=logs&amp;option=links&amp;file=personal">{log_file_personal}</a>
+		</div>
+		<div class="content left">
+			<a href="admin.php?page=logs&amp;option=links&amp;file=alliance">{log_file_alliance}</a>
+		</div>
+		<div class="content left">
+			<a href="admin.php?page=logs&amp;option=links&amp;file=planets_moons">{log_file_planets_moons}</a>
+		</div>
+		<div class="content left">
+			<a href="admin.php?page=logs&amp;option=links&amp;file=reset">{log_file_reset}</a>
+		</div>
+		<div class="content left">
+			<a href="admin.php?page=logs&amp;option=links&amp;file=moderation">{log_file_moderation}</a>
+		</div>
+		<div class="content left">
+			<a href="admin.php?page=logs&amp;option=links&amp;file=general">{log_file_general}</a>
+		</div>
+		<div class="content left">
+			<a href="admin.php?page=logs&amp;option=links&amp;file=config">{log_file_config}</a>
+		</div>
+		{content}
+	</section>
+</section>

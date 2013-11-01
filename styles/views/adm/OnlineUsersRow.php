@@ -8,6 +8,6 @@
 	<th class="d"><a href="mailto:{usr_email}">{usr_email}</a></th>
 	<th class="d">{state_vacancy}</th>
 	<th class="d">{is_banned}</th>
-	<th class="d">[<a href="../game.php?page=galaxy&mode=0&galaxy={usr_planet_gal}&system={usr_planet_sys}">{usr_planet_gal}:{usr_planet_sys}:{usr_planet_pos}</a>]</th>
+	<th class="d"><a href="../game.php?page=galaxy&mode=0&galaxy={usr_planet_gal}&system={usr_planet_sys}">[{usr_planet_gal}:{usr_planet_sys}:{usr_planet_pos}]</a></th>
 	<th class="d">{current_page}</th>
 </tr>

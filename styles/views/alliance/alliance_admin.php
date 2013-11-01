@@ -78,7 +78,7 @@
 			<td class="c">{al_disolve_alliance}</td>
 		</tr>
 		<tr>
-		  <th><input type="button" onclick="javascript:location.href='game.php?page=alliance&mode=admin&edit=exit';" value="{al_continue}"/></th>
+		  <th><input type="button" onclick="javascript:location.href='game.php?page=alliance&mode=admin&edit=exit';" value="{al_continue}"></th>
 		</tr>
 	 </table>
 	 <table width=519>
@@ -86,7 +86,7 @@
 			<td class="c">{al_transfer_alliance}</td>
 		</tr>
 		<tr>
-		  <th><input type="button" onclick="javascript:location.href='game.php?page=alliance&mode=admin&edit=transfer';" value="{al_continue}"/></th>
+		  <th><input type="button" onclick="javascript:location.href='game.php?page=alliance&mode=admin&edit=transfer';" value="{al_continue}"></th>
 		</tr>
 	 </table>
 </div>

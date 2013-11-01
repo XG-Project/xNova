@@ -2,8 +2,16 @@ Options -indexes
 
 <ifModule mod_headers.c>
 
-	<filesMatch "\.(ico|jpg|png|css|js)$">
+	<filesMatch "\.(jpg|png|css|js)$">
 		Header set Cache-Control "max-age=604800, public"
+	</filesMatch>
+
+	<filesMatch "\.php$">
+		Header set Cache-Control "max-age=0, public"
+	</filesMatch>
+
+	<filesMatch "\.(css|js|php)$">
+		AddDefaultCharset UTF-8
 	</filesMatch>
 
 </ifModule>

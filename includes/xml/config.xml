@@ -2,11 +2,11 @@
 <configurations>
 	<config>
 		<name>version</name>
-		<value>1.0.0-dev</value>
+		<value>1.0.0-pa1-dev</value>
 	</config>
 	<config>
 		<name>users_amount</name>
-		<value>11</value>
+		<value>1</value>
 	</config>
 	<config>
 		<name>moderation</name>
@@ -22,7 +22,7 @@
 	</config>
 	<config>
 		<name>resource_multiplier</name>
-		<value>1</value>
+		<value>10</value>
 	</config>
 	<config>
 		<name>fleet_cdr</name>
@@ -45,7 +45,7 @@
 		<value>xNova</value>
 	</config>
 	<config>
-		<name>game_disable</name>
+		<name>game_enabled</name>
 		<value>1</value>
 	</config>
 	<config>
@@ -82,7 +82,7 @@
 	</config>
 	<config>
 		<name>noobprotection</name>
-		<value>0</value>
+		<value>1</value>
 	</config>
 	<config>
 		<name>noobprotectiontime</name>
@@ -118,7 +118,7 @@
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1344548098</value>
+		<value>1365430178</value>
 	</config>
 	<config>
 		<name>stat_settings</name>
@@ -138,7 +138,7 @@
 	</config>
 	<config>
 		<name>max_users</name>
-		<value>500</value>
+		<value>0</value>
 	</config>
 	<config>
 		<name>errors_2</name>
@@ -166,11 +166,11 @@
 	</config>
 	<config>
 		<name>bots</name>
-		<value>11</value>
+		<value>0</value>
 	</config>
 	<config>
 		<name>bots_last_update</name>
-		<value>1344548095</value>
+		<value>1353429671</value>
 	</config>
 	<config>
 		<name>log_bots</name>

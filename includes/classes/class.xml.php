@@ -1,15 +1,18 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @since	1.0.0
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com
+ * @author	Razican <admin@razican.com>
  */
 
 /**
  *
  * @author Jstar
- * @version v2
+ * @version	v2
  * @tutorial
  *   $c=xml::getInstance('config.xml');
  *   echo $c->get_config('version');
@@ -17,10 +20,9 @@
  *   echo $c->get_config('version');
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-class xml
-{
+class xml {
 	//an istance of this class: see singleton pattern
 	private static $instance = NULL;
 	//the complete path to xml config: used to load and save it
@@ -37,7 +39,7 @@ class xml
 	 */
 	private function __construct($sheet)
 	{
-		$this->path = XN_ROOT.'includes' . DIRECTORY_SEPARATOR . 'xml' . DIRECTORY_SEPARATOR . $sheet;
+		$this->path = XN_ROOT.'includes'.DIRECTORY_SEPARATOR.'xml'.DIRECTORY_SEPARATOR.$sheet;
 		$this->config = simplexml_load_file($this->path);
 	}
 	/**
@@ -61,9 +63,9 @@ class xml
 	private function get_xml_entity($config_name)
 	{
 		//searching inside <configurations> and where config name=$config_name
-		$result = $this->doXpathQuery('/configurations/config[name="' . $config_name . '"]');
+		$result = $this->doXpathQuery('/configurations/config[name="'.$config_name.'"]');
 		//if multiple result are returned so key is not unique
-		if ( ! $result || count($result) !== 1)
+		if ( ! $result OR count($result) !== 1)
 		{
 			throw new Exception(sprintf('Item with id "%s" does not exists or is not unique.', $config_name));
 		}
@@ -131,7 +133,7 @@ class xml
 	 */
 	public static function getInstance($sheet)
 	{
-		if (self::$instance == NULL)
+		if (is_null(self::$instance))
 		{
 			//make new istance of this class and save it to field for next usage
 			$c = __class__;

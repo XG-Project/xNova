@@ -1,23 +1,16 @@
-<tr>
-	<th colspan="2">
-		<h1>Establecer cuenta de administración</h1>
-		<table width="270" border="0" align="center" cellpadding="0" cellspacing="0">
-			<tr>
-				<td>Usuario:</td>
-				<td><input name="adm_user" size="20" maxlength="20" type="text"></td>
-			</tr>
-			<tr>
-				<td>Contraseña:</td>
-				<td><input name="adm_pass" size="20" maxlength="20" type="password"></td>
-			</tr>
-			<tr>
-				<td>Correo electrónico:</td>
-				<td><input name="adm_email" size="20" maxlength="40" type="text"></td>
-			</tr>
-		</table>
-		<br>
-	</th>
-</tr>
-<tr>
-	<th colspan="2"><input type="button" name="next" onclick="submit();" value="Crear" ></th>
-</tr>
+<form action="install.php?mode=ins&amp;page=4" method="post" accept-charset="UTF-8">
+	<h2>Establecer cuenta de administración</h2>
+	<label for="user">Usuario:</label>
+	<input type="text" name="adm_user" id="user" value="">
+
+	<label for="email">Correo electrónico:</label>
+	<input type="email" name="adm_email" id="email" value="">
+
+	<label for="pass">Contraseña:</label>
+	<input type="password" name="adm_pass" id="pass" value="">
+
+	<label for="passconf">Repite la contraseña:</label>
+	<input type="password" name="adm_passconf" id="passconf" value="">
+
+	<input type="submit" value="Crear">
+</form>

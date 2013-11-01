@@ -1,16 +1,19 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @since	1.0.0
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com
+ * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 class ShowImperiumPage
 {
-	function __construct ( $CurrentUser )
+	function __construct($CurrentUser)
 	{
 		global $lang, $resource, $reslist;
 
@@ -27,7 +30,7 @@ class ShowImperiumPage
 		`buster_canyon`,`small_protection_shield`,`big_protection_shield`,`interceptor_misil`,
 		`interplanetary_misil`, `mondbasis`, `phalanx`, `sprungtor`
 		FROM {{table}}
-		WHERE `id_owner` = '" . intval($CurrentUser['id']) . "' AND `destruyed` = 0;", 'planets');
+		WHERE `id_owner` = '". intval($CurrentUser['id'])."' && `destruyed` = 0;", 'planets');
 
 		$parse 	= $lang;
 		$planet = array();
@@ -37,18 +40,18 @@ class ShowImperiumPage
 			$planet[] = $p;
 		}
 
-		$parse['mount'] = 	count($planet ) + 1;
+		$parse['mount'] = 	count($planet) + 1;
 
-		$EmpireRowTPL	=	gettemplate ( 'empire/empire_row');
+		$EmpireRowTPL	=	gettemplate('empire/empire_row');
 
-		foreach ( $planet as $p )
+		foreach ($planet as $p)
 		{
-			$metal_prod 	= $p['metal_perhour'] + read_config ( 'metal_basic_income' );
-			$crystal_prod 	= $p['crystal_perhour'] + read_config ( 'crystal_basic_income' );
-			$deuterium_prod	= $p['deuterium_perhour'] + read_config ( 'deuterium_basic_income' );
+			$metal_prod		= $p['metal_perhour'] + read_config('metal_basic_income');
+			$crystal_prod	= $p['crystal_perhour'] + read_config('crystal_basic_income');
+			$deuterium_prod	= $p['deuterium_perhour'] + read_config('deuterium_basic_income');
 
-			$datat  = array ( '<a href="game.php?page=overview&cp=' . $p['id'] . '&amp;re=0"><img src="' . DPATH . 'planeten/small/s_' . $p['image'] . '.jpg" border="0" height="80" width="80"></a>', $p['name'], "[<a href=\"game.php?page=galaxy&mode=3&galaxy={$p['galaxy']}&system={$p['system']}\">{$p['galaxy']}:{$p['system']}:{$p['planet']}</a>]", $p['field_current'] . '/' . $p['field_max'], '<a href="game.php?page=resources&cp=' . $p['id'] . '&amp;re=0&amp;planettype=' . $p['planet_type'] . '">' . Format::pretty_number($p['metal']) . '</a> / ' . Format::pretty_number($metal_prod), '<a href="game.php?page=resources&cp=' . $p['id'] . '&amp;re=0&amp;planettype=' . $p['planet_type'] . '">' . Format::pretty_number($p['crystal']) . '</a> / ' . Format::pretty_number($crystal_prod), '<a href="game.php?page=resources&cp=' . $p['id'] . '&amp;re=0&amp;planettype=' . $p['planet_type'] . '">' . Format::pretty_number($p['deuterium']) . '</a> / ' . Format::pretty_number($deuterium_prod), Format::pretty_number($p['energy_max'] - $p['energy_used']) . ' / ' . Format::pretty_number($p['energy_max']));
-			$f 		= array ( 'file_images' , 'file_names' , 'file_coordinates' , 'file_fields' , 'file_metal', 'file_crystal' , 'file_deuterium' , 'file_energy' );
+			$datat	= array('<a href="game.php?page=overview&cp='.$p['id'].'&amp;re=0"><img src="'.DPATH.'planeten/small/s_'.$p['image'].'.jpg" border="0" height="80" width="80"></a>', $p['name'], "[<a href=\"game.php?page=galaxy&mode=3&galaxy={$p['galaxy']}&system={$p['system']}\">{$p['galaxy']}:{$p['system']}:{$p['planet']}</a>]", $p['field_current'].'/'.$p['field_max'], '<a href="game.php?page=resources&cp='.$p['id'].'&amp;re=0&amp;planettype='.$p['planet_type'].'">'.Format::pretty_number($p['metal']).'</a> / '.Format::pretty_number($metal_prod), '<a href="game.php?page=resources&cp='.$p['id'].'&amp;re=0&amp;planettype='.$p['planet_type'].'">'.Format::pretty_number($p['crystal']).'</a> / '.Format::pretty_number($crystal_prod), '<a href="game.php?page=resources&cp='.$p['id'].'&amp;re=0&amp;planettype='.$p['planet_type'].'">'.Format::pretty_number($p['deuterium']).'</a> / '.Format::pretty_number($deuterium_prod), Format::pretty_number($p['energy_max'] - $p['energy_used']).' / '.Format::pretty_number($p['energy_max']));
+			$f		= array('file_images', 'file_names', 'file_coordinates', 'file_fields', 'file_metal', 'file_crystal', 'file_deuterium', 'file_energy');
 
 			for ($k = 0; $k < 8; $k++)
 			{
@@ -62,20 +65,19 @@ class ShowImperiumPage
 				$r[$i] .= parsetemplate($EmpireRowTPL, $data);
 			}
 		}
+		$m = array('build', 'tech', 'fleet', 'defense');
+		$n = array('building_row', 'technology_row', 'fleet_row', 'defense_row');
 
-		$m = array ( 'build' , 'tech' , 'fleet' , 'defense');
-		$n = array ( 'building_row' , 'technology_row' , 'fleet_row' , 'defense_row');
-
-		for ( $j = 0; $j < 4; $j++ )
+		for ($j = 0; $j < 4; $j++)
 		{
-			foreach ( $reslist[$m[$j]] as $a => $i )
+			foreach ($reslist[$m[$j]] as $a => $i)
 			{
 				$data['text'] 	= $lang['tech'][$i];
-				$parse[$n[$j]] .= "<tr>" . parsetemplate ( $EmpireRowTPL , $data ) . $r[$i] . "</tr>";
+				$parse[$n[$j]] .= "<tr>". parsetemplate($EmpireRowTPL, $data).$r[$i]."</tr>";
 			}
 		}
 
-		return display(parsetemplate ( gettemplate ( 'empire/empire_table' ) , $parse ) , FALSE);
+		display(parsetemplate(gettemplate('empire/empire_table'), $parse), FALSE);
 	}
 }
 ?>

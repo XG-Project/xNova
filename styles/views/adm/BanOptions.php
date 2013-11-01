@@ -1,7 +1,7 @@
 <script TYPE="text/javascript" SRC="../js/filterlist.min.js"></script>
 <body>
 <form action="" method="get" name="users">
-<table width="100%" style="background:url(./../styles/images/Adm/blank.png);" border="0px">
+<table width="100%" style="background-color:transparent;" border="0px">
 <td style="border:0px;">
 <table align="center" width="90%">
 {display}
@@ -54,14 +54,14 @@
 	<A HREF="javascript:UserList.set('^Z')" TITLE="{bo_select_title} Z">Z</A>
 	<BR>
 	<INPUT NAME="regexp" onKeyUp="UserList.set(this.value)">
-	<INPUT TYPE="button" onClick="UserList.set(this.form.regexp.value)" value="{button_filter}">
-	<INPUT TYPE="button" onClick="UserList.reset();this.form.regexp.value=''" value="{button_deselect}">
+	<INPUT TYPE="button" onclick="UserList.set(this.form.regexp.value)" value="{button_filter}">
+	<INPUT TYPE="button" onclick="UserList.reset();this.form.regexp.value=''" value="{button_deselect}">
 </th>
 </tr><tr>
 
 	<th colspan="2">
-	<input type="submit" value="{button_submit}" name="panel" style="width:20%;"/>&nbsp;
-	<INPUT TYPE="button" onClick="UserList.reset();this.form.regexp.value=''" value="{button_reset}">
+	<input type="submit" value="{button_submit}" name="panel" style="width:20%;">&nbsp;
+	<INPUT TYPE="button" onclick="UserList.reset();this.form.regexp.value=''" value="{button_reset}">
 	</th>
 </tr><tr>
 	<th colspan="2" align="left">
@@ -125,13 +125,13 @@
 
 	<BR>
 	<INPUT NAME="regexp" onKeyUp="UsersBan.set(this.value)">
-	<INPUT TYPE="button" onClick="UsersBan.set(this.form.regexp.value)" value="{button_filter}">
-	<INPUT TYPE="button" onClick="UsersBan.set(this.form.regexp.value)" value="{button_deselect}">
+	<INPUT TYPE="button" onclick="UsersBan.set(this.form.regexp.value)" value="{button_filter}">
+	<INPUT TYPE="button" onclick="UsersBan.set(this.form.regexp.value)" value="{button_deselect}">
 </th>
 </tr>
 <tr>
 	<th colspan="2"><input value="{button_submit}" type="submit" style="width:20%;">&nbsp;
-	<INPUT TYPE="button" onClick="UsersBan.reset();this.form.regexp.value=''" value="{button_reset}"></th>
+	<INPUT TYPE="button" onclick="UsersBan.reset();this.form.regexp.value=''" value="{button_reset}"></th>
 </tr><tr>
 	<th colspan="2" align="left">
 		{bo_total_banneds}{banneds}

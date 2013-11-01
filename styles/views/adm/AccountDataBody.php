@@ -1,6 +1,6 @@
 <body>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript" src="../js/animatedcollapse.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="js/animatedcollapse.min.js"></script>
 <script type="text/javascript">
 animatedcollapse.addDiv('pla', 'fade=1,height=auto')
 animatedcollapse.addDiv('inves', 'fade=1,height=auto')
@@ -32,11 +32,11 @@ animatedcollapse.init()
 a.link{font-size:14px;font-variant:small-caps;margin-left:120px;}a.link:hover{font-size:16px;font-variant:small-caps;margin-left:120px;}
 span.no_moon{font-size:14px;font-variant:small-caps;margin-left:120px;font-family: Arial, Helvetica, sans-serif;}span.no_moon:hover{font-size:14px;font-variant:small-caps;margin-left:120px;color:#FF0000;cursor:default;font-family: Arial, Helvetica, sans-serif;}
 a.ccc{font-size:15px;}a.ccc:hover{font-size:15px;color:aqua;}
-table.tableunique{border:0px;background:url(./../styles/images/Adm/blank.png);width:100%;}
+table.tableunique{border:0px;background-color:transparent;width:100%;}
 th.unico{border:0px;text-align:left;}
 th.unico2{border:0px;text-align:center;}
 td{color:#FFFFFF;font-size:10px;font-variant:normal;}
-td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:right;padding-right:80px;font-size:15px;}
+td.blank{border:0px;background-color:transparent;text-align:right;padding-right:80px;font-size:15px;}
 </style>
 
 
@@ -46,7 +46,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 	</tr>
 	<tr>
 		<th class="unico"><a href="javascript:animatedcollapse.toggle('datos')" class="link">
-		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> {ac_account_data}</a></th>
+		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {ac_account_data}</a></th>
 	</tr><tr>
 		<th class="unico">
 			<div id="datos">
@@ -124,7 +124,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 			<div id="imagen" style="display:none">
 			<table cellspacing="0" style="border-collapse: collapse" align="center" width="60%">
 			<tr><td class="c">{ac_ali_logo_11}</td></tr>
-			<tr><th width="60%"><img src="{ali_logo2}" class="image"/></th></tr>
+			<tr><th width="60%"><img src="{ali_logo2}" class="image"></th></tr>
 			<tr><th><a href="{ali_logo2}" target="_blank">{ac_view_image}</a></th></tr>
 			<tr><th>{ac_urlnow} <input type="text" size="50" value="{ali_logo2}"></th></tr>
 			</table>
@@ -172,7 +172,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 		</th>
 	</tr><tr>
 		<th class="unico"><a href="javascript:animatedcollapse.toggle('pla')" class="link">
-		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> {ac_id_names_coords}</a></th>
+		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {ac_id_names_coords}</a></th>
 	</tr><tr>
 		<th class="unico">
 			<div id="pla" style="display:none">
@@ -191,7 +191,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 		</th>
 	</tr><tr>
 		<th class="unico"><a href="javascript:animatedcollapse.toggle('recursos')" class="link">
-		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> {resources_title}</a></th>
+		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {resources_title}</a></th>
 	</tr><tr>
 		<th class="unico">
 			<div id="recursos" style="display:none">
@@ -213,7 +213,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 		</th>
 	</tr><tr>
 		<th class="unico"><a href="javascript:animatedcollapse.toggle('edificios')" class="link">
-		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> {buildings_title}</a></th>
+		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {buildings_title}</a></th>
 	</tr><tr>
 		<th class="unico">
 			<div id="edificios" style="display:none">
@@ -261,7 +261,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 		</th>
 	</tr><tr>
 		<th class="unico"><a href="javascript:animatedcollapse.toggle('naves')" class="link">
-		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> {ships_title}</a></th>
+		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {ships_title}</a></th>
 	</tr><tr>
 		<th class="unico">
 			<div id="naves" style="display:none">
@@ -291,7 +291,7 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 		</th>
 	</tr><tr>
 		<th class="unico"><a href="javascript:animatedcollapse.toggle('defensa')" class="link">
-		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> {defenses_title}</a></th>
+		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {defenses_title}</a></th>
 	</tr><tr>
 		<th class="unico">
 			<div id="defensa" style="display:none">
@@ -317,14 +317,14 @@ td.blank{border:0px;background:url(./../styles/images/Adm/blank.png);text-align:
 		</th>
 	</tr><tr>
 		<th class="unico"><a href="javascript:animatedcollapse.toggle('inves')" class="link">
-		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"/> {ac_officier_research}</a></th>
+		<img src="../styles/images/Adm/arrowright.png" width="16" height="10"> {ac_officer_research}</a></th>
 	</tr><tr>
 		<th class="unico">
 			<div id="inves" style="display:none">
 			<table cellspacing="0" style="border-collapse: collapse" align="center" width="60%">
 			<tr>
 			<td class="c" width="50%">{researchs_title}</td>
-			<td class="c" width="50%">{officiers_title}</td>
+			<td class="c" width="50%">{officers_title}</td>
 			</tr>
 			<tr><th>{spy_tech}: <font color=aqua>{tec_espia}</font></th><th>{geologist}: <font color=aqua>{ofi_geologo}</font></th></tr>
 			<tr><th>{computer_tech}: <font color=aqua>{tec_compu}</font></th><th>{admiral}: <font color=aqua>{ofi_almirante}</font></th></tr>

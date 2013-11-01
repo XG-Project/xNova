@@ -1,12 +1,15 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @since	1.0.0
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com
+ * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 class ShowFleetShortcuts
 {
@@ -17,17 +20,17 @@ class ShowFleetShortcuts
 		global $db;
 		$this->CurrentUser=$CurrentUser;
 
-		if ( !empty($_GET['mode']))
+		if ( ! empty($_GET['mode']))
 		{
 			$mode=$_GET['mode'];
 
-			if ($mode == "add" && !empty($_POST['galaxy'])&&!empty($_POST['system'])&&!empty($_POST['planet']))
+			if ($mode == "add" && ! empty($_POST['galaxy'])&&! empty($_POST['system'])&&! empty($_POST['planet']))
 			{
 				$this->addFleetShortcuts($db->real_escape_string(strip_tags($_POST["name"])),intval($_POST["galaxy"]),intval($_POST["system"]),intval($_POST["planet"]),intval($_POST["moon"]));
 			}
-			elseif ($mode=="edit" && isset($_GET['a']) && !empty($_POST['galaxy'])&&!empty($_POST['system'])&&!empty($_POST['planet']) )
+			elseif ($mode=="edit" && isset($_GET['a']) && ! empty($_POST['galaxy'])&&! empty($_POST['system'])&&! empty($_POST['planet']))
 			{
-				$this->saveFleetShortcuts(intval($_GET['a']),$db->real_escape_string(strip_tags($_POST["name"])),intval($_POST["galaxy"]),intval($_POST["system"]),intval($_POST["planet"]),intval($_POST["moon"]));
+				$this->saveFleetShortcuts(intval($_GET['a']), $db->real_escape_string(strip_tags($_POST["name"])),intval($_POST["galaxy"]),intval($_POST["system"]),intval($_POST["planet"]),intval($_POST["moon"]));
 			}
 			elseif ($mode=="delete" && isset($_GET['a']))
 			{
@@ -56,7 +59,7 @@ class ShowFleetShortcuts
 		$parse['mode']			="add";
 		$parse['visibility'] 	="hidden";
 
-		display(parsetemplate(gettemplate("shortcuts/shortcuts_editPanel"),$parse));
+		display(parsetemplate(gettemplate("shortcuts/shortcuts_editPanel"), $parse));
 	}
 
 	private function showEditPanelWithID($id)
@@ -81,28 +84,28 @@ class ShowFleetShortcuts
 		$parse['moon'.$c[4]]	='selected';
 		$parse['visibility'] 	="button";
 
-		display(parsetemplate(gettemplate("shortcuts/shortcuts_editPanel"),$parse));
+		display(parsetemplate(gettemplate("shortcuts/shortcuts_editPanel"), $parse));
 	}
 
-	private function saveFleetShortcuts($id,$name,$galaxy,$system,$planet,$moon)
+	private function saveFleetShortcuts($id, $name, $galaxy, $system, $planet, $moon)
 	{
 		$scarray 		= explode(";", $this->CurrentUser['fleet_shortcut']);
 		$scarray[$id]	="{$name},{$galaxy},{$system},{$planet},{$moon};";
 
 		$this->CurrentUser['fleet_shortcut'] = implode(";", $scarray);
 
-		doquery("UPDATE {{table}} SET fleet_shortcut='".($this->CurrentUser['fleet_shortcut'])."' WHERE id=".($this->CurrentUser['id']), "users");
+		doquery("UPDATE `{{table}}` SET fleet_shortcut='".($this->CurrentUser['fleet_shortcut'])."' WHERE id=".($this->CurrentUser['id']), "users");
 
-		header("location:game.php?page=shortcuts");
+		header("Location: ".GAMEURL."game.php?page=shortcuts");
 	}
 
-	private function addFleetShortcuts($name,$galaxy,$system,$planet,$moon)
+	private function addFleetShortcuts($name, $galaxy, $system, $planet, $moon)
 	{
 		$this->CurrentUser['fleet_shortcut'] .= "{$name},{$galaxy},{$system},{$planet},{$moon};";
 
-		doquery("UPDATE {{table}} SET fleet_shortcut='".($this->CurrentUser['fleet_shortcut'])."' WHERE id=".($this->CurrentUser['id']), "users");
+		doquery("UPDATE `{{table}}` SET fleet_shortcut='".($this->CurrentUser['fleet_shortcut'])."' WHERE id=".($this->CurrentUser['id']), "users");
 
-		header("location:game.php?page=shortcuts");
+		header("Location: ".GAMEURL."game.php?page=shortcuts");
 	}
 
 	private function deleteFleetShortcuts($id)
@@ -113,9 +116,9 @@ class ShowFleetShortcuts
 
 		$this->CurrentUser['fleet_shortcut'] = implode(";", $scarray);
 
-		doquery("UPDATE {{table}} SET fleet_shortcut='".($this->CurrentUser['fleet_shortcut'])."' WHERE id=".($this->CurrentUser['id']), "users");
+		doquery("UPDATE `{{table}}` SET fleet_shortcut='".($this->CurrentUser['fleet_shortcut'])."' WHERE id=".($this->CurrentUser['id']), "users");
 
-		header("location:game.php?page=shortcuts");
+		header("Location: ".GAMEURL."game.php?page=shortcuts");
 	}
 
 	private function showAll()
@@ -124,16 +127,16 @@ class ShowFleetShortcuts
 
 		$parse = $lang;
 
-		if ($this->CurrentUser['fleet_shortcut'] )
+		if ($this->CurrentUser['fleet_shortcut'])
 		{
 			$scarray 	= explode(";", $this->CurrentUser['fleet_shortcut']);
 			$sx 		= TRUE;
 			$e 			= 0;
 			$ShortcutsRowTPL=gettemplate("shortcuts/shortcuts_row");
 
-			foreach ( $scarray as $a => $b )
+			foreach ($scarray as $a => $b)
 			{
-				if ( !empty($b))
+				if ( ! empty($b))
 				{
 					$c = explode(',', $b);
 
@@ -161,14 +164,14 @@ class ShowFleetShortcuts
 						$block['shortcut_moon'] = "";
 					}
 
-					$parse['block_rows'] .= parsetemplate($ShortcutsRowTPL,$block);
+					$parse['block_rows'] .= parsetemplate($ShortcutsRowTPL, $block);
 
 					if ( ! $sx)
 					{
 						$parse['block_rows'] .= "</tr>";
 					}
 
-					$sx=!$sx;
+					$sx=! $sx;
 				}
 			}
 			if ( ! $sx)
@@ -181,7 +184,7 @@ class ShowFleetShortcuts
 			$parse['block_rows'] = "<th colspan=\"2\">".$lang['fl_no_shortcuts']."</th>";
 		}
 
-		display(parsetemplate(gettemplate("shortcuts/shortcuts_table"),$parse));
+		display(parsetemplate(gettemplate("shortcuts/shortcuts_table"), $parse));
 	}
 }
 ?>

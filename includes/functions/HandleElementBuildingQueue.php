@@ -1,20 +1,23 @@
 <?php
 
 /**
- * @project XG Proyect
- * @version 2.10.x build 0000
- * @copyright Copyright (C) 2008 - 2012
+ * @package	xNova
+ * @version	1.0.x
+ * @since	1.0.0
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
+ * @link	http://www.razican.com
+ * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die(header("location:../../"));
+if ( ! defined('INSIDE')) die(header("Location:../../"));
 
-function HandleElementBuildingQueue ( $CurrentUser, &$CurrentPlanet, $ProductionTime )
+function HandleElementBuildingQueue ($CurrentUser, &$CurrentPlanet, $ProductionTime)
 {
 	global $resource;
 
-	if ($CurrentPlanet['b_hangar_id'] != 0)
+	if ($CurrentPlanet['b_hangar_id'])
 	{
-		$Builded                    = array ();
+		$Builded                    = array();
 		$CurrentPlanet['b_hangar'] += $ProductionTime;
 		$BuildQueue                 = explode(';', $CurrentPlanet['b_hangar_id']);
 		$BuildArray					= array();
@@ -24,7 +27,7 @@ function HandleElementBuildingQueue ( $CurrentUser, &$CurrentPlanet, $Production
 			if ($Array != '')
 			{
 				$Item              = explode(',', $Array);
-				$AcumTime		   = GetBuildingTime ($CurrentUser, $CurrentPlanet, $Item[0]);
+				$AcumTime		   = GetBuildingtime($CurrentUser, $CurrentPlanet, $Item[0]);
 				$BuildArray[$Node] = array($Item[0], $Item[1], $AcumTime);
 			}
 		}
@@ -32,7 +35,7 @@ function HandleElementBuildingQueue ( $CurrentUser, &$CurrentPlanet, $Production
 		$CurrentPlanet['b_hangar_id'] 	= '';
 		$UnFinished 					= FALSE;
 
-		foreach ( $BuildArray as $Node => $Item )
+		foreach ($BuildArray as $Node => $Item)
 		{
 			$Element   			= $Item[0];
 			$Count     			= $Item[1];
@@ -45,7 +48,7 @@ function HandleElementBuildingQueue ( $CurrentUser, &$CurrentPlanet, $Production
 
 				if ($CurrentPlanet['b_hangar'] >= $BuildTime)
 				{
-					$Done = min($Count, floor( $CurrentPlanet['b_hangar'] / $BuildTime));
+					$Done = min($Count, floor($CurrentPlanet['b_hangar'] / $BuildTime));
 
 					if ($Count > $Done)
 					{
@@ -74,7 +77,8 @@ function HandleElementBuildingQueue ( $CurrentUser, &$CurrentPlanet, $Production
 				$CurrentPlanet[$resource[$Element]] += $Count;
 				$Count = 0;
 			}
-			if ($Count != 0 )
+
+			if ($Count)
 			{
 				$CurrentPlanet['b_hangar_id'] .= $Element.",".$Count.";";
 			}

@@ -5,7 +5,7 @@
  * @version	1.0.x
  * @since	1.0.0
  * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
- * @link	http://www.razican.com Author's Website
+ * @link	http://www.razican.com
  * @author	Razican <admin@razican.com>
  */
 
@@ -37,10 +37,8 @@ class ShowAlliancePage extends bbCode
 	private function return_rank($rank_type)
 	{
 		global $user;
-        $ally_ranks = $this->allyRanks;
-        $ally['ally_owner'] = $this->ally['ally_owner'];
 
-		return ($ally_ranks[$user['ally_rank_id']-1][$rank_type] == 1 OR $ally['ally_owner'] == $user['id']);
+		return ($this->allyRanks[$user['ally_rank_id']-1][$rank_type] == 1 OR $this->ally['ally_owner'] == $user['id']);
 	}
 
 	private function return_sort($sort1, $sort2)
@@ -781,6 +779,7 @@ class ShowAlliancePage extends bbCode
 
 				$lang['list']	= $list;
 				$lang['dpath'] 	= DPATH;
+
 				display(parsetemplate(gettemplate('alliance/alliance_admin_laws'), $lang));
 			}
 			##############################################################################################
@@ -1238,7 +1237,7 @@ class ShowAlliancePage extends bbCode
 					$parse['s'] 	= $s;
 					$parse['list'] 	= $page_list;
 
-					display(parsetemplate(gettemplate('alliance/alliance_admin_transfer'), $parse));
+					display(parsetemplate(gettemplate('alliance/alliance_admin_transfer'), $parse))
 				}
 			}
 			##############################################################################################

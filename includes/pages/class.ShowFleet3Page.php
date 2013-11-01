@@ -5,7 +5,7 @@
  * @version	1.0.x
  * @since	1.0.0
  * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
- * @link	http://www.razican.com Author's Website
+ * @link	http://www.razican.com
  * @author	Razican <admin@razican.com>
  */
 
@@ -305,18 +305,6 @@ class ShowFleet3Page
 											)
 											&& active =1", 'buddy', TRUE);
 
-/*
-				if ($_POST['planettype']==3)
-				{
-					$x = doquery("SELECT `ally_deposit` FROM `{{table}}` WHERE `galaxy` = '".intval($_POST['galaxy'])."' && `system` = '".intval($_POST['system'])."' && `planet` = '".intval($_POST['planet'])."' && `planet_type` = 1;", 'planets', TRUE);
-				}
-				else
-				{
-					$x = $TargetPlanet;
-				}
-*/
-			//	if (($HeDBRec['ally_id'] != $MyDBRec['ally_id'] && $buddy<1) OR  $x['ally_deposit'] < 1)
-
 				if ($HeDBRec['ally_id'] != $MyDBRec['ally_id'] && $buddy['buddys'] < 1)
 				{
 					message("<font color=\"red\"><b>".$lang['fl_stay_not_on_enemy']."</b></font>", "game.php?page=fleet", 2);
@@ -499,7 +487,7 @@ class ShowFleet3Page
 			message("<font color=\"red\"><b>".$lang['fl_no_enought_cargo_capacity'] . Format::pretty_number($StorageNeeded - $FleetStorage)."</b></font>", "game.php?page=fleet", 2);
 		}
 
-		if ($TargetPlanet['id_level'] > $CurrentUser['authlevel'] && read_config('adm_attack') == 0)
+		if ($TargetPlanet['id_level'] > $CurrentUser['authlevel'] && read_config('adm_attack') == 1)
 		{
 			message($lang['fl_admins_cannot_be_attacked'], "game.php?page=fleet",2);
 		}

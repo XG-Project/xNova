@@ -5,7 +5,7 @@
  * @version	1.0.x
  * @since	1.0.0
  * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
- * @link	http://www.razican.com Author's Website
+ * @link	http://www.razican.com
  * @author	Razican <admin@razican.com>
  */
 
@@ -35,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 	$CheckUser = doquery("SELECT `username` FROM `{{table}}` WHERE `username` = '".$db->real_escape_string($_POST['name'])."' LIMIT 1", "users", TRUE);
 	$CheckMail = doquery("SELECT `email` FROM `{{table}}` WHERE `email` = '".$db->real_escape_string($_POST['email'])."' LIMIT 1", "users", TRUE);
 	$CheckRows = doquery("SELECT * FROM `{{table}}` WHERE `galaxy` = '".$galaxy."' && `system` = '".$system."' && `planet` = '".$planet."' LIMIT 1", "galaxy", TRUE);
-
 
 	if ( ! is_numeric($galaxy) &&  ! is_numeric($system) && ! is_numeric($planet)){
 		$parse['display']	.=	'<tr><th colspan="2" class="red">'.$lang['new_only_numbers'].'</tr></th>';

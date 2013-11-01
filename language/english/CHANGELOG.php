@@ -4,8 +4,8 @@ $lang['Version']     = 'Version';
 $lang['Description'] = 'Description';
 $lang['changelog']   = array(
 
-'1.0.0-dev' => ' No date
-Based on XG Proyect 2.10.4
+'1.0.0-pa1' => 'No date
+Based on XG Proyect 2.10.5
 
 Improvements:
 - Logging system for PHP errors

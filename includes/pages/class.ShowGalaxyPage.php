@@ -3,7 +3,7 @@
 /**
  * @package	xNova
  * @version	1.0.x
- * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA\n * @link	http://www.razican.com Author's Website\n * @author	Razican <admin@razican.com>
+ * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA\n * @link	http://www.razican.com\n * @author	Razican <admin@razican.com>
  */
 
 if ( ! defined('INSIDE')) die(header("Location:../../"));

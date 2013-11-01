@@ -114,7 +114,6 @@ $lang['ov_server_time']						= 'Hora del servidor';
 $lang['ov_events']							= 'Eventos';
 $lang['ov_diameter']						= 'Diámetro';
 $lang['ov_distance_unit']					= 'km';
-$lang['fields']								= 'campos';
 $lang['ov_temperature']						= 'Temperatura';
 $lang['ov_aprox']							= 'aprox.';
 $lang['ov_temp_unit']						= 'ºC';
@@ -135,6 +134,7 @@ $lang['ov_planet_rename']					= 'Nombrar';
 $lang['ov_planet_rename_action']			= 'Nombrar';
 $lang['ov_abandon_planet_not_possible']		= 'No es posible abandonar un planeta cuando hay flotas moviendose';
 $lang['colonies']							= 'Colonias';
+$lang['ov_fields']							= 'Campos';
 
 //----------------------------------------------------------------------------//
 //GALAXY
@@ -1163,6 +1163,7 @@ $lang['cff_to_explore']						= ' a explorar ';
 $lang['cff_comming_back']					= ' vuelve ';
 $lang['cff_back']							= 'Regresando';
 $lang['cff_to_destination']					= 'Llendo a destino';
+$lang['cff_flotte'] 						= " flotas";
 
 //----------------------------------------------------------------------------//
 // EXTRA LANGUAGE FUNCTIONS

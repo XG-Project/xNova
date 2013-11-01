@@ -5,7 +5,7 @@
  * @version	1.0.x
  * @since	1.0.0
  * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
- * @link	http://www.razican.com Author's Website
+ * @link	http://www.razican.com
  * @author	Razican <admin@razican.com>
  */
 
@@ -92,7 +92,8 @@ class ShowSearchPage
 				{
 					$s['ally_points'] = Format::pretty_number($s['ally_points']);
 
-					$s['ally_tag'] = "<a href=\"game.php?page=alliance&mode=ainfo&tag={$s['ally_tag']}\">{$s['ally_tag']}</a>";
+					$s['ally_tag'] = "<a href=\"game.php?page=alliance&mode=ainfo&a={$s['id']}\">{$s['ally_tag']}</a>";
+
 					$result_list .= parsetemplate($row, $s);
 				}
 			}

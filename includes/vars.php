@@ -5,7 +5,7 @@
  * @version	1.0.x
  * @since	1.0.0
  * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
- * @link	http://www.razican.com Author's Website
+ * @link	http://www.razican.com
  * @author	Razican <admin@razican.com>
  */
 
@@ -273,8 +273,8 @@ if (defined('INSIDE'))
 			'formule' => array(
 				'metal'     => 'return   "0";',
 				'crystal'   => 'return   "0";',
-				'deuterium' => 'return - (05 * $BuildLevel * pow((1.1), $BuildLevel)) * (0.1 * $BuildLevelFactor);',
-				'energy'    => 'return   (30 * $BuildLevel * pow((1.05 + $EnergyLevel * 0.01), $BuildLevel)) * (0.1 * $BuildLevelFactor);')
+				'deuterium' => 'return  -10 * $BuildLevel * pow(1.1, $BuildLevel) * 0.1 * $BuildLevelFactor);',
+				'energy'    => 'return   30 * $BuildLevel * pow((1.05 + $EnergyLevel * 0.01), $BuildLevel) * 0.1 * $BuildLevelFactor;')
 		),
 
 		212 => array('metal' =>    0, 'crystal' => 2000, 'deuterium' =>  500, 'energy' => 0, 'factor' => 0.5,

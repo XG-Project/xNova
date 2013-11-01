@@ -5,7 +5,7 @@
  * @version	1.0.x
  * @since	1.0.0
  * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
- * @link	http://www.razican.com Author's Website
+ * @link	http://www.razican.com
  * @author	Razican <admin@razican.com>
  */
 
@@ -1886,8 +1886,8 @@ class FlyingFleetHandler {
 		{
 			if ($FleetRow['fleet_mess'] == 0)
 			{
-				$planet = doquery('SELECT * FROM `{{table}}` WHERE `galaxy` = '.$FleetRow['fleet_end_galaxy'].' && `system` = '.$FleetRow['fleet_end_system'].' && `planet` = '.$FleetRow['fleet_end_planet'].' && `planet_type` = '.$FleetRow['fleet_end_type'], 'planets', TRUE);
-				$Target = doquery('SELECT id, defence_tech FROM  `{{table}}` WHERE `galaxy` = '.$FleetRow['fleet_end_galaxy'].' &&  `system` = '.$FleetRow['fleet_end_system'].' && `planet` =  '.$FleetRow['fleet_end_planet'], 'users', TRUE);
+				$planet = doquery('SELECT * FROM {{table}} WHERE `galaxy` = '.$FleetRow['fleet_end_galaxy'].' AND `system` = '.$FleetRow['fleet_end_system'].' AND `planet` = '.$FleetRow['fleet_end_planet'].' AND `planet_type` = '.$FleetRow['fleet_end_type'], 'planets', TRUE);
+				$Target = doquery("SELECT id, defence_tech FROM  {{table}} WHERE `id` = '".$planet['id_owner']."'", 'users', TRUE);
 
 				if ($planet['interceptor_misil'] >= $FleetRow['fleet_amount'])
 				{

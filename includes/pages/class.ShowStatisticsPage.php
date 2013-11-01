@@ -5,7 +5,7 @@
  * @version	1.0.x
  * @since	1.0.0
  * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
- * @link	http://www.razican.com Author's Website
+ * @link	http://www.razican.com
  * @author	Razican <admin@razican.com>
  */
 
@@ -19,6 +19,7 @@ class ShowStatisticsPage
 
 		$parse	= $lang;
 		$who   	= (isset($_POST['who']))   ? $_POST['who']   : $_GET['who'];
+
 		if ( ! isset($who))
 			$who   = 1;
 

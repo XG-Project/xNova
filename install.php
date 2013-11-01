@@ -5,7 +5,7 @@
  * @version	1.0.x
  * @since	1.0.0
  * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
- * @link	http://www.razican.com Author's Website
+ * @link	http://www.razican.com
  * @author	Razican <admin@razican.com>
  */
 
@@ -368,6 +368,7 @@ switch ($mode)
 						case '2.10.2':
 						case '2.10.3':
 						case '2.10.4':
+						case '2.10.5':
 							$QrysArray	= array($Qry12, $Qry13, $Qry14);
 							update_config('version', SYSTEM_VERSION);
 							upgrade_xml();

@@ -5,7 +5,7 @@
  * @version	1.0.x
  * @since	1.0.0
  * @license	http://creativecommons.org/licenses/by-sa/3.0/ CC-BY-SA
- * @link	http://www.razican.com Author's Website
+ * @link	http://www.razican.com
  * @author	Razican <admin@razican.com>
  */
 
@@ -21,7 +21,7 @@ class ShowFleet1Page
 		// SOME DEFAULT VALUES
 		#####################################################################################################
 		// QUERYS
-		$getCurrentAcs		= doquery('SELECT * FROM {{table}};', 'aks');
+		$getCurrentAcs		= doquery("SELECT * FROM {{table}} WHERE teilnehmer = '".$CurrentUser['id']."';", 'aks');
 
 		// ARRAYS
 		$speed_values		= array(10 => 100,9 => 90,8 => 80,7 => 70,6 => 60,5 => 50,4 => 40,3 => 30,2 => 20,1 => 10);

@@ -17,13 +17,13 @@ class ShowOptionsPage
 											(
 												SELECT COUNT(fleet_id) AS quantity
 													FROM {{table}}fleets
-														WHERE fleet_owner = '". intval($CurrentUser['id'])."'
+														WHERE fleet_owner = '".((int) $CurrentUser['id']))."'
 											)
 										+
 											(
 												SELECT COUNT(id) AS quantity
 													FROM {{table}}planets
-														WHERE id_owner = '". intval($CurrentUser['id'])."' &&
+														WHERE id_owner = '".((int) $CurrentUser['id']))."' &&
 														(b_building <> 0 OR b_tech <> 0 OR b_hangar <> 0)
 											)
 										) as total", '', TRUE);
@@ -37,27 +37,20 @@ class ShowOptionsPage
 
 		$mode = isset($_GET['mode']) ? $_GET['mode'] : NULL;
 
-		if ($_POST && $mode == "exit")
+		if ($_SERVER['REQUEST_METHOD'] === 'POST' && $mode === 'exit')
 		{
-			if (isset($_POST["exit_modus"]) && $_POST["exit_modus"] == 'on' and $CurrentUser['urlaubs_until'] <= time())
+			if (isset($_POST["exit_modus"]) && $_POST["exit_modus"] === 'on' and $CurrentUser['urlaubs_until'] <= time())
 			{
-				$urlaubs_modus = "0";
-
 				doquery("UPDATE `{{table}}` SET
 				`urlaubs_modus` = '0',
 				`urlaubs_until` = '0'
-				WHERE `id` = '".intval($CurrentUser['id'])."' LIMIT 1", "users");
+				WHERE `id` = '".((int) $CurrentUser['id']))."' LIMIT 1", "users");
+			}
 
-				die(header("Location: ".GAMEURL."game.php?page=options"));
-			}
-			else
-			{
-				$urlaubs_modus = "1";
-				die(header("Location: ".GAMEURL."game.php?page=options"));
-			}
+			die(header("Location: ".GAMEURL."game.php?page=options"));
 		}
 
-		if ($_POST && $mode == "change")
+		if ($_SERVER['REQUEST_METHOD'] === 'POST' && $mode === 'change')
 		{
 			if ($CurrentUser['authlevel'] > 0)
 			{
@@ -67,7 +60,7 @@ class ShowOptionsPage
 					doquery("UPDATE `{{table}}` SET `id_level` = '0' WHERE `id_owner` = '".intval($CurrentUser['id'])."';", 'planets');
 			}
 			// < ------------------------------------------------------- EL SKIN ------------------------------------------------------- >
-			if (isset($_POST["design"]) && $_POST["design"] == 'on')
+			if (isset($_POST["design"]) && $_POST["design"] === 'on')
 			{
 				$design = "1";
 			}
@@ -76,121 +69,121 @@ class ShowOptionsPage
 				$design = "0";
 			}
 			// < ------------------------------------------------- COMPROBACION DE IP -------------------------------------------------- >
-			if (isset($_POST["noipcheck"]) && $_POST["noipcheck"] == 'on')
+			if (isset($_POST["noipcheck"]) && $_POST["noipcheck"] === 'on')
 			{
-				$noipcheck = "1";
+				$noipcheck = 1;
 			}
 			else
 			{
-				$noipcheck = "0";
+				$noipcheck = 0;
 			}
 			// < ------------------------------------------------- NOMBRE DE USUARIO --------------------------------------------------- >
-			if (isset($_POST["db_character"]) && $_POST["db_character"] != '')
+			if (isset($_POST["db_character"]) && ! empty($_POST["db_character"]))
 			{
-				$username = $db->real_escape_string ($_POST['db_character']);
+				$username = $db->real_escape_string($_POST['db_character']);
 			}
 			else
 			{
-				$username = $db->real_escape_string ($CurrentUser['username']);
+				$username = $db->real_escape_string($CurrentUser['username']);
 			}
 			// < ------------------------------------------------- DIRECCION DE EMAIL -------------------------------------------------- >
 
-			if (isset($_POST["db_email"]) && $_POST["db_email"] != '')
+			if (isset($_POST["db_email"]) && ! empty($_POST["db_email"]))
 			{
-				$db_email = $db->real_escape_string ($_POST['db_email']);
+				$db_email = $db->real_escape_string($_POST['db_email']);
 			}
 			else
 			{
-				$db_email = $db->real_escape_string ($CurrentUser['email']);
+				$db_email = $db->real_escape_string($CurrentUser['email']);
 			}
 			// < ------------------------------------------------- CANTIDAD DE SONDAS -------------------------------------------------- >
 			if (isset($_POST["spio_anz"]) && is_numeric($_POST["spio_anz"]))
 			{
-				$spio_anz = intval($_POST["spio_anz"]);
+				$spio_anz = (int) $_POST["spio_anz"];
 			}
 			else
 			{
-				$spio_anz = "1";
+				$spio_anz = 1;
 			}
 			// < ------------------------------------------------- TIEMPO TOOLTIP ------------------------------------------------------ >
 			if (isset($_POST["settings_tooltiptime"]) && is_numeric($_POST["settings_tooltiptime"]))
 			{
-				$settings_tooltiptime = intval($_POST["settings_tooltiptime"]);
+				$settings_tooltiptime = (int) $_POST["settings_tooltiptime"];
 			}
 			else
 			{
-				$settings_tooltiptime = "1";
+				$settings_tooltiptime = 1;
 			}
 			// < ------------------------------------------------- MENSAJES DE FLOTAS -------------------------------------------------- >
 			if (isset($_POST["settings_fleetactions"]) && is_numeric($_POST["settings_fleetactions"]))
 			{
-				$settings_fleetactions = intval($_POST["settings_fleetactions"]);
+				$settings_fleetactions = (int) $_POST["settings_fleetactions"];
 			}
 			else
 			{
-				$settings_fleetactions = "1";
+				$settings_fleetactions = 1;
 			}
 			// < -------------------------------------------------LOGO DE ALIANZAS ----------------------------------------------------- >
-			if (isset($_POST["settings_allylogo"]) && $_POST["settings_allylogo"] == 'on')
+			if (isset($_POST["settings_allylogo"]) && $_POST["settings_allylogo"] === 'on')
 			{
-				$settings_allylogo = "1";
+				$settings_allylogo = 1;
 			}
 			else
 			{
-				$settings_allylogo = "0";
+				$settings_allylogo = 0;
 			}
 			// < ------------------------------------------------- SONDAS DE ESPIONAJE ------------------------------------------------- >
-			if (isset($_POST["settings_esp"]) && $_POST["settings_esp"] == 'on')
+			if (isset($_POST["settings_esp"]) && $_POST["settings_esp"] === 'on')
 			{
-				$settings_esp = "1";
+				$settings_esp = 1;
 			}
 			else
 			{
-				$settings_esp = "0";
+				$settings_esp = 0;
 			}
 			// < ------------------------------------------------- ESCRIBIR MENSAJE ---------------------------------------------------- >
-			if (isset($_POST["settings_wri"]) && $_POST["settings_wri"] == 'on')
+			if (isset($_POST["settings_wri"]) && $_POST["settings_wri"] === 'on')
 			{
-				$settings_wri = "1";
+				$settings_wri = 1;
 			}
 			else
 			{
-				$settings_wri = "0";
+				$settings_wri = 0;
 			}
-			// < --------------------------------------------- ANADIR A LISTA DE AMIGOS ------------------------------------------------ >
-			if (isset($_POST["settings_bud"]) && $_POST["settings_bud"] == 'on')
+			// < --------------------------------------------- AÑADIR A LISTA DE AMIGOS ------------------------------------------------ >
+			if (isset($_POST["settings_bud"]) && $_POST["settings_bud"] === 'on')
 			{
-				$settings_bud = "1";
+				$settings_bud = 1;
 			}
 			else
 			{
-				$settings_bud = "0";
+				$settings_bud = 0;
 			}
 
 			// < ------------------------------------------------- ATAQUE CON MISILES -------------------------------------------------- >
-			if (isset($_POST["settings_mis"]) && $_POST["settings_mis"] == 'on')
+			if (isset($_POST["settings_mis"]) && $_POST["settings_mis"] === 'on')
 			{
-				$settings_mis = "1";
+				$settings_mis = 1;
 			}
 			else
 			{
-				$settings_mis = "0";
+				$settings_mis = 0;
 			}
 			// < ------------------------------------------------- VER REPORTE --------------------------------------------------------- >
-			if (isset($_POST["settings_rep"]) && $_POST["settings_rep"] == 'on')
+			if (isset($_POST["settings_rep"]) && $_POST["settings_rep"] === 'on')
 			{
-				$settings_rep = "1";
+				$settings_rep = 1;
 			}
 			else
 			{
-				$settings_rep = "0";
+				$settings_rep = 0;
 			}
 			// < ------------------------------------------------- MODO VACACIONES ----------------------------------------------------- >
-			if (isset($_POST["urlaubs_modus"]) && $_POST["urlaubs_modus"] == 'on')
+			if (isset($_POST["urlaubs_modus"]) && $_POST["urlaubs_modus"] === 'on')
 			{
 				if ($this->CheckIfIsBuilding($CurrentUser))
 				{
-					message($lang['op_cant_activate_vacation_mode'], "game.php?page=options",2);
+					message($lang['op_cant_activate_vacation_mode'], "game.php?page=options", 2);
 				}
 
 				$urlaubs_modus = "1";
@@ -198,11 +191,11 @@ class ShowOptionsPage
 				doquery("UPDATE `{{table}}` SET
 				`urlaubs_modus` = '$urlaubs_modus',
 				`urlaubs_until` = '$time'
-				WHERE `id` = '".intval($CurrentUser["id"])."' LIMIT 1", "users");
+				WHERE `id` = '".((int) $CurrentUser['id'])."' LIMIT 1", "users");
 
-				$query = doquery("SELECT * FROM `{{table}}` WHERE id_owner = '".intval($CurrentUser['id'])."'", 'planets');
+				$query = doquery("SELECT * FROM `{{table}}` WHERE id_owner = '".((int) $CurrentUser['id'])."'", 'planets');
 
-				while ($id =$query->fetch_array())
+				while ($owner = $query->fetch_assoc())
 				{
 					doquery("UPDATE `{{table}}` SET
 					metal_perhour = '".read_config('metal_basic_income')."',
@@ -216,28 +209,28 @@ class ShowOptionsPage
 					solar_plant_porcent = '0',
 					fusion_plant_porcent = '0',
 					solar_satelit_porcent = '0'
-					WHERE id = '{$id['id']}' && `planet_type` = 1 ", 'planets');
+					WHERE id = '{$owner['id']}' && `planet_type` = 1 ", 'planets');
 				}
 			}
 			else
 				$urlaubs_modus = "0";
 
 			// < ------------------------------------------------- BORRAR CUENTA ------------------------------------------------------- >
-			if (isset($_POST["db_deaktjava"]) && $_POST["db_deaktjava"] == 'on')
+			if (isset($_POST["db_deaktjava"]) && $_POST["db_deaktjava"] === 'on')
 			{
 				$db_deaktjava = time();
 			}
 			else
 			{
-				$db_deaktjava = "0";
+				$db_deaktjava = 0;
 			}
 
-			$SetSort  = $db->real_escape_string($_POST['settings_sort']);
-			$SetOrder = $db->real_escape_string($_POST['settings_order']);
+			$SetSort  = $db->real_escape_string(isset($_POST['settings_sort']) ? $_POST['settings_sort'] : NULL);
+			$SetOrder = $db->real_escape_string(isset($_POST['settings_order']) ? $_POST['settings_order'] : NULL);
 			//// < -------------------------------------- ACTUALIZAR TODO LO SETEADO ANTES --------------------------------------------- >
 			doquery("UPDATE `{{table}}` SET
 			`email` = '$db_email',
-			`dpath` = '$_POST[dpath]',
+			`dpath` = '".$db->real_escape_string(isset($_POST['dpath']) ? $_POST['dpath'] : NULL)."',
 			`design` = '$design',
 			`noipcheck` = '$noipcheck',
 			`planet_sort` = '$SetSort',
@@ -253,9 +246,9 @@ class ShowOptionsPage
 			`settings_rep` = '$settings_rep',
 			`urlaubs_modus` = '$urlaubs_modus',
 			`db_deaktjava` = '$db_deaktjava'
-			WHERE `id` = '".$CurrentUser["id"]."' LIMIT 1", "users");
+			WHERE `id` = '".$CurrentUser['id']."' LIMIT 1", "users");
 			// < ------------------------------------------------- CAMBIO DE CLAVE ----------------------------------------------------- >
-			if (isset($_POST["db_password"]) && sha1($_POST["db_password"]) == $CurrentUser["password"])
+			if (isset($_POST["db_password"]) && sha1($_POST["db_password"]) === $CurrentUser["password"])
 			{
 				if ($_POST["newpass1"] == $_POST["newpass2"])
 				{
@@ -271,12 +264,13 @@ class ShowOptionsPage
 			// < --------------------------------------------- CAMBIO DE NOMBRE DE USUARIO --------------------------------------------- >
 			if ($CurrentUser['username'] != $_POST["db_character"])
 			{
-				$query = doquery("SELECT id FROM `{{table}}` WHERE username='".$db->real_escape_string ($_POST["db_character"])."'", 'users', TRUE);
+				$query = doquery("SELECT id FROM `{{table}}` WHERE username='".$db->real_escape_string($_POST["db_character"])."'", 'users', TRUE);
 
 				if ( ! $query)
 				{
-					doquery("UPDATE `{{table}}` SET username='".$db->real_escape_string ($username)."' WHERE id='".intval($CurrentUser['id'])."' LIMIT 1", "users");
+					doquery("UPDATE `{{table}}` SET username='".$db->real_escape_string($username)."' WHERE id='".intval($CurrentUser['id'])."' LIMIT 1", "users");
 					setcookie(COOKIE_NAME, "", time()-100000, "/", "", FALSE, TRUE);
+
 					message($lang['op_username_changed'], "index.php", 1);
 				}
 			}
@@ -306,7 +300,7 @@ class ShowOptionsPage
 				$SkinsFolder = opendir(XN_ROOT.'styles/skins');
 
 				$parse['opt_skin_data']	= '';
-				while ($SkinsSubFolder = readdir($SkinsFolder))
+				while (($SkinsSubFolder = readdir($SkinsFolder)) !== FALSE)
 				{
 					if ($SkinsSubFolder != '.' && $SkinsSubFolder != '..' && $SkinsSubFolder != '.htaccess' && $SkinsSubFolder != '.svn' && $SkinsSubFolder != 'index.html')
 					{

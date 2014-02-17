@@ -18,7 +18,8 @@ class ShowChangelogPage
 		global $lang;
 
 		includeLang('CHANGELOG');
-		$template	=	gettemplate('changelog/changelog_table');
+		$template =	gettemplate('changelog/changelog_table');
+		$body = '';
 
 		foreach ($lang['changelog'] as $version => $description)
 		{

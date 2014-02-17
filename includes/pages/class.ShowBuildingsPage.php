@@ -283,7 +283,7 @@ class ShowBuildingsPage
 					$BuildTime    = $BuildEndTime - time();
 					$ElementTitle = $lang['tech'][$Element];
 					// START FIX BY JSTAR
-					if ($Sprice && $BuildLevel > $Sprice[$Element])
+					if (isset($Sprice[$Element]) && $BuildLevel > $Sprice[$Element])
 						$Sprice[$Element]	=	$BuildLevel;
 					// END FIX BY JSTAR
 
@@ -348,13 +348,14 @@ class ShowBuildingsPage
 		$Allowed['1'] 	= array( 1,  2,  3,  4, 12, 14, 15, 21, 22, 23, 24, 31, 33, 34, 44);
 		$Allowed['3'] 	= array(12, 14, 21, 22, 23, 24, 34, 41, 42, 43);
 
+		$TheCommand 	= isset($_GET['cmd']) ? $_GET['cmd'] : FALSE;
+		$Element 		= isset($_GET['building']) ? $_GET['building'] : NULL;
+		$ListID 		= isset($_GET['listid']) ? $_GET['listid'] : NULL;
+		$redirect		= isset($_GET['r']) ? $_GET['r'] : FALSE;
 
-		if (isset($_GET['cmd']))
+		if ($TheCommand)
 		{
 			$bDoItNow 	= FALSE;
-			$TheCommand = $_GET['cmd'];
-			$Element 	= $_GET['building'];
-			$ListID 	= $_GET['listid'];
 
 			if ( ! in_array(trim($Element), $Allowed[$CurrentPlanet['planet_type']]))
 			{
@@ -363,23 +364,15 @@ class ShowBuildingsPage
 
 			if (isset($Element))
 			{
-				if ( ! strchr($Element, ",") && ! strchr($Element, " ") &&
-					 ! strchr($Element, "+") && ! strchr($Element, "*") &&
-					 ! strchr($Element, "~") && ! strchr($Element, "=") &&
-					 ! strchr($Element, ";") && ! strchr($Element, "'") &&
-					 ! strchr($Element, "#") && ! strchr($Element, "-") &&
-					 ! strchr($Element, "_") && ! strchr($Element, "[") &&
-					 ! strchr($Element, "]") && ! strchr($Element, ".") &&
-					 ! strchr($Element, ":"))
+				$replacements	= array(',' => '', '+' => '', '~' => '', ';' => '', '#' => '',
+										'_' => '', ']' => '', ':' => '', ' ' => '', '*' => '',
+										'=' => '', '\'' => '', '-' => '', '[' => '', '.' => '');
+
+				$Element = strtr($Element, $replacements);
+
+				if (in_array(trim($Element), $Allowed[$CurrentPlanet['planet_type']]))
 				{
-					if (in_array(trim($Element), $Allowed[$CurrentPlanet['planet_type']]))
-					{
-						$bDoItNow = TRUE;
-					}
-				}
-				else
-				{
-					header("Location: ".GAMEURL."game.php?page=buildings");
+					$bDoItNow = TRUE;
 				}
 			}
 			elseif (isset($ListID))
@@ -416,7 +409,7 @@ class ShowBuildingsPage
 				}
 			}
 
-			if ($_GET['r'] == 'overview')
+			if ($redirect == 'overview')
 			{
 				header('location:game.php?page=overview');
 			}

@@ -53,9 +53,12 @@ class ShowFleet1Page
 		#####################################################################################################
 		// LOAD SHIPS INPUTS
 		#####################################################################################################
+		$fleet['fleetlist']	= '';
+		$fleet['amount']   	= 0;
+
 		foreach ($reslist['fleet'] as $n => $i)
 		{
-			if ($i >= 201 && $i <= 215 && $_POST["ship$i"] > "0")
+			if ($i >= 201 && $i <= 215 && isset($_POST["ship$i"]) && (int) $_POST["ship$i"] > 0)
 			{
 				if (($_POST["ship$i"] > $CurrentPlanet[$resource[$i]]) OR ( ! ctype_digit($_POST["ship$i"])))
 				{
@@ -78,7 +81,7 @@ class ShowFleet1Page
 			}
 		}
 
-		if ( ! $fleet['fleetlist'])
+		if ( ! isset($fleet['fleetlist']))
 		{
 			header('location:game.php?page=fleet');
 		}
@@ -91,7 +94,9 @@ class ShowFleet1Page
 		#####################################################################################################
 		// LOAD PLANET TYPES OPTIONS
 		#####################################################################################################
-		foreach ($planet_type as $type)
+		$parse['options_planettype']	= '';
+
+		foreach ($planet_type as $type )
 		{
 			$value++;
 
@@ -114,6 +119,8 @@ class ShowFleet1Page
 		#####################################################################################################
 		// LOAD SPEED OPTIONS
 		#####################################################################################################
+		$parse['options']	= '';
+
 		foreach ($speed_values as $value => $porcentage)
 		{
 			$speed_porcentage['value']		=	$value;
@@ -227,6 +234,8 @@ class ShowFleet1Page
 		#####################################################################################################
 		// LOAD SAC SHORTCUTS
 		#####################################################################################################
+		$acs_fleets	= '';
+
 		while ($row = $getCurrentAcs->fetch_array())
 		{
 			$members = explode(",", $row['eingeladen']);

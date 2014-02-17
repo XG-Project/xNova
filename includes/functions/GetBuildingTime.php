@@ -19,7 +19,7 @@ if ( ! defined('INSIDE')) die(header("Location:../../"));
 		// IF ROUTINE FIX BY JSTAR
 		if ( ! $level)
 		{
-			$level = ($planet[$resource[$Element]]) ? $planet[$resource[$Element]] : $user[$resource[$Element]];//ORIGINAL LINE
+			$level = (isset($planet[$resource[$Element]])) ? $planet[$resource[$Element]] : $user[$resource[$Element]];//ORIGINAL LINE
 		}
 
 		if (in_array($Element, $reslist['build']))

@@ -12,13 +12,11 @@
 if ( ! defined('INSIDE')) die(header("Location:../../"));
 
 	function GetElementPrice ($user, $planet, $Element, $userfactor = TRUE, $level = FALSE)
-	//function GetElementPrice ($user, $planet, $Element, $userfactor = TRUE)
 	{
 		global $pricelist, $resource, $lang;
 
-		//if ($userfactor) // OLD CODE
-		if ($userfactor && ! $level) // FIX BY JSTAR
-			$level = ($planet[$resource[$Element]]) ? $planet[$resource[$Element]] : $user[$resource[$Element]];
+		if ($userfactor && ($level === FALSE))
+			$level = (isset($planet[$resource[$Element]])) ? $planet[$resource[$Element]] : $user[$resource[$Element]];
 
 		$is_buyeable = TRUE;
 
@@ -32,7 +30,7 @@ if ( ! defined('INSIDE')) die(header("Location:../../"));
 		$text = $lang['fgp_require'];
 		foreach ($array as $ResType => $ResTitle)
 		{
-			if ($pricelist[$Element][$ResType])
+			if (isset($pricelist[$Element][$ResType]) && $pricelist[$Element][$ResType] != 0)
 			{
 				$text .= $ResTitle.": ";
 				if ($userfactor)
@@ -52,4 +50,7 @@ if ( ! defined('INSIDE')) die(header("Location:../../"));
 		}
 		return $text;
 	}
-?>
+
+
+/* End of file GetElementPrice.php */
+/* Location: ./includes/functions/GetElementPrice.php */

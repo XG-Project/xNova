@@ -197,7 +197,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
 			if ( ! $GalaxyRow)
 			{
-				CreateOnePlanetRecord ($Galaxy, $System, $Planet, $NewUser['id'], $UserPlanet, TRUE);
+				CreateOnePlanetRecord ($Galaxy, $System, $Planet, $NewUser['id'], '', TRUE);
 				$newpos_checked = TRUE;
 			}
 			if ($newpos_checked)
@@ -224,9 +224,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 		$sender 	= $lang['welcome_message_sender'];
 		$Subject 	= $lang['welcome_message_subject'];
 		$message 	= $lang['welcome_message_content'];
-		SendSimpleMessage($NewUser['id'], $sender, $Time, 1, $from, $Subject, $message);
 
-		update_config('users_amount', read_config('users_amount') + 1);
+		SendSimpleMessage($NewUser['id'], $sender, '', 1, $from, $Subject, $message);
 
 		require('config.php');
 		$cookie = $NewUser['id']."/%/".$UserName."/%/". md5($sha1newpass."--".$dbsettings["secretword"])."/%/". 0;
@@ -246,4 +245,7 @@ else
 
 	display(parsetemplate(gettemplate('public/registry_form'), $parse), FALSE, '',FALSE, FALSE);
 }
-?>
+
+
+/* End of file reg.php */
+/* Location: ./reg.php */

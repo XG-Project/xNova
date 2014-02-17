@@ -42,8 +42,11 @@ if ( ! defined('INSIDE')) die(header("Location:../../"));
 			$parse['show_umod_notice']		.= $CurrentUser['db_deaktjava'] ? '<table width="100%" style="border: 2px solid red; text-align:center;background:transparent;"><tr style="background:transparent;"><td style="background:transparent;">'.$lang['tn_delete_mode'] . date('d.m.Y h:i:s', $CurrentUser['db_deaktjava'] + (60 * 60 * 24 * 7)).'</td></tr></table>' : '';
 		}
 
-		$parse['planetlist']			= '';
-		$ThisUsersPlanets				= SortUserPlanets($CurrentUser);
+		$parse['planetlist']	= '';
+		$ThisUsersPlanets		= SortUserPlanets($CurrentUser);
+		$gid					= isset($_GET['gid']) ? $_GET['gid'] : NULL;
+		$page					= isset($_GET['page']) ? $_GET['page'] : NULL;
+		$mode					= isset($_GET['mode']) ? $_GET['mode'] : NULL;
 
 		while ($CurPlanet = $ThisUsersPlanets->fetch_array())
 		{
@@ -51,16 +54,21 @@ if ( ! defined('INSIDE')) die(header("Location:../../"));
 			{
 				$parse['planetlist'] .= "\n<option ";
 				if ($CurPlanet['id'] == $CurrentUser['current_planet'])
-					$parse['planetlist'] .= "selected ";
-				$gid	= isset($_GET['gid']) ? $_GET['gid'] : '';
-				$mode	= isset($_GET['mode']) ? $_GET['mode'] : '';
-				$parse['planetlist'] .= "value=\"game.php?page=".$_GET['page']."&gid=".$gid."&cp=".$CurPlanet['id']."";
-				$parse['planetlist'] .= "&amp;mode=".$mode;
-				$parse['planetlist'] .= "&amp;re=0\">";
+					$parse['planetlist'] .= 'selected ';
+
+				$query = array();
+				if ( ! is_null($page))	$query['page'] = $page;
+				if ( ! is_null($gid))	$query['gid'] = $gid;
+				$query['cp'] = $CurPlanet['id'];
+				if ( ! is_null($mode))	$query['mode'] = $mode;
+				$query['re'] = 0;
+
+				$parse['planetlist'] .= 'value="game.php?'.http_build_query($query).'">';
 				if ($CurPlanet['planet_type'] != 3)
 					$parse['planetlist'] .= "".$CurPlanet['name'];
 				else
 					$parse['planetlist'] .= "".$CurPlanet['name']." (".$lang['fcm_moon'].")";
+
 				$parse['planetlist'] .= "&nbsp;[".$CurPlanet['galaxy'].":";
 				$parse['planetlist'] .= "".$CurPlanet['system'].":";
 				$parse['planetlist'] .= "".$CurPlanet['planet'];

@@ -127,7 +127,7 @@ function display($page, $topnav = TRUE, $metatags = '', $AdminPage = FALSE, $men
 	if ( ! defined('INSTALL') && AUTHLEVEL === 3 && read_config('debug'))
 		$footer['debug'] = $debug->echo_log();
 
-	if ( ! defined('LOGIN') && ! defined('IN_ADMIN') && isset($_GET['page']) && $_GET['page'] !== 'galaxy')
+	if ( ! defined('LOGIN') && ! defined('IN_ADMIN') && ( ! isset($_GET['page']) OR $_GET['page'] !== 'galaxy'))
 		$DisplayPage .= parsetemplate(gettemplate('general/footer'), $footer);
 	elseif (defined('IN_ADMIN'))
 		$DisplayPage .= parsetemplate(gettemplate('adm/footer'), $footer);
@@ -172,8 +172,6 @@ function AdminUserHeader($metatags = '')
 {
 	global $lang;
 	$parse	= $lang;
-
-	if ( ! isset($lang['']))
 
 	if ( ! defined('IN_ADMIN'))
 		$parse['-title-'] 	= 	'xNova - Instalación';

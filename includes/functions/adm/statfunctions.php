@@ -65,6 +65,7 @@ function GetDefensePoints($CurrentPlanet)
 
 	$DefenseCounts = 0;
 	$DefensePoints = 0;
+
 	foreach ($reslist['defense'] as $n => $Defense)
 	{
 		if (isset($CurrentPlanet[$resource[$Defense]]) && $CurrentPlanet[$resource[$Defense]] > 0)
@@ -155,7 +156,7 @@ function MakeStats()
 
 		while ($delete = $ChooseToDelete->fetch_array())
 		{
-			DeleteSelectedUser($delete[id]);
+			DeleteSelectedUser($delete['id']);
 		}
 	}
 
@@ -192,21 +193,24 @@ function MakeStats()
 	//For Stats table..
 	$select_old_ranks	= "id_owner, stat_type,tech_rank AS old_tech_rank, build_rank AS old_build_rank, defs_rank AS old_defs_rank, fleet_rank AS old_fleet_rank, total_rank AS old_total_rank";
 	//For users table
-	$select_user		= " u.id, u.ally_id, u.authlevel ";
+	$select_user		= " u.id, u.ally_id, u.authlevel, u.bana ";
 	//We check how many users are for not overload the server...
 	$total_users = doquery("SELECT COUNT(*) AS `count` FROM `{{table}}` WHERE 1;", 'users', TRUE);
 	//We will make query every 'stat_amount' users
 	//Min amount = 10, if it is less than 10, it is not a good system
 
-	$game_stat_amount	=	read_config('stat_amount');
-	$game_users_amount	=	read_config('users_amount');
-	$game_stat_flying	=	read_config('stat_flying');
-	$game_stat_settings	=	read_config('stat_settings');
-	$game_stat_level	=	read_config('stat_level');
-	$game_stat			=	read_config('stat');
 
-	$game_stat_amount	= (($game_stat_amount>=10) ?$game_stat_amount:10);
-	$amount_per_block	= (($game_stat_amount<$game_users_amount) ?$game_users_amount:$game_stat_amount);
+	$game_users_amount	= $total_users['count'];
+	$game_stat_amount	= read_config('stat_amount');
+	$game_stat_flying	= read_config('stat_flying');
+	$game_stat_settings	= read_config('stat_settings');
+	$game_stat_level	= read_config('stat_level');
+	$game_stat			= read_config('stat');
+
+	$flying_fleets_array = array();
+
+	$game_stat_amount	= (($game_stat_amount >=10 ) ? $game_stat_amount : 10);
+	$amount_per_block	= (($game_stat_amount < $game_users_amount) ? $game_users_amount : $game_stat_amount);
 	if ($total_users['count'] > $amount_per_block)
 	{
 		$LastQuery = Format::round_up($total_users['count'] / $amount_per_block);
@@ -281,11 +285,12 @@ function MakeStats()
 		//Here we start the update...
 		while ($CurUser = $total_data->fetch_assoc())
 		{
-			$u_OldTotalRank = (isset($old_stats_array[$CurUser['id']]['old_total_rank']) ? $old_stats_array[$CurUser['id']]['old_total_rank'] : 0);
-			$u_OldTechRank  = (isset($old_stats_array[$CurUser['id']]['old_tech_rank']) ? $old_stats_array[$CurUser['id']]['old_tech_rank'] : 0);
-			$u_OldBuildRank = (isset($old_stats_array[$CurUser['id']]['old_build_rank']) ? $old_stats_array[$CurUser['id']]['old_build_rank'] : 0);
-			$u_OldDefsRank  = (isset($old_stats_array[$CurUser['id']]['old_defs_rank']) ? $old_stats_array[$CurUser['id']]['old_defs_rank'] : 0);
-			$u_OldFleetRank = (isset($old_stats_array[$CurUser['id']]['old_fleet_rank']) ? $old_stats_array[$CurUser['id']]['old_fleet_rank'] : 0);
+			$u_OldTotalRank = isset($old_stats_array[$CurUser['id']]['old_total_rank']) ? $old_stats_array[$CurUser['id']]['old_total_rank'] : 0;
+			$u_OldTechRank  = isset($old_stats_array[$CurUser['id']]['old_tech_rank']) ? $old_stats_array[$CurUser['id']]['old_tech_rank'] : 0;
+			$u_OldBuildRank = isset($old_stats_array[$CurUser['id']]['old_build_rank']) ? $old_stats_array[$CurUser['id']]['old_build_rank'] : 0;
+			$u_OldDefsRank  = isset($old_stats_array[$CurUser['id']]['old_defs_rank']) ? $old_stats_array[$CurUser['id']]['old_defs_rank'] : 0;
+			$u_OldFleetRank = isset($old_stats_array[$CurUser['id']]['old_fleet_rank']) ? $old_stats_array[$CurUser['id']]['old_fleet_rank'] : 0;
+
 			//We dont need this anymore...
 			if (isset($old_stats_array[$CurUser['id']]))
 			{
@@ -308,7 +313,7 @@ function MakeStats()
 			//This is used if ($game_stat_flying == 1)
 			if ($game_stat_flying == 1)
 			{
-				if (isset($flying_fleets_array[$CurUser['id']]) && $flying_fleets_array[$CurUser['id']])
+				if (isset($flying_fleets_array[$CurUser['id']]))
 				{
 					foreach ($flying_fleets_array[$CurUser['id']] as $fleet_id => $fleet_array)
 					{

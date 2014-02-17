@@ -17,7 +17,7 @@ class ShowFleet3Page
 	{
 		global $resource, $pricelist, $reslist, $lang;
 
-		include_once (XN_ROOT.'includes/functions/IsVacationMode.php');
+		include_once(XN_ROOT.'includes/functions/IsVacationMode.php');
 
 		$parse	=	$lang;
 
@@ -36,14 +36,14 @@ class ShowFleet3Page
 							intval($_POST["galaxy"]) .
 							"s".
 							intval($_POST["system"]) .
-							"p". intval($_POST["planet"]) .
-							"t". intval($_POST["planettype"]);
+							"p".intval($_POST["planet"]) .
+							"t".intval($_POST["planettype"]);
 
 				if ($_POST['acs_target_mr'] == $target)
 				{
 					$aks_count_mr = doquery("SELECT COUNT(*)
 												FROM {{table}}
-												WHERE id = '". intval($_POST['fleet_group'])."'", 'aks');
+												WHERE id = '".intval($_POST['fleet_group'])."'", 'aks');
 
 					if ($aks_count_mr > 0)
 					{
@@ -295,12 +295,12 @@ class ShowFleet3Page
 										FROM  `{{table}}`
 											WHERE (
 												(
-													sender ='". intval($CurrentPlanet['id_owner'])."'
-													&& owner ='". intval($TargetPlanet['id_owner'])."'
+													sender ='".intval($CurrentPlanet['id_owner'])."'
+													&& owner ='".intval($TargetPlanet['id_owner'])."'
 												)
 												OR (
-													sender ='". intval($TargetPlanet['id_owner'])."'
-													&& owner ='". intval($CurrentPlanet['id_owner'])."'
+													sender ='".intval($TargetPlanet['id_owner'])."'
+													&& owner ='".intval($CurrentPlanet['id_owner'])."'
 												)
 											)
 											&& active =1", 'buddy', TRUE);
@@ -556,6 +556,7 @@ class ShowFleet3Page
 		$parse['end_time'] 		= date("M D d H:i:s", $fleet['end_time']);
 
 		$ships_row_template		= gettemplate('fleet/fleet3_ships_row');
+		$ships_list				= '';
 
 		foreach ($fleetarray as $Ship => $Count)
 		{

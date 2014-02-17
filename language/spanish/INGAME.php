@@ -340,6 +340,7 @@ $lang['bd_operating']						= '(En funcionamiento)';
 $lang['bd_continue']						= 'Continuar';
 $lang['bd_ready']							= 'Listo';
 $lang['bd_finished']						= 'Terminado';
+$lang['bd_work_todo']						= 'Cola de construcción';
 
 //----------------------------------------------------------------------------//
 //RESOURCES

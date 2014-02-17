@@ -29,6 +29,7 @@ if (isset($dbsettings))
 		require_once(XN_ROOT.'includes/constants.php');
 		require_once(XN_ROOT.'includes/GeneralFunctions.php');
 		require_once(XN_ROOT.'includes/classes/class.debug.php');
+		require_once(XN_ROOT.'includes/classes/class.xml.php');
 		$debug->error($db->connect_error, "SQL Error");
 		die("Error, por favor contacte al administrador.");
 	}
@@ -180,8 +181,11 @@ if ( ! defined('INSTALL') OR ( ! INSTALL))
 			require_once(XN_ROOT.'includes/functions/SetSelectedPlanet.php');
 			SetSelectedPlanet($user);
 
-			$planetrow = doquery("SELECT * FROM `{{table}}` WHERE `id` = '".$user['current_planet']."';", "planets", TRUE);
+			$planetrow = doquery("SELECT *, (SELECT COUNT(`id`) AS count FROM `{{table}}users` ) AS total_users
+									FROM `{{table}}planets`
+									WHERE `id` = '".$user['current_planet']."';", '', TRUE);
 		}
+
 		// Include the plugin system
 		require_once(XN_ROOT.'includes/plugins.php');
 	}

@@ -53,6 +53,7 @@ class ShowShipyardPage
 		$NbrePerType  = "";
 		$NamePerType  = "";
 		$TimePerType  = "";
+		$QueueTime		= 0;
 
 		foreach ($ElementQueue as $ElementLine => $Element)
 		{
@@ -73,9 +74,8 @@ class ShowShipyardPage
 		$parse['c'] 					= $TimePerType;
 		$parse['b_hangar_id_plus'] 		= $CurrentPlanet['b_hangar'];
 		$parse['pretty_time_b_hangar'] 	= Format::pretty_time($QueueTime - $CurrentPlanet['b_hangar']);
-		$text .= parsetemplate(gettemplate('buildings/buildings_script'), $parse);
 
-		return $text;
+		return parsetemplate(gettemplate('buildings/buildings_script'), $parse);
 	}
 
 	public function FleetBuildingPage (&$CurrentPlanet, $CurrentUser)
@@ -129,7 +129,6 @@ class ShowShipyardPage
 			}
 
 			header("Location: ".GAMEURL."game.php?page=buildings&mode=fleet");
-
 		}
 
 		if ($CurrentPlanet[$resource[21]] == 0)
@@ -140,7 +139,7 @@ class ShowShipyardPage
 		if ($CurrentPlanet['b_building_id'])
 		{
 			$CurrentQueue = $CurrentPlanet['b_building_id'];
-			if (strpos ($CurrentQueue, ";"))
+			if (strpos($CurrentQueue, ";"))
 			{
 				// FIX BY LUCKY - IF THE SHIPYARD IS IN QUEUE THE USER CANT RESEARCH ANYTHING...
 				$QueueArray		= explode(";", $CurrentQueue);
@@ -170,6 +169,8 @@ class ShowShipyardPage
 		}
 
 		$TabIndex = 0;
+		$PageTable	= '';
+		$BuildQueue	= '';
 		foreach ($lang['tech'] as $Element => $ElementName)
 		{
 			if ($Element > 201 && $Element <= 399)
@@ -198,7 +199,7 @@ class ShowShipyardPage
 
 					if ($NotBuilding)
 					{
-						$parse[build_fleet] 	= "<tr><td class=\"c\" colspan=\"2\" align=\"center\"><input type=\"submit\" value=\"".$lang['bd_build_ships']."\"></td></tr>";
+						$parse['build_fleet'] 	= "<tr><td class=\"c\" colspan=\"2\" align=\"center\"><input type=\"submit\" value=\"".$lang['bd_build_ships']."\"></td></tr>";
 					}
 
 					$PageTable .= parsetemplate(gettemplate('buildings/buildings_fleet_row'), $parse);
@@ -262,7 +263,7 @@ class ShowShipyardPage
 
 				if ($Count)
 				{
-					$InQueue = strpos ($CurrentPlanet['b_hangar_id'], $Element.",");
+					$InQueue = strpos($CurrentPlanet['b_hangar_id'], $Element.",");
 					$IsBuildp = ($CurrentPlanet[$resource[407]] >= 1) ? TRUE : FALSE;
 					$IsBuildg = ($CurrentPlanet[$resource[408]] >= 1) ? TRUE : FALSE;
 
@@ -342,7 +343,7 @@ class ShowShipyardPage
 		if ($CurrentPlanet['b_building_id'])
 		{
 			$CurrentQueue = $CurrentPlanet['b_building_id'];
-			if (strpos ($CurrentQueue, ";"))
+			if (strpos($CurrentQueue, ";"))
 			{
 				// FIX BY LUCKY - IF THE SHIPYARD IS IN QUEUE THE USER CANT RESEARCH ANYTHING...
 				$QueueArray		= explode(";", $CurrentQueue);
@@ -373,8 +374,9 @@ class ShowShipyardPage
 
 		}
 
-		$TabIndex  = 0;
-		$PageTable = "";
+		$TabIndex	= 0;
+		$PageTable 	= '';
+		$BuildQueue	= '';
 		foreach ($lang['tech'] as $Element => $ElementName)
 		{
 			if ($Element > 400 && $Element <= 599)

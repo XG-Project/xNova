@@ -21,7 +21,7 @@ require(XN_ROOT.'global.php');
 includeLang('PUBLIC');
 
 $parse = $lang;
-$page	= isset($_GET['page']) ? $_GET['page'] : NULL;
+$page = isset($_GET['page']) ? $_GET['page'] : NULL;
 
 switch ($page)
 {
@@ -120,4 +120,7 @@ switch ($page)
 			display(parsetemplate(gettemplate('public/index_body'), $parse), FALSE, '', FALSE, FALSE);
 		}
 }
-?>
+
+
+/* End of file index.php */
+/* Location: ./index.php */

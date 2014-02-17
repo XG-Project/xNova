@@ -31,6 +31,18 @@ class ShowGalaxyPage extends GalaxyRows
 		$maxfleet       = doquery("SELECT * FROM `{{table}}` WHERE `fleet_owner` = '".intval($CurrentUser['id'])."';", 'fleets');
 		$maxfleet_count = $maxfleet->num_rows;
 
+		$postedGalaxy	= isset($_POST["galaxy"]) ? $_POST["galaxy"] : NULL;
+		$postedSystem	= isset($_POST["system"]) ? $_POST["system"] : NULL;
+
+		$getGalaxy		= isset($_GET['galaxy']) ? $_GET['galaxy'] : NULL;
+		$getSystem		= isset($_GET['system']) ? $_GET['system'] : NULL;
+		$getPlanet		= isset($_GET['planet']) ? $_GET['planet'] : NULL;
+
+		$galaxyLeft		= isset($_POST["galaxyLeft"]) ? $_POST["galaxyLeft"] : NULL;
+		$galaxyRight	= isset($_POST["galaxyRight"]) ? $_POST["galaxyRight"] : NULL;
+		$systemLeft		= isset($_POST["systemLeft"]) ? $_POST["systemLeft"] : NULL;
+		$systemRight	= isset($_POST["systemRight"]) ? $_POST["systemRight"] : NULL;
+
 		if ( ! isset($mode))
 		{
 			if (isset($_GET['mode']))
@@ -51,121 +63,119 @@ class ShowGalaxyPage extends GalaxyRows
 		}
 		elseif ($mode == 1)
 		{
-			if (intval($_POST["galaxy"]))
+			if (intval($postedGalaxy))
 			{
-				// ereg_replace REEMPLAZADO POR preg_replace PARA PHP MAYORES A 5.3.0
-				$_POST["galaxy"] = preg_replace("[^0-9]","", $_POST["galaxy"]);
+				$postedGalaxy = preg_replace("[^0-9]","",$postedGalaxy);
 			}
 			else
 			{
-				$_POST["galaxy"] = 1;
+				$postedGalaxy = 1;
 			}
 
-			if (intval($_POST["system"]))
+			if (intval($postedSystem))
 			{
-				// ereg_replace REEMPLAZADO POR preg_replace PARA PHP MAYORES A 5.3.0
-				$_POST["system"] = preg_replace("[^0-9]","", $_POST["system"]);
+				$postedSystem = preg_replace("[^0-9]","",$postedSystem);
 			}
 			else
 			{
-				$_POST["system"] = 1;
+				$postedSystem = 1;
 			}
 
-			if ($_POST["galaxy"] > MAX_GALAXY_IN_WORLD)
-				$_POST["galaxy"] = MAX_GALAXY_IN_WORLD;
+			if ($postedGalaxy > MAX_GALAXY_IN_WORLD)
+				$postedGalaxy = MAX_GALAXY_IN_WORLD;
 
-			if ($_POST["system"] > MAX_SYSTEM_IN_GALAXY)
-				$_POST["system"] = MAX_SYSTEM_IN_GALAXY;
+			if ($postedSystem > MAX_SYSTEM_IN_GALAXY)
+				$postedSystem = MAX_SYSTEM_IN_GALAXY;
 
-			if ($_POST["galaxyLeft"])
+			if ($galaxyLeft)
 			{
-				if ($_POST["galaxy"] < 1)
+				if ($postedGalaxy < 1)
 				{
-					$_POST["galaxy"] = 1;
+					$postedGalaxy = 1;
 					$galaxy          = 1;
 				}
-				elseif ($_POST["galaxy"] == 1)
+				elseif ($postedGalaxy == 1)
 				{
-					$_POST["galaxy"] = 1;
+					$postedGalaxy = 1;
 					$galaxy          = 1;
 				}
 				else
 				{
-					$galaxy = $_POST["galaxy"] - 1;
+					$galaxy = $postedGalaxy - 1;
 				}
 			}
-			elseif ($_POST["galaxyRight"])
+			elseif ($galaxyRight)
 			{
-				if ($_POST["galaxy"] > MAX_GALAXY_IN_WORLD OR $_POST["galaxyRight"] > MAX_GALAXY_IN_WORLD)
+				if ($postedGalaxy > MAX_GALAXY_IN_WORLD OR $galaxyRight > MAX_GALAXY_IN_WORLD)
 				{
-					$_POST["galaxy"]      = MAX_GALAXY_IN_WORLD;
-					$_POST["galaxyRight"] = MAX_GALAXY_IN_WORLD;
-					$galaxy               = MAX_GALAXY_IN_WORLD;
+					$postedGalaxy  	= MAX_GALAXY_IN_WORLD;
+					$galaxyRight 	= MAX_GALAXY_IN_WORLD;
+					$galaxy       	= MAX_GALAXY_IN_WORLD;
 				}
-				elseif ($_POST["galaxy"] == MAX_GALAXY_IN_WORLD)
+				elseif ($postedGalaxy == MAX_GALAXY_IN_WORLD)
 				{
-					$_POST["galaxy"]      = MAX_GALAXY_IN_WORLD;
-					$galaxy               = MAX_GALAXY_IN_WORLD;
+					$postedGalaxy  	= MAX_GALAXY_IN_WORLD;
+					$galaxy       	= MAX_GALAXY_IN_WORLD;
 				}
 				else
 				{
-					$galaxy = $_POST["galaxy"] + 1;
+					$galaxy = $postedGalaxy + 1;
 				}
 			}
 			else
 			{
-				$galaxy = $_POST["galaxy"];
+				$galaxy = $postedGalaxy;
 			}
 
-			if ($_POST["systemLeft"])
+			if ($systemLeft)
 			{
-				if ($_POST["system"] < 1)
+				if ($postedSystem < 1)
 				{
-					$_POST["system"] = 1;
+					$postedSystem = 1;
 					$system          = 1;
 				}
-				elseif ($_POST["system"] == 1)
+				elseif ($postedSystem == 1)
 				{
-					$_POST["system"] = 1;
+					$postedSystem = 1;
 					$system          = 1;
 				}
 				else
 				{
-					$system = $_POST["system"] - 1;
+					$system = $postedSystem - 1;
 				}
 			}
-			elseif ($_POST["systemRight"])
+			elseif ($systemRight)
 			{
-				if ($_POST["system"]      > MAX_SYSTEM_IN_GALAXY OR $_POST["systemRight"] > MAX_SYSTEM_IN_GALAXY)
+				if ($postedSystem      > MAX_SYSTEM_IN_GALAXY OR $systemRight > MAX_SYSTEM_IN_GALAXY)
 				{
-					$_POST["system"]      = MAX_SYSTEM_IN_GALAXY;
-					$system               = MAX_SYSTEM_IN_GALAXY;
+					$postedSystem	= MAX_SYSTEM_IN_GALAXY;
+					$system       	= MAX_SYSTEM_IN_GALAXY;
 				}
-				elseif ($_POST["system"] == MAX_SYSTEM_IN_GALAXY)
+				elseif ($postedSystem == MAX_SYSTEM_IN_GALAXY)
 				{
-					$_POST["system"]      = MAX_SYSTEM_IN_GALAXY;
-					$system               = MAX_SYSTEM_IN_GALAXY;
+					$postedSystem  	= MAX_SYSTEM_IN_GALAXY;
+					$system       	= MAX_SYSTEM_IN_GALAXY;
 				}
 				else
 				{
-					$system = $_POST["system"] + 1;
+					$system = $postedSystem + 1;
 				}
 			}
 			else
 			{
-				$system = $_POST["system"];
+				$system = $postedSystem;
 			}
 		}
 		elseif ($mode == 2)
 		{
-			$galaxy        = intval($_GET['galaxy']);
-			$system        = intval($_GET['system']);
-			$planet        = intval($_GET['planet']);
+			$galaxy        = intval($getGalaxy);
+			$system        = intval($getSystem);
+			$planet        = intval($getPlanet);
 		}
 		elseif ($mode == 3)
 		{
-			$galaxy        = intval($_GET['galaxy']);
-			$system        = intval($_GET['system']);
+			$galaxy        = intval($getGalaxy);
+			$system        = intval($getSystem);
 		}
 		else
 
@@ -177,11 +187,11 @@ class ShowGalaxyPage extends GalaxyRows
 		// START FIX BY alivan
 		if ($mode != 2)
 		{
-			if (($CurrentPlanet['system'] != ($_POST["system"] - 1)) && ($CurrentPlanet['system'] != $_GET['system'] OR $CurrentPlanet['galaxy'] != $_GET['galaxy']) && ($mode) && ($CurrentPlanet['deuterium'] < 10))
+			if (($CurrentPlanet['system'] != ($postedSystem - 1)) && ($CurrentPlanet['system'] != $getSystem OR $CurrentPlanet['galaxy'] != $getGalaxy) && ($mode != 0) && ($CurrentPlanet['deuterium'] < 10))
 			{
 				die(message($lang['gl_no_deuterium_to_view_galaxy'], "game.php?page=galaxy&mode=0", 2));
 			}
-			elseif (($CurrentPlanet['system'] != ($_POST["system"] - 1)) && ($CurrentPlanet['system'] != $_GET['system'] OR $CurrentPlanet['galaxy'] != $_GET['galaxy']) && ($mode))
+			elseif (($CurrentPlanet['system'] != ($postedSystem - 1)) && ($CurrentPlanet['system'] != $getSystem OR $CurrentPlanet['galaxy'] != $getGalaxy) && ($mode != 0))
 			{
 				$QryGalaxyDeuterium   = "UPDATE `{{table}}` SET ";
 				$QryGalaxyDeuterium  .= "`deuterium` = `deuterium` -  10 ";
@@ -206,14 +216,14 @@ class ShowGalaxyPage extends GalaxyRows
 		$parse						= $lang;
 		$parse['galaxy']			= $galaxy;
 		$parse['system']			= $system;
-		$parse['planet']			= $planet;
+		$parse['planet']			= isset($planet ) ? $planet : NULL;
 		$parse['currentmip']		= $CurrentMIP;
 		$parse['maxfleetcount']		= $maxfleet_count;
 		$parse['fleetmax']			= $fleetmax;
 		$parse['recyclers']   		= Format::pretty_number($CurrentRC);
 		$parse['spyprobes']   		= Format::pretty_number($CurrentSP);
 		$parse['missile_count']		= sprintf($lang['gl_missil_to_launch'], $CurrentMIP);
-		$parse['current']			= $_GET['current'];
+		$parse['current']			= isset($_GET['current']) ? $_GET['current'] : NULL;
 		$parse['current_galaxy']	= $CurrentPlanet["galaxy"];
 		$parse['current_system']	= $CurrentPlanet["system"];
 		$parse['current_planet']	= $CurrentPlanet["planet"];
@@ -234,9 +244,10 @@ class ShowGalaxyPage extends GalaxyRows
 
 	private function ShowGalaxyRows($GalaxyQuery, $Galaxy, $System, $HavePhalanx, $CurrentGalaxy, $CurrentSystem, $CurrentRC, $CurrentMIP)
 	{
-		$rows		= '';
-		$start		= 1;
-		$template	=	gettemplate('galaxy/galaxy_row');
+		$rows			= '';
+		$start			= 1;
+		$template		= gettemplate('galaxy/galaxy_row');
+		$parcialCount	= 0;
 
 		while ($GalaxyInfo = $GalaxyQuery->fetch_array())
 		{

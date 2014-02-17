@@ -915,7 +915,7 @@ class Bot {
 	{
 		//UpdatePlanet($this->CurrentPlanet, $this->user, time(), TRUE);
 		UpdatePlanetBatimentQueueList($this->CurrentPlanet, $this->user);
-		HandleTechnologieBuild($this->CurrentPlanet, $this->user);
+		//HandleTechnologieBuild($this->CurrentPlanet, $this->user);
 		PlanetResourceUpdate($this->user, $this->CurrentPlanet, time());
 	}
 
@@ -1028,7 +1028,7 @@ class Bot {
 		if ($CurrentPlanet['b_building_id'])
 		{
 			$CurrentQueue = $CurrentPlanet['b_building_id'];
-			if (strpos ($CurrentQueue, ";"))
+			if (strpos($CurrentQueue, ";"))
 			{
 				// FIX BY LUCKY - IF THE LAB IS IN QUEUE THE USER CANT RESEARCH ANYTHING...
 				$QueueArray		= explode(";", $CurrentQueue);

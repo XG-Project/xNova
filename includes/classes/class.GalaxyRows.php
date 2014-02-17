@@ -68,6 +68,8 @@ class GalaxyRows {
 	{
 		global $user, $lang;
 
+		$links	= '';
+
 		if ($GalaxyInfo['id'] != $user['id'])
 		{
 			if ($CurrentMIP <> 0)
@@ -148,6 +150,8 @@ class GalaxyRows {
 	public function GalaxyRowAlly($GalaxyInfo, $Galaxy, $System, $Planet)
 	{
 		global $user, $lang;
+
+		$parse	= '';
 
 		if ($GalaxyInfo['ally_id'] && $GalaxyInfo['ally_id'] != 0)
 		{
@@ -383,6 +387,8 @@ class GalaxyRows {
 				$MissionType5Link = "<a href=game.php?page=fleet&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=5>".$lang['type_mission'][5]."</a><br>";
 			elseif ($GalaxyInfo['id'] == $user['id'])
 				$MissionType5Link = "";
+			else
+				$MissionType5Link = "";
 
 			if ($GalaxyInfo['id'] == $user['id'])
 				$MissionType4Link = "<a href=game.php?page=fleet&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=4>".$lang['type_mission'][4]."</a><br>";
@@ -393,16 +399,18 @@ class GalaxyRows {
 				$MissionType10Link = "<a href=game.php?page=galaxy&mode=2&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&current=".$user['current_planet']." >".$lang['gl_missile_attack']."</a><br>";
 			elseif ($GalaxyInfo['id'] != $user['id'])
 				$MissionType10Link = "";
+			else
+				$MissionType10Link = "";
 
 			$MissionType3Link = "<a href=game.php?page=fleet&galaxy=".$Galaxy."&system=".$System."&planet=".$Planet."&planettype=".$PlanetType."&target_mission=3>".$lang['type_mission'][3]."</a><br>";
 
-			$parse				=	$lang;
-			$parse['dpath']		=	DPATH;
-			$parse['name']		=	$GalaxyInfo["name"];
-			$parse['galaxy']	=	$Galaxy;
-			$parse['system']	=	$System;
-			$parse['planet']	=	$Planet;
-			$parse['image']		=	$GalaxyInfo["image"];
+			$parse				= $lang;
+			$parse['dpath']		= DPATH;
+			$parse['name']		= $GalaxyInfo["name"];
+			$parse['galaxy']	= $Galaxy;
+			$parse['system']	= $System;
+			$parse['planet']	= $Planet;
+			$parse['image']		= $GalaxyInfo["image"];
 			$parse['links'] 	= $MissionType6Link;
 			$parse['links']    .= $PhalanxTypeLink;
 			$parse['links']    .= $MissionType1Link;
@@ -418,6 +426,9 @@ class GalaxyRows {
 	public function GalaxyRowPlanetName($GalaxyInfo, $Galaxy, $System, $Planet, $PlanetType, $HavePhalanx, $CurrentGalaxy, $CurrentSystem)
 	{
 		global $user, $lang;
+
+		$TextColor	= '';
+		$EndColor	= '';
 
 		if ($GalaxyInfo['last_update'] > (time()-59 * 60) && $GalaxyInfo['id'] != $user['id'])
 		{
@@ -446,7 +457,7 @@ class GalaxyRows {
 				$PhalanxTypeLink = stripslashes($GalaxyInfo['name']);
 			}
 
-			$planetname .= $TextColor.$PhalanxTypeLink.$EndColor;
+			$planetname = $TextColor.$PhalanxTypeLink.$EndColor;
 
 			if ($GalaxyInfo['last_update']  > (time()-59 * 60) && $GalaxyInfo['id'] != $user['id'])
 			{
@@ -555,7 +566,7 @@ class GalaxyRows {
 			$parse['status'] 	   .= $Systemtatus6;
 			$parse['status'] 	   .= $Systemtatus;
 			$parse['status'] 	   .= $Systemtatus2;
-			$parse['status'] 	   .= $Systemtatus7." ".$admin;
+			$parse['status'] 	   .= $Systemtatus7;
 		}
 		return parsetemplate(gettemplate('galaxy/galaxy_username_block'), $parse);
 	}

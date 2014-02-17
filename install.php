@@ -369,6 +369,7 @@ switch ($mode)
 						case '2.10.3':
 						case '2.10.4':
 						case '2.10.5':
+						case '2.10.6':
 							$QrysArray	= array($Qry12, $Qry13, $Qry14);
 							update_config('version', SYSTEM_VERSION);
 							upgrade_xml();

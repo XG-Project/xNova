@@ -17,7 +17,8 @@ class ShowTraderPage
 	{
 		global $lang;
 
-		$parse = $lang;
+		$parse 		= $lang;
+		$template	= '';
 
 		if ($CurrentUser['darkmatter'] < TR_DARK_MATTER)
 		{
@@ -167,7 +168,7 @@ class ShowTraderPage
 		}
 		else
 		{
-			if ($_POST['action'] != 2)
+			if (!$_POST)
 			{
 				$template = gettemplate('trader/trader_main');
 			}
@@ -175,7 +176,7 @@ class ShowTraderPage
 			{
 				$parse['mod_ma_res'] = '1';
 
-				switch ($_POST['choix'])
+				switch ( ( isset($_POST['choix']) ? $_POST['choix'] : NULL ) )
 				{
 					case 'metal':
 						$template = gettemplate('trader/trader_metal');
@@ -209,12 +210,10 @@ class ShowTraderPage
 	{
 		global $resource, $lang;
 
-
 		if ( ! is_array($amount))
 		{
 			throw new Exception("Must be array", 1);
 		}
-
 
 		$hangar	= array('metal' => 22, 'crystal' => 23, 'deuterium' => 24);
 		$check 	= array();
@@ -227,21 +226,8 @@ class ShowTraderPage
 				unset($amount[$k]);
 			}
 
-			if (array_key_exists($k, $amount))
-			{
-				if ($current_planet[$k] + $amount[$k] >= Production::max_storable($current_planet[$resource[$v]]))
-				{
-					$check[$k] = FALSE;
-				}
-				else
-				{
-					$check[$k] = TRUE;
-				}
-			}
-			else
-			{
-				$check[$k] = TRUE;
-			}
+			$check[$k] = ! (array_key_exists($k, $amount) &&
+						$current_planet[$k] + $amount[$k] >= Production::max_storable($current_planet[$resource[$v]]);
 		}
 
 		if ($check['metal'] && $check['crystal'] && $check['deuterium'])
@@ -256,7 +242,7 @@ class ShowTraderPage
 				{
 					if ( ! $check[$k])
 					{
-						return sprintf($lang['tr_full_storage'], strtolower ($lang['info'][$v]['name']));
+						return sprintf($lang['tr_full_storage'], strtolower($lang['info'][$v]['name']));
 					}
 					else
 					{
@@ -271,4 +257,7 @@ class ShowTraderPage
 		}
 	}
 }
-?>
+
+
+/* End of file class.ShowTraderPage.php */
+/* Location: ./includes/pages/class.ShowTraderPage.php */

@@ -94,7 +94,7 @@ class ShowFleetACSPage
 			SendSimpleMessage($added_user_id, $CurrentUser['id'], time(), 1, $CurrentUser['username'], $lang['fl_acs_invitation_title'], $invite_message);
 		}
 
-		$query = doquery("SELECT * FROM `{{table}}` WHERE fleet_id = '". intval($fleetid)."'", 'fleets');
+		$query = doquery("SELECT * FROM `{{table}}` WHERE fleet_id = '".intval($fleetid)."'", 'fleets');
 
 		if ($query->num_rows != 1)
 		{
@@ -112,7 +112,7 @@ class ShowFleetACSPage
 
 		if ( ! isset($_POST['send']))
 		{
-			$fleet 				= doquery("SELECT * FROM `{{table}}` WHERE fleet_id = '". intval($fleetid)."'", 'fleets', TRUE);
+			$fleet 				= doquery("SELECT * FROM `{{table}}` WHERE fleet_id = '".intval($fleetid)."'", 'fleets', TRUE);
 
 			if (empty($fleet['fleet_group']))
 			{
@@ -141,7 +141,7 @@ class ShowFleetACSPage
 											`galaxy` = '".$fleet['fleet_end_galaxy']."' &&
 											`system` = '".$fleet['fleet_end_system']."' &&
 											`planet` = '".$fleet['fleet_end_planet']."' &&
-											`eingeladen` = '". intval($CurrentUser['id'])."'
+											`eingeladen` = '".intval($CurrentUser['id'])."'
 											", 'aks', TRUE);
 
 				$acs_madnessred = doquery("SELECT *
@@ -153,12 +153,12 @@ class ShowFleetACSPage
 														`galaxy` = '".$fleet['fleet_end_galaxy']."' &&
 														`system` = '".$fleet['fleet_end_system']."' &&
 														`planet` = '".$fleet['fleet_end_planet']."' &&
-														`eingeladen` = '". intval($CurrentUser['id'])."'
+														`eingeladen` = '".intval($CurrentUser['id'])."'
 														", 'aks');
 
 				doquery("UPDATE {{table}}
-							SET fleet_group = '". intval($acs['id'])."'
-							WHERE fleet_id = '". intval($fleetid)."'", 'fleets');
+							SET fleet_group = '".intval($acs['id'])."'
+							WHERE fleet_id = '".intval($fleetid)."'", 'fleets');
 			}
 			else
 			{
@@ -166,11 +166,11 @@ class ShowFleetACSPage
 				{
 					doquery("UPDATE {{table}}
 								SET name = '".$db->real_escape_string($_POST['txt_name_acs'])."'
-								WHERE teilnehmer = '". intval($CurrentUser['id'])."'", 'aks');
+								WHERE teilnehmer = '".intval($CurrentUser['id'])."'", 'aks');
 				}
 
-				$acs 			= doquery("SELECT COUNT(`id`) FROM `{{table}}` WHERE id = '". intval($fleet['fleet_group'])."'", 'aks', TRUE);
-				$acs_madnessred = doquery("SELECT * FROM `{{table}}` WHERE id = '". intval($fleet['fleet_group'])."'", 'aks');
+				$acs 			= doquery("SELECT COUNT(`id`) FROM `{{table}}` WHERE id = '".intval($fleet['fleet_group'])."'", 'aks', TRUE);
+				$acs_madnessred = doquery("SELECT * FROM `{{table}}` WHERE id = '".intval($fleet['fleet_group'])."'", 'aks');
 
 				if ($acs[0] != 1)
 				{

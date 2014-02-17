@@ -28,10 +28,10 @@ else
 
 $queryuser 	= "u.id, u.username, u.user_agent, u.current_page, u.user_lastip, u.ally_name, u.onlinetime, u.email, u.galaxy, u.system, u.planet, u.urlaubs_modus, u.bana";
 $querystat 	= "s.total_points";
-$Last15Mins = doquery("SELECT ".$queryuser.", ".$querystat." FROM  {{table}}users as u, {{table}}statpoints as s
-							WHERE u.onlinetime >= '".(time() - 15 * 60)."' && u.id=s.id_owner && s.stat_type=1
-							ORDER BY `".$db->real_escape_string($TypeSort)."` ASC;", '');
 
+$Last15Mins = doquery("SELECT ".$queryuser.", ".$querystat." FROM  {{table}}users as u, {{table}}statpoints as s
+							WHERE u.onlinetime >= '".(time() - 15 * 60)."' AND u.id=s.id_owner AND s.stat_type=1
+							ORDER BY `".$db->real_escape_string($TypeSort)."` ASC;", '');
 
 $Count      = 0;
 $Color      = "lime";

@@ -18,7 +18,7 @@ class ShowResearchPage
 		if ($CurrentPlanet['b_building_id'])
 		{
 			$CurrentQueue = $CurrentPlanet['b_building_id'];
-			if (strpos ($CurrentQueue, ";"))
+			if (strpos($CurrentQueue, ";"))
 			{
 				// FIX BY LUCKY - IF THE LAB IS IN QUEUE THE USER CANT RESEARCH ANYTHING...
 				$QueueArray		= explode(";", $CurrentQueue);
@@ -55,13 +55,76 @@ class ShowResearchPage
 		return $return;
 	}
 
-	public function __construct(&$CurrentPlanet, $CurrentUser, $InResearch, $ThePlanet)
+	private function HandleTechnologieBuild(&$CurrentPlanet, &$CurrentUser)
+	{
+		global $resource;
+
+		if ($CurrentUser['b_tech_planet'] != 0)
+		{
+			if ($CurrentUser['b_tech_planet'] != $CurrentPlanet['id'])
+				$ThePlanet	= $WorkingPlanet = doquery("SELECT * FROM {{table}} WHERE `id` = '".intval($CurrentUser['b_tech_planet']) ."';", 'planets', TRUE);
+			else
+				$ThePlanet = $CurrentPlanet;
+
+			if ($ThePlanet['b_tech'] <= time() && $ThePlanet['b_tech_id'] != 0)
+			{
+				$CurrentUser[$resource[$ThePlanet['b_tech_id']]]++;
+
+				$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+				$QryUpdatePlanet .= "`b_tech` = '0', ";
+				$QryUpdatePlanet .= "`b_tech_id` = '0' ";
+				$QryUpdatePlanet .= "WHERE ";
+				$QryUpdatePlanet .= "`id` = '".intval($ThePlanet['id']) ."';";
+				doquery($QryUpdatePlanet, 'planets');
+
+				$QryUpdateUser    = "UPDATE {{table}} SET ";
+				$QryUpdateUser   .= "`".$resource[$ThePlanet['b_tech_id']]."` = '". $CurrentUser[$resource[$ThePlanet['b_tech_id']]] ."', ";
+				$QryUpdateUser   .= "`b_tech_planet` = '0' ";
+				$QryUpdateUser   .= "WHERE ";
+				$QryUpdateUser   .= "`id` = '".intval($CurrentUser['id']) ."';";
+				doquery($QryUpdateUser, 'users');
+
+				$ThePlanet["b_tech_id"] = 0;
+
+				if (isset($WorkingPlanet))
+					$WorkingPlanet = $ThePlanet;
+				else
+					$CurrentPlanet = $ThePlanet;
+
+				$Result['WorkOn'] = "";
+				$Result['OnWork'] = FALSE;
+			}
+			elseif ($ThePlanet["b_tech_id"] == 0)
+			{
+				doquery("UPDATE {{table}} SET `b_tech_planet` = '0'  WHERE `id` = '".intval($CurrentUser['id']) ."';", 'users');
+				$Result['WorkOn'] = "";
+				$Result['OnWork'] = FALSE;
+			}
+			else
+			{
+				$Result['WorkOn'] = $ThePlanet;
+				$Result['OnWork'] = TRUE;
+			}
+		}
+		else
+		{
+			$Result['WorkOn'] = "";
+			$Result['OnWork'] = FALSE;
+		}
+
+		return $Result;
+	}
+
+	public function __construct(&$CurrentPlanet, &$CurrentUser)
 	{
 		global $lang, $resource, $reslist, $_GET;
 
 		require_once(XN_ROOT.'includes/functions/IsTechnologieAccessible.php');
 		require_once(XN_ROOT.'includes/functions/GetElementPrice.php');
 
+		$IsWorking			= $this->HandleTechnologieBuild($CurrentPlanet, $CurrentUser);
+		$InResearch			= $IsWorking['OnWork'];
+		$ThePlanet			= $IsWorking['WorkOn'];
 		$PageParse			= $lang;
 		$NoResearchMessage 	= "";
 		$bContinue         	= TRUE;
@@ -78,7 +141,7 @@ class ShowResearchPage
 		if ($CurrentPlanet[$resource[31]] == 0)
 			message($lang['bd_lab_required'], '', '', TRUE);
 
-		if ( ! $this->CheckLabSettingsInQueue ($CurrentPlanet))
+		if ( ! $this->CheckLabSettingsInQueue($CurrentPlanet))
 		{
 			$NoResearchMessage = $lang['bd_building_lab'];
 			$bContinue         = FALSE;
@@ -186,11 +249,11 @@ class ShowResearchPage
 			}
 
 			header("Location: ".GAMEURL."game.php?page=buildings&mode=research");
-
 		}
 
 		$TechRowTPL 	= gettemplate('buildings/buildings_research_row');
 		$TechScrTPL 	= gettemplate('buildings/buildings_research_script');
+		$TechnoList		= '';
 
 		foreach ($lang['tech'] as $Tech => $TechName)
 		{
@@ -286,11 +349,9 @@ class ShowResearchPage
 			}
 		}
 
-		$PageParse['noresearch']  = $NoResearchMessage;
-		$PageParse['technolist']  = $TechnoList;
-		$Page                    .= parsetemplate(gettemplate('buildings/buildings_research'), $PageParse);
+		$PageParse['noresearch']	= $NoResearchMessage;
+		$PageParse['technolist']	= $TechnoList;
 
-		display($Page);
+		display(parsetemplate(gettemplate('buildings/buildings_research'), $PageParse));
 	}
 }
-?>

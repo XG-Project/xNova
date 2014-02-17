@@ -15,13 +15,10 @@ define('XN_ROOT', realpath('./').'/');
 
 require(XN_ROOT.'global.php');
 
-includeLang('INGAME');
 $Page .= "<div id=\"content\">";
 
 $raportrow 	= doquery("SELECT * FROM `{{table}}` WHERE `rid` = '".($db->real_escape_string($_GET["raport"]))."';", 'rw', TRUE);
-
-
-$owners	= explode(",", $raportrow["owners"]);
+$owners	= explode(",", $raportrow['owners']);
 
 if (($owners[0] == $user["id"]) && ($raportrow["a_zestrzelona"] == 1))
 {

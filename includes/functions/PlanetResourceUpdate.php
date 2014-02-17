@@ -27,7 +27,7 @@ function PlanetResourceUpdate($CurrentUser, &$CurrentPlanet, $UpdateTime, $Simul
 	$BuildTemp		= $CurrentPlanet['temp_max'];
 	$post_porcent	= Production::max_production($CurrentPlanet['energy_max'], $CurrentPlanet['energy_used']);
 
-	$EnergyLevel = $CurrentUser['energy_tech'];
+	$BuildEnergy	= $CurrentUser['energy_tech'];
 
 	//Data init: Set vars on zero so they don't start madly increasing.
 	foreach ($rList as $rname => $rdata)
@@ -63,11 +63,11 @@ function PlanetResourceUpdate($CurrentUser, &$CurrentPlanet, $UpdateTime, $Simul
 			{
 				if ($ProdID == 12 && $CurrentPlanet['deuterium'] == 0) continue;
 
-				$CurrentPlanet['energy_max']	+=  Production::production_amount($energy_prod, $engineer_boost);
+				$CurrentPlanet['energy_max']	+=  Production::production_amount($energy_prod, $engineer_boost, TRUE);
 			}
 			else
 			{
-				$CurrentPlanet['energy_used']	 += Production::production_amount($energy_prod, 1);
+				$CurrentPlanet['energy_used']	 += Production::production_amount($energy_prod, 1, TRUE);
 			}
 		}
 	}

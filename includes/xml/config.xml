@@ -82,7 +82,7 @@
 	</config>
 	<config>
 		<name>noobprotection</name>
-		<value>1</value>
+		<value>0</value>
 	</config>
 	<config>
 		<name>noobprotectiontime</name>

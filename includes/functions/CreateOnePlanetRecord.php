@@ -201,4 +201,7 @@ function CreateOnePlanetRecord($Galaxy, $System, $Position, $PlanetOwnerID, $Pla
 
 	return $RetValue;
 }
-?>
+
+
+/* End of file CreateOnePlanetRecord.php */
+/* Location: ./includes/functions/CreateOnePlanetRecord.php */

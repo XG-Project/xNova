@@ -17,9 +17,9 @@ class ShowOverviewPage
 	{
 		global $planetrow, $lang, $db;
 
-		include_once (XN_ROOT.'includes/functions/InsertJavaScriptChronoApplet.php');
-		include_once (XN_ROOT.'includes/classes/class.FlyingFleetsTable.php');
-		include_once (XN_ROOT.'includes/functions/CheckPlanetUsedFields.php');
+		include_once(XN_ROOT.'includes/functions/InsertJavaScriptChronoApplet.php');
+		include_once(XN_ROOT.'includes/classes/class.FlyingFleetsTable.php');
+		include_once(XN_ROOT.'includes/functions/CheckPlanetUsedFields.php');
 
 		$FlyingFleetsTable = new FlyingFleetsTable();
 
@@ -38,6 +38,9 @@ class ShowOverviewPage
 		$parse['galaxy_galaxy'] 	= $CurrentPlanet['galaxy'];
 		$parse['galaxy_system'] 	= $CurrentPlanet['system'];
 		$parse['galaxy_planet'] 	= $CurrentPlanet['planet'];
+		$fpage						= array();
+		$flotten					= '';
+		$Have_new_message			= '';
 
 		$mode	= isset($_GET['mode']) ? $_GET['mode'] : NULL;
 		$Have_new_message	= '';
@@ -277,7 +280,7 @@ class ShowOverviewPage
 				}
 				$OtherFleets->free_result();
 
-				$planets_query	= doquery("SELECT * FROM `{{table}}` WHERE id_owner='". intval($CurrentUser['id'])."' && `destruyed` = 0","planets");
+				$planets_query	= doquery("SELECT * FROM `{{table}}` WHERE id_owner='".intval($CurrentUser['id'])."' && `destruyed` = 0","planets");
 				$Colonies		= $planets_query->num_rows;
 				$Colony			= 0;
 				$AllPlanets		= '';
@@ -318,11 +321,21 @@ class ShowOverviewPage
 						}
 
 						$AllPlanets .= "</center></th>";
+
+						if($Colone <= 1)
+						{
+							$Colone++;
+						}
+						else
+						{
+							$AllPlanets .= "</tr><tr>";
+							$Colone = 1;
+						}
 					}
 				}
 				$planets_query->free_result();
 
-				if ($lunarow['id']&& $lunarow['destruyed'] != 1 && $CurrentPlanet['planet_type'] != 3)
+				if ($lunarow['id'] && $lunarow['destruyed'] != 1 && $CurrentPlanet['planet_type'] != 3)
 				{
 					if ($CurrentPlanet['planet_type'] == 1 OR $lunarow['id'])
 					{
@@ -400,9 +413,9 @@ class ShowOverviewPage
 				$parse['colspan']			= empty($parse['moon']) ? ' colspan="2"' : '';
 				$parse["dpath"]				= DPATH;
 				if (read_config('stat') == 0)
-					$parse['user_rank'] = Format::pretty_number($StatRecord['total_points'])." (".$lang['ov_place']." <a href=\"game.php?page=statistics&range=".$StatRecord['total_rank']."\">".$StatRecord['total_rank']."</a> ".$lang['ov_of']." ". read_config('users_amount').")";
+					$parse['user_rank'] = Format::pretty_number($StatRecord['total_points'])." (".$lang['ov_place']." <a href=\"game.php?page=statistics&range=".$StatRecord['total_rank']."\">".$StatRecord['total_rank']."</a> ".$lang['ov_of']." ".$CurrentPlanet['total_users'].")";
 				elseif (read_config('stat') == 1 && $CurrentUser['authlevel'] < read_config('stat_level'))
-					$parse['user_rank'] = Format::pretty_number($StatRecord['total_points'])." (".$lang['ov_place']." <a href=\"game.php?page=statistics&range=".$StatRecord['total_rank']."\">".$StatRecord['total_rank']."</a> ".$lang['ov_of']." ". read_config('users_amount').")";
+					$parse['user_rank'] = Format::pretty_number($StatRecord['total_points'])." (".$lang['ov_place']." <a href=\"game.php?page=statistics&range=".$StatRecord['total_rank']."\">".$StatRecord['total_rank']."</a> ".$lang['ov_of']." ".$CurrentPlanet['total_users'].")";
 				else
 					$parse['user_rank'] = "-";
 

@@ -51,10 +51,9 @@ if ( ! defined('INSIDE')) die(header("Location:../../"));
 		doquery("DELETE FROM `{{table}}` WHERE `sender` = '".$UserID."';", 'buddy');
 		doquery("DELETE FROM `{{table}}` WHERE `owner` = '".$UserID."';", 'buddy');
 		doquery("DELETE FROM `{{table}}` WHERE `id` = '".$UserID."';", 'users');
+		doquery('DELETE IGNORE FROM `{{table}}` WHERE `user`='.$UserID, 'bots');
 
 		update_config('users_amount', read_config('users_amount') - 1);
-
-		if (doquery('SELECT * FROM `{{table}}` WHERE `user`='.$UserID, 'bots')->num_rows > 0) doquery('DELETE FROM `{{table}}` WHERE `user`='.$UserID, 'bots');
 	}
 
 	function DeleteSelectedPlanet ($ID)

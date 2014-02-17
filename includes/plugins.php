@@ -9,7 +9,7 @@
  * @author	Razican <admin@razican.com>
  */
 
-if ( ! defined('INSIDE')) die();
+if ( ! defined('INSIDE')) die(header("location: ../../"));
 
 function phpself()
 {
@@ -130,7 +130,8 @@ if (defined('IN_ADMIN'))
 {
 	if ( ! defined('DPATH')) define('DPATH', XN_ROOT.DEFAULT_SKINPATH);
 
-	$page	=   isset($_GET['mode']) ? $_GET['mode'] : NULL;
+	$page = isset($_GET['mode']) ? $_GET['mode'] : NULL;
+	$info = '';
 
 	if (is_phpself('adm/SettingsPage') && $page=='plugins')
 	{
@@ -147,7 +148,7 @@ if (defined('IN_ADMIN'))
 			}
 		}
 
-		//Si existe desactivar, lo desactivamos
+		//Si existe desactivar, lo desactivamo
 		if (isset($_GET['desactivate']))
 		{
 			$plugin = $_GET['desactivate'];
@@ -161,16 +162,19 @@ if (defined('IN_ADMIN'))
 		}
 
 		$settingsplug	='<br><br>';
-		$settingsplug 	.='<h2>Plugins Panel</h2>';
-		$settingsplug 	.= $info;
-		$settingsplug 	.='<br><table width="250">';
-		$settingsplug 	.='<tr>';
-		$settingsplug 	.='<td class="a" colspan="3" style="color:#FFFFFF"><strong> Plugins instalados </strong></td>';
-		$settingsplug 	.='</tr>';
-		$settingsplug 	.= $config_line;
-		$settingsplug 	.='</table>';
+		$settingsplug	.='<h2>Plugins Panel</h2>';
+		$settingsplug	.= $info;
+		$settingsplug	.='<br><table width="250">';
+		$settingsplug	.='<tr>';
+		$settingsplug	.='<td class="a" colspan="3" style="color:#FFFFFF"><strong> Plugins instalados </strong></td>';
+		$settingsplug	.='</tr>';
+		$settingsplug	.= $config_line;
+		$settingsplug	.='</table>';
 
 		display($settingsplug, FALSE, '', TRUE, FALSE);
 	}
 }
-?>
+
+
+/* End of file plugins.php */
+/* Location: ./includes/plugins.php */

@@ -220,7 +220,7 @@ class ShowInfosPage
 
 		if ($BuildID >= 4)
 		{
-			$Prod[4]		= Production::production_amount($energy_prod, $engineer_boost);
+			$Prod[4]		= Production::production_amount($energy_prod, $engineer_boost, TRUE);
 			$ActualProd    	= floor($Prod[4]);
 		}
 		else
@@ -262,7 +262,7 @@ class ShowInfosPage
 
 				if ($BuildID >= 4)
 				{
-					$Prod[4]		= Production::production_amount($energy_prod, $engineer_boost);
+					$Prod[4]		= Production::production_amount($energy_prod, $engineer_boost, TRUE);
 				}
 				else
 				{
@@ -499,7 +499,7 @@ class ShowInfosPage
 				$parse['metal']       = Format::pretty_number($NeededRessources['metal']);
 				$parse['crystal']     = Format::pretty_number($NeededRessources['crystal']);
 				$parse['deuterium']   = Format::pretty_number($NeededRessources['deuterium']);
-				$parse['destroytime'] = Format::pretty_time   ($DestroyTime);
+				$parse['destroytime'] = Format::pretty_time($DestroyTime);
 				$page .= parsetemplate($DestroyTPL, $parse);
 			}
 		}

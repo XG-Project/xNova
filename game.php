@@ -78,16 +78,14 @@ switch ($page)
 	break;
 //====================================================================================================//
 	case'buildings':
-		require_once(XN_ROOT.'includes/functions/HandleTechnologieBuild.php');
 		UpdatePlanetBatimentQueueList($planetrow, $user);
-		$IsWorking = HandleTechnologieBuild($planetrow, $user);
 		$mode	= isset($_GET['mode']) ? $_GET['mode'] : NULL;
 
 		switch ($mode)
 		{
 			case 'research':
 				require_once(XN_ROOT.'includes/pages/class.ShowResearchPage.php');
-				new ShowResearchPage($planetrow, $user, $IsWorking['OnWork'], $IsWorking['WorkOn']);
+				new ShowResearchPage($planetrow, $user);
 			break;
 			case 'fleet':
 				require_once(XN_ROOT.'includes/pages/class.ShowShipyardPage.php');
@@ -173,7 +171,7 @@ switch ($page)
 //====================================================================================================//
 	case'logout':
 		setcookie(read_config('cookie_name'), "", time()-100000, "/", "", FALSE, TRUE);
-		message($lang['see_you_soon'], GAMEURL, 1, FALSE, FALSE);
+		message($lang['see_you_soon'], GAMEURL, 3, FALSE, FALSE);
 	break;
 //====================================================================================================//
 	default:

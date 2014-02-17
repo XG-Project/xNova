@@ -17,18 +17,18 @@ class ShowMessagesPage
 	{
 		global $lang, $db;
 
-		$OwnerID		= intval($_GET['id']);
-		$MessCategory  	= intval($_GET['messcat']);
-		$MessPageMode  	= addslashes ($db->real_escape_string ($_GET["mode"]));
-		$DeleteWhat    	= $_POST['deletemessages'];
+		$OwnerID		= isset($_GET['id']) ? (int) $_GET['id'] : 0;
+		$MessCategory  	= isset($_GET['messcat']) ? (int) $_GET['messcat'] : 0;
+		$MessPageMode  	= addslashes($db->real_escape_string(isset($_GET["mode"]) ? $_GET['mode'] : NULL));
+		$DeleteWhat    	= isset($_POST['deletemessages']) ? $_POST['deletemessages'] : NULL;
 
 		if (isset($DeleteWhat))
 		{
 			$MessPageMode = "delete";
 		}
 
-		$UsrMess       = doquery("SELECT * FROM `{{table}}` WHERE `message_owner` = '". intval($CurrentUser['id'])."' ORDER BY `message_time` DESC;", 'messages');
-		$UnRead        = doquery("SELECT * FROM `{{table}}` WHERE `id` = '". intval($CurrentUser['id'])."';", 'users', TRUE);
+		$UsrMess       = doquery("SELECT * FROM `{{table}}` WHERE `message_owner` = '".intval($CurrentUser['id'])."' ORDER BY `message_time` DESC;", 'messages');
+		$UnRead        = doquery("SELECT * FROM `{{table}}` WHERE `id` = '".intval($CurrentUser['id'])."';", 'users', TRUE);
 
 		$MessageType   = array(0, 1, 2, 3, 4, 5, 15, 99, 100);
 		$TitleColor    = array(
@@ -47,7 +47,6 @@ class ShowMessagesPage
 		{
 			if (in_array($MessType, $MessageType))
 			{
-				$WaitingMess[$MessType]	= $UnRead[$messfields[$MessType]];
 				$TotalMess[$MessType]   = 0;
 			}
 		}
@@ -69,8 +68,8 @@ class ShowMessagesPage
 				}
 				else
 				{
-					$OwnerRecord	=	doquery("SELECT `id_planet`,`username` FROM `{{table}}` WHERE `id` = '". intval($OwnerID)."';", 'users', TRUE);
-					$OwnerHome		= 	doquery("SELECT `galaxy`,`system`,`planet` FROM `{{table}}` WHERE `id_planet` = '". intval($OwnerRecord["id_planet"])."';", 'galaxy', TRUE);
+					$OwnerRecord	=	doquery("SELECT `id_planet`,`username` FROM `{{table}}` WHERE `id` = '".intval($OwnerID)."';", 'users', TRUE);
+					$OwnerHome		= 	doquery("SELECT `galaxy`,`system`,`planet` FROM `{{table}}` WHERE `id_planet` = '".intval($OwnerRecord["id_planet"])."';", 'galaxy', TRUE);
 
 					if ( ! $OwnerRecord OR ! $OwnerHome)
 					{
@@ -111,7 +110,7 @@ class ShowMessagesPage
 						$Sender  				= intval($CurrentUser['id']);
 						$From    				= $CurrentUser['username']." [".$CurrentUser['galaxy'].":".$CurrentUser['system'].":".$CurrentUser['planet']."]";
 						$Subject 				= $_POST['subject'];
-						$Message				= preg_replace("/([^\s]{80}?)/", "\\1<br>", trim (nl2br(strip_tags ($_POST['text'], '<br>'))));
+						$Message				= preg_replace("/([^\s]{80}?)/", "\\1<br>", trim (nl2br(strip_tags($_POST['text'], '<br>'))));
 
 						SendSimpleMessage($Owner, $Sender, '', 1, $From, $Subject, $Message);
 
@@ -149,7 +148,7 @@ class ShowMessagesPage
 
 							if ($MessHere)
 							{
-								doquery("DELETE FROM `{{table}}` WHERE `message_id` = '". intval($MessId)."';", 'messages');
+								doquery("DELETE FROM `{{table}}` WHERE `message_id` = '".intval($MessId)."';", 'messages');
 							}
 						}
 					}
@@ -161,15 +160,15 @@ class ShowMessagesPage
 						$CurMess    	= preg_match("/showmes/i", $Message);
 						$MessId     	= str_replace("showmes", "", $Message);
 						$Selected   	= "delmes".$MessId;
-						$IsSelected		= $_POST[$Selected];
+						$IsSelected		= isset($_POST[$Selected]) ? $_POST[$Selected] : NULL;
 
 						if (preg_match("/showmes/i", $Message) && ! isset($IsSelected))
 						{
-							$MessHere = doquery("SELECT * FROM `{{table}}` WHERE `message_id` = '". intval($MessId)."' && `message_owner` = '". intval($CurrentUser['id'])."';", 'messages');
+							$MessHere = doquery("SELECT * FROM `{{table}}` WHERE `message_id` = '".intval($MessId)."' && `message_owner` = '".intval($CurrentUser['id'])."';", 'messages');
 
 							if ($MessHere)
 							{
-								doquery("DELETE FROM `{{table}}` WHERE `message_id` = '". intval($MessId)."';", 'messages');
+								doquery("DELETE FROM `{{table}}` WHERE `message_id` = '".intval($MessId)."';", 'messages');
 							}
 						}
 					}
@@ -192,18 +191,20 @@ class ShowMessagesPage
 
 				if ($MessCategory == 100)
 				{
-					$UsrMess	= doquery("SELECT * FROM `{{table}}` WHERE `message_owner` = '". intval($CurrentUser['id'])."' ORDER BY `message_time` DESC;", 'messages');
+					$UsrMess	= doquery("SELECT * FROM `{{table}}` WHERE `message_owner` = '".intval($CurrentUser['id'])."' ORDER BY `message_time` DESC;", 'messages');
 				}
 				else
 				{
-					$UsrMess	= doquery("SELECT * FROM `{{table}}` WHERE `message_owner` = '". intval($CurrentUser['id'])."' && `message_type` = '".$MessCategory."' ORDER BY `message_time` DESC;", 'messages');
+					$UsrMess	= doquery("SELECT * FROM `{{table}}` WHERE `message_owner` = '".intval($CurrentUser['id'])."' && `message_type` = '".$MessCategory."' ORDER BY `message_time` DESC;", 'messages');
 				}
 
 				$QryUpdateUser  = "UPDATE `{{table}}` SET ";
 				$QryUpdateUser .= "`new_message` = '0' ";
 				$QryUpdateUser .= "WHERE ";
-				$QryUpdateUser .= "`id` = '". intval($CurrentUser['id'])."';";
+				$QryUpdateUser .= "`id` = '".intval($CurrentUser['id'])."';";
 				doquery($QryUpdateUser, 'users');
+
+				$messagesBody	= '';
 
 				while ($CurMess = $UsrMess->fetch_array())
 				{
@@ -238,6 +239,7 @@ class ShowMessagesPage
 				$QrySelectUser .= "FROM `{{table}}` ";
 				$QrySelectUser .= "WHERE `authlevel` != '0' ORDER BY `username` ASC;";
 				$GameOps = doquery($QrySelectUser, 'users');
+				$operatorsBody	= '';
 
 				while ($Ops = $GameOps->fetch_assoc())
 				{
@@ -255,13 +257,12 @@ class ShowMessagesPage
 
 				break;
 			default:
-
-				$parse				=   $lang;
-				$parse['all_color']	=	$TitleColor[100];
-				$parse['all_total']	=  	$TotalMess[100];
-				$parse['all_lang']	= 	$lang['mg_type'][100];
-
-				$subTemplate 	= gettemplate('messages/messages_menu_row');
+				$parse				= $lang;
+				$parse['all_color']	= $TitleColor[100];
+				$parse['all_total']	= $TotalMess[100];
+				$parse['all_lang']	= $lang['mg_type'][100];
+				$body				= '';
+				$subTemplate		= gettemplate('messages/messages_menu_row');
 
 				for ($MessType = 0 ; $MessType < 100 ; $MessType++)
 				{

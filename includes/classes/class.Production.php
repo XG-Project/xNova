@@ -57,11 +57,19 @@ class Production
 	 * method production_amount
 	 * param1 $production
 	 * param2 $boost
+	 * param3 $is_energy
 	 * return production amount
 	 */
-	 public static function production_amount($production, $boost)
+	 public static function production_amount($production, $boost, $is_energy = FALSE)
 	 {
-	 	return floor($production*read_config('resource_multiplier')*$boost);
+	 	if ($is_energy)
+	 	{
+	 		return floor($production*$boost);
+	 	}
+	 	else
+	 	{
+	 		return floor($production*read_config('resource_multiplier')*$boost);
+	 	}
 	 }
 
 	/**

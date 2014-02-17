@@ -299,7 +299,7 @@ class BattleReport
     public function toString($resource)
     {
         ob_start();
-        require (XGP_ROOT . "includes/battle_engine/views/report.html");
+        require (PATH."views/report.html");
         return ob_get_clean();
     }
     private function getPlayerRepaired($playersBefore, $playersAfter)
@@ -311,7 +311,7 @@ class BattleReport
             {
                 foreach ($fleet->getIterator() as $idFighters => $fighters)
                 {
-                    $lostShips->decrement($idPlayer, $idFleet, $idFighters, floor($fighters->getCount() * (1 - $fighters->getRepairProb())));
+                    $lostShips->decrement($idPlayer, $idFleet, $idFighters, round($fighters->getCount() * (1 - $fighters->getRepairProb())));
                 }
             }
         }
@@ -414,7 +414,7 @@ class BattleReport
                     $endFighters = $endFleet->getFighters($idFighters);
                     if ($endFighters === false)
                     {
-                        $endFighters = $fighters;
+                        $endFleet->add($fighters);
                     }
                     else
                     {

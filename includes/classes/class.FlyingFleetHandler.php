@@ -560,7 +560,7 @@ class FlyingFleetHandler
 
 	private function MissionCaseAttack ($FleetRow)
 	{
-		require ( XGP_ROOT . 'includes/battle_engine/MissionCaseAttack.php' );
+		require_once ( XGP_ROOT . 'includes/battle_engine/MissionCaseAttack.php' );
 	}
 
 	private function MissionCaseACS($FleetRow)

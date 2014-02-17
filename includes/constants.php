@@ -9,7 +9,7 @@
 if ( !defined('INSIDE') ) die(header("location:../"));
 
 	// VERSION
-	define('SYSTEM_VERSION' 			, '2.10.6');
+	define('SYSTEM_VERSION' 			, '2.10.7');
 
 	// TEMPLATES DEFAULT SETTINGS
 	define('SKIN_PATH'					, 'styles/skins/');

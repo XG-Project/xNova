@@ -4,7 +4,25 @@ $lang['Version']     = 'Versión';
 $lang['Description'] = 'Descripción';
 $lang['changelog']   = array(
 
-'2.10.6' => ' 13/07/2013
+'2.10.7' => ' 19/11/2013
+- [Mejoras]
+-Varios Notices fueron eliminados.-
+
+- [Bugs]
+#00000: Bug en el actualizar donde no cargaba correctamente la versión actual del sistema.-
+#00000: Bug que no mostraba el nombre de confirmación al borrar a un usuario de una alianza.-
+#00028: Al intercambiar 0 recursos con el mercader te consume materia oscura.-
+#00034: Problemas en la producción.-
+#00037: Bug donde no se cargaban correctamente los SACs (By JonaMiX).-
+#00042: Bug al guardar un reporte de combate (By jstar).-
+#00043: Bug al crear una luna después de un combate (By alivan).-
+#00044: Bug aleatorio al atacar (By alivan).-
+#00045: Bug que duplicaba la flota y la defensa (By jstar).-
+#00048: Bug que mostraba mensajes de error al cambiar el nombre a un planeta (darkarrow).-
+#00049: Bug donde no se modificaban los rangos de los usuarios.-
+',
+
+'2.10.6' => ' 12/10/2013
 - [Mejoras]
 - Varias mejoras de código, se removieron varios notices y warnings.-
 - Removido HandleTechnologieBuild.php, se movio como un metodo a la clase class.ShowResearchPage.php.-

@@ -46,7 +46,7 @@ class debug
 			die($lang['cdg_mysql_not_available']);
 
 		$query = "INSERT INTO {{table}} SET
-		`error_sender` = '".intval($user['id'])."' ,
+		`error_sender` = '".(isset($user['id'])?$user['id']:0)."' ,
 		`error_time` = '".time()."' ,
 		`error_type` = '".mysql_escape_value($title)."' ,
 		`error_text` = '".mysql_escape_value($message)."';";

@@ -1,4 +1,5 @@
 <?php
+
 /**
  *  OPBE
  *  Copyright (C) 2013  Jstar
@@ -31,10 +32,11 @@ define('SHIP_MIN_ID', 202);
 define('SHIP_MAX_ID', 217);
 define('DEFENSE_MIN_ID', 401);
 define('DEFENSE_MAX_ID', 503);
+define('PATH', XGP_ROOT . "includes/battle_engine/");
 
 if ($FleetRow['fleet_mess'] == 0 && $FleetRow['fleet_start_time'] <= time())
 {
-    require ( XGP_ROOT . 'includes/battle_engine/utils/includer.php');
+    require (XGP_ROOT . 'includes/battle_engine/utils/includer.php');
 
     $targetPlanet = doquery("SELECT * FROM {{table}} WHERE `galaxy` = " . $FleetRow['fleet_end_galaxy'] . " AND `system` = " . $FleetRow['fleet_end_system'] . " AND `planet_type` = " . $FleetRow['fleet_end_type'] . " AND `planet` = " . $FleetRow['fleet_end_planet'] . ";", 'planets', true);
     if ($FleetRow['fleet_group'] > 0)
@@ -68,20 +70,20 @@ if ($FleetRow['fleet_mess'] == 0 && $FleetRow['fleet_start_time'] <= time())
     {
         if (isset($resource[$i]) && isset($targetPlanet[$resource[$i]]))
         {
-        	if ( $targetPlanet[$resource[$i]] != 0 )
-        	{
-	        	$homeFleet->add(getFighters($i, $targetPlanet[$resource[$i]]));	
-        	}
+            if ($targetPlanet[$resource[$i]] != 0)
+            {
+                $homeFleet->add(getFighters($i, $targetPlanet[$resource[$i]]));
+            }
         }
     }
     for ($i = SHIP_MIN_ID; $i < SHIP_MAX_ID; $i++)
     {
         if (isset($resource[$i]) && isset($targetPlanet[$resource[$i]]))
         {
-        	if ( $targetPlanet[$resource[$i]] != 0 )
-        	{
-	        	$homeFleet->add(getFighters($i, $targetPlanet[$resource[$i]]));	
-        	}
+            if ($targetPlanet[$resource[$i]] != 0)
+            {
+                $homeFleet->add(getFighters($i, $targetPlanet[$resource[$i]]));
+            }
         }
     }
     if (!$defenders->existPlayer($TargetUserID))
@@ -149,9 +151,9 @@ function getPlayerGroup($fleetRow)
     foreach ($serializedTypes as $serializedType)
     {
         list($id, $count) = explode(',', $serializedType);
-        if ( $id != 0 && $count != 0 )
+        if ($id != 0 && $count != 0)
         {
-	       $fleet->add(getFighters($id, $count)); 
+            $fleet->add(getFighters($id, $count));
         }
     }
     $player_info = doquery("SELECT * FROM {{table}} WHERE id =$idPlayer", 'users', true);
@@ -172,10 +174,10 @@ function getPlayerGroupFromQuery($result, $targetUser = false)
         foreach ($serializedTypes as $serializedType)
         {
             list($id, $count) = explode(',', $serializedType);
-	        if ( $id != 0 && $count != 0 )
-	        {
-		       $fleet->add(getFighters($id, $count)); 
-	        }
+            if ($id != 0 && $count != 0)
+            {
+                $fleet->add(getFighters($id, $count));
+            }
         }
         //making the player object and add it to playerGroup object
         if (!$playerGroup->existPlayer($idPlayer))
@@ -268,19 +270,18 @@ function sendMessage($FleetRow, $report, $lang, $resource)
     }
 
 
-	$report_string 	= $report->toString ( $resource );
-	$rid   			= md5 ( $report_string );
-    $raport 		= "<a href=\"#\" style=\"color:" . $style . ";\" OnClick=\'f(\"CombatReport.php?raport=" . $rid . "\", \"\");\' >" . $lang['sys_mess_attack_report'] . " [" . $FleetRow['fleet_end_galaxy'] . ":" . $FleetRow['fleet_end_system'] . ":" . $FleetRow['fleet_end_planet'] . "]</a>";
-   
-	doquery('INSERT INTO {{table}} SET
-				owners = \'' . ( $FleetRow['fleet_owner'] . ',' . $FleetRow['fleet_target_owner'] ) . '\',
+    $report_string = $report->toString($resource);
+    $rid = md5($report_string) . time();
+    $raport = "<a href=\"#\" style=\"color:" . $style . ";\" OnClick=\'f(\"CombatReport.php?raport=" . $rid . "\", \"\");\' >" . $lang['sys_mess_attack_report'] . " [" . $FleetRow['fleet_end_galaxy'] . ":" . $FleetRow['fleet_end_system'] . ":" . $FleetRow['fleet_end_planet'] . "]</a>";
+
+    doquery('INSERT INTO {{table}} SET
+				owners = \'' . ($FleetRow['fleet_owner'] . ',' . $FleetRow['fleet_target_owner']) . '\',
 				rid = \'' . $rid . '\',
-				raport = \'' . $report_string . '\',
+				raport = \'' . addslashes($report_string) . '\',
 				a_zestrzelona = 0,
-				time = \'' . time() . '\''
-				, 'rw' );
-   
-   
+				time = \'' . time() . '\'', 'rw');
+
+
     SendSimpleMessage($FleetRow['fleet_owner'], '', $FleetRow['fleet_start_time'], 3, $lang['sys_mess_tower'], $raport, '');
 
 }
@@ -298,26 +299,82 @@ function updateFleets($report, $type, $targetPlanet, $resource, $pricelist)
             }
         }
     }
-    if ($type = 'Attackers' && $players->battleResult == BATTLE_WIN)
+    if ($type == 'Attackers' && $players->battleResult == BATTLE_WIN)
         $steal = plunder($capacity, $targetPlanet['metal'], $targetPlanet['crystal'], $targetPlanet['deuterium']);
     else
         $steal = array(
             'metal' => 0,
             'crystal' => 0,
             'deuterium' => 0);
+
+    //if there is no data about attackers or defenders means that both are empty of ships or defense.
+    if ($players->isEmpty())
+    {
+        foreach ($report->getPresentationAttackersFleetOnRound('START')->getIterator() as $SidPlayer => $Splayer)
+        {
+            foreach ($Splayer->getIterator() as $SidFleet => $Sfleet)
+            {
+                //if it's a fleet inside the planet, then reset the corrispective db indexes
+                if ($Sfleet instanceof HomeFleet)
+                {
+                    $fleetArray = "";
+                    foreach ($Sfleet->getIterator() as $SidFighters => $Sfighters)
+                    {
+                        $fleetArray .= '`' . $resource[$SidFighters] . '`=0, ';
+                    }
+                    $QryUpdateTarget = "UPDATE {{table}} SET ";
+                    $QryUpdateTarget .= substr($fleetArray, 0, -1);
+                    $QryUpdateTarget .= "WHERE ";
+                    $QryUpdateTarget .= "`id` = '{$targetPlanet['id']}' ;";
+                    doquery($QryUpdateTarget, 'planets');
+                } else //delete all the fleets (ACS)
+                {
+                    doquery("DELETE FROM {{table}} WHERE `fleet_id`=$SidFleet", 'fleets'); //can be optimized
+                }
+            }
+        }
+    }
     foreach ($players->getIterator() as $idPlayer => $player)
     {
+        if ($player->isEmpty())
+        {
+            foreach ($report->getPresentationAttackersFleetOnRound('START')->getPlayer($idPlayer)->getIterator() as $SidFleet => $Sfleet)
+            {
+                if ($Sfleet instanceof HomeFleet)
+                {
+                    $fleetArray = "";
+                    foreach ($Sfleet->getIterator() as $SidFighters => $Sfighters)
+                    {
+                        $fleetArray .= '`' . $resource[$SidFighters] . '`=0, ';
+                    }
+                    $QryUpdateTarget = "UPDATE {{table}} SET ";
+                    $QryUpdateTarget .= substr($fleetArray, 0, -1);
+                    $QryUpdateTarget .= "WHERE ";
+                    $QryUpdateTarget .= "`id` = '{$targetPlanet['id']}' ;";
+                    doquery($QryUpdateTarget, 'planets');
+                } else
+                {
+                    doquery("DELETE FROM {{table}} WHERE `fleet_id`=$SidFleet", 'fleets'); //can be optimized
+                }
+            }
+        }
         foreach ($player->getIterator() as $idFleet => $fleet)
         {
+            if ($fleet->isEmpty())
+            {
+                doquery("DELETE FROM {{table}} WHERE `fleet_id`=$idFleet", 'fleets');
+                continue;
+            }
+
             $fleetArray = '';
             $totalCount = 0;
 
             if ($fleet instanceof HomeFleet)
             {
-                foreach ($fleet->getIterator() as $idFighters => $fighters)
+                foreach ($report->getPresentationDefendersFleetOnRound('START')->getPlayer($idPlayer)->getFleet($idFleet)->getIterator() as $SidFighters => $Sfighters)
                 {
-                    $amount = $fighters->getCount() + $players->getPlayer($idPlayer)->getFleet($idFleet)->getFighters($idFighters)->getCount();
-                    $fleetArray .= '`' . $resource[$idFighters] . '`=' . $amount . ', ';
+                    $amount = ($fleet->getFighters($SidFighters) == false) ? 0 : $fleet->getFighters($SidFighters)->getCount();
+                    $fleetArray .= '`' . $resource[$SidFighters] . '`=' . $amount . ', ';
                 }
                 $QryUpdateTarget = "UPDATE {{table}} SET ";
                 $QryUpdateTarget .= $fleetArray;
@@ -332,40 +389,35 @@ function updateFleets($report, $type, $targetPlanet, $resource, $pricelist)
                 $fleetCapacity = 0;
                 foreach ($fleet->getIterator() as $idFighters => $fighters)
                 {
-                    $amount = $fighters->getCount() + $players->getPlayer($idPlayer)->getFleet($idFleet)->getFighters($idFighters)->getCount();
+                    $amount = $fighters->getCount();
                     $fleetArray .= "$idFighters,$amount;";
                     $totalCount += $amount;
                     $fleetCapacity += $amount * $pricelist[$idFighters]['capacity'];
                 }
-                if ($totalCount <= 0)
+                $fleetSteal = array(
+                    'metal' => 0,
+                    'crystal' => 0,
+                    'deuterium' => 0);
+                if ($type == 'Attackers' && $players->battleResult == BATTLE_WIN)
                 {
-                    doquery("DELETE FROM {{table}} WHERE `fleet_id`=$idFleet", 'fleets');
-                } else
-                {
-                    $fleetSteal = array(
-                        'metal' => 0,
-                        'crystal' => 0,
-                        'deuterium' => 0);
-                    if ($type == 'Attackers' && $players->battleResult == BATTLE_WIN)
-                    {
-                        $corrispectiveMetal = $targetPlanet['metal'] * $fleetCapacity / $capacity;
-                        $corrispectiveCrystal = $targetPlanet['crystal'] * $fleetCapacity / $capacity;
-                        $corrispectiveDeuterium = $targetPlanet['deuterium'] * $fleetCapacity / $capacity;
-                        $fleetSteal = plunder($fleetCapacity, $corrispectiveMetal, $corrispectiveCrystal, $corrispectiveDeuterium);
-                    }
-
-                    $QryUpdateFleet = "UPDATE {{table}} SET ";
-                    $QryUpdateFleet .= "`fleet_array` = '" . substr($fleetArray, 0, -1) . "', ";
-                    $QryUpdateFleet .= "`fleet_amount` = $totalCount, ";
-                    $QryUpdateFleet .= "`fleet_mess` = 1, ";
-                    $QryUpdateFleet .= "`fleet_resource_metal` = `fleet_resource_metal` + '" . $fleetSteal['metal'] . "' , ";
-                    $QryUpdateFleet .= "`fleet_resource_crystal` = `fleet_resource_crystal` + '" . $fleetSteal['crystal'] . "' , ";
-                    $QryUpdateFleet .= "`fleet_resource_deuterium` = `fleet_resource_deuterium` + '" . $fleetSteal['deuterium'] . "' ";
-                    $QryUpdateFleet .= "WHERE ";
-                    $QryUpdateFleet .= "`fleet_id`= $idFleet ;";
-                    doquery($QryUpdateFleet, 'fleets');
+                    $corrispectiveMetal = $targetPlanet['metal'] * $fleetCapacity / $capacity;
+                    $corrispectiveCrystal = $targetPlanet['crystal'] * $fleetCapacity / $capacity;
+                    $corrispectiveDeuterium = $targetPlanet['deuterium'] * $fleetCapacity / $capacity;
+                    $fleetSteal = plunder($fleetCapacity, $corrispectiveMetal, $corrispectiveCrystal, $corrispectiveDeuterium);
                 }
+
+                $QryUpdateFleet = "UPDATE {{table}} SET ";
+                $QryUpdateFleet .= "`fleet_array` = '" . substr($fleetArray, 0, -1) . "', ";
+                $QryUpdateFleet .= "`fleet_amount` = $totalCount, ";
+                $QryUpdateFleet .= "`fleet_mess` = 1, ";
+                $QryUpdateFleet .= "`fleet_resource_metal` = `fleet_resource_metal` + '" . $fleetSteal['metal'] . "' , ";
+                $QryUpdateFleet .= "`fleet_resource_crystal` = `fleet_resource_crystal` + '" . $fleetSteal['crystal'] . "' , ";
+                $QryUpdateFleet .= "`fleet_resource_deuterium` = `fleet_resource_deuterium` + '" . $fleetSteal['deuterium'] . "' ";
+                $QryUpdateFleet .= "WHERE ";
+                $QryUpdateFleet .= "`fleet_id`= $idFleet ;";
+                doquery($QryUpdateFleet, 'fleets');
             }
+
         }
     }
 }

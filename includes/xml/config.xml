@@ -2,7 +2,7 @@
 <configurations>
 	<config>
 		<name>version</name>
-		<value>2.10.6</value>
+		<value>2.10.7</value>
 	</config>
 	<config>
 		<name>users_amount</name>
@@ -78,7 +78,7 @@
 	</config>
 	<config>
 		<name>lastsettedplanetpos</name>
-		<value>1</value>
+		<value>2</value>
 	</config>
 	<config>
 		<name>noobprotection</name>
@@ -118,7 +118,7 @@
 	</config>
 	<config>
 		<name>stat_last_update</name>
-		<value>1381624965</value>
+		<value>1384903316</value>
 	</config>
 	<config>
 		<name>stat_settings</name>

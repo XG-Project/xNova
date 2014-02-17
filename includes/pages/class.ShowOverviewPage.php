@@ -43,7 +43,7 @@ class ShowOverviewPage
 		{
 			case 'renameplanet':
 
-				if($_POST['action'] == $lang['ov_planet_rename_action'])
+				if(isset($_POST['action']) && $_POST['action'] == $lang['ov_planet_rename_action'])
 				{
 					$newname = mysql_escape_value(strip_tags(trim($_POST['newname'])));
 
@@ -56,13 +56,15 @@ class ShowOverviewPage
 						doquery("UPDATE {{table}} SET `name` = '" . $newname . "' WHERE `id` = '" . intval($CurrentUser['current_planet']) . "' LIMIT 1;","planets");
 					}
 				}
-				elseif($_POST['action'] == $lang['ov_abandon_planet'])
+				elseif(isset($_POST['action']) && $_POST['action'] == $lang['ov_abandon_planet'])
 				{
 					return display(parsetemplate(gettemplate('overview/overview_deleteplanet'),$parse));
 				}
-				elseif(intval($_POST['kolonieloeschen']) == 1 && intval($_POST['deleteid']) == $CurrentUser['current_planet'])
+				elseif(isset($_POST['kolonieloeschen']) && intval($_POST['kolonieloeschen']) == 1 && intval($_POST['deleteid']) == $CurrentUser['current_planet'])
 				{
-					$filokontrol = doquery("SELECT * FROM {{table}} WHERE fleet_owner = '" . intval($CurrentUser['id']) . "' AND fleet_start_galaxy='" . intval($CurrentPlanet['galaxy']) . "' AND fleet_start_system='" . intval($CurrentPlanet['system']) . "' AND fleet_start_planet='" . intval($CurrentPlanet['planet']) . "'",'fleets');
+					$filokontrol 	= doquery("SELECT * FROM {{table}} WHERE fleet_owner = '" . intval($CurrentUser['id']) . "' AND fleet_start_galaxy='" . intval($CurrentPlanet['galaxy']) . "' AND fleet_start_system='" . intval($CurrentPlanet['system']) . "' AND fleet_start_planet='" . intval($CurrentPlanet['planet']) . "'",'fleets');
+					$kendifilo		= '';
+					$digerfilo		= '';	
 
 					while($satir = mysql_fetch_array($filokontrol))
 					{

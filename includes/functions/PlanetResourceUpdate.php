@@ -8,133 +8,210 @@
 
 if(!defined('INSIDE')){ die(header("location:../../"));}
 
-/**
- * Modded version by Think for xgproyect.
- * Versión mejorada del archivo que además permite la configuración de recursos
- */
-    function PlanetResourceUpdate ( $CurrentUser, &$CurrentPlanet, $UpdateTime, $Simul = FALSE )
-    {
-        global $ProdGrid, $resource, $reslist;
+	function PlanetResourceUpdate ( $CurrentUser, &$CurrentPlanet, $UpdateTime, $Simul = FALSE )
+	{
+		global $ProdGrid, $resource, $reslist;
 
-        //Multiplicador de recursos y tiempo de producción
-        $game_resource_multiplier        =    read_config ( 'resource_multiplier' );
-        $ProductionTime               = ($UpdateTime - $CurrentPlanet['last_update']);
-        $CurrentPlanet['last_update'] = $UpdateTime;
+		$game_resource_multiplier		=	read_config ( 'resource_multiplier' );
+		$game_metal_basic_income		=	read_config ( 'metal_basic_income' );
+		$game_crystal_basic_income		=	read_config ( 'crystal_basic_income' );
+		$game_deuterium_basic_income	=	read_config ( 'deuterium_basic_income' );
 
-        $rList = array("metal"=>array("warehouse_num"=>22),
-                       "crystal"=>array("warehouse_num"=>23),
-                       "deuterium"=>array("warehouse_num"=>24));
+		$CurrentPlanet['metal_max']		=	Production::max_storable ( $CurrentPlanet[ $resource[22] ]);
+		$CurrentPlanet['crystal_max']	=	Production::max_storable ( $CurrentPlanet[ $resource[23] ]);
+		$CurrentPlanet['deuterium_max']	=	Production::max_storable ( $CurrentPlanet[ $resource[24] ]);
 
-        $BuildTemp    = $CurrentPlanet[ 'temp_max' ];
-        $post_porcent =    Production::max_production ( $CurrentPlanet['energy_max'] , $CurrentPlanet['energy_used'] );
+		$MaxMetalStorage                = $CurrentPlanet['metal_max'];
+		$MaxCristalStorage              = $CurrentPlanet['crystal_max'];
+		$MaxDeuteriumStorage            = $CurrentPlanet['deuterium_max'];
 
-        $BuildEnergy = $CurrentUser['energy_tech'];
+		$Caps             = array();
+		$BuildTemp        = $CurrentPlanet[ 'temp_max' ];
 
-        //Data init: Set vars on zero so they don't start madly increasing.
-        foreach($rList as $rname => $rdata) {
-            $CurrentPlanet[$rname.'_perhour'] = 0;
-        }
-        $CurrentPlanet['energy_max'] = $CurrentPlanet['energy_used'] = 0;
+		$parse['production_level'] = 100;
 
-        if ($CurrentPlanet['planet_type'] != 3)
-        {
-            foreach ( $reslist['prod'] as $ProdID)
-            {
-                $BuildLevelFactor		= $CurrentPlanet[ $resource[$ProdID] ."_porcent" ];
-                $BuildLevel				= $CurrentPlanet[ $resource[$ProdID] ];
+		$post_porcent 				= Production::max_production ( $CurrentPlanet['energy_max'] , $CurrentPlanet['energy_used'] );
+		$Caps['metal_perhour']		= 0;
+		$Caps['crystal_perhour']	= 0;
+		$Caps['deuterium_perhour']	= 0;
+		$Caps['energy_used']		= 0;
+		$Caps['energy_max']			= 0;
 
-                // BOOST
-                $geologe_boost        	= 1 + ( $CurrentUser['rpg_geologue']  * GEOLOGUE );
-                $engineer_boost			= 1 + ( $CurrentUser['rpg_ingenieur'] * ENGINEER_ENERGY );
 
-                //Standard resources
-                foreach($rList as $rname => $rdata)
-                {
-                    $cProd = eval ( $ProdGrid[$ProdID]['formule'][$rname] );  // PRODUCTION FORMULAS
-                    $CurrentPlanet[$rname.'_perhour']        += Production::current_production ( Production::production_amount ( $cProd , $geologe_boost ) , $post_porcent); // PRODUCTION
-                }
+		for ( $ProdID = 0; $ProdID < 300; $ProdID++ )
+		{
+			if ( in_array ( $ProdID , $reslist['prod'] ) )
+			{				
+				$BuildLevelFactor			= $CurrentPlanet[ $resource[$ProdID] ."_porcent" ];
+				$BuildLevel					= $CurrentPlanet[ $resource[$ProdID] ];
+				$BuildEnergy                = $CurrentUser["energy_tech"]; 
+						        
+				// BOOST
+				$geologe_boost				= 1 + ( $CurrentUser['rpg_geologue']  * GEOLOGUE );
+				$engineer_boost				= 1 + ( $CurrentUser['rpg_ingenieur'] * ENGINEER_ENERGY );
+				
+				// PRODUCTION FORMULAS
+				$metal_prod					= eval ( $ProdGrid[$ProdID]['formule']['metal'] );
+				$crystal_prod				= eval ( $ProdGrid[$ProdID]['formule']['crystal'] );
+				$deuterium_prod				= eval ( $ProdGrid[$ProdID]['formule']['deuterium'] );
+				$energy_prod				= eval ( $ProdGrid[$ProdID]['formule']['energy'] );
+				
+				// PRODUCTION
+				$Caps['metal_perhour']		+= Production::current_production ( Production::production_amount ( $metal_prod , $geologe_boost ) , $post_porcent);
+				$Caps['crystal_perhour']	+= Production::current_production ( Production::production_amount ( $crystal_prod , $geologe_boost ) , $post_porcent);
+				$Caps['deuterium_perhour']	+= Production::current_production ( Production::production_amount ( $deuterium_prod , $geologe_boost ) , $post_porcent);
+		
+				if( $ProdID >= 4 )
+				{							
+					if ( $ProdID == 12 && $CurrentPlanet['deuterium'] == 0 )
+					{
+						continue;
+					}
+											
+					$Caps['energy_max']		+=  Production::production_amount ( $energy_prod , $engineer_boost , TRUE );
+				}
+				else 
+				{
+					$Caps['energy_used']	+= Production::production_amount ( $energy_prod , 1 , TRUE );
+				}
+			}
+			
+		}
 
-                //Energy
-                $cProd = eval ( $ProdGrid[$ProdID]['formule']["energy"] );
-                $energy_prod = Production::current_production ( Production::production_amount ( $cProd , $geologe_boost , TRUE ) , $post_porcent);
+		if ($CurrentPlanet['planet_type'] == 3)
+		{
+			$game_metal_basic_income     		= 0;
+			$game_crystal_basic_income   		= 0;
+			$game_deuterium_basic_income 		= 0;
+			$CurrentPlanet['metal_perhour']     = 0;
+			$CurrentPlanet['crystal_perhour']   = 0;
+			$CurrentPlanet['deuterium_perhour']	= 0;
+			$CurrentPlanet['energy_used']       = 0;
+			$CurrentPlanet['energy_max']        = 0;
+		}
+		else
+		{	
+			$CurrentPlanet['metal_perhour']     = $Caps['metal_perhour'];
+			$CurrentPlanet['crystal_perhour']   = $Caps['crystal_perhour'];
+			$CurrentPlanet['deuterium_perhour']	= $Caps['deuterium_perhour'];
+			$CurrentPlanet['energy_used']       = $Caps['energy_used'];
+			$CurrentPlanet['energy_max']        = $Caps['energy_max'];
+		}
 
-                if( $ProdID >= 4 )
-                {
-                    if ( $ProdID == 12 && $CurrentPlanet['deuterium'] == 0 ) {
-                        continue;
-                    }
+		$ProductionTime               = ($UpdateTime - $CurrentPlanet['last_update']);
+		$CurrentPlanet['last_update'] = $UpdateTime;
 
-                    $CurrentPlanet['energy_max']        +=  Production::production_amount ( $energy_prod , $engineer_boost , TRUE );
-                }
-                else
-                {
-                    $CurrentPlanet['energy_used']    += Production::production_amount ( $energy_prod , 1 , TRUE );
-                }
-            }
-        }
+		if ($CurrentPlanet['energy_max'] == 0)
+		{
+			$CurrentPlanet['metal_perhour']     = $game_metal_basic_income;
+			$CurrentPlanet['crystal_perhour']   = $game_crystal_basic_income;
+			$CurrentPlanet['deuterium_perhour'] = $game_deuterium_basic_income;
+			$production_level            = 100;
+		}
+		elseif ($CurrentPlanet["energy_max"] >= $CurrentPlanet["energy_used"])
+		{
+			$production_level = 100;
+		}
+		else
+		{
+			$production_level = floor(($CurrentPlanet['energy_max'] / $CurrentPlanet['energy_used']) * 100);
+		}
+		if($production_level > 100)
+		{
+			$production_level = 100;
+		}
+		elseif ($production_level < 0)
+		{
+			$production_level = 0;
+		}
 
-        if($CurrentPlanet['energy_max'] == 0) //Zero production in no energy planets
-        {
-            foreach($rList as $rname => $rdata) {
-                $CurrentPlanet[$rname."_perhour"] = 0;
-            }
-        }
+		if ( $CurrentPlanet['metal'] <= $MaxMetalStorage )
+		{
+			$MetalProduction = (($ProductionTime * ($CurrentPlanet['metal_perhour'] / 3600))) * (0.01 * $production_level);
+			$MetalBaseProduc = (($ProductionTime * ($game_metal_basic_income / 3600 )));
+			$MetalTheorical  = $CurrentPlanet['metal'] + $MetalProduction  +  $MetalBaseProduc;
+			if ( $MetalTheorical <= $MaxMetalStorage )
+			{
+				$CurrentPlanet['metal']  = $MetalTheorical;
+			}
+			else
+			{
+				$CurrentPlanet['metal']  = $MaxMetalStorage;
+			}
+		}
 
-        $production_level =    Production::max_production ( $CurrentPlanet['energy_max'] , $CurrentPlanet['energy_used'] );
+		if ( $CurrentPlanet['crystal'] <= $MaxCristalStorage )
+		{
+			$CristalProduction = (($ProductionTime * ($CurrentPlanet['crystal_perhour'] / 3600))) * (0.01 * $production_level);
+			$CristalBaseProduc = (($ProductionTime * ($game_crystal_basic_income / 3600 )));
+			$CristalTheorical  = $CurrentPlanet['crystal'] + $CristalProduction  +  $CristalBaseProduc;
+			if ( $CristalTheorical <= $MaxCristalStorage )
+			{
+				$CurrentPlanet['crystal']  = $CristalTheorical;
+			}
+			else
+			{
+				$CurrentPlanet['crystal']  = $MaxCristalStorage;
+			}
+		}
 
-        $rUpd = "";
-        foreach($rList as $rname => $rdata)
-        {
-            if ($CurrentPlanet['planet_type'] != 3)
-                $b_income[$rname] = read_config ( $rname.'_basic_income' );
-            else
-                $b_income[$rname] = 0;
+		if ( $CurrentPlanet['deuterium'] <= $MaxDeuteriumStorage )
+		{
+			$DeuteriumProduction = (($ProductionTime * ($CurrentPlanet['deuterium_perhour'] / 3600))) * (0.01 * $production_level);
+			$DeuteriumBaseProduc = (($ProductionTime * ($game_deuterium_basic_income / 3600 )));
+			$DeuteriumTheorical  = $CurrentPlanet['deuterium'] + $DeuteriumProduction  +  $DeuteriumBaseProduc;
+			if ( $DeuteriumTheorical <= $MaxDeuteriumStorage )
+			{
+				$CurrentPlanet['deuterium']  = $DeuteriumTheorical;
+			}
+			else
+			{
+				$CurrentPlanet['deuterium']  = $MaxDeuteriumStorage;
+			}
+		}
 
-            $CurrentPlanet[$rname.'_max'] = Production::max_storable ( $CurrentPlanet[ $resource[$rdata['warehouse_num'] ]]);
+		if( $CurrentPlanet['metal'] < 0 )
+		{
+			$CurrentPlanet['metal']  = 0;
+		}
 
-            if ( $CurrentPlanet[$rname] <= $CurrentPlanet[$rname.'_max'] )
-            {
-                $prod = (($ProductionTime * ($CurrentPlanet[$rname.'_perhour'] / 3600))) * (0.01 * $production_level);
-                $base_prod = (($ProductionTime * ($b_income[$rname] / 3600 )));
-                $theorical  = $CurrentPlanet[$rname] + $prod  +  $base_prod;
-                if ( $theorical <= $CurrentPlanet[$rname.'_max'] ) {
-                    $CurrentPlanet[$rname]  = $theorical;
-                }
-                else {
-                    $CurrentPlanet[$rname]  = $CurrentPlanet[$rname.'_max'];
-                }
-            }
+		if( $CurrentPlanet['crystal'] < 0 )
+		{
+			$CurrentPlanet['crystal']  = 0;
+		}
 
-            if( $CurrentPlanet[$rname] < 0 ) {
-                $CurrentPlanet[$rname]  = 0;
-            }
+		if( $CurrentPlanet['deuterium'] < 0 )
+		{
+			$CurrentPlanet['deuterium']  = 0;
+		}
 
-            $rUpd .= "`$rname` = '" . $CurrentPlanet[$rname] ."', ";
-            $rUpd .= "`".$rname."_perhour` = '" . $CurrentPlanet[$rname.'_perhour'] ."', ";
-        }
+		if ($Simul == FALSE)
+		{
+			$Builded          = HandleElementBuildingQueue ( $CurrentUser, $CurrentPlanet, $ProductionTime );
 
-        if ($Simul == FALSE)
-        {
-            $Built          = HandleElementBuildingQueue ( $CurrentUser, $CurrentPlanet, $ProductionTime );
-
-            $QryUpdatePlanet  = "UPDATE {{table}} SET ";
-            $QryUpdatePlanet .= $rUpd;
-            $QryUpdatePlanet .= "`last_update` = '"      . $CurrentPlanet['last_update']       ."', ";
-            $QryUpdatePlanet .= "`b_hangar_id` = '"      . $CurrentPlanet['b_hangar_id']       ."', ";
-            $QryUpdatePlanet .= "`energy_used` = '"      . $CurrentPlanet['energy_used']       ."', ";
-            $QryUpdatePlanet .= "`energy_max` = '"       . $CurrentPlanet['energy_max']        ."', ";
-            if ( $Built != '' )
-            {
-                foreach ( $Built as $Element => $Count )
-                {
-                    if ($Element AND is_numeric($Element))
-                        $QryUpdatePlanet .= "`". $resource[$Element] ."` = '". $CurrentPlanet[$resource[$Element]] ."', ";
-                }
-            }
-            $QryUpdatePlanet .= "`b_hangar` = '". $CurrentPlanet['b_hangar'] ."' ";
-            $QryUpdatePlanet .= "WHERE ";
-            $QryUpdatePlanet .= "`id` = '". $CurrentPlanet['id'] ."';";
-            doquery($QryUpdatePlanet, 'planets');
-        }
-    }
+			$QryUpdatePlanet  = "UPDATE {{table}} SET ";
+			$QryUpdatePlanet .= "`metal` = '"            . $CurrentPlanet['metal']             ."', ";
+			$QryUpdatePlanet .= "`crystal` = '"          . $CurrentPlanet['crystal']           ."', ";
+			$QryUpdatePlanet .= "`deuterium` = '"        . $CurrentPlanet['deuterium']         ."', ";
+			$QryUpdatePlanet .= "`last_update` = '"      . $CurrentPlanet['last_update']       ."', ";
+			$QryUpdatePlanet .= "`b_hangar_id` = '"      . $CurrentPlanet['b_hangar_id']       ."', ";
+			$QryUpdatePlanet .= "`metal_perhour` = '"    . $CurrentPlanet['metal_perhour']     ."', ";
+			$QryUpdatePlanet .= "`crystal_perhour` = '"  . $CurrentPlanet['crystal_perhour']   ."', ";
+			$QryUpdatePlanet .= "`deuterium_perhour` = '". $CurrentPlanet['deuterium_perhour'] ."', ";
+			$QryUpdatePlanet .= "`energy_used` = '"      . $CurrentPlanet['energy_used']       ."', ";
+			$QryUpdatePlanet .= "`energy_max` = '"       . $CurrentPlanet['energy_max']        ."', ";
+			if ( $Builded != '' )
+			{
+				foreach ( $Builded as $Element => $Count )
+				{
+					if ($Element <> '')
+						$QryUpdatePlanet .= "`". $resource[$Element] ."` = '". $CurrentPlanet[$resource[$Element]] ."', ";
+				}
+			}
+			$QryUpdatePlanet .= "`b_hangar` = '". $CurrentPlanet['b_hangar'] ."' ";
+			$QryUpdatePlanet .= "WHERE ";
+			$QryUpdatePlanet .= "`id` = '". $CurrentPlanet['id'] ."';";
+			doquery($QryUpdatePlanet, 'planets');
+		}
+	}
 ?>
